@@ -1,0 +1,9 @@
+# Dev-only overrides (auto-loaded by `docker compose` locally; production uses -f docker-compose.yml only).
+# Publishes admin ports on loopback so scripts/tests can reach services without *.localhost DNS.
+services:
+  keycloak:
+    ports: ["127.0.0.1:18081:8080"]
+  tb:
+    ports: ["127.0.0.1:18080:8080"]
+  portal:
+    ports: ["127.0.0.1:18000:8000"]

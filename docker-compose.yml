@@ -90,8 +90,10 @@ services:
       KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
       JAVA_OPTS_KC_HEAP: -Xms128m -Xmx512m
+      KC_SPI_THEME_CACHE_THEMES: "false"   # dev convenience; harmless in prod (themes are static files)
     volumes:
       - keycloak-data:/opt/keycloak/data
+      - ./keycloak/theme/chertiot:/opt/keycloak/themes/chertiot:ro
     healthcheck:
       test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '\"status\": \"UP\"' <&3"]
       interval: 15s

@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 0 / M0.3. Last done: M0.2 (core stack, stock images, all healthy + Prometheus scraping).
+Read PLAN.md. Current: Phase 0 / M0.4. Last done: M0.3 (Keycloak realm + TB OAuth2; e2e proves Keycloak login → own TB tenant as TENANT_ADMIN).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -27,4 +27,8 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Compose `--env-file .env.example` is used by `make check-profiles`; services must not reference `.env` via `env_file` (would break the check). Pass vars explicitly.
 - Caddy+layer4 (xcaddy Go build) needs ~4 GB RAM; it was OOM-killed in a shared Colima VM. Dev runs stock `caddy` (CADDY_IMAGE in .env); staging/prod use `make caddy-image` → chertiot/caddy:<ver>-l4. Dockerfile sets GOFLAGS=-p=1.
 - Local Colima VM is shared with other projects (katula, chertclub). Keep JVM heaps capped (TB_JAVA_OPTS, JAVA_OPTS_KC_HEAP) and give the VM ≥12 GiB.
+- macOS doesn't resolve *.localhost outside browsers. Scripts use loopback ports from docker-compose.override.yml (dev only: TB 18080, Keycloak 18081, portal 18000 — 8080/8081/8000 are taken by other projects); e2e tests connect to 127.0.0.1:80 with the real Host header (tests/e2e/conftest.py).
+- TB OAuth2 (4.3.x): POST /api/oauth2/client + POST /api/domain + PUT /api/domain/{id}/oauth2Clients. Basic mapper with tenantNameStrategy=EMAIL and no customer pattern → tenant per user, user is TENANT_ADMIN, tenant gets the *default* tenant profile (so D4 quotas go on the default profile). Login button appears only when the request Host matches a Domain record.
+- Keycloak 26 sets Secure;SameSite=None on auth cookies even over http with sslRequired=none. Browsers accept that on *.localhost; Python's cookiejar doesn't — tests/e2e/conftest.py patches DefaultCookiePolicy.return_ok_secure for *.localhost.
+- `make bootstrap` is the source of truth for the realm (portal/scripts/setup_keycloak.py) + TB OAuth2 (setup_tb_oauth2.py); keycloak/realm/chertiot-realm.json is an export artifact (secrets masked) for `--import-realm` disaster recovery.
 - Rate limits live in TB **tenant profiles** (set via REST in M0.4), not in compose env.

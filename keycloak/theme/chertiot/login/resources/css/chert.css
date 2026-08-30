@@ -1,0 +1,24 @@
+/* CHERT IoT login theme — values mirror docs/branding/tokens/colors.json (never hardcode elsewhere). */
+@font-face { font-family: "Inter"; src: url("../fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+:root {
+  --chert-orange: #FF8651; --chert-orange-deep: #F26B33; --chert-tan: #D2B082; --chert-cream: #FFFAE4;
+  --chert-ink: #1A1A18; --chert-surface: #FFFFFF; --chert-border: #ECE0C2; --chert-muted: #6B6B66;
+  --chert-error: #EF4444; --chert-error-tint: #FDECEC;
+  --pf-v5-global--primary-color--100: var(--chert-orange-deep);
+  --pf-v5-global--primary-color--200: var(--chert-orange-deep);
+  --pf-v5-global--link--Color: var(--chert-ink);
+  --pf-v5-global--FontFamily--sans-serif: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+body, .login-pf body { background: var(--chert-cream); color: var(--chert-ink); font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif; }
+html[dir="rtl"] body { font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif; }
+.login-pf-page .card-pf { background: var(--chert-surface); border: 1px solid var(--chert-border); border-radius: 12px; box-shadow: none; }
+#kc-header-wrapper { text-indent: -9999px; background: url("../img/logo.svg") no-repeat center; background-size: contain; height: 64px; margin-bottom: 8px; }
+#kc-page-title, h1 { color: var(--chert-ink); font-weight: 600; }
+.pf-v5-c-button.pf-m-primary { background: var(--chert-orange); color: var(--chert-ink); border-radius: 8px; font-weight: 600; }
+.pf-v5-c-button.pf-m-primary:hover { background: var(--chert-orange-deep); }
+.pf-v5-c-form-control, input.pf-v5-c-form-control { border-color: var(--chert-border); border-radius: 8px; }
+.pf-v5-c-form-control:focus-within, input:focus { outline: 2px solid var(--chert-ink); outline-offset: 1px; }
+a { color: var(--chert-ink); text-decoration: underline; }
+.pf-v5-c-alert.pf-m-danger { background: var(--chert-error-tint); border-color: var(--chert-error); }
+#kc-info, .login-pf-page .login-pf-signup { color: var(--chert-muted); }
