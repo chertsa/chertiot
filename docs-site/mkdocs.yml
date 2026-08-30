@@ -1,0 +1,31 @@
+site_name: CHERT IoT docs
+site_url: https://chertiot.com/docs/
+site_description: Getting started with your CHERT IoT lab.
+use_directory_urls: true
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font: false
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  features: [navigation.sections, navigation.top, content.code.copy, search.suggest]
+  palette:
+    scheme: default
+extra_css: [assets/chert.css]
+nav:
+  - Start here: index.md
+  - Getting started:
+      - ESP32 (Arduino): getting-started/esp32-arduino.md
+      - ESP32 (MicroPython): getting-started/esp32-micropython.md
+      - Raspberry Pi (Python): getting-started/rpi-python.md
+      - Browser (no hardware): getting-started/browser.md
+  - Guides:
+      - MQTT, topics and your token: guides/mqtt-and-auth.md
+      - Your dashboard: guides/dashboard.md
+      - Limits and what you can't do (yet): guides/limits.md
+  - Policies:
+      - Fair use: policies/fair-use.md
+      - Privacy: policies/privacy.md
+      - Service expectations: policies/service.md
+markdown_extensions: [admonition, attr_list, tables, pymdownx.superfences, pymdownx.tabbed, toc]

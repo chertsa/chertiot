@@ -136,6 +136,17 @@ services:
       keycloak: { condition: service_healthy }
       tb: { condition: service_healthy }
 
+  docs:
+    <<: [*restart, *logging]
+    build: ./docs-site
+    image: chertiot/docs:dev
+    profiles: [core]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   caddy:
     <<: [*restart, *logging]
     # Dev: stock caddy. Staging/prod: chertiot/caddy:<ver>-l4 (layer4 MQTTS, D8) built by `make caddy-image`.

@@ -1,0 +1,6 @@
+/* CHERT Design System tokens applied to mkdocs-material (values mirror docs/branding/tokens/colors.json). */
+:root { --md-primary-fg-color: #1A1A18; --md-primary-fg-color--light: #5E5044; --md-primary-fg-color--dark: #151311;
+  --md-accent-fg-color: #F26B33; --md-default-bg-color: #FFFAE4; --md-default-fg-color: #1A1A18; --md-code-bg-color: #FBF7EC;
+  --md-typeset-a-color: #1A1A18; }
+.md-typeset a { text-decoration: underline; }
+.md-typeset .md-button--primary { background: #FF8651; border-color: #FF8651; color: #1A1A18; }

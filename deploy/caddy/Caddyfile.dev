@@ -6,6 +6,9 @@
 }
 
 http://localhost {
+	handle_path /docs/* {
+		reverse_proxy docs:80
+	}
 	reverse_proxy portal:8000
 }
 http://app.localhost {
