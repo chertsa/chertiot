@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CHERT IoT{% endblock %}</title>
+  <link rel="icon" href="/static/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/chert-fonts.css">
+  <link rel="stylesheet" href="/static/chert-tokens.css">
+  <link rel="stylesheet" href="/static/chert-components.css">
+  <link rel="stylesheet" href="/static/portal.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__brand" href="/"><img src="/static/logo.svg" alt="" class="header__logo"><span class="header__wordmark">CHERT <span class="header__product">IoT</span></span></a>
+      <nav class="header__nav">
+        {% if request.session.get('user') %}
+          <a href="/home">My lab</a>
+          <a class="btn btn--secondary btn--sm" href="/logout">Sign out</a>
+        {% else %}
+          <a href="/login">Sign in</a>
+          <a class="btn btn--primary btn--sm" href="/signup">Create account</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+  <main class="container main">{% block content %}{% endblock %}</main>
+  <footer class="footer"><div class="container">CHERT IoT — powered by ThingsBoard, Keycloak and open source. <a href="/docs/privacy">Privacy</a> · <a href="/docs/fair-use">Fair use</a> · <a href="https://status.{{ request.url.hostname }}">Status</a></div></footer>
+</body>
+</html>

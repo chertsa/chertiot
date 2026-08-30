@@ -1,0 +1,115 @@
+/* Copied verbatim from docs/branding/CHERT-Design-System.md §10 — edit the design system, not this file. */
+/* ---- Buttons ---- */
+.btn {
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease),
+              transform var(--dur-base) var(--ease);
+}
+/* Primary: INK text on orange (7.29:1). White on orange fails AA (2.39:1). */
+.btn--primary   { background: var(--chert-orange); color: var(--chert-ink); }
+.btn--primary:hover { background: var(--chert-orange-deep); transform: translateY(-1px); }
+.btn--secondary { background: transparent; border: 1.5px solid var(--chert-ink); color: var(--chert-ink); }
+.btn--secondary:hover { background: var(--chert-ink); color: var(--chert-cream); }
+/* Ghost: ink text — orange-deep on cream fails AA (2.89:1). */
+.btn--ghost     { background: transparent; color: var(--chert-ink); padding-inline: 0; }
+.btn--ghost:hover { text-decoration: underline; text-decoration-color: var(--chert-orange-deep); text-underline-offset: 3px; }
+.btn--danger    { background: var(--chert-error); color: #fff; font-size: var(--fs-base); }
+.btn:disabled   { opacity: .45; cursor: not-allowed; transform: none; }
+.btn--sm { padding: 8px 16px; }
+.btn--lg { padding: 14px 28px; font-size: var(--fs-base); }
+
+/* ---- Card ---- */
+.card {
+  background: var(--chert-surface);
+  border: 1px solid var(--chert-border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur-base) var(--ease),
+              box-shadow var(--dur-base) var(--ease);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+.card__icon {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--chert-orange-tint);
+  color: var(--chert-ink);
+  margin-block-end: var(--space-4);
+}
+.card__title { font-size: var(--fs-h3); font-weight: 700; margin: 0 0 var(--space-2); }
+.card__desc  { font-size: var(--fs-sm); color: var(--chert-muted); margin: 0 0 14px; }
+.card__link  { font-size: var(--fs-sm); font-weight: 700; color: var(--chert-ink);
+               text-decoration: underline; text-decoration-color: var(--chert-orange);
+               text-underline-offset: 3px; }
+
+/* ---- Input ---- */
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  background: var(--chert-surface);
+  border: 1px solid var(--chert-border);
+  border-radius: var(--radius-sm);
+  color: var(--chert-ink);
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+.input::placeholder { color: var(--chert-muted); }
+.input:focus {
+  outline: none;
+  border-color: var(--chert-orange);
+  box-shadow: 0 0 0 3px rgba(255,134,81,.25);
+}
+.input--error { border-color: var(--chert-error); }
+.label { display: block; font-size: var(--fs-sm); font-weight: 600; margin-block-end: 6px; }
+.helper { font-size: var(--fs-xs); color: var(--chert-muted); margin-block-start: 6px; }
+
+/* ---- Callout ---- */
+.callout {
+  border-inline-start: 4px solid var(--chert-orange-deep);
+  background: var(--chert-orange-tint);
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+.callout--success { border-color: var(--chert-success); background: var(--chert-success-tint); }
+.callout--warning { border-color: var(--chert-warning); background: var(--chert-warning-tint); }
+.callout--error   { border-color: var(--chert-error);   background: var(--chert-error-tint); }
+.callout--info    { border-color: var(--chert-info);    background: var(--chert-info-tint); }
+
+/* ---- Layout ---- */
+.container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+.section   { padding-block: var(--space-9); }
+.section--alt { background: var(--chert-surface); }
+
+.grid-cards { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+@media (min-width: 640px)  { .grid-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---- Header ---- */
+.header {
+  position: sticky; inset-block-start: 0; z-index: var(--z-sticky);
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-inline: var(--gutter);
+  background: var(--chert-cream);
+  transition: box-shadow var(--dur-base) var(--ease);
+}
+.header--scrolled {
+  border-block-end: 1px solid var(--chert-border);
+  box-shadow: 0 2px 12px -6px rgba(0,0,0,.1);
+}
+
+/* ---- Starburst loader ---- */
+.chert-star { width: 26px; height: 26px; }
+.loader { animation: chert-spin 1.2s linear infinite; color: var(--chert-orange); }
+@keyframes chert-spin { to { transform: rotate(360deg); } }

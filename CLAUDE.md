@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 1 / M1.1. Last done: M0.4 (tb_client.py + idempotent provisioning; 13 unit/integration tests green vs local TB). Phase 0 complete.
+Read PLAN.md. Current: Phase 1 / M1.2. Last done: M1.1 (portal signup → Keycloak verify → OIDC login → provisioning; e2e green).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -34,4 +34,9 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Rate limits live in TB **tenant profiles** (templates-tb/tenant-profile-student.json via provisioning.ensure_student_profile), not in compose env.
 - TB API quirks captured in tb_client.py/provisioning.py: (a) POST /tenantProfile with default=true fails while another default exists → save, then POST /tenantProfile/{id}/default; (b) tenant profile validation requires the calculated-field limits (>0) even if unused; (c) DeviceCredentials.id is a bare {"id"} without entityType; (d) userCredentialsEnabled=false blocks password/refresh login only — not live JWTs, sysadmin impersonation (GET /user/{id}/token), or OAuth2 logins; re-enabling a never-activated user 400s ("should have password") → real suspend is Keycloak-side (M3.3); (e) GET /tenant/devices?deviceName= returns 404 when absent; textSearch on /tenants is substring → filter exact title.
 - Provisioning runs tenant-scoped steps via sysadmin impersonation (needs TB default security.user_token_access_enabled=true). Never as sysadmin directly — sysadmin can't own dashboards/devices.
+- Signup design (M1.1): portal creates the Keycloak user (unverified, VERIFY_EMAIL) via the `portal` client's service account (manage-users/view-users/query-users); Keycloak sends the verification mail; provisioning runs idempotently in /auth/callback on every verified login (repairs drift). Portal holds no passwords.
+- Keycloak 26 verify-email UX: link opened outside the originating session → "Click here to proceed" interstitial → "Your account has been updated « Back to Application" (redirect_uri). The default user profile REQUIRES first/last name (forces an "Update Account Information" step) — setup_keycloak.ensure_user_profile makes them optional (D11).
+- Portal image builds from the repo root (compose build.context=.) so /templates-tb ships inside it. Alembic runs on container start (docker-entrypoint.sh); alembic.ini has no logging section on purpose.
+- Dev mail: Mailpit (docker-compose.override.yml) at http://127.0.0.1:18025; .env SMTP_HOST=mailpit, SMTP_STARTTLS=false. Prod SMTP creds are a prerequisite (ask).
+- Tests force PORTAL_DATABASE_URL to a temp SQLite file (tests/conftest.py) — `make test` sources .env for TB/Keycloak creds only.
 - Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.

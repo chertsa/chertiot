@@ -7,3 +7,11 @@ services:
     ports: ["127.0.0.1:18080:8080"]
   portal:
     ports: ["127.0.0.1:18000:8000"]
+    # Dev: public hostnames resolve to the host, where Caddy listens on :80 (prod uses real DNS).
+    extra_hosts: ["auth.localhost:host-gateway", "app.localhost:host-gateway", "localhost:host-gateway"]
+  # Dev mail catcher: Keycloak/portal send to mailpit:1025; UI + API on http://127.0.0.1:18025
+  mailpit:
+    image: axllent/mailpit:${MAILPIT_VERSION}
+    profiles: [core]
+    restart: unless-stopped
+    ports: ["127.0.0.1:18025:8025"]

@@ -12,15 +12,28 @@ class Settings(BaseSettings):
     domain: str = "chertiot.com"
     portal_secret_key: str
     portal_database_url: str
+    portal_public_url: str = "http://localhost"
+
+    # Keycloak (D3): public issuer for browser redirects + token validation; internal URL for the
+    # admin API. In dev the portal container resolves *.localhost to the host, so both work.
+    kc_hostname: str = "http://auth.localhost"
+    kc_internal_url: str = "http://keycloak:8080"
+    kc_realm: str = "chertiot"
+    kc_secret_portal: str = ""
 
     # ThingsBoard (D10: REST only). TB_ADMIN_URL overrides for scripts/tests outside compose.
     tb_admin_url: str = "http://tb:8080"
+    tb_public_url: str = "http://app.localhost"
     tb_sysadmin_email: str = "sysadmin@thingsboard.org"
     tb_sysadmin_password: str = ""
 
     # D4 quota overrides applied on top of templates-tb/tenant-profile-student.json
     tb_quota_max_devices: int | None = None
     tb_quota_device_msg_rate: str | None = None  # e.g. "10:1,300:60"
+
+    @property
+    def kc_issuer(self) -> str:
+        return f"{self.kc_hostname.rstrip('/')}/realms/{self.kc_realm}"
 
 
 @lru_cache

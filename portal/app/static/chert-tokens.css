@@ -1,0 +1,137 @@
+/* Copied verbatim from docs/branding/CHERT-Design-System.md §9 — edit the design system, not this file. */
+/* ============================================================
+   CHERT Design Tokens v1.0
+   Single source of truth. Do not edit per-project.
+   ============================================================ */
+
+:root {
+  /* ---- Brand ---- */
+  --chert-orange:       #FF8651;
+  --chert-orange-deep:  #F26B33;
+  --chert-tan:          #D2B082;
+  --chert-cream:        #FFFAE4;
+  --chert-ink:          #1A1A18;
+
+  /* ---- Extended ---- */
+  --chert-surface:      #FFFFFF;
+  --chert-surface-alt:  #FBF7EC;
+  --chert-border:       #ECE0C2;
+  --chert-border-strong:#D9C9A4;
+  --chert-muted:        #6B6B66;
+  --chert-orange-tint:  #FDEEE4;
+
+  /* ---- Functional ---- */
+  --chert-success:      #10B981;
+  --chert-success-tint: #E7F8F2;
+  --chert-warning:      #F59E0B;
+  --chert-warning-tint: #FEF4E3;
+  --chert-error:        #EF4444;
+  --chert-error-tint:   #FDECEC;
+  --chert-info:         #3B82F6;
+  --chert-info-tint:    #EAF1FE;
+
+  /* ---- Dark surfaces ---- */
+  --chert-dark:         #151311;
+  --chert-dark-surface: #1B1815;
+  --chert-dark-border:  #26221D;
+  --chert-dark-text:    #F3EDE0;
+  --chert-dark-muted:   #A89E8D;
+
+  /* ---- Type ---- */
+  --font-ui:      'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ar:      'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Consolas', monospace;
+
+  --fs-display:  56px;
+  --fs-h1:       40px;
+  --fs-h2:       30px;
+  --fs-h3:       22px;
+  --fs-lg:       18px;
+  --fs-base:     16px;
+  --fs-sm:       14px;
+  --fs-xs:       13px;
+  --fs-overline: 12px;
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.25;
+  --lh-base:  1.5;
+  --lh-ar:    1.7;
+
+  /* ---- Spacing (8px base) ---- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px;  --space-5: 24px;  --space-6: 32px;
+  --space-7: 48px;  --space-8: 64px;  --space-9: 96px;
+
+  /* ---- Layout ---- */
+  --maxw:       1200px;
+  --maxw-wide:  1440px;
+  --maxw-prose: 68ch;
+  --gutter:     24px;
+  --sidebar-w:  250px;
+  --header-h:   72px;
+
+  /* ---- Radius ---- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-card: 16px;
+  --radius-pill: 40px;
+
+  /* ---- Shadow ---- */
+  --shadow-card:     0 10px 30px -18px rgba(0,0,0,.2);
+  --shadow-hover:    0 20px 40px -20px rgba(242,107,51,.4);
+  --shadow-dropdown: 0 12px 32px -8px rgba(0,0,0,.18);
+  --shadow-modal:    0 24px 64px -12px rgba(0,0,0,.3);
+
+  /* ---- Motion ---- */
+  --ease:      cubic-bezier(.4,0,.2,1);
+  --dur-fast:  120ms;
+  --dur-base:  150ms;
+  --dur-slow:  240ms;
+
+  /* ---- Z-index ---- */
+  --z-base: 0;      --z-sticky: 100;  --z-dropdown: 200;
+  --z-overlay: 300; --z-modal: 400;   --z-toast: 500;
+}
+
+@media (min-width: 1024px) { :root { --gutter: 40px; } }
+@media (max-width: 639px) {
+  :root { --fs-display: 36px; --fs-h1: 30px; --fs-h2: 24px; --header-h: 64px; }
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--chert-cream);
+  color: var(--chert-ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+[lang="ar"] {
+  font-family: var(--font-ar);
+  font-size: 17px;
+  line-height: var(--lh-ar);
+  letter-spacing: normal;
+}
+[lang="ar"] em, [lang="ar"] i { font-style: normal; font-weight: 700; }
+[dir="rtl"] .icon-directional { transform: scaleX(-1); }
+
+.ltr-content { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+:focus-visible {
+  outline: 2px solid var(--chert-ink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

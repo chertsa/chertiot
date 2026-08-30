@@ -105,7 +105,9 @@ services:
 
   portal:
     <<: [*restart, *logging]
-    build: ./portal
+    build:
+      context: .
+      dockerfile: portal/Dockerfile
     image: chertiot/portal:dev
     profiles: [core]
     environment:
@@ -118,8 +120,19 @@ services:
       SMTP_USER: ${SMTP_USER}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_FROM: ${SMTP_FROM}
+      PORTAL_PUBLIC_URL: ${PORTAL_PUBLIC_URL}
+      KC_HOSTNAME: ${KC_HOSTNAME}
+      KC_INTERNAL_URL: ${KC_INTERNAL_URL}
+      KC_REALM: ${KC_REALM}
+      KC_SECRET_PORTAL: ${KC_SECRET_PORTAL}
+      TB_ADMIN_URL: http://tb:8080
+      TB_PUBLIC_URL: ${TB_PUBLIC_URL}
+      TB_SYSADMIN_EMAIL: ${TB_SYSADMIN_EMAIL}
+      TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
     depends_on:
       postgres: { condition: service_healthy }
+      keycloak: { condition: service_healthy }
+      tb: { condition: service_healthy }
 
   caddy:
     <<: [*restart, *logging]

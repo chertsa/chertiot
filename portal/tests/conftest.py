@@ -2,7 +2,11 @@ import os
 
 # Test-only values; production reads real secrets from .env (never committed).
 os.environ.setdefault("PORTAL_SECRET_KEY", "test-secret")
-os.environ.setdefault("PORTAL_DATABASE_URL", "postgresql+psycopg://test:test@localhost:5432/test")
+import tempfile
+
+_tmpdb = os.path.join(tempfile.mkdtemp(prefix="chertiot-test-"), "portal.db")
+# Tests never touch the real portal DB, whatever .env says.
+os.environ["PORTAL_DATABASE_URL"] = f"sqlite:///{_tmpdb}"
 
 # e2e tests read the project .env (populated by `make dev`); unit tests don't need it.
 _env = os.path.join(os.path.dirname(__file__), "..", "..", ".env")

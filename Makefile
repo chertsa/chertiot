@@ -2,7 +2,7 @@ SHELL := /bin/bash
 COMPOSE := docker compose
 UV := uv --directory portal
 
-.PHONY: help dev down test e2e lint fmt bootstrap provision kc-export caddy-image check-profiles staging-deploy prod-deploy
+.PHONY: help dev down test e2e lint fmt bootstrap provision migrate class-code kc-export caddy-image check-profiles staging-deploy prod-deploy
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-16s %s\n", $$1, $$2}'
@@ -39,6 +39,12 @@ bootstrap: .env ## Idempotent: Keycloak realm/clients + TB OAuth2 client/domain 
 
 provision: .env ## Provision/repair a student tenant: make provision EMAIL=x@y
 	set -a && . ./.env && set +a && TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run python -m scripts.provision_student $(EMAIL) $(ARGS)
+
+migrate: .env ## Apply portal DB migrations against the local stack
+	set -a && . ./.env && set +a && PORTAL_DATABASE_URL=$$(echo $$PORTAL_DATABASE_URL | sed 's|@postgres:|@127.0.0.1:|') $(UV) run alembic upgrade head
+
+class-code: .env ## Create a class code: make class-code CODE=X COHORT=Y INSTRUCTOR=Z
+	set -a && . ./.env && set +a && PORTAL_DATABASE_URL=$$(echo $$PORTAL_DATABASE_URL | sed 's|@postgres:|@127.0.0.1:|') $(UV) run python -m scripts.class_code create $(CODE) --cohort $(COHORT) --instructor $(INSTRUCTOR)
 
 kc-export: .env ## Export the Keycloak realm to keycloak/realm/ (secrets masked)
 	set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 KC_EXPORT_DIR=$(CURDIR)/keycloak/realm \

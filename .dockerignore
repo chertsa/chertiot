@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/.mypy_cache
+portal/tests
+docs
+thingsboard-brand
+firmware-examples
+docs-site
+monitoring
+deploy
+keycloak

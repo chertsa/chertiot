@@ -29,8 +29,12 @@ CLIENTS: dict[str, dict[str, Any]] = {
     },
     "portal": {
         "secret": os.environ["KC_SECRET_PORTAL"],
-        "redirectUris": [f"{PORTAL_URL}/auth/callback"],
+        "redirectUris": [f"{PORTAL_URL}/auth/callback", f"{PORTAL_URL}/auth/verified"],
         "webOrigins": [PORTAL_URL],
+        # The portal creates users and triggers verification mails through the admin API using
+        # its service account (least privilege: user management only, never realm admin).
+        "serviceAccount": True,
+        "realmManagementRoles": ["manage-users", "view-users", "query-users"],
     },
     "jupyterhub": {
         "secret": os.environ["KC_SECRET_JUPYTERHUB"],
@@ -94,8 +98,8 @@ def realm_representation() -> dict[str, Any]:
             "port": os.environ.get("SMTP_PORT", "587"),
             "from": os.environ["SMTP_FROM"],
             "fromDisplayName": "CHERT IoT",
-            "starttls": "true",
-            "auth": "true",
+            "starttls": os.environ.get("SMTP_STARTTLS", "true"),
+            "auth": "true" if os.environ.get("SMTP_USER") else "false",
             "user": os.environ.get("SMTP_USER", ""),
             "password": os.environ.get("SMTP_PASSWORD", ""),
         }
@@ -122,7 +126,7 @@ def ensure_client(c: httpx.Client, client_id: str, spec: dict[str, Any]) -> None
         "publicClient": False,
         "standardFlowEnabled": True,
         "directAccessGrantsEnabled": False,
-        "serviceAccountsEnabled": False,
+        "serviceAccountsEnabled": bool(spec.get("serviceAccount")),
         "secret": spec["secret"],
         "redirectUris": spec["redirectUris"],
         "webOrigins": spec["webOrigins"],
@@ -130,11 +134,44 @@ def ensure_client(c: httpx.Client, client_id: str, spec: dict[str, Any]) -> None
     }
     existing = c.get(f"/{REALM}/clients", params={"clientId": client_id}).json()
     if existing:
-        c.put(f"/{REALM}/clients/{existing[0]['id']}", json=rep).raise_for_status()
+        internal_id = existing[0]["id"]
+        c.put(f"/{REALM}/clients/{internal_id}", json=rep).raise_for_status()
         print(f"client {client_id}: updated")
     else:
         c.post(f"/{REALM}/clients", json=rep).raise_for_status()
+        internal_id = c.get(f"/{REALM}/clients", params={"clientId": client_id}).json()[0]["id"]
         print(f"client {client_id}: created")
+    if spec.get("realmManagementRoles"):
+        ensure_service_account_roles(c, internal_id, client_id, spec["realmManagementRoles"])
+
+
+def ensure_service_account_roles(
+    c: httpx.Client, internal_id: str, client_id: str, roles: list[str]
+) -> None:
+    sa_user = c.get(f"/{REALM}/clients/{internal_id}/service-account-user").json()
+    rm = c.get(f"/{REALM}/clients", params={"clientId": "realm-management"}).json()[0]
+    available = c.get(f"/{REALM}/clients/{rm['id']}/roles").json()
+    wanted = [r for r in available if r["name"] in roles]
+    missing = set(roles) - {r["name"] for r in wanted}
+    if missing:
+        raise SystemExit(f"realm-management roles not found: {sorted(missing)}")
+    path = f"/{REALM}/users/{sa_user['id']}/role-mappings/clients/{rm['id']}"
+    c.post(path, json=wanted).raise_for_status()  # idempotent: re-adding is a no-op
+    print(f"client {client_id}: service account roles {roles}")
+
+
+def ensure_user_profile(c: httpx.Client) -> None:
+    """D11 minimal data: only email is required. Keycloak's default profile requires first/last
+    name and would force an 'Update Account Information' step right after email verification."""
+    profile = c.get(f"/{REALM}/users/profile").json()
+    changed = False
+    for attr in profile.get("attributes", []):
+        if attr["name"] in ("firstName", "lastName") and attr.get("required"):
+            attr.pop("required", None)
+            changed = True
+    if changed:
+        c.put(f"/{REALM}/users/profile", json=profile).raise_for_status()
+    print(f"user profile: first/last name optional ({'updated' if changed else 'already'})")
 
 
 def ensure_dev_user(c: httpx.Client) -> None:
@@ -167,6 +204,7 @@ def main() -> int:
     ensure_realm(c)
     for client_id, spec in CLIENTS.items():
         ensure_client(c, client_id, spec)
+    ensure_user_profile(c)
     ensure_dev_user(c)
     return 0
 
