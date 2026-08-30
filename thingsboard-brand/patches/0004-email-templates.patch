@@ -1,0 +1,424 @@
+diff --git a/application/src/main/resources/templates/2fa.verification.code.ftl b/application/src/main/resources/templates/2fa.verification.code.ftl
+index 7442f3d..cda58ae 100644
+--- a/application/src/main/resources/templates/2fa.verification.code.ftl
++++ b/application/src/main/resources/templates/2fa.verification.code.ftl
+@@ -96,7 +96,7 @@
+                                 </tr>
+                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                     <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-                                        &mdash; The Thingsboard
++                                        &mdash; The CHERT IoT team
+                                     </td>
+                                 </tr></table></td>
+                     </tr>
+@@ -104,7 +104,7 @@
+                 <div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+                     <table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-                            <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++                            <td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+                         </tr>
+                     </table>
+                 </div>
+diff --git a/application/src/main/resources/templates/account.activated.ftl b/application/src/main/resources/templates/account.activated.ftl
+index 49501e3..cec4f13 100644
+--- a/application/src/main/resources/templates/account.activated.ftl
++++ b/application/src/main/resources/templates/account.activated.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Account Activated</title>
++<title>CHERT IoT - Account Activated</title>
+ 
+ 
+ <style type="text/css">
+@@ -83,17 +83,17 @@ background-color: #f6f6f6;
+ 							<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" /><table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">								
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										<h2>Your Thingsboard account has been activated</h2>
++										<h2>Your CHERT IoT account has been activated</h2>
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										Congratulations! Your Thingsboard account has been activated.
++										Congratulations! Your CHERT IoT account has been activated.
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										Now you can login to your Thingsboard space.
++										Now you can login to your CHERT IoT space.
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+@@ -103,7 +103,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -111,7 +111,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>
+diff --git a/application/src/main/resources/templates/account.lockout.ftl b/application/src/main/resources/templates/account.lockout.ftl
+index a26254d..9615125 100644
+--- a/application/src/main/resources/templates/account.lockout.ftl
++++ b/application/src/main/resources/templates/account.lockout.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Account Lockout</title>
++<title>CHERT IoT - Account Lockout</title>
+ 
+ 
+ <style type="text/css">
+@@ -83,17 +83,17 @@ background-color: #f6f6f6;
+ 							<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" /><table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">								
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										<h2>Thingsboard user account has been locked out</h2>
++										<h2>CHERT IoT user account has been locked out</h2>
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										Thingsboard user account ${lockoutAccount} has been locked out due to multiple authentication failures (more than ${maxFailedLoginAttempts}).
++										CHERT IoT user account ${lockoutAccount} has been locked out due to multiple authentication failures (more than ${maxFailedLoginAttempts}).
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -101,7 +101,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>
+diff --git a/application/src/main/resources/templates/activation.ftl b/application/src/main/resources/templates/activation.ftl
+index ac0a675..998e571 100644
+--- a/application/src/main/resources/templates/activation.ftl
++++ b/application/src/main/resources/templates/activation.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Account Activation</title>
++<title>CHERT IoT - Account Activation</title>
+ 
+ 
+ <style type="text/css">
+@@ -83,7 +83,7 @@ background-color: #f6f6f6;
+ 							<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" /><table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">								
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										<h2>Activate your Thingsboard account</h2>
++										<h2>Activate your CHERT IoT account</h2>
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+@@ -103,7 +103,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -111,7 +111,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>
+diff --git a/application/src/main/resources/templates/password.was.reset.ftl b/application/src/main/resources/templates/password.was.reset.ftl
+index f12ba19..9e6d070 100644
+--- a/application/src/main/resources/templates/password.was.reset.ftl
++++ b/application/src/main/resources/templates/password.was.reset.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Account Password Has Been Reset</title>
++<title>CHERT IoT - Account Password Has Been Reset</title>
+ 
+ 
+ <style type="text/css">
+@@ -83,17 +83,17 @@ background-color: #f6f6f6;
+ 							<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" /><table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">								
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										<h2>Your Thingsboard account password has been reset</h2>
++										<h2>Your CHERT IoT account password has been reset</h2>
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										You have successfully created new password for your Thingsboard account.
++										You have successfully created new password for your CHERT IoT account.
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										Now you can login to your Thingsboard space using your newly created password.
++										Now you can login to your CHERT IoT space using your newly created password.
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+@@ -103,7 +103,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -111,7 +111,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>
+diff --git a/application/src/main/resources/templates/reset.password.ftl b/application/src/main/resources/templates/reset.password.ftl
+index e6e5a59..fc228f4 100644
+--- a/application/src/main/resources/templates/reset.password.ftl
++++ b/application/src/main/resources/templates/reset.password.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Reset Password Request</title>
++<title>CHERT IoT - Reset Password Request</title>
+ 
+ 
+ <style type="text/css">
+@@ -88,7 +88,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										You have requested password reset for your Thingsboard account.
++										You have requested password reset for your CHERT IoT account.
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+@@ -103,7 +103,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -111,7 +111,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>
+diff --git a/application/src/main/resources/templates/state.disabled.ftl b/application/src/main/resources/templates/state.disabled.ftl
+index 9f5a69e..89f298c 100644
+--- a/application/src/main/resources/templates/state.disabled.ftl
++++ b/application/src/main/resources/templates/state.disabled.ftl
+@@ -22,7 +22,7 @@
+ <head>
+     <meta name="viewport" content="width=device-width"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+-    <title>Thingsboard - Api Usage State</title>
++    <title>CHERT IoT - Api Usage State</title>
+ 
+ 
+     <style type="text/css">
+@@ -113,12 +113,12 @@
+                     <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px; height: 110px;" valign="top"><img src="https://media.thingsboard.io/email/head.png" alt="" width="598" height="91" /></td>
+                 </tr>
+                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; margin: 0;">
+-                    <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle">Your ThingsBoard account feature was <strong>disabled</strong></td>
++                    <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle">Your CHERT IoT account feature was <strong>disabled</strong></td>
+                 </tr>
+                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; line-height: 24px; margin: 0;">
+                     <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0px 32px; height: 93px; vertical-align: top;" valign="top">
+                         <div style="padding: 16px; margin-bottom: 24px; border: solid 2px #EB5757; border-radius: 6px; background: rgba(235, 87, 87, 0.05);"><img style="vertical-align: middle; padding-right: 6px;" src="https://media.thingsboard.io/email/alarm.png" alt="" width="20" height="20" />
+-                            <div style="display: inline; vertical-align: middle;">We have <strong>disabled</strong> the ${apiFeature} for your account because ThingsBoard has already <strong>${apiLimitValueLabel}.</strong></div>
++                            <div style="display: inline; vertical-align: middle;">We have <strong>disabled</strong> the ${apiFeature} for your account because CHERT IoT has already <strong>${apiLimitValueLabel}.</strong></div>
+                         </div>
+                     </td>
+                 </tr>
+@@ -126,7 +126,7 @@
+                     <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 59px;" valign="top">Please contact your system administrator to resolve the issue.</td>
+                 </tr>
+                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-                    <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The ThingsBoard</td>
++                    <td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The CHERT IoT</td>
+                 </tr>
+                 </tbody>
+             </table>
+@@ -137,7 +137,7 @@
+ <table style="color: #999999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; box-sizing: border-box; margin: 0px auto; height: 64px; background-color: #f6f6f6; width: 100%;" cellpadding="0px 0px 20px">
+     <tbody>
+     <tr style="box-sizing: border-box; margin: 0px;">
+-        <td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by ThingsBoard.</td>
++        <td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by CHERT IoT.</td>
+     </tr>
+     </tbody>
+ </table>
+diff --git a/application/src/main/resources/templates/state.enabled.ftl b/application/src/main/resources/templates/state.enabled.ftl
+index b6f2bab..7cd6bbd 100644
+--- a/application/src/main/resources/templates/state.enabled.ftl
++++ b/application/src/main/resources/templates/state.enabled.ftl
+@@ -22,7 +22,7 @@
+ <head>
+ 	<meta name="viewport" content="width=device-width"/>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+-	<title>Thingsboard - Api Usage State</title>
++	<title>CHERT IoT - Api Usage State</title>
+ 
+ 
+ 	<style type="text/css">
+@@ -113,17 +113,17 @@
+ 					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px; height: 110px;" valign="top"><img src="https://media.thingsboard.io/email/head.png" alt="" width="598" height="91" /></td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; margin: 0;">
+-					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle">Your ThingsBoard account feature was <strong>enabled</strong></td>
++					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle">Your CHERT IoT account feature was <strong>enabled</strong></td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; line-height: 24px; margin: 0;">
+ 					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0px 32px; height: 93px; vertical-align: top;" valign="top">
+ 						<div style="padding: 16px; margin-bottom: 24px; border: solid 2px #27AE60; border-radius: 6px; background: rgba(39, 174, 96, 0.05);"><img style="vertical-align: middle; padding-right: 6px;" src="https://media.thingsboard.io/email/confirm.png" alt="" width="20" height="20" />
+-							<div style="display: inline; vertical-align: middle;">We have enabled the ${apiFeature} for your account and ThingsBoard is already able to ${apiLabel} messages.</div>
++							<div style="display: inline; vertical-align: middle;">We have enabled the ${apiFeature} for your account and CHERT IoT is already able to ${apiLabel} messages.</div>
+ 						</div>
+ 					</td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The ThingsBoard</td>
++					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The CHERT IoT</td>
+ 				</tr>
+ 				</tbody>
+ 			</table>
+@@ -134,7 +134,7 @@
+ <table style="color: #999999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; box-sizing: border-box; margin: 0px auto; height: 64px; background-color: #f6f6f6; width: 100%;" cellpadding="0px 0px 20px">
+ 	<tbody>
+ 	<tr style="box-sizing: border-box; margin: 0px;">
+-		<td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by ThingsBoard.</td>
++		<td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by CHERT IoT.</td>
+ 	</tr>
+ 	</tbody>
+ </table>
+diff --git a/application/src/main/resources/templates/state.warning.ftl b/application/src/main/resources/templates/state.warning.ftl
+index 2b757d7..5e0a0dd 100644
+--- a/application/src/main/resources/templates/state.warning.ftl
++++ b/application/src/main/resources/templates/state.warning.ftl
+@@ -22,7 +22,7 @@
+ <head>
+ 	<meta name="viewport" content="width=device-width"/>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+-	<title>Thingsboard - Api Usage State</title>
++	<title>CHERT IoT - Api Usage State</title>
+ 
+ 
+ 	<style type="text/css">
+@@ -113,12 +113,12 @@
+ 					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px; height: 110px;" valign="top"><img src="https://media.thingsboard.io/email/head.png" alt="" width="598" height="91" /></td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; margin: 0;">
+-					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle"><strong>Warning:</strong> your ThingsBoard account feature may be disabled soon</td>
++					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000000; box-sizing: border-box; font-size: 16px; margin: 0px; padding: 0px 32px; height: 66px; vertical-align: middle;" valign="middle"><strong>Warning:</strong> your CHERT IoT account feature may be disabled soon</td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; line-height: 24px; margin: 0;">
+ 					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0px 32px; height: 93px; vertical-align: top;" valign="top">
+ 						<div style="padding: 16px; margin-bottom: 24px; border: solid 2px #F2994A; border-radius: 6px; background: rgba(242, 153, 74, 0.05);"><img style="vertical-align: middle; padding-right: 6px;" src="https://media.thingsboard.io/email/warning.png" alt="" width="20" height="20" />
+-							<div style="display: inline; vertical-align: middle;">ThingsBoard has already&nbsp;${apiValueLabel}.<br />${apiFeature} will be <strong>disabled</strong> for your account once the limit will be reached.</div>
++							<div style="display: inline; vertical-align: middle;">CHERT IoT has already&nbsp;${apiValueLabel}.<br />${apiFeature} will be <strong>disabled</strong> for your account once the limit will be reached.</div>
+ 						</div>
+ 					</td>
+ 				</tr>
+@@ -126,7 +126,7 @@
+ 					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 59px;" valign="top">Please contact your system administrator to resolve the issue.</td>
+ 				</tr>
+ 				<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The ThingsBoard</td>
++					<td class="content-block" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 32px; height: 40px;" valign="top">&mdash; The CHERT IoT</td>
+ 				</tr>
+ 				</tbody>
+ 			</table>
+@@ -137,7 +137,7 @@
+ <table style="color: #999999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; box-sizing: border-box; margin: 0px auto; height: 64px; background-color: #f6f6f6; width: 100%;" cellpadding="0px 0px 20px">
+ 	<tbody>
+ 	<tr style="box-sizing: border-box; margin: 0px;">
+-		<td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by ThingsBoard.</td>
++		<td class="aligncenter content-block" style="box-sizing: border-box; font-size: 12px; margin: 0px; padding: 0px 0px 20px; width: 600px; text-align: center; vertical-align: middle;" align="center" valign="top">This email was sent to&nbsp;<a style="box-sizing: border-box; color: #999999; margin: 0px;" href="mailto:${targetEmail}">${targetEmail}</a>&nbsp;by CHERT IoT.</td>
+ 	</tr>
+ 	</tbody>
+ </table>
+diff --git a/application/src/main/resources/templates/test.ftl b/application/src/main/resources/templates/test.ftl
+index a022e2b..c21d637 100644
+--- a/application/src/main/resources/templates/test.ftl
++++ b/application/src/main/resources/templates/test.ftl
+@@ -20,7 +20,7 @@
+ <head>
+ <meta name="viewport" content="width=device-width" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+-<title>Thingsboard - Test Message</title>
++<title>CHERT IoT - Test Message</title>
+ 
+ 
+ <style type="text/css">
+@@ -83,7 +83,7 @@ background-color: #f6f6f6;
+ 							<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" /><table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">								
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #348eda; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										<h2>Test message from Thingsboard</h2>
++										<h2>Test message from CHERT IoT</h2>
+ 									</td>
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+@@ -93,7 +93,7 @@ background-color: #f6f6f6;
+ 								</tr>
+ 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+-										&mdash; The Thingsboard
++										&mdash; The CHERT IoT team
+ 									</td>
+ 								</tr></table></td>
+ 							</tr>
+@@ -101,7 +101,7 @@ background-color: #f6f6f6;
+ 				<div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+ 					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+ 						<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+-							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by Thingsboard.</td>
++							<td class="aligncenter content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; color: #999; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">This email was sent to <a href="mailto:${targetEmail}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; color: #999; text-decoration: underline; margin: 0;">${targetEmail}</a> by CHERT IoT (powered by CHERT IoT).</td>
+ 						</tr>
+ 					</table>
+ 				</div>

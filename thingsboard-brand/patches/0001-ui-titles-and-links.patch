@@ -1,0 +1,50 @@
+diff --git a/ui-ngx/src/app/modules/login/pages/login/login.component.html b/ui-ngx/src/app/modules/login/pages/login/login.component.html
+index 39fd731..3613225 100644
+--- a/ui-ngx/src/app/modules/login/pages/login/login.component.html
++++ b/ui-ngx/src/app/modules/login/pages/login/login.component.html
+@@ -20,7 +20,7 @@
+     <mat-card-content class="!p-6">
+       <form class="tb-login-form flex flex-col" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+         <div class="flex flex-col items-center justify-start" style="padding: 16px 0;">
+-          <tb-logo link="https://thingsboard.io" target="_blank" class="login-logo"></tb-logo>
++          <tb-logo link="https://chertiot.com" target="_blank" class="login-logo"></tb-logo>
+         </div>
+         <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading || (isLoading$ | async)">
+         </mat-progress-bar>
+diff --git a/ui-ngx/src/assets/locale/locale.constant-en_US.json b/ui-ngx/src/assets/locale/locale.constant-en_US.json
+index 052d7ca..f897322 100644
+--- a/ui-ngx/src/assets/locale/locale.constant-en_US.json
++++ b/ui-ngx/src/assets/locale/locale.constant-en_US.json
+@@ -1879,8 +1879,8 @@
+         "make-private-dashboard-title": "Are you sure you want to make the dashboard '{{dashboardTitle}}' private?",
+         "make-private-dashboard-text": "After the confirmation the dashboard will be made private and won't be accessible by others.",
+         "make-private-dashboard": "Make dashboard private",
+-        "socialshare-text": "'{{dashboardTitle}}' powered by ThingsBoard",
+-        "socialshare-title": "'{{dashboardTitle}}' powered by ThingsBoard",
++        "socialshare-text": "'{{dashboardTitle}}' on CHERT IoT, powered by ThingsBoard",
++        "socialshare-title": "'{{dashboardTitle}}' on CHERT IoT, powered by ThingsBoard",
+         "select-dashboard": "Select dashboard",
+         "no-dashboards-matching": "No dashboards matching '{{entity}}' were found.",
+         "dashboard-required": "Dashboard is required.",
+@@ -4193,7 +4193,7 @@
+     "iot-hub": {
+         "iot-hub": "IoT Hub",
+         "generate-random-value": "Generate random value",
+-        "home-title": "ThingsBoard IoT Hub",
++        "home-title": "CHERT IoT Hub",
+         "home-subtitle-prefix": "Discover ready-to-use",
+         "and-devices": "& Devices",
+         "search-placeholder": "Search in IoT Hub...",
+diff --git a/ui-ngx/src/index.html b/ui-ngx/src/index.html
+index ab56314..ab45cc0 100644
+--- a/ui-ngx/src/index.html
++++ b/ui-ngx/src/index.html
+@@ -19,7 +19,7 @@
+ <html lang="en" style="width: 100%; height: 100%;">
+ <head>
+   <meta charset="utf-8">
+-  <title>ThingsBoard</title>
++  <title>CHERT IoT</title>
+   <base href="/">
+ 
+   <meta name="viewport" content="width=device-width, initial-scale=1">

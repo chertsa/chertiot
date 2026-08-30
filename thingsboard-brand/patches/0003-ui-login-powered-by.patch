@@ -1,0 +1,12 @@
+diff --git a/ui-ngx/src/app/modules/login/pages/login/login.component.html b/ui-ngx/src/app/modules/login/pages/login/login.component.html
+index 3613225..3bf4468 100644
+--- a/ui-ngx/src/app/modules/login/pages/login/login.component.html
++++ b/ui-ngx/src/app/modules/login/pages/login/login.component.html
+@@ -21,6 +21,7 @@
+       <form class="tb-login-form flex flex-col" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+         <div class="flex flex-col items-center justify-start" style="padding: 16px 0;">
+           <tb-logo link="https://chertiot.com" target="_blank" class="login-logo"></tb-logo>
++          <div class="tb-powered-by" style="text-align:center; font-size:12px; opacity:.8; margin-top:4px">CHERT IoT &mdash; powered by <a href="https://thingsboard.io" target="_blank" rel="noopener" style="color:inherit">ThingsBoard</a></div>
+         </div>
+         <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading || (isLoading$ | async)">
+         </mat-progress-bar>

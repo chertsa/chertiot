@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: GATE 1 review → Phase 2 / M2.1. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
+Read PLAN.md. Current: Phase 2 / M2.1 in progress (patch series + build.sh done; branded image not yet built — needs ~8 GB free RAM). GATE 1 tag v0.9.0 pending one green e2e run on a quiet host. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -43,4 +43,5 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Firmware templates live in firmware-examples/ (shipped in the portal image at /firmware-examples, FIRMWARE_DIR); placeholders {{MQTT_HOST}} {{MQTT_PORT}} {{HTTP_URL}} {{ACCESS_TOKEN}} {{DEVICE_NAME}}; dev .env uses MQTT localhost:1883, prod 8883.
 - paho-mqtt: always `disconnect()` before `loop_stop()`; a QoS1 publish TB never ACKs (e.g. a plain device publishing to v1/gateway/*) makes `loop_stop()` block forever. TB logs 'gatewaySessionHandler is null' and drops such messages silently.
 - Flood test (tests-platform/test_flood.py, `make flood-test`): flooder in a separate process; TB throttles via tenant profile and closes the flooder's session repeatedly (MQTT_MSG_QUEUE_SIZE_PER_DEVICE_LIMIT=100, 'Closing current session because msq queue size'); control-device numbers are only meaningful on a quiet host — rerun on staging (M2.2) for the real criterion-4 numbers.
+- thingsboard-brand/: patches apply to v4.3.1.4 (validated with git apply --check). Build = Dockerized Maven (`build.sh`), needs ≥8 GB RAM; no JDK on this host. Logo assets are PNG-in-SVG derived from docs/branding (logo-master.svg is itself a raster). Palette patch keeps orange as accent/fill only (design-system rule).
 - Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.
