@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 1 / M1.3. Last done: M1.2 (device pages, firmware snippets rendered per device, rename/revoke/delete, dashboard reset; e2e runs the rendered snippet).
+Read PLAN.md. Current: GATE 1 review → Phase 2 / M2.1. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -41,4 +41,6 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Tests force PORTAL_DATABASE_URL to a temp SQLite file (tests/conftest.py) — `make test` sources .env for TB/Keycloak creds only.
 - Device 'last seen' = TB server attributes `active` / `lastActivityTime` (GET .../values/attributes/SERVER_SCOPE). Token rotation = POST /device/credentials with the existing credentials id and a new credentialsId.
 - Firmware templates live in firmware-examples/ (shipped in the portal image at /firmware-examples, FIRMWARE_DIR); placeholders {{MQTT_HOST}} {{MQTT_PORT}} {{HTTP_URL}} {{ACCESS_TOKEN}} {{DEVICE_NAME}}; dev .env uses MQTT localhost:1883, prod 8883.
+- paho-mqtt: always `disconnect()` before `loop_stop()`; a QoS1 publish TB never ACKs (e.g. a plain device publishing to v1/gateway/*) makes `loop_stop()` block forever. TB logs 'gatewaySessionHandler is null' and drops such messages silently.
+- Flood test (tests-platform/test_flood.py, `make flood-test`): flooder in a separate process; TB throttles via tenant profile and closes the flooder's session repeatedly (MQTT_MSG_QUEUE_SIZE_PER_DEVICE_LIMIT=100, 'Closing current session because msq queue size'); control-device numbers are only meaningful on a quiet host — rerun on staging (M2.2) for the real criterion-4 numbers.
 - Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.

@@ -13,18 +13,19 @@ from app.config import get_settings
 from app.db import get_db
 from app.models import PortalUser
 from app.onboarding import ensure_provisioned
+from app.ratelimit import rate_limited
 from app.templating import templates
 
 router = APIRouter()
 
 
-@router.get("/login")
+@router.get("/login", dependencies=[Depends(rate_limited("login", 30, 60))])
 async def login(request: Request) -> Any:
     s = get_settings()
     return await oauth.keycloak.authorize_redirect(request, f"{s.portal_public_url}/auth/callback")
 
 
-@router.get("/auth/callback")
+@router.get("/auth/callback", dependencies=[Depends(rate_limited("callback", 30, 60))])
 async def callback(request: Request, db: Session = Depends(get_db)) -> Any:
     try:
         token = await oauth.keycloak.authorize_access_token(request)

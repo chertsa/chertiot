@@ -1,0 +1,20 @@
+name: nightly
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+jobs:
+  flood:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.7"
+      - run: uv --directory portal sync --frozen
+      - run: deploy/scripts/ci-env.sh
+      - run: docker compose --profile core up -d --build
+      - run: make wait-healthy
+      - run: make bootstrap
+      - run: make flood-test

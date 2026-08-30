@@ -341,7 +341,10 @@ class TbClient:
         data = self._get(
             f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries", keys=",".join(keys)
         )
-        return dict(data) if isinstance(data, dict) else {}
+        if not isinstance(data, dict):
+            return {}
+        # TB API quirk: a key with no data comes back as [{"ts": now, "value": null}] — drop it.
+        return {k: v for k, v in data.items() if v and v[0].get("value") is not None}
 
     def close(self) -> None:
         self._http.close()

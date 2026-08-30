@@ -11,6 +11,7 @@ from app.config import get_settings
 from app.db import get_db
 from app.keycloak_admin import KeycloakAdmin, KeycloakError, KeycloakUserExistsError
 from app.models import ClassCode, PortalUser, utcnow
+from app.ratelimit import rate_limited
 from app.templating import templates
 
 router = APIRouter()
@@ -34,7 +35,7 @@ def signup_form(request: Request) -> Any:
     return _render(request, {}, {})
 
 
-@router.post("/signup")
+@router.post("/signup", dependencies=[Depends(rate_limited("signup", 5, 3600))])
 def signup_submit(
     request: Request,
     email: Annotated[str, Form()],

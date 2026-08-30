@@ -2,7 +2,7 @@ SHELL := /bin/bash
 COMPOSE := docker compose
 UV := uv --directory portal
 
-.PHONY: help dev down test e2e lint fmt bootstrap provision migrate class-code kc-export caddy-image check-profiles staging-deploy prod-deploy
+.PHONY: help dev down test e2e platform-test flood-test wait-healthy lint fmt bootstrap provision migrate class-code kc-export caddy-image check-profiles staging-deploy prod-deploy
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-16s %s\n", $$1, $$2}'
@@ -19,17 +19,26 @@ down: ## Stop local stack
 test: ## Portal unit + integration tests (integration skips unless local TB is up)
 	@if [ -f .env ]; then set -a && . ./.env && set +a; fi; TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run pytest tests/unit tests/integration
 
-e2e: .env ## End-to-end provisioning tests against local stack
-	$(UV) run pytest tests/e2e
+e2e: .env ## End-to-end tests against the local stack (signup, SSO, devices)
+	@set -a && . ./.env && set +a; $(UV) run pytest tests/e2e
+
+platform-test: .env ## Tenancy isolation tests against the local stack
+	@set -a && . ./.env && set +a; TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run pytest $(CURDIR)/tests-platform -q
+
+flood-test: .env ## Flood / rate-limit test (~1 min, nightly)
+	@set -a && . ./.env && set +a; TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run pytest $(CURDIR)/tests-platform -q -m flood -s
+
+wait-healthy: ## Block until TB, Keycloak and portal report healthy
+	@for i in $$(seq 1 60); do S=$$(docker compose --profile core ps --format '{{.Service}} {{.Status}}'); echo "$$S" | grep -q '^tb .*(healthy)' && echo "$$S" | grep -q '^keycloak .*(healthy)' && echo "$$S" | grep -q '^portal .*(healthy)' && exit 0; sleep 10; done; docker compose --profile core ps; exit 1
 
 lint: ## ruff + mypy + compose config validation
-	$(UV) run ruff check .
-	$(UV) run ruff format --check .
+	$(UV) run ruff check . $(CURDIR)/tests-platform
+	$(UV) run ruff format --check . $(CURDIR)/tests-platform
 	$(UV) run mypy app
 	$(MAKE) check-profiles
 
 fmt: ## Auto-format
-	$(UV) run ruff format . && $(UV) run ruff check --fix .
+	$(UV) run ruff format . $(CURDIR)/tests-platform && $(UV) run ruff check --fix . $(CURDIR)/tests-platform
 
 bootstrap: .env ## Idempotent: Keycloak realm/clients + TB OAuth2 client/domain (M0.3)
 	set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 TB_ADMIN_URL=http://127.0.0.1:18080 \

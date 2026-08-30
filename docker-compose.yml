@@ -218,6 +218,9 @@ services:
     image: gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION}
     profiles: [core]
     privileged: true
+    # Default 1s housekeeping burns a full core on a busy host; 30s is plenty for capacity graphs.
+    command: ["--housekeeping_interval=30s", "--docker_only=true", "--store_container_labels=false"]
+    deploy: { resources: { limits: { cpus: "0.5", memory: 256M } } }
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro

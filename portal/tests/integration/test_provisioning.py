@@ -74,8 +74,8 @@ def test_mqtt_telemetry_reaches_starter_device(sysadmin: TbClient, student_email
         "v1/devices/me/telemetry", json.dumps({"temperature": 21.5, "humidity": 40}), qos=1
     )
     info.wait_for_publish(timeout=10)
-    c.loop_stop()
     c.disconnect()
+    c.loop_stop()
     assert info.is_published()
 
     as_student = sysadmin.impersonate(r.user_id)

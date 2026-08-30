@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.db import Base, get_engine
 from app.main import app
+from app.ratelimit import limiter
 from app.routers.signup import get_kc
 
 
@@ -31,6 +32,7 @@ class FakeKeycloak:
 
 @pytest.fixture(autouse=True)
 def fresh_db() -> Iterator[None]:
+    limiter.reset()
     Base.metadata.drop_all(get_engine())
     Base.metadata.create_all(get_engine())
     yield
