@@ -1,0 +1,38 @@
+name: images
+# Reproducible platform images, built in CI and pushed to GHCR (never on a workstation):
+#  - chertiot/caddy:<ver>-l4       (xcaddy: layer4 + replace-response)
+#  - chertiot/tb:<ver>-bN          (ThingsBoard CE + brand patch series, thingsboard-brand/build.sh)
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+    paths-ignore: []
+permissions:
+  contents: read
+  packages: write
+jobs:
+  caddy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - run: make caddy-image
+      - run: |
+          VER=$(grep ^CADDY_VERSION= .env.example | cut -d= -f2)
+          docker tag chertiot/caddy:${VER}-l4 ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
+          docker push ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
+  thingsboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - run: thingsboard-brand/build.sh
+      - run: thingsboard-brand/smoke.sh "$(cat thingsboard-brand/LAST_IMAGE)"
+      - run: |
+          IMG=$(cat thingsboard-brand/LAST_IMAGE)
+          docker tag "$IMG" "ghcr.io/${{ github.repository_owner }}/chertiot-tb:${IMG#chertiot/tb:}"
+          docker push "ghcr.io/${{ github.repository_owner }}/chertiot-tb:${IMG#chertiot/tb:}"

@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 2 / M2.1 in progress (patch series + build.sh done; branded image not yet built — needs ~8 GB free RAM). GATE 1 tag v0.9.0 pending one green e2e run on a quiet host. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
+Read PLAN.md. Current: Phase 2. GATE 1 tag v0.9.0 pending: full suite must pass in CI (stack-e2e job) once the GitHub repo exists — local host cannot run the stack reliably. M2.1 image build + M2.2 staging deploy also run in CI/VPS (prerequisites pending). Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -25,7 +25,7 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Keycloak 26: `start --optimized` fails on first ever start (no build). We use plain `start`; optimized image is in BACKLOG.
 - TB's own conf sets a GC; adding -XX:+UseSerialGC in JAVA_OPTS → "Multiple garbage collectors selected".
 - Compose `--env-file .env.example` is used by `make check-profiles`; services must not reference `.env` via `env_file` (would break the check). Pass vars explicitly.
-- Caddy+layer4 (xcaddy Go build) needs ~4 GB RAM; it was OOM-killed in a shared Colima VM. Dev runs stock `caddy` (CADDY_IMAGE in .env); staging/prod use `make caddy-image` → chertiot/caddy:<ver>-l4. Dockerfile sets GOFLAGS=-p=1.
+- Caddy = chertiot/caddy:<ver>-l4 everywhere (make caddy-image locally, images.yml in CI). Dockerfile sets GOFLAGS=-p=1 to bound build memory.
 - Local Colima VM is shared with other projects (katula, chertclub). Keep JVM heaps capped (TB_JAVA_OPTS, JAVA_OPTS_KC_HEAP) and give the VM ≥12 GiB.
 - macOS doesn't resolve *.localhost outside browsers. Scripts use loopback ports from docker-compose.override.yml (dev only: TB 18080, Keycloak 18081, portal 18000 — 8080/8081/8000 are taken by other projects); e2e tests connect to 127.0.0.1:80 with the real Host header (tests/e2e/conftest.py).
 - TB OAuth2 (4.3.x): POST /api/oauth2/client + POST /api/domain + PUT /api/domain/{id}/oauth2Clients. Basic mapper with tenantNameStrategy=EMAIL and no customer pattern → tenant per user, user is TENANT_ADMIN, tenant gets the *default* tenant profile (so D4 quotas go on the default profile). Login button appears only when the request Host matches a Domain record.
@@ -43,5 +43,5 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Firmware templates live in firmware-examples/ (shipped in the portal image at /firmware-examples, FIRMWARE_DIR); placeholders {{MQTT_HOST}} {{MQTT_PORT}} {{HTTP_URL}} {{ACCESS_TOKEN}} {{DEVICE_NAME}}; dev .env uses MQTT localhost:1883, prod 8883.
 - paho-mqtt: always `disconnect()` before `loop_stop()`; a QoS1 publish TB never ACKs (e.g. a plain device publishing to v1/gateway/*) makes `loop_stop()` block forever. TB logs 'gatewaySessionHandler is null' and drops such messages silently.
 - Flood test (tests-platform/test_flood.py, `make flood-test`): flooder in a separate process; TB throttles via tenant profile and closes the flooder's session repeatedly (MQTT_MSG_QUEUE_SIZE_PER_DEVICE_LIMIT=100, 'Closing current session because msq queue size'); control-device numbers are only meaningful on a quiet host — rerun on staging (M2.2) for the real criterion-4 numbers.
-- thingsboard-brand/: patches apply to v4.3.1.4 (validated with git apply --check). Build = Dockerized Maven (`build.sh`), needs ≥8 GB RAM; no JDK on this host. Logo assets are PNG-in-SVG derived from docs/branding (logo-master.svg is itself a raster). Palette patch keeps orange as accent/fill only (design-system rule).
+- thingsboard-brand/: patches apply to v4.3.1.4 (validated with git apply --check). The branded image and the layer4 Caddy image are built by CI (.github/workflows/images.yml → GHCR); one image per component in every environment, no dev-only variants. Logo assets are PNG-in-SVG derived from docs/branding (logo-master.svg is itself a raster). Palette patch keeps orange as accent/fill only (design-system rule).
 - Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.
