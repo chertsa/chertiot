@@ -1,0 +1,40 @@
+groups:
+  - name: chertiot-platform
+    rules:
+      - alert: ServiceDown
+        expr: up{job=~"thingsboard|keycloak|caddy|postgres|portal"} == 0
+        for: 2m
+        labels: { severity: critical }
+        annotations: { summary: "{{ $labels.job }} is down", description: "Prometheus cannot scrape {{ $labels.job }} for 2 minutes." }
+      - alert: DiskAlmostFull
+        expr: (node_filesystem_avail_bytes{mountpoint="/",fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{mountpoint="/"}) < 0.15
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "Root disk below 15% free" }
+      - alert: MemoryPressure
+        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) < 0.10
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "Less than 10% memory available" }
+      - alert: TlsCertificateExpiringSoon
+        # Caddy exposes cert expiry per SAN; alert 14 days before (Caddy renews at 30, so this means renewal is failing).
+        expr: (caddy_tls_cert_not_after_seconds - time()) < 14 * 24 * 3600
+        for: 1h
+        labels: { severity: critical }
+        annotations: { summary: "TLS certificate for {{ $labels.subject }} expires in < 14 days — renewal is failing" }
+      - alert: BackupTooOld
+        # deploy/scripts/backup.sh writes a textfile-collector metric after each run.
+        expr: (time() - chertiot_backup_last_success_timestamp_seconds) > 26 * 3600 or absent(chertiot_backup_last_success_timestamp_seconds)
+        for: 30m
+        labels: { severity: critical }
+        annotations: { summary: "No successful backup in the last 26 hours" }
+      - alert: PostgresConnectionsHigh
+        expr: sum(pg_stat_activity_count) > 150
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "Postgres has > 150 connections" }
+      - alert: ThingsBoardQueueBacklog
+        expr: rate(tb_queue_msgs_total{status="failed"}[5m]) > 1
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "ThingsBoard queue reports failed messages" }
