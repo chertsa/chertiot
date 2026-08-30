@@ -23,6 +23,7 @@ dev = [
   "respx==0.22.0",
   "ruff==0.12.7",
   "mypy==1.17.1",
+  "paho-mqtt==2.1.0",
 ]
 
 [tool.ruff]
@@ -31,7 +32,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "S", "N"]
-per-file-ignores = { "tests/**" = ["S101"] }
+per-file-ignores = { "tests/**" = ["S101", "S106"] }
 
 [tool.mypy]
 python_version = "3.12"

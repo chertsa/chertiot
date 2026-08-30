@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 0 / M0.4. Last done: M0.3 (Keycloak realm + TB OAuth2; e2e proves Keycloak login → own TB tenant as TENANT_ADMIN).
+Read PLAN.md. Current: Phase 1 / M1.1. Last done: M0.4 (tb_client.py + idempotent provisioning; 13 unit/integration tests green vs local TB). Phase 0 complete.
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -31,4 +31,7 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - TB OAuth2 (4.3.x): POST /api/oauth2/client + POST /api/domain + PUT /api/domain/{id}/oauth2Clients. Basic mapper with tenantNameStrategy=EMAIL and no customer pattern → tenant per user, user is TENANT_ADMIN, tenant gets the *default* tenant profile (so D4 quotas go on the default profile). Login button appears only when the request Host matches a Domain record.
 - Keycloak 26 sets Secure;SameSite=None on auth cookies even over http with sslRequired=none. Browsers accept that on *.localhost; Python's cookiejar doesn't — tests/e2e/conftest.py patches DefaultCookiePolicy.return_ok_secure for *.localhost.
 - `make bootstrap` is the source of truth for the realm (portal/scripts/setup_keycloak.py) + TB OAuth2 (setup_tb_oauth2.py); keycloak/realm/chertiot-realm.json is an export artifact (secrets masked) for `--import-realm` disaster recovery.
-- Rate limits live in TB **tenant profiles** (set via REST in M0.4), not in compose env.
+- Rate limits live in TB **tenant profiles** (templates-tb/tenant-profile-student.json via provisioning.ensure_student_profile), not in compose env.
+- TB API quirks captured in tb_client.py/provisioning.py: (a) POST /tenantProfile with default=true fails while another default exists → save, then POST /tenantProfile/{id}/default; (b) tenant profile validation requires the calculated-field limits (>0) even if unused; (c) DeviceCredentials.id is a bare {"id"} without entityType; (d) userCredentialsEnabled=false blocks password/refresh login only — not live JWTs, sysadmin impersonation (GET /user/{id}/token), or OAuth2 logins; re-enabling a never-activated user 400s ("should have password") → real suspend is Keycloak-side (M3.3); (e) GET /tenant/devices?deviceName= returns 404 when absent; textSearch on /tenants is substring → filter exact title.
+- Provisioning runs tenant-scoped steps via sysadmin impersonation (needs TB default security.user_token_access_enabled=true). Never as sysadmin directly — sysadmin can't own dashboards/devices.
+- Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.

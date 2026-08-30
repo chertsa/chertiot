@@ -7,7 +7,7 @@ import os
 import sys
 from pathlib import Path
 
-from setup_keycloak import REALM, admin_client
+from scripts.setup_keycloak import REALM, admin_client
 
 
 def main() -> int:

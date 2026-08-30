@@ -13,6 +13,15 @@ class Settings(BaseSettings):
     portal_secret_key: str
     portal_database_url: str
 
+    # ThingsBoard (D10: REST only). TB_ADMIN_URL overrides for scripts/tests outside compose.
+    tb_admin_url: str = "http://tb:8080"
+    tb_sysadmin_email: str = "sysadmin@thingsboard.org"
+    tb_sysadmin_password: str = ""
+
+    # D4 quota overrides applied on top of templates-tb/tenant-profile-student.json
+    tb_quota_max_devices: int | None = None
+    tb_quota_device_msg_rate: str | None = None  # e.g. "10:1,300:60"
+
 
 @lru_cache
 def get_settings() -> Settings:

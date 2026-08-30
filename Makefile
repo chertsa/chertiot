@@ -2,7 +2,7 @@ SHELL := /bin/bash
 COMPOSE := docker compose
 UV := uv --directory portal
 
-.PHONY: help dev down test e2e lint fmt bootstrap kc-export caddy-image check-profiles staging-deploy prod-deploy
+.PHONY: help dev down test e2e lint fmt bootstrap provision kc-export caddy-image check-profiles staging-deploy prod-deploy
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-16s %s\n", $$1, $$2}'
@@ -16,8 +16,8 @@ dev: .env ## Local core stack
 down: ## Stop local stack
 	$(COMPOSE) --profile core --profile flows --profile lab --profile lora down
 
-test: ## Portal unit + integration tests
-	$(UV) run pytest tests/unit tests/integration
+test: ## Portal unit + integration tests (integration skips unless local TB is up)
+	@if [ -f .env ]; then set -a && . ./.env && set +a; fi; TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run pytest tests/unit tests/integration
 
 e2e: .env ## End-to-end provisioning tests against local stack
 	$(UV) run pytest tests/e2e
@@ -33,13 +33,16 @@ fmt: ## Auto-format
 
 bootstrap: .env ## Idempotent: Keycloak realm/clients + TB OAuth2 client/domain (M0.3)
 	set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 TB_ADMIN_URL=http://127.0.0.1:18080 \
-	  $(UV) run python scripts/setup_keycloak.py && \
+	  $(UV) run python -m scripts.setup_keycloak && \
 	  set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 TB_ADMIN_URL=http://127.0.0.1:18080 \
-	  $(UV) run python scripts/setup_tb_oauth2.py
+	  $(UV) run python -m scripts.setup_tb_oauth2
+
+provision: .env ## Provision/repair a student tenant: make provision EMAIL=x@y
+	set -a && . ./.env && set +a && TB_ADMIN_URL=http://127.0.0.1:18080 $(UV) run python -m scripts.provision_student $(EMAIL) $(ARGS)
 
 kc-export: .env ## Export the Keycloak realm to keycloak/realm/ (secrets masked)
 	set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 KC_EXPORT_DIR=$(CURDIR)/keycloak/realm \
-	  $(UV) run python scripts/export_keycloak.py
+	  $(UV) run python -m scripts.export_keycloak
 
 caddy-image: ## Build Caddy + layer4 image for staging/prod (D8). Needs ~4 GB RAM.
 	docker build --build-arg CADDY_VERSION=$$(grep ^CADDY_VERSION= .env.example | cut -d= -f2) \

@@ -1,0 +1,135 @@
+{
+  "title": "My devices",
+  "configuration": {
+    "description": "CHERT IoT starter dashboard. Shows every device in your tenant. Edit freely — 'Reset starter dashboard' in the portal restores this version.",
+    "widgets": {
+      "w-devices": {
+        "id": "w-devices",
+        "typeFullFqn": "system.cards.entities_table",
+        "type": "latest",
+        "sizeX": 24,
+        "sizeY": 5,
+        "config": {
+          "title": "Devices",
+          "showTitle": true,
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "alias-all-devices",
+              "dataKeys": [
+                {"name": "name", "type": "entityField", "label": "Name", "color": "#FF8651", "settings": {}},
+                {"name": "active", "type": "attribute", "label": "Active", "color": "#10B981", "settings": {}},
+                {"name": "lastActivityTime", "type": "attribute", "label": "Last seen", "color": "#6B6B66", "settings": {}}
+              ]
+            }
+          ],
+          "settings": {"enableSearch": true, "enableSelectColumnDisplay": false, "displayEntityName": true, "entitiesTitle": "Devices", "displayPagination": true, "defaultPageSize": 10, "enableStickyHeader": true}
+        }
+      },
+      "w-temperature": {
+        "id": "w-temperature",
+        "typeFullFqn": "system.time_series_chart",
+        "type": "timeseries",
+        "sizeX": 12,
+        "sizeY": 7,
+        "config": {
+          "title": "Temperature",
+          "showTitle": true,
+          "dropShadow": true,
+          "useDashboardTimewindow": true,
+          "showLegend": true,
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "alias-all-devices",
+              "dataKeys": [
+                {"name": "temperature", "type": "timeseries", "label": "temperature", "color": "#FF8651", "settings": {}, "units": "°C"}
+              ]
+            }
+          ],
+          "settings": {}
+        }
+      },
+      "w-humidity": {
+        "id": "w-humidity",
+        "typeFullFqn": "system.time_series_chart",
+        "type": "timeseries",
+        "sizeX": 12,
+        "sizeY": 7,
+        "config": {
+          "title": "Humidity",
+          "showTitle": true,
+          "dropShadow": true,
+          "useDashboardTimewindow": true,
+          "showLegend": true,
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "alias-all-devices",
+              "dataKeys": [
+                {"name": "humidity", "type": "timeseries", "label": "humidity", "color": "#D2B082", "settings": {}, "units": "%"}
+              ]
+            }
+          ],
+          "settings": {}
+        }
+      },
+      "w-latest": {
+        "id": "w-latest",
+        "typeFullFqn": "system.cards.timeseries_table",
+        "type": "timeseries",
+        "sizeX": 24,
+        "sizeY": 6,
+        "config": {
+          "title": "Latest telemetry",
+          "showTitle": true,
+          "dropShadow": true,
+          "useDashboardTimewindow": true,
+          "datasources": [
+            {
+              "type": "entity",
+              "name": "",
+              "entityAliasId": "alias-all-devices",
+              "dataKeys": [
+                {"name": "temperature", "type": "timeseries", "label": "temperature", "color": "#FF8651", "settings": {}},
+                {"name": "humidity", "type": "timeseries", "label": "humidity", "color": "#D2B082", "settings": {}}
+              ]
+            }
+          ],
+          "settings": {"showTimestamp": true, "displayPagination": true, "defaultPageSize": 10}
+        }
+      }
+    },
+    "states": {
+      "default": {
+        "name": "My devices",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "w-devices": {"sizeX": 24, "sizeY": 5, "row": 0, "col": 0},
+              "w-temperature": {"sizeX": 12, "sizeY": 7, "row": 5, "col": 0},
+              "w-humidity": {"sizeX": 12, "sizeY": 7, "row": 5, "col": 12},
+              "w-latest": {"sizeX": 24, "sizeY": 6, "row": 12, "col": 0}
+            },
+            "gridSettings": {"backgroundColor": "#FFFAE4", "color": "rgba(0,0,0,0.87)", "columns": 24, "margin": 10, "autoFillHeight": true, "mobileAutoFillHeight": false, "mobileRowHeight": 70}
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "alias-all-devices": {
+        "id": "alias-all-devices",
+        "alias": "All my devices",
+        "filter": {"type": "entityType", "resolveMultiple": true, "entityType": "DEVICE"}
+      }
+    },
+    "timewindow": {"displayValue": "", "selectedTab": 0, "realtime": {"realtimeType": 0, "timewindowMs": 3600000, "interval": 10000}, "aggregation": {"type": "NONE", "limit": 2000}},
+    "settings": {"stateControllerId": "entity", "showTitle": false, "showDashboardsSelect": true, "showEntitiesSelect": true, "showDashboardTimewindow": true, "showDashboardExport": true, "toolbarAlwaysOpen": true}
+  }
+}
