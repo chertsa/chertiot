@@ -2,7 +2,7 @@ SHELL := /bin/bash
 COMPOSE := docker compose
 UV := uv --directory portal
 
-.PHONY: help dev down test e2e lint fmt check-profiles staging-deploy prod-deploy
+.PHONY: help dev down test e2e lint fmt caddy-image check-profiles staging-deploy prod-deploy
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-16s %s\n", $$1, $$2}'
@@ -30,6 +30,11 @@ lint: ## ruff + mypy + compose config validation
 
 fmt: ## Auto-format
 	$(UV) run ruff format . && $(UV) run ruff check --fix .
+
+caddy-image: ## Build Caddy + layer4 image for staging/prod (D8). Needs ~4 GB RAM.
+	docker build --build-arg CADDY_VERSION=$$(grep ^CADDY_VERSION= .env.example | cut -d= -f2) \
+	  --build-arg CADDY_L4_VERSION=$$(grep ^CADDY_L4_VERSION= .env.example | cut -d= -f2) \
+	  -t chertiot/caddy:$$(grep ^CADDY_VERSION= .env.example | cut -d= -f2)-l4 deploy/caddy
 
 check-profiles: ## Validate compose file for every profile
 	@for p in core flows lab lora; do $(COMPOSE) --env-file .env.example --profile $$p config -q || exit 1; done

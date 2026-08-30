@@ -1,5 +1,238 @@
 # CHERT IoT — Docker Compose. Profiles: core | flows | lab | lora (PLAN.md §2).
-# M0.1: skeleton only. Services are added in M0.2.
+# Every image is pinned via .env (see .env.example). Every stateful service uses a named volume.
 name: chertiot
-services: {}
-volumes: {}
+
+x-restart: &restart
+  restart: unless-stopped
+x-logging: &logging
+  logging: { driver: json-file, options: { max-size: "50m", max-file: "5" } }
+
+services:
+  # ---------------------------------------------------------------- core
+  postgres:
+    <<: [*restart, *logging]
+    image: postgres:${POSTGRES_VERSION}
+    profiles: [core]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./deploy/postgres/init.sql:/docker-entrypoint-initdb.d/10-databases.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d thingsboard"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # One-shot: installs TB schema on first run, then no-ops. Idempotent via marker file.
+  tb-install:
+    <<: *logging
+    image: thingsboard/tb-node:${TB_VERSION}
+    profiles: [core]
+    restart: "no"
+    user: "0:0"   # one-shot installer only: needs to write the marker in the root-owned volume
+    env_file: deploy/tb/tb-node.env
+    environment:
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      JAVA_OPTS: ${TB_JAVA_OPTS}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        if [ -f /state/.installed ]; then echo "ThingsBoard already installed"; exit 0; fi
+        INSTALL_TB=true LOAD_DEMO=false start-tb-node.sh && touch /state/.installed
+    volumes:
+      - tb-install-state:/state
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  tb:
+    <<: [*restart, *logging]
+    image: thingsboard/tb-node:${TB_VERSION}
+    profiles: [core]
+    env_file: deploy/tb/tb-node.env
+    environment:
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      JAVA_OPTS: ${TB_JAVA_OPTS}
+    ports:
+      - "1883:1883"      # MQTT plaintext for local dev only; prod exposes 8883 via Caddy layer4 (D8)
+    volumes:
+      - tb-data:/data
+      - tb-logs:/var/log/thingsboard
+    healthcheck:
+      # tb-node image ships no curl/wget; probe the HTTP port with bash's /dev/tcp.
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /login HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q 'HTTP/1.1 200' <&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 40
+      start_period: 90s
+    depends_on:
+      postgres: { condition: service_healthy }
+      tb-install: { condition: service_completed_successfully }
+
+  keycloak:
+    <<: [*restart, *logging]
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
+    profiles: [core]
+    command: ["start"]   # pre-built --optimized image: BACKLOG
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KC_HOSTNAME: ${KC_HOSTNAME}
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY_HEADERS: xforwarded
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      JAVA_OPTS_KC_HEAP: -Xms128m -Xmx512m
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && printf 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '\"status\": \"UP\"' <&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  portal:
+    <<: [*restart, *logging]
+    build: ./portal
+    image: chertiot/portal:dev
+    profiles: [core]
+    environment:
+      ENV: ${ENV}
+      DOMAIN: ${DOMAIN}
+      PORTAL_SECRET_KEY: ${PORTAL_SECRET_KEY}
+      PORTAL_DATABASE_URL: ${PORTAL_DATABASE_URL}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM: ${SMTP_FROM}
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  caddy:
+    <<: [*restart, *logging]
+    # Dev: stock caddy. Staging/prod: chertiot/caddy:<ver>-l4 (layer4 MQTTS, D8) built by `make caddy-image`.
+    image: ${CADDY_IMAGE}
+    profiles: [core]
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+      - "8883:8883"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./${CADDYFILE}:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:2019/config/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------- monitoring (admin-only)
+  prometheus:
+    <<: [*restart, *logging]
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    profiles: [core]
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=30d"]
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus/rules:/etc/prometheus/rules:ro
+      - prometheus-data:/prometheus
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9090/-/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  grafana:
+    <<: [*restart, *logging]
+    image: grafana/grafana:${GRAFANA_VERSION}
+    profiles: [core]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana-dashboards:/var/lib/grafana/dashboards:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    depends_on: [prometheus]
+
+  uptime-kuma:
+    <<: [*restart, *logging]
+    image: louislam/uptime-kuma:${UPTIME_KUMA_VERSION}
+    profiles: [core]
+    volumes:
+      - uptime-kuma-data:/app/data
+    healthcheck:
+      test: ["CMD", "extra/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  node-exporter:
+    <<: [*restart, *logging]
+    image: prom/node-exporter:${NODE_EXPORTER_VERSION}
+    profiles: [core]
+    command: ["--path.rootfs=/host"]
+    pid: host
+    volumes:
+      - /:/host:ro,rslave
+
+  cadvisor:
+    <<: [*restart, *logging]
+    image: gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION}
+    profiles: [core]
+    privileged: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  postgres-exporter:
+    <<: [*restart, *logging]
+    image: prometheuscommunity/postgres-exporter:${POSTGRES_EXPORTER_VERSION}
+    profiles: [core]
+    environment:
+      DATA_SOURCE_URI: postgres:5432/thingsboard?sslmode=disable
+      DATA_SOURCE_USER: ${POSTGRES_USER}
+      DATA_SOURCE_PASS: ${POSTGRES_PASSWORD}
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  # flows / lab / lora profiles are added in Phase 3 / Phase 4.
+
+volumes:
+  postgres-data:
+  tb-data:
+  tb-logs:
+  tb-install-state:
+  keycloak-data:
+  caddy-data:
+  caddy-config:
+  prometheus-data:
+  grafana-data:
+  uptime-kuma-data:

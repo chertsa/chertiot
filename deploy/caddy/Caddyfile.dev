@@ -1,0 +1,25 @@
+# Local dev routing (plain HTTP on *.localhost). Production vhosts live in Caddyfile.prod (M2.2).
+{
+	admin 0.0.0.0:2019
+	metrics
+	auto_https off
+}
+
+http://localhost {
+	reverse_proxy portal:8000
+}
+http://app.localhost {
+	reverse_proxy tb:8080
+}
+http://auth.localhost {
+	reverse_proxy keycloak:8080
+}
+http://grafana.localhost {
+	reverse_proxy grafana:3000
+}
+http://status.localhost {
+	reverse_proxy uptime-kuma:3001
+}
+http://prometheus.localhost {
+	reverse_proxy prometheus:9090
+}

@@ -1,0 +1,32 @@
+# Production/staging routing. Activated in M2.2. {$DOMAIN} from .env. Requires the layer4 build (make caddy-image).
+{
+	admin 0.0.0.0:2019
+	metrics
+	email ops@{$DOMAIN}
+	layer4 {
+		# MQTTS (D8): terminate TLS here, forward plaintext to TB's MQTT transport.
+		:8883 {
+			route {
+				tls
+				proxy tb:1883
+			}
+		}
+	}
+}
+
+{$DOMAIN} {
+	reverse_proxy portal:8000
+}
+app.{$DOMAIN} {
+	reverse_proxy tb:8080
+}
+auth.{$DOMAIN} {
+	reverse_proxy keycloak:8080
+}
+status.{$DOMAIN} {
+	reverse_proxy uptime-kuma:3001
+}
+# Admin-only: add forward_auth / IP allowlist in M2.2.
+grafana.{$DOMAIN} {
+	reverse_proxy grafana:3000
+}
