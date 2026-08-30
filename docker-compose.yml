@@ -1,0 +1,5 @@
+# CHERT IoT — Docker Compose. Profiles: core | flows | lab | lora (PLAN.md §2).
+# M0.1: skeleton only. Services are added in M0.2.
+name: chertiot
+services: {}
+volumes: {}

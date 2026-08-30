@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+thingsboard-brand/build/
+thingsboard-brand/upstream/
+deploy/**/*.pem
+deploy/**/*.key
+*.log

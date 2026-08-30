@@ -1,0 +1,48 @@
+{
+  "$meta": {
+    "source": "branding/CHERT-Design-System.md v1.0 (§3, §9 token contract)",
+    "generated": "2026-08-14",
+    "rule": "Never hardcode a hex in product code — reference tokens only. Values here mirror chert-tokens.css verbatim."
+  },
+  "brand": {
+    "chert-orange":      { "value": "#FF8651", "use": "Primary buttons, key fills, active states. FILL ONLY on light backgrounds — never text." },
+    "chert-orange-deep": { "value": "#F26B33", "use": "Button hover, underlines, icons on tinted fills. Not body text on light backgrounds." },
+    "chert-tan":         { "value": "#D2B082", "use": "Sidebars, secondary surfaces, muted panels." },
+    "chert-cream":       { "value": "#FFFAE4", "use": "Default page background." },
+    "chert-ink":         { "value": "#1A1A18", "use": "Body text, headings, dark surfaces, footer, focus rings." }
+  },
+  "extended": {
+    "chert-surface":       { "value": "#FFFFFF", "use": "Elevated surfaces (cards, inputs, modals)." },
+    "chert-surface-alt":   { "value": "#FBF7EC", "use": "Zebra rows, subtle fills." },
+    "chert-border":        { "value": "#ECE0C2", "use": "Default borders, dividers." },
+    "chert-border-strong": { "value": "#D9C9A4", "use": "Emphasized borders." },
+    "chert-muted":         { "value": "#6B6B66", "use": "Secondary text, placeholders, captions." },
+    "chert-orange-tint":   { "value": "#FDEEE4", "use": "Callout fills, icon box backgrounds." }
+  },
+  "functional": {
+    "chert-success":      { "value": "#10B981", "tint": "#E7F8F2", "use": "Confirmations, healthy status. Status only — never decorative." },
+    "chert-warning":      { "value": "#F59E0B", "tint": "#FEF4E3", "use": "Warnings, degraded status." },
+    "chert-error":        { "value": "#EF4444", "tint": "#FDECEC", "use": "Errors, destructive actions." },
+    "chert-info":         { "value": "#3B82F6", "tint": "#EAF1FE", "use": "Neutral information." }
+  },
+  "dark": {
+    "chert-dark":         { "value": "#151311", "use": "Dark page/footer background." },
+    "chert-dark-surface": { "value": "#1B1815", "use": "Cards on dark." },
+    "chert-dark-border":  { "value": "#26221D", "use": "Borders on dark." },
+    "chert-dark-text":    { "value": "#F3EDE0", "use": "Body text on dark." },
+    "chert-dark-muted":   { "value": "#A89E8D", "use": "Secondary text on dark." }
+  },
+  "chart-categorical-sequence": ["#FF8651", "#D2B082", "#1A1A18", "#F26B33", "#A89E8D", "#6B6B66"],
+  "accessibility": {
+    "standard": "WCAG 2.1 AA — 4.5:1 body text, 3.0:1 large text and UI boundaries",
+    "mandatory-rules": [
+      "Orange (#FF8651) and orange-deep (#F26B33) are fill colors, NOT text colors on light backgrounds. Orange on cream is 2.28:1; orange-deep on cream is 2.89:1 — both fail at every size.",
+      "All body text on light surfaces is chert-ink or chert-muted.",
+      "Primary button text is chert-ink on orange (7.29:1), never white (2.39:1 — fails).",
+      "On dark surfaces orange passes (7.75:1) for text and accents.",
+      "Focus rings and icon glyphs are ink — orange-deep fails the 3:1 non-text minimum on cream and orange-tint.",
+      "Never rely on color alone to convey state — pair with icon or label.",
+      "60-30-10 distribution: 60% cream/white, 30% ink/tan, 10% orange for primary actions only."
+    ]
+  }
+}

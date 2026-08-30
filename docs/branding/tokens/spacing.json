@@ -1,0 +1,56 @@
+{
+  "$meta": {
+    "source": "branding/CHERT-Design-System.md v1.0 (§5, §6.9, §9 token contract)",
+    "generated": "2026-08-14",
+    "rule": "8px base unit. Every margin, padding, and gap is a multiple. Use CSS logical properties only (no left/right) — this is what makes Arabic RTL work."
+  },
+  "spacing": {
+    "space-1": { "value": "4px", "note": "tight icon/label pairs only" },
+    "space-2": { "value": "8px" },
+    "space-3": { "value": "12px" },
+    "space-4": { "value": "16px" },
+    "space-5": { "value": "24px" },
+    "space-6": { "value": "32px" },
+    "space-7": { "value": "48px" },
+    "space-8": { "value": "64px" },
+    "space-9": { "value": "96px" }
+  },
+  "layout": {
+    "maxw":       { "value": "1200px", "use": "Content max-width, centered" },
+    "maxw-wide":  { "value": "1440px", "use": "Dashboards only" },
+    "maxw-prose": { "value": "68ch",   "use": "Prose max-width" },
+    "columns":    { "value": 12, "gap": "24px" },
+    "gutter":     { "value": "24px mobile / 40px desktop" },
+    "section-padding-y": { "value": "96px desktop / 48px mobile" },
+    "sidebar-w":  { "value": "250px", "use": "App sidebar (tan), collapses to icons at md, drawer at sm" },
+    "header-h":   { "value": "72px desktop / 64px mobile" }
+  },
+  "breakpoints": {
+    "sm": { "range": "< 640px",      "cardGrid": 1 },
+    "md": { "range": "640–1023px",   "cardGrid": 2 },
+    "lg": { "range": "1024–1439px",  "cardGrid": 3 },
+    "xl": { "range": ">= 1440px",    "cardGrid": 3, "note": "wide container" }
+  },
+  "radius": {
+    "radius-sm":   { "value": "8px",  "use": "Buttons, inputs, tags" },
+    "radius-md":   { "value": "12px", "use": "Icon boxes, dropdowns, small cards" },
+    "radius-card": { "value": "16px", "use": "Cards, modals, panels" },
+    "radius-pill": { "value": "40px", "use": "Badges, pills, avatars" }
+  },
+  "border": { "default": "1px solid #ECE0C2 (--chert-border)" },
+  "shadow": {
+    "shadow-card":     { "value": "0 10px 30px -18px rgba(0,0,0,.2)",     "use": "Resting card" },
+    "shadow-hover":    { "value": "0 20px 40px -20px rgba(242,107,51,.4)", "use": "Card hover — signature orange-tinted lift; never substitute neutral gray" },
+    "shadow-dropdown": { "value": "0 12px 32px -8px rgba(0,0,0,.18)",     "use": "Menus, popovers" },
+    "shadow-modal":    { "value": "0 24px 64px -12px rgba(0,0,0,.3)",     "use": "Modals" }
+  },
+  "motion": {
+    "ease":     { "value": "cubic-bezier(.4,0,.2,1)" },
+    "dur-fast": { "value": "120ms", "use": "Hover, focus" },
+    "dur-base": { "value": "150ms", "use": "Cards, buttons" },
+    "dur-slow": { "value": "240ms", "use": "Drawers, modals" },
+    "rules": ["Animate transform and opacity only.", "Honor prefers-reduced-motion."]
+  },
+  "z-index": { "z-base": 0, "z-sticky": 100, "z-dropdown": 200, "z-overlay": 300, "z-modal": 400, "z-toast": 500 },
+  "touch": { "minTarget": "44x44px", "inputHeight": "44px (48px touch targets on mobile)" }
+}

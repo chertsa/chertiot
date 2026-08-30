@@ -1,0 +1,16 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.7"
+      - run: uv --directory portal sync --frozen
+      - run: make lint
+      - run: make test
