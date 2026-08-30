@@ -114,11 +114,14 @@ def test_signup_to_live_lab(kc_url: str, tb_url: str, sysadmin: TbClient) -> Non
             r.text[:300],
         )
         r = s.get(f"{portal}/home")
-        assert r.status_code == 200
-        assert "my-first-device" in r.text
-        token = re.search(r"data-device-token>([A-Za-z0-9]+)<", r.text)
-        assert token, "device token missing on home page"
-        assert "/dashboards/" in r.text
+        assert r.status_code == 200 and "/dashboards/" in r.text and "1 device" in r.text
+        r = s.get(f"{portal}/devices")
+        assert r.status_code == 200 and "my-first-device" in r.text
+        device_path = re.search(r'href="(/devices/[0-9a-f-]+)"', r.text)
+        assert device_path
+        r = s.get(f"{portal}{device_path.group(1)}")
+        token = re.search(r"data-device-token>([^<]+)<", r.text)
+        assert token, "device token missing on device page"
 
         # 4. The same login reaches ThingsBoard (no second credential prompt): TB's OAuth2 flow
         #    to the already-authenticated Keycloak session yields a TB token immediately.

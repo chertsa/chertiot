@@ -4,20 +4,14 @@
 <p class="overline">{{ user.cohort }}</p>
 <h1>My lab</h1>
 {% if user.provisioning_state == 'provisioned' %}
-  <p><a class="btn btn--primary" href="{{ dashboard_url }}" target="_blank" rel="noopener">Open my dashboard</a></p>
-  <h2>My devices</h2>
-  <table class="table">
-    <thead><tr><th>Device</th><th>Access token</th></tr></thead>
-    <tbody>
-    {% for d in devices %}
-      <tr><td>{{ d.name }}</td><td><code class="token" data-device-token>{{ d.token }}</code></td></tr>
-    {% else %}
-      <tr><td colspan="2">No devices yet.</td></tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  <h2>Send your first reading</h2>
-  <p>Publish JSON to MQTT host <code class="token">{{ mqtt_host }}</code>, port <code class="token">8883</code> (TLS), topic <code class="token">v1/devices/me/telemetry</code>, using the access token as the MQTT username. Full firmware snippets arrive on the device page in the next release.</p>
+  <div class="grid-cards">
+    <a class="card" href="{{ dashboard_url }}" target="_blank" rel="noopener"><div class="card__title">Open my dashboard</div><div class="card__desc">Live charts for every device you own. Opens ThingsBoard with the same sign-in.</div></a>
+    <a class="card" href="/devices"><div class="card__title">My devices</div><div class="card__desc">{{ device_count }} device{{ '' if device_count == 1 else 's' }}. Add one, get its token and starter code.</div></a>
+    <a class="card" href="/docs"><div class="card__title">Getting started</div><div class="card__desc">Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.</div></a>
+  </div>
+  <h2>Dashboard</h2>
+  <p class="helper">Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.</p>
+  <form method="post" action="/dashboard/reset"><button class="btn btn--secondary btn--sm" type="submit">Reset starter dashboard</button></form>
 {% elif user.provisioning_state == 'failed' %}
   <div class="callout callout--error"><p>We couldn't set up your lab: {{ user.provisioning_error }}</p></div>
   <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">Try again</button></form>

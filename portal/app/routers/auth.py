@@ -1,6 +1,7 @@
 from datetime import UTC, datetime
 from typing import Any
 
+from authlib.integrations.base_client.errors import OAuthError
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy import select
@@ -25,7 +26,12 @@ async def login(request: Request) -> Any:
 
 @router.get("/auth/callback")
 async def callback(request: Request, db: Session = Depends(get_db)) -> Any:
-    token = await oauth.keycloak.authorize_access_token(request)
+    try:
+        token = await oauth.keycloak.authorize_access_token(request)
+    except OAuthError as e:
+        # Stale/replayed state (back button, double click, expired session): start over cleanly.
+        request.session.pop("user", None)
+        return RedirectResponse(f"/login?reason={e.error}", status_code=303)
     claims = token.get("userinfo") or {}
     email = str(claims.get("email", "")).lower()
     sub = str(claims.get("sub", ""))

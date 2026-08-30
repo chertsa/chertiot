@@ -297,6 +297,25 @@ class TbClient:
     def list_devices(self) -> list[Device]:
         return self._page("/tenant/devices", Device)
 
+    def get_device(self, device_id: str) -> Device:
+        return Device.model_validate(self._get(f"/device/{device_id}"))
+
+    def server_attributes(self, device_id: str, keys: list[str]) -> dict[str, Any]:
+        """Server-scope attributes as {key: value}; TB maintains `active` and `lastActivityTime`."""
+        rows = self._get(
+            f"/plugins/telemetry/DEVICE/{device_id}/values/attributes/SERVER_SCOPE",
+            keys=",".join(keys),
+        )
+        return {r["key"]: r["value"] for r in rows} if isinstance(rows, list) else {}
+
+    def rotate_device_token(self, device_id: str, new_token: str) -> DeviceCredentials:
+        """Replace the access token (old one stops working immediately)."""
+        creds = self.get_device_credentials(device_id)
+        body = creds.model_dump(by_alias=True, exclude_none=True)
+        body["credentialsType"] = "ACCESS_TOKEN"
+        body["credentialsId"] = new_token
+        return DeviceCredentials.model_validate(self._post("/device/credentials", body))
+
     def delete_device(self, device_id: str) -> None:
         self._delete(f"/device/{device_id}")
 

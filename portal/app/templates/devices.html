@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}My devices — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/home">My lab</a></p>
+<h1>My devices</h1>
+<p class="helper">{{ used }} of {{ limit if limit else '∞' }} devices used.</p>
+{% if error %}<div class="callout callout--error"><p>{{ error }}</p></div>{% endif %}
+<table class="table">
+  <thead><tr><th>Device</th><th>Status</th><th>Last seen</th></tr></thead>
+  <tbody>
+  {% for d in devices %}
+    <tr>
+      <td><a href="/devices/{{ d.id }}">{{ d.name }}</a>{% if d.label %} <span class="helper">{{ d.label }}</span>{% endif %}</td>
+      <td>{% if d.active %}<span class="callout--success">Online</span>{% else %}<span class="helper">Offline</span>{% endif %}</td>
+      <td>{% if d.last_seen %}<time datetime="{{ d.last_seen.isoformat() }}">{{ d.last_seen.strftime('%Y-%m-%d %H:%M') }} UTC</time>{% else %}<span class="helper">Never</span>{% endif %}</td>
+    </tr>
+  {% else %}
+    <tr><td colspan="3">No devices yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h2>Add device</h2>
+<form class="form" method="post" action="/devices">
+  <div class="field"><label class="label" for="name">Device name</label><input class="input" id="name" name="name" required minlength="2" maxlength="48" placeholder="kitchen-sensor"></div>
+  <div><button class="btn btn--primary" type="submit"{% if limit and used >= limit %} disabled{% endif %}>Add device</button></div>
+</form>
+{% endblock %}

@@ -10,6 +10,8 @@ COPY portal/app ./app
 COPY portal/migrations ./migrations
 COPY portal/alembic.ini portal/docker-entrypoint.sh ./
 COPY templates-tb /templates-tb
+COPY firmware-examples /firmware-examples
+ENV FIRMWARE_DIR=/firmware-examples
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s --retries=5 CMD ["/app/.venv/bin/python","-c","import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/healthz')"]
 CMD ["/app/docker-entrypoint.sh"]

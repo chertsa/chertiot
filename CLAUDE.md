@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 1 / M1.2. Last done: M1.1 (portal signup → Keycloak verify → OIDC login → provisioning; e2e green).
+Read PLAN.md. Current: Phase 1 / M1.3. Last done: M1.2 (device pages, firmware snippets rendered per device, rename/revoke/delete, dashboard reset; e2e runs the rendered snippet).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -39,4 +39,6 @@ ThingsBoard CE 4.3.1.4 (thingsboard/tb-node, monolith) · Keycloak 26.7.2 · Pos
 - Portal image builds from the repo root (compose build.context=.) so /templates-tb ships inside it. Alembic runs on container start (docker-entrypoint.sh); alembic.ini has no logging section on purpose.
 - Dev mail: Mailpit (docker-compose.override.yml) at http://127.0.0.1:18025; .env SMTP_HOST=mailpit, SMTP_STARTTLS=false. Prod SMTP creds are a prerequisite (ask).
 - Tests force PORTAL_DATABASE_URL to a temp SQLite file (tests/conftest.py) — `make test` sources .env for TB/Keycloak creds only.
+- Device 'last seen' = TB server attributes `active` / `lastActivityTime` (GET .../values/attributes/SERVER_SCOPE). Token rotation = POST /device/credentials with the existing credentials id and a new credentialsId.
+- Firmware templates live in firmware-examples/ (shipped in the portal image at /firmware-examples, FIRMWARE_DIR); placeholders {{MQTT_HOST}} {{MQTT_PORT}} {{HTTP_URL}} {{ACCESS_TOKEN}} {{DEVICE_NAME}}; dev .env uses MQTT localhost:1883, prod 8883.
 - Scripts run as modules: `uv run python -m scripts.<name>` (portal/scripts is a package) so they can import `app`.

@@ -1,0 +1,24 @@
+<!doctype html>
+<!-- CHERT IoT starter — browser. No hardware needed: sends a reading every 10 s over HTTPS.
+     Open this file in any browser. Placeholders {{...}} are filled in by the portal. -->
+<html lang="en">
+<head><meta charset="utf-8"><title>CHERT IoT — browser sender</title></head>
+<body style="font-family: system-ui; max-width: 40rem; margin: 2rem auto;">
+  <h1>Browser sender for {{DEVICE_NAME}}</h1>
+  <p>Sending to <code>{{HTTP_URL}}</code> every 10 s. Watch it arrive on your dashboard.</p>
+  <label>Temperature <input id="t" type="number" value="22.5" step="0.1"></label>
+  <label>Humidity <input id="h" type="number" value="45" step="0.1"></label>
+  <pre id="log"></pre>
+  <script>
+    const url = "{{HTTP_URL}}/api/v1/{{ACCESS_TOKEN}}/telemetry";
+    async function send() {
+      const body = { temperature: Number(document.getElementById("t").value), humidity: Number(document.getElementById("h").value) };
+      try {
+        const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+        document.getElementById("log").textContent = `${new Date().toLocaleTimeString()} → ${r.status} ${JSON.stringify(body)}\n` + document.getElementById("log").textContent;
+      } catch (e) { document.getElementById("log").textContent = "error: " + e + "\n" + document.getElementById("log").textContent; }
+    }
+    send(); setInterval(send, 10000);
+  </script>
+</body>
+</html>

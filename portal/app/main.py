@@ -7,7 +7,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.auth import configure_oauth
 from app.config import get_settings
-from app.routers import auth, home, signup
+from app.routers import auth, devices, home, signup
 
 app = FastAPI(title="CHERT IoT portal", docs_url=None, redoc_url=None)
 Instrumentator(excluded_handlers=["/healthz", "/metrics"]).instrument(app).expose(app)
@@ -32,6 +32,7 @@ app.mount(
 app.include_router(home.router)
 app.include_router(signup.router)
 app.include_router(auth.router)
+app.include_router(devices.router)
 
 
 @app.get("/healthz")

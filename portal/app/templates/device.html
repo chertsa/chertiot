@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ device.name }} — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/home">My lab</a> › <a href="/devices">My devices</a></p>
+<h1>{{ device.name }}</h1>
+<p>{% if active %}<span class="callout--success">Online</span>{% else %}<span class="helper">Offline</span>{% endif %}{% if last_seen %} · last seen {{ last_seen.strftime('%Y-%m-%d %H:%M') }} UTC{% endif %}</p>
+
+<h2>Connection details</h2>
+<table class="table">
+  <tr><th>MQTT host</th><td><code class="token">{{ conn.MQTT_HOST }}</code></td></tr>
+  <tr><th>MQTT port</th><td><code class="token">{{ conn.MQTT_PORT }}</code>{% if conn.MQTT_PORT == '8883' %} (TLS){% endif %}</td></tr>
+  <tr><th>Access token (MQTT username)</th><td><code class="token" data-device-token>{{ token }}</code></td></tr>
+  <tr><th>Telemetry topic</th><td><code class="token">v1/devices/me/telemetry</code></td></tr>
+  <tr><th>HTTP alternative</th><td><code class="token">POST {{ conn.HTTP_URL }}/api/v1/{{ token }}/telemetry</code></td></tr>
+</table>
+
+<h2>Starter code</h2>
+<p class="helper">Your token and the broker address are already filled in. Download the file for your board, add your Wi-Fi details, flash it.</p>
+{% for t in tracks %}
+<details{% if loop.first %} open{% endif %}>
+  <summary><strong>{{ t.title }}</strong> — <a href="/devices/{{ device.id.id }}/snippet/{{ t.key }}" download>{{ t.filename }}</a></summary>
+  <pre class="token" style="white-space: pre; overflow-x: auto; padding: var(--space-3)"><code class="language-{{ t.language }}">{{ snippets[t.key] }}</code></pre>
+</details>
+{% endfor %}
+
+<h2>Manage</h2>
+<div class="grid-cards">
+  <form class="card" method="post" action="/devices/{{ device.id.id }}/rename">
+    <div class="card__title">Rename</div>
+    <div class="field"><label class="label" for="name">New name</label><input class="input" id="name" name="name" value="{{ device.name }}" required minlength="2" maxlength="48"></div>
+    <div><button class="btn btn--secondary btn--sm" type="submit">Rename</button></div>
+  </form>
+  <form class="card" method="post" action="/devices/{{ device.id.id }}/revoke" onsubmit="return confirm('Old token stops working immediately. Continue?')">
+    <div class="card__title">Revoke token</div>
+    <div class="card__desc">Lost or leaked the token? Issue a new one. Devices using the old token disconnect.</div>
+    <div><button class="btn btn--secondary btn--sm" type="submit">Issue new token</button></div>
+  </form>
+  <form class="card" method="post" action="/devices/{{ device.id.id }}/delete" onsubmit="return confirm('Delete this device and all its data?')">
+    <div class="card__title">Delete device</div>
+    <div class="card__desc">Removes the device and its telemetry. This cannot be undone.</div>
+    <div><button class="btn btn--danger btn--sm" type="submit">Delete device</button></div>
+  </form>
+</div>
+{% endblock %}
