@@ -3,7 +3,7 @@
 **Updated 2026-08-31.** Progress:
 
 - [x] 1. GitHub repository — **done**: <https://github.com/chertsa/chertiot> (private). One follow-up decision: §1a below.
-- [x] 2. Servers — **Hetzner pair bootstrapped** (hardening, firewall, Docker, swap). One decision + one resize: §2a below.
+- [~] 2. Servers — DigitalOcean droplets (owner ruling). Needs: API token + one-time root access (§2a).
 - [~] 3. DNS — nameservers live at DigitalOcean; `@`/`www`/`stage` exist. Needs the records in §3a (5 min, depends on §2a).
 - [x] 4. SMTP — **done and verified**: `mail.chert.sa:587` answers with a valid certificate and SPF already authorizes it. I put the credentials into the servers' `.env` at deploy time (never into git). Since the password was pasted into chat, rotate it after launch when convenient.
 
@@ -17,40 +17,24 @@ CI fails instantly with *"Actions budget is preventing further use"*: the accoun
 
 **Option B — keep it private and pay for minutes.** GitHub → your avatar → **Settings → Billing and plans → Budgets and alerts → New budget** → product **Actions** → set e.g. $10/month → save. CI starts on the next push; no reply needed, I'll see it.
 
-## 2a. DECISION: which servers serve (and one resize)
+## 2a. Servers — DigitalOcean only (owner ruling 2026-09-01)
 
-Facts: my deploy key works on the **Hetzner** pair only; DNS currently points at the **DigitalOcean** droplets; every box is ≤4 GB while PLAN.md (D9, success criterion 5) requires **8 GB minimum for production**.
+Production = `chertiotserver` **137.184.102.135** · Staging = `chertiotstagingserver` **137.184.53.196**. Hetzner is not part of this project; delete those two Hetzner servers in their console to stop the billing.
 
-**Option A — consolidate on Hetzner (recommended: access already works, ~⅕ the price).**
-1. Rescale production: Hetzner Console → project chertiot → server **chertiot-prod** → **Rescale** → *CPU/RAM only* → **CX32** (4 vCPU / 8 GB, ≈€8/mo) → confirm (~2 min downtime). Keep "CPU/RAM only" so you can downscale later.
-2. Do §3a below (point DNS at Hetzner).
-3. Destroy both DigitalOcean droplets when the switch is verified (saves $48/mo): DO console → droplet → **Destroy**.
-- chertiot-staging (CX22, 4 GB) stays as-is — fine for staging.
+To let me operate the droplets and DNS without further back-and-forth, two hand-backs:
 
-**Option B — serve from DigitalOcean instead.**
-1. Resize production: DO console → chertiotserver → **Resize → CPU and RAM only → s-4vcpu-8gb** ($48/mo).
-2. The staging droplet (2 GB) is too small even for staging — resize to s-2vcpu-4gb.
-3. Add my key to both: DO console → droplet → **Access → Launch Droplet Console** → log in → run:
-   `mkdir -p ~/.ssh && echo '<the ssh-ed25519 line from §2.2>' >> ~/.ssh/authorized_keys`
-4. Tell me when done; DNS already points here.
+1. **DigitalOcean API token** (lets me manage DNS records and droplet resizes myself):
+   <https://cloud.digitalocean.com/account/api/tokens> → **Generate New Token** → name `chertiot-deploy`, check **Write** → Create → copy the `dop_v1_…` string and paste it to me. (Revocable there any time.)
+2. **Root access to each droplet once**, either way:
+   - **Passwords:** DO console → droplet → **Access → Reset root password** (DO emails a new one) → send me both passwords; I log in once, install the `chertiot-deploy` key, and the hardening script disables password login again. Or
+   - **One-liner:** droplet → **Access → Launch Droplet Console** → log in → paste:
+     `mkdir -p ~/.ssh && echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINnOD4jh2yoB/IboBmLbG1eR46hfLdC54TR+R/zsCpkN chertiot-deploy' >> ~/.ssh/authorized_keys`
 
-## 3a. DNS records (5 min, in the DigitalOcean panel you already use)
+**Sizing (plan D9 / success criterion 5):** production needs 8 GB RAM (ThingsBoard ~2 GB + Keycloak + Postgres + portal + monitoring). With the API token I will resize `chertiotserver` to **s-4vcpu-8gb** (≈$48/mo) and `chertiotstagingserver` to **s-2vcpu-4gb** (≈$24/mo) — object now if you don't want that, otherwise it happens before deploy.
 
-DO console → **Networking → Domains → chertiot.com**. For **Option A** set every record to the Hetzner IPs; for Option B keep the existing ones. Create what's missing (TTL 3600):
+## 3a. DNS records — back to the droplets
 
-| Type | Hostname | Value (Option A) |
-|---|---|---|
-| A | `@` | 2.29.18.157 *(exists: change from 137.184.102.135)* |
-| A | `www` | 2.29.18.157 *(change)* |
-| A | `app` | 2.29.18.157 *(create)* |
-| A | `auth` | 2.29.18.157 *(create)* |
-| A | `status` | 2.29.18.157 *(create)* |
-| A | `stage` | 2.29.25.134 *(exists: change from 137.184.53.196)* |
-| A | `app.stage` | 2.29.25.134 *(create)* |
-| A | `auth.stage` | 2.29.25.134 *(create)* |
-| A | `status.stage` | 2.29.25.134 *(create)* |
-
-I verify with `dig` and need no message from you.
+If you hand me the API token (1 above) I fix all rows myself. Otherwise edit in the DO panel: every `A` record from the table → prod rows to **137.184.102.135** (`@`, `www`, `app`, `auth`, `status`) and staging rows to **137.184.53.196** (`stage`, `app.stage`, `auth.stage`, `status.stage`).
 
 ## What I do the moment each lands
 - §1a → CI green → tag v0.9.0 → branded ThingsBoard + Caddy images published.
