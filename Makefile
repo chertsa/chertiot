@@ -67,8 +67,8 @@ caddy-image: ## Build Caddy + layer4 image for staging/prod (D8). Needs ~4 GB RA
 check-profiles: ## Validate compose file for every profile
 	@for p in core flows lab lora; do $(COMPOSE) -f docker-compose.yml --env-file .env.example --profile $$p config -q || exit 1; done
 
-staging-deploy: ## Deploy to staging (M2.2)
-	@echo "not implemented until M2.2"; exit 1
+staging-deploy: ## Deploy/upgrade staging (M2.2)
+	deploy/scripts/deploy.sh 2.29.25.134 stage.chertiot.com
 
-prod-deploy: ## Deploy to production (M2.3)
-	@echo "not implemented until M2.3"; exit 1
+prod-deploy: ## Deploy/upgrade production (M2.3)
+	deploy/scripts/deploy.sh 2.29.18.157 chertiot.com

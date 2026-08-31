@@ -7,6 +7,7 @@ ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON=/usr/local/bin/python3.12 
 COPY portal/pyproject.toml portal/uv.lock portal/.python-version ./
 RUN uv sync --frozen --no-dev --no-install-project
 COPY portal/app ./app
+COPY portal/scripts ./scripts
 COPY portal/migrations ./migrations
 COPY portal/alembic.ini portal/docker-entrypoint.sh ./
 COPY templates-tb /templates-tb
