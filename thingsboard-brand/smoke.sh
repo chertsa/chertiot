@@ -11,6 +11,6 @@ unzip -q -o BOOT-INF/lib/ui-ngx-*.jar 'public/index.html' 'public/assets/logo_ti
 ok=1
 grep -q '<title>CHERT IoT</title>' public/index.html || { echo "FAIL: index title"; ok=0; }
 grep -q 'CHERT' public/assets/logo_title_white.svg || { echo "FAIL: logo asset"; ok=0; }
-grep -q 'powered by ThingsBoard' public/*.js || { echo "FAIL: attribution string"; ok=0; }
+grep -q 'powered by ThingsBoard' public/assets/locale/locale.constant-en_US.json || { echo "FAIL: attribution string"; ok=0; }
 grep -q 'CHERT IoT' BOOT-INF/classes/templates/activation.ftl || { echo "FAIL: email template"; ok=0; }
 [[ $ok == 1 ]] && echo "smoke OK: $IMAGE"
