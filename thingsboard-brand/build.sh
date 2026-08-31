@@ -28,14 +28,23 @@ cp assets/logo_white.svg       "$SRC/ui-ngx/src/assets/logo_white.svg"
 cp assets/favicon.ico          "$SRC/ui-ngx/src/thingsboard.ico"
 cp assets/favicon.ico          "$SRC/ui-ngx/src/assets/favicon.ico" 2>/dev/null || true
 
-step "build (Maven, inside Docker) — this takes 20–60 min"
+step "build (Maven) — this takes 20–60 min"
 # -DskipTests, license check off (we keep Apache-2.0 headers but our brand assets have none),
-# only the modules the tb-node image needs (application + its deps + msa/tb-node), docker image built by the tb-node module.
-docker run --rm \
-  -v "$PWD/$SRC:/src" -v "${HOME}/.m2:/root/.m2" -v /var/run/docker.sock:/var/run/docker.sock \
-  -w /src -e MAVEN_OPTS="-Xmx${JAVA_MEM}" "$MAVEN_IMAGE" \
-  mvn -B -q clean install -DskipTests -Dlicense.skip=true -Ddockerfile.skip=false -Dpush.docker.image=false \
-      -pl msa/tb-node -am
+# only the modules the tb-node image needs (application + its deps + msa/tb-node); the tb-node
+# module runs `docker build` itself, so Maven must run where the docker CLI lives: natively when
+# a JDK 17 + mvn are present (CI uses setup-java), else in a Maven container with the host docker
+# CLI mounted alongside the socket.
+MVN_ARGS=(-B -q clean install -DskipTests -Dlicense.skip=true -Ddockerfile.skip=false -Dpush.docker.image=false -pl msa/tb-node -am)
+if command -v mvn >/dev/null && java -version 2>&1 | grep -qE 'version "(17|21)'; then
+  ( cd "$SRC" && MAVEN_OPTS="-Xmx${JAVA_MEM}" mvn "${MVN_ARGS[@]}" )
+else
+  DOCKER_BIN=$(command -v docker)
+  docker run --rm \
+    -v "$PWD/$SRC:/src" -v "${HOME}/.m2:/root/.m2" \
+    -v /var/run/docker.sock:/var/run/docker.sock -v "$DOCKER_BIN:/usr/bin/docker:ro" \
+    -w /src -e MAVEN_OPTS="-Xmx${JAVA_MEM}" "$MAVEN_IMAGE" \
+    mvn "${MVN_ARGS[@]}"
+fi
 # The upstream module tags the image thingsboard/tb-node:<version>; retag as ours.
 docker tag "thingsboard/tb-node:${TB_VERSION}" "$IMAGE"
 step "built $IMAGE"
