@@ -83,6 +83,14 @@ CONF
 systemctl enable --now docker
 systemctl restart docker
 
+step "swap (2x RAM up to 8G; JVM burst tolerance on small hosts)"
+if ! swapon --show | grep -q /swapfile; then
+  MEM_G=$(( ($(free -m | awk 'NR==2{print $2}') + 512) / 1024 ))
+  SWAP_G=$(( MEM_G * 2 > 8 ? 8 : MEM_G * 2 ))
+  fallocate -l "${SWAP_G}G" /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+  grep -q '^/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
+
 step "sysctl (many MQTT connections)"
 cat > /etc/sysctl.d/90-chertiot.conf <<'CONF'
 net.core.somaxconn = 4096

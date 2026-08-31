@@ -1,13 +1,65 @@
 # Owner setup guide — everything needed to put chertiot.com live
 
-Four items block launch. Each section is a complete, click-by-click path; nothing else is needed from you. Do them in order — every later step tells you exactly what to hand back and what happens next. Estimated total hands-on time: **~45 minutes** (+ DNS propagation wait).
+**Updated 2026-08-31.** Progress:
 
-Progress checklist:
+- [x] 1. GitHub repository — **done**: <https://github.com/chertsa/chertiot> (private). One follow-up decision: §1a below.
+- [x] 2. Servers — **Hetzner pair bootstrapped** (hardening, firewall, Docker, swap). One decision + one resize: §2a below.
+- [~] 3. DNS — nameservers live at DigitalOcean; `@`/`www`/`stage` exist. Needs the records in §3a (5 min, depends on §2a).
+- [x] 4. SMTP — **done and verified**: `mail.chert.sa:587` answers with a valid certificate and SPF already authorizes it. I put the credentials into the servers' `.env` at deploy time (never into git). Since the password was pasted into chat, rotate it after launch when convenient.
 
-- [ ] 1. GitHub repository (2 min — one word from you)
-- [ ] 2. Servers: production + staging VPS (15 min)
-- [ ] 3. DNS for chertiot.com (10 min + propagation)
-- [ ] 4. SMTP for signup emails (15 min)
+---
+
+## 1a. DECISION: GitHub Actions won't run — pick one (1 minute)
+
+CI fails instantly with *"Actions budget is preventing further use"*: the account has no Actions budget for **private** repos.
+
+**Option A — make the repo public (recommended; PLAN.md declares the project "fully open-source"; history verified clean of secrets).** Reply **`make it public`** and I run it. Actions minutes and GHCR become free and unlimited.
+
+**Option B — keep it private and pay for minutes.** GitHub → your avatar → **Settings → Billing and plans → Budgets and alerts → New budget** → product **Actions** → set e.g. $10/month → save. CI starts on the next push; no reply needed, I'll see it.
+
+## 2a. DECISION: which servers serve (and one resize)
+
+Facts: my deploy key works on the **Hetzner** pair only; DNS currently points at the **DigitalOcean** droplets; every box is ≤4 GB while PLAN.md (D9, success criterion 5) requires **8 GB minimum for production**.
+
+**Option A — consolidate on Hetzner (recommended: access already works, ~⅕ the price).**
+1. Rescale production: Hetzner Console → project chertiot → server **chertiot-prod** → **Rescale** → *CPU/RAM only* → **CX32** (4 vCPU / 8 GB, ≈€8/mo) → confirm (~2 min downtime). Keep "CPU/RAM only" so you can downscale later.
+2. Do §3a below (point DNS at Hetzner).
+3. Destroy both DigitalOcean droplets when the switch is verified (saves $48/mo): DO console → droplet → **Destroy**.
+- chertiot-staging (CX22, 4 GB) stays as-is — fine for staging.
+
+**Option B — serve from DigitalOcean instead.**
+1. Resize production: DO console → chertiotserver → **Resize → CPU and RAM only → s-4vcpu-8gb** ($48/mo).
+2. The staging droplet (2 GB) is too small even for staging — resize to s-2vcpu-4gb.
+3. Add my key to both: DO console → droplet → **Access → Launch Droplet Console** → log in → run:
+   `mkdir -p ~/.ssh && echo '<the ssh-ed25519 line from §2.2>' >> ~/.ssh/authorized_keys`
+4. Tell me when done; DNS already points here.
+
+## 3a. DNS records (5 min, in the DigitalOcean panel you already use)
+
+DO console → **Networking → Domains → chertiot.com**. For **Option A** set every record to the Hetzner IPs; for Option B keep the existing ones. Create what's missing (TTL 3600):
+
+| Type | Hostname | Value (Option A) |
+|---|---|---|
+| A | `@` | 2.29.18.157 *(exists: change from 137.184.102.135)* |
+| A | `www` | 2.29.18.157 *(change)* |
+| A | `app` | 2.29.18.157 *(create)* |
+| A | `auth` | 2.29.18.157 *(create)* |
+| A | `status` | 2.29.18.157 *(create)* |
+| A | `stage` | 2.29.25.134 *(exists: change from 137.184.53.196)* |
+| A | `app.stage` | 2.29.25.134 *(create)* |
+| A | `auth.stage` | 2.29.25.134 *(create)* |
+| A | `status.stage` | 2.29.25.134 *(create)* |
+
+I verify with `dig` and need no message from you.
+
+## What I do the moment each lands
+- §1a → CI green → tag v0.9.0 → branded ThingsBoard + Caddy images published.
+- §3a (staging rows) → deploy staging on chertiot-staging → Let's Encrypt certs → full e2e over the internet.
+- §2a resize + §3a (prod rows) → production deploy → backups + restore drill → Gate 2 → v1.0.0.
+
+---
+
+The original click-by-click sections follow for reference.
 
 ---
 
