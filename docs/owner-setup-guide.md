@@ -19,7 +19,7 @@ CI fails instantly with *"Actions budget is preventing further use"*: the accoun
 
 ## 2a. Servers — DigitalOcean only (owner ruling 2026-09-01)
 
-Production = `chertiotserver` **137.184.102.135** · Staging = `chertiotstagingserver` **137.184.53.196**. Hetzner is not part of this project; delete those two Hetzner servers in their console to stop the billing.
+Production = `chertiotserver2` **134.122.31.32** (s-4vcpu-8gb) · Staging = `chertiotstagingserver2` **161.35.119.46** (s-2vcpu-4gb) — created via the API with proper keys on 2026-09-01. **Delete the old `chertiotserver` and `chertiotstagingserver` droplets** (and the two Hetzner servers) to stop double billing.
 
 To let me operate the droplets and DNS without further back-and-forth, two hand-backs:
 

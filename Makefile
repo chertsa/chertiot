@@ -68,7 +68,7 @@ check-profiles: ## Validate compose file for every profile
 	@for p in core flows lab lora; do $(COMPOSE) -f docker-compose.yml --env-file .env.example --profile $$p config -q || exit 1; done
 
 staging-deploy: ## Deploy/upgrade staging (M2.2)
-	deploy/scripts/deploy.sh 137.184.53.196 stage.chertiot.com
+	deploy/scripts/deploy.sh 161.35.119.46 stage.chertiot.com
 
 prod-deploy: ## Deploy/upgrade production (M2.3)
-	deploy/scripts/deploy.sh 137.184.102.135 chertiot.com
+	deploy/scripts/deploy.sh 134.122.31.32 chertiot.com
