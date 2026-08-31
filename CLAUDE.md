@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 2 / M2.1–M2.2. GATE 1 tagged v0.9.0 (CI run 33405382102 green: lint, unit, stack e2e, isolation). Repo: github.com/chertsa/chertiot (private, Actions budget set). Caddy image on GHCR; TB branded image build in CI via native Maven (setup-java). Servers: Hetzner pair not yet reachable (nothing listens); DNS @/www still on old IPs. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
+Read PLAN.md. Current: Phase 2 / M2.1–M2.2. GATE 1 tagged v0.9.0 (CI run 33405382102 green: lint, unit, stack e2e, isolation). Repo: github.com/chertsa/chertiot (private, Actions budget set). Images on GHCR: chertiot-caddy:2.11.4-l4 and chertiot-tb:4.3.1.4-b1 (branded, smoke-tested); compose uses TB_IMAGE/CADDY_IMAGE. Packages must be made public (owner) before servers/local can pull. Servers: Hetzner pair not yet reachable (nothing listens); DNS @/www still on old IPs. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.

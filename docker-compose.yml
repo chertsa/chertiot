@@ -28,7 +28,7 @@ services:
   # One-shot: installs TB schema on first run, then no-ops. Idempotent via marker file.
   tb-install:
     <<: *logging
-    image: thingsboard/tb-node:${TB_VERSION}
+    image: ${TB_IMAGE}
     profiles: [core]
     restart: "no"
     user: "0:0"   # one-shot installer only: needs to write the marker in the root-owned volume
@@ -49,7 +49,7 @@ services:
 
   tb:
     <<: [*restart, *logging]
-    image: thingsboard/tb-node:${TB_VERSION}
+    image: ${TB_IMAGE}
     profiles: [core]
     env_file: deploy/tb/tb-node.env
     environment:
