@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
-  <p class="overline">Multi-tenant IoT lab</p>
-  <h1>Your own IoT lab, live in ten minutes.</h1>
-  <p>Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage.</p>
-  <p><a class="btn btn--primary btn--lg" href="/signup">Create account</a> <a class="btn btn--secondary btn--lg" href="/docs">Read the getting-started guide</a></p>
+  <p class="overline">{{ _("Multi-tenant IoT lab") }}</p>
+  <h1>{{ _("Your own IoT lab, live in ten minutes.") }}</h1>
+  <p>{{ _("Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage.") }}</p>
+  <p><a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a> <a class="btn btn--secondary btn--lg" href="/docs">{{ _("Read the getting-started guide") }}</a></p>
 </section>
 {% endblock %}

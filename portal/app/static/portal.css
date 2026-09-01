@@ -19,3 +19,9 @@ body { margin: 0; background: var(--chert-cream); color: var(--chert-ink); font-
 .table { width: 100%; border-collapse: collapse; }
 .table th, .table td { text-align: left; padding: var(--space-2); border-bottom: 1px solid var(--chert-border); }
 .overline { font-size: var(--fs-overline); text-transform: uppercase; letter-spacing: 0.08em; color: var(--chert-muted); }
+
+/* RTL per CHERT Design System §7 */
+html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-serif); }
+[dir="rtl"] .header__nav { flex-direction: row-reverse; }
+.header__lang { font-weight: 600; text-decoration: underline; }
+[dir="rtl"] .table th, [dir="rtl"] .table td { text-align: right; }

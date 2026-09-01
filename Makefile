@@ -56,6 +56,12 @@ migrate: .env ## Apply portal DB migrations against the local stack
 class-code: .env ## Create a class code: make class-code CODE=X COHORT=Y INSTRUCTOR=Z
 	set -a && . ./.env && set +a && PORTAL_DATABASE_URL=$$(echo $$PORTAL_DATABASE_URL | sed 's|@postgres:|@127.0.0.1:|') $(UV) run python -m scripts.class_code create $(CODE) --cohort $(COHORT) --instructor $(INSTRUCTOR)
 
+i18n-extract: ## Update translation catalogs from source strings
+	cd portal && $(UV) run pybabel extract -F babel.cfg -o app/locales/messages.pot app && $(UV) run pybabel update -i app/locales/messages.pot -d app/locales -l ar
+
+i18n-compile: ## Compile .po → .mo
+	cd portal && $(UV) run pybabel compile -d app/locales
+
 kc-export: .env ## Export the Keycloak realm to keycloak/realm/ (secrets masked)
 	set -a && . ./.env && set +a && KC_ADMIN_URL=http://127.0.0.1:18081 KC_EXPORT_DIR=$(CURDIR)/keycloak/realm \
 	  $(UV) run python -m scripts.export_keycloak

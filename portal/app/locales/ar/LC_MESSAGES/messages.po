@@ -1,0 +1,119 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-02 01:55+0300\n"
+"PO-Revision-Date: 2026-09-02 01:52+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/templates/base.html:19 app/templates/home.html:5
+msgid "My lab"
+msgstr "مختبري"
+
+#: app/templates/base.html:20
+msgid "Sign out"
+msgstr "تسجيل الخروج"
+
+#: app/templates/base.html:22
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+#: app/templates/base.html:23 app/templates/index.html:7
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+#: app/templates/base.html:30
+msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
+msgstr "‏CHERT IoT — يعمل بواسطة ThingsBoard وKeycloak ومصادر مفتوحة."
+
+#: app/templates/base.html:30
+msgid "Privacy"
+msgstr "الخصوصية"
+
+#: app/templates/base.html:30
+msgid "Fair use"
+msgstr "الاستخدام العادل"
+
+#: app/templates/base.html:30
+msgid "Status"
+msgstr "الحالة"
+
+#: app/templates/home.html:8
+msgid "Open my dashboard"
+msgstr "افتح لوحة التحكم"
+
+#: app/templates/home.html:8
+msgid "device(s) — add one, get its token and starter code."
+msgstr "جهاز/أجهزة — أضف جهازًا واحصل على رمزه والكود الجاهز."
+
+#: app/templates/home.html:9
+msgid "My devices"
+msgstr "أجهزتي"
+
+#: app/templates/home.html:10
+msgid "Getting started"
+msgstr "البدء"
+
+#: app/templates/home.html:10
+msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
+msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
+
+#: app/templates/home.html:12
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: app/templates/home.html:13
+msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
+msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
+
+#: app/templates/home.html:14
+msgid "Reset starter dashboard"
+msgstr "إعادة ضبط لوحة التحكم الأساسية"
+
+#: app/templates/home.html:16
+msgid "We could not set up your lab:"
+msgstr "تعذّر إعداد مختبرك:"
+
+#: app/templates/home.html:17
+msgid "Try again"
+msgstr "حاول مرة أخرى"
+
+#: app/templates/home.html:19
+msgid "Setting up your lab…"
+msgstr "جارٍ إعداد مختبرك…"
+
+#: app/templates/home.html:20
+msgid "Set up now"
+msgstr "الإعداد الآن"
+
+#: app/templates/index.html:4
+msgid "Multi-tenant IoT lab"
+msgstr "مختبر إنترنت الأشياء متعدد المستأجرين"
+
+#: app/templates/index.html:5
+msgid "Your own IoT lab, live in ten minutes."
+msgstr "مختبرك الخاص لإنترنت الأشياء، جاهز خلال عشر دقائق."
+
+#: app/templates/index.html:6
+msgid "Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage."
+msgstr "أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
+
+#: app/templates/index.html:7
+msgid "Read the getting-started guide"
+msgstr "اقرأ دليل البدء"
+
+#~ msgid "Live charts for every device you own. Opens ThingsBoard with the same sign-in."
+#~ msgstr "رسوم مباشرة لكل جهاز تملكه. يفتح ThingsBoard بنفس تسجيل الدخول."
+

@@ -14,6 +14,16 @@ from app.templating import templates
 router = APIRouter()
 
 
+@router.get("/lang/{code}")
+def set_language(code: str, request: Request) -> Any:
+    """Language toggle (Design System §7). Cookie-based; falls back to Accept-Language."""
+    target = request.headers.get("referer") or "/"
+    resp = RedirectResponse(target, status_code=303)
+    if code in ("en", "ar"):
+        resp.set_cookie("lang", code, max_age=365 * 24 * 3600, samesite="lax")
+    return resp
+
+
 @router.get("/")
 def index(request: Request) -> Any:
     if optional_user(request):

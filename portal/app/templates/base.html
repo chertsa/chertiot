@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ locale }}" dir="{{ text_dir }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,16 +16,17 @@
       <a class="header__brand" href="/"><img src="/static/logo.svg" alt="" class="header__logo"><span class="header__wordmark">CHERT <span class="header__product">IoT</span></span></a>
       <nav class="header__nav">
         {% if request.session.get('user') %}
-          <a href="/home">My lab</a>
-          <a class="btn btn--secondary btn--sm" href="/logout">Sign out</a>
+          <a href="/home">{{ _("My lab") }}</a>
+          <a class="btn btn--secondary btn--sm" href="/logout">{{ _("Sign out") }}</a>
         {% else %}
-          <a href="/login">Sign in</a>
-          <a class="btn btn--primary btn--sm" href="/signup">Create account</a>
+          <a href="/login">{{ _("Sign in") }}</a>
+          <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
         {% endif %}
+        <a class="header__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
       </nav>
     </div>
   </header>
   <main class="container main">{% block content %}{% endblock %}</main>
-  <footer class="footer"><div class="container">CHERT IoT — powered by ThingsBoard, Keycloak and open source. <a href="/docs/privacy">Privacy</a> · <a href="/docs/fair-use">Fair use</a> · <a href="https://status.{{ request.url.hostname }}">Status</a></div></footer>
+  <footer class="footer"><div class="container">{{ _("CHERT IoT — powered by ThingsBoard, Keycloak and open source.") }} <a href="/docs/privacy">{{ _("Privacy") }}</a> · <a href="/docs/fair-use">{{ _("Fair use") }}</a> · <a href="https://status.{{ request.url.hostname }}">{{ _("Status") }}</a></div></footer>
 </body>
 </html>

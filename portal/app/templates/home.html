@@ -2,21 +2,21 @@
 {% block title %}My lab — CHERT IoT{% endblock %}
 {% block content %}
 <p class="overline">{{ user.cohort }}</p>
-<h1>My lab</h1>
+<h1>{{ _("My lab") }}</h1>
 {% if user.provisioning_state == 'provisioned' %}
   <div class="grid-cards">
-    <a class="card" href="{{ dashboard_url }}" target="_blank" rel="noopener"><div class="card__title">Open my dashboard</div><div class="card__desc">Live charts for every device you own. Opens ThingsBoard with the same sign-in.</div></a>
-    <a class="card" href="/devices"><div class="card__title">My devices</div><div class="card__desc">{{ device_count }} device{{ '' if device_count == 1 else 's' }}. Add one, get its token and starter code.</div></a>
-    <a class="card" href="/docs"><div class="card__title">Getting started</div><div class="card__desc">Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.</div></a>
+    <a class="card" href="{{ dashboard_url }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Open my dashboard") }}</div><div class="card__desc">{{ device_count }} {{ _("device(s) — add one, get its token and starter code.") }}</div></a>
+    <a class="card" href="/devices"><div class="card__title">{{ _("My devices") }}</div><div class="card__desc">{{ device_count }} device{{ '' if device_count == 1 else 's' }}. Add one, get its token and starter code.</div></a>
+    <a class="card" href="/docs"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
   </div>
-  <h2>Dashboard</h2>
-  <p class="helper">Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.</p>
-  <form method="post" action="/dashboard/reset"><button class="btn btn--secondary btn--sm" type="submit">Reset starter dashboard</button></form>
+  <h2>{{ _("Dashboard") }}</h2>
+  <p class="helper">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}</p>
+  <form method="post" action="/dashboard/reset"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
 {% elif user.provisioning_state == 'failed' %}
-  <div class="callout callout--error"><p>We couldn't set up your lab: {{ user.provisioning_error }}</p></div>
-  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">Try again</button></form>
+  <div class="callout callout--error"><p>{{ _("We could not set up your lab:") }} {{ user.provisioning_error }}</p></div>
+  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">{{ _("Try again") }}</button></form>
 {% else %}
-  <div class="callout callout--info"><p>Setting up your lab…</p></div>
-  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">Set up now</button></form>
+  <div class="callout callout--info"><p>{{ _("Setting up your lab…") }}</p></div>
+  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">{{ _("Set up now") }}</button></form>
 {% endif %}
 {% endblock %}

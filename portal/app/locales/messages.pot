@@ -1,0 +1,122 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-02 01:55+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/templates/base.html:19 app/templates/home.html:5
+msgid "My lab"
+msgstr ""
+
+#: app/templates/base.html:20
+msgid "Sign out"
+msgstr ""
+
+#: app/templates/base.html:22
+msgid "Sign in"
+msgstr ""
+
+#: app/templates/base.html:23 app/templates/index.html:7
+msgid "Create account"
+msgstr ""
+
+#: app/templates/base.html:30
+msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
+msgstr ""
+
+#: app/templates/base.html:30
+msgid "Privacy"
+msgstr ""
+
+#: app/templates/base.html:30
+msgid "Fair use"
+msgstr ""
+
+#: app/templates/base.html:30
+msgid "Status"
+msgstr ""
+
+#: app/templates/home.html:8
+msgid "Open my dashboard"
+msgstr ""
+
+#: app/templates/home.html:8
+msgid "device(s) — add one, get its token and starter code."
+msgstr ""
+
+#: app/templates/home.html:9
+msgid "My devices"
+msgstr ""
+
+#: app/templates/home.html:10
+msgid "Getting started"
+msgstr ""
+
+#: app/templates/home.html:10
+msgid ""
+"Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
+"ten minutes."
+msgstr ""
+
+#: app/templates/home.html:12
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/home.html:13
+msgid ""
+"Edited your dashboard into a corner? Restore the starter layout. Your "
+"devices and data stay."
+msgstr ""
+
+#: app/templates/home.html:14
+msgid "Reset starter dashboard"
+msgstr ""
+
+#: app/templates/home.html:16
+msgid "We could not set up your lab:"
+msgstr ""
+
+#: app/templates/home.html:17
+msgid "Try again"
+msgstr ""
+
+#: app/templates/home.html:19
+msgid "Setting up your lab…"
+msgstr ""
+
+#: app/templates/home.html:20
+msgid "Set up now"
+msgstr ""
+
+#: app/templates/index.html:4
+msgid "Multi-tenant IoT lab"
+msgstr ""
+
+#: app/templates/index.html:5
+msgid "Your own IoT lab, live in ten minutes."
+msgstr ""
+
+#: app/templates/index.html:6
+msgid ""
+"Create an account, flash the starter code onto an ESP32, and watch your "
+"sensor data arrive on a dashboard that is yours alone. No servers to run,"
+" no cloud accounts to manage."
+msgstr ""
+
+#: app/templates/index.html:7
+msgid "Read the getting-started guide"
+msgstr ""
+
