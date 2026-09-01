@@ -123,7 +123,7 @@ def main() -> int:
         time.sleep(0.5)
     check("telemetry readable via REST", str((latest.get("smoke") or [{}])[0].get("value")) == "42")
 
-    # cleanup: delete the smoke tenant via sysadmin on the server is out of band; delete device + disable user here
+    # cleanup: drop the device and the Keycloak user (tenant removal is a sysadmin-side task)
     httpx.delete(f"{APP}/api/device/{dev['id']['id']}", headers=auth_hdr, timeout=20)
     kc._req("DELETE", f"/users/{uid}")
     print("== PASS" if ok else "== FAIL")
