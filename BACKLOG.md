@@ -6,3 +6,4 @@
 - Portal: explicit CSRF tokens on state-changing forms (currently relying on SameSite=Lax session cookie).
 - Portal: cache the student's TB JWT in the session instead of sysadmin impersonation on every request.
 - Portal: e2e cleanup of portal_users rows for test accounts (TB tenants are cleaned; portal rows remain).
+- Arabic language toggle across portal, docs and emails (Keycloak login already ships ar locale): full RTL pass per CHERT Design System §7 — flagged by the owner in the Gate 2 walkthrough 2026-09-01. Post-launch milestone, not a patch.
