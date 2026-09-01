@@ -219,7 +219,7 @@ services:
     <<: [*restart, *logging]
     image: prom/node-exporter:${NODE_EXPORTER_VERSION}
     profiles: [core]
-    command: ["--path.rootfs=/host"]
+    command: ["--path.rootfs=/host", "--collector.textfile.directory=/host/var/lib/node_exporter/textfile"]
     pid: host
     volumes:
       - /:/host:ro,rslave

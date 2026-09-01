@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 2 / M2.3 (production deploy running; staging LIVE and smoke-passed 2026-09-01). Staging: https://stage.chertiot.com on chertiotstagingserver2 (161.35.119.46); prod target chertiotserver2 (134.122.31.32). Repo public; images public on GHCR. Staging smoke: SSO, tenant-per-user, MQTTS 8883 via Caddy layer4, telemetry — all green over the internet. Next: prod smoke → backups (restic prod→staging SFTP planned) → restore drill → Gate 2. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
+Read PLAN.md. Current: Phase 2 / M2.3 backups+drill. PRODUCTION LIVE at https://chertiot.com (smoke PASS 2026-09-01: SSO, tenant, MQTTS 8883, telemetry). Staging: https://stage.chertiot.com on chertiotstagingserver2 (161.35.119.46); prod target chertiotserver2 (134.122.31.32). Repo public; images public on GHCR. Staging smoke: SSO, tenant-per-user, MQTTS 8883 via Caddy layer4, telemetry — all green over the internet. Next: prod smoke → backups (restic prod→staging SFTP planned) → restore drill → Gate 2. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
