@@ -2,9 +2,9 @@
 
 **Updated 2026-08-31.** Progress:
 
-- [x] 1. GitHub repository — **done**: <https://github.com/chertsa/chertiot> (private). One follow-up decision: §1a below.
-- [~] 2. Servers — DigitalOcean droplets (owner ruling). Needs: API token + one-time root access (§2a).
-- [~] 3. DNS — nameservers live at DigitalOcean; `@`/`www`/`stage` exist. Needs the records in §3a (5 min, depends on §2a).
+- [x] 1. GitHub — done: <https://github.com/chertsa/chertiot> (public). CI green, v0.9.0 tagged, branded images public on GHCR.
+- [x] 2. Servers — chertiotserver2 (134.122.31.32, 8 GB) + chertiotstagingserver2 (161.35.119.46, 4 GB): bootstrapped, hardened. Old droplets deleted 2026-09-01.
+- [x] 3. DNS — all nine A records live on the new droplets (managed via the API token).
 - [x] 4. SMTP — **done and verified**: `mail.chert.sa:587` answers with a valid certificate and SPF already authorizes it. I put the credentials into the servers' `.env` at deploy time (never into git). Since the password was pasted into chat, rotate it after launch when convenient.
 
 ---
