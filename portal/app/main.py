@@ -54,7 +54,8 @@ async def upstream_unavailable(request: Request, exc: Exception) -> Response:
     ctx = {
         "title": _("The lab is busy right now"),
         "message": _(
-            "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
+            "A backend service did not answer in time. "
+            "Nothing was lost — wait a minute and try again."
         ),
     }
     return templates.TemplateResponse(request, "error.html", ctx, status_code=503)

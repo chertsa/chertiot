@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 01:57+0300\n"
+"POT-Creation-Date: 2026-09-02 01:59+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
 "Language-Team: ar <LL@li.org>\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,12 +23,8 @@ msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
 #: app/main.py:57
-msgid ""
-"A backend service did not answer in time. Nothing was lost — wait a "
-"minute and try again."
-msgstr ""
-"لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول "
-"مجددًا."
+msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
+msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
 
 #: app/routers/signup.py:57
 msgid "Enter a valid email address."
@@ -148,12 +143,8 @@ msgid "Starter code"
 msgstr "الكود الجاهز"
 
 #: app/templates/device.html:18
-msgid ""
-"Your token and the broker address are already filled in. Download the "
-"file for your board, add your Wi-Fi details, flash it."
-msgstr ""
-"رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات "
-"شبكتك، ثم حمّله."
+msgid "Your token and the broker address are already filled in. Download the file for your board, add your Wi-Fi details, flash it."
+msgstr "رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات شبكتك، ثم حمّله."
 
 #: app/templates/device.html:26
 msgid "Manage"
@@ -176,12 +167,8 @@ msgid "Revoke token"
 msgstr "إبطال الرمز"
 
 #: app/templates/device.html:35
-msgid ""
-"Lost or leaked the token? Issue a new one. Devices using the old token "
-"disconnect."
-msgstr ""
-"فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم "
-"ستنفصل."
+msgid "Lost or leaked the token? Issue a new one. Devices using the old token disconnect."
+msgstr "فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم ستنفصل."
 
 #: app/templates/device.html:36
 msgid "Issue new token"
@@ -249,21 +236,15 @@ msgid "Getting started"
 msgstr "البدء"
 
 #: app/templates/home.html:10
-msgid ""
-"Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
-"ten minutes."
-msgstr ""
-"حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من "
-"عشر دقائق."
+msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
+msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
 
 #: app/templates/home.html:12
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
 #: app/templates/home.html:13
-msgid ""
-"Edited your dashboard into a corner? Restore the starter layout. Your "
-"devices and data stay."
+msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
 #: app/templates/home.html:14
@@ -291,13 +272,8 @@ msgid "Your own IoT lab, live in ten minutes."
 msgstr "مختبرك الخاص لإنترنت الأشياء، جاهز خلال عشر دقائق."
 
 #: app/templates/index.html:6
-msgid ""
-"Create an account, flash the starter code onto an ESP32, and watch your "
-"sensor data arrive on a dashboard that is yours alone. No servers to run,"
-" no cloud accounts to manage."
-msgstr ""
-"أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى "
-"لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
+msgid "Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage."
+msgstr "أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
 
 #: app/templates/index.html:7
 msgid "Read the getting-started guide"
@@ -332,26 +308,16 @@ msgid "Class code"
 msgstr "رمز الصف"
 
 #: app/templates/signup.html:29
-msgid ""
-"Your instructor gives you this. Without it you join the open community "
-"lab."
+msgid "Your instructor gives you this. Without it you join the open community lab."
 msgstr "يعطيك مدرّسك هذا الرمز. بدونه تنضم إلى المختبر المجتمعي المفتوح."
 
 #: app/templates/signup.html:34
-msgid ""
-"I am 18 or older, or I am signing up with a class code from my school, "
-"which has arranged consent for me."
+msgid "I am 18 or older, or I am signing up with a class code from my school, which has arranged consent for me."
 msgstr "عمري 18 عامًا أو أكثر، أو أسجّل برمز صف من مدرستي التي رتّبت الموافقة لي."
 
 #: app/templates/signup.html:37
-msgid ""
-"By creating an account you agree to the fair-use policy. We store your "
-"email, your devices' telemetry (90 days) and an audit log (30 days) — "
-"nothing else."
-msgstr ""
-"بإنشائك حسابًا فأنت توافق على سياسة الاستخدام العادل. نخزّن بريدك "
-"الإلكتروني وقياسات أجهزتك (90 يومًا) وسجل التدقيق (30 يومًا) — لا شيء غير"
-" ذلك."
+msgid "By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else."
+msgstr "بإنشائك حسابًا فأنت توافق على سياسة الاستخدام العادل. نخزّن بريدك الإلكتروني وقياسات أجهزتك (90 يومًا) وسجل التدقيق (30 يومًا) — لا شيء غير ذلك."
 
 #: app/templates/verified.html:2 app/templates/verified.html:4
 msgid "Email verified"
@@ -361,9 +327,6 @@ msgstr "تم تفعيل البريد"
 msgid "Your account is active. Sign in to open your lab."
 msgstr "حسابك مفعّل. سجّل الدخول لفتح مختبرك."
 
-#~ msgid ""
-#~ "Live charts for every device you "
-#~ "own. Opens ThingsBoard with the same "
-#~ "sign-in."
+#~ msgid "Live charts for every device you own. Opens ThingsBoard with the same sign-in."
 #~ msgstr "رسوم مباشرة لكل جهاز تملكه. يفتح ThingsBoard بنفس تسجيل الدخول."
 
