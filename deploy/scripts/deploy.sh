@@ -19,7 +19,8 @@ $RUN "cd /srv/chertiot && [ -f .env ] || { deploy/scripts/ci-env.sh; \
   sed -i \"s|^ENV=.*|ENV=prod|; s|^DOMAIN=.*|DOMAIN=$DOMAIN|; s|^CADDYFILE=.*|CADDYFILE=deploy/caddy/Caddyfile.prod|; \
     s|^KC_HOSTNAME=.*|KC_HOSTNAME=https://auth.$DOMAIN|; s|^TB_PUBLIC_URL=.*|TB_PUBLIC_URL=https://app.$DOMAIN|; \
     s|^PORTAL_PUBLIC_URL=.*|PORTAL_PUBLIC_URL=https://$DOMAIN|; s|^MQTT_HOST=.*|MQTT_HOST=$DOMAIN|; s|^MQTT_PORT=.*|MQTT_PORT=8883|; \
-    s|^SMTP_HOST=.*|SMTP_HOST=|; s|^TB_SYSADMIN_PASSWORD=.*|TB_SYSADMIN_PASSWORD=\$(openssl rand -hex 12)|\" .env; echo '.env generated'; }"
+    s|^SMTP_HOST=.*|SMTP_HOST=|; s|^TB_SYSADMIN_PASSWORD=.*|TB_SYSADMIN_PASSWORD=\$(openssl rand -hex 12)|; \
+    s|^RESTIC_REPOSITORY=\$|RESTIC_REPOSITORY=sftp:chertiot@161.35.119.46:/home/chertiot/backups/$DOMAIN|; s|^RESTIC_PASSWORD=\$|RESTIC_PASSWORD=\$(openssl rand -hex 24)|\" .env; echo '.env generated'; }"
 if [ -f "deploy/secrets.$DOMAIN.env" ]; then
   step "merge secrets from deploy/secrets.$DOMAIN.env (server-side, quoting-safe)"
   scp -q -i "$KEY" -o IdentitiesOnly=yes "deploy/secrets.$DOMAIN.env" "chertiot@$HOST:/srv/chertiot/.secrets.merge"
