@@ -28,4 +28,17 @@ nav:
       - Fair use: policies/fair-use.md
       - Privacy: policies/privacy.md
       - Service expectations: policies/service.md
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+        - locale: ar
+          name: العربية
+          build: true
+          site_name: "وثائق CHERT IoT"
+
 markdown_extensions: [admonition, attr_list, tables, pymdownx.superfences, pymdownx.tabbed, toc]
