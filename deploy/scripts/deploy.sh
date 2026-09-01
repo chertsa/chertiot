@@ -21,8 +21,27 @@ $RUN "cd /srv/chertiot && [ -f .env ] || { deploy/scripts/ci-env.sh; \
     s|^PORTAL_PUBLIC_URL=.*|PORTAL_PUBLIC_URL=https://$DOMAIN|; s|^MQTT_HOST=.*|MQTT_HOST=$DOMAIN|; s|^MQTT_PORT=.*|MQTT_PORT=8883|; \
     s|^SMTP_HOST=.*|SMTP_HOST=|; s|^TB_SYSADMIN_PASSWORD=.*|TB_SYSADMIN_PASSWORD=\$(openssl rand -hex 12)|\" .env; echo '.env generated'; }"
 if [ -f "deploy/secrets.$DOMAIN.env" ]; then
-  step "merge SMTP/secrets from deploy/secrets.$DOMAIN.env"
-  while IFS= read -r line; do [ -z "$line" ] && continue; k="${line%%=*}"; $RUN "cd /srv/chertiot && grep -q '^$k=' .env && sed -i 's|^$k=.*|$(printf '%s' "$line" | sed 's/[&|]/\\&/g')|' .env || echo '$line' >> .env"; done < "deploy/secrets.$DOMAIN.env"
+  step "merge secrets from deploy/secrets.$DOMAIN.env (server-side, quoting-safe)"
+  scp -q -i "$KEY" -o IdentitiesOnly=yes "deploy/secrets.$DOMAIN.env" "chertiot@$HOST:/srv/chertiot/.secrets.merge"
+  $RUN "cd /srv/chertiot && python3 - <<'PYMERGE'
+lines = open('.env').read().split('\n')
+merge = {}
+for raw in open('.secrets.merge').read().split('\n'):
+    raw = raw.strip()
+    if raw and '=' in raw and not raw.startswith('#'):
+        k, v = raw.split('=', 1)
+        merge[k] = v
+seen = set()
+for i, line in enumerate(lines):
+    k = line.split('=', 1)[0]
+    if k in merge:
+        lines[i] = k + '=' + merge[k]
+        seen.add(k)
+lines.extend(k + '=' + v for k, v in merge.items() if k not in seen)
+open('.env', 'w').write('\n'.join(lines))
+print('merged:', ', '.join(sorted(merge)))
+PYMERGE
+rm -f /srv/chertiot/.secrets.merge"
 fi
 
 step "compose up (production file only, no dev override)"
@@ -31,10 +50,11 @@ $RUN "cd /srv/chertiot && docker compose -f docker-compose.yml --profile core pu
 step "wait for tb + keycloak + portal healthy (up to 10 min)"
 $RUN 'cd /srv/chertiot && for i in $(seq 1 60); do S=$(docker compose -f docker-compose.yml --profile core ps --format "{{.Service}} {{.Status}}"); echo "$S" | grep -q "^tb .*(healthy)" && echo "$S" | grep -q "^keycloak .*(healthy)" && echo "$S" | grep -q "^portal .*(healthy)" && exit 0; sleep 10; done; echo "$S"; exit 1'
 
-step "bootstrap keycloak realm + tb oauth2 (idempotent, inside the portal container)"
-$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && docker compose -f docker-compose.yml exec -T \
-  -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 portal /app/.venv/bin/python -m scripts.setup_keycloak \
-  && docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 portal /app/.venv/bin/python -m scripts.setup_tb_oauth2"
+step "bootstrap: rotate TB sysadmin, keycloak realm, tb oauth2 (idempotent, inside the portal container)"
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && \
+  docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 -e ENV -e DOMAIN -e KC_HOSTNAME -e KC_INTERNAL_URL -e KC_REALM -e KC_SECRET_THINGSBOARD -e KC_SECRET_PORTAL -e KC_SECRET_JUPYTERHUB -e KC_SECRET_GRAFANA -e KEYCLOAK_ADMIN -e KEYCLOAK_ADMIN_PASSWORD -e TB_PUBLIC_URL -e PORTAL_PUBLIC_URL -e MQTT_HOST -e MQTT_PORT -e SMTP_HOST -e SMTP_PORT -e SMTP_USER -e SMTP_PASSWORD -e SMTP_FROM -e SMTP_STARTTLS -e TB_SYSADMIN_EMAIL -e TB_SYSADMIN_PASSWORD portal /app/.venv/bin/python -m scripts.rotate_tb_sysadmin && \
+  docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 -e ENV -e DOMAIN -e KC_HOSTNAME -e KC_INTERNAL_URL -e KC_REALM -e KC_SECRET_THINGSBOARD -e KC_SECRET_PORTAL -e KC_SECRET_JUPYTERHUB -e KC_SECRET_GRAFANA -e KEYCLOAK_ADMIN -e KEYCLOAK_ADMIN_PASSWORD -e TB_PUBLIC_URL -e PORTAL_PUBLIC_URL -e MQTT_HOST -e MQTT_PORT -e SMTP_HOST -e SMTP_PORT -e SMTP_USER -e SMTP_PASSWORD -e SMTP_FROM -e SMTP_STARTTLS -e TB_SYSADMIN_EMAIL -e TB_SYSADMIN_PASSWORD portal /app/.venv/bin/python -m scripts.setup_keycloak && \
+  docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 -e ENV -e DOMAIN -e KC_HOSTNAME -e KC_INTERNAL_URL -e KC_REALM -e KC_SECRET_THINGSBOARD -e KC_SECRET_PORTAL -e KC_SECRET_JUPYTERHUB -e KC_SECRET_GRAFANA -e KEYCLOAK_ADMIN -e KEYCLOAK_ADMIN_PASSWORD -e TB_PUBLIC_URL -e PORTAL_PUBLIC_URL -e MQTT_HOST -e MQTT_PORT -e SMTP_HOST -e SMTP_PORT -e SMTP_USER -e SMTP_PASSWORD -e SMTP_FROM -e SMTP_STARTTLS -e TB_SYSADMIN_EMAIL -e TB_SYSADMIN_PASSWORD portal /app/.venv/bin/python -m scripts.setup_tb_oauth2"
 
 step "smoke: public endpoints"
 for url in "https://$DOMAIN/healthz" "https://app.$DOMAIN/login" "https://auth.$DOMAIN/realms/chertiot"; do
