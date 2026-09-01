@@ -1,5 +1,17 @@
 # Owner setup guide — everything needed to put chertiot.com live
 
+**PRODUCTION IS LIVE: <https://chertiot.com>** (2026-09-01, internet smoke passed; staging at <https://stage.chertiot.com>).
+
+## GATE 2 — what's left before the v1.0.0 launch tag
+
+1. **Human walkthrough (the only must-have from a person):** someone who has never seen the platform goes to <https://chertiot.com>, creates an account with a real email, follows the docs at <https://chertiot.com/docs/>, and gets device data onto their dashboard in under 10 minutes — the browser-only track needs no hardware. Tell me the result (time + any friction).
+2. **Status page (2 min):** open <https://status.chertiot.com> → Uptime Kuma first-run wizard → create the admin account (save the password) → then either paste me an API key (Settings → API Keys) and I add the monitors, or add four HTTP monitors yourself (chertiot.com, app.chertiot.com, auth.chertiot.com, stage.chertiot.com).
+3. **Hetzner cleanup:** the two Hetzner servers still bill — delete them in the Hetzner console.
+
+Backups + restore drill are automated and in progress on my side.
+
+---
+
 **Updated 2026-08-31.** Progress:
 
 - [x] 1. GitHub — done: <https://github.com/chertsa/chertiot> (public). CI green, v0.9.0 tagged, branded images public on GHCR.
