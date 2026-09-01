@@ -1,5 +1,5 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: Phase 2 / M2.1–M2.2. GATE 1 tagged v0.9.0 (CI run 33405382102 green: lint, unit, stack e2e, isolation). Repo: github.com/chertsa/chertiot (private, Actions budget set). Images on GHCR: chertiot-caddy:2.11.4-l4 and chertiot-tb:4.3.1.4-b1 (branded, smoke-tested); compose uses TB_IMAGE/CADDY_IMAGE. Packages must be made public (owner) before servers/local can pull. Servers: Hetzner pair not yet reachable (nothing listens); DNS @/www still on old IPs. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
+Read PLAN.md. Current: Phase 2 / M2.3 (production deploy running; staging LIVE and smoke-passed 2026-09-01). Staging: https://stage.chertiot.com on chertiotstagingserver2 (161.35.119.46); prod target chertiotserver2 (134.122.31.32). Repo public; images public on GHCR. Staging smoke: SSO, tenant-per-user, MQTTS 8883 via Caddy layer4, telemetry — all green over the internet. Next: prod smoke → backups (restic prod→staging SFTP planned) → restore drill → Gate 2. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
