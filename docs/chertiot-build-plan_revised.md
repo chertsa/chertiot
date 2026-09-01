@@ -8,7 +8,7 @@
 
 | # | Decision |
 |---|----------|
-| D1 | **Brand:** "Chert IoT" (follow CHERT Design System §1.4) in all UI/display text. Code, repos, DB, containers, domain: lowercase `chertiot`. |
+| D1 | **Brand:** "CHERT IoT" in all UI/display text. Code, repos, DB, containers, domain: lowercase `chertiot`. |
 | D2 | **Core:** ThingsBoard CE (Apache-2.0), pinned version, built from source with rebrand patch series. |
 | D3 | **Identity:** Keycloak from day one at auth.chertiot.com. Single login for portal, TB, JupyterHub, Grafana, Node-RED. TB is an OAuth2 *client* of Keycloak, never the IdP. |
 | D4 | **Tenancy:** ONE TENANT PER STUDENT. Student = Tenant Admin of own tenant → full rights (create devices, dashboards, rule chains, alarms). Quotas via TB tenant profiles (10 devices, 10 msg/s, capped API — env-tunable). Optional shared "class tenant" per course for group exercises. Never customer-per-student (CE customers are read-only). |
