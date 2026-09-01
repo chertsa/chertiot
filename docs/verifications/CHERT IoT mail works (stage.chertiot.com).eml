@@ -1,0 +1,64 @@
+Delivered-To: khalid@alholan.com
+Received: by 2002:a98:db9b:0:b0:272:9fa7:6c1 with SMTP id w27csp4450898eil;
+        Tue, 1 Sep 2026 10:44:03 -0700 (PDT)
+X-Received: by 2002:a05:6000:186e:b0:482:fd9c:3740 with SMTP id ffacd0b85a97d-482fd9c384dmr58326798f8f.22.1788284643201;
+        Tue, 01 Sep 2026 10:44:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788284643; cv=none;
+        d=google.com; s=arc-20260327;
+        b=IDWKrqgxz/z46IAvspUkGYPXrF5HC4GhQfgWRz/zGAgx0nUz82ahSLysdemFFIadOM
+         byXdhGHmsjXtYzrXqYqB1x2gT6WHR5AVeWKREXdnpfDsSYXBwc7vBoSUHWnqbgYkLEJ/
+         rHoxtfX8MUyNXb5FibqSSVeqiYhdSqrsZk36WEJ3UvCU/nb161LJVaY3ri9X7FD/c1qG
+         B7pC8h1dGIogX1wIW5xuG49w/PP0d4cDPArwC0K5hvUUkN1T/JflqRfNpoI0kOopSBhz
+         S3CmDtwu/2u3PvHeavU3SJ5giaYKJHNhh6qT6dOJULzJZXiovNF0Jv2aSB6/5uAKE0JM
+         mIqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:date:message-id:subject:to:from:dkim-signature;
+        bh=98Sbp0k7ZPj5WEZYEydrUOQnoICoq9pZlcTwBM9ATkU=;
+        fh=D0e3kzWYDGcs6Umy99fftTf6KxlxNqRdjQH699UYYWU=;
+        b=Jyi7bWu24puyClntmfceCzlh5f86Og7N2gCSt9FGks3kjytkV02ti8Y3ImetTjHm8y
+         cADKFyWderOo5VMuzQFehjqTTm9/1FLwsJluLryTuMZRO7C9cLmyzJL/ZfoA9zSto4fg
+         BrWGc9y2pvAAeO7RDmXaByRMieCQG1aNgxa1FdnqGvAkZnk4uPXJ3Hb6dNECnLnJW21M
+         B1tC67A3cPBTPQ1PNUp5Cv8H7HwtTTAfvOMC2V3VsxU1w2OUBN968Do9OYrHrBDOPDn8
+         dJEXF5DQ6i6IoDhChA/LUFHW3r6L+A1kqYrxUZw86Hoc1LGty7FfP26hprzBhn5yQzF8
+         +0dg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@chertiot.com header.s=s733249 header.b=MqkpYesG;
+       spf=pass (google.com: domain of bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com designates 158.120.86.246 as permitted sender) smtp.mailfrom="bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com"
+Return-Path: <bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com>
+Received: from e3i758.smtp2go.com (e3i758.smtp2go.com. [158.120.86.246])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-48449514f69si431688f8f.451.2026.09.01.10.44.03
+        for <khalid@alholan.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Sep 2026 10:44:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com designates 158.120.86.246 as permitted sender) client-ip=158.120.86.246;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@chertiot.com header.s=s733249 header.b=MqkpYesG;
+       spf=pass (google.com: domain of bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com designates 158.120.86.246 as permitted sender) smtp.mailfrom="bounce.1hayfhrr1undgm6=dqcut3vdckks=8xk0xnszo09ipj@em733249.chertiot.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chertiot.com;
+ i=@chertiot.com; q=dns/txt; s=s733249; t=1788284642; h=from : subject
+ : to : message-id : date : list-unsubscribe : list-unsubscribe-post;
+ bh=98Sbp0k7ZPj5WEZYEydrUOQnoICoq9pZlcTwBM9ATkU=;
+ b=MqkpYesGHX8W0G9EE/tG0JrfwLydC/tCIIRM+IiWeWZZkuiUNeeCSq2cFVqmrdDIhYO0h
+ 2RkMg5oqD1EyieVkAFedxjNjzXXUJnZUAowwR7zs/PAs0zsuHmlVj8gen9G0Z/KazGh1P44
+ z//is3iJm3dYqTrbVRATFCxxh5XOs9cKhO2RHfj45D/r2xohahUqxiBz7abbYhZh7EKD3Ij
+ +TnVpJXJFchu5h85/CqHGYhWbF9b4rIqNhSF38vbx7seLUjm7Xt8kzrRZibazUyUohVFade
+ 8ePsuUBPQvMCZqPGV6Ax4TSNeANaDQHRexaT4yvGU1mjMtx1zpcb/BxsZQjQ==
+Received: from [10.127.242.71] (helo=m.txt)
+	by smtpcorp.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.99.4)
+	(envelope-from <no-reply@chertiot.com>)
+	id 1x1SWe-FnQW0hPkpaV-EPh7
+	for khalid@alholan.com;
+	Tue, 01 Sep 2026 17:44:00 +0000
+From: CHERT IoT <no-reply@chertiot.com>
+To: khalid@alholan.com
+Subject: CHERT IoT mail works (stage.chertiot.com)
+Message-Id: <E1x1SWe-FnQW0hPkpaV-EPh7@message-id.smtpcorp.com>
+Date: Tue, 01 Sep 2026 17:44:00 +0000
+X-Report-Abuse: Please forward a copy of this message, including all headers, to <abuse-report@smtp2go.com>
+Feedback-ID: 733249m:733249aaPm1bH:733249s0VCbX6Ik7
+X-smtpcorp-track: k2DwfeJp_iXq.q3WZmuXfZlzC.qaL6iwzNXAE
+
+Verification emails from stage.chertiot.com are flowing.
+

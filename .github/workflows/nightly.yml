@@ -21,6 +21,7 @@ jobs:
         uses: docker/login-action@v3
         with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
       - run: deploy/scripts/ci-env.sh
+      - run: deploy/scripts/write-runtime-secrets.sh
       - run: docker compose --profile core up -d --build
       - run: make wait-healthy
       - run: make bootstrap

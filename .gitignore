@@ -14,5 +14,6 @@ deploy/**/*.key
 deploy/**/*.pem
 deploy/secrets.*.env
 htmlcov/
+secrets/alertmanager_smtp_password
 thingsboard-brand/build/
 thingsboard-brand/upstream/

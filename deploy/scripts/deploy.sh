@@ -46,6 +46,9 @@ PYMERGE
 rm -f /srv/chertiot/.secrets.merge"
 fi
 
+step "runtime secret files"
+$RUN "cd /srv/chertiot && deploy/scripts/write-runtime-secrets.sh"
+
 step "compose up (production file only, no dev override)"
 $RUN "cd /srv/chertiot && docker compose -f docker-compose.yml --profile core pull -q --ignore-buildable && docker compose -f docker-compose.yml --profile core up -d --build && docker compose -f docker-compose.yml --profile core ps --format '{{.Service}} {{.Status}}'"
 

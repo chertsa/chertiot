@@ -11,6 +11,7 @@ help:
 	@echo "ERROR: .env not found. Copy .env.example to .env and fill in values (see PLAN.md §5)."; exit 1
 
 dev: .env ## Local core stack
+	deploy/scripts/write-runtime-secrets.sh
 	$(COMPOSE) --profile core up -d
 
 down: ## Stop local stack

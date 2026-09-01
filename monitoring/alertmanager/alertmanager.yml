@@ -1,0 +1,24 @@
+# Alert delivery via the platform's own SMTP relay. The password is the one secret and comes from
+# secrets/alertmanager_smtp_password (written from .env by deploy/scripts/write-runtime-secrets.sh);
+# everything else here is non-secret and lives in git.
+global:
+  smtp_smarthost: mail.smtp2go.com:2525
+  smtp_from: no-reply@chertiot.com
+  smtp_auth_username: chertiot_smtp
+  smtp_auth_password_file: /etc/alertmanager/secrets/smtp_password
+  smtp_require_tls: true
+route:
+  receiver: ops-email
+  group_by: [alertname]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  routes:
+    - matchers: [severity = critical]
+      receiver: ops-email
+      repeat_interval: 4h
+receivers:
+  - name: ops-email
+    email_configs:
+      - to: khalid@alholan.com
+        send_resolved: true

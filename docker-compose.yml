@@ -170,6 +170,21 @@ services:
       retries: 5
 
   # ---------------------------------------------------------------- monitoring (admin-only)
+  alertmanager:
+    <<: [*restart, *logging]
+    image: prom/alertmanager:v0.34.0
+    profiles: [core]
+    command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
+    volumes:
+      - ./monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - ./secrets/alertmanager_smtp_password:/etc/alertmanager/secrets/smtp_password:ro
+      - alertmanager-data:/alertmanager
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9093/-/ready"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
   prometheus:
     <<: [*restart, *logging]
     image: prom/prometheus:${PROMETHEUS_VERSION}
@@ -257,6 +272,7 @@ services:
   # flows / lab / lora profiles are added in Phase 3 / Phase 4.
 
 volumes:
+  alertmanager-data:
   postgres-data:
   tb-data:
   tb-logs:
