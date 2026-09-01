@@ -7,4 +7,4 @@
 
 | Date | Snapshot | Duration | Notes |
 |---|---|---|---|
-| — | — | — | first drill pending (needs staging VPS) |
+| 2026-09-01 | latest (first nightly snapshot, prod→staging sftp) | **260 s** | Full drill on staging: restic restore → pg_restore ×3 → volumes → isolated compose project → TB login + realm + tenant verified → teardown. Fixes folded in: installer marker pre-set, unconditional teardown, caddy force-recreate after the port window. |
