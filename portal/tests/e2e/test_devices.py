@@ -69,7 +69,7 @@ def test_second_device_from_snippet_to_telemetry(kc_url: str, tb_url: str) -> No
         assert (
             "kitchen-sensor" in r.text
             and "my-first-device" in r.text
-            and "2 of 10 devices" in r.text
+            and "2 / 10" in r.text and "devices used" in r.text
         )
 
         # Download the Raspberry Pi snippet and run it for real against the local broker.
