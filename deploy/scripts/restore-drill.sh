@@ -32,6 +32,10 @@ for db in thingsboard keycloak portal; do
 done
 
 step "volumes"
+# The database is restored, not freshly installed: pre-create the installer marker so the
+# tb-install one-shot no-ops instead of re-running INSTALL_TB against a populated schema.
+docker volume create "${PROJECT}_tb-install-state" >/dev/null
+docker run --rm -v "${PROJECT}_tb-install-state:/state" alpine:3.20 touch /state/.installed
 for v in caddy-data grafana-data uptime-kuma-data; do
   docker volume create "${PROJECT}_${v}" >/dev/null
   docker run --rm -v "${PROJECT}_${v}:/to" -v "$(cd .. && pwd)/$SNAP:/from:ro" alpine:3.20 sh -c "cd /to && tar xzf /from/${v}.tgz" && echo "  $v"
