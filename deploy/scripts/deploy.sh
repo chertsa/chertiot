@@ -30,7 +30,8 @@ for raw in open('.secrets.merge').read().split('\n'):
     raw = raw.strip()
     if raw and '=' in raw and not raw.startswith('#'):
         k, v = raw.split('=', 1)
-        merge[k] = v
+        # single-quote values so \$ and spaces survive shell sourcing and compose parsing
+        merge[k] = chr(39) + v.replace(chr(39), chr(39)+chr(92)+chr(39)+chr(39)) + chr(39)
 seen = set()
 for i, line in enumerate(lines):
     k = line.split('=', 1)[0]
