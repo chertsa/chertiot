@@ -1,40 +1,40 @@
 {% extends "base.html" %}
-{% block title %}Create account — CHERT IoT{% endblock %}
+{% block title %}{{ _("Create account") }} — CHERT IoT{% endblock %}
 {% block content %}
-<h1>Create account</h1>
+<h1>{{ _("Create account") }}</h1>
 <form class="form" method="post" action="/signup" novalidate>
   <div class="field">
-    <label class="label" for="email">Email</label>
+    <label class="label" for="email">{{ _("Email") }}</label>
     <input class="input{% if errors.email %} input--error{% endif %}" id="email" name="email" type="email" autocomplete="email" required value="{{ values.email or '' }}">
     {% if errors.email %}<p class="helper callout--error">{{ errors.email }}</p>{% endif %}
   </div>
   <div class="field">
-    <label class="label" for="first_name">First name <span class="helper">(optional)</span></label>
+    <label class="label" for="first_name">{{ _("First name") }} <span class="helper">{{ _("(optional)") }}</span></label>
     <input class="input" id="first_name" name="first_name" autocomplete="given-name" value="{{ values.first_name or '' }}">
   </div>
   <div class="field">
-    <label class="label" for="password">Password</label>
+    <label class="label" for="password">{{ _("Password") }}</label>
     <input class="input{% if errors.password %} input--error{% endif %}" id="password" name="password" type="password" autocomplete="new-password" required minlength="10">
-    <p class="helper">At least 10 characters.</p>
+    <p class="helper">{{ _("At least 10 characters.") }}</p>
     {% if errors.password %}<p class="helper callout--error">{{ errors.password }}</p>{% endif %}
   </div>
   <div class="field">
-    <label class="label" for="password_confirm">Confirm password</label>
+    <label class="label" for="password_confirm">{{ _("Confirm password") }}</label>
     <input class="input{% if errors.password_confirm %} input--error{% endif %}" id="password_confirm" name="password_confirm" type="password" autocomplete="new-password" required>
     {% if errors.password_confirm %}<p class="helper callout--error">{{ errors.password_confirm }}</p>{% endif %}
   </div>
   <div class="field">
-    <label class="label" for="class_code">Class code <span class="helper">(optional)</span></label>
+    <label class="label" for="class_code">{{ _("Class code") }} <span class="helper">{{ _("(optional)") }}</span></label>
     <input class="input{% if errors.class_code %} input--error{% endif %}" id="class_code" name="class_code" autocomplete="off" value="{{ values.class_code or '' }}">
-    <p class="helper">Your instructor gives you this. Without it you join the open community lab.</p>
+    <p class="helper">{{ _("Your instructor gives you this. Without it you join the open community lab.") }}</p>
     {% if errors.class_code %}<p class="helper callout--error">{{ errors.class_code }}</p>{% endif %}
   </div>
   <div class="field field--check">
     <input id="age_attested" name="age_attested" type="checkbox" value="yes" required>
-    <label for="age_attested">I am 18 or older, or I am signing up with a class code from my school, which has arranged consent for me.</label>
+    <label for="age_attested">{{ _("I am 18 or older, or I am signing up with a class code from my school, which has arranged consent for me.") }}</label>
     {% if errors.age_attested %}<p class="helper callout--error" style="grid-column: 1 / -1">{{ errors.age_attested }}</p>{% endif %}
   </div>
-  <p class="helper">By creating an account you agree to the <a href="/docs/fair-use">fair-use policy</a>. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else. <a href="/docs/privacy">Privacy</a>.</p>
-  <div><button class="btn btn--primary" type="submit">Create account</button></div>
+  <p class="helper">{{ _("By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else.") }} <a href="/docs/fair-use">{{ _("Fair use") }}</a> · <a href="/docs/privacy">{{ _("Privacy") }}</a></p>
+  <div><button class="btn btn--primary" type="submit">{{ _("Create account") }}</button></div>
 </form>
 {% endblock %}

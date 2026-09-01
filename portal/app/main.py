@@ -10,6 +10,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.auth import configure_oauth
 from app.config import get_settings
+from app.i18n import translator
 from app.keycloak_admin import KeycloakError
 from app.routers import auth, devices, home, signup
 from app.tb_client import TbError
@@ -49,11 +50,11 @@ app.include_router(devices.router)
 async def upstream_unavailable(request: Request, exc: Exception) -> Response:
     """Keycloak/ThingsBoard slow or down: say so plainly (D-voice: no vague 'oops'), never a 500."""
     log.warning("upstream failure on %s %s: %r", request.method, request.url.path, exc)
+    _ = translator(request)
     ctx = {
-        "title": "The lab is busy right now",
-        "message": (
-            "A backend service did not answer in time. "
-            "Nothing was lost — wait a minute and try again."
+        "title": _("The lab is busy right now"),
+        "message": _(
+            "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
         ),
     }
     return templates.TemplateResponse(request, "error.html", ctx, status_code=503)

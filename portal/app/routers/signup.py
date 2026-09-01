@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
+from app.i18n import translator
 from app.keycloak_admin import KeycloakAdmin, KeycloakError, KeycloakUserExistsError
 from app.models import ClassCode, PortalUser, utcnow
 from app.ratelimit import rate_limited
@@ -36,7 +37,7 @@ def signup_form(request: Request) -> Any:
 
 
 @router.post("/signup", dependencies=[Depends(rate_limited("signup", 5, 3600))])
-def signup_submit(
+def signup_submit(  # noqa: PLR0913
     request: Request,
     email: Annotated[str, Form()],
     password: Annotated[str, Form()],
@@ -49,14 +50,15 @@ def signup_submit(
 ) -> Any:
     email = email.strip().lower()
     class_code = class_code.strip().upper()
+    _ = translator(request)
     values = {"email": email, "class_code": class_code, "first_name": first_name.strip()}
     errors: dict[str, str] = {}
     if not EMAIL_RE.match(email):
-        errors["email"] = "Enter a valid email address."
+        errors["email"] = _("Enter a valid email address.")
     if len(password) < 10:
-        errors["password"] = "Use at least 10 characters."
+        errors["password"] = _("Use at least 10 characters.")
     elif password != password_confirm:
-        errors["password_confirm"] = "Passwords don't match."
+        errors["password_confirm"] = _("Passwords do not match.")
     if age_attested != "yes":
         errors["age_attested"] = (
             "Confirm you are 18 or older, or signing up through your school's class code."
@@ -69,7 +71,7 @@ def signup_submit(
                 "This class code isn't valid any more. Ask your instructor for a new one."
             )
     if db.scalar(select(PortalUser).where(PortalUser.email == email)):
-        errors["email"] = "An account with this email exists. Sign in instead."
+        errors["email"] = _("An account with this email exists. Sign in instead.")
     if errors:
         return _render(request, errors, values, 422)
 

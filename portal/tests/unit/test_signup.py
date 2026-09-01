@@ -40,7 +40,7 @@ def test_validation_errors(client: TestClient, kc: FakeKeycloak) -> None:
         "/signup", data={**GOOD, "email": "nope", "password_confirm": "x", "age_attested": ""}
     )
     assert r.status_code == 422
-    for msg in ("valid email", "don&#39;t match", "18 or older"):
+    for msg in ("valid email", "do not match", "18 or older"):
         assert msg in r.text
     assert kc.created == []
 

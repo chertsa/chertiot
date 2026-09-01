@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 01:55+0300\n"
+"POT-Creation-Date: 2026-09-02 01:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/templates/base.html:19 app/templates/home.html:5
+#: app/main.py:55
+msgid "The lab is busy right now"
+msgstr ""
+
+#: app/main.py:57
+msgid ""
+"A backend service did not answer in time. Nothing was lost — wait a "
+"minute and try again."
+msgstr ""
+
+#: app/routers/signup.py:57
+msgid "Enter a valid email address."
+msgstr ""
+
+#: app/routers/signup.py:59
+msgid "Use at least 10 characters."
+msgstr ""
+
+#: app/routers/signup.py:61
+msgid "Passwords do not match."
+msgstr ""
+
+#: app/routers/signup.py:74
+msgid "An account with this email exists. Sign in instead."
+msgstr ""
+
+#: app/templates/base.html:19 app/templates/device.html:4
+#: app/templates/home.html:5
 msgid "My lab"
 msgstr ""
 
@@ -25,11 +52,13 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: app/templates/base.html:22
+#: app/templates/base.html:22 app/templates/verified.html:6
 msgid "Sign in"
 msgstr ""
 
 #: app/templates/base.html:23 app/templates/index.html:7
+#: app/templates/signup.html:2 app/templates/signup.html:4
+#: app/templates/signup.html:38
 msgid "Create account"
 msgstr ""
 
@@ -37,16 +66,161 @@ msgstr ""
 msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
 msgstr ""
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/signup.html:37
 msgid "Privacy"
 msgstr ""
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/signup.html:37
 msgid "Fair use"
 msgstr ""
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/devices.html:9
 msgid "Status"
+msgstr ""
+
+#: app/templates/check_email.html:2 app/templates/check_email.html:4
+msgid "Check your email"
+msgstr ""
+
+#: app/templates/check_email.html:5
+msgid "We sent a verification link to"
+msgstr ""
+
+#: app/templates/check_email.html:5
+msgid "Open it to activate your account, then sign in."
+msgstr ""
+
+#: app/templates/check_email.html:6
+msgid "No email after a few minutes? Check your spam folder, then try again."
+msgstr ""
+
+#: app/templates/check_email.html:6 app/templates/home.html:17
+msgid "Try again"
+msgstr ""
+
+#: app/templates/device.html:4 app/templates/devices.html:2
+#: app/templates/devices.html:5 app/templates/home.html:9
+msgid "My devices"
+msgstr ""
+
+#: app/templates/device.html:6 app/templates/devices.html:14
+msgid "Online"
+msgstr ""
+
+#: app/templates/device.html:6 app/templates/devices.html:14
+msgid "Offline"
+msgstr ""
+
+#: app/templates/device.html:6
+msgid "last seen"
+msgstr ""
+
+#: app/templates/device.html:8
+msgid "Connection details"
+msgstr ""
+
+#: app/templates/device.html:10
+msgid "MQTT host"
+msgstr ""
+
+#: app/templates/device.html:11
+msgid "MQTT port"
+msgstr ""
+
+#: app/templates/device.html:12
+msgid "Access token (MQTT username)"
+msgstr ""
+
+#: app/templates/device.html:13
+msgid "Telemetry topic"
+msgstr ""
+
+#: app/templates/device.html:14
+msgid "HTTP alternative"
+msgstr ""
+
+#: app/templates/device.html:17
+msgid "Starter code"
+msgstr ""
+
+#: app/templates/device.html:18
+msgid ""
+"Your token and the broker address are already filled in. Download the "
+"file for your board, add your Wi-Fi details, flash it."
+msgstr ""
+
+#: app/templates/device.html:26
+msgid "Manage"
+msgstr ""
+
+#: app/templates/device.html:29 app/templates/device.html:31
+msgid "Rename"
+msgstr ""
+
+#: app/templates/device.html:30
+msgid "New name"
+msgstr ""
+
+#: app/templates/device.html:33
+msgid "Old token stops working immediately. Continue?"
+msgstr ""
+
+#: app/templates/device.html:34
+msgid "Revoke token"
+msgstr ""
+
+#: app/templates/device.html:35
+msgid ""
+"Lost or leaked the token? Issue a new one. Devices using the old token "
+"disconnect."
+msgstr ""
+
+#: app/templates/device.html:36
+msgid "Issue new token"
+msgstr ""
+
+#: app/templates/device.html:38
+msgid "Delete this device and all its data?"
+msgstr ""
+
+#: app/templates/device.html:39 app/templates/device.html:41
+msgid "Delete device"
+msgstr ""
+
+#: app/templates/device.html:40
+msgid "Removes the device and its telemetry. This cannot be undone."
+msgstr ""
+
+#: app/templates/devices.html:6
+msgid "devices used."
+msgstr ""
+
+#: app/templates/devices.html:9
+msgid "Device"
+msgstr ""
+
+#: app/templates/devices.html:9
+msgid "Last seen"
+msgstr ""
+
+#: app/templates/devices.html:15
+msgid "Never"
+msgstr ""
+
+#: app/templates/devices.html:18
+msgid "No devices yet."
+msgstr ""
+
+#: app/templates/devices.html:22 app/templates/devices.html:25
+msgid "Add device"
+msgstr ""
+
+#: app/templates/devices.html:24
+msgid "Device name"
+msgstr ""
+
+#: app/templates/error.html:6
+msgid "Back to start"
 msgstr ""
 
 #: app/templates/home.html:8
@@ -55,10 +229,6 @@ msgstr ""
 
 #: app/templates/home.html:8
 msgid "device(s) — add one, get its token and starter code."
-msgstr ""
-
-#: app/templates/home.html:9
-msgid "My devices"
 msgstr ""
 
 #: app/templates/home.html:10
@@ -89,10 +259,6 @@ msgstr ""
 msgid "We could not set up your lab:"
 msgstr ""
 
-#: app/templates/home.html:17
-msgid "Try again"
-msgstr ""
-
 #: app/templates/home.html:19
 msgid "Setting up your lab…"
 msgstr ""
@@ -118,5 +284,60 @@ msgstr ""
 
 #: app/templates/index.html:7
 msgid "Read the getting-started guide"
+msgstr ""
+
+#: app/templates/signup.html:7
+msgid "Email"
+msgstr ""
+
+#: app/templates/signup.html:12
+msgid "First name"
+msgstr ""
+
+#: app/templates/signup.html:12 app/templates/signup.html:27
+msgid "(optional)"
+msgstr ""
+
+#: app/templates/signup.html:16
+msgid "Password"
+msgstr ""
+
+#: app/templates/signup.html:18
+msgid "At least 10 characters."
+msgstr ""
+
+#: app/templates/signup.html:22
+msgid "Confirm password"
+msgstr ""
+
+#: app/templates/signup.html:27
+msgid "Class code"
+msgstr ""
+
+#: app/templates/signup.html:29
+msgid ""
+"Your instructor gives you this. Without it you join the open community "
+"lab."
+msgstr ""
+
+#: app/templates/signup.html:34
+msgid ""
+"I am 18 or older, or I am signing up with a class code from my school, "
+"which has arranged consent for me."
+msgstr ""
+
+#: app/templates/signup.html:37
+msgid ""
+"By creating an account you agree to the fair-use policy. We store your "
+"email, your devices' telemetry (90 days) and an audit log (30 days) — "
+"nothing else."
+msgstr ""
+
+#: app/templates/verified.html:2 app/templates/verified.html:4
+msgid "Email verified"
+msgstr ""
+
+#: app/templates/verified.html:5
+msgid "Your account is active. Sign in to open your lab."
 msgstr ""
 

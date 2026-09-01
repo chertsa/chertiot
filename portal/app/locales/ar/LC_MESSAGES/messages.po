@@ -7,18 +7,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 01:55+0300\n"
+"POT-Creation-Date: 2026-09-02 01:57+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
 "Language-Team: ar <LL@li.org>\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/templates/base.html:19 app/templates/home.html:5
+#: app/main.py:55
+msgid "The lab is busy right now"
+msgstr "المختبر مشغول حاليًا"
+
+#: app/main.py:57
+msgid ""
+"A backend service did not answer in time. Nothing was lost — wait a "
+"minute and try again."
+msgstr ""
+"لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول "
+"مجددًا."
+
+#: app/routers/signup.py:57
+msgid "Enter a valid email address."
+msgstr "أدخل بريدًا إلكترونيًا صحيحًا."
+
+#: app/routers/signup.py:59
+msgid "Use at least 10 characters."
+msgstr "استخدم عشرة أحرف على الأقل."
+
+#: app/routers/signup.py:61
+msgid "Passwords do not match."
+msgstr "كلمتا المرور غير متطابقتين."
+
+#: app/routers/signup.py:74
+msgid "An account with this email exists. Sign in instead."
+msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلًا من ذلك."
+
+#: app/templates/base.html:19 app/templates/device.html:4
+#: app/templates/home.html:5
 msgid "My lab"
 msgstr "مختبري"
 
@@ -26,11 +56,13 @@ msgstr "مختبري"
 msgid "Sign out"
 msgstr "تسجيل الخروج"
 
-#: app/templates/base.html:22
+#: app/templates/base.html:22 app/templates/verified.html:6
 msgid "Sign in"
 msgstr "تسجيل الدخول"
 
 #: app/templates/base.html:23 app/templates/index.html:7
+#: app/templates/signup.html:2 app/templates/signup.html:4
+#: app/templates/signup.html:38
 msgid "Create account"
 msgstr "إنشاء حساب"
 
@@ -38,17 +70,171 @@ msgstr "إنشاء حساب"
 msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
 msgstr "‏CHERT IoT — يعمل بواسطة ThingsBoard وKeycloak ومصادر مفتوحة."
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/signup.html:37
 msgid "Privacy"
 msgstr "الخصوصية"
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/signup.html:37
 msgid "Fair use"
 msgstr "الاستخدام العادل"
 
-#: app/templates/base.html:30
+#: app/templates/base.html:30 app/templates/devices.html:9
 msgid "Status"
 msgstr "الحالة"
+
+#: app/templates/check_email.html:2 app/templates/check_email.html:4
+msgid "Check your email"
+msgstr "تحقق من بريدك"
+
+#: app/templates/check_email.html:5
+msgid "We sent a verification link to"
+msgstr "أرسلنا رابط التفعيل إلى"
+
+#: app/templates/check_email.html:5
+msgid "Open it to activate your account, then sign in."
+msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
+
+#: app/templates/check_email.html:6
+msgid "No email after a few minutes? Check your spam folder, then try again."
+msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
+
+#: app/templates/check_email.html:6 app/templates/home.html:17
+msgid "Try again"
+msgstr "حاول مرة أخرى"
+
+#: app/templates/device.html:4 app/templates/devices.html:2
+#: app/templates/devices.html:5 app/templates/home.html:9
+msgid "My devices"
+msgstr "أجهزتي"
+
+#: app/templates/device.html:6 app/templates/devices.html:14
+msgid "Online"
+msgstr "متصل"
+
+#: app/templates/device.html:6 app/templates/devices.html:14
+msgid "Offline"
+msgstr "غير متصل"
+
+#: app/templates/device.html:6
+msgid "last seen"
+msgstr "آخر ظهور"
+
+#: app/templates/device.html:8
+msgid "Connection details"
+msgstr "تفاصيل الاتصال"
+
+#: app/templates/device.html:10
+msgid "MQTT host"
+msgstr "مضيف MQTT"
+
+#: app/templates/device.html:11
+msgid "MQTT port"
+msgstr "منفذ MQTT"
+
+#: app/templates/device.html:12
+msgid "Access token (MQTT username)"
+msgstr "رمز الوصول (اسم مستخدم MQTT)"
+
+#: app/templates/device.html:13
+msgid "Telemetry topic"
+msgstr "موضوع القياسات"
+
+#: app/templates/device.html:14
+msgid "HTTP alternative"
+msgstr "بديل HTTP"
+
+#: app/templates/device.html:17
+msgid "Starter code"
+msgstr "الكود الجاهز"
+
+#: app/templates/device.html:18
+msgid ""
+"Your token and the broker address are already filled in. Download the "
+"file for your board, add your Wi-Fi details, flash it."
+msgstr ""
+"رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات "
+"شبكتك، ثم حمّله."
+
+#: app/templates/device.html:26
+msgid "Manage"
+msgstr "إدارة"
+
+#: app/templates/device.html:29 app/templates/device.html:31
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+#: app/templates/device.html:30
+msgid "New name"
+msgstr "الاسم الجديد"
+
+#: app/templates/device.html:33
+msgid "Old token stops working immediately. Continue?"
+msgstr "سيتوقف الرمز القديم فورًا. هل تريد المتابعة؟"
+
+#: app/templates/device.html:34
+msgid "Revoke token"
+msgstr "إبطال الرمز"
+
+#: app/templates/device.html:35
+msgid ""
+"Lost or leaked the token? Issue a new one. Devices using the old token "
+"disconnect."
+msgstr ""
+"فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم "
+"ستنفصل."
+
+#: app/templates/device.html:36
+msgid "Issue new token"
+msgstr "إصدار رمز جديد"
+
+#: app/templates/device.html:38
+msgid "Delete this device and all its data?"
+msgstr "حذف هذا الجهاز وكل بياناته؟"
+
+#: app/templates/device.html:39 app/templates/device.html:41
+#, fuzzy
+msgid "Delete device"
+msgstr "أجهزتي"
+
+#: app/templates/device.html:40
+msgid "Removes the device and its telemetry. This cannot be undone."
+msgstr "يحذف الجهاز وقياساته. لا يمكن التراجع عن ذلك."
+
+#: app/templates/devices.html:6
+#, fuzzy
+msgid "devices used."
+msgstr "أجهزتي"
+
+#: app/templates/devices.html:9
+#, fuzzy
+msgid "Device"
+msgstr "أجهزتي"
+
+#: app/templates/devices.html:9
+msgid "Last seen"
+msgstr "آخر ظهور"
+
+#: app/templates/devices.html:15
+msgid "Never"
+msgstr "أبدًا"
+
+#: app/templates/devices.html:18
+#, fuzzy
+msgid "No devices yet."
+msgstr "أجهزتي"
+
+#: app/templates/devices.html:22 app/templates/devices.html:25
+#, fuzzy
+msgid "Add device"
+msgstr "أجهزتي"
+
+#: app/templates/devices.html:24
+msgid "Device name"
+msgstr "اسم الجهاز"
+
+#: app/templates/error.html:6
+msgid "Back to start"
+msgstr "العودة إلى البداية"
 
 #: app/templates/home.html:8
 msgid "Open my dashboard"
@@ -58,24 +244,26 @@ msgstr "افتح لوحة التحكم"
 msgid "device(s) — add one, get its token and starter code."
 msgstr "جهاز/أجهزة — أضف جهازًا واحصل على رمزه والكود الجاهز."
 
-#: app/templates/home.html:9
-msgid "My devices"
-msgstr "أجهزتي"
-
 #: app/templates/home.html:10
 msgid "Getting started"
 msgstr "البدء"
 
 #: app/templates/home.html:10
-msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
-msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
+msgid ""
+"Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
+"ten minutes."
+msgstr ""
+"حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من "
+"عشر دقائق."
 
 #: app/templates/home.html:12
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
 #: app/templates/home.html:13
-msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
+msgid ""
+"Edited your dashboard into a corner? Restore the starter layout. Your "
+"devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
 #: app/templates/home.html:14
@@ -85,10 +273,6 @@ msgstr "إعادة ضبط لوحة التحكم الأساسية"
 #: app/templates/home.html:16
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
-
-#: app/templates/home.html:17
-msgid "Try again"
-msgstr "حاول مرة أخرى"
 
 #: app/templates/home.html:19
 msgid "Setting up your lab…"
@@ -107,13 +291,79 @@ msgid "Your own IoT lab, live in ten minutes."
 msgstr "مختبرك الخاص لإنترنت الأشياء، جاهز خلال عشر دقائق."
 
 #: app/templates/index.html:6
-msgid "Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage."
-msgstr "أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
+msgid ""
+"Create an account, flash the starter code onto an ESP32, and watch your "
+"sensor data arrive on a dashboard that is yours alone. No servers to run,"
+" no cloud accounts to manage."
+msgstr ""
+"أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى "
+"لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
 
 #: app/templates/index.html:7
 msgid "Read the getting-started guide"
 msgstr "اقرأ دليل البدء"
 
-#~ msgid "Live charts for every device you own. Opens ThingsBoard with the same sign-in."
+#: app/templates/signup.html:7
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: app/templates/signup.html:12
+msgid "First name"
+msgstr "الاسم الأول"
+
+#: app/templates/signup.html:12 app/templates/signup.html:27
+msgid "(optional)"
+msgstr "(اختياري)"
+
+#: app/templates/signup.html:16
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: app/templates/signup.html:18
+msgid "At least 10 characters."
+msgstr "عشرة أحرف على الأقل."
+
+#: app/templates/signup.html:22
+msgid "Confirm password"
+msgstr "تأكيد كلمة المرور"
+
+#: app/templates/signup.html:27
+msgid "Class code"
+msgstr "رمز الصف"
+
+#: app/templates/signup.html:29
+msgid ""
+"Your instructor gives you this. Without it you join the open community "
+"lab."
+msgstr "يعطيك مدرّسك هذا الرمز. بدونه تنضم إلى المختبر المجتمعي المفتوح."
+
+#: app/templates/signup.html:34
+msgid ""
+"I am 18 or older, or I am signing up with a class code from my school, "
+"which has arranged consent for me."
+msgstr "عمري 18 عامًا أو أكثر، أو أسجّل برمز صف من مدرستي التي رتّبت الموافقة لي."
+
+#: app/templates/signup.html:37
+msgid ""
+"By creating an account you agree to the fair-use policy. We store your "
+"email, your devices' telemetry (90 days) and an audit log (30 days) — "
+"nothing else."
+msgstr ""
+"بإنشائك حسابًا فأنت توافق على سياسة الاستخدام العادل. نخزّن بريدك "
+"الإلكتروني وقياسات أجهزتك (90 يومًا) وسجل التدقيق (30 يومًا) — لا شيء غير"
+" ذلك."
+
+#: app/templates/verified.html:2 app/templates/verified.html:4
+msgid "Email verified"
+msgstr "تم تفعيل البريد"
+
+#: app/templates/verified.html:5
+msgid "Your account is active. Sign in to open your lab."
+msgstr "حسابك مفعّل. سجّل الدخول لفتح مختبرك."
+
+#~ msgid ""
+#~ "Live charts for every device you "
+#~ "own. Opens ThingsBoard with the same "
+#~ "sign-in."
 #~ msgstr "رسوم مباشرة لكل جهاز تملكه. يفتح ThingsBoard بنفس تسجيل الدخول."
 
