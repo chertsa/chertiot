@@ -58,7 +58,9 @@ def main() -> int:
         r = s.get(f"{APP}{clients[0]['url']}")
         r = s.get(r.headers["location"])
         action = re.search(r'action="([^"]+)"', r.text)
-        assert action
+        if action is None:
+            check("Keycloak login form", False, "no form action found")
+            return 1
         r = s.post(
             action.group(1).replace("&amp;", "&"), data={"username": email, "password": password}
         )
