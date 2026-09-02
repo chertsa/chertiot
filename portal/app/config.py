@@ -34,6 +34,9 @@ class Settings(BaseSettings):
         None  # default: <repo>/firmware-examples (or /firmware-examples in the image)
     )
 
+    # M3.2: shared secret for the in-network lab-token endpoint (JupyterHub → portal)
+    lab_internal_secret: str = ""
+
     # D4 quota overrides applied on top of templates-tb/tenant-profile-student.json
     tb_quota_max_devices: int | None = None
     tb_quota_device_msg_rate: str | None = None  # e.g. "10:1,300:60"

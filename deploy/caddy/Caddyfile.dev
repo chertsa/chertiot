@@ -38,3 +38,7 @@ http://flows.localhost {
 	}
 	redir / http://localhost/flows 302
 }
+
+http://lab.localhost {
+	reverse_proxy jupyterhub:8000
+}

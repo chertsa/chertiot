@@ -45,3 +45,7 @@ flows.{$DOMAIN} {
 	}
 	redir / https://{$DOMAIN}/flows 302
 }
+
+lab.{$DOMAIN} {
+	reverse_proxy jupyterhub:8000
+}

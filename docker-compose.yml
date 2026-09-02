@@ -131,6 +131,7 @@ services:
       MQTT_HOST: ${MQTT_HOST}
       MQTT_PORT: ${MQTT_PORT}
       FLOWS_ENABLED: ${FLOWS_ENABLED}
+      LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
       DOCKER_HOST: tcp://socket-proxy:2375
       NODERED_VERSION: ${NODERED_VERSION}
       COMPOSE_PROJECT: chertiot
@@ -279,7 +280,7 @@ services:
   socket-proxy:
     <<: [*restart, *logging]
     image: tecnativa/docker-socket-proxy:${SOCKET_PROXY_VERSION}
-    profiles: [flows]
+    profiles: [flows, lab]
     environment:
       # Least privilege: the spawner may manage containers/images/volumes/networks — nothing else.
       CONTAINERS: 1
@@ -300,7 +301,40 @@ services:
     entrypoint: ["true"]
     restart: "no"
 
-  # lab / lora profiles are added later in Phase 3 / Phase 4.
+  # ---------------------------------------------------------------- lab (Phase 3, M3.2)
+  jupyterhub:
+    <<: [*restart, *logging]
+    build: ./lab/hub
+    image: chertiot/jupyterhub:dev
+    profiles: [lab]
+    networks: [default, spawner]
+    environment:
+      DOCKER_HOST: tcp://socket-proxy:2375
+      DOMAIN: ${DOMAIN}
+      KC_HOSTNAME: ${KC_HOSTNAME}
+      KC_INTERNAL_URL: ${KC_INTERNAL_URL}
+      KC_REALM: ${KC_REALM}
+      KC_SECRET_JUPYTERHUB: ${KC_SECRET_JUPYTERHUB}
+      LAB_NOTEBOOK_IMAGE: chertiot/notebook:dev
+      LAB_NETWORK: chertiot_default
+      LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
+      TB_INTERNAL_URL: http://tb:8080
+    volumes:
+      - jupyterhub-data:/srv/jupyterhub
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/hub/health')\""]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  notebook-image:
+    build: ./lab/notebook
+    image: chertiot/notebook:dev
+    profiles: [lab]
+    entrypoint: ["true"]
+    restart: "no"
+
+  # lora profile is added in Phase 4.
 
 networks:
   default:
@@ -310,6 +344,7 @@ networks:
   spawner:
 
 volumes:
+  jupyterhub-data:
   alertmanager-data:
   postgres-data:
   tb-data:

@@ -42,7 +42,7 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "S", "N"]
 ignore = ["B008"]  # FastAPI Depends() in defaults is the framework idiom
-per-file-ignores = { "tests/**" = ["S101", "S106"], "app/routers/signup.py" = ["S105"] }  # S105: error-message dict keys named "password"
+per-file-ignores = { "tests/**" = ["S101", "S105", "S106"], "app/routers/signup.py" = ["S105"] }  # S105: error-message dict keys named "password"
 
 [tool.mypy]
 python_version = "3.12"
