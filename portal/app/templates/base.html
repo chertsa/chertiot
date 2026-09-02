@@ -16,7 +16,7 @@
       <a class="header__brand" href="/"><img src="/static/logo.svg" alt="" class="header__logo"><span class="header__wordmark">CHERT <span class="header__product">IoT</span></span></a>
       <nav class="header__nav">
         {% if request.session.get('user') %}
-          <a href="/home">{{ _("My lab") }}</a>
+          <a href="/home">{{ _("My lab") }}</a>{% if request.session.get("role") in ("instructor", "admin") %} <a href="/teach">{{ _("Teaching") }}</a>{% endif %}
           <a class="btn btn--secondary btn--sm" href="/logout">{{ _("Sign out") }}</a>
         {% else %}
           <a href="/login">{{ _("Sign in") }}</a>

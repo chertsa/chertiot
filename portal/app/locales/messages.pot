@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 04:03+0300\n"
+"POT-Creation-Date: 2026-09-02 04:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:81
+#: app/main.py:83
 msgid "The lab is busy right now"
 msgstr ""
 
-#: app/main.py:83
+#: app/main.py:85
 msgid ""
 "A backend service did not answer in time. Nothing was lost — wait a "
 "minute and try again."
@@ -45,7 +45,13 @@ msgstr ""
 
 #: app/templates/base.html:19 app/templates/device.html:4
 #: app/templates/flows.html:4 app/templates/home.html:5
+#: app/templates/teach/console.html:4
 msgid "My lab"
+msgstr ""
+
+#: app/templates/base.html:19 app/templates/teach/console.html:2
+#: app/templates/teach/console.html:5 app/templates/teach/roster.html:4
+msgid "Teaching"
 msgstr ""
 
 #: app/templates/base.html:20
@@ -75,6 +81,7 @@ msgid "Fair use"
 msgstr ""
 
 #: app/templates/base.html:30 app/templates/devices.html:9
+#: app/templates/teach/roster.html:7
 msgid "Status"
 msgstr ""
 
@@ -381,5 +388,93 @@ msgstr ""
 
 #: app/templates/verified.html:5
 msgid "Your account is active. Sign in to open your lab."
+msgstr ""
+
+#: app/templates/teach/console.html:6
+msgid "Class codes"
+msgstr ""
+
+#: app/templates/teach/console.html:8
+msgid "Code"
+msgstr ""
+
+#: app/templates/teach/console.html:8
+msgid "Cohort"
+msgstr ""
+
+#: app/templates/teach/console.html:8
+msgid "Used"
+msgstr ""
+
+#: app/templates/teach/console.html:8
+msgid "Expires"
+msgstr ""
+
+#: app/templates/teach/console.html:8
+msgid "Students"
+msgstr ""
+
+#: app/templates/teach/console.html:17
+msgid "Deactivate"
+msgstr ""
+
+#: app/templates/teach/console.html:17
+msgid "inactive"
+msgstr ""
+
+#: app/templates/teach/console.html:20
+msgid "No class codes yet."
+msgstr ""
+
+#: app/templates/teach/console.html:24
+msgid "New class code"
+msgstr ""
+
+#: app/templates/teach/console.html:26
+msgid "Cohort name"
+msgstr ""
+
+#: app/templates/teach/console.html:27
+msgid "Maximum students"
+msgstr ""
+
+#: app/templates/teach/console.html:28
+msgid "Valid for (days)"
+msgstr ""
+
+#: app/templates/teach/console.html:29
+msgid "Create code"
+msgstr ""
+
+#: app/templates/teach/roster.html:7
+msgid "Student"
+msgstr ""
+
+#: app/templates/teach/roster.html:7
+msgid "Devices"
+msgstr ""
+
+#: app/templates/teach/roster.html:7
+msgid "Device last seen"
+msgstr ""
+
+#: app/templates/teach/roster.html:7
+msgid "Last sign-in"
+msgstr ""
+
+#: app/templates/teach/roster.html:12
+msgid "suspended"
+msgstr ""
+
+#: app/templates/teach/roster.html:20
+msgid "Reactivate"
+msgstr ""
+
+#: app/templates/teach/roster.html:22
+msgid "Suspend"
+msgstr ""
+
+#: app/templates/teach/roster.html:28
+msgid "No students in this cohort yet."
 msgstr ""
 

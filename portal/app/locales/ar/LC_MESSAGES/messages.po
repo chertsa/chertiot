@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 04:03+0300\n"
+"POT-Creation-Date: 2026-09-02 04:55+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:81
+#: app/main.py:83
 msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
-#: app/main.py:83
+#: app/main.py:85
 msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
 msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
 
@@ -44,8 +44,14 @@ msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلً�
 
 #: app/templates/base.html:19 app/templates/device.html:4
 #: app/templates/flows.html:4 app/templates/home.html:5
+#: app/templates/teach/console.html:4
 msgid "My lab"
 msgstr "مختبري"
+
+#: app/templates/base.html:19 app/templates/teach/console.html:2
+#: app/templates/teach/console.html:5 app/templates/teach/roster.html:4
+msgid "Teaching"
+msgstr "التدريس"
 
 #: app/templates/base.html:20
 msgid "Sign out"
@@ -74,6 +80,7 @@ msgid "Fair use"
 msgstr "الاستخدام العادل"
 
 #: app/templates/base.html:30 app/templates/devices.html:9
+#: app/templates/teach/roster.html:7
 msgid "Status"
 msgstr "الحالة"
 
@@ -364,6 +371,102 @@ msgstr "تم تفعيل البريد"
 #: app/templates/verified.html:5
 msgid "Your account is active. Sign in to open your lab."
 msgstr "حسابك مفعّل. سجّل الدخول لفتح مختبرك."
+
+#: app/templates/teach/console.html:6
+#, fuzzy
+msgid "Class codes"
+msgstr "رمز الصف"
+
+#: app/templates/teach/console.html:8
+msgid "Code"
+msgstr "الرمز"
+
+#: app/templates/teach/console.html:8
+msgid "Cohort"
+msgstr "الدفعة"
+
+#: app/templates/teach/console.html:8
+msgid "Used"
+msgstr "المستخدم"
+
+#: app/templates/teach/console.html:8
+msgid "Expires"
+msgstr "ينتهي"
+
+#: app/templates/teach/console.html:8
+msgid "Students"
+msgstr "الطلاب"
+
+#: app/templates/teach/console.html:17
+msgid "Deactivate"
+msgstr "تعطيل"
+
+#: app/templates/teach/console.html:17
+msgid "inactive"
+msgstr "معطّل"
+
+#: app/templates/teach/console.html:20
+#, fuzzy
+msgid "No class codes yet."
+msgstr "رمز الصف"
+
+#: app/templates/teach/console.html:24
+#, fuzzy
+msgid "New class code"
+msgstr "رمز الصف"
+
+#: app/templates/teach/console.html:26
+#, fuzzy
+msgid "Cohort name"
+msgstr "الاسم الأول"
+
+#: app/templates/teach/console.html:27
+msgid "Maximum students"
+msgstr "الحد الأقصى للطلاب"
+
+#: app/templates/teach/console.html:28
+msgid "Valid for (days)"
+msgstr "صالح لمدة (أيام)"
+
+#: app/templates/teach/console.html:29
+#, fuzzy
+msgid "Create code"
+msgstr "إنشاء حساب"
+
+#: app/templates/teach/roster.html:7
+msgid "Student"
+msgstr "الطالب"
+
+#: app/templates/teach/roster.html:7
+#, fuzzy
+msgid "Devices"
+msgstr "أجهزتي"
+
+#: app/templates/teach/roster.html:7
+#, fuzzy
+msgid "Device last seen"
+msgstr "آخر ظهور"
+
+#: app/templates/teach/roster.html:7
+#, fuzzy
+msgid "Last sign-in"
+msgstr "آخر ظهور"
+
+#: app/templates/teach/roster.html:12
+msgid "suspended"
+msgstr "موقوف"
+
+#: app/templates/teach/roster.html:20
+msgid "Reactivate"
+msgstr "إعادة تفعيل"
+
+#: app/templates/teach/roster.html:22
+msgid "Suspend"
+msgstr "إيقاف"
+
+#: app/templates/teach/roster.html:28
+msgid "No students in this cohort yet."
+msgstr "لا طلاب في هذه الدفعة بعد."
 
 #~ msgid "Live charts for every device you own. Opens ThingsBoard with the same sign-in."
 #~ msgstr "رسوم مباشرة لكل جهاز تملكه. يفتح ThingsBoard بنفس تسجيل الدخول."

@@ -65,6 +65,7 @@ async def callback(request: Request, db: Session = Depends(get_db)) -> Any:
     user.last_login_at = datetime.now(UTC)
     db.commit()
     request.session["user"] = {"sub": sub, "email": email, "name": claims.get("name") or email}
+    request.session["role"] = user.role
     request.session["id_token"] = token.get("id_token")
     audit(db, email, "login")
     ensure_provisioned(db, user)  # idempotent; failures are recorded, not raised

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ cohort }} — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/teach">{{ _("Teaching") }}</a></p>
+<h1>{{ cohort }}</h1>
+<table class="table">
+  <thead><tr><th>{{ _("Student") }}</th><th>{{ _("Status") }}</th><th>{{ _("Devices") }}</th><th>{{ _("Device last seen") }}</th><th>{{ _("Last sign-in") }}</th><th></th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{{ r.email }}</td>
+      <td>{% if r.suspended %}<span class="callout--error">{{ _("suspended") }}</span>{% else %}{{ r.state }}{% endif %}</td>
+      <td>{{ r.devices if r.devices is not none else "—" }}</td>
+      <td>{% if r.last_seen %}{{ r.last_seen.strftime('%Y-%m-%d %H:%M') }}{% else %}—{% endif %}</td>
+      <td>{% if r.last_login %}{{ r.last_login.strftime('%Y-%m-%d %H:%M') }}{% else %}—{% endif %}</td>
+      <td>
+        <form method="post" action="/teach/cohort/{{ cohort }}/suspend">
+          <input type="hidden" name="email" value="{{ r.email }}">
+          {% if r.suspended %}
+            <input type="hidden" name="action" value="reactivate"><button class="btn btn--secondary btn--sm">{{ _("Reactivate") }}</button>
+          {% else %}
+            <input type="hidden" name="action" value="suspend"><button class="btn btn--danger btn--sm">{{ _("Suspend") }}</button>
+          {% endif %}
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="6">{{ _("No students in this cohort yet.") }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
