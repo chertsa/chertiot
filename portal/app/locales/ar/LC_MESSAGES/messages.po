@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 04:55+0300\n"
+"POT-Creation-Date: 2026-09-02 05:10+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:83
+#: app/main.py:84
 msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
-#: app/main.py:85
+#: app/main.py:86
 msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
 msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
 
@@ -42,11 +42,84 @@ msgstr "كلمتا المرور غير متطابقتين."
 msgid "An account with this email exists. Sign in instead."
 msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلًا من ذلك."
 
-#: app/templates/base.html:19 app/templates/device.html:4
-#: app/templates/flows.html:4 app/templates/home.html:5
-#: app/templates/teach/console.html:4
+#: app/templates/alerts.html:2 app/templates/alerts.html:5
+#: app/templates/home.html:11
+msgid "Alerts"
+msgstr "التنبيهات"
+
+#: app/templates/alerts.html:4 app/templates/base.html:19
+#: app/templates/device.html:4 app/templates/flows.html:4
+#: app/templates/home.html:5 app/templates/teach/console.html:4
 msgid "My lab"
 msgstr "مختبري"
+
+#: app/templates/alerts.html:6
+msgid "When a reading crosses your threshold, an alarm appears on your dashboard — and optionally an email or webhook fires."
+msgstr "عندما تتجاوز قراءةٌ عتبتك يظهر إنذار على لوحتك — ويمكن أيضًا إرسال بريد أو نداء webhook."
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:24
+#: app/templates/devices.html:9
+#, fuzzy
+msgid "Device"
+msgstr "أجهزتي"
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:27
+msgid "Condition"
+msgstr "الشرط"
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:30
+msgid "Action"
+msgstr "الإجراء"
+
+#: app/templates/alerts.html:15
+#, fuzzy
+msgid "Delete"
+msgstr "أجهزتي"
+
+#: app/templates/alerts.html:18
+#, fuzzy
+msgid "No alert rules yet."
+msgstr "أجهزتي"
+
+#: app/templates/alerts.html:22
+#, fuzzy
+msgid "New alert"
+msgstr "الاسم الجديد"
+
+#: app/templates/alerts.html:26
+#, fuzzy
+msgid "Telemetry key"
+msgstr "موضوع القياسات"
+
+#: app/templates/alerts.html:29
+msgid "Threshold"
+msgstr "العتبة"
+
+#: app/templates/alerts.html:31
+msgid "alarm"
+msgstr "إنذار"
+
+#: app/templates/alerts.html:31
+#, fuzzy
+msgid "email"
+msgstr "البريد الإلكتروني"
+
+#: app/templates/alerts.html:31
+msgid "webhook"
+msgstr "‏webhook"
+
+#: app/templates/alerts.html:32
+msgid "Email address or webhook URL"
+msgstr "البريد الإلكتروني أو رابط webhook"
+
+#: app/templates/alerts.html:32
+msgid "(for email/webhook)"
+msgstr "(للبريد/webhook)"
+
+#: app/templates/alerts.html:33
+#, fuzzy
+msgid "Create alert"
+msgstr "إنشاء حساب"
 
 #: app/templates/base.html:19 app/templates/teach/console.html:2
 #: app/templates/teach/console.html:5 app/templates/teach/roster.html:4
@@ -100,7 +173,7 @@ msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
 
-#: app/templates/check_email.html:6 app/templates/home.html:18
+#: app/templates/check_email.html:6 app/templates/home.html:19
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
@@ -154,54 +227,62 @@ msgid "Your token and the broker address are already filled in. Download the fil
 msgstr "رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات شبكتك، ثم حمّله."
 
 #: app/templates/device.html:26
+#, fuzzy
+msgid "Export"
+msgstr "ينتهي"
+
+#: app/templates/device.html:27
+msgid "Download 24h CSV"
+msgstr "تنزيل CSV لـ24 ساعة"
+
+#: app/templates/device.html:27
+msgid "Download 24h JSON"
+msgstr "تنزيل JSON لـ24 ساعة"
+
+#: app/templates/device.html:29
 msgid "Manage"
 msgstr "إدارة"
 
-#: app/templates/device.html:29 app/templates/device.html:31
+#: app/templates/device.html:32 app/templates/device.html:34
 msgid "Rename"
 msgstr "إعادة تسمية"
 
-#: app/templates/device.html:30
+#: app/templates/device.html:33
 msgid "New name"
 msgstr "الاسم الجديد"
 
-#: app/templates/device.html:33
+#: app/templates/device.html:36
 msgid "Old token stops working immediately. Continue?"
 msgstr "سيتوقف الرمز القديم فورًا. هل تريد المتابعة؟"
 
-#: app/templates/device.html:34
+#: app/templates/device.html:37
 msgid "Revoke token"
 msgstr "إبطال الرمز"
 
-#: app/templates/device.html:35
+#: app/templates/device.html:38
 msgid "Lost or leaked the token? Issue a new one. Devices using the old token disconnect."
 msgstr "فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم ستنفصل."
 
-#: app/templates/device.html:36
+#: app/templates/device.html:39
 msgid "Issue new token"
 msgstr "إصدار رمز جديد"
 
-#: app/templates/device.html:38
+#: app/templates/device.html:41
 msgid "Delete this device and all its data?"
 msgstr "حذف هذا الجهاز وكل بياناته؟"
 
-#: app/templates/device.html:39 app/templates/device.html:41
+#: app/templates/device.html:42 app/templates/device.html:44
 #, fuzzy
 msgid "Delete device"
 msgstr "أجهزتي"
 
-#: app/templates/device.html:40
+#: app/templates/device.html:43
 msgid "Removes the device and its telemetry. This cannot be undone."
 msgstr "يحذف الجهاز وقياساته. لا يمكن التراجع عن ذلك."
 
 #: app/templates/devices.html:6
 #, fuzzy
 msgid "devices used."
-msgstr "أجهزتي"
-
-#: app/templates/devices.html:9
-#, fuzzy
-msgid "Device"
 msgstr "أجهزتي"
 
 #: app/templates/devices.html:9
@@ -277,34 +358,38 @@ msgid "Your own Node-RED: wire devices to logic and actions, no code required."
 msgstr "‏Node-RED خاص بك: اربط الأجهزة بالمنطق والإجراءات دون برمجة."
 
 #: app/templates/home.html:11
+msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
+msgstr "بريد أو webhook أو إنذار على اللوحة عند تجاوز قراءةٍ عتبتك."
+
+#: app/templates/home.html:12
 msgid "Getting started"
 msgstr "البدء"
 
-#: app/templates/home.html:11
+#: app/templates/home.html:12
 msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
 msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
 
-#: app/templates/home.html:13
+#: app/templates/home.html:14
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: app/templates/home.html:14
+#: app/templates/home.html:15
 msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
-#: app/templates/home.html:15
+#: app/templates/home.html:16
 msgid "Reset starter dashboard"
 msgstr "إعادة ضبط لوحة التحكم الأساسية"
 
-#: app/templates/home.html:17
+#: app/templates/home.html:18
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
 
-#: app/templates/home.html:20
+#: app/templates/home.html:21
 msgid "Setting up your lab…"
 msgstr "جارٍ إعداد مختبرك…"
 
-#: app/templates/home.html:21
+#: app/templates/home.html:22
 msgid "Set up now"
 msgstr "الإعداد الآن"
 

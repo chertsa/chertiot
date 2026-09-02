@@ -12,7 +12,7 @@ from app.auth import configure_oauth
 from app.config import get_settings
 from app.i18n import translator
 from app.keycloak_admin import KeycloakError
-from app.routers import auth, devices, home, instructor, internal, signup
+from app.routers import alerts, auth, devices, home, instructor, internal, signup
 from app.routers import flows as flows_router
 from app.tb_client import TbError
 from app.templating import templates
@@ -70,6 +70,7 @@ app.include_router(devices.router)
 app.include_router(flows_router.router)
 app.include_router(internal.router)
 app.include_router(instructor.router)
+app.include_router(alerts.router)
 
 
 @app.exception_handler(httpx.TransportError)

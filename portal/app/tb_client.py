@@ -336,6 +336,26 @@ class TbClient:
     def delete_dashboard(self, dashboard_id: str) -> None:
         self._delete(f"/dashboard/{dashboard_id}")
 
+    # --- rule chains (tenant scope, M3.4) -----------------------------------------
+    def find_rule_chain(self, name: str) -> dict[str, Any] | None:
+        data = self._get("/ruleChains", pageSize=100, page=0, textSearch=name)["data"]
+        return next((rc for rc in data if rc["name"] == name), None)
+
+    def save_rule_chain(self, rule_chain: dict[str, Any]) -> dict[str, Any]:
+        return dict(self._post("/ruleChain", rule_chain))
+
+    def save_rule_chain_metadata(self, metadata: dict[str, Any]) -> dict[str, Any]:
+        return dict(self._post("/ruleChain/metadata", metadata))
+
+    def get_default_device_profile(self) -> dict[str, Any]:
+        return dict(self._get("/deviceProfileInfo/default"))
+
+    def get_device_profile(self, profile_id: str) -> dict[str, Any]:
+        return dict(self._get(f"/deviceProfile/{profile_id}"))
+
+    def save_device_profile(self, profile: dict[str, Any]) -> dict[str, Any]:
+        return dict(self._post("/deviceProfile", profile))
+
     # --- telemetry (tenant scope) -----------------------------------------------
     def timeseries(
         self, device_id: str, keys: list[str], start_ts: int, end_ts: int, limit: int = 10000

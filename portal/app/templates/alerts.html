@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Alerts") }} — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
+<h1>{{ _("Alerts") }}</h1>
+<p class="helper">{{ _("When a reading crosses your threshold, an alarm appears on your dashboard — and optionally an email or webhook fires.") }}</p>
+<table class="table">
+  <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Condition") }}</th><th>{{ _("Action") }}</th><th></th></tr></thead>
+  <tbody>
+  {% for r in rules %}
+    <tr>
+      <td>{{ r.device_name }}</td>
+      <td><code class="token">{{ r.key }} {{ r.op }} {{ r.threshold }}</code></td>
+      <td>{{ _(r.action) }}{% if r.target %} → {{ r.target }}{% endif %}</td>
+      <td><form method="post" action="/alerts/{{ r.id }}/delete"><button class="btn btn--danger btn--sm">{{ _("Delete") }}</button></form></td>
+    </tr>
+  {% else %}
+    <tr><td colspan="4">{{ _("No alert rules yet.") }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h2>{{ _("New alert") }}</h2>
+<form class="form" method="post" action="/alerts">
+  <div class="field"><label class="label" for="device_name">{{ _("Device") }}</label>
+    <select class="input" id="device_name" name="device_name">{% for d in devices %}<option>{{ d }}</option>{% endfor %}</select></div>
+  <div class="field"><label class="label" for="key">{{ _("Telemetry key") }}</label><input class="input" id="key" name="key" required placeholder="temperature"></div>
+  <div class="field"><label class="label" for="op">{{ _("Condition") }}</label>
+    <select class="input" id="op" name="op"><option>&gt;</option><option>&lt;</option><option>&gt;=</option><option>&lt;=</option><option>==</option></select></div>
+  <div class="field"><label class="label" for="threshold">{{ _("Threshold") }}</label><input class="input" id="threshold" name="threshold" type="number" step="any" required></div>
+  <div class="field"><label class="label" for="action">{{ _("Action") }}</label>
+    <select class="input" id="action" name="action"><option value="alarm">{{ _("alarm") }}</option><option value="email">{{ _("email") }}</option><option value="webhook">{{ _("webhook") }}</option></select></div>
+  <div class="field"><label class="label" for="target">{{ _("Email address or webhook URL") }} <span class="helper">{{ _("(for email/webhook)") }}</span></label><input class="input" id="target" name="target"></div>
+  <div><button class="btn btn--primary" type="submit">{{ _("Create alert") }}</button></div>
+</form>
+{% endblock %}

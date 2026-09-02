@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 04:55+0300\n"
+"POT-Creation-Date: 2026-09-02 05:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:83
+#: app/main.py:84
 msgid "The lab is busy right now"
 msgstr ""
 
-#: app/main.py:85
+#: app/main.py:86
 msgid ""
 "A backend service did not answer in time. Nothing was lost — wait a "
 "minute and try again."
@@ -43,10 +43,78 @@ msgstr ""
 msgid "An account with this email exists. Sign in instead."
 msgstr ""
 
-#: app/templates/base.html:19 app/templates/device.html:4
-#: app/templates/flows.html:4 app/templates/home.html:5
-#: app/templates/teach/console.html:4
+#: app/templates/alerts.html:2 app/templates/alerts.html:5
+#: app/templates/home.html:11
+msgid "Alerts"
+msgstr ""
+
+#: app/templates/alerts.html:4 app/templates/base.html:19
+#: app/templates/device.html:4 app/templates/flows.html:4
+#: app/templates/home.html:5 app/templates/teach/console.html:4
 msgid "My lab"
+msgstr ""
+
+#: app/templates/alerts.html:6
+msgid ""
+"When a reading crosses your threshold, an alarm appears on your dashboard"
+" — and optionally an email or webhook fires."
+msgstr ""
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:24
+#: app/templates/devices.html:9
+msgid "Device"
+msgstr ""
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:27
+msgid "Condition"
+msgstr ""
+
+#: app/templates/alerts.html:8 app/templates/alerts.html:30
+msgid "Action"
+msgstr ""
+
+#: app/templates/alerts.html:15
+msgid "Delete"
+msgstr ""
+
+#: app/templates/alerts.html:18
+msgid "No alert rules yet."
+msgstr ""
+
+#: app/templates/alerts.html:22
+msgid "New alert"
+msgstr ""
+
+#: app/templates/alerts.html:26
+msgid "Telemetry key"
+msgstr ""
+
+#: app/templates/alerts.html:29
+msgid "Threshold"
+msgstr ""
+
+#: app/templates/alerts.html:31
+msgid "alarm"
+msgstr ""
+
+#: app/templates/alerts.html:31
+msgid "email"
+msgstr ""
+
+#: app/templates/alerts.html:31
+msgid "webhook"
+msgstr ""
+
+#: app/templates/alerts.html:32
+msgid "Email address or webhook URL"
+msgstr ""
+
+#: app/templates/alerts.html:32
+msgid "(for email/webhook)"
+msgstr ""
+
+#: app/templates/alerts.html:33
+msgid "Create alert"
 msgstr ""
 
 #: app/templates/base.html:19 app/templates/teach/console.html:2
@@ -101,7 +169,7 @@ msgstr ""
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr ""
 
-#: app/templates/check_email.html:6 app/templates/home.html:18
+#: app/templates/check_email.html:6 app/templates/home.html:19
 msgid "Try again"
 msgstr ""
 
@@ -157,53 +225,61 @@ msgid ""
 msgstr ""
 
 #: app/templates/device.html:26
+msgid "Export"
+msgstr ""
+
+#: app/templates/device.html:27
+msgid "Download 24h CSV"
+msgstr ""
+
+#: app/templates/device.html:27
+msgid "Download 24h JSON"
+msgstr ""
+
+#: app/templates/device.html:29
 msgid "Manage"
 msgstr ""
 
-#: app/templates/device.html:29 app/templates/device.html:31
+#: app/templates/device.html:32 app/templates/device.html:34
 msgid "Rename"
 msgstr ""
 
-#: app/templates/device.html:30
+#: app/templates/device.html:33
 msgid "New name"
 msgstr ""
 
-#: app/templates/device.html:33
+#: app/templates/device.html:36
 msgid "Old token stops working immediately. Continue?"
 msgstr ""
 
-#: app/templates/device.html:34
+#: app/templates/device.html:37
 msgid "Revoke token"
 msgstr ""
 
-#: app/templates/device.html:35
+#: app/templates/device.html:38
 msgid ""
 "Lost or leaked the token? Issue a new one. Devices using the old token "
 "disconnect."
 msgstr ""
 
-#: app/templates/device.html:36
+#: app/templates/device.html:39
 msgid "Issue new token"
 msgstr ""
 
-#: app/templates/device.html:38
+#: app/templates/device.html:41
 msgid "Delete this device and all its data?"
 msgstr ""
 
-#: app/templates/device.html:39 app/templates/device.html:41
+#: app/templates/device.html:42 app/templates/device.html:44
 msgid "Delete device"
 msgstr ""
 
-#: app/templates/device.html:40
+#: app/templates/device.html:43
 msgid "Removes the device and its telemetry. This cannot be undone."
 msgstr ""
 
 #: app/templates/devices.html:6
 msgid "devices used."
-msgstr ""
-
-#: app/templates/devices.html:9
-msgid "Device"
 msgstr ""
 
 #: app/templates/devices.html:9
@@ -281,38 +357,42 @@ msgid "Your own Node-RED: wire devices to logic and actions, no code required."
 msgstr ""
 
 #: app/templates/home.html:11
+msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
+msgstr ""
+
+#: app/templates/home.html:12
 msgid "Getting started"
 msgstr ""
 
-#: app/templates/home.html:11
+#: app/templates/home.html:12
 msgid ""
 "Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
 "ten minutes."
 msgstr ""
 
-#: app/templates/home.html:13
+#: app/templates/home.html:14
 msgid "Dashboard"
 msgstr ""
 
-#: app/templates/home.html:14
+#: app/templates/home.html:15
 msgid ""
 "Edited your dashboard into a corner? Restore the starter layout. Your "
 "devices and data stay."
 msgstr ""
 
-#: app/templates/home.html:15
+#: app/templates/home.html:16
 msgid "Reset starter dashboard"
 msgstr ""
 
-#: app/templates/home.html:17
+#: app/templates/home.html:18
 msgid "We could not set up your lab:"
 msgstr ""
 
-#: app/templates/home.html:20
+#: app/templates/home.html:21
 msgid "Setting up your lab…"
 msgstr ""
 
-#: app/templates/home.html:21
+#: app/templates/home.html:22
 msgid "Set up now"
 msgstr ""
 

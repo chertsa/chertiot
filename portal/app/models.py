@@ -81,3 +81,19 @@ class FlowInstance(Base):
     state: Mapped[str] = mapped_column(String(16), default="running")  # running | stopped
     last_active: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class AlertRule(Base):
+    """A student's threshold alert (M3.4): rendered into their tenant's alert rule chain."""
+
+    __tablename__ = "alert_rules"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    user_id: Mapped[str] = mapped_column(String(36), index=True)
+    device_name: Mapped[str] = mapped_column(String(64))
+    key: Mapped[str] = mapped_column(String(64))
+    op: Mapped[str] = mapped_column(String(2), default=">")  # > | < | >= | <= | ==
+    threshold: Mapped[float] = mapped_column()
+    action: Mapped[str] = mapped_column(String(16), default="alarm")  # alarm | email | webhook
+    target: Mapped[str | None] = mapped_column(String(320))  # email address or webhook URL
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
