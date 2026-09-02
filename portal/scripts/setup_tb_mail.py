@@ -28,7 +28,9 @@ def main() -> int:
     )
     r.raise_for_status()
     hdr = {"X-Authorization": f"Bearer {r.json()['token']}"}
+    existing = httpx.get(f"{TB}/api/admin/settings/mail", headers=hdr, timeout=30).json()
     settings = {
+        "id": existing.get("id"),
         "key": "mail",
         "jsonValue": {
             "mailFrom": os.environ.get("SMTP_FROM", "no-reply@chertiot.com"),
