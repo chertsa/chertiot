@@ -69,6 +69,9 @@ $RUN "cd /srv/chertiot && deploy/scripts/write-runtime-secrets.sh"
 step "compose up (production file only, no dev override)"
 $RUN "cd /srv/chertiot && docker compose -f docker-compose.yml --profile core pull -q --ignore-buildable && docker compose -f docker-compose.yml --profile core up -d --build && docker compose -f docker-compose.yml --profile core ps --format '{{.Service}} {{.Status}}'"
 
+step "caddy reload (bind-mounted Caddyfile changes never trigger a recreate)"
+$RUN "cd /srv/chertiot && docker compose -f docker-compose.yml exec -T caddy caddy reload --config /etc/caddy/Caddyfile 2>&1 | tail -1 || true"
+
 step "wait for tb + keycloak + portal healthy (up to 10 min)"
 $RUN 'cd /srv/chertiot && for i in $(seq 1 60); do S=$(docker compose -f docker-compose.yml --profile core ps --format "{{.Service}} {{.Status}}"); echo "$S" | grep -q "^tb .*(healthy)" && echo "$S" | grep -q "^keycloak .*(healthy)" && echo "$S" | grep -q "^portal .*(healthy)" && exit 0; sleep 10; done; echo "$S"; exit 1'
 
