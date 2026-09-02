@@ -36,6 +36,7 @@ def test_metadata_spine_and_rule_nodes() -> None:
     assert any(c["fromIndex"] == 1 and c["type"] == "Success" for c in md["connections"])
     script = md["nodes"][3]["configuration"]["tbelScript"]
     assert "dev-1" in script and "temperature" in script and "> 30.0" in script
+    assert "Number(" not in script  # TBEL sandbox rejects it
 
 
 def test_apply_rules_creates_chain_and_wires_profile() -> None:

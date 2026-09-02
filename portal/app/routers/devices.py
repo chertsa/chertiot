@@ -149,7 +149,10 @@ def export_telemetry(
     start_ts = end_ts - min(int(hours * 3600 * 1000), MAX_RANGE_MS)
     key_list = [k.strip() for k in keys.split(",") if k.strip()][:10]
     with as_student(user) as (_sysadmin, student):
-        student.get_device(device_id)  # 404 unless it is theirs
+        try:
+            student.get_device(device_id)  # any error here means it is not theirs
+        except TbError as e:
+            raise HTTPException(status_code=404, detail="device not found") from e
         rows = list(iter_rows(student, device_id, key_list, start_ts, end_ts))
     audit(db, user.email, "device.export", device_id, rows=len(rows), fmt=fmt)
     db.commit()

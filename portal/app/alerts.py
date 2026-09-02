@@ -34,7 +34,7 @@ def _filter_script(rule: AlertRule) -> str:
     op = OPS.get(rule.op, ">")
     return (
         f"return metadata.deviceName == '{rule.device_name}' "
-        f"&& msg.{rule.key} != null && Number(msg.{rule.key}) {op} {rule.threshold};"
+        f"&& msg.{rule.key} != null && msg.{rule.key} {op} {rule.threshold};"
     )
 
 
