@@ -337,6 +337,20 @@ class TbClient:
         self._delete(f"/dashboard/{dashboard_id}")
 
     # --- telemetry (tenant scope) -----------------------------------------------
+    def timeseries(
+        self, device_id: str, keys: list[str], start_ts: int, end_ts: int, limit: int = 10000
+    ) -> dict[str, list[dict[str, Any]]]:
+        """Raw timeseries page (ms epochs); order per TB default (descending ts)."""
+        data = self._get(
+            f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries",
+            keys=",".join(keys),
+            startTs=start_ts,
+            endTs=end_ts,
+            limit=limit,
+            agg="NONE",
+        )
+        return dict(data) if isinstance(data, dict) else {}
+
     def latest_timeseries(self, device_id: str, keys: list[str]) -> dict[str, list[dict[str, Any]]]:
         data = self._get(
             f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries", keys=",".join(keys)

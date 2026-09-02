@@ -23,6 +23,9 @@
 </details>
 {% endfor %}
 
+<h2>{{ _("Export") }}</h2>
+<p><a class="btn btn--secondary btn--sm" href="/devices/{{ device.id.id }}/export?hours=24&fmt=csv">{{ _("Download 24h CSV") }}</a> <a class="btn btn--secondary btn--sm" href="/devices/{{ device.id.id }}/export?hours=24&fmt=json">{{ _("Download 24h JSON") }}</a></p>
+
 <h2>{{ _("Manage") }}</h2>
 <div class="grid-cards">
   <form class="card" method="post" action="/devices/{{ device.id.id }}/rename">

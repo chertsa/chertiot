@@ -1,16 +1,19 @@
 import re
 import secrets
+import time
 from datetime import UTC, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
-from fastapi.responses import PlainTextResponse, RedirectResponse
+from fastapi.responses import PlainTextResponse, RedirectResponse, StreamingResponse
 from sqlalchemy.orm import Session
 
 from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
+from app.export import MAX_RANGE_MS, iter_rows, stream_csv, stream_json
 from app.provisioning import ensure_starter_dashboard
+from app.ratelimit import rate_limited
 from app.snippets import TRACKS, placeholders, render
 from app.student import as_student, require_provisioned
 from app.tb_client import Device, TbClient, TbError
@@ -129,6 +132,38 @@ def download_snippet(
     body = render(track, device.name, creds.credentials_id)
     headers = {"Content-Disposition": f'attachment; filename="{TRACKS[track].filename}"'}
     return PlainTextResponse(body, headers=headers)
+
+
+@router.get("/devices/{device_id}/export", dependencies=[Depends(rate_limited("export", 5, 3600))])
+def export_telemetry(
+    request: Request,
+    device_id: str,
+    keys: str = "temperature,humidity",
+    hours: float = 24,
+    fmt: str = "csv",
+    db: Session = Depends(get_db),
+) -> Any:
+    """Own-data export (M3.4): CSV/JSON, ≤31 days, row-capped, 5 exports/hour per IP."""
+    user = require_provisioned(request, db)
+    end_ts = int(time.time() * 1000)
+    start_ts = end_ts - min(int(hours * 3600 * 1000), MAX_RANGE_MS)
+    key_list = [k.strip() for k in keys.split(",") if k.strip()][:10]
+    with as_student(user) as (_sysadmin, student):
+        student.get_device(device_id)  # 404 unless it is theirs
+        rows = list(iter_rows(student, device_id, key_list, start_ts, end_ts))
+    audit(db, user.email, "device.export", device_id, rows=len(rows), fmt=fmt)
+    db.commit()
+    if fmt == "json":
+        return StreamingResponse(
+            stream_json(iter(rows)),
+            media_type="application/json",
+            headers={"Content-Disposition": 'attachment; filename="telemetry.json"'},
+        )
+    return StreamingResponse(
+        stream_csv(iter(rows)),
+        media_type="text/csv",
+        headers={"Content-Disposition": 'attachment; filename="telemetry.csv"'},
+    )
 
 
 @router.post("/devices/{device_id}/rename")
