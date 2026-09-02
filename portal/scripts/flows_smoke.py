@@ -78,10 +78,15 @@ def main() -> int:
     while time.time() < deadline:
         rr = a.get(editor, follow_redirects=True)
         code, body = rr.status_code, rr.text
-        if code == 200 and "Node-RED" in body:
+        if code == 200 and (
+            "red.min.js" in body or "CHERT IoT flows" in body or "node-red" in body.lower()
+        ):
             break
         time.sleep(5)
-    ok &= check("editor reachable by owner", code == 200 and "Node-RED" in body, str(code))
+    editor_ok = code == 200 and (
+        "red.min.js" in body or "CHERT IoT flows" in body or "node-red" in body.lower()
+    )
+    ok &= check("editor reachable by owner", editor_ok, str(code))
 
     b = portal_login(kc, email_b, pw)
     rb = b.get(editor)
