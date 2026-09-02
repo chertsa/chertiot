@@ -80,7 +80,7 @@ def _write_settings(dc: docker.DockerClient, volume: str, user_id: str) -> None:
             "-c",
             "cat > /data/settings.js <<'EOS'\n"
             + SETTINGS_JS.format(user_id=user_id)
-            + "\nEOS\nchown 1000:1000 /data/settings.js",
+            + "\nEOS\nchown -R 1000:1000 /data",
         ],
         mounts=[Mount(target="/data", source=volume, type="volume")],
         remove=True,
