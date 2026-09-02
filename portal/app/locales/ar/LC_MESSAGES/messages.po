@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 01:59+0300\n"
+"POT-Creation-Date: 2026-09-02 04:03+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:55
+#: app/main.py:81
 msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
-#: app/main.py:57
+#: app/main.py:83
 msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
 msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
 
@@ -43,7 +43,7 @@ msgid "An account with this email exists. Sign in instead."
 msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلًا من ذلك."
 
 #: app/templates/base.html:19 app/templates/device.html:4
-#: app/templates/home.html:5
+#: app/templates/flows.html:4 app/templates/home.html:5
 msgid "My lab"
 msgstr "مختبري"
 
@@ -93,7 +93,7 @@ msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
 
-#: app/templates/check_email.html:6 app/templates/home.html:17
+#: app/templates/check_email.html:6 app/templates/home.html:18
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
@@ -223,6 +223,40 @@ msgstr "اسم الجهاز"
 msgid "Back to start"
 msgstr "العودة إلى البداية"
 
+#: app/templates/flows.html:2 app/templates/flows.html:5
+#: app/templates/home.html:10
+msgid "Flows"
+msgstr "التدفقات"
+
+#: app/templates/flows.html:7
+msgid "Node-RED flows are not enabled on this environment yet."
+msgstr "تدفقات Node-RED غير مفعّلة في هذه البيئة بعد."
+
+#: app/templates/flows.html:9
+msgid "Your own Node-RED editor: wire your device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard credentials are pre-injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN."
+msgstr "محرر Node-RED الخاص بك: اربط بيانات أجهزتك بالمنطق واللوحات والنداءات الخارجية — دون برمجة. بيانات اعتماد ThingsBoard محقونة مسبقًا كـ TB_MQTT_HOST وTB_MQTT_PORT وTB_ACCESS_TOKEN."
+
+#: app/templates/flows.html:11
+msgid "Open the editor"
+msgstr "افتح المحرر"
+
+#: app/templates/flows.html:12
+msgid "Stop my instance"
+msgstr "إيقاف نسختي"
+
+#: app/templates/flows.html:13
+msgid "Instances stop automatically after 30 minutes without use; your flows are kept."
+msgstr "تتوقف النسخ تلقائيًا بعد 30 دقيقة دون استخدام؛ تدفقاتك محفوظة."
+
+#: app/templates/flows.html:15
+#, fuzzy
+msgid "Start my Node-RED"
+msgstr "الكود الجاهز"
+
+#: app/templates/flows.html:16
+msgid "Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you."
+msgstr "يبدأ خلال ثوانٍ مع 0.5 معالج و256 ميغابايت محجوزة لك وحدك."
+
 #: app/templates/home.html:8
 msgid "Open my dashboard"
 msgstr "افتح لوحة التحكم"
@@ -232,34 +266,38 @@ msgid "device(s) — add one, get its token and starter code."
 msgstr "جهاز/أجهزة — أضف جهازًا واحصل على رمزه والكود الجاهز."
 
 #: app/templates/home.html:10
+msgid "Your own Node-RED: wire devices to logic and actions, no code required."
+msgstr "‏Node-RED خاص بك: اربط الأجهزة بالمنطق والإجراءات دون برمجة."
+
+#: app/templates/home.html:11
 msgid "Getting started"
 msgstr "البدء"
 
-#: app/templates/home.html:10
+#: app/templates/home.html:11
 msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
 msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
 
-#: app/templates/home.html:12
+#: app/templates/home.html:13
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: app/templates/home.html:13
+#: app/templates/home.html:14
 msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
-#: app/templates/home.html:14
+#: app/templates/home.html:15
 msgid "Reset starter dashboard"
 msgstr "إعادة ضبط لوحة التحكم الأساسية"
 
-#: app/templates/home.html:16
+#: app/templates/home.html:17
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
 
-#: app/templates/home.html:19
+#: app/templates/home.html:20
 msgid "Setting up your lab…"
 msgstr "جارٍ إعداد مختبرك…"
 
-#: app/templates/home.html:20
+#: app/templates/home.html:21
 msgid "Set up now"
 msgstr "الإعداد الآن"
 

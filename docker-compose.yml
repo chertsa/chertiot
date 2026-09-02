@@ -105,6 +105,7 @@ services:
 
   portal:
     <<: [*restart, *logging]
+    networks: [default, spawner, flows]
     build:
       context: .
       dockerfile: portal/Dockerfile
@@ -129,6 +130,10 @@ services:
       TB_PUBLIC_URL: ${TB_PUBLIC_URL}
       MQTT_HOST: ${MQTT_HOST}
       MQTT_PORT: ${MQTT_PORT}
+      FLOWS_ENABLED: ${FLOWS_ENABLED}
+      DOCKER_HOST: tcp://socket-proxy:2375
+      NODERED_VERSION: ${NODERED_VERSION}
+      COMPOSE_PROJECT: chertiot
       TB_SYSADMIN_EMAIL: ${TB_SYSADMIN_EMAIL}
       TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
     depends_on:
@@ -149,6 +154,7 @@ services:
 
   caddy:
     <<: [*restart, *logging]
+    networks: [default, flows]
     # Dev: stock caddy. Staging/prod: chertiot/caddy:<ver>-l4 (layer4 MQTTS, D8) built by `make caddy-image`.
     image: ${CADDY_IMAGE}
     profiles: [core]
@@ -269,7 +275,39 @@ services:
     depends_on:
       postgres: { condition: service_healthy }
 
-  # flows / lab / lora profiles are added in Phase 3 / Phase 4.
+  # ---------------------------------------------------------------- flows (Phase 3, M3.1)
+  socket-proxy:
+    <<: [*restart, *logging]
+    image: tecnativa/docker-socket-proxy:${SOCKET_PROXY_VERSION}
+    profiles: [flows]
+    environment:
+      # Least privilege: the spawner may manage containers/images/volumes/networks — nothing else.
+      CONTAINERS: 1
+      IMAGES: 1
+      VOLUMES: 1
+      NETWORKS: 1
+      POST: 1
+      EXEC: 0
+      INFO: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks: [spawner]
+
+  # Warms the Node-RED image so the first student spawn is fast.
+  nodered-image:
+    image: nodered/node-red:${NODERED_VERSION}
+    profiles: [flows]
+    entrypoint: ["true"]
+    restart: "no"
+
+  # lab / lora profiles are added later in Phase 3 / Phase 4.
+
+networks:
+  default:
+  # Spawned per-student Node-RED containers live here (reachable by caddy + portal, not the socket proxy).
+  flows:
+  # Only the portal and the socket proxy share this network.
+  spawner:
 
 volumes:
   alertmanager-data:

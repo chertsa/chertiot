@@ -7,6 +7,7 @@
   <div class="grid-cards">
     <a class="card" href="{{ dashboard_url }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Open my dashboard") }}</div><div class="card__desc">{{ device_count }} {{ _("device(s) — add one, get its token and starter code.") }}</div></a>
     <a class="card" href="/devices"><div class="card__title">{{ _("My devices") }}</div><div class="card__desc">{{ device_count }} device{{ '' if device_count == 1 else 's' }}. Add one, get its token and starter code.</div></a>
+    <a class="card" href="/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("Your own Node-RED: wire devices to logic and actions, no code required.") }}</div></a>
     <a class="card" href="/docs"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
   </div>
   <h2>{{ _("Dashboard") }}</h2>

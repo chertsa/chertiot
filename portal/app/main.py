@@ -13,6 +13,7 @@ from app.config import get_settings
 from app.i18n import translator
 from app.keycloak_admin import KeycloakError
 from app.routers import auth, devices, home, signup
+from app.routers import flows as flows_router
 from app.tb_client import TbError
 from app.templating import templates
 
@@ -25,6 +26,30 @@ Instrumentator(excluded_handlers=["/healthz", "/metrics"]).instrument(app).expos
 @app.on_event("startup")
 def _startup() -> None:
     configure_oauth()
+    _start_flows_culler()
+
+
+def _start_flows_culler() -> None:
+    """Every 5 minutes, stop Node-RED instances idle > 30 min (M3.1 capacity control)."""
+    import threading
+
+    from app import flows as flows_mod
+    from app.db import session_factory
+
+    if not flows_mod.enabled():
+        return
+
+    def loop() -> None:
+        import time
+
+        while True:
+            time.sleep(300)
+            try:
+                flows_mod.cull_idle(session_factory())
+            except Exception:  # noqa: BLE001 — the culler must never die
+                log.exception("flows culler iteration failed")
+
+    threading.Thread(target=loop, daemon=True, name="flows-culler").start()
 
 
 app.add_middleware(
@@ -42,6 +67,7 @@ app.include_router(home.router)
 app.include_router(signup.router)
 app.include_router(auth.router)
 app.include_router(devices.router)
+app.include_router(flows_router.router)
 
 
 @app.exception_handler(httpx.TransportError)

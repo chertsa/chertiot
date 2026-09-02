@@ -26,3 +26,15 @@ http://status.localhost {
 http://prometheus.localhost {
 	reverse_proxy prometheus:9090
 }
+
+http://flows.localhost {
+	@editor path_regexp user ^/u/([0-9a-f-]+)(/.*)?$
+	handle @editor {
+		forward_auth portal:8000 {
+			uri /flows/auth
+			copy_headers X-Flows-User
+		}
+		reverse_proxy nodered-{re.user.1}:1880
+	}
+	redir / http://localhost/flows 302
+}

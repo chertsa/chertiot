@@ -68,3 +68,16 @@ class AuditLog(Base):
     action: Mapped[str] = mapped_column(String(64), index=True)
     target: Mapped[str | None] = mapped_column(String(320))
     detail: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+
+
+class FlowInstance(Base):
+    """One Node-RED container per student (M3.1). State mirrors Docker; last_active drives
+    culling."""
+
+    __tablename__ = "flow_instances"
+
+    user_id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    container_name: Mapped[str] = mapped_column(String(80))
+    state: Mapped[str] = mapped_column(String(16), default="running")  # running | stopped
+    last_active: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)

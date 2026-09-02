@@ -33,3 +33,15 @@ status.{$DOMAIN} {
 grafana.{$DOMAIN} {
 	reverse_proxy grafana:3000
 }
+
+flows.{$DOMAIN} {
+	@editor path_regexp user ^/u/([0-9a-f-]+)(/.*)?$
+	handle @editor {
+		forward_auth portal:8000 {
+			uri /flows/auth
+			copy_headers X-Flows-User
+		}
+		reverse_proxy nodered-{re.user.1}:1880
+	}
+	redir / https://{$DOMAIN}/flows 302
+}

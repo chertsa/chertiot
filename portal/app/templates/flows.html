@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Flows") }} — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
+<h1>{{ _("Flows") }}</h1>
+{% if not enabled %}
+  <div class="callout callout--info"><p>{{ _("Node-RED flows are not enabled on this environment yet.") }}</p></div>
+{% else %}
+  <p>{{ _("Your own Node-RED editor: wire your device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard credentials are pre-injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN.") }}</p>
+  {% if state == "running" %}
+    <p><a class="btn btn--primary" href="{{ editor_url }}" target="_blank" rel="noopener">{{ _("Open the editor") }}</a></p>
+    <form method="post" action="/flows/stop"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Stop my instance") }}</button></form>
+    <p class="helper">{{ _("Instances stop automatically after 30 minutes without use; your flows are kept.") }}</p>
+  {% else %}
+    <form method="post" action="/flows/start"><button class="btn btn--primary" type="submit">{{ _("Start my Node-RED") }}</button></form>
+    <p class="helper">{{ _("Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you.") }}</p>
+  {% endif %}
+{% endif %}
+{% endblock %}
