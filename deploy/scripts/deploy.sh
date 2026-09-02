@@ -21,6 +21,23 @@ $RUN "cd /srv/chertiot && [ -f .env ] || { deploy/scripts/ci-env.sh; \
     s|^PORTAL_PUBLIC_URL=.*|PORTAL_PUBLIC_URL=https://$DOMAIN|; s|^MQTT_HOST=.*|MQTT_HOST=$DOMAIN|; s|^MQTT_PORT=.*|MQTT_PORT=8883|; \
     s|^SMTP_HOST=.*|SMTP_HOST=|; s|^TB_SYSADMIN_PASSWORD=.*|TB_SYSADMIN_PASSWORD=\$(openssl rand -hex 12)|; \
     s|^RESTIC_REPOSITORY=\$|RESTIC_REPOSITORY=sftp:chertiot@161.35.119.46:/home/chertiot/backups/$DOMAIN|; s|^RESTIC_PASSWORD=\$|RESTIC_PASSWORD=\$(openssl rand -hex 24)|\" .env; echo '.env generated'; }"
+step "env schema merge (append keys new in .env.example; existing values never touched)"
+$RUN "cd /srv/chertiot && python3 - <<'PYENV'
+have = {l.split('=', 1)[0] for l in open('.env') if '=' in l and not l.startswith('#')}
+added = []
+for line in open('.env.example'):
+    raw = line.strip()
+    if not raw or raw.startswith('#') or '=' not in raw:
+        continue
+    key = raw.split('=', 1)[0]
+    if key not in have:
+        added.append(raw)
+if added:
+    with open('.env', 'a') as f:
+        f.write('\n' + '\n'.join(added) + '\n')
+print('env keys added:', ', '.join(a.split('=')[0] for a in added) or 'none')
+PYENV"
+
 if [ -f "deploy/secrets.$DOMAIN.env" ]; then
   step "merge secrets from deploy/secrets.$DOMAIN.env (server-side, quoting-safe)"
   scp -q -i "$KEY" -o IdentitiesOnly=yes "deploy/secrets.$DOMAIN.env" "chertiot@$HOST:/srv/chertiot/.secrets.merge"
