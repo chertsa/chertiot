@@ -10,6 +10,7 @@ CLAUDE.md)."""
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 import os
 from datetime import UTC, datetime, timedelta
 
@@ -54,7 +55,7 @@ def container_name(user_id: str) -> str:
     return f"nodered-{user_id}"
 
 
-def ensure_flows_device(user) -> str:  # noqa: ANN001 — PortalUser (avoid circular import)
+def ensure_flows_device(user: PortalUser) -> str: — PortalUser (avoid circular import)
     """A dedicated TB device in the student's own tenant; its token is the flow's MQTT
     credential."""
     with as_student(user) as (_sysadmin, student):
@@ -82,7 +83,7 @@ def _write_settings(dc: docker.DockerClient, volume: str, user_id: str) -> None:
     )
 
 
-def spawn(user, mqtt_host: str, mqtt_port: int) -> str:  # noqa: ANN001
+def spawn(user: PortalUser, mqtt_host: str, mqtt_port: int) -> str:
     """Create/start the student's instance. Idempotent. Returns the container name."""
     dc = client()
     name = container_name(user.id)
@@ -140,7 +141,7 @@ def status(user_id: str) -> str:
         return "unavailable"
 
 
-def cull_idle(session_factory) -> int:  # noqa: ANN001
+def cull_idle(session_factory: sessionmaker[Session]) -> int:
     """Stop instances idle for longer than IDLE_STOP. Returns how many were stopped."""
     from sqlalchemy import select
 
