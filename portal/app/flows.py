@@ -10,12 +10,17 @@ CLAUDE.md)."""
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING
 import os
 from datetime import UTC, datetime, timedelta
+from typing import TYPE_CHECKING
 
 import docker
 from docker.types import Mount
+
+if TYPE_CHECKING:
+    from sqlalchemy.orm import Session, sessionmaker
+
+    from app.models import PortalUser
 
 from app.provisioning import require_id
 from app.student import as_student
@@ -55,7 +60,7 @@ def container_name(user_id: str) -> str:
     return f"nodered-{user_id}"
 
 
-def ensure_flows_device(user: PortalUser) -> str: — PortalUser (avoid circular import)
+def ensure_flows_device(user: PortalUser) -> str:
     """A dedicated TB device in the student's own tenant; its token is the flow's MQTT
     credential."""
     with as_student(user) as (_sysadmin, student):
