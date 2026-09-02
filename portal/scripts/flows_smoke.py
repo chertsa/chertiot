@@ -38,7 +38,8 @@ def portal_login(kc, email: str, password: str) -> httpx.Client:  # noqa: ANN001
         hops += 1
         if r.status_code == 200 and "login-actions/authenticate" in r.text:
             action = re.search(r'action="([^"]+)"', r.text)
-            assert action
+            if action is None:
+                raise RuntimeError("Keycloak login form not found")
             r = s.post(
                 action.group(1).replace("&amp;", "&"),
                 data={"username": email, "password": password},
