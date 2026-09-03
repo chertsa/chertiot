@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-02 05:10+0300\n"
+"POT-Creation-Date: 2026-09-04 02:44+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:84
+#: app/main.py:85
 msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
-#: app/main.py:86
+#: app/main.py:87
 msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
 msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
 
@@ -43,13 +43,14 @@ msgid "An account with this email exists. Sign in instead."
 msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلًا من ذلك."
 
 #: app/templates/alerts.html:2 app/templates/alerts.html:5
-#: app/templates/home.html:11
+#: app/templates/home.html:12
 msgid "Alerts"
 msgstr "التنبيهات"
 
 #: app/templates/alerts.html:4 app/templates/base.html:19
 #: app/templates/device.html:4 app/templates/flows.html:4
-#: app/templates/home.html:5 app/templates/teach/console.html:4
+#: app/templates/home.html:5 app/templates/lora.html:4
+#: app/templates/teach/console.html:4
 msgid "My lab"
 msgstr "مختبري"
 
@@ -58,7 +59,7 @@ msgid "When a reading crosses your threshold, an alarm appears on your dashboard
 msgstr "عندما تتجاوز قراءةٌ عتبتك يظهر إنذار على لوحتك — ويمكن أيضًا إرسال بريد أو نداء webhook."
 
 #: app/templates/alerts.html:8 app/templates/alerts.html:24
-#: app/templates/devices.html:9
+#: app/templates/devices.html:9 app/templates/lora.html:11
 #, fuzzy
 msgid "Device"
 msgstr "أجهزتي"
@@ -173,7 +174,7 @@ msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
 
-#: app/templates/check_email.html:6 app/templates/home.html:19
+#: app/templates/check_email.html:6 app/templates/home.html:20
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
@@ -357,39 +358,48 @@ msgstr "جهاز/أجهزة — أضف جهازًا واحصل على رمزه �
 msgid "Your own Node-RED: wire devices to logic and actions, no code required."
 msgstr "‏Node-RED خاص بك: اربط الأجهزة بالمنطق والإجراءات دون برمجة."
 
+#: app/templates/home.html:11 app/templates/lora.html:2
+#: app/templates/lora.html:5
+msgid "LoRaWAN"
+msgstr "‏LoRaWAN"
+
 #: app/templates/home.html:11
+msgid "Register a LoRa device and see gateway uplinks on your dashboard."
+msgstr "سجّل جهاز LoRa وشاهد رسائل البوابة الصاعدة على لوحتك."
+
+#: app/templates/home.html:12
 msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
 msgstr "بريد أو webhook أو إنذار على اللوحة عند تجاوز قراءةٍ عتبتك."
 
-#: app/templates/home.html:12
+#: app/templates/home.html:13
 msgid "Getting started"
 msgstr "البدء"
 
-#: app/templates/home.html:12
+#: app/templates/home.html:13
 msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
 msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
 
-#: app/templates/home.html:14
+#: app/templates/home.html:15
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: app/templates/home.html:15
+#: app/templates/home.html:16
 msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
-#: app/templates/home.html:16
+#: app/templates/home.html:17
 msgid "Reset starter dashboard"
 msgstr "إعادة ضبط لوحة التحكم الأساسية"
 
-#: app/templates/home.html:18
+#: app/templates/home.html:19
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
 
-#: app/templates/home.html:21
+#: app/templates/home.html:22
 msgid "Setting up your lab…"
 msgstr "جارٍ إعداد مختبرك…"
 
-#: app/templates/home.html:22
+#: app/templates/home.html:23
 msgid "Set up now"
 msgstr "الإعداد الآن"
 
@@ -408,6 +418,40 @@ msgstr "أنشئ حسابًا، وحمِّل الكود الجاهز على ESP3
 #: app/templates/index.html:7
 msgid "Read the getting-started guide"
 msgstr "اقرأ دليل البدء"
+
+#: app/templates/lora.html:7
+#, fuzzy
+msgid "The LoRaWAN track is not enabled on this environment yet."
+msgstr "تدفقات Node-RED غير مفعّلة في هذه البيئة بعد."
+
+#: app/templates/lora.html:9
+msgid "Register a LoRaWAN device to get its OTAA credentials, point a gateway at the platform, and see uplinks arrive on your dashboard alongside your Wi-Fi devices."
+msgstr "سجّل جهاز LoRaWAN للحصول على بيانات اعتماد OTAA، ووجّه بوابة إلى المنصّة، وشاهد الرسائل الصاعدة تصل إلى لوحتك بجانب أجهزة الواي‑فاي."
+
+#: app/templates/lora.html:16
+#, fuzzy
+msgid "No LoRa devices yet."
+msgstr "أجهزتي"
+
+#: app/templates/lora.html:20
+msgid "Register a LoRa device"
+msgstr "تسجيل جهاز LoRa"
+
+#: app/templates/lora.html:21
+msgid "Gateway"
+msgstr "البوابة"
+
+#: app/templates/lora.html:22
+msgid "Point your LoRaWAN gateway (Semtech UDP packet forwarder) at"
+msgstr "وجّه بوابة LoRaWAN (معيد توجيه حزم Semtech UDP) إلى"
+
+#: app/templates/lora.html:22
+msgid "EU868. Full steps in the"
+msgstr "‏EU868. الخطوات الكاملة في"
+
+#: app/templates/lora.html:22
+msgid "gateway guide"
+msgstr "دليل البوابة"
 
 #: app/templates/signup.html:7
 msgid "Email"

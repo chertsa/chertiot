@@ -97,3 +97,16 @@ class AlertRule(Base):
     action: Mapped[str] = mapped_column(String(16), default="alarm")  # alarm | email | webhook
     target: Mapped[str | None] = mapped_column(String(320))  # email address or webhook URL
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class LoraDevice(Base):
+    """Maps a LoRaWAN device (DevEUI) to a student's ThingsBoard device (M4.1). The lora-bridge
+    uses this to route ChirpStack uplinks into the owning student's tenant."""
+
+    __tablename__ = "lora_devices"
+
+    dev_eui: Mapped[str] = mapped_column(String(16), primary_key=True)  # 8-byte hex
+    user_id: Mapped[str] = mapped_column(String(36), index=True)
+    tb_device_name: Mapped[str] = mapped_column(String(64))
+    app_key: Mapped[str] = mapped_column(String(32))  # OTAA AppKey (hex) shown to the student once
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)

@@ -23,6 +23,7 @@ nav:
   - Guides:
       - MQTT, topics and your token: guides/mqtt-and-auth.md
       - Your dashboard: guides/dashboard.md
+      - LoRaWAN gateways: guides/lorawan.md
       - Limits and what you can't do (yet): guides/limits.md
   - Policies:
       - Fair use: policies/fair-use.md

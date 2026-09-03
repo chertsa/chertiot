@@ -2,3 +2,4 @@
 CREATE DATABASE thingsboard;
 CREATE DATABASE keycloak;
 CREATE DATABASE portal;
+CREATE DATABASE chirpstack;

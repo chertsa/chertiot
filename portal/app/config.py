@@ -34,6 +34,10 @@ class Settings(BaseSettings):
         None  # default: <repo>/firmware-examples (or /firmware-examples in the image)
     )
 
+    # M4.1: LoRaWAN track
+    lora_enabled: bool = False
+    chirpstack_rest_url: str = "http://chirpstack-rest-api:8090"
+
     # M3.2: shared secret for the in-network lab-token endpoint (JupyterHub → portal)
     lab_internal_secret: str = ""
 

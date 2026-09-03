@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ _("LoRaWAN") }} — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
+<h1>{{ _("LoRaWAN") }}</h1>
+{% if not enabled %}
+  <div class="callout callout--info"><p>{{ _("The LoRaWAN track is not enabled on this environment yet.") }}</p></div>
+{% else %}
+  <p>{{ _("Register a LoRaWAN device to get its OTAA credentials, point a gateway at the platform, and see uplinks arrive on your dashboard alongside your Wi-Fi devices.") }}</p>
+  <table class="table">
+    <thead><tr><th>{{ _("Device") }}</th><th>DevEUI</th><th>AppKey</th></tr></thead>
+    <tbody>
+    {% for d in devices %}
+      <tr><td>{{ d.tb_device_name }}</td><td><code class="token">{{ d.dev_eui }}</code></td><td><code class="token">{{ d.app_key }}</code></td></tr>
+    {% else %}
+      <tr><td colspan="3">{{ _("No LoRa devices yet.") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <form method="post" action="/lora"><button class="btn btn--primary" type="submit">{{ _("Register a LoRa device") }}</button></form>
+  <h2>{{ _("Gateway") }}</h2>
+  <p class="helper">{{ _("Point your LoRaWAN gateway (Semtech UDP packet forwarder) at") }} <code class="token">{{ domain }}:1700/udp</code>, {{ _("EU868. Full steps in the") }} <a href="/docs/lorawan">{{ _("gateway guide") }}</a>.</p>
+{% endif %}
+{% endblock %}

@@ -12,7 +12,7 @@ services:
   postgres:
     <<: [*restart, *logging]
     image: postgres:${POSTGRES_VERSION}
-    profiles: [core]
+    profiles: [core, lora]
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -132,6 +132,10 @@ services:
       MQTT_PORT: ${MQTT_PORT}
       FLOWS_ENABLED: ${FLOWS_ENABLED}
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
+      LORA_ENABLED: ${LORA_ENABLED}
+      CHIRPSTACK_REST_URL: http://chirpstack-rest-api:8090
+      CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
+      LORA_MQTT_HOST: mosquitto
       DOCKER_HOST: tcp://socket-proxy:2375
       NODERED_VERSION: ${NODERED_VERSION}
       COMPOSE_PROJECT: chertiot
@@ -318,6 +322,10 @@ services:
       LAB_NOTEBOOK_IMAGE: chertiot/notebook:dev
       LAB_NETWORK: chertiot_default
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
+      LORA_ENABLED: ${LORA_ENABLED}
+      CHIRPSTACK_REST_URL: http://chirpstack-rest-api:8090
+      CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
+      LORA_MQTT_HOST: mosquitto
       TB_INTERNAL_URL: http://tb:8080
     volumes:
       - jupyterhub-data:/srv/jupyterhub
@@ -334,7 +342,90 @@ services:
     entrypoint: ["true"]
     restart: "no"
 
-  # lora profile is added in Phase 4.
+  # ---------------------------------------------------------------- lora (Phase 4, M4.1)
+  redis:
+    <<: [*restart, *logging]
+    image: redis:${REDIS_VERSION}
+    profiles: [lora]
+    command: ["redis-server", "--save", "300", "1"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  mosquitto:
+    <<: [*restart, *logging]
+    image: eclipse-mosquitto:${MOSQUITTO_VERSION}
+    profiles: [lora]
+    volumes:
+      - ./deploy/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto-data:/mosquitto/data
+
+  chirpstack:
+    <<: [*restart, *logging]
+    image: chirpstack/chirpstack:${CHIRPSTACK_VERSION}
+    profiles: [lora]
+    command: ["-c", "/etc/chirpstack"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
+    volumes:
+      - ./deploy/chirpstack/chirpstack.toml:/etc/chirpstack/chirpstack.toml:ro
+      - ./deploy/chirpstack/region_eu868.toml:/etc/chirpstack/region_eu868.toml:ro
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      mosquitto: { condition: service_started }
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080 && echo ok >&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+
+  chirpstack-rest-api:
+    <<: [*restart, *logging]
+    image: chirpstack/chirpstack-rest-api:${CHIRPSTACK_VERSION}
+    profiles: [lora]
+    command: ["--server", "chirpstack:8080", "--bind", "0.0.0.0:8090", "--insecure"]
+    depends_on:
+      chirpstack: { condition: service_started }
+
+  chirpstack-gateway-bridge:
+    <<: [*restart, *logging]
+    image: chirpstack/chirpstack-gateway-bridge:${CHIRPSTACK_GW_BRIDGE_VERSION}
+    profiles: [lora]
+    ports:
+      - "1700:1700/udp"   # Semtech UDP — real LoRa gateways point here
+    volumes:
+      - ./deploy/chirpstack/gateway-bridge.toml:/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml:ro
+    depends_on:
+      mosquitto: { condition: service_started }
+
+  # lora-bridge: forwards ChirpStack uplink events to each student's ThingsBoard device (M4.1).
+  lora-bridge:
+    <<: [*restart, *logging]
+    build:
+      context: .
+      dockerfile: portal/Dockerfile
+    image: chertiot/portal:dev
+    profiles: [lora]
+    command: ["/app/.venv/bin/python", "-m", "scripts.lora_bridge"]
+    environment:
+      PORTAL_SECRET_KEY: ${PORTAL_SECRET_KEY}
+      PORTAL_DATABASE_URL: ${PORTAL_DATABASE_URL}
+      TB_ADMIN_URL: http://tb:8080
+      TB_SYSADMIN_EMAIL: ${TB_SYSADMIN_EMAIL}
+      TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
+      LORA_MQTT_HOST: mosquitto
+    depends_on:
+      postgres: { condition: service_healthy }
+      mosquitto: { condition: service_started }
+
+  # lora profile is complete (Phase 4, M4.1).
 
 networks:
   default:
@@ -344,6 +435,8 @@ networks:
   spawner:
 
 volumes:
+  redis-data:
+  mosquitto-data:
   jupyterhub-data:
   alertmanager-data:
   postgres-data:

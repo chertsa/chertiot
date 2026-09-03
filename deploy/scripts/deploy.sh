@@ -82,6 +82,12 @@ $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && \
   docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 -e ENV -e DOMAIN -e KC_HOSTNAME -e KC_INTERNAL_URL -e KC_REALM -e KC_SECRET_THINGSBOARD -e KC_SECRET_PORTAL -e KC_SECRET_JUPYTERHUB -e KC_SECRET_GRAFANA -e KEYCLOAK_ADMIN -e KEYCLOAK_ADMIN_PASSWORD -e TB_PUBLIC_URL -e PORTAL_PUBLIC_URL -e MQTT_HOST -e MQTT_PORT -e SMTP_HOST -e SMTP_PORT -e SMTP_USER -e SMTP_PASSWORD -e SMTP_FROM -e SMTP_STARTTLS -e TB_SYSADMIN_EMAIL -e TB_SYSADMIN_PASSWORD portal /app/.venv/bin/python -m scripts.setup_tb_oauth2 && \
   docker compose -f docker-compose.yml exec -T -e KC_ADMIN_URL=http://keycloak:8080 -e TB_ADMIN_URL=http://tb:8080 -e ENV -e DOMAIN -e KC_HOSTNAME -e KC_INTERNAL_URL -e KC_REALM -e KC_SECRET_THINGSBOARD -e KC_SECRET_PORTAL -e KC_SECRET_JUPYTERHUB -e KC_SECRET_GRAFANA -e KEYCLOAK_ADMIN -e KEYCLOAK_ADMIN_PASSWORD -e TB_PUBLIC_URL -e PORTAL_PUBLIC_URL -e MQTT_HOST -e MQTT_PORT -e SMTP_HOST -e SMTP_PORT -e SMTP_USER -e SMTP_PASSWORD -e SMTP_FROM -e SMTP_STARTTLS -e TB_SYSADMIN_EMAIL -e TB_SYSADMIN_PASSWORD portal /app/.venv/bin/python -m scripts.setup_tb_mail"
 
+step "chirpstack bootstrap (if lora enabled)"
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" = true ] && docker compose -f docker-compose.yml exec -T -e CHIRPSTACK_REST_URL=http://chirpstack-rest-api:8090 -e PORTAL_DATABASE_URL portal /app/.venv/bin/python -m scripts.setup_chirpstack || echo 'lora disabled — skipping'"
+
+step "status page (Uptime Kuma)"
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && docker compose -f docker-compose.yml exec -T -e KUMA_URL=http://uptime-kuma:3001 -e KUMA_ADMIN -e KUMA_PASSWORD -e DOMAIN portal /app/.venv/bin/python -m scripts.setup_status_page || echo 'status-page setup skipped'"
+
 step "smoke: public endpoints"
 for url in "https://$DOMAIN/healthz" "https://app.$DOMAIN/login" "https://auth.$DOMAIN/realms/chertiot"; do
   printf '  %-46s ' "$url"; curl -s -o /dev/null -w '%{http_code}\n' --max-time 20 "$url" || true
