@@ -1,5 +1,4 @@
 # CHERT IoT — project memory
-Read PLAN.md. Current: post-launch. v1.0.0 live. Delivered since: Alertmanager email delivery VERIFIED on prod (test alert → inbox, 0 notify failures; secret file 644 in 700-dir for the non-root container) and full Arabic i18n (portal via Babel catalogs + RTL toggle, docs via mkdocs-static-i18n) — live on both environments. Phase 3: M3.1 Node-RED DONE (staging+prod: spawn, owner-only editor access, cross-user 403/anon 401 proven over the internet; idle culler active). M3.2 JupyterHub DONE (staging+prod: Keycloak login, capped spawns via socket proxy, chertiot.py fetches own telemetry with the student's own TB JWT from /internal/lab-token). M3.3 instructor console DONE (staging+prod deployed; live e2e: role gate 303/403, code creation, roster; suspend = Keycloak disable + TB flag). M3.4 DONE (staging+prod): threshold alerts as per-tenant rule chains — alarm FIRES on crossing (verified), email action works (TB system SMTP → SMTP2GO, testMail 200), https webhook; CSV/JSON export streams across paging windows, owner-scoped (404 for others). Note: 100k single-device seed hits the single-node in-memory-queue backpressure (~38k burst ceiling) — a lab-seeding limit, not an export defect; export itself verified across multiple 10k windows. GATE 3 tagged v1.5.0. TB upgrade drill when the next upstream tag lands. PRODUCTION LIVE at https://chertiot.com; staging at stage.chertiot.com. M2.3 done: nightly restic prod→staging (03:17 UTC, password escrowed on staging), restore drill PASSED in 260 s. Open: mail.chert.sa firewall blocks SMTP from the new droplets (owner fix or SMTP2GO creds); status-page wizard; 10-min human walkthrough; then v1.0.0. Deferred deliberate milestones: TB upgrade drill on next upstream tag; Phase 3. Staging: https://stage.chertiot.com on chertiotstagingserver2 (161.35.119.46); prod target chertiotserver2 (134.122.31.32). Repo public; images public on GHCR. Staging smoke: SSO, tenant-per-user, MQTTS 8883 via Caddy layer4, telemetry — all green over the internet. Next: prod smoke → backups (restic prod→staging SFTP planned) → restore drill → Gate 2. Last done: M1.3 (rate limits on auth endpoints, tenancy isolation + flood platform tests, CI stack job + nightly flood).
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
@@ -7,7 +6,7 @@ Read PLAN.md. Current: post-launch. v1.0.0 live. Delivered since: Alertmanager e
 - No secrets in git; .env only; .env.example current. Never invent creds — ask.
 - Tests green before a milestone is done. make lint test must pass at session end.
 - Staging before production, every time.
-- Pin every image/dependency. Upgrades are deliberate milestones.
+- Pin every image/dependency. Versions are FROZEN — no upgrade plan (owner ruling 2026-09-04).
 - TB API surprises → workaround in tb_client.py + note here + regression test.
 ## Commands
 make dev | test | e2e | lint | staging-deploy | prod-deploy

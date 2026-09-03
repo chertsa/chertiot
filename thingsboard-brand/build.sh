@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # CHERT IoT — ThingsBoard CE branded build (D2/D7).
 #   clone pinned upstream tag → apply patches/ in order → Maven build inside Docker → image chertiot/tb:<tag>-b<N>
+# TB is FROZEN at TB_VERSION (owner ruling 2026-09-04): this builds the branded image once; there is no upgrade path.
 # Usage: ./build.sh [--skip-clone] [--no-docker]     (env: TB_VERSION, BRAND_BUILD=N, JAVA_MEM=6g)
 # Needs ~8 GB RAM for the Maven/Angular build. Reproducible: no host Java required (build runs in maven:3.9-eclipse-temurin-17).
 set -euo pipefail

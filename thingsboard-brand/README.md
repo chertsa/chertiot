@@ -21,8 +21,3 @@ Apache-2.0 attribution stays: About/licence notices are untouched and every bran
 ```
 Needs Docker with ≥8 GB RAM and ~10 GB disk; ~20–60 min. `BUILD_NUMBER` bumps `-bN` when patches change for the same upstream tag.
 
-## Upgrade drill (every upstream bump, M2.1 acceptance)
-1. `TB_VERSION=<new> ./build.sh` — patches are applied with `git apply --check` first; a rejected hunk stops the build.
-2. Fix the rejected patch against the new sources (`cd upstream && git apply --reject ../patches/000N-*.patch`, edit, `git diff > ../patches/000N-*.patch`).
-3. Run the smoke test: `./smoke.sh chertiot/tb:<new>-b1` (branded strings present, stock strings absent).
-4. Bump `TB_VERSION` in `.env.example`, run the full local stack + e2e, commit as its own PR.
