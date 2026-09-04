@@ -1,6 +1,6 @@
 # CHERT IoT — Architecture, Open-Source Engines & User Journeys
 
-**Version:** v1.0.0 (launched 2026-09-01) · **Live:** <https://chertiot.com> · **Repo:** <https://github.com/chertsa/chertiot>
+**Version:** v1.6.0 (Phases 0–4 complete) · **Live:** <https://chertiot.com> · **Repo:** <https://github.com/chertsa/chertiot>
 
 CHERT IoT is a self-contained, multi-tenant IoT laboratory for students. The build philosophy (PLAN.md D1–D12): assemble proven open-source engines, write custom code only where no engine exists (the portal), integrate exclusively through public APIs, and keep every environment reproducible from this one repository.
 
@@ -16,29 +16,39 @@ flowchart TB
         ADM[Admin / instructor]
     end
 
-    subgraph Droplet["DigitalOcean droplet (Ubuntu 24.04 · Docker Compose 'core' profile)"]
+    subgraph Droplet["DigitalOcean droplet (Ubuntu 24.04 · Docker Compose · profiles core|flows|lab|lora)"]
         CADDY["Caddy + layer4<br/>TLS · HTTP routing · MQTTS 8883→1883"]
-        PORTAL["Portal (FastAPI)<br/>signup · devices · snippets"]
+        PORTAL["Portal (FastAPI)<br/>signup · devices · snippets · /teach · /lora"]
         KC["Keycloak 26<br/>identity · one login"]
-        TB["ThingsBoard CE 4.3 (branded)<br/>tenants · telemetry · dashboards · rules"]
-        PG[("PostgreSQL 16<br/>thingsboard · keycloak · portal")]
+        TB["ThingsBoard CE 4.3 (branded)<br/>tenants · telemetry · dashboards · rules · alarms"]
+        PG[("PostgreSQL 16<br/>thingsboard · keycloak · portal · chirpstack")]
         DOCS["docs (mkdocs → nginx)"]
-        MON["Prometheus · Grafana · Uptime Kuma<br/>node/cadvisor/postgres exporters"]
+        MON["Prometheus · Grafana · Uptime Kuma<br/>Alertmanager · node/cadvisor/postgres exporters"]
+        NR["Node-RED per student<br/>(spawned via socket-proxy)"]
+        JH["JupyterHub + DockerSpawner<br/>per-student notebooks"]
+        CS["ChirpStack + gateway-bridge<br/>Mosquitto · Redis · lora-bridge"]
     end
 
     EXT["SMTP2GO relay<br/>mail.smtp2go.com:2525"]
     BK[("restic repo on the staging droplet<br/>encrypted nightly backups")]
+    GW["LoRaWAN gateway / simulator"]
 
     ST -->|https chertiot.com| CADDY --> PORTAL
     ST -->|https app.*| CADDY --> TB
     ST -->|https auth.*| CADDY --> KC
     ST -->|https /docs| CADDY --> DOCS
+    ST -->|https flows.*| CADDY --> NR
+    ST -->|https lab.*| CADDY --> JH
     ADM -->|https grafana.* / status.*| CADDY --> MON
     DEV -->|MQTTS :8883 access-token auth| CADDY -->|plain 1883 inside the network| TB
+    GW -->|LoRaWAN uplink| CS -->|per-DevEUI telemetry, REST| TB
     PORTAL -->|REST only D10| TB
     PORTAL -->|OIDC + admin API| KC
+    PORTAL -->|gRPC provisioning| CS
+    PORTAL -->|docker socket-proxy| NR
     TB -->|OAuth2 client of| KC
-    PORTAL & TB & KC --> PG
+    JH -->|OIDC client of| KC
+    PORTAL & TB & KC & CS --> PG
     KC -->|verification mail| EXT
     Droplet -->|03:17 UTC cron| BK
 ```
@@ -49,9 +59,12 @@ Two identical environments run this stack: **production** `chertiotserver2` (134
 
 | Host | Backend | Purpose |
 |---|---|---|
-| `chertiot.com` | portal:8000 | signup, device pages, `/docs` (→ docs:80) |
+| `chertiot.com` | portal:8000 | signup, device pages, `/teach`, `/lora`, `/docs` (→ docs:80) |
 | `app.chertiot.com` | tb:8080 | ThingsBoard UI + REST + HTTP telemetry |
 | `auth.chertiot.com` | keycloak:8080 | login pages, OIDC endpoints |
+| `flows.chertiot.com` | nodered-&lt;uid&gt;:1880 | per-student Node-RED editor, gated by Caddy `forward_auth` → portal `/flows/auth` |
+| `lab.chertiot.com` | jupyterhub:8000 | JupyterHub notebooks (OIDC login) |
+| `lora.chertiot.com` | — | 302 redirect to `chertiot.com/lora` (ChirpStack's own UI stays internal) |
 | `status.chertiot.com` | uptime-kuma:3001 | public status page |
 | `grafana.chertiot.com` | grafana:3000 | admin metrics |
 | `:8883` (layer4 TLS) | tb:1883 | device MQTT — TLS terminates in Caddy, TB sees plain MQTT |
@@ -66,7 +79,7 @@ Two identical environments run this stack: **production** `chertiotserver2` (134
 |---|---|---|---|
 | **ThingsBoard CE 4.3.1.4** | Apache-2.0 | The IoT core: device connectivity (MQTT/HTTP), multi-tenancy, telemetry storage, dashboards, rule chains, alarms, REST API. One **tenant per student** (D4); quotas via tenant profiles. Runs as `tb-node` monolith, external Postgres, in-memory queue. Rebranded **from source** via a 4-patch series (logos, titles, palette, login attribution, email templates) — Apache attribution kept ("powered by ThingsBoard"). | `deploy/tb/tb-node.env`, `thingsboard-brand/` (patches, build.sh, smoke.sh), image `ghcr.io/chertsa/chertiot-tb` |
 | **Keycloak 26.7.2** | Apache-2.0 | Identity (D3): realm `chertiot`, one login for portal + ThingsBoard (+ Grafana/JupyterHub later). TB is an OAuth2 *client* of Keycloak; its login mapper auto-creates the student's tenant (`tenantNameStrategy=EMAIL` → TENANT_ADMIN). Sends verification mail. CHERT login theme (tokens, Arabic locale). | `portal/scripts/setup_keycloak.py` (source of truth), `keycloak/theme/`, `keycloak/realm/` (export artifact) |
-| **PostgreSQL 16.15** | PostgreSQL | Single instance, three databases: `thingsboard` (incl. telemetry timeseries), `keycloak`, `portal`. | compose `postgres` service, `deploy/postgres/init.sql` |
+| **PostgreSQL 16.15** | PostgreSQL | Single instance, four databases: `thingsboard` (incl. telemetry timeseries), `keycloak`, `portal`, and `chirpstack` (needs `pg_trgm` + `hstore` extensions, created in `init.sql`). | compose `postgres` service, `deploy/postgres/init.sql` |
 | **Caddy 2.11.4 + caddy-l4** | Apache-2.0 | Edge: automatic Let's Encrypt TLS for every vhost, HTTP reverse proxy, and **layer4 TLS termination for MQTTS 8883 → tb:1883** (D8) — devices need no certificates, only their access token. One image everywhere: `ghcr.io/chertsa/chertiot-caddy`. | `deploy/caddy/` (Dockerfile, Caddyfile.dev/.prod) |
 
 **Operations engines:**
@@ -74,12 +87,26 @@ Two identical environments run this stack: **production** `chertiotserver2` (134
 | Engine | License | Function | Where |
 |---|---|---|---|
 | **Prometheus v3.14** | Apache-2.0 | Scrapes TB, Keycloak, Caddy, portal, node/cadvisor/postgres exporters; 7 alert rules (service down, disk, RAM, cert expiry, backup age, PG connections, TB queue). | `monitoring/prometheus/` |
+| **Alertmanager v0.34** | Apache-2.0 | Routes Prometheus alerts to email via the SMTP2GO relay (password mounted from a runtime-secret file). | `monitoring/alertmanager/` |
 | **Grafana 13.1** | AGPL-3.0 | Admin-only dashboards over Prometheus (unmodified, self-hosted — AGPL obligations satisfied by publishing this repo). | compose `grafana`, `monitoring/grafana/` |
-| **Uptime Kuma 2.5** | MIT | Public status page + up/down alerting, fully self-hosted. | compose `uptime-kuma` |
+| **Uptime Kuma 1.23.17** | MIT | Public status page + up/down alerting, fully self-hosted (6 monitors, published page). Pinned to the 1.x line — the Python setup automation (`uptime-kuma-api`) does not support Kuma 2.x. | compose `uptime-kuma`, `portal/scripts/setup_status_page.py` |
 | **node-exporter · cAdvisor · postgres-exporter** | Apache-2.0 | Host, per-container and database metrics — the data behind capacity planning and the flood test. | compose services |
-| **restic 0.16** | BSD-2 | Encrypted nightly backups (03:17 UTC): `pg_dump` of all three DBs + `.env` + Caddy/Grafana/Kuma volumes → SFTP repo on the *other* droplet; password escrowed off-box. Restore drill proven: **260 s**. | `deploy/scripts/backup.sh`, `restore-drill.sh`, `deploy/runbooks/` |
+| **restic 0.16** | BSD-2 | Encrypted nightly backups (03:17 UTC): `pg_dump` of all four DBs + `.env` + Caddy/Grafana/Kuma volumes → SFTP repo on the *other* droplet; password escrowed off-box. Restore drill proven: **260 s**. | `deploy/scripts/backup.sh`, `restore-drill.sh`, `deploy/runbooks/` |
 | **Mailpit** (dev only) | MIT | Local mail catcher so e2e tests can click real verification links. Production uses the SMTP2GO relay. | `docker-compose.override.yml` |
 | **mkdocs-material** | MIT | Student docs (getting started ×4 tracks, MQTT guide, limits, privacy, fair use) built to static nginx at `/docs`. | `docs-site/` |
+
+**Student-workspace & LoRaWAN engines** (Phases 3–4):
+
+| Engine | License | Function | Where |
+|---|---|---|---|
+| **Node-RED 5.0.6** | Apache-2.0 | Per-student flow editor: the portal spawns one container per user via a locked-down docker socket-proxy (0.5 CPU / 256 MB / pids 256, own volume, `chertiot_flows` network); Caddy `forward_auth` isolates `/u/<id>/`; 30-min idle culler. | compose `nodered-image` + `socket-proxy`, portal `app/flows.py` |
+| **JupyterHub 5.5.1 + DockerSpawner 14** | BSD-3 | Per-student notebooks (1 CPU / 512 MB, 30-min idle-culler); OIDC login through the `jupyterhub` Keycloak client; notebooks receive the student's own TB JWT from the portal's `/internal/lab-token`; `chertiot.py` helper + example notebooks. | `lab/hub/`, `lab/notebook/`, compose `jupyterhub` |
+| **docker-socket-proxy v0.5.0** | GPL-3.0 | Least-privilege Docker API gateway (containers/images/volumes/networks only, no exec) — the only thing the portal uses to spawn Node-RED. | compose `socket-proxy` |
+| **ChirpStack 4.19.1** | MIT | LoRaWAN network server: the portal registers devices over its **gRPC** API (`chirpstack-api`; Login is gRPC-only, no REST). | compose `chirpstack`, portal `app/chirpstack.py`, `deploy/chirpstack/` |
+| **ChirpStack Gateway Bridge 4.1.2** | MIT | Translates gateway packet-forwarder traffic ↔ ChirpStack over MQTT. | compose `chirpstack-gateway-bridge` |
+| **Eclipse Mosquitto 2.0.22** | EPL-2.0 | MQTT broker between ChirpStack and the gateway bridge / `lora-bridge`. | compose `mosquitto`, `deploy/mosquitto/` |
+| **Redis 7.4.11** | BSD-3 | ChirpStack device-session and metrics store. | compose `redis` |
+| **lora-bridge** (custom) | — | Portal-side MQTT consumer: subscribes to ChirpStack uplink events (`application/+/device/+/event/up`) and forwards each to the owning student's TB device by DevEUI. | `portal/scripts/lora_bridge.py` |
 
 **Portal building blocks** (the one custom component, kept thin — D10):
 
@@ -89,7 +116,7 @@ Two identical environments run this stack: **production** `chertiotserver2` (134
 | **SQLAlchemy 2 + Alembic** | Portal DB: `portal_users` (Keycloak↔TB mapping, cohort, provisioning state), `class_codes`, `audit_log`; migrations run on container start |
 | **Authlib** | OIDC login against Keycloak (authorization-code flow) |
 | **httpx + tenacity + pydantic** | `tb_client.py` — the **only** ThingsBoard touchpoint: typed REST wrapper with JWT refresh and retry |
-| **paho-mqtt** (tests) | Real MQTT publishes in integration/e2e/flood tests |
+| **paho-mqtt** | Runtime dependency of `lora-bridge` (ChirpStack→TB forwarding); also real MQTT publishes in integration/e2e/flood tests |
 
 ---
 
@@ -174,22 +201,21 @@ Detail by step:
 6. **Dashboard**: the student owns a real ThingsBoard tenant — the starter "My devices" dashboard (auto-resolves every device) is theirs to edit; **Reset starter dashboard** re-imports the pristine template (D5) without touching devices or data.
 7. **Housekeeping**: rename device, **Issue new token** (old one dies instantly — for leaked tokens), delete device, quota display, docs at `/docs`.
 
-### 5.2 Instructor (current v1.0 surface; full console is Phase 3 / M3.3)
+### 5.2 Instructor (`/teach` console — M3.3, live)
 
-1. Requests a class code — created today via CLI (`make class-code CODE=CS101 COHORT=cs101-fall26 INSTRUCTOR=prof@uni.edu`), with expiry and max uses.
+1. An instructor account (role granted via `make grant-role`) opens **`/teach`**: self-service class-code creation (expiry, max uses) — no CLI needed.
 2. Students sign up with the code → tagged into the cohort; the code counts uses and expires.
-3. Phase 3 adds: self-service code management, roster (last-seen, device counts, message volume — never private data), reset/suspend, login-as for support (D6).
+3. The console shows the **roster** (last-seen, device counts, message volume — never private telemetry) and can **suspend** a student: Keycloak-disable (blocks new logins) plus a TB-side flag. Class-code creation via CLI (`make class-code …`) still works for scripting.
 
 ### 5.3 Operator / admin
 
 | Task | How |
 |---|---|
-| Deploy or upgrade an environment | `make staging-deploy` / `make prod-deploy` → `deploy/scripts/deploy.sh` (git pull on server → compose pull/build → health gate → idempotent Keycloak/TB bootstrap → smoke). Staging always first (D9) |
+| Deploy an environment | `make staging-deploy` / `make prod-deploy` → `deploy/scripts/deploy.sh` (git pull on server → compose pull/build → caddy re-create for Caddyfile changes → health gate → idempotent Keycloak/TB/ChirpStack/status-page bootstrap → smoke). Staging always first (D9) |
 | New server from zero | `deploy/scripts/bootstrap.sh` — hardening, UFW (22/80/443/8883), fail2ban, swap, Docker |
 | Watch the platform | Grafana (metrics), Prometheus alerts (email), Uptime Kuma public status |
 | Backups | nightly cron; restore with `deploy/scripts/restore-drill.sh` — drill on record: 260 s |
 | Back-office | Keycloak admin (`auth.…/admin`), TB sysadmin (all tenants), per `deploy/secrets.production-admin.env` |
-| Upgrade ThingsBoard | bump tag → `thingsboard-brand/build.sh` re-applies the patch series (`git apply --check` gates) → CI builds → staged rollout — a deliberate milestone, never a side effect |
 
 ### 5.4 The device's journey (what the firmware sees)
 
@@ -202,10 +228,15 @@ Connect `chertiot.com:8883` with TLS (public CA — no cert provisioning) → au
 | Gate | Proof |
 |---|---|
 | Every push | CI: lint + 24 unit/integration tests + **full compose stack** e2e (signup→mail→SSO→device→telemetry) + tenancy isolation, on clean runners |
-| Nightly | flood test (1000 msg/s attacker vs control tenant) |
+| Nightly | flood test (1000 msg/s attacker vs control tenant) — throttling asserted hard; control-device health is a soft-check on the shared runner (`FLOOD_STRICT_CONTROL=0`), strict on staging |
 | Images | branded TB & Caddy built and smoke-tested in CI, published to GHCR — never on a workstation |
-| Releases | `v0.9.0` = Gate 1 (local platform proven) · `v1.0.0` = Gate 2 (production live, human walkthrough, backups + 260 s restore drill) |
+| Releases | `v0.9.0` = Gate 1 (local platform proven) · `v1.0.0` = Gate 2 (production live, human walkthrough, backups + 260 s restore drill) · `v1.5.0` = Gate 3 (Phase 3: flows, lab, instructor console, alerts + export) · `v1.6.0` = Phase 4 LoRaWAN |
 
-## 7. What comes next (deferred by design — D12)
+## 7. Status & remaining scope
 
-Phase 3: Node-RED per-student containers, JupyterHub with a telemetry helper, instructor/admin console, alerts & CSV export. Phase 4: LoRaWAN via ChirpStack — **DONE** (register a device → gateway/simulated uplink → student dashboard). **All engine versions are frozen — no upgrade plan (owner ruling).** Backlog: CSRF tokens, session-cached TB JWTs. See `BACKLOG.md`.
+All planned phases are **complete and live on production + staging**:
+
+- **Phase 3** (`v1.5.0`): per-student Node-RED (`flows.*`), JupyterHub notebooks with a TB telemetry helper (`lab.*`), the `/teach` instructor console, and threshold alerts (per-tenant rule chains) with streamed CSV/JSON export.
+- **Phase 4** (`v1.6.0`): LoRaWAN via ChirpStack — register a device → gateway/simulated uplink → student dashboard, verified end-to-end.
+
+**All engine versions are frozen — there is no upgrade plan (owner ruling).** The branded ThingsBoard and layer4 Caddy images still build once from their pinned tags in CI. Remaining backlog is explicitly out-of-current-scope (D12): CSRF tokens on state-changing forms, session-cached TB JWTs, an optimized Keycloak image, X.509 device auth. See `BACKLOG.md`.
