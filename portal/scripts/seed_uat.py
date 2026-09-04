@@ -34,15 +34,24 @@ def main() -> int:
                 existing = kc.find_user_by_email(email)
                 if existing:
                     uid = existing["id"]
-                    kc._req("PUT", f"/users/{uid}", json={"emailVerified": True, "requiredActions": []})
-                    kc._req("PUT", f"/users/{uid}/reset-password",
-                            json={"type": "password", "value": password, "temporary": False})
+                    kc._req(
+                        "PUT", f"/users/{uid}", json={"emailVerified": True, "requiredActions": []}
+                    )
+                    kc._req(
+                        "PUT",
+                        f"/users/{uid}/reset-password",
+                        json={"type": "password", "value": password, "temporary": False},
+                    )
                 else:
                     try:
-                        uid = kc.create_user(email, password, first_name=acc.get("first_name", "UAT"))
+                        uid = kc.create_user(
+                            email, password, first_name=acc.get("first_name", "UAT")
+                        )
                     except KeycloakUserExistsError:
                         uid = kc.find_user_by_email(email)["id"]  # type: ignore[index]
-                    kc._req("PUT", f"/users/{uid}", json={"emailVerified": True, "requiredActions": []})
+                    kc._req(
+                        "PUT", f"/users/{uid}", json={"emailVerified": True, "requiredActions": []}
+                    )
 
                 user = db.scalar(select(PortalUser).where(PortalUser.email == email))
                 if user is None:
