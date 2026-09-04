@@ -380,11 +380,12 @@ services:
       redis: { condition: service_healthy }
       mosquitto: { condition: service_started }
     healthcheck:
-      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080 && echo ok >&3"]
-      interval: 15s
+      # chirpstack:8080 is gRPC (HTTP/2); a plain readiness TCP check on the port.
+      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/127.0.0.1/8080' || exit 1"]
+      interval: 30s
       timeout: 5s
-      retries: 20
-      start_period: 40s
+      retries: 10
+      start_period: 60s
 
 
   chirpstack-gateway-bridge:
@@ -407,6 +408,8 @@ services:
     image: chertiot/portal:dev
     profiles: [lora]
     command: ["/app/.venv/bin/python", "-m", "scripts.lora_bridge"]
+    healthcheck:
+      disable: true
     environment:
       PORTAL_SECRET_KEY: ${PORTAL_SECRET_KEY}
       PORTAL_DATABASE_URL: ${PORTAL_DATABASE_URL}
