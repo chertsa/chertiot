@@ -1,7 +1,8 @@
+# ChirpStack v4 — env vars are substituted as $NAME (no braces); passed in from compose.
 [logging]
   level="info"
 [postgresql]
-  dsn="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/chirpstack?sslmode=disable"
+  dsn="postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/chirpstack?sslmode=disable"
   max_open_connections=10
 [redis]
   servers=["redis://redis:6379/"]
@@ -10,11 +11,9 @@
   enabled_regions=["eu868"]
 [api]
   bind="0.0.0.0:8080"
-  secret="${CHIRPSTACK_API_SECRET}"
+  secret="$CHIRPSTACK_API_SECRET"
 [integration]
   enabled=["mqtt"]
   [integration.mqtt]
     server="tcp://mosquitto:1883/"
     json=true
-[gateway]
-  ca_cert=""
