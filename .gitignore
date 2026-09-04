@@ -13,6 +13,7 @@ __pycache__/
 deploy/**/*.key
 deploy/**/*.pem
 deploy/secrets.*.env
+deploy/uat-accounts.md
 htmlcov/
 secrets/alertmanager_smtp_password
 thingsboard-brand/build/
