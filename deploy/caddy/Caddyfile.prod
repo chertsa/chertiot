@@ -49,3 +49,10 @@ flows.{$DOMAIN} {
 lab.{$DOMAIN} {
 	reverse_proxy jupyterhub:8000
 }
+
+# LoRa: registration is a portal path (/lora); the subdomain only redirects there.
+# ChirpStack's own UI is internal admin tooling and is not publicly exposed.
+lora.{$DOMAIN} {
+	redir / https://{$DOMAIN}/lora 302
+	redir /* https://{$DOMAIN}/lora 302
+}
