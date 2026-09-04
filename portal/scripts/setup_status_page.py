@@ -1,5 +1,5 @@
-"""Configure Uptime Kuma fully via its socket.io API (M2.3 follow-up): admin account, a monitor
-for every public service, and a published public status page. Idempotent — safe to rerun.
+"""Configure Uptime Kuma via the maintained uptime-kuma-api client: admin (fresh setup), a monitor
+for every public service, and a published public status page. Idempotent.
 
     KUMA_URL=http://uptime-kuma:3001 KUMA_PASSWORD=... DOMAIN=chertiot.com \
         uv run python -m scripts.setup_status_page
@@ -9,14 +9,14 @@ from __future__ import annotations
 
 import os
 import sys
-import time
 
-import socketio
+from uptime_kuma_api import MonitorType, UptimeKumaApi
 
 KUMA = os.environ.get("KUMA_URL", "http://uptime-kuma:3001")
 USER = os.environ.get("KUMA_ADMIN", "chertiotadmin")
 PASSWORD = os.environ["KUMA_PASSWORD"]
 DOMAIN = os.environ["DOMAIN"]
+SLUG = "chert-iot"
 
 MONITORS = [
     ("Portal", f"https://{DOMAIN}/healthz"),
@@ -28,103 +28,47 @@ MONITORS = [
 ]
 
 
-def _call(sio: socketio.Client, event: str, *args: object, timeout: float = 20) -> object:
-    box: dict[str, object] = {}
-    done = {"v": False}
-
-    def cb(res: object) -> None:
-        box["res"] = res
-        done["v"] = True
-
-    sio.emit(event, *args, callback=cb)
-    end = time.time() + timeout
-    while not done["v"] and time.time() < end:
-        sio.sleep(0.1)
-    return box.get("res")
-
-
 def main() -> int:
-    sio = socketio.Client(reconnection=False)
-    ready = {"v": False}
-    sio.on("connect", lambda: ready.__setitem__("v", True))
-    # Kuma emits initial events; we don't need them.
-    for noisy in (
-        "monitorList",
-        "heartbeatList",
-        "importantHeartbeatList",
-        "avgPing",
-        "uptime",
-        "info",
-    ):
-        sio.on(noisy, lambda *a: None)
-    sio.connect(KUMA, transports=["websocket"], wait_timeout=20)
-    for _ in range(50):
-        if ready["v"]:
-            break
-        sio.sleep(0.1)
+    api = UptimeKumaApi(KUMA, timeout=30)
+    try:
+        if api.need_setup():
+            api.setup(USER, PASSWORD)
+            print("kuma: admin created")
+        api.login(USER, PASSWORD)
+        print("kuma: logged in")
 
-    need_setup = _call(sio, "needSetup")
-    if need_setup:
-        _call(sio, "setup", USER, PASSWORD)
-        print("kuma: admin created")
-    login = _call(sio, "login", {"username": USER, "password": PASSWORD, "token": ""})
-    if not isinstance(login, dict) or not login.get("ok"):
-        print(f"kuma login failed: {login}", file=sys.stderr)
-        return 1
-    print("kuma: logged in")
-
-    existing = _call(sio, "getMonitorList")
-    have = (
-        {m.get("name") for m in (existing or {}).values()} if isinstance(existing, dict) else set()
-    )
-    ids: list[int] = []
-    for name, url in MONITORS:
-        if name in have:
-            for mid, m in (existing or {}).items():  # type: ignore[union-attr]
-                if m.get("name") == name:
-                    ids.append(int(mid))
-            continue
-        res = _call(
-            sio,
-            "add",
-            {
-                "type": "http",
-                "name": name,
-                "url": url,
-                "method": "GET",
-                "interval": 60,
-                "retryInterval": 60,
-                "maxretries": 2,
-                "accepted_statuscodes": ["200-399"],
-                "ignoreTls": False,
-                "upsideDown": False,
-            },
-        )
-        if isinstance(res, dict) and res.get("ok"):
-            ids.append(int(res["monitorID"]))
+        have = {m["name"]: m["id"] for m in api.get_monitors()}
+        ids: list[int] = []
+        for name, url in MONITORS:
+            if name in have:
+                ids.append(have[name])
+                continue
+            res = api.add_monitor(
+                type=MonitorType.HTTP,
+                name=name,
+                url=url,
+                interval=60,
+                retryInterval=60,
+                maxretries=2,
+                accepted_statuscodes=["200-399"],
+            )
+            ids.append(res["monitorID"])
             print(f"kuma: monitor '{name}'")
-    time.sleep(1)
 
-    status = {
-        "slug": "chert-iot",
-        "title": "CHERT IoT status",
-        "description": "Live availability of the CHERT IoT platform.",
-        "theme": "auto",
-        "published": True,
-        "showTags": False,
-        "domainNameList": [f"status.{DOMAIN}"],
-        "footerText": "CHERT IoT",
-        "showPoweredBy": False,
-    }
-    save = _call(sio, "getStatusPage", "chert-iot")
-    if not (isinstance(save, dict) and save.get("ok")):
-        _call(sio, "addStatusPage", "CHERT IoT status", "chert-iot")
-        print("kuma: status page created")
-    public = [{"name": "Platform", "monitorList": [{"id": i} for i in ids]}]
-    _call(sio, "saveStatusPage", "chert-iot", status, [], public)
-    print(f"kuma: status page published with {len(ids)} monitors")
-    sio.disconnect()
-    return 0
+        pages = {p["slug"] for p in api.get_status_pages()}
+        if SLUG not in pages:
+            api.add_status_page(SLUG, "CHERT IoT status")
+            print("kuma: status page created")
+        api.save_status_page(
+            SLUG,
+            title="CHERT IoT status",
+            description="Live availability of the CHERT IoT platform.",
+            publicGroupList=[{"name": "Platform", "monitorList": [{"id": i} for i in ids]}],
+        )
+        print(f"kuma: status page published with {len(ids)} monitors")
+        return 0
+    finally:
+        api.disconnect()
 
 
 if __name__ == "__main__":

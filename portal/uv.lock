@@ -335,6 +335,7 @@ dependencies = [
     { name = "python-socketio" },
     { name = "sqlalchemy" },
     { name = "tenacity" },
+    { name = "uptime-kuma-api" },
     { name = "uvicorn", extra = ["standard"] },
     { name = "websocket-client" },
 ]
@@ -372,6 +373,7 @@ requires-dist = [
     { name = "python-socketio", specifier = "==5.16.4" },
     { name = "sqlalchemy", specifier = "==2.0.43" },
     { name = "tenacity", specifier = "==9.1.2" },
+    { name = "uptime-kuma-api", specifier = "==1.2.1" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.35.0" },
     { name = "websocket-client", specifier = "==1.9.2" },
 ]
@@ -1351,6 +1353,12 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/94/d9/463feca73ec119a135d90c9f40c0172b4758150b5ed442f0ca1e8fed807a/python_socketio-5.16.4-py3-none-any.whl", hash = "sha256:0eb9c7687e7fbf59e60d714fd62afba77dfaf8ef8a06a0bff05a86c351accc2f", size = 82098, upload-time = "2026-08-06T23:11:19.851Z" },
 ]
 
+[package.optional-dependencies]
+client = [
+    { name = "requests" },
+    { name = "websocket-client" },
+]
+
 [[package]]
 name = "pywin32"
 version = "312"
@@ -1593,6 +1601,16 @@ sdist = { url = "https://files.pythonhosted.org/packages/92/ff/5a28bdfd8c3ebec42
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e5/6d/b53b99a9f2766d095985947a5782f1702cabb129a34f7a802d7197af832f/tzdata-2026.3-py2.py3-none-any.whl", hash = "sha256:dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931", size = 348168, upload-time = "2026-07-10T08:50:36.46Z" },
 ]
+
+[[package]]
+name = "uptime-kuma-api"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+    { name = "python-socketio", extra = ["client"] },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/40/01/da3e682364231077b05417ffa32e11ef84deee2b6f4dd6ee740cf097df28/uptime_kuma_api-1.2.1.tar.gz", hash = "sha256:b59e659f7b32e96e512dcc23ccb6e1a1b08d2db1d72215c8ceb70e5421be67e1", size = 43631, upload-time = "2023-09-26T20:33:37.567Z" }
 
 [[package]]
 name = "urllib3"

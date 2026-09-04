@@ -25,6 +25,7 @@ dependencies = [
   "chirpstack-api==4.19.0",
   "grpcio==1.83.1",
   "paho-mqtt==2.1.0",
+  "uptime-kuma-api==1.2.1",
 ]
 
 [dependency-groups]
