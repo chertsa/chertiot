@@ -50,7 +50,7 @@ def main() -> int:
                 interval=60,
                 retryInterval=60,
                 maxretries=2,
-                accepted_statuscodes=["200-399"],
+                accepted_statuscodes=["200-299", "300-399"],
             )
             ids.append(res["monitorID"])
             print(f"kuma: monitor '{name}'")
