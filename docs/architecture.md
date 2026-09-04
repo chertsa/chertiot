@@ -135,19 +135,22 @@ chertiot/
 │   │   ├── provisioning.py               # idempotent tenant/dashboard/device provisioning
 │   │   ├── keycloak_admin.py             # service-account user management (no passwords held)
 │   │   ├── onboarding.py · student.py · snippets.py · ratelimit.py · auth.py
-│   │   ├── routers/  (home, signup, auth, devices)
+│   │   ├── flows.py · chirpstack.py · lora.py · alerts.py · export.py   # Phase 3/4
+│   │   ├── routers/  (home, signup, auth, devices, instructor, flows, lora, alerts, internal)
 │   │   ├── templates/ + static/          # Jinja2 + CHERT design tokens (§9/§10 verbatim)
-│   ├── scripts/                          # setup_keycloak, setup_tb_oauth2, rotate_tb_sysadmin,
-│   │                                     # provision_student, class_code, staging_smoke, exports
+│   ├── scripts/                          # setup_keycloak, setup_tb_oauth2, setup_tb_mail,
+│   │                                     # setup_chirpstack, setup_status_page, provision_student,
+│   │                                     # class_code, lora_bridge, lora_sim, seed_uat, exports
 │   ├── migrations/                       # Alembic
 │   └── tests/ (unit · integration · e2e) # 24 tests + 3 e2e incl. running real firmware
 ├── thingsboard-brand/                    # source-built rebrand: patches/ assets/ build.sh smoke.sh
 ├── templates-tb/                         # tenant profile (quotas, D4) + starter dashboard JSON (D5)
 ├── keycloak/                             # realm export artifact + CHERT login theme
 ├── firmware-examples/                    # esp32-arduino · esp32-micropython · rpi-python · browser-js
+├── lab/                                  # JupyterHub (hub/) + student notebook image (notebook/)
 ├── docs-site/                            # student documentation (mkdocs-material)
 ├── deploy/                               # bootstrap.sh (hardening) · deploy.sh · backup/restore ·
-│   ├── caddy/ · tb/ · postgres/ · runbooks/
+│   ├── caddy/ · tb/ · postgres/ · chirpstack/ · mosquitto/ · staging/ · runbooks/
 ├── monitoring/                           # prometheus.yml + alert rules + grafana provisioning
 ├── tests-platform/                       # tenancy isolation + flood/rate-limit tests
 └── .github/workflows/                    # ci (lint+unit, full-stack e2e+isolation) · nightly flood ·
