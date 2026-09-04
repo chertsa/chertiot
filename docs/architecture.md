@@ -208,4 +208,4 @@ Connect `chertiot.com:8883` with TLS (public CA — no cert provisioning) → au
 
 ## 7. What comes next (deferred by design — D12)
 
-Phase 3: Node-RED per-student containers, JupyterHub with a telemetry helper, instructor/admin console, alerts & CSV export. Phase 4: LoRaWAN via ChirpStack. **All engine versions are frozen — no upgrade plan (owner ruling).** Backlog: CSRF tokens, session-cached TB JWTs. See `BACKLOG.md`.
+Phase 3: Node-RED per-student containers, JupyterHub with a telemetry helper, instructor/admin console, alerts & CSV export. Phase 4: LoRaWAN via ChirpStack — **DONE** (register a device → gateway/simulated uplink → student dashboard). **All engine versions are frozen — no upgrade plan (owner ruling).** Backlog: CSRF tokens, session-cached TB JWTs. See `BACKLOG.md`.
