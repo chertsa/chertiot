@@ -379,13 +379,9 @@ services:
       postgres: { condition: service_healthy }
       redis: { condition: service_healthy }
       mosquitto: { condition: service_started }
+    # chirpstack image is minimal (no shell for a TCP check); it's a dependency-of-nothing-by-health.
     healthcheck:
-      # chirpstack:8080 is gRPC (HTTP/2); a plain readiness TCP check on the port.
-      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/127.0.0.1/8080' || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 10
-      start_period: 60s
+      disable: true
 
 
   chirpstack-gateway-bridge:
