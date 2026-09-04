@@ -69,7 +69,12 @@ $RUN "cd /srv/chertiot && deploy/scripts/write-runtime-secrets.sh"
 step "compose up (production file only, no dev override)"
 $RUN "cd /srv/chertiot && docker compose -f docker-compose.yml --profile core pull -q --ignore-buildable && docker compose -f docker-compose.yml --profile core up -d --build && docker compose -f docker-compose.yml --profile core ps --format '{{.Service}} {{.Status}}'"
 
-step "caddy reload (bind-mounted Caddyfile changes never trigger a recreate)"
+step "caddy: pick up Caddyfile changes"
+# The Caddyfile is a SINGLE-FILE bind mount. git pull rewrites the file with a new
+# inode, so the running container keeps serving the pre-pull content and `caddy reload`
+# just re-reads that stale inode. Force-recreate re-binds to the current file (a ~2s
+# blip on :80/:443/:8883, inside the deploy window), then reload confirms the new config.
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && docker compose -f docker-compose.yml up -d --force-recreate --no-deps caddy 2>&1 | tail -1"
 $RUN "cd /srv/chertiot && docker compose -f docker-compose.yml exec -T caddy caddy reload --config /etc/caddy/Caddyfile 2>&1 | tail -1 || true"
 
 step "wait for tb + keycloak + portal healthy (up to 10 min)"
