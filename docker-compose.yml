@@ -133,7 +133,7 @@ services:
       FLOWS_ENABLED: ${FLOWS_ENABLED}
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
       LORA_ENABLED: ${LORA_ENABLED}
-      CHIRPSTACK_REST_URL: http://chirpstack-rest-api:8090
+      CHIRPSTACK_GRPC: chirpstack:8080
       CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
       LORA_MQTT_HOST: mosquitto
       DOCKER_HOST: tcp://socket-proxy:2375
@@ -323,7 +323,7 @@ services:
       LAB_NETWORK: chertiot_default
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
       LORA_ENABLED: ${LORA_ENABLED}
-      CHIRPSTACK_REST_URL: http://chirpstack-rest-api:8090
+      CHIRPSTACK_GRPC: chirpstack:8080
       CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
       LORA_MQTT_HOST: mosquitto
       TB_INTERNAL_URL: http://tb:8080
@@ -386,13 +386,6 @@ services:
       retries: 20
       start_period: 40s
 
-  chirpstack-rest-api:
-    <<: [*restart, *logging]
-    image: chirpstack/chirpstack-rest-api:${CHIRPSTACK_REST_VERSION}
-    profiles: [lora]
-    command: ["--server", "chirpstack:8080", "--bind", "0.0.0.0:8090", "--insecure"]
-    depends_on:
-      chirpstack: { condition: service_started }
 
   chirpstack-gateway-bridge:
     <<: [*restart, *logging]

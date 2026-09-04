@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import sys
 
-from app.chirpstack import ChirpStack
+from app.chirpstack import ChirpStack, login_admin
 from app.db import session_factory
 from app.models import ClassCode  # noqa: F401  (ensure metadata import side effects)
 
@@ -30,13 +30,13 @@ def main() -> int:
         )
         db.commit()
         existing = _get_setting(db, "api_token")
-        admin_jwt = ChirpStack.login_admin()
+        admin_jwt = login_admin()
         cs = ChirpStack(admin_jwt)
         tenant_id = cs.ensure_tenant()
         cs.ensure_application(tenant_id)
         cs.ensure_device_profile(tenant_id)
         if not existing:
-            token = cs.ensure_api_token(tenant_id)
+            token = cs.create_admin_api_key()
             db.execute(
                 text(
                     "INSERT INTO lora_settings (key, value) VALUES ('api_token', :v) "

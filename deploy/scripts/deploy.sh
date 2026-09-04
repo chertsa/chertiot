@@ -86,7 +86,7 @@ step "ensure lora databases exist (init.sql only runs on a fresh volume)"
 $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" = true ] && docker compose -f docker-compose.yml exec -T postgres psql -U \$POSTGRES_USER -d postgres -tAc \"SELECT 1 FROM pg_database WHERE datname='chirpstack'\" | grep -q 1 || docker compose -f docker-compose.yml exec -T postgres psql -U \$POSTGRES_USER -d postgres -c 'CREATE DATABASE chirpstack' || true"
 
 step "chirpstack bootstrap (if lora enabled)"
-$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" = true ] && docker compose -f docker-compose.yml exec -T -e CHIRPSTACK_REST_URL=http://chirpstack-rest-api:8090 -e PORTAL_DATABASE_URL portal /app/.venv/bin/python -m scripts.setup_chirpstack || echo 'lora disabled — skipping'"
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" = true ] && docker compose -f docker-compose.yml exec -T -e CHIRPSTACK_GRPC=chirpstack:8080 -e PORTAL_DATABASE_URL portal /app/.venv/bin/python -m scripts.setup_chirpstack || echo 'lora disabled — skipping'"
 
 step "status page (Uptime Kuma)"
 $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && docker compose -f docker-compose.yml exec -T -e KUMA_URL=http://uptime-kuma:3001 -e KUMA_ADMIN -e KUMA_PASSWORD -e DOMAIN portal /app/.venv/bin/python -m scripts.setup_status_page || echo 'status-page setup skipped'"

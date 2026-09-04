@@ -22,6 +22,8 @@ dependencies = [
   "docker==7.2.0",
   "python-socketio==5.16.4",
   "websocket-client==1.9.2",
+  "chirpstack-api==4.19.0",
+  "grpcio==1.83.1",
 ]
 
 [dependency-groups]
@@ -53,6 +55,10 @@ plugins = ["pydantic.mypy"]
 
 [[tool.mypy.overrides]]
 module = "docker.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["grpc", "grpc.*", "chirpstack_api.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
