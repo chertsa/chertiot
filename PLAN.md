@@ -29,7 +29,7 @@
 | `flows` | Node-RED per-student containers (spawner; 0.5 CPU / 256 MB caps; Caddy forward-auth → Keycloak) |
 | `lab` | JupyterHub + DockerSpawner (OIDC → Keycloak; 1 CPU / 512 MB caps; idle-cull 30 min) |
 | `lora` | ChirpStack + internal Mosquitto + Redis (demand-driven, Phase 4) |
-| Backups | pgBackRest (nightly + WAL) + restic (encrypted off-site) |
+| Backups | restic (encrypted off-site: nightly pg_dump of all DBs + .env + Caddy/Grafana/Kuma volumes; restore drill proven). pgBackRest/WAL deferred → BACKLOG, not deployed. |
 
 Routing: chertiot.com→Portal · app.→TB · auth.→Keycloak · lab.→JupyterHub · flows.→Node-RED · status.→Uptime Kuma · 8883→TB MQTT.
 
@@ -41,7 +41,7 @@ chertiot/
 ├── deploy/            # bootstrap.sh (hardening/UFW/fail2ban), Caddyfile, backup/restore scripts, staging config, runbooks
 ├── portal/            # FastAPI: app/{main,config,models,tb_client,provisioning,routers/,templates/}, tests/{unit,integration,e2e}
 ├── keycloak/          # realm export (chertiot realm, clients: portal/tb/jupyterhub/grafana), theme (CHERT IoT login page)
-├── thingsboard-brand/ # patches/ assets/ build.sh (clone pinned tag → apply → build image) README (upgrade drill)
+├── thingsboard-brand/ # patches/ assets/ build.sh (clone pinned tag → apply → build image) README (build/rebrand notes)
 ├── templates-tb/      # starter dashboard JSON + tenant profile JSON (imported per student at signup)
 ├── firmware-examples/ # esp32-arduino/ esp32-micropython/ rpi-python/ browser-js/ (portal injects tokens)
 ├── docs-site/         # mkdocs-material: getting started, MQTT guide, dashboard how-to, privacy, fair use
@@ -52,7 +52,7 @@ chertiot/
 ## 4. CLAUDE.md SEED (create verbatim in M0.1, then keep updated)
 
 ```markdown
-# CHERT IoT — project memory
+# CHERT IoT — project memory   (historical M0.1 seed; the live CLAUDE.md at repo root is authoritative)
 Read PLAN.md. Current: Phase 0 / M0.1. Last done: —
 ## Hard rules
 - Decisions D1–D12 in PLAN.md are final.
@@ -61,7 +61,7 @@ Read PLAN.md. Current: Phase 0 / M0.1. Last done: —
 - No secrets in git; .env only; .env.example current. Never invent creds — ask.
 - Tests green before a milestone is done. make lint test must pass at session end.
 - Staging before production, every time.
-- Pin every image/dependency. Upgrades are deliberate milestones.
+- Pin every image/dependency. Versions are FROZEN — no upgrade plan (owner ruling).
 - TB API surprises → workaround in tb_client.py + note here + regression test.
 ## Commands
 make dev | test | e2e | lint | staging-deploy | prod-deploy
@@ -104,7 +104,7 @@ make dev | test | e2e | lint | staging-deploy | prod-deploy
 **🏁 GATE 1 (local):** signup→device→telemetry→dashboard, one login, isolation proven. Tag v0.9.0.
 
 ### PHASE 2 — Brand, deploy, LAUNCH
-**M2.1 TB branded build.** thingsboard-brand/build.sh: clone pinned tag → patches (logo/favicon/theme/titles/login "CHERT IoT — powered by ThingsBoard"/email templates) → image `chertiot/tb:<tag>-bN`. Upgrade drill on staging documented + executed once. CI smoke test: branded strings present post-build.
+**M2.1 TB branded build.** thingsboard-brand/build.sh: clone pinned tag → patches (logo/favicon/theme/titles/login "CHERT IoT — powered by ThingsBoard"/email templates) → image `chertiot/tb:<tag>-bN`. Built once from the pinned tag (versions frozen — no upgrade drill). CI smoke test: branded strings present post-build.
 ✔ Branded image replaces stock in compose; drill done.
 
 **M2.2 Staging deploy.** bootstrap.sh (user, SSH hardening, UFW 22/80/443/8883, fail2ban, Docker); staging.* domains, Let's Encrypt, layer4 MQTTS; full e2e suite against staging incl. real ESP32 over internet.
