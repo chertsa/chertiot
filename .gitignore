@@ -18,3 +18,4 @@ htmlcov/
 secrets/alertmanager_smtp_password
 thingsboard-brand/build/
 thingsboard-brand/upstream/
+docs/uat/UAT-CREDENTIALS.md
