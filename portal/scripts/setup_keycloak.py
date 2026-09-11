@@ -130,7 +130,9 @@ def ensure_client(c: httpx.Client, client_id: str, spec: dict[str, Any]) -> None
         "secret": spec["secret"],
         "redirectUris": spec["redirectUris"],
         "webOrigins": spec["webOrigins"],
-        "attributes": {"post.logout.redirect.uris": "+"},
+        # "+" allows the client's redirect URIs; also allow its root so a post-logout landing on
+        # the app home (e.g. portal → https://chertiot.com/) is accepted instead of "Invalid redirect uri".
+        "attributes": {"post.logout.redirect.uris": "+##" + spec["webOrigins"][0] + "/"},
     }
     existing = c.get(f"/{REALM}/clients", params={"clientId": client_id}).json()
     if existing:
