@@ -103,6 +103,9 @@ def spawn(user: PortalUser, mqtt_host: str, mqtt_port: int) -> str:
     try:
         c = dc.containers.get(name)
         if c.status != "running":
+            # Refresh settings.js so branding/config changes apply the next time it starts,
+            # without disrupting an already-running session.
+            _write_settings(dc, volume, user.id)
             c.start()
         return name
     except docker.errors.NotFound:
