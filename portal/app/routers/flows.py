@@ -79,6 +79,13 @@ def flows_auth(request: Request, db: Session = Depends(get_db)) -> Response:
         return Response(status_code=401)
     # Primary check: the path owner id Caddy captured from /u/<id>/ (reliable for WebSocket
     # upgrades, where X-Forwarded-Uri arrives empty). Fall back to the URI for plain requests.
+    import logging as _lg
+    _lg.getLogger("uvicorn.error").warning(
+        "FLOWS_AUTH_DEBUG method=%s upgrade=%s xfu=%r xflowsuid=%r user=%s",
+        request.method, request.headers.get("upgrade"),
+        request.headers.get("x-forwarded-uri"), request.headers.get("x-flows-uid"),
+        getattr(user, "id", None),
+    )
     requested_uid = request.headers.get("x-flows-uid", "")
     original = request.headers.get("x-forwarded-uri", "")
     uri_owns = original.startswith(f"/u/{user.id}/") or original == f"/u/{user.id}"
