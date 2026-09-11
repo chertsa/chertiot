@@ -44,6 +44,10 @@ flows.{$DOMAIN} {
 		forward_auth portal:8000 {
 			uri /flows/auth
 			header_up X-Flows-Uid {re.user.1}
+			# Strip upgrade semantics from the AUTH subrequest so /comms WebSocket upgrades
+			# still get authenticated (otherwise Caddy can't make the subrequest → 403).
+			header_up -Connection
+			header_up -Upgrade
 			copy_headers X-Flows-User
 		}
 		reverse_proxy nodered-{re.user.1}:1880
