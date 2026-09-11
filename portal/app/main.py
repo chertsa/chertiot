@@ -52,13 +52,18 @@ def _start_flows_culler() -> None:
     threading.Thread(target=loop, daemon=True, name="flows-culler").start()
 
 
+# The session cookie must reach subdomains (flows.<domain> forward_auth reads it), so outside
+# dev it is scoped to the parent domain (".chertiot.com") rather than host-only to the apex.
+_s = get_settings()
+_session_domain = f".{_s.domain}" if _s.env != "dev" else None
 app.add_middleware(
     SessionMiddleware,
-    secret_key=get_settings().portal_secret_key,
+    secret_key=_s.portal_secret_key,
     session_cookie="chertiot_session",
-    https_only=get_settings().env != "dev",
+    https_only=_s.env != "dev",
     same_site="lax",
     max_age=8 * 3600,
+    domain=_session_domain,
 )
 app.mount(
     "/static", StaticFiles(directory=str(Path(__file__).resolve().parent / "static")), name="static"

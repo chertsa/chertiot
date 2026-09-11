@@ -48,7 +48,7 @@ def oauth2_client_rep(existing_id: dict[str, Any] | None) -> dict[str, Any]:
         "scope": ["openid", "email", "profile"],
         "userNameAttributeName": "email",
         "clientAuthenticationMethod": "POST",
-        "loginButtonLabel": "Sign in with CHERT IoT",
+        "loginButtonLabel": "CHERT IoT",  # TB prepends "Sign in with " — don't double it
         "loginButtonIcon": None,
         "platforms": ["WEB"],
         "mapperConfig": {
