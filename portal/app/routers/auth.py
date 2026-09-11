@@ -85,6 +85,12 @@ def logout(request: Request) -> Any:
     params = f"post_logout_redirect_uri={s.portal_public_url}/&client_id=portal"
     if id_token:
         params += f"&id_token_hint={id_token}"
-    return RedirectResponse(
+    resp = RedirectResponse(
         f"{s.kc_issuer}/protocol/openid-connect/logout?{params}", status_code=303
     )
+    # SessionMiddleware clears the domain-scoped cookie; also expire any *host-only* leftover
+    # from a login made before the cookie became domain-scoped (otherwise it survives logout).
+    resp.delete_cookie("chertiot_session", path="/")
+    if s.env != "dev":
+        resp.delete_cookie("chertiot_session", path="/", domain=f".{s.domain}")
+    return resp
