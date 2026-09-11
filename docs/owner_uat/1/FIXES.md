@@ -26,3 +26,13 @@ on both servers.
 
 **Please re-run the browser walkthrough** with `docs/uat/UAT-CHECKLIST.md` — the three failing
 steps should now pass.
+
+---
+
+# Owner UAT round 2 — findings & fixes
+
+| # | Reported | Root cause | Fix | Verified |
+|---|----------|-----------|-----|----------|
+| 4 | **Sign-out did nothing → "Invalid redirect uri"; stayed logged in** | Keycloak clients had `post.logout.redirect.uris = "+"`, which only allows the registered redirect URIs (`/auth/callback`, `/auth/verified`). The portal logs out to the app root (`https://chertiot.com/`), which wasn't allowed → Keycloak refused and never cleared the session. | Add each client's own root to the allowed post-logout URIs (`"+##<origin>/"`) in `setup_keycloak.py`; re-ran the realm bootstrap on both servers. | End-to-end on prod: login → **logout lands at `https://chertiot.com/`, no error**, and the session is cleared (post-logout `/home` bounces to Keycloak re-auth). |
+
+Deploy: commits `04db495`/`24238e9`; staging verified then production; both green.
