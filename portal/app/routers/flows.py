@@ -81,10 +81,8 @@ def flows_auth(request: Request, db: Session = Depends(get_db)) -> Response:
     # upgrades, where X-Forwarded-Uri arrives empty). Fall back to the URI for plain requests.
     requested_uid = request.headers.get("x-flows-uid", "")
     original = request.headers.get("x-forwarded-uri", "")
-    owns = requested_uid == user.id or original.startswith(f"/u/{user.id}/") or (
-        original == f"/u/{user.id}"
-    )
-    if not owns:
+    uri_owns = original.startswith(f"/u/{user.id}/") or original == f"/u/{user.id}"
+    if requested_uid != user.id and not uri_owns:
         return Response(status_code=403)
     inst = db.get(FlowInstance, user.id)
     if inst:
