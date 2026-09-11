@@ -1,4 +1,5 @@
 site_name: CHERT IoT docs
+copyright: "CHERT IoT"
 site_url: https://chertiot.com/docs/
 site_description: Getting started with your CHERT IoT lab.
 use_directory_urls: true
@@ -43,3 +44,5 @@ plugins:
           site_name: "وثائق CHERT IoT"
 
 markdown_extensions: [admonition, attr_list, tables, pymdownx.superfences, pymdownx.tabbed, toc]
+extra:
+  generator: false

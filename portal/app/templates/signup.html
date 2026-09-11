@@ -34,7 +34,7 @@
     <label for="age_attested">{{ _("I am 18 or older, or I am signing up with a class code from my school, which has arranged consent for me.") }}</label>
     {% if errors.age_attested %}<p class="helper callout--error" style="grid-column: 1 / -1">{{ errors.age_attested }}</p>{% endif %}
   </div>
-  <p class="helper">{{ _("By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else.") }} <a href="/docs/fair-use">{{ _("Fair use") }}</a> · <a href="/docs/privacy">{{ _("Privacy") }}</a></p>
+  <p class="helper">{{ _("By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else.") }} <a href="/docs/policies/fair-use/">{{ _("Fair use") }}</a> · <a href="/docs/policies/privacy/">{{ _("Privacy") }}</a></p>
   <div><button class="btn btn--primary" type="submit">{{ _("Create account") }}</button></div>
 </form>
 {% endblock %}

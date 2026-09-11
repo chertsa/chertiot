@@ -41,7 +41,13 @@ module.exports = {{
     uiPort: 1880,
     // The editor is protected by the platform login at the proxy; no second password here.
     adminAuth: null,
-    editorTheme: {{ page: {{ title: 'CHERT IoT flows' }}, tours: false }},
+    editorTheme: {{
+        page: {{ title: 'CHERT Node' }},
+        header: {{ title: 'CHERT Node', url: 'https://chertiot.com', image: null }},
+        palette: {{ }},
+        menu: {{ 'menu-item-node-red-version': false }},
+        tours: false,
+    }},
     functionGlobalContext: {{}},
     logging: {{ console: {{ level: 'info' }} }},
 }};
