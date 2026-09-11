@@ -75,10 +75,16 @@ def flows_auth(request: Request, db: Session = Depends(get_db)) -> Response:
     /u/<id>/ path.
     This is the whole isolation story for the editors — no cookie, wrong user, no access."""
     user = load_user(request, db)
-    original = request.headers.get("x-forwarded-uri", "")
     if user is None:
         return Response(status_code=401)
-    if not original.startswith(f"/u/{user.id}/") and original != f"/u/{user.id}":
+    # Primary check: the path owner id Caddy captured from /u/<id>/ (reliable for WebSocket
+    # upgrades, where X-Forwarded-Uri arrives empty). Fall back to the URI for plain requests.
+    requested_uid = request.headers.get("x-flows-uid", "")
+    original = request.headers.get("x-forwarded-uri", "")
+    owns = requested_uid == user.id or original.startswith(f"/u/{user.id}/") or (
+        original == f"/u/{user.id}"
+    )
+    if not owns:
         return Response(status_code=403)
     inst = db.get(FlowInstance, user.id)
     if inst:

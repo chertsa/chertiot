@@ -39,8 +39,11 @@ grafana.{$DOMAIN} {
 flows.{$DOMAIN} {
 	@editor path_regexp user ^/u/([0-9a-f-]+)(/.*)?$
 	handle @editor {
+		# Pass the path's owner id explicitly: WebSocket upgrade requests (Node-RED /comms)
+		# reach forward_auth with an empty X-Forwarded-Uri, so the auth check must not rely on it.
 		forward_auth portal:8000 {
 			uri /flows/auth
+			header_up X-Flows-Uid {re.user.1}
 			copy_headers X-Flows-User
 		}
 		reverse_proxy nodered-{re.user.1}:1880
