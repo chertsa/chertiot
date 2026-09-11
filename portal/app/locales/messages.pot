@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-04 02:44+0300\n"
+"POT-Creation-Date: 2026-09-11 08:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:85
+#: app/main.py:90
 msgid "The lab is busy right now"
 msgstr ""
 
-#: app/main.py:87
+#: app/main.py:92
 msgid ""
 "A backend service did not answer in time. Nothing was lost — wait a "
 "minute and try again."
@@ -135,23 +135,6 @@ msgstr ""
 #: app/templates/signup.html:2 app/templates/signup.html:4
 #: app/templates/signup.html:38
 msgid "Create account"
-msgstr ""
-
-#: app/templates/base.html:30
-msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
-msgstr ""
-
-#: app/templates/base.html:30 app/templates/signup.html:37
-msgid "Privacy"
-msgstr ""
-
-#: app/templates/base.html:30 app/templates/signup.html:37
-msgid "Fair use"
-msgstr ""
-
-#: app/templates/base.html:30 app/templates/devices.html:9
-#: app/templates/teach/roster.html:7
-msgid "Status"
 msgstr ""
 
 #: app/templates/check_email.html:2 app/templates/check_email.html:4
@@ -281,6 +264,10 @@ msgstr ""
 
 #: app/templates/devices.html:6
 msgid "devices used."
+msgstr ""
+
+#: app/templates/devices.html:9 app/templates/teach/roster.html:7
+msgid "Status"
 msgstr ""
 
 #: app/templates/devices.html:9
@@ -505,6 +492,14 @@ msgid ""
 "By creating an account you agree to the fair-use policy. We store your "
 "email, your devices' telemetry (90 days) and an audit log (30 days) — "
 "nothing else."
+msgstr ""
+
+#: app/templates/signup.html:37
+msgid "Fair use"
+msgstr ""
+
+#: app/templates/signup.html:37
+msgid "Privacy"
 msgstr ""
 
 #: app/templates/verified.html:2 app/templates/verified.html:4

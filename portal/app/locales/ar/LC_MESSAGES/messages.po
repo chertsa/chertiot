@@ -7,24 +7,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-04 02:44+0300\n"
+"POT-Creation-Date: 2026-09-11 08:35+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
 "Language-Team: ar <LL@li.org>\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:85
+#: app/main.py:90
 msgid "The lab is busy right now"
 msgstr "المختبر مشغول حاليًا"
 
-#: app/main.py:87
-msgid "A backend service did not answer in time. Nothing was lost — wait a minute and try again."
-msgstr "لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول مجددًا."
+#: app/main.py:92
+msgid ""
+"A backend service did not answer in time. Nothing was lost — wait a "
+"minute and try again."
+msgstr ""
+"لم تستجب إحدى الخدمات في الوقت المناسب. لم يُفقد شيء — انتظر دقيقة وحاول "
+"مجددًا."
 
 #: app/routers/signup.py:57
 msgid "Enter a valid email address."
@@ -55,14 +60,17 @@ msgid "My lab"
 msgstr "مختبري"
 
 #: app/templates/alerts.html:6
-msgid "When a reading crosses your threshold, an alarm appears on your dashboard — and optionally an email or webhook fires."
-msgstr "عندما تتجاوز قراءةٌ عتبتك يظهر إنذار على لوحتك — ويمكن أيضًا إرسال بريد أو نداء webhook."
+msgid ""
+"When a reading crosses your threshold, an alarm appears on your dashboard"
+" — and optionally an email or webhook fires."
+msgstr ""
+"عندما تتجاوز قراءةٌ عتبتك يظهر إنذار على لوحتك — ويمكن أيضًا إرسال بريد "
+"أو نداء webhook."
 
 #: app/templates/alerts.html:8 app/templates/alerts.html:24
 #: app/templates/devices.html:9 app/templates/lora.html:11
-#, fuzzy
 msgid "Device"
-msgstr "أجهزتي"
+msgstr "جهاز"
 
 #: app/templates/alerts.html:8 app/templates/alerts.html:27
 msgid "Condition"
@@ -73,24 +81,20 @@ msgid "Action"
 msgstr "الإجراء"
 
 #: app/templates/alerts.html:15
-#, fuzzy
 msgid "Delete"
-msgstr "أجهزتي"
+msgstr "حذف"
 
 #: app/templates/alerts.html:18
-#, fuzzy
 msgid "No alert rules yet."
-msgstr "أجهزتي"
+msgstr "لا توجد قواعد تنبيه بعد."
 
 #: app/templates/alerts.html:22
-#, fuzzy
 msgid "New alert"
-msgstr "الاسم الجديد"
+msgstr "تنبيه جديد"
 
 #: app/templates/alerts.html:26
-#, fuzzy
 msgid "Telemetry key"
-msgstr "موضوع القياسات"
+msgstr "مفتاح القياس"
 
 #: app/templates/alerts.html:29
 msgid "Threshold"
@@ -101,7 +105,6 @@ msgid "alarm"
 msgstr "إنذار"
 
 #: app/templates/alerts.html:31
-#, fuzzy
 msgid "email"
 msgstr "البريد الإلكتروني"
 
@@ -118,9 +121,8 @@ msgid "(for email/webhook)"
 msgstr "(للبريد/webhook)"
 
 #: app/templates/alerts.html:33
-#, fuzzy
 msgid "Create alert"
-msgstr "إنشاء حساب"
+msgstr "إنشاء تنبيه"
 
 #: app/templates/base.html:19 app/templates/teach/console.html:2
 #: app/templates/teach/console.html:5 app/templates/teach/roster.html:4
@@ -140,23 +142,6 @@ msgstr "تسجيل الدخول"
 #: app/templates/signup.html:38
 msgid "Create account"
 msgstr "إنشاء حساب"
-
-#: app/templates/base.html:30
-msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
-msgstr "‏CHERT IoT — يعمل بواسطة ThingsBoard وKeycloak ومصادر مفتوحة."
-
-#: app/templates/base.html:30 app/templates/signup.html:37
-msgid "Privacy"
-msgstr "الخصوصية"
-
-#: app/templates/base.html:30 app/templates/signup.html:37
-msgid "Fair use"
-msgstr "الاستخدام العادل"
-
-#: app/templates/base.html:30 app/templates/devices.html:9
-#: app/templates/teach/roster.html:7
-msgid "Status"
-msgstr "الحالة"
 
 #: app/templates/check_email.html:2 app/templates/check_email.html:4
 msgid "Check your email"
@@ -224,13 +209,16 @@ msgid "Starter code"
 msgstr "الكود الجاهز"
 
 #: app/templates/device.html:18
-msgid "Your token and the broker address are already filled in. Download the file for your board, add your Wi-Fi details, flash it."
-msgstr "رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات شبكتك، ثم حمّله."
+msgid ""
+"Your token and the broker address are already filled in. Download the "
+"file for your board, add your Wi-Fi details, flash it."
+msgstr ""
+"رمزك وعنوان الوسيط معبآن مسبقًا. نزّل الملف الخاص بلوحتك، أضف بيانات "
+"شبكتك، ثم حمّله."
 
 #: app/templates/device.html:26
-#, fuzzy
 msgid "Export"
-msgstr "ينتهي"
+msgstr "تصدير"
 
 #: app/templates/device.html:27
 msgid "Download 24h CSV"
@@ -261,8 +249,12 @@ msgid "Revoke token"
 msgstr "إبطال الرمز"
 
 #: app/templates/device.html:38
-msgid "Lost or leaked the token? Issue a new one. Devices using the old token disconnect."
-msgstr "فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم ستنفصل."
+msgid ""
+"Lost or leaked the token? Issue a new one. Devices using the old token "
+"disconnect."
+msgstr ""
+"فقدت الرمز أو تسرّب؟ أصدر رمزًا جديدًا. الأجهزة التي تستخدم الرمز القديم "
+"ستنفصل."
 
 #: app/templates/device.html:39
 msgid "Issue new token"
@@ -273,18 +265,20 @@ msgid "Delete this device and all its data?"
 msgstr "حذف هذا الجهاز وكل بياناته؟"
 
 #: app/templates/device.html:42 app/templates/device.html:44
-#, fuzzy
 msgid "Delete device"
-msgstr "أجهزتي"
+msgstr "حذف الجهاز"
 
 #: app/templates/device.html:43
 msgid "Removes the device and its telemetry. This cannot be undone."
 msgstr "يحذف الجهاز وقياساته. لا يمكن التراجع عن ذلك."
 
 #: app/templates/devices.html:6
-#, fuzzy
 msgid "devices used."
-msgstr "أجهزتي"
+msgstr "من الأجهزة مستخدمة."
+
+#: app/templates/devices.html:9 app/templates/teach/roster.html:7
+msgid "Status"
+msgstr "الحالة"
 
 #: app/templates/devices.html:9
 msgid "Last seen"
@@ -295,14 +289,12 @@ msgid "Never"
 msgstr "أبدًا"
 
 #: app/templates/devices.html:18
-#, fuzzy
 msgid "No devices yet."
-msgstr "أجهزتي"
+msgstr "لا توجد أجهزة بعد."
 
 #: app/templates/devices.html:22 app/templates/devices.html:25
-#, fuzzy
 msgid "Add device"
-msgstr "أجهزتي"
+msgstr "إضافة جهاز"
 
 #: app/templates/devices.html:24
 msgid "Device name"
@@ -322,8 +314,14 @@ msgid "Node-RED flows are not enabled on this environment yet."
 msgstr "تدفقات Node-RED غير مفعّلة في هذه البيئة بعد."
 
 #: app/templates/flows.html:9
-msgid "Your own Node-RED editor: wire your device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard credentials are pre-injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN."
-msgstr "محرر Node-RED الخاص بك: اربط بيانات أجهزتك بالمنطق واللوحات والنداءات الخارجية — دون برمجة. بيانات اعتماد ThingsBoard محقونة مسبقًا كـ TB_MQTT_HOST وTB_MQTT_PORT وTB_ACCESS_TOKEN."
+msgid ""
+"Your own Node-RED editor: wire your device data to logic, dashboards and "
+"outgoing calls — no code required. Your ThingsBoard credentials are pre-"
+"injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN."
+msgstr ""
+"محرر Node-RED الخاص بك: اربط بيانات أجهزتك بالمنطق واللوحات والنداءات "
+"الخارجية — دون برمجة. بيانات اعتماد ThingsBoard محقونة مسبقًا كـ "
+"TB_MQTT_HOST وTB_MQTT_PORT وTB_ACCESS_TOKEN."
 
 #: app/templates/flows.html:11
 msgid "Open the editor"
@@ -334,13 +332,14 @@ msgid "Stop my instance"
 msgstr "إيقاف نسختي"
 
 #: app/templates/flows.html:13
-msgid "Instances stop automatically after 30 minutes without use; your flows are kept."
+msgid ""
+"Instances stop automatically after 30 minutes without use; your flows are"
+" kept."
 msgstr "تتوقف النسخ تلقائيًا بعد 30 دقيقة دون استخدام؛ تدفقاتك محفوظة."
 
 #: app/templates/flows.html:15
-#, fuzzy
 msgid "Start my Node-RED"
-msgstr "الكود الجاهز"
+msgstr "تشغيل Node-RED"
 
 #: app/templates/flows.html:16
 msgid "Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you."
@@ -376,15 +375,21 @@ msgid "Getting started"
 msgstr "البدء"
 
 #: app/templates/home.html:13
-msgid "Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes."
-msgstr "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من عشر دقائق."
+msgid ""
+"Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
+"ten minutes."
+msgstr ""
+"حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من "
+"عشر دقائق."
 
 #: app/templates/home.html:15
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
 #: app/templates/home.html:16
-msgid "Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay."
+msgid ""
+"Edited your dashboard into a corner? Restore the starter layout. Your "
+"devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
 #: app/templates/home.html:17
@@ -412,26 +417,34 @@ msgid "Your own IoT lab, live in ten minutes."
 msgstr "مختبرك الخاص لإنترنت الأشياء، جاهز خلال عشر دقائق."
 
 #: app/templates/index.html:6
-msgid "Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage."
-msgstr "أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
+msgid ""
+"Create an account, flash the starter code onto an ESP32, and watch your "
+"sensor data arrive on a dashboard that is yours alone. No servers to run,"
+" no cloud accounts to manage."
+msgstr ""
+"أنشئ حسابًا، وحمِّل الكود الجاهز على ESP32، وشاهد بيانات مستشعرك تصل إلى "
+"لوحة تحكم خاصة بك وحدك. لا خوادم تديرها ولا حسابات سحابية."
 
 #: app/templates/index.html:7
 msgid "Read the getting-started guide"
 msgstr "اقرأ دليل البدء"
 
 #: app/templates/lora.html:7
-#, fuzzy
 msgid "The LoRaWAN track is not enabled on this environment yet."
-msgstr "تدفقات Node-RED غير مفعّلة في هذه البيئة بعد."
+msgstr "مسار LoRaWAN غير مُفعّل في هذه البيئة بعد."
 
 #: app/templates/lora.html:9
-msgid "Register a LoRaWAN device to get its OTAA credentials, point a gateway at the platform, and see uplinks arrive on your dashboard alongside your Wi-Fi devices."
-msgstr "سجّل جهاز LoRaWAN للحصول على بيانات اعتماد OTAA، ووجّه بوابة إلى المنصّة، وشاهد الرسائل الصاعدة تصل إلى لوحتك بجانب أجهزة الواي‑فاي."
+msgid ""
+"Register a LoRaWAN device to get its OTAA credentials, point a gateway at"
+" the platform, and see uplinks arrive on your dashboard alongside your "
+"Wi-Fi devices."
+msgstr ""
+"سجّل جهاز LoRaWAN للحصول على بيانات اعتماد OTAA، ووجّه بوابة إلى المنصّة،"
+" وشاهد الرسائل الصاعدة تصل إلى لوحتك بجانب أجهزة الواي‑فاي."
 
 #: app/templates/lora.html:16
-#, fuzzy
 msgid "No LoRa devices yet."
-msgstr "أجهزتي"
+msgstr "لا توجد أجهزة LoRa بعد."
 
 #: app/templates/lora.html:20
 msgid "Register a LoRa device"
@@ -482,16 +495,34 @@ msgid "Class code"
 msgstr "رمز الصف"
 
 #: app/templates/signup.html:29
-msgid "Your instructor gives you this. Without it you join the open community lab."
+msgid ""
+"Your instructor gives you this. Without it you join the open community "
+"lab."
 msgstr "يعطيك مدرّسك هذا الرمز. بدونه تنضم إلى المختبر المجتمعي المفتوح."
 
 #: app/templates/signup.html:34
-msgid "I am 18 or older, or I am signing up with a class code from my school, which has arranged consent for me."
+msgid ""
+"I am 18 or older, or I am signing up with a class code from my school, "
+"which has arranged consent for me."
 msgstr "عمري 18 عامًا أو أكثر، أو أسجّل برمز صف من مدرستي التي رتّبت الموافقة لي."
 
 #: app/templates/signup.html:37
-msgid "By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else."
-msgstr "بإنشائك حسابًا فأنت توافق على سياسة الاستخدام العادل. نخزّن بريدك الإلكتروني وقياسات أجهزتك (90 يومًا) وسجل التدقيق (30 يومًا) — لا شيء غير ذلك."
+msgid ""
+"By creating an account you agree to the fair-use policy. We store your "
+"email, your devices' telemetry (90 days) and an audit log (30 days) — "
+"nothing else."
+msgstr ""
+"بإنشائك حسابًا فأنت توافق على سياسة الاستخدام العادل. نخزّن بريدك "
+"الإلكتروني وقياسات أجهزتك (90 يومًا) وسجل التدقيق (30 يومًا) — لا شيء غير"
+" ذلك."
+
+#: app/templates/signup.html:37
+msgid "Fair use"
+msgstr "الاستخدام العادل"
+
+#: app/templates/signup.html:37
+msgid "Privacy"
+msgstr "الخصوصية"
 
 #: app/templates/verified.html:2 app/templates/verified.html:4
 msgid "Email verified"
@@ -502,9 +533,8 @@ msgid "Your account is active. Sign in to open your lab."
 msgstr "حسابك مفعّل. سجّل الدخول لفتح مختبرك."
 
 #: app/templates/teach/console.html:6
-#, fuzzy
 msgid "Class codes"
-msgstr "رمز الصف"
+msgstr "رموز الصفوف"
 
 #: app/templates/teach/console.html:8
 msgid "Code"
@@ -535,19 +565,16 @@ msgid "inactive"
 msgstr "معطّل"
 
 #: app/templates/teach/console.html:20
-#, fuzzy
 msgid "No class codes yet."
-msgstr "رمز الصف"
+msgstr "لا توجد رموز صفوف بعد."
 
 #: app/templates/teach/console.html:24
-#, fuzzy
 msgid "New class code"
-msgstr "رمز الصف"
+msgstr "رمز صف جديد"
 
 #: app/templates/teach/console.html:26
-#, fuzzy
 msgid "Cohort name"
-msgstr "الاسم الأول"
+msgstr "اسم المجموعة"
 
 #: app/templates/teach/console.html:27
 msgid "Maximum students"
@@ -558,28 +585,24 @@ msgid "Valid for (days)"
 msgstr "صالح لمدة (أيام)"
 
 #: app/templates/teach/console.html:29
-#, fuzzy
 msgid "Create code"
-msgstr "إنشاء حساب"
+msgstr "إنشاء رمز"
 
 #: app/templates/teach/roster.html:7
 msgid "Student"
 msgstr "الطالب"
 
 #: app/templates/teach/roster.html:7
-#, fuzzy
 msgid "Devices"
-msgstr "أجهزتي"
+msgstr "الأجهزة"
 
 #: app/templates/teach/roster.html:7
-#, fuzzy
 msgid "Device last seen"
-msgstr "آخر ظهور"
+msgstr "آخر ظهور للجهاز"
 
 #: app/templates/teach/roster.html:7
-#, fuzzy
 msgid "Last sign-in"
-msgstr "آخر ظهور"
+msgstr "آخر تسجيل دخول"
 
 #: app/templates/teach/roster.html:12
 msgid "suspended"
@@ -597,6 +620,12 @@ msgstr "إيقاف"
 msgid "No students in this cohort yet."
 msgstr "لا طلاب في هذه الدفعة بعد."
 
-#~ msgid "Live charts for every device you own. Opens ThingsBoard with the same sign-in."
+#~ msgid ""
+#~ "Live charts for every device you "
+#~ "own. Opens ThingsBoard with the same "
+#~ "sign-in."
 #~ msgstr "رسوم مباشرة لكل جهاز تملكه. يفتح ThingsBoard بنفس تسجيل الدخول."
+
+#~ msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
+#~ msgstr "‏CHERT IoT — يعمل بواسطة ThingsBoard وKeycloak ومصادر مفتوحة."
 
