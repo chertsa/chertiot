@@ -35,4 +35,9 @@ steps should now pass.
 |---|----------|-----------|-----|----------|
 | 4 | **Sign-out did nothing → "Invalid redirect uri"; stayed logged in** | Keycloak clients had `post.logout.redirect.uris = "+"`, which only allows the registered redirect URIs (`/auth/callback`, `/auth/verified`). The portal logs out to the app root (`https://chertiot.com/`), which wasn't allowed → Keycloak refused and never cleared the session. | Add each client's own root to the allowed post-logout URIs (`"+##<origin>/"`) in `setup_keycloak.py`; re-ran the realm bootstrap on both servers. | End-to-end on prod: login → **logout lands at `https://chertiot.com/`, no error**, and the session is cleared (post-logout `/home` bounces to Keycloak re-auth). |
 
-Deploy: commits `04db495`/`24238e9`; staging verified then production; both green.
+| 4b | **Sign-out redirected to home but stayed logged in (no error)** | The session cookie had become domain-scoped (`.chertiot.com`); a browser that logged in *before* that change still held a **host-only** `chertiot_session`. Logout cleared only the domain cookie, so the host-only leftover survived → still logged in. | Expire the session cookie in **both** scopes (host-only + `.chertiot.com`) on logout. Keycloak SSO is also terminated via `id_token_hint` (already in place). | Reproduced the two-cookie state and confirmed on prod: after logout **no session cookie survives** and **KC SSO is terminated** (next login shows the KC form, no silent re-auth). |
+
+Deploy: commits `04db495`/`24238e9`/`876ea87`; staging verified then production; both green.
+
+> **If your browser is still stuck logged in:** click Sign out once more — the new logout clears the
+> leftover cookie. (Or clear cookies for chertiot.com once.)
