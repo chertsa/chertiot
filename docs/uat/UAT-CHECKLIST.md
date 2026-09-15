@@ -18,6 +18,7 @@ tick each row as **Pass / Fail** and note anything odd. Logins and URLs are in t
 | 0.3 | From the portal, open **My dashboard** (ThingsBoard) | Opens ThingsBoard **without a second login** (SSO) | ☐ |
 | 0.4 | Confirm tenant identity in ThingsBoard | You are **Tenant Admin of your own tenant** (only your devices visible) | ☐ |
 | 0.5 | Sign out, sign back in | Clean logout and re-login; no error loop | ☐ |
+| 0.6 | Click **Sign out** | Lands on the logged-out home (no "invalid redirect uri"); you are **actually logged out** — reopening /home asks you to sign in again | ☐ |
 
 ## 1. Signup & verification (real flow)
 
@@ -107,7 +108,8 @@ tick each row as **Pass / Fail** and note anything odd. Logins and URLs are in t
 | # | Step | Expected | Result |
 |---|------|----------|--------|
 | 10.1 | Open `/docs/` | Getting-started + guides render | ☐ |
-| 10.2 | Toggle **Arabic** (portal + `/docs/ar/`) | UI switches to Arabic, right-to-left layout | ☐ |
+| 10.2 | Toggle **Arabic**, then visit home, **/devices, /alerts, /flows, /lora, /teach** | Every page switches to Arabic, right-to-left layout — no page stuck in English (device names/tokens stay Latin, which is correct) | ☐ |
+| 10.2b | Docs in Arabic (`/docs/ar/`) | Docs render in Arabic | ☐ |
 | 10.3 | Open <https://status.chertiot.com/status/chert-iot> | Public status page shows the monitors up | ☐ |
 | 10.4 | Open the **privacy** and **fair-use** pages | Both load, plain-language content | ☐ |
 
