@@ -62,6 +62,15 @@ def ensure_student_profile(sysadmin: TbClient, settings: Settings | None = None)
     the Keycloak login mapper get the quotas too)."""
     spec = student_profile_spec(settings)
     existing = sysadmin.find_tenant_profile(spec.name)
+    # Idempotent: every save of this (default) profile broadcasts a tenant-profile-update that
+    # reinitializes the rule-engine actors of EVERY tenant using it. Re-saving it on each login
+    # churns the rule engine (and can wedge telemetry). Skip the save when our intended config is
+    # already live (TB returns a superset of defaults, so compare only the fields we set).
+    if existing and existing.default:
+        live = existing.profile_data.get("configuration", {})
+        want = spec.profile_data.get("configuration", {})
+        if all(live.get(k) == v for k, v in want.items()):
+            return existing
     if existing:
         spec.id = existing.id
         spec.created_time = existing.created_time
