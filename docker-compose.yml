@@ -193,7 +193,7 @@ services:
       TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
       DEMO_TENANT_EMAIL: ${DEMO_TENANT_EMAIL:-major.student@chertiot.com}
       DEMO_INTERVAL: ${DEMO_INTERVAL:-15}
-    depends_on: [tb]
+    # No depends_on: the sim retries its own connections, so the `demo` profile can start alone.
 
   # ---------------------------------------------------------------- monitoring (admin-only)
   alertmanager:
