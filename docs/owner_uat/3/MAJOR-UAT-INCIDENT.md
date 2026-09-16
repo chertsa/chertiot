@@ -62,3 +62,23 @@ alarm CRUD, flows editor, LoRa registration, docs, status, isolation).
 
 I've **paused** to avoid adding more load. I can proceed with **(1)** autonomously (non-destructive)
 on your go, and escalate to (2)/(3) only if needed.
+
+---
+
+## ✅ RESOLVED (2026-09-16)
+
+**Exact root cause:** the tenant profile template set **`maxDPStorageDays: 90`**. In ThingsBoard
+this is a **stored-data-points cap**, *not* a retention setting (retention is
+`defaultStorageTtlDays`, correctly 90 days). So TB disabled DB storage for any tenant after **90
+data points** — telemetry was accepted (HTTP 200) but dropped at the *Save Timeseries* rule node
+with `RuntimeException: DB storage writes are disabled due to API limits!`. Captured via the
+rule-node debug event; confirmed in `api_usage_state` (`storageDataPointsLimit=90`, count `360`).
+
+**Fix:** `maxDPStorageDays → 0` (unlimited, matching TB's Default profile) in
+`templates-tb/tenant-profile-student.json`; live profile updated via API. Retention stays 90 days
+via `defaultStorageTtlDays`. Also made `ensure_student_profile` idempotent so provisioning no longer
+re-saves the profile on every login (which had churned the rule engine and masked the cause).
+
+**Verified:** all previously-stuck tenants (major.student, uat.student1, fresh.probe) recovered;
+telemetry persists and stays stable across logins; 96 points/device of demo history seeded and read
+back. Dashboards now render live charts.
