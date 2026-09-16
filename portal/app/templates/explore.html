@@ -20,13 +20,13 @@
       {% if it.href %}
         <a class="card" href="{{ it.href }}" {% if it.access in ['open','admin','lora'] %}target="_blank" rel="noopener"{% endif %}>
           <div class="card__title">{{ it.name }} <span class="tag tag--{{ it.access }}">{{ {'open':_('Open'),'admin':_('SSO/Admin'),'lora':_('via /lora'),'internal':_('Internal'),'dev':_('Dev only')}[it.access] }}</span></div>
-          <div class="card__meta">v{{ it.ver }} · {{ it.lic }}</div>
+          <div class="card__meta">{% if it.ver not in ["app","—"] %}v{% endif %}{{ it.ver }} · {{ it.lic }}</div>
           <div class="card__desc">{{ it.hint }}</div>
         </a>
       {% else %}
         <div class="card card--static">
           <div class="card__title">{{ it.name }} <span class="tag tag--{{ it.access }}">{{ {'open':_('Open'),'admin':_('SSO/Admin'),'lora':_('via /lora'),'internal':_('Internal'),'dev':_('Dev only')}[it.access] }}</span></div>
-          <div class="card__meta">v{{ it.ver }} · {{ it.lic }}</div>
+          <div class="card__meta">{% if it.ver not in ["app","—"] %}v{% endif %}{{ it.ver }} · {{ it.lic }}</div>
           <div class="card__desc">{{ it.hint }}</div>
         </div>
       {% endif %}
