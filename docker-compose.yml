@@ -180,6 +180,21 @@ services:
       timeout: 5s
       retries: 5
 
+  # Live demo simulator (opt-in `demo` profile): streams moving telemetry to a demo tenant so
+  # dashboards keep updating and alarms fire. Never run against real student tenants.
+  demo-simulator:
+    <<: [*restart, *logging]
+    image: chertiot/portal:dev
+    profiles: [demo]
+    command: ["/app/.venv/bin/python", "-m", "scripts.demo_sim"]
+    environment:
+      TB_ADMIN_URL: http://tb:8080
+      TB_SYSADMIN_EMAIL: ${TB_SYSADMIN_EMAIL}
+      TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
+      DEMO_TENANT_EMAIL: ${DEMO_TENANT_EMAIL:-major.student@chertiot.com}
+      DEMO_INTERVAL: ${DEMO_INTERVAL:-15}
+    depends_on: [tb]
+
   # ---------------------------------------------------------------- monitoring (admin-only)
   alertmanager:
     <<: [*restart, *logging]
