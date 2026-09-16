@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Explore the lab — CHERT IoT{% endblock %}
+{% block content %}
+<p class="overline">{{ _("Open-source systems") }}</p>
+<h1>{{ _("Explore the lab") }}</h1>
+<p class="helper">{{ _("CHERT IoT is built from proven open-source engines, integrated into one lab. Here is every system that powers it — open it, or learn what it does. Internal services run only on the private network and are shown so you understand the full stack.") }}</p>
+
+<p class="helper" style="margin-top:.5rem">
+  <span class="tag tag--open">{{ _("Open") }}</span> {{ _("live student access") }} &nbsp;
+  <span class="tag tag--admin">{{ _("SSO/Admin") }}</span> &nbsp;
+  <span class="tag tag--lora">{{ _("via /lora") }}</span> &nbsp;
+  <span class="tag tag--internal">{{ _("Internal") }}</span> {{ _("private network") }} &nbsp;
+  <span class="tag tag--dev">{{ _("Dev only") }}</span>
+</p>
+
+{% for g in groups %}
+  <h2>{{ g.group }}</h2>
+  <div class="grid-cards">
+    {% for it in g.items %}
+      {% if it.href %}
+        <a class="card" href="{{ it.href }}" {% if it.access in ['open','admin','lora'] %}target="_blank" rel="noopener"{% endif %}>
+          <div class="card__title">{{ it.name }} <span class="tag tag--{{ it.access }}">{{ {'open':_('Open'),'admin':_('SSO/Admin'),'lora':_('via /lora'),'internal':_('Internal'),'dev':_('Dev only')}[it.access] }}</span></div>
+          <div class="card__meta">v{{ it.ver }} · {{ it.lic }}</div>
+          <div class="card__desc">{{ it.hint }}</div>
+        </a>
+      {% else %}
+        <div class="card card--static">
+          <div class="card__title">{{ it.name }} <span class="tag tag--{{ it.access }}">{{ {'open':_('Open'),'admin':_('SSO/Admin'),'lora':_('via /lora'),'internal':_('Internal'),'dev':_('Dev only')}[it.access] }}</span></div>
+          <div class="card__meta">v{{ it.ver }} · {{ it.lic }}</div>
+          <div class="card__desc">{{ it.hint }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}
+
+<p class="helper" style="margin-top:1rem">{{ total }} {{ _("systems · see the full map in the docs.") }} <a href="/docs/">{{ _("Docs") }}</a></p>
+{% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-11 08:35+0300\n"
+"POT-Creation-Date: 2026-09-16 06:26+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -159,7 +159,7 @@ msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
 
-#: app/templates/check_email.html:6 app/templates/home.html:20
+#: app/templates/check_email.html:6 app/templates/home.html:23
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
@@ -304,6 +304,66 @@ msgstr "اسم الجهاز"
 msgid "Back to start"
 msgstr "العودة إلى البداية"
 
+#: app/templates/explore.html:4
+msgid "Open-source systems"
+msgstr "أنظمة مفتوحة المصدر"
+
+#: app/templates/explore.html:5 app/templates/home.html:15
+msgid "Explore the lab"
+msgstr "استكشف المختبر"
+
+#: app/templates/explore.html:6
+msgid ""
+"CHERT IoT is built from proven open-source engines, integrated into one "
+"lab. Here is every system that powers it — open it, or learn what it "
+"does. Internal services run only on the private network and are shown so "
+"you understand the full stack."
+msgstr ""
+"بُني CHERT IoT من محركات مفتوحة المصدر مُجرّبة ومدمجة في مختبر واحد. هذه "
+"كل الأنظمة التي تشغّله — افتحها أو تعرّف على وظيفتها. الخدمات الداخلية "
+"تعمل على الشبكة الخاصة فقط، ونعرضها لتفهم المنظومة كاملة."
+
+#: app/templates/explore.html:9 app/templates/explore.html:22
+#: app/templates/explore.html:28
+msgid "Open"
+msgstr "مفتوح"
+
+#: app/templates/explore.html:9
+msgid "live student access"
+msgstr "وصول مباشر للطالب"
+
+#: app/templates/explore.html:10 app/templates/explore.html:22
+#: app/templates/explore.html:28
+msgid "SSO/Admin"
+msgstr "دخول موحّد/إدارة"
+
+#: app/templates/explore.html:11 app/templates/explore.html:22
+#: app/templates/explore.html:28
+msgid "via /lora"
+msgstr "عبر ‎/lora"
+
+#: app/templates/explore.html:12 app/templates/explore.html:22
+#: app/templates/explore.html:28
+msgid "Internal"
+msgstr "داخلي"
+
+#: app/templates/explore.html:12
+msgid "private network"
+msgstr "شبكة خاصة"
+
+#: app/templates/explore.html:13 app/templates/explore.html:22
+#: app/templates/explore.html:28
+msgid "Dev only"
+msgstr "تطوير فقط"
+
+#: app/templates/explore.html:37
+msgid "systems · see the full map in the docs."
+msgstr "نظامًا · راجع الخريطة الكاملة في الوثائق."
+
+#: app/templates/explore.html:37
+msgid "Docs"
+msgstr "الوثائق"
+
 #: app/templates/flows.html:2 app/templates/flows.html:5
 #: app/templates/home.html:10
 msgid "Flows"
@@ -371,10 +431,20 @@ msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
 msgstr "بريد أو webhook أو إنذار على اللوحة عند تجاوز قراءةٍ عتبتك."
 
 #: app/templates/home.html:13
+msgid "Lab (notebooks)"
+msgstr "المختبر (الدفاتر)"
+
+#: app/templates/home.html:13
+msgid ""
+"Analyse your telemetry in a Python notebook — pandas &amp; matplotlib, "
+"pre-wired to your data."
+msgstr "حلّل قياساتك في دفتر بايثون — pandas وmatplotlib، موصولة مسبقًا ببياناتك."
+
+#: app/templates/home.html:14
 msgid "Getting started"
 msgstr "البدء"
 
-#: app/templates/home.html:13
+#: app/templates/home.html:14
 msgid ""
 "Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
 "ten minutes."
@@ -383,28 +453,42 @@ msgstr ""
 "عشر دقائق."
 
 #: app/templates/home.html:15
+msgid ""
+"Every open-source engine that powers CHERT IoT — open it or learn what it"
+" does."
+msgstr "كل محرك مفتوح المصدر يشغّل CHERT IoT — افتحه أو تعرّف على وظيفته."
+
+#: app/templates/home.html:16
+msgid "System status"
+msgstr "حالة النظام"
+
+#: app/templates/home.html:16
+msgid "Live up/down status of every public service."
+msgstr "حالة تشغيل/توقف مباشرة لكل خدمة عامة."
+
+#: app/templates/home.html:18
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: app/templates/home.html:16
+#: app/templates/home.html:19
 msgid ""
 "Edited your dashboard into a corner? Restore the starter layout. Your "
 "devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
-#: app/templates/home.html:17
+#: app/templates/home.html:20
 msgid "Reset starter dashboard"
 msgstr "إعادة ضبط لوحة التحكم الأساسية"
 
-#: app/templates/home.html:19
+#: app/templates/home.html:22
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
 
-#: app/templates/home.html:22
+#: app/templates/home.html:25
 msgid "Setting up your lab…"
 msgstr "جارٍ إعداد مختبرك…"
 
-#: app/templates/home.html:23
+#: app/templates/home.html:26
 msgid "Set up now"
 msgstr "الإعداد الآن"
 
