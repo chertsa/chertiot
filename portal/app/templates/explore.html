@@ -16,7 +16,7 @@
 {% for g in groups %}
   <h2>{{ g.group }}</h2>
   <div class="grid-cards">
-    {% for it in g.items %}
+    {% for it in g["items"] %}
       {% if it.href %}
         <a class="card" href="{{ it.href }}" {% if it.access in ['open','admin','lora'] %}target="_blank" rel="noopener"{% endif %}>
           <div class="card__title">{{ it.name }} <span class="tag tag--{{ it.access }}">{{ {'open':_('Open'),'admin':_('SSO/Admin'),'lora':_('via /lora'),'internal':_('Internal'),'dev':_('Dev only')}[it.access] }}</span></div>
