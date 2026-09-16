@@ -27,7 +27,7 @@
       "maxREExecutions": 0,
       "maxJSExecutions": 0,
       "maxTbelExecutions": 0,
-      "maxDPStorageDays": 90,
+      "maxDPStorageDays": 0,
       "maxRuleNodeExecutionsPerMessage": 50,
       "maxDebugModeDurationMinutes": 15,
       "maxEmails": 50,
