@@ -138,6 +138,7 @@ services:
       LORA_MQTT_HOST: mosquitto
       DOCKER_HOST: tcp://socket-proxy:2375
       NODERED_VERSION: ${NODERED_VERSION}
+      NODERED_IMAGE: ${NODERED_IMAGE}
       COMPOSE_PROJECT: chertiot
       TB_SYSADMIN_EMAIL: ${TB_SYSADMIN_EMAIL}
       TB_SYSADMIN_PASSWORD: ${TB_SYSADMIN_PASSWORD}
@@ -326,9 +327,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks: [spawner]
 
-  # Warms the Node-RED image so the first student spawn is fast.
+  # Warms the branded Node-RED image (Arabic default, nodered-brand/) so first student spawn is fast.
   nodered-image:
-    image: nodered/node-red:${NODERED_VERSION}
+    image: ${NODERED_IMAGE}
     profiles: [flows]
     entrypoint: ["true"]
     restart: "no"

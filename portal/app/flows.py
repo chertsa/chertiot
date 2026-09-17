@@ -28,7 +28,11 @@ from app.tb_client import Device
 
 log = logging.getLogger(__name__)
 
-NODERED_IMAGE = f"nodered/node-red:{os.environ.get('NODERED_VERSION', '5.0.6')}"
+# Branded Node-RED (Arabic ar-AR default + label, LTR-only; built by images.yml, nodered-brand/).
+# Falls back to upstream only if NODERED_IMAGE is unset (dev without the branded image pulled).
+NODERED_IMAGE = os.environ.get(
+    "NODERED_IMAGE", f"nodered/node-red:{os.environ.get('NODERED_VERSION', '5.0.6')}"
+)
 PROJECT = os.environ.get("COMPOSE_PROJECT", "chertiot")
 FLOWS_NETWORK = f"{PROJECT}_flows"
 IDLE_STOP = timedelta(minutes=30)

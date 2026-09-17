@@ -2,6 +2,7 @@ name: images
 # Reproducible platform images, built in CI and pushed to GHCR (never on a workstation):
 #  - chertiot/caddy:<ver>-l4       (xcaddy: layer4 + replace-response)
 #  - chertiot/tb:<ver>-bN          (ThingsBoard CE + brand patch series, thingsboard-brand/build.sh)
+#  - chertiot/nodered:<ver>-bN     (Node-RED + Arabic ar-AR default, LTR-only, nodered-brand/Dockerfile)
 on:
   workflow_dispatch:
   push:
@@ -23,6 +24,20 @@ jobs:
           VER=$(grep ^CADDY_VERSION= .env.example | cut -d= -f2)
           docker tag chertiot/caddy:${VER}-l4 ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
           docker push ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
+  nodered:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      - run: python3 nodered-brand/validate_catalogs.py   # parity + protected-token + LTR gate
+      - run: |
+          VER=$(grep ^NODERED_VERSION= .env.example | cut -d= -f2)
+          BN=$(cat nodered-brand/BUILD_NUMBER)
+          IMG=ghcr.io/${{ github.repository_owner }}/chertiot-nodered:${VER}-b${BN}
+          docker build --build-arg NODERED_VERSION=${VER} -t "$IMG" nodered-brand/
+          docker push "$IMG"
   thingsboard:
     runs-on: ubuntu-latest
     timeout-minutes: 120
