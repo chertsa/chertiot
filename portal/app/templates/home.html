@@ -7,7 +7,7 @@
     <h1>{{ _("My lab") }}</h1>
   </div>
   {% if user.provisioning_state == 'provisioned' %}
-  <a class="btn btn--primary btn--sm" href="{{ dashboard_url }}" target="_blank" rel="noopener">{{ _("Open full dashboard") }} ↗</a>
+  <a class="btn btn--primary btn--sm" href="/dashboard/open" target="_blank" rel="noopener">{{ _("Open full dashboard") }} ↗</a>
   {% endif %}
 </div>
 

@@ -1,5 +1,5 @@
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import httpx
 from fastapi import APIRouter, Depends, Request
@@ -9,9 +9,13 @@ from sqlalchemy.orm import Session
 from app.auth import optional_user
 from app.config import get_settings
 from app.db import get_db
+from app.i18n import locale_of
 from app.onboarding import ensure_provisioned
 from app.student import as_student, load_user
 from app.templating import templates
+
+# Portal locale → ThingsBoard UI locale. TB reads user.additionalInfo.lang first when authenticated.
+_TB_LOCALE = {"ar": "ar_AE", "en": "en_US"}
 
 router = APIRouter()
 
@@ -66,16 +70,36 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
     user = load_user(request, db)
     if user is None:
         return RedirectResponse("/login", status_code=303)
+    # "Open full dashboard" goes through /dashboard/open so TB opens in the portal's language.
+    return templates.TemplateResponse(request, "home.html", {"user": user})
+
+
+@router.get("/dashboard/open")
+def open_dashboard(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Set the student's ThingsBoard UI language to match the portal, then SSO into their dashboard.
+    TB reads user.additionalInfo.lang first, so the console opens in the portal language."""
+    user = load_user(request, db)
+    if user is None:
+        return RedirectResponse("/login", status_code=303)
     s = get_settings()
+    tb_lang = _TB_LOCALE.get(locale_of(request), "en_US")
+    dash_path = "/dashboards"
+    if user.provisioning_state == "provisioned" and user.tb_user_id:
+        try:
+            with as_student(user) as (_sysadmin, student):
+                me = student._get(f"/user/{user.tb_user_id}")  # noqa: SLF001
+                cur = (me.get("additionalInfo") or {}).get("lang") if isinstance(me, dict) else None
+                if isinstance(me, dict) and cur != tb_lang:
+                    me.setdefault("additionalInfo", {})["lang"] = tb_lang
+                    student._post("/user", me)  # noqa: SLF001
+                dash = student.find_dashboard("My devices")
+                if dash and dash.id:
+                    dash_path = f"/dashboards/{dash.id.id}"
+        except Exception:  # noqa: BLE001,S110 - never block opening the dashboard
+            pass
     sso = _sso_authorization_url(s)
-    # Point at the dashboards list (no per-request TB call here); SSO carries the student in.
-    ctx = {
-        "user": user,
-        "dashboard_url": (
-            f"{sso}?prevUri=%2Fdashboards" if sso else f"{s.tb_public_url}/dashboards"
-        ),
-    }
-    return templates.TemplateResponse(request, "home.html", ctx)
+    url = f"{sso}?prevUri={quote(dash_path, safe='')}" if sso else f"{s.tb_public_url}{dash_path}"
+    return RedirectResponse(url, status_code=303)
 
 
 @router.get("/home/panel")
