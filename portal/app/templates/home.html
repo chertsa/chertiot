@@ -1,12 +1,90 @@
 {% extends "base.html" %}
 {% block title %}My lab — CHERT IoT{% endblock %}
 {% block content %}
-<p class="overline">{{ user.cohort }}</p>
-<h1>{{ _("My lab") }}</h1>
+<div class="dash-head">
+  <div>
+    <p class="overline">{{ user.cohort }}</p>
+    <h1>{{ _("My lab") }}</h1>
+  </div>
+  {% if user.provisioning_state == 'provisioned' %}
+  <a class="btn btn--primary btn--sm" href="{{ dashboard_url }}" target="_blank" rel="noopener">{{ _("Open full dashboard") }} ↗</a>
+  {% endif %}
+</div>
+
 {% if user.provisioning_state == 'provisioned' %}
+  <!-- KPI tiles -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi__value">{{ device_count }}{% if max_devices %}<span class="kpi__sub">/{{ max_devices }}</span>{% endif %}</div>
+      <div class="kpi__label">{{ _("Devices") }}</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">{{ online_count }}<span class="dot {{ 'dot--on' if online_count else 'dot--off' }}"></span></div>
+      <div class="kpi__label">{{ _("Online now") }}</div>
+    </div>
+    <div class="kpi {{ 'kpi--alarm' if alarm_count else '' }}">
+      <div class="kpi__value">{{ alarm_count }}</div>
+      <div class="kpi__label">{{ _("Active alarms") }}</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">{{ (online_count / device_count * 100) | round | int if device_count else 0 }}<span class="kpi__sub">%</span></div>
+      <div class="kpi__label">{{ _("Fleet online") }}</div>
+    </div>
+  </div>
+
+  {% if chart %}
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Last 24 hours") }}</h2>
+    <canvas id="tsChart" height="88"></canvas>
+  </div>
+  {% endif %}
+
+  <div class="dash-grid">
+    <!-- Devices -->
+    <div class="panel">
+      <h2 class="panel__title">{{ _("Devices") }} <a class="panel__link" href="/devices">{{ _("Manage") }} →</a></h2>
+      {% if devices %}
+      <table class="dtable">
+        <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Latest") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
+        <tbody>
+        {% for d in devices %}
+          <tr>
+            <td><strong>{{ d.name }}</strong>{% if d.label %}<div class="muted">{{ d.label }}</div>{% endif %}</td>
+            <td><span class="dot {{ 'dot--on' if d.active else 'dot--off' }}"></span>{{ _("Online") if d.active else _("Offline") }}</td>
+            <td class="muted">{{ d.reading or '—' }}</td>
+            <td class="muted">{{ d.last_seen or _("Never") }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="helper">{{ _("No devices yet.") }} <a href="/devices">{{ _("Add device") }}</a></p>
+      {% endif %}
+    </div>
+
+    <!-- Alarms -->
+    <div class="panel">
+      <h2 class="panel__title">{{ _("Active alarms") }} <a class="panel__link" href="/alerts">{{ _("Alerts") }} →</a></h2>
+      {% if alarms %}
+      <ul class="alarm-list">
+        {% for a in alarms %}
+        <li class="alarm alarm--{{ a.severity|lower }}">
+          <span class="alarm__sev">{{ a.severity }}</span>
+          <span class="alarm__type">{{ a.type }}</span>
+          <span class="alarm__meta">{{ a.device }} · {{ a.time }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="helper">{{ _("No active alarms. All readings within range.") }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <h2 class="section-h">{{ _("Tools") }}</h2>
   <div class="grid-cards">
-    <a class="card" href="{{ dashboard_url }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Open my dashboard") }}</div><div class="card__desc">{{ device_count }} {{ _("device(s) — add one, get its token and starter code.") }}</div></a>
-    <a class="card" href="/devices"><div class="card__title">{{ _("My devices") }}</div><div class="card__desc">{{ device_count }} device{{ '' if device_count == 1 else 's' }}. Add one, get its token and starter code.</div></a>
+    <a class="card" href="/devices"><div class="card__title">{{ _("My devices") }}</div><div class="card__desc">{{ _("Add devices, get tokens and starter code.") }}</div></a>
     <a class="card" href="/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("Your own Node-RED: wire devices to logic and actions, no code required.") }}</div></a>
     <a class="card" href="/lora"><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on your dashboard.") }}</div></a>
     <a class="card" href="/alerts"><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div></a>
@@ -15,9 +93,33 @@
     <a class="card" href="/explore"><div class="card__title">{{ _("Explore the lab") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div></a>
     <a class="card" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div></a>
   </div>
-  <h2>{{ _("Dashboard") }}</h2>
-  <p class="helper">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}</p>
-  <form method="post" action="/dashboard/reset"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
+  <p class="helper" style="margin-top:1rem">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}
+    <form method="post" action="/dashboard/reset" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
+  </p>
+
+  {% if chart %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script>
+    (function () {
+      var s = {{ chart | safe }};
+      var labels = (s.temperature || s.humidity || []).map(function (p) { return p.t; });
+      var ds = [];
+      if (s.temperature && s.temperature.length) ds.push({label: 'Temperature', data: s.temperature.map(function(p){return p.v;}), borderColor: '#E8641E', backgroundColor: 'rgba(232,100,30,.08)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2});
+      if (s.humidity && s.humidity.length) ds.push({label: 'Humidity', data: s.humidity.map(function(p){return p.v;}), borderColor: '#3B7DD8', backgroundColor: 'rgba(59,125,216,.06)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2, yAxisID: 'y1'});
+      var el = document.getElementById('tsChart');
+      if (el && window.Chart) new Chart(el, {
+        type: 'line',
+        data: {labels: labels, datasets: ds},
+        options: {responsive: true, maintainAspectRatio: false, interaction: {intersect: false, mode: 'index'},
+          plugins: {legend: {display: true, labels: {boxWidth: 12}}},
+          scales: {x: {ticks: {maxTicksLimit: 8, autoSkip: true}, grid: {display: false}},
+                   y: {position: 'left', title: {display: true, text: '°C'}},
+                   y1: {position: 'right', grid: {drawOnChartArea: false}, title: {display: true, text: '%'}}}}
+      });
+    })();
+  </script>
+  {% endif %}
+
 {% elif user.provisioning_state == 'failed' %}
   <div class="callout callout--error"><p>{{ _("We could not set up your lab:") }} {{ user.provisioning_error }}</p></div>
   <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">{{ _("Try again") }}</button></form>

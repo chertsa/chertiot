@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 06:26+0300\n"
+"POT-Creation-Date: 2026-09-17 21:33+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -48,13 +48,13 @@ msgid "An account with this email exists. Sign in instead."
 msgstr "يوجد حساب بهذا البريد. سجّل الدخول بدلًا من ذلك."
 
 #: app/templates/alerts.html:2 app/templates/alerts.html:5
-#: app/templates/home.html:12
+#: app/templates/home.html:67 app/templates/home.html:90
 msgid "Alerts"
 msgstr "التنبيهات"
 
 #: app/templates/alerts.html:4 app/templates/base.html:19
 #: app/templates/device.html:4 app/templates/flows.html:4
-#: app/templates/home.html:5 app/templates/lora.html:4
+#: app/templates/home.html:7 app/templates/lora.html:4
 #: app/templates/teach/console.html:4
 msgid "My lab"
 msgstr "مختبري"
@@ -68,7 +68,8 @@ msgstr ""
 "أو نداء webhook."
 
 #: app/templates/alerts.html:8 app/templates/alerts.html:24
-#: app/templates/devices.html:9 app/templates/lora.html:11
+#: app/templates/devices.html:9 app/templates/home.html:48
+#: app/templates/lora.html:11
 msgid "Device"
 msgstr "جهاز"
 
@@ -159,20 +160,22 @@ msgstr "افتحه لتفعيل حسابك ثم سجّل الدخول."
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr "لم تصلك رسالة بعد دقائق؟ تحقق من مجلد الرسائل غير المرغوبة ثم حاول مجددًا."
 
-#: app/templates/check_email.html:6 app/templates/home.html:23
+#: app/templates/check_email.html:6 app/templates/home.html:125
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
 #: app/templates/device.html:4 app/templates/devices.html:2
-#: app/templates/devices.html:5 app/templates/home.html:9
+#: app/templates/devices.html:5 app/templates/home.html:87
 msgid "My devices"
 msgstr "أجهزتي"
 
 #: app/templates/device.html:6 app/templates/devices.html:14
+#: app/templates/home.html:53
 msgid "Online"
 msgstr "متصل"
 
 #: app/templates/device.html:6 app/templates/devices.html:14
+#: app/templates/home.html:53
 msgid "Offline"
 msgstr "غير متصل"
 
@@ -228,7 +231,7 @@ msgstr "تنزيل CSV لـ24 ساعة"
 msgid "Download 24h JSON"
 msgstr "تنزيل JSON لـ24 ساعة"
 
-#: app/templates/device.html:29
+#: app/templates/device.html:29 app/templates/home.html:45
 msgid "Manage"
 msgstr "إدارة"
 
@@ -276,23 +279,25 @@ msgstr "يحذف الجهاز وقياساته. لا يمكن التراجع ع�
 msgid "devices used."
 msgstr "من الأجهزة مستخدمة."
 
-#: app/templates/devices.html:9 app/templates/teach/roster.html:7
+#: app/templates/devices.html:9 app/templates/home.html:48
+#: app/templates/teach/roster.html:7
 msgid "Status"
 msgstr "الحالة"
 
-#: app/templates/devices.html:9
+#: app/templates/devices.html:9 app/templates/home.html:48
 msgid "Last seen"
 msgstr "آخر ظهور"
 
-#: app/templates/devices.html:15
+#: app/templates/devices.html:15 app/templates/home.html:55
 msgid "Never"
 msgstr "أبدًا"
 
-#: app/templates/devices.html:18
+#: app/templates/devices.html:18 app/templates/home.html:61
 msgid "No devices yet."
 msgstr "لا توجد أجهزة بعد."
 
 #: app/templates/devices.html:22 app/templates/devices.html:25
+#: app/templates/home.html:61
 msgid "Add device"
 msgstr "إضافة جهاز"
 
@@ -308,7 +313,7 @@ msgstr "العودة إلى البداية"
 msgid "Open-source systems"
 msgstr "أنظمة مفتوحة المصدر"
 
-#: app/templates/explore.html:5 app/templates/home.html:15
+#: app/templates/explore.html:5 app/templates/home.html:93
 msgid "Explore the lab"
 msgstr "استكشف المختبر"
 
@@ -365,7 +370,7 @@ msgid "Docs"
 msgstr "الوثائق"
 
 #: app/templates/flows.html:2 app/templates/flows.html:5
-#: app/templates/home.html:10
+#: app/templates/home.html:88
 msgid "Flows"
 msgstr "التدفقات"
 
@@ -405,46 +410,79 @@ msgstr "تشغيل Node-RED"
 msgid "Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you."
 msgstr "يبدأ خلال ثوانٍ مع 0.5 معالج و256 ميغابايت محجوزة لك وحدك."
 
-#: app/templates/home.html:8
-msgid "Open my dashboard"
-msgstr "افتح لوحة التحكم"
-
-#: app/templates/home.html:8
-msgid "device(s) — add one, get its token and starter code."
-msgstr "جهاز/أجهزة — أضف جهازًا واحصل على رمزه والكود الجاهز."
-
 #: app/templates/home.html:10
+msgid "Open full dashboard"
+msgstr "فتح لوحة القيادة كاملة"
+
+#: app/templates/home.html:19 app/templates/home.html:45
+#: app/templates/teach/roster.html:7
+msgid "Devices"
+msgstr "الأجهزة"
+
+#: app/templates/home.html:23
+msgid "Online now"
+msgstr "متصل الآن"
+
+#: app/templates/home.html:27 app/templates/home.html:67
+msgid "Active alarms"
+msgstr "التنبيهات النشطة"
+
+#: app/templates/home.html:31
+msgid "Fleet online"
+msgstr "نسبة الاتصال"
+
+#: app/templates/home.html:37
+msgid "Last 24 hours"
+msgstr "آخر ٢٤ ساعة"
+
+#: app/templates/home.html:48
+msgid "Latest"
+msgstr "آخر قراءة"
+
+#: app/templates/home.html:79
+msgid "No active alarms. All readings within range."
+msgstr "لا توجد تنبيهات نشطة. جميع القراءات ضمن النطاق."
+
+#: app/templates/home.html:85
+msgid "Tools"
+msgstr "الأدوات"
+
+#: app/templates/home.html:87
+msgid "Add devices, get tokens and starter code."
+msgstr "أضف الأجهزة واحصل على الرموز والكود الجاهز."
+
+#: app/templates/home.html:88
 msgid "Your own Node-RED: wire devices to logic and actions, no code required."
 msgstr "‏Node-RED خاص بك: اربط الأجهزة بالمنطق والإجراءات دون برمجة."
 
-#: app/templates/home.html:11 app/templates/lora.html:2
+#: app/templates/home.html:89 app/templates/lora.html:2
 #: app/templates/lora.html:5
 msgid "LoRaWAN"
 msgstr "‏LoRaWAN"
 
-#: app/templates/home.html:11
+#: app/templates/home.html:89
 msgid "Register a LoRa device and see gateway uplinks on your dashboard."
 msgstr "سجّل جهاز LoRa وشاهد رسائل البوابة الصاعدة على لوحتك."
 
-#: app/templates/home.html:12
+#: app/templates/home.html:90
 msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
 msgstr "بريد أو webhook أو إنذار على اللوحة عند تجاوز قراءةٍ عتبتك."
 
-#: app/templates/home.html:13
+#: app/templates/home.html:91
 msgid "Lab (notebooks)"
 msgstr "المختبر (الدفاتر)"
 
-#: app/templates/home.html:13
+#: app/templates/home.html:91
 msgid ""
 "Analyse your telemetry in a Python notebook — pandas &amp; matplotlib, "
 "pre-wired to your data."
 msgstr "حلّل قياساتك في دفتر بايثون — pandas وmatplotlib، موصولة مسبقًا ببياناتك."
 
-#: app/templates/home.html:14
+#: app/templates/home.html:92
 msgid "Getting started"
 msgstr "البدء"
 
-#: app/templates/home.html:14
+#: app/templates/home.html:92
 msgid ""
 "Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
 "ten minutes."
@@ -452,43 +490,39 @@ msgstr ""
 "حمِّل على ESP32 أو Raspberry Pi أو أرسل البيانات من متصفحك خلال أقل من "
 "عشر دقائق."
 
-#: app/templates/home.html:15
+#: app/templates/home.html:93
 msgid ""
 "Every open-source engine that powers CHERT IoT — open it or learn what it"
 " does."
 msgstr "كل محرك مفتوح المصدر يشغّل CHERT IoT — افتحه أو تعرّف على وظيفته."
 
-#: app/templates/home.html:16
+#: app/templates/home.html:94
 msgid "System status"
 msgstr "حالة النظام"
 
-#: app/templates/home.html:16
+#: app/templates/home.html:94
 msgid "Live up/down status of every public service."
 msgstr "حالة تشغيل/توقف مباشرة لكل خدمة عامة."
 
-#: app/templates/home.html:18
-msgid "Dashboard"
-msgstr "لوحة التحكم"
-
-#: app/templates/home.html:19
+#: app/templates/home.html:96
 msgid ""
 "Edited your dashboard into a corner? Restore the starter layout. Your "
 "devices and data stay."
 msgstr "أفسدت ترتيب لوحتك؟ استعد التخطيط الأساسي. أجهزتك وبياناتك تبقى كما هي."
 
-#: app/templates/home.html:20
+#: app/templates/home.html:97
 msgid "Reset starter dashboard"
 msgstr "إعادة ضبط لوحة التحكم الأساسية"
 
-#: app/templates/home.html:22
+#: app/templates/home.html:124
 msgid "We could not set up your lab:"
 msgstr "تعذّر إعداد مختبرك:"
 
-#: app/templates/home.html:25
+#: app/templates/home.html:127
 msgid "Setting up your lab…"
 msgstr "جارٍ إعداد مختبرك…"
 
-#: app/templates/home.html:26
+#: app/templates/home.html:128
 msgid "Set up now"
 msgstr "الإعداد الآن"
 
@@ -677,10 +711,6 @@ msgid "Student"
 msgstr "الطالب"
 
 #: app/templates/teach/roster.html:7
-msgid "Devices"
-msgstr "الأجهزة"
-
-#: app/templates/teach/roster.html:7
 msgid "Device last seen"
 msgstr "آخر ظهور للجهاز"
 
@@ -712,4 +742,7 @@ msgstr "لا طلاب في هذه الدفعة بعد."
 
 #~ msgid "CHERT IoT — powered by ThingsBoard, Keycloak and open source."
 #~ msgstr "‏CHERT IoT — يعمل بواسطة ThingsBoard وKeycloak ومصادر مفتوحة."
+
+#~ msgid "Dashboard"
+#~ msgstr "لوحة التحكم"
 

@@ -66,19 +66,135 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
         return RedirectResponse("/login", status_code=303)
     s = get_settings()
     dash_path = "/dashboards"
-    device_count = 0
+    ctx: dict[str, Any] = {
+        "user": user,
+        "device_count": 0,
+        "online_count": 0,
+        "max_devices": None,
+        "alarm_count": 0,
+        "devices": [],
+        "alarms": [],
+        "chart": None,
+    }
     if user.provisioning_state == "provisioned" and user.tb_user_id:
-        with as_student(user) as (_sysadmin, student):
-            device_count = len(student.list_devices())
+        with as_student(user) as (sysadmin, student):
+            ctx.update(_dashboard_data(sysadmin, student, user))
             dash = student.find_dashboard("My devices")
             if dash and dash.id:
                 dash_path = f"/dashboards/{dash.id.id}"
     sso = _sso_authorization_url(s)
-    dashboard_url = (
+    ctx["dashboard_url"] = (
         f"{sso}?prevUri={quote(dash_path, safe='')}" if sso else f"{s.tb_public_url}{dash_path}"
     )
-    ctx = {"user": user, "device_count": device_count, "dashboard_url": dashboard_url}
     return templates.TemplateResponse(request, "home.html", ctx)
+
+
+def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
+    """Gather live metrics for the student dashboard (defensive: never break the page)."""
+    import json
+    import time as _time
+    from datetime import UTC, datetime
+
+    out: dict[str, Any] = {}
+    try:
+        devices = student.list_devices()
+    except Exception:
+        return out
+    out["device_count"] = len(devices)
+    rows: list[dict[str, Any]] = []
+    online = 0
+    chart_did = None
+    for d in devices[:12]:
+        did = d.id.id if d.id else None
+        if not did:
+            continue
+        active = False
+        last_seen = None
+        latest: dict[str, Any] = {}
+        try:
+            attrs = student.server_attributes(did, ["active", "lastActivityTime"])
+            active = bool(attrs.get("active"))
+            lt = attrs.get("lastActivityTime")
+            if lt:
+                last_seen = datetime.fromtimestamp(int(lt) / 1000, UTC).strftime("%Y-%m-%d %H:%M")
+            latest = student.latest_timeseries(did, [])
+        except Exception:  # noqa: S110 - per-device best effort
+            pass
+        online += 1 if active else 0
+        reading = ", ".join(f"{k} {v[0]['value']}" for k, v in list(latest.items())[:3] if v)
+        rows.append(
+            {
+                "name": d.name,
+                "label": d.label or "",
+                "active": active,
+                "last_seen": last_seen,
+                "reading": reading,
+                "keys": list(latest),
+            }
+        )
+        if chart_did is None and any(k in latest for k in ("temperature", "humidity")):
+            chart_did = did
+    out["devices"] = rows
+    out["online_count"] = online
+
+    # quota (device limit from the tenant profile)
+    try:
+        from app.routers.devices import _max_devices
+
+        tenant_id = devices[0].tenant_id.id if devices and devices[0].tenant_id else None
+        out["max_devices"] = _max_devices(sysadmin, tenant_id)
+    except Exception:
+        out["max_devices"] = None
+
+    # active alarms
+    try:
+        data = student._get(  # noqa: SLF001 - reuse the typed client's session
+            "/alarms",
+            pageSize=10,
+            page=0,
+            searchStatus="ACTIVE",
+            sortProperty="createdTime",
+            sortOrder="DESC",
+        )
+        alarms = data.get("data", []) if isinstance(data, dict) else []
+        out["alarm_count"] = len(alarms)
+        out["alarms"] = [
+            {
+                "type": a.get("type"),
+                "severity": a.get("severity", ""),
+                "device": a.get("originatorName", ""),
+                "time": datetime.fromtimestamp(a.get("createdTime", 0) / 1000, UTC).strftime(
+                    "%H:%M"
+                ),
+            }
+            for a in alarms
+        ]
+    except Exception:  # noqa: S110 - alarms are optional
+        pass
+
+    # 24h chart for the primary device (temperature + humidity)
+    if chart_did:
+        try:
+            end = int(_time.time() * 1000)
+            ts = student.timeseries(
+                chart_did, ["temperature", "humidity"], end - 24 * 3600 * 1000, end, 300
+            )
+            series = {}
+            for key in ("temperature", "humidity"):
+                pts = sorted(ts.get(key, []), key=lambda p: p["ts"])
+                series[key] = [
+                    {
+                        "t": datetime.fromtimestamp(p["ts"] / 1000, UTC).strftime("%H:%M"),
+                        "v": float(p["value"]),
+                    }
+                    for p in pts
+                    if p.get("value") is not None
+                ]
+            if series.get("temperature") or series.get("humidity"):
+                out["chart"] = json.dumps(series)
+        except Exception:
+            out["chart"] = None
+    return out
 
 
 @router.post("/home/provision")
