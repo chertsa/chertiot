@@ -206,7 +206,14 @@ def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
                 ]
             if series.get("temperature") or series.get("humidity"):
                 out["chart"] = json.dumps(series)
-        except Exception:
+            import logging as _lg
+            _lg.getLogger("uvicorn.error").warning(
+                "CHARTDBG did=%s tkeys=%s tpts=%s chartset=%s",
+                chart_did, list(ts.keys()), len(ts.get("temperature", [])), bool(out.get("chart")),
+            )
+        except Exception as _e:
+            import logging as _lg2
+            _lg2.getLogger("uvicorn.error").warning("CHARTDBG exception: %r", _e)
             out["chart"] = None
     return out
 
