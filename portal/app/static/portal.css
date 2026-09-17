@@ -77,3 +77,4 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .kpi--skeleton { opacity:.55; }
 .kpi--skeleton .kpi__value { color:var(--chert-muted); }
 #dash-live { min-height:120px; }
+.chart-box { position:relative; height:280px; }

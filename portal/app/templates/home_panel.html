@@ -24,7 +24,7 @@
 {% if chart %}
 <div class="panel">
   <h2 class="panel__title">{{ _("Last 24 hours") }}</h2>
-  <canvas id="tsChart" height="88"></canvas>
+  <div class="chart-box"><canvas id="tsChart"></canvas></div>
   <script type="application/json" id="chart-data">{{ chart | safe }}</script>
 </div>
 {% endif %}
