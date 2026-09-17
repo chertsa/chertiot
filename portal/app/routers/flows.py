@@ -30,14 +30,20 @@ def flows_page(request: Request, db: Session = Depends(get_db)) -> Any:
     if not flows.enabled():
         ctx = {"user": user, "enabled": False, "state": "absent", "editor_url": ""}
         return templates.TemplateResponse(request, "flows.html", ctx)
-    state = flows.status(user.id)
     ctx = {
         "user": user,
         "enabled": True,
-        "state": state,
+        "state": flows.state(user.id),
         "editor_url": f"{_flows_host(request)}/u/{user.id}/",
     }
     return templates.TemplateResponse(request, "flows.html", ctx)
+
+
+@router.get("/flows/ready")
+def flows_ready(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Polled by the 'building…' page; 200 {"ready": bool} once Node-RED is serving."""
+    user = require_provisioned(request, db)
+    return {"ready": flows.enabled() and flows.ready(user.id)}
 
 
 @router.post("/flows/start")

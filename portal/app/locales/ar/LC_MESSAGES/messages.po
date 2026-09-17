@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-17 22:12+0300\n"
+"POT-Creation-Date: 2026-09-17 22:51+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -402,13 +402,33 @@ msgid ""
 " kept."
 msgstr "تتوقف النسخ تلقائيًا بعد 30 دقيقة دون استخدام؛ تدفقاتك محفوظة."
 
-#: app/templates/flows.html:15
+#: app/templates/flows.html:18
+msgid "Building your instance…"
+msgstr "جارٍ تجهيز نسختك…"
+
+#: app/templates/flows.html:19
+msgid ""
+"This takes a few seconds. The editor opens automatically when it's ready "
+"— please don't open it yet."
+msgstr ""
+"يستغرق ذلك بضع ثوانٍ. سيُفتح المحرر تلقائيًا عند جاهزيته — من فضلك لا "
+"تفتحه الآن."
+
+#: app/templates/flows.html:22
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: app/templates/flows.html:35
 msgid "Start my Node-RED"
 msgstr "تشغيل Node-RED"
 
-#: app/templates/flows.html:16
-msgid "Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you."
-msgstr "يبدأ خلال ثوانٍ مع 0.5 معالج و256 ميغابايت محجوزة لك وحدك."
+#: app/templates/flows.html:36
+msgid ""
+"Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you. "
+"You'll see a “building” indicator until it's ready."
+msgstr ""
+"يبدأ خلال ثوانٍ بـ 0.5 معالج و256 ميغابايت مخصّصة لك. سترى مؤشر «جارٍ "
+"التجهيز» حتى يصبح جاهزًا."
 
 #: app/templates/home.html:10
 msgid "Open full dashboard"

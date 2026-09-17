@@ -155,6 +155,29 @@ def status(user_id: str) -> str:
         return "unavailable"
 
 
+def ready(user_id: str) -> bool:
+    """True only when Node-RED is actually serving the editor — not merely when the container is
+    'running' (Docker reports that within a second, but Node-RED needs a few seconds to boot).
+    The portal shares the flows network, so it can probe the instance directly."""
+    if status(user_id) != "running":
+        return False
+    import httpx
+
+    try:
+        r = httpx.get(f"http://{container_name(user_id)}:1880/u/{user_id}/", timeout=2.0)
+        return r.status_code < 500
+    except Exception:
+        return False
+
+
+def state(user_id: str) -> str:
+    """UI state: 'ready' (open the editor), 'starting' (building), or 'stopped'."""
+    st = status(user_id)
+    if st != "running":
+        return "stopped"
+    return "ready" if ready(user_id) else "starting"
+
+
 def cull_idle(session_factory: sessionmaker[Session]) -> int:
     """Stop instances idle for longer than IDLE_STOP. Returns how many were stopped."""
     from sqlalchemy import select

@@ -78,3 +78,10 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .kpi--skeleton .kpi__value { color:var(--chert-muted); }
 #dash-live { min-height:120px; }
 .chart-box { position:relative; height:280px; }
+
+/* --- Flows building indicator --- */
+.building { display:flex; align-items:center; gap:14px; background:var(--chert-info-tint);
+            border:1px solid var(--chert-info); border-radius:var(--radius-card); padding:16px 20px; }
+.spinner { width:22px; height:22px; flex:0 0 auto; border:3px solid var(--chert-border);
+           border-top-color:var(--chert-orange); border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
