@@ -59,13 +59,29 @@ code/JSON/JSONata/MQTT/URL surfaces stay LTR.
 - `.github/workflows/images.yml`: new `nodered` job — runs the validator, builds, pushes `-b1`.
 
 ## 7. CI build & deployment
-- CI `images.yml` `nodered` job: _to be filled with run URL + pushed digest_.
-- **Staging** (`stage.chertiot.com`, 161.35.119.46): _to be filled — image swap, warm, runtime proof_.
-- **Production** (`chertiot.com`, 134.122.31.32): _to be filled — image swap, warm, runtime proof_.
+- CI `images.yml` run 35287568750 → `nodered` job **success**; pushed
+  `ghcr.io/chertsa/chertiot-nodered:5.0.6-b1`, digest
+  `sha256:175e98e697336f9f4d6223b38d5de466d518a80c0e4235c398161e66fafa8ade`.
+- **Staging** (`stage.chertiot.com`, 161.35.119.46): `.env` `NODERED_IMAGE` set to the branded ref;
+  image pulled (auth OK); portal rebuilt (core+flows). Branded-image container smoke: Arabic served
+  (`استيراد`), default-lang patch in served `red.min.js`, `dir="rtl"` = 0. **Portal-spawner E2E:**
+  `flows.spawn` for a provisioned user created a container on image `chertiot-nodered:5.0.6-b1`
+  (status running); `GET /u/<id>/locales/editor?lng=ar-AR` → `استيراد`; served `red.min.js` carries
+  the default patch. Test instance removed (volume preserved).
+- **Production** (`chertiot.com`, 134.122.31.32): same steps; image pulled, portal rebuilt.
+  **Portal-spawner E2E:** spawned container on `chertiot-nodered:5.0.6-b1`; instance served
+  `استيراد`; default patch present. Test instance removed (volume preserved).
 
 ## 8. Runtime durability
-_To be filled: reload persistence, English round-trip, container replacement retains Arabic, no
-runtime file-copy/patch step required._
+- **Image is the sole source** of the ar-AR catalogs + default — no runtime copy/mount/init.
+  A container replacement (`docker rm` + respawn) reproduces Arabic from the same immutable image;
+  student flows/credentials survive because they live in the per-user named volume, not the container.
+- **Version-bump migration:** `flows.py` `spawn()` now recreates a student's container when its image
+  ≠ `NODERED_IMAGE` (commit d3464c7), so a future `-bN` reaches existing students on next open; the
+  named volume preserves their flows. Idle-culled/stopped containers likewise recreate on the new image.
+- **Persistence / round-trip:** English remains selectable in the standard selector and is remembered
+  via the `editor-language` preference; en-US fallback covers any missing key. (Client-side prefs are
+  per-browser, standard Node-RED behaviour.)
 
 ## 9. Rollback
 Set `NODERED_IMAGE` back to `nodered/node-red:5.0.6` (or the previous `-bN`) in `.env`, re-warm, and
