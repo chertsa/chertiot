@@ -103,66 +103,109 @@ def home_panel(request: Request, db: Session = Depends(get_db)) -> Any:
     return templates.TemplateResponse(request, "home_panel.html", ctx)
 
 
+# Common numeric telemetry keys we surface on the dashboard (one Entity Data Query, not N calls).
+_TS_KEYS = [
+    "temperature",
+    "humidity",
+    "soil_moisture",
+    "level_pct",
+    "power_w",
+    "wind_speed",
+    "battery",
+]
+_max_devices_cache: dict[str, Any] = {"ts": 0.0, "value": None}
+
+
 def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
-    """Gather live metrics for the student dashboard (defensive: never break the page)."""
+    """Gather live metrics in a few calls (Entity Data Query for devices+status+latest, one
+    alarms call, one chart call) to stay well under the tenant REST rate limit. Defensive."""
     import json
     import time as _time
     from datetime import UTC, datetime
 
     out: dict[str, Any] = {}
+    # 1) devices + active/lastActivityTime + latest telemetry in ONE query
+    query = {
+        "entityFilter": {"type": "entityType", "entityType": "DEVICE"},
+        "pageLink": {
+            "pageSize": 30,
+            "page": 0,
+            "sortOrder": {"key": {"type": "ENTITY_FIELD", "key": "name"}, "direction": "ASC"},
+        },
+        "entityFields": [
+            {"type": "ENTITY_FIELD", "key": "name"},
+            {"type": "ENTITY_FIELD", "key": "label"},
+        ],
+        "latestValues": [
+            {"type": "ATTRIBUTE", "key": "active"},
+            {"type": "ATTRIBUTE", "key": "lastActivityTime"},
+            *[{"type": "TIME_SERIES", "key": k} for k in _TS_KEYS],
+        ],
+    }
     try:
-        devices = student.list_devices()
+        res = student._post("/entitiesQuery/find", query)  # noqa: SLF001 - typed client session
     except Exception:
         return out
-    out["device_count"] = len(devices)
+    items = res.get("data", []) if isinstance(res, dict) else []
+    out["device_count"] = (
+        res.get("totalElements", len(items)) if isinstance(res, dict) else len(items)
+    )
     rows: list[dict[str, Any]] = []
     online = 0
     chart_did = None
-    for d in devices[:8]:
-        did = d.id.id if d.id else None
-        if not did:
-            continue
-        active = False
-        last_seen = None
-        latest: dict[str, Any] = {}
-        try:
-            attrs = student.server_attributes(did, ["active", "lastActivityTime"])
-            active = bool(attrs.get("active"))
-            lt = attrs.get("lastActivityTime")
-            if lt:
-                last_seen = datetime.fromtimestamp(int(lt) / 1000, UTC).strftime("%Y-%m-%d %H:%M")
-            latest = student.latest_timeseries(did, [])
-        except Exception:  # noqa: S110 - per-device best effort
-            pass
+    for it in items[:12]:
+        latest = it.get("latest", {})
+        fields = latest.get("ENTITY_FIELD", {})
+        attrs = latest.get("ATTRIBUTE", {})
+        tsv = latest.get("TIME_SERIES", {})
+        name = (fields.get("name") or {}).get("value", "?")
+        active = str((attrs.get("active") or {}).get("value", "")).lower() == "true"
         online += 1 if active else 0
-        reading = ", ".join(f"{k} {v[0]['value']}" for k, v in list(latest.items())[:3] if v)
+        last_seen = None
+        lt = (attrs.get("lastActivityTime") or {}).get("value")
+        if lt:
+            try:
+                last_seen = datetime.fromtimestamp(int(lt) / 1000, UTC).strftime("%Y-%m-%d %H:%M")
+            except Exception:  # noqa: S110
+                pass
+        reading = ", ".join(
+            f"{k} {tsv[k]['value']}"
+            for k in _TS_KEYS
+            if k in tsv and tsv[k].get("value") not in (None, "")
+        )
+        did = (it.get("entityId") or {}).get("id")
         rows.append(
             {
-                "name": d.name,
-                "label": d.label or "",
+                "name": name,
+                "label": (fields.get("label") or {}).get("value", ""),
                 "active": active,
                 "last_seen": last_seen,
-                "reading": reading,
-                "keys": list(latest),
+                "reading": reading[:60],
             }
         )
-        if chart_did is None and any(k in latest for k in ("temperature", "humidity")):
+        if chart_did is None and did and ("temperature" in tsv or "humidity" in tsv):
             chart_did = did
     out["devices"] = rows
     out["online_count"] = online
 
-    # quota (device limit from the tenant profile)
-    try:
-        from app.routers.devices import _max_devices
+    # 2) quota (cached 10 min — rarely changes)
+    now = _time.time()
+    if now - _max_devices_cache["ts"] > 600:
+        try:
+            from app.routers.devices import _max_devices
 
-        tenant_id = devices[0].tenant_id.id if devices and devices[0].tenant_id else None
-        out["max_devices"] = _max_devices(sysadmin, tenant_id)
-    except Exception:
-        out["max_devices"] = None
+            tid = None
+            devs = student.list_devices()
+            if devs and devs[0].tenant_id:
+                tid = devs[0].tenant_id.id
+            _max_devices_cache.update(ts=now, value=_max_devices(sysadmin, tid))
+        except Exception:  # noqa: S110
+            pass
+    out["max_devices"] = _max_devices_cache["value"]
 
-    # active alarms
+    # 3) active alarms
     try:
-        data = student._get(  # noqa: SLF001 - reuse the typed client's session
+        data = student._get(  # noqa: SLF001
             "/alarms",
             pageSize=10,
             page=0,
@@ -186,7 +229,7 @@ def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
     except Exception:  # noqa: S110 - alarms are optional
         pass
 
-    # 24h chart for the primary device (temperature + humidity)
+    # 4) 24h chart for the primary device (temperature + humidity)
     if chart_did:
         try:
             end = int(_time.time() * 1000)
@@ -206,15 +249,8 @@ def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
                 ]
             if series.get("temperature") or series.get("humidity"):
                 out["chart"] = json.dumps(series)
-            import logging as _lg
-            _lg.getLogger("uvicorn.error").warning(
-                "CHARTDBG did=%s tkeys=%s tpts=%s chartset=%s",
-                chart_did, list(ts.keys()), len(ts.get("temperature", [])), bool(out.get("chart")),
-            )
-        except Exception as _e:
-            import logging as _lg2
-            _lg2.getLogger("uvicorn.error").warning("CHARTDBG exception: %r", _e)
-            out["chart"] = None
+        except Exception:  # noqa: S110 - chart is optional
+            pass
     return out
 
 
