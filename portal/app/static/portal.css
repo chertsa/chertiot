@@ -74,3 +74,6 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .alarm__type { font-weight:600; }
 .alarm__meta { margin-inline-start:auto; color:var(--chert-muted); font-size:12px; }
 .section-h { margin-top:26px; }
+.kpi--skeleton { opacity:.55; }
+.kpi--skeleton .kpi__value { color:var(--chert-muted); }
+#dash-live { min-height:120px; }

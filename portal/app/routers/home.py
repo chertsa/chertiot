@@ -1,5 +1,5 @@
 from typing import Any
-from urllib.parse import quote, urlparse
+from urllib.parse import urlparse
 
 import httpx
 from fastapi import APIRouter, Depends, Request
@@ -61,13 +61,31 @@ def index(request: Request) -> Any:
 
 @router.get("/home")
 def home(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Fast shell: renders instantly. The live panel loads async via /home/panel so a slow
+    ThingsBoard never 503s the page."""
     user = load_user(request, db)
     if user is None:
         return RedirectResponse("/login", status_code=303)
     s = get_settings()
-    dash_path = "/dashboards"
-    ctx: dict[str, Any] = {
+    sso = _sso_authorization_url(s)
+    # Point at the dashboards list (no per-request TB call here); SSO carries the student in.
+    ctx = {
         "user": user,
+        "dashboard_url": (
+            f"{sso}?prevUri=%2Fdashboards" if sso else f"{s.tb_public_url}/dashboards"
+        ),
+    }
+    return templates.TemplateResponse(request, "home.html", ctx)
+
+
+@router.get("/home/panel")
+def home_panel(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Live dashboard fragment (KPIs, chart, devices, alarms). Always returns 200 — on any upstream
+    trouble it renders a small 'live data unavailable' state instead of taking the page down."""
+    user = load_user(request, db)
+    if user is None or user.provisioning_state != "provisioned" or not user.tb_user_id:
+        return templates.TemplateResponse(request, "home_panel.html", {"unavailable": True})
+    ctx: dict[str, Any] = {
         "device_count": 0,
         "online_count": 0,
         "max_devices": None,
@@ -75,18 +93,14 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
         "devices": [],
         "alarms": [],
         "chart": None,
+        "unavailable": False,
     }
-    if user.provisioning_state == "provisioned" and user.tb_user_id:
+    try:
         with as_student(user) as (sysadmin, student):
             ctx.update(_dashboard_data(sysadmin, student, user))
-            dash = student.find_dashboard("My devices")
-            if dash and dash.id:
-                dash_path = f"/dashboards/{dash.id.id}"
-    sso = _sso_authorization_url(s)
-    ctx["dashboard_url"] = (
-        f"{sso}?prevUri={quote(dash_path, safe='')}" if sso else f"{s.tb_public_url}{dash_path}"
-    )
-    return templates.TemplateResponse(request, "home.html", ctx)
+    except Exception:  # noqa: BLE001 - upstream slow/down: degrade, don't 503
+        ctx["unavailable"] = True
+    return templates.TemplateResponse(request, "home_panel.html", ctx)
 
 
 def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
@@ -104,7 +118,7 @@ def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     online = 0
     chart_did = None
-    for d in devices[:12]:
+    for d in devices[:8]:
         did = d.id.id if d.id else None
         if not did:
             continue

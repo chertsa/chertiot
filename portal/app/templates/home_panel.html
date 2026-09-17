@@ -1,0 +1,71 @@
+{% if unavailable %}
+<div class="panel"><p class="helper">{{ _("Live data is taking a moment.") }}
+  <a href="/home">{{ _("Retry") }}</a></p></div>
+{% else %}
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi__value">{{ device_count }}{% if max_devices %}<span class="kpi__sub">/{{ max_devices }}</span>{% endif %}</div>
+    <div class="kpi__label">{{ _("Devices") }}</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi__value">{{ online_count }}<span class="dot {{ 'dot--on' if online_count else 'dot--off' }}"></span></div>
+    <div class="kpi__label">{{ _("Online now") }}</div>
+  </div>
+  <div class="kpi {{ 'kpi--alarm' if alarm_count else '' }}">
+    <div class="kpi__value">{{ alarm_count }}</div>
+    <div class="kpi__label">{{ _("Active alarms") }}</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi__value">{{ (online_count / device_count * 100) | round | int if device_count else 0 }}<span class="kpi__sub">%</span></div>
+    <div class="kpi__label">{{ _("Fleet online") }}</div>
+  </div>
+</div>
+
+{% if chart %}
+<div class="panel">
+  <h2 class="panel__title">{{ _("Last 24 hours") }}</h2>
+  <canvas id="tsChart" height="88"></canvas>
+  <script type="application/json" id="chart-data">{{ chart | safe }}</script>
+</div>
+{% endif %}
+
+<div class="dash-grid">
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Devices") }} <a class="panel__link" href="/devices">{{ _("Manage") }} →</a></h2>
+    {% if devices %}
+    <table class="dtable">
+      <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Latest") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
+      <tbody>
+      {% for d in devices %}
+        <tr>
+          <td><strong>{{ d.name }}</strong>{% if d.label %}<div class="muted">{{ d.label }}</div>{% endif %}</td>
+          <td><span class="dot {{ 'dot--on' if d.active else 'dot--off' }}"></span>{{ _("Online") if d.active else _("Offline") }}</td>
+          <td class="muted">{{ d.reading or '—' }}</td>
+          <td class="muted">{{ d.last_seen or _("Never") }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="helper">{{ _("No devices yet.") }} <a href="/devices">{{ _("Add device") }}</a></p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Active alarms") }} <a class="panel__link" href="/alerts">{{ _("Alerts") }} →</a></h2>
+    {% if alarms %}
+    <ul class="alarm-list">
+      {% for a in alarms %}
+      <li class="alarm alarm--{{ a.severity|lower }}">
+        <span class="alarm__sev">{{ a.severity }}</span>
+        <span class="alarm__type">{{ a.type }}</span>
+        <span class="alarm__meta">{{ a.device }} · {{ a.time }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="helper">{{ _("No active alarms. All readings within range.") }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

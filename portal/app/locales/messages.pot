@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-17 21:33+0300\n"
+"POT-Creation-Date: 2026-09-17 22:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgid "An account with this email exists. Sign in instead."
 msgstr ""
 
 #: app/templates/alerts.html:2 app/templates/alerts.html:5
-#: app/templates/home.html:67 app/templates/home.html:90
+#: app/templates/home.html:26 app/templates/home_panel.html:55
 msgid "Alerts"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid ""
 msgstr ""
 
 #: app/templates/alerts.html:8 app/templates/alerts.html:24
-#: app/templates/devices.html:9 app/templates/home.html:48
+#: app/templates/devices.html:9 app/templates/home_panel.html:37
 #: app/templates/lora.html:11
 msgid "Device"
 msgstr ""
@@ -154,22 +154,22 @@ msgstr ""
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr ""
 
-#: app/templates/check_email.html:6 app/templates/home.html:125
+#: app/templates/check_email.html:6 app/templates/home.html:65
 msgid "Try again"
 msgstr ""
 
 #: app/templates/device.html:4 app/templates/devices.html:2
-#: app/templates/devices.html:5 app/templates/home.html:87
+#: app/templates/devices.html:5 app/templates/home.html:23
 msgid "My devices"
 msgstr ""
 
 #: app/templates/device.html:6 app/templates/devices.html:14
-#: app/templates/home.html:53
+#: app/templates/home_panel.html:42
 msgid "Online"
 msgstr ""
 
 #: app/templates/device.html:6 app/templates/devices.html:14
-#: app/templates/home.html:53
+#: app/templates/home_panel.html:42
 msgid "Offline"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr ""
 msgid "Download 24h JSON"
 msgstr ""
 
-#: app/templates/device.html:29 app/templates/home.html:45
+#: app/templates/device.html:29 app/templates/home_panel.html:34
 msgid "Manage"
 msgstr ""
 
@@ -269,25 +269,25 @@ msgstr ""
 msgid "devices used."
 msgstr ""
 
-#: app/templates/devices.html:9 app/templates/home.html:48
+#: app/templates/devices.html:9 app/templates/home_panel.html:37
 #: app/templates/teach/roster.html:7
 msgid "Status"
 msgstr ""
 
-#: app/templates/devices.html:9 app/templates/home.html:48
+#: app/templates/devices.html:9 app/templates/home_panel.html:37
 msgid "Last seen"
 msgstr ""
 
-#: app/templates/devices.html:15 app/templates/home.html:55
+#: app/templates/devices.html:15 app/templates/home_panel.html:44
 msgid "Never"
 msgstr ""
 
-#: app/templates/devices.html:18 app/templates/home.html:61
+#: app/templates/devices.html:18 app/templates/home_panel.html:50
 msgid "No devices yet."
 msgstr ""
 
 #: app/templates/devices.html:22 app/templates/devices.html:25
-#: app/templates/home.html:61
+#: app/templates/home_panel.html:50
 msgid "Add device"
 msgstr ""
 
@@ -303,7 +303,7 @@ msgstr ""
 msgid "Open-source systems"
 msgstr ""
 
-#: app/templates/explore.html:5 app/templates/home.html:93
+#: app/templates/explore.html:5 app/templates/home.html:29
 msgid "Explore the lab"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgid "Docs"
 msgstr ""
 
 #: app/templates/flows.html:2 app/templates/flows.html:5
-#: app/templates/home.html:88
+#: app/templates/home.html:24
 msgid "Flows"
 msgstr ""
 
@@ -398,114 +398,126 @@ msgstr ""
 msgid "Open full dashboard"
 msgstr ""
 
-#: app/templates/home.html:19 app/templates/home.html:45
-#: app/templates/teach/roster.html:7
-msgid "Devices"
+#: app/templates/home.html:17
+msgid "Loading…"
 msgstr ""
 
-#: app/templates/home.html:23
-msgid "Online now"
-msgstr ""
-
-#: app/templates/home.html:27 app/templates/home.html:67
-msgid "Active alarms"
-msgstr ""
-
-#: app/templates/home.html:31
-msgid "Fleet online"
-msgstr ""
-
-#: app/templates/home.html:37
-msgid "Last 24 hours"
-msgstr ""
-
-#: app/templates/home.html:48
-msgid "Latest"
-msgstr ""
-
-#: app/templates/home.html:79
-msgid "No active alarms. All readings within range."
-msgstr ""
-
-#: app/templates/home.html:85
+#: app/templates/home.html:21
 msgid "Tools"
 msgstr ""
 
-#: app/templates/home.html:87
+#: app/templates/home.html:23
 msgid "Add devices, get tokens and starter code."
 msgstr ""
 
-#: app/templates/home.html:88
+#: app/templates/home.html:24
 msgid "Your own Node-RED: wire devices to logic and actions, no code required."
 msgstr ""
 
-#: app/templates/home.html:89 app/templates/lora.html:2
+#: app/templates/home.html:25 app/templates/lora.html:2
 #: app/templates/lora.html:5
 msgid "LoRaWAN"
 msgstr ""
 
-#: app/templates/home.html:89
+#: app/templates/home.html:25
 msgid "Register a LoRa device and see gateway uplinks on your dashboard."
 msgstr ""
 
-#: app/templates/home.html:90
+#: app/templates/home.html:26
 msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
 msgstr ""
 
-#: app/templates/home.html:91
+#: app/templates/home.html:27
 msgid "Lab (notebooks)"
 msgstr ""
 
-#: app/templates/home.html:91
+#: app/templates/home.html:27
 msgid ""
 "Analyse your telemetry in a Python notebook — pandas &amp; matplotlib, "
 "pre-wired to your data."
 msgstr ""
 
-#: app/templates/home.html:92
+#: app/templates/home.html:28
 msgid "Getting started"
 msgstr ""
 
-#: app/templates/home.html:92
+#: app/templates/home.html:28
 msgid ""
 "Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
 "ten minutes."
 msgstr ""
 
-#: app/templates/home.html:93
+#: app/templates/home.html:29
 msgid ""
 "Every open-source engine that powers CHERT IoT — open it or learn what it"
 " does."
 msgstr ""
 
-#: app/templates/home.html:94
+#: app/templates/home.html:30
 msgid "System status"
 msgstr ""
 
-#: app/templates/home.html:94
+#: app/templates/home.html:30
 msgid "Live up/down status of every public service."
 msgstr ""
 
-#: app/templates/home.html:96
+#: app/templates/home.html:32
 msgid ""
 "Edited your dashboard into a corner? Restore the starter layout. Your "
 "devices and data stay."
 msgstr ""
 
-#: app/templates/home.html:97
+#: app/templates/home.html:33
 msgid "Reset starter dashboard"
 msgstr ""
 
-#: app/templates/home.html:124
+#: app/templates/home.html:56 app/templates/home_panel.html:2
+msgid "Live data is taking a moment."
+msgstr ""
+
+#: app/templates/home.html:56 app/templates/home_panel.html:3
+msgid "Retry"
+msgstr ""
+
+#: app/templates/home.html:64
 msgid "We could not set up your lab:"
 msgstr ""
 
-#: app/templates/home.html:127
+#: app/templates/home.html:67
 msgid "Setting up your lab…"
 msgstr ""
 
-#: app/templates/home.html:128
+#: app/templates/home.html:68
 msgid "Set up now"
+msgstr ""
+
+#: app/templates/home_panel.html:8 app/templates/home_panel.html:34
+#: app/templates/teach/roster.html:7
+msgid "Devices"
+msgstr ""
+
+#: app/templates/home_panel.html:12
+msgid "Online now"
+msgstr ""
+
+#: app/templates/home_panel.html:16 app/templates/home_panel.html:55
+msgid "Active alarms"
+msgstr ""
+
+#: app/templates/home_panel.html:20
+msgid "Fleet online"
+msgstr ""
+
+#: app/templates/home_panel.html:26
+msgid "Last 24 hours"
+msgstr ""
+
+#: app/templates/home_panel.html:37
+msgid "Latest"
+msgstr ""
+
+#: app/templates/home_panel.html:67
+msgid "No active alarms. All readings within range."
 msgstr ""
 
 #: app/templates/index.html:4
