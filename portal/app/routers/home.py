@@ -233,9 +233,17 @@ def _dashboard_data(sysadmin: Any, student: Any, user: Any) -> dict[str, Any]:
     if chart_did:
         try:
             end = int(_time.time() * 1000)
-            ts = student.timeseries(
-                chart_did, ["temperature", "humidity"], end - 24 * 3600 * 1000, end, 300
+            # 30-min averages → a smooth, professional 24h line (not raw jitter)
+            ts = student._get(  # noqa: SLF001
+                f"/plugins/telemetry/DEVICE/{chart_did}/values/timeseries",
+                keys="temperature,humidity",
+                startTs=end - 24 * 3600 * 1000,
+                endTs=end,
+                interval=1800000,
+                agg="AVG",
+                limit=50,
             )
+            ts = ts if isinstance(ts, dict) else {}
             series = {}
             for key in ("temperature", "humidity"):
                 pts = sorted(ts.get(key, []), key=lambda p: p["ts"])
