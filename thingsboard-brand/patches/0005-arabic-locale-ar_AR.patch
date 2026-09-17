@@ -1,0 +1,17 @@
+diff --git a/ui-ngx/src/assets/locale/locale.constant-ar_AE.json b/ui-ngx/src/assets/locale/locale.constant-ar_AR.json
+similarity index 100%
+rename from ui-ngx/src/assets/locale/locale.constant-ar_AE.json
+rename to ui-ngx/src/assets/locale/locale.constant-ar_AR.json
+diff --git a/ui-ngx/src/assets/locale/locale.constant-en_US.json b/ui-ngx/src/assets/locale/locale.constant-en_US.json
+index 052d7ca..388acfc 100644
+--- a/ui-ngx/src/assets/locale/locale.constant-en_US.json
++++ b/ui-ngx/src/assets/locale/locale.constant-en_US.json
+@@ -10503,7 +10503,7 @@
+         "auto": "Auto",
+         "language": "Language",
+         "locales": {
+-            "ar_AE": "العربية (الإمارات العربية المتحدة)",
++            "ar_AR": "العربية",
+             "ca_ES": "català (Espanya)",
+             "cs_CZ": "čeština (Česko)",
+             "da_DK": "dansk (Danmark)",

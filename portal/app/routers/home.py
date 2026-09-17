@@ -15,7 +15,7 @@ from app.student import as_student, load_user
 from app.templating import templates
 
 # Portal locale → ThingsBoard UI locale. TB reads user.additionalInfo.lang first when authenticated.
-_TB_LOCALE = {"ar": "ar_AE", "en": "en_US"}
+_TB_LOCALE = {"ar": "ar_AR", "en": "en_US"}
 
 router = APIRouter()
 
