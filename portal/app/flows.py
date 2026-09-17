@@ -106,6 +106,13 @@ def spawn(user: PortalUser, mqtt_host: str, mqtt_port: int) -> str:
     volume = f"{PROJECT}_nodered-{user.id}"
     try:
         c = dc.containers.get(name)
+        # Migrate to the current image on a version bump (e.g. a new branded ar-AR build): an
+        # existing container keeps whatever image it was created with, so reuse it only when the
+        # image matches. Flows/credentials live in the named volume, so removing it preserves them.
+        if NODERED_IMAGE not in (c.image.tags or []):
+            log.info("recreating %s: image %s → %s", name, c.image.tags, NODERED_IMAGE)
+            c.remove(force=True)
+            raise docker.errors.NotFound(name)
         if c.status != "running":
             # Refresh settings.js so branding/config changes apply the next time it starts,
             # without disrupting an already-running session.
