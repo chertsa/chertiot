@@ -63,6 +63,8 @@ def main() -> int:
             SLUG,
             title="CHERT IoT status",
             description="Live availability of the CHERT IoT platform.",
+            footerText="CHERT IoT",
+            showPoweredBy=False,  # hide "Powered by Uptime Kuma"
             publicGroupList=[{"name": "Platform", "monitorList": [{"id": i} for i in ids]}],
         )
         print(f"kuma: status page published with {len(ids)} monitors")
