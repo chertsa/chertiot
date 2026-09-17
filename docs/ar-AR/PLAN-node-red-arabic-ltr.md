@@ -1,6 +1,7 @@
 # Plan — Arabic (`ar-AR`) in Node-RED, LTR-only, as a standard branded image
 
-**Status:** DRAFT — awaiting owner approval. Nothing built or deployed yet.
+**Status:** ✅ APPROVED (Option A + Arabic-default) and IMPLEMENTED on staging + production
+(2026-09-18). See the evidence report: `docs/audit/node-red-arabic-ltr-standard-installation-report.md`.
 **Author:** Claude (Opus 4.8) · **Date:** 2026-09-18
 **Scope binding:** Arabic localization inside the **existing LTR** Node-RED editor. **No RTL.** (per `docs/ar-AR/NODE_RED_ARABIC_LTR_STANDARD_INSTALLATION_MASTER_PROMPT.md`)
 
