@@ -1,6 +1,6 @@
 # CHERT IoT — project memory
 ## Hard rules
-- Decisions D1–D12 in PLAN.md are final.
+- Decisions D1–D13 in PLAN.md are final. **D13 (v1.1, ADR-001): Project = a TB Tenant** (owner+members are Tenant Admins; portal brokers per-project TB sessions via sysadmin impersonation); **supersedes D4** (was tenant-per-student). See docs/adr/ADR-001-project-centric-platform.md.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
 - Portal→TB: REST only via tb_client.py. Idempotent provisioning, always.
 - No secrets in git; .env only; .env.example current. Never invent creds — ask.

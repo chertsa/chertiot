@@ -11,7 +11,7 @@
 | D1 | **Brand:** "Chert IoT" (follow CHERT Design System §1.4) in all UI/display text. Code, repos, DB, containers, domain: lowercase `chertiot`. |
 | D2 | **Core:** ThingsBoard CE (Apache-2.0), pinned version, built from source with rebrand patch series. |
 | D3 | **Identity:** Keycloak from day one at auth.chertiot.com. Single login for portal, TB, JupyterHub, Grafana, Node-RED. TB is an OAuth2 *client* of Keycloak, never the IdP. |
-| D4 | **Tenancy:** ONE TENANT PER STUDENT. Student = Tenant Admin of own tenant → full rights (create devices, dashboards, rule chains, alarms). Quotas via TB tenant profiles (10 devices, 10 msg/s, capped API — env-tunable). Optional shared "class tenant" per course for group exercises. Never customer-per-student (CE customers are read-only). |
+| D4 | **Tenancy:** ~~ONE TENANT PER STUDENT~~ **SUPERSEDED by D13 (v1.1): ONE TENANT PER PROJECT.** Owner + members are Tenant Admins of the project-tenant → full rights (create devices, dashboards, rule chains, alarms). Quotas via TB tenant profiles (env-tunable). Never customer-per-project (CE customers are read-only). |
 | D5 | **Starter content:** At signup, portal copies template dashboards INTO the student tenant (editable, theirs). "Reset dashboard" = re-import. Pristine references live in docs site. |
 | D6 | **Instructor view:** Lives in OUR portal (roster: last-seen, device counts, msg volume via sysadmin REST API + "login as user" for support). Not in TB. |
 | D7 | **Rebrand:** Source-built patch series in `thingsboard-brand/` (logo, favicon, theme, titles, login text, email templates). Never scattered edits. Overlay/proxy-rewrite is fallback only. |
@@ -20,6 +20,7 @@
 | D10 | **Integration contract:** Portal ↔ TB via REST API only (`portal/app/tb_client.py`). Never TB's database. Extensions always use the student's own credentials — isolation is inherited, never re-implemented. |
 | D11 | **Minors-safe by default at launch:** age attestation on open signup; minor cohorts only via instructor class codes (consent responsibility on institution); minimal data collection; no third-party analytics; telemetry retention 90d; IP/audit logs 30d; plain-language privacy page live before first signup. |
 | D12 | **Scope discipline:** Anything not in this plan → BACKLOG.md. |
+| D13 | **Project-centric (v1.1, ADR-001):** **Project = a TB Tenant.** Owner + members are Tenant-Admin users within it (full rights, native isolation). One human = one Keycloak identity → one TB user per project-tenant they belong to; the portal is the identity broker (creates/removes those users; opens project sessions via sysadmin impersonation `GET /user/{id}/token`). Portal `Project` is the source of truth, mirroring to the TB Tenant, a ChirpStack Application, a per-project Node-RED instance, and a Jupyter named-server. Collaboration: invite / request-to-join / owner+members / enable-disable. No TB Customers. Supersedes D4. |
 
 ## 2. STACK (all self-hosted, Docker Compose profiles)
 
