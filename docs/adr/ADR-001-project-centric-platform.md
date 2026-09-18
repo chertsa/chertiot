@@ -95,9 +95,10 @@ test tenants/data in TB + ChirpStack, redeploy, re-provision, and reseed a **dem
 the current demo tenant). Prod reset only after staging is green end-to-end.
 
 ## Phased delivery (each phase: staging → verify → prod)
-- **M5.1 — Backbone.** `Project` model + Alembic baseline; Project CRUD; Projects home + workspace shell;
-  TB Customer per project; device create/list scoped to the customer; per-project dashboard + SSO open.
-  *Accept:* create 2 projects, add devices to each, see them isolated, open each project's dashboard.
+- **M5.1 — Backbone. ✅ DONE (staging, 2026-09-18).** `Project`/`ProjectMember` + Alembic 0005; Project
+  CRUD; projects portfolio home + workspace; **TB tenant per project** (D13); device + tools scoped to
+  `/projects/{id}/…`; portal-rendered per-project dashboard. E2E verified on staging: 2 isolated
+  tenants, device isolation, MQTT ingest, dashboard/quota.
 - **M5.2 — Flows per project.** Node-RED instance per project; forward_auth by project ownership;
   MQTT token scoped to the project. *Accept:* each project's editor is separate; cross-project denied.
 - **M5.3 — Alerts + Notebooks per project.** `AlertRule(project_id)`; Jupyter named-server per project.
@@ -106,8 +107,9 @@ the current demo tenant). Prod reset only after staging is green end-to-end.
   *Accept:* uplink from a project's LoRa device lands only on that project's dashboard.
 - **M5.5 — Lifecycle & reports.** Portfolio dashboard + per-project lifecycle/report view (devices,
   uptime, message volume, alarms, activity timeline). Demote the showroom to "Explore the stack".
-- **M5.6 — Collaboration.** Owner/members, invite by email, request-to-join + approval, enable/disable
-  members — implemented per the tenancy option chosen above.
+- **M5.6 — Collaboration. ✅ DONE (staging, 2026-09-18).** Owner/members, link-based invites (+auto-
+  accept on login), request-to-join + approve/deny, enable/disable/remove. Members are Tenant-Admins of
+  the shared project tenant. E2E verified on staging. (Email delivery of invites = later; links for now.)
 - **M5.7 — Fresh reset + demo project.** Prod reset, reseed the demo *project*, docs/UAT refresh.
 
 ## Collaboration & membership (v1.1 — owner-added 2026-09-18)
