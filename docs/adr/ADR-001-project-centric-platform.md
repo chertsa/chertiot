@@ -1,9 +1,11 @@
 # ADR-001 — Project-centric platform (CHERT IoT is a platform, not a showroom)
 
-**Status:** PROPOSED — awaiting owner approval to record D13 and start Phase M5.1.
+**Status:** PROPOSED — v1.1 line (frozen baseline: git tag **v1.7.0**). Blocked on the tenancy
+decision (see §Collaboration) before any M5.1 build.
 **Date:** 2026-09-18 · **Author:** Claude (Opus 4.8), with owner.
-**Owner decisions captured this session:** Customer-per-project · per-project Node-RED + Jupyter ·
-**fresh rebuild** (build phase — reset data, no migration/backfill).
+**Owner decisions captured this session:** per-project Node-RED + Jupyter · **fresh rebuild** (build
+phase — reset data, no migration/backfill) · **+ collaboration** (owner/members, invite, request-to-
+join, enable/disable). Customer-per-project (D13) is **reopened** by collaboration — see §Collaboration.
 
 ## Context
 Today everything hangs directly off the user: `PortalUser → one TB tenant`, and `FlowInstance`,
@@ -42,6 +44,9 @@ open-source "Explore the lab" page survives but is **demoted** to a secondary "w
   device grouping and a per-project dashboard. The student remains Tenant Admin; no customer-users are
   created. Portal `Project` is the source of truth and mirrors to the TB Customer, a ChirpStack
   Application, a per-project Node-RED instance, and a Jupyter named-server."*
+  ⚠️ **Reopened by collaboration (see §Collaboration).** Multi-user projects mean a member is a
+  *different* user in a *different* TB tenant, which a Customer inside the owner's tenant cannot serve.
+  D13 must be settled together with the collaboration tenancy question **before** M5.1 build.
 - **D2/D7/D10** unchanged: no engine changes; portal↔TB stays REST-only via `tb_client.py`; branded
   images untouched. This is portal + provisioning + UX work.
 
@@ -87,7 +92,39 @@ the current demo tenant). Prod reset only after staging is green end-to-end.
   *Accept:* uplink from a project's LoRa device lands only on that project's dashboard.
 - **M5.5 — Lifecycle & reports.** Portfolio dashboard + per-project lifecycle/report view (devices,
   uptime, message volume, alarms, activity timeline). Demote the showroom to "Explore the stack".
-- **M5.6 — Fresh reset + demo project.** Prod reset, reseed the demo *project*, docs/UAT refresh.
+- **M5.6 — Collaboration.** Owner/members, invite by email, request-to-join + approval, enable/disable
+  members — implemented per the tenancy option chosen above.
+- **M5.7 — Fresh reset + demo project.** Prod reset, reseed the demo *project*, docs/UAT refresh.
+
+## Collaboration & membership (v1.1 — owner-added 2026-09-18)
+Requirements: a project has an **owner** and **members**; a user can **invite** others to a project;
+users can **request to join** a project; the owner can **disable/enable** members.
+
+**Portal model (additive):**
+- `ProjectMember(project_id, user_id, role: owner|member, status: active|disabled, added_at)`.
+- `ProjectInvite(id, project_id, invited_email, token, status: pending|accepted|revoked, created_at)`
+  — invite by email; on accept the invitee (existing or new signup) becomes a `member`.
+- `ProjectJoinRequest(id, project_id, user_id, status: pending|approved|denied, created_at)` — the
+  owner approves/denies; approval creates a `ProjectMember`.
+- Enable/disable flips `ProjectMember.status`; disabled members lose access immediately (portal gate +
+  revoke the engine-side grant).
+
+**⚠️ Tenancy decision this forces (must resolve before M5.1):** members are separate TB tenants, and
+TB CE tenants are isolated — so a project shared across users **cannot** be a Customer inside one
+owner's personal tenant (breaks D13 as written). Options:
+1. **Project = its own TB tenant** (shared project tenant); members are users *in that tenant* (scoped
+   roles). Abandons "Customer per project"; needs a way to make one portal user an admin/member across
+   several tenants (today's OAuth2 mapper is tenant-per-email — this is the main spike).
+2. **Portal-mediated access:** project data stays in the owner's tenant; members never log into TB
+   directly — the portal renders everything (dashboards, devices, flows) on their behalf via the
+   owner's tenant using impersonation, gated by `ProjectMember`. Keeps D13; loses direct TB SSO for
+   members; heavier portal rendering.
+3. **Hybrid:** solo projects = Customer in the owner's tenant (D13); the moment a project gains a 2nd
+   member it is promoted to a shared project tenant (option 1). Most flexible, most work.
+
+Recommendation to be finalized with the owner + a spike; my lean is **Option 1 (project = tenant)** for
+a clean, collaborative-by-design model, accepting the multi-tenant-per-user auth spike. This may
+supersede D13 (project = tenant, not customer). **No build until this is chosen.**
 
 ## Risks / open items
 - **Customer-scoped Entity Data Query in CE** — the one thing to prove in an M5.1 spike before building
@@ -96,6 +133,7 @@ the current demo tenant). Prod reset only after staging is green end-to-end.
   culler keeps only *active* ones running, and capacity stays governed by concurrent-open, not totals.
 - **Naming/URLs** — project-scoped paths (`/projects/<id>/…`, Node-RED `/p/<project_id>/`); settle in M5.1.
 
-## Approval requested
-1. Record **D13** as stated above (amends nothing in D1–D12; D4 upheld).
-2. Green-light **Phase M5.1** (backbone) on staging.
+## Approval requested (next)
+1. **Choose the tenancy model** for projects given collaboration: Option 1 (project = tenant,
+   supersedes D13) / Option 2 (portal-mediated, keeps D13) / Option 3 (hybrid). My lean: Option 1.
+2. After that, record the final decision (D13 or its replacement) and green-light **Phase M5.1**.
