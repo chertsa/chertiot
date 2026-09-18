@@ -1,7 +1,7 @@
 # ADR-001 — Project-centric platform (CHERT IoT is a platform, not a showroom)
 
-**Status:** ACCEPTED (v1.1 line; frozen baseline git tag **v1.7.0**). Tenancy resolved: **Project =
-TB Tenant** (D13). Building **M5.1** next.
+**Status:** ACCEPTED (v1.1 line; frozen baseline git tag **v1.7.0**). Tenancy: **Project = TB Tenant**
+(D13). M5.1–M5.6 done & validated on staging; M5.7 prod cutover is owner-run (runbook).
 **Date:** 2026-09-18 · **Author:** Claude (Opus 4.8), with owner.
 **Owner decisions captured this session:** **Project = TB Tenant** (supersedes D4 tenant-per-student
 and the draft Customer-per-project) · per-project Node-RED + Jupyter · **fresh rebuild** (build phase —
@@ -99,8 +99,8 @@ the current demo tenant). Prod reset only after staging is green end-to-end.
   CRUD; projects portfolio home + workspace; **TB tenant per project** (D13); device + tools scoped to
   `/projects/{id}/…`; portal-rendered per-project dashboard. E2E verified on staging: 2 isolated
   tenants, device isolation, MQTT ingest, dashboard/quota.
-- **M5.2 — Flows per project.** Node-RED instance per project; forward_auth by project ownership;
-  MQTT token scoped to the project. *Accept:* each project's editor is separate; cross-project denied.
+- **M5.2 — Flows per project. ✅ DONE (staging).** Node-RED instance per project; forward_auth by
+  membership; MQTT token scoped to the project.
 - **M5.3 — Alerts + Notebooks per project. ✅ DONE (staging).** `AlertRule(project_id)`; JupyterHub
   named-server per project; `/internal/lab-token` scoped to project membership (verified on staging).
 - **M5.4 — LoRa per project.** ChirpStack Application per project; register LoRa devices into it.
