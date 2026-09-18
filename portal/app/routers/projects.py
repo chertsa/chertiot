@@ -34,6 +34,9 @@ from app.templating import templates
 
 router = APIRouter()
 
+# Portal locale → ThingsBoard UI locale (TB reads user.additionalInfo.lang).
+_TB_LOCALE = {"ar": "ar_AR", "en": "en_US"}
+
 
 def _require_owner(request: Request, db: Session, project_id: str) -> tuple[Project, ProjectMember]:
     user, project, member = require_membership(request, db, project_id)
@@ -159,13 +162,26 @@ def report(request: Request, project_id: str, db: Session = Depends(get_db)) -> 
 
 @router.get("/projects/{project_id}/thingsboard")
 def open_thingsboard(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
-    """Open the project's ThingsBoard console as this member: mint their project-tenant session and
-    hand the JWT to the TB origin via the /chert-login handoff page (fragment, never logged)."""
+    """Open the project's ThingsBoard console as this member: set the TB UI language to match the
+    portal, mint their project-tenant session, and hand the JWT to the TB origin via /chert-login
+    (fragment, never logged)."""
     from urllib.parse import quote
+
+    from app.i18n import locale_of
 
     user, project, member = require_membership(request, db, project_id)
     s = get_settings()
+    tb_lang = _TB_LOCALE.get(locale_of(request), "en_US")
     with as_project(member) as (_sysadmin, session):
+        # TB reads user.additionalInfo.lang, so the console opens in the portal's language.
+        try:
+            me = session._get(f"/user/{member.tb_user_id}")  # noqa: SLF001
+            cur = (me.get("additionalInfo") or {}).get("lang") if isinstance(me, dict) else None
+            if isinstance(me, dict) and cur != tb_lang:
+                me.setdefault("additionalInfo", {})["lang"] = tb_lang
+                session._post("/user", me)  # noqa: SLF001
+        except Exception:  # noqa: BLE001,S110 - never block opening the console
+            pass
         jwt = session._tokens.token if session._tokens else ""  # noqa: SLF001
         refresh = session._tokens.refresh_token if session._tokens else ""  # noqa: SLF001
     url = f"{s.tb_public_url}/chert-login#jwt={quote(jwt)}&refresh={quote(refresh)}"
