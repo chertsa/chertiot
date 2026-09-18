@@ -23,7 +23,21 @@
 	reverse_proxy portal:8000
 }
 app.{$DOMAIN} {
-	reverse_proxy tb:8080
+	# Token handoff (D13): the portal mints a project member's ThingsBoard session and sends them
+	# here with the JWT in the URL fragment; this same-origin page stores it the way the TB SPA
+	# expects and redirects into the console. The fragment never reaches the server or logs.
+	handle /chert-login {
+		header Content-Type "text/html; charset=utf-8"
+		header Cache-Control "no-store"
+		respond `<!doctype html><meta charset="utf-8"><title>Opening ThingsBoard…</title><script>
+try{var h=new URLSearchParams(location.hash.slice(1));var j=h.get("jwt"),r=h.get("refresh");
+if(j){localStorage.setItem("jwt_token",j);if(r)localStorage.setItem("refresh_token",r);}}catch(e){}
+location.replace("/");
+</script>Opening ThingsBoard…` 200
+	}
+	handle {
+		reverse_proxy tb:8080
+	}
 }
 auth.{$DOMAIN} {
 	reverse_proxy keycloak:8080

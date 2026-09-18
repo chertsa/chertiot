@@ -8,6 +8,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.config import get_settings
 from app.dashboard import alarm_history, dashboard_data
 from app.db import get_db
 from app.models import Project, ProjectJoinRequest, ProjectMember
@@ -154,6 +155,21 @@ def report(request: Request, project_id: str, db: Session = Depends(get_db)) -> 
     except Exception:  # noqa: BLE001
         ctx["unavailable"] = True
     return templates.TemplateResponse(request, "project_report.html", ctx)
+
+
+@router.get("/projects/{project_id}/thingsboard")
+def open_thingsboard(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    """Open the project's ThingsBoard console as this member: mint their project-tenant session and
+    hand the JWT to the TB origin via the /chert-login handoff page (fragment, never logged)."""
+    from urllib.parse import quote
+
+    user, project, member = require_membership(request, db, project_id)
+    s = get_settings()
+    with as_project(member) as (_sysadmin, session):
+        jwt = session._tokens.token if session._tokens else ""  # noqa: SLF001
+        refresh = session._tokens.refresh_token if session._tokens else ""  # noqa: SLF001
+    url = f"{s.tb_public_url}/chert-login#jwt={quote(jwt)}&refresh={quote(refresh)}"
+    return RedirectResponse(url, status_code=303)
 
 
 @router.post("/projects/{project_id}/delete")
