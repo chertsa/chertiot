@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 import re
+import secrets
 from collections.abc import Iterator
 from contextlib import contextmanager
 
@@ -115,8 +116,25 @@ def _provision(sysadmin: TbClient, project: Project, owner: PortalUser) -> str:
     return tb_user_id
 
 
+def _activate_user(sysadmin: TbClient, user_id: str) -> None:
+    """Give a portal-created TB user internal credentials so its JWT session can REFRESH — without
+    this, TB returns 'User account is not active' on refresh and the console drops to /login on a
+    profile save or when the short token expires. The random password is never exposed (members
+    reach TB only via the portal's handoff). Best-effort; never blocks provisioning."""
+    from urllib.parse import parse_qs, urlparse
+
+    try:
+        link = sysadmin.get_activation_link(user_id)
+        token = parse_qs(urlparse(link).query).get("activateToken", [""])[0]
+        if token:
+            sysadmin.activate_user(token, secrets.token_urlsafe(18))
+    except Exception:  # noqa: BLE001
+        log.warning("could not activate TB user %s (refresh may be unavailable)", user_id)
+
+
 def ensure_member_user(sysadmin: TbClient, project: Project, user: PortalUser) -> str:
-    """Find-or-create this human's Tenant-Admin user inside the project tenant."""
+    """Find-or-create this human's Tenant-Admin user inside the project tenant (activated so its
+    session refreshes)."""
     if not project.tb_tenant_id:
         raise ProvisioningError("project has no tb_tenant_id")
     email = member_tb_email(project, user)
@@ -131,7 +149,9 @@ def ensure_member_user(sysadmin: TbClient, project: Project, user: PortalUser) -
             firstName=(user.email.split("@")[0])[:40],
         )
     )
-    return require_id(created, "member user")
+    user_id = require_id(created, "member user")
+    _activate_user(sysadmin, user_id)
+    return user_id
 
 
 def create_project(db: Session, owner: PortalUser, name: str, description: str | None) -> Project:
