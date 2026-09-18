@@ -9,6 +9,7 @@ CLAUDE.md)."""
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 from datetime import UTC, datetime, timedelta
@@ -57,6 +58,69 @@ module.exports = {{
 }};
 """
 
+# Seeded once into a new instance so the editor opens with a working example (inject → build a
+# reading → debug) and a note on publishing to this project's ThingsBoard device over MQTT.
+_STARTER_NOTE = (
+    "This editor is scoped to your CHERT IoT project.\n\n"
+    "Your ThingsBoard MQTT credentials are pre-injected as environment variables:\n"
+    "  TB_MQTT_HOST, TB_MQTT_PORT, TB_ACCESS_TOKEN\n\n"
+    "To send telemetry to this project's device:\n"
+    "1. Add an 'mqtt out' node.\n"
+    "2. Broker: server ${TB_MQTT_HOST}, port ${TB_MQTT_PORT}, TLS on;\n"
+    "   username = ${TB_ACCESS_TOKEN}.\n"
+    '3. Topic: v1/devices/me/telemetry, payload e.g. {"temperature":22.5}.'
+)
+STARTER_FLOWS = json.dumps(
+    [
+        {"id": "tab1", "type": "tab", "label": "Getting started"},
+        {
+            "id": "note1",
+            "type": "comment",
+            "z": "tab1",
+            "name": "Welcome to your project's Node-RED",
+            "info": _STARTER_NOTE,
+            "x": 230,
+            "y": 60,
+            "wires": [],
+        },
+        {
+            "id": "inj1",
+            "type": "inject",
+            "z": "tab1",
+            "name": "every 10s",
+            "props": [{"p": "payload"}],
+            "repeat": "10",
+            "once": False,
+            "payloadType": "date",
+            "x": 140,
+            "y": 140,
+            "wires": [["fn1"]],
+        },
+        {
+            "id": "fn1",
+            "type": "function",
+            "z": "tab1",
+            "name": "sample reading",
+            "func": "msg.payload = { temperature: Math.round((20 + Math.random()*5)*10)/10 };\nreturn msg;",  # noqa: E501
+            "outputs": 1,
+            "x": 350,
+            "y": 140,
+            "wires": [["dbg1"]],
+        },
+        {
+            "id": "dbg1",
+            "type": "debug",
+            "z": "tab1",
+            "name": "reading",
+            "active": True,
+            "complete": "payload",
+            "x": 550,
+            "y": 140,
+            "wires": [],
+        },
+    ]
+)
+
 
 def enabled() -> bool:
     return os.environ.get("FLOWS_ENABLED", "false").lower() == "true"
@@ -82,6 +146,8 @@ def ensure_flows_device(member: ProjectMember) -> str:
 
 
 def _write_settings(dc: docker.DockerClient, volume: str, project_id: str) -> None:
+    # settings.js is regenerated every start; flows.json is seeded ONCE (only if absent) with a
+    # starter flow so a new project's editor isn't blank — never overwrite the user's own flows.
     dc.containers.run(
         "alpine:3.20",
         command=[
@@ -89,7 +155,11 @@ def _write_settings(dc: docker.DockerClient, volume: str, project_id: str) -> No
             "-c",
             "cat > /data/settings.js <<'EOS'\n"
             + SETTINGS_JS.format(project_id=project_id)
-            + "\nEOS\nchown -R 1000:1000 /data",
+            + "\nEOS\n"
+            + "[ -f /data/flows.json ] || cat > /data/flows.json <<'EOF'\n"
+            + STARTER_FLOWS
+            + "\nEOF\n"
+            + "chown -R 1000:1000 /data",
         ],
         mounts=[Mount(target="/data", source=volume, type="volume")],
         remove=True,
