@@ -12,6 +12,11 @@ c = get_config()  # noqa: F821 - provided by JupyterHub
 DOMAIN = os.environ["DOMAIN"]
 NOTEBOOK_IMAGE = os.environ["LAB_NOTEBOOK_IMAGE"]
 
+# Persist hub state in /data (a mounted volume); the config itself stays in the image at
+# /srv/jupyterhub so config changes actually take effect (the volume must NOT mask the config file).
+c.JupyterHub.db_url = "sqlite:////data/jupyterhub.sqlite"
+c.JupyterHub.cookie_secret_file = "/data/jupyterhub_cookie_secret"
+
 # --- auth: Keycloak (existing realm client `jupyterhub`)
 from oauthenticator.generic import GenericOAuthenticator
 

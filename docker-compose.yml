@@ -357,7 +357,9 @@ services:
       LORA_MQTT_HOST: mosquitto
       TB_INTERNAL_URL: http://tb:8080
     volumes:
-      - jupyterhub-data:/srv/jupyterhub
+      # Persist hub state under /data — NOT /srv/jupyterhub, which holds the image's config file
+      # (a volume there masks config updates; see jupyterhub_config.py db_url/cookie_secret_file).
+      - jupyterhub-data:/data
     healthcheck:
       test: ["CMD-SHELL", "python3 -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/hub/health')\""]
       interval: 30s
