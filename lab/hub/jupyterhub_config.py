@@ -32,6 +32,10 @@ c.GenericOAuthenticator.oauth_callback_url = f"https://lab.{DOMAIN}/hub/oauth_ca
 c.GenericOAuthenticator.username_claim = "email"
 c.GenericOAuthenticator.scope = ["openid", "email", "profile"]
 c.GenericOAuthenticator.allow_all = True
+# Seamless SSO: skip JupyterHub's own "Sign in with OAuth 2.0" page (go straight to Keycloak) and
+# auto-approve the internal per-server OAuth so the notebook opens without extra confirm clicks.
+c.Authenticator.auto_login = True
+c.Spawner.oauth_no_confirm = True
 
 # --- spawner: docker via the least-privilege socket proxy
 c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"

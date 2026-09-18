@@ -30,8 +30,11 @@ app.{$DOMAIN} {
 		header Content-Type "text/html; charset=utf-8"
 		header Cache-Control "no-store"
 		respond `<!doctype html><meta charset="utf-8"><title>Opening ThingsBoard…</title><script>
-try{var h=new URLSearchParams(location.hash.slice(1));var j=h.get("jwt"),r=h.get("refresh");
-if(j){localStorage.setItem("jwt_token",j);if(r)localStorage.setItem("refresh_token",r);}}catch(e){}
+function b64(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return atob(s);}
+function setTok(k,t){try{var p=JSON.parse(b64(t.split(".")[1])),life=(p.exp-p.iat)*1000;
+if(life>0){localStorage.setItem(k,t);localStorage.setItem(k+"_expiration",""+(Date.now()+life));}}catch(e){}}
+try{var h=new URLSearchParams(location.hash.slice(1)),j=h.get("jwt"),r=h.get("refresh");
+if(j)setTok("jwt_token",j);if(r)setTok("refresh_token",r);}catch(e){}
 location.replace("/");
 </script>Opening ThingsBoard…` 200
 	}
