@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+<div class="dash-head"><div>
+  <p class="overline"><a href="/home">{{ _("Projects") }}</a></p>
+  <h1>{{ project.name }}</h1>
+</div></div>
+
+<div class="panel" style="max-width:560px">
+  {% if project.description %}<p class="helper">{{ project.description }}</p>{% endif %}
+  {% if disabled %}
+    <div class="callout callout--error"><p>{{ _("Your access to this project has been disabled by the owner.") }}</p></div>
+  {% elif requested %}
+    <div class="callout callout--info"><p>{{ _("Your request to join is pending the owner's approval.") }}</p></div>
+  {% else %}
+    <p>{{ _("You are not a member of this project.") }}</p>
+    <form method="post" action="/projects/{{ project.id }}/join" style="margin-top:1rem">
+      <button class="btn btn--primary" type="submit">{{ _("Request to join") }}</button>
+      <a class="btn btn--secondary" href="/home">{{ _("Back") }}</a>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

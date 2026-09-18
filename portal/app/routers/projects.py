@@ -5,23 +5,40 @@ from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.dashboard import dashboard_data
 from app.db import get_db
-from app.models import Project
+from app.models import Project, ProjectJoinRequest, ProjectMember
 from app.project import (
+    accept_invite,
     as_project,
+    create_invite,
     create_project,
     delete_project,
+    join_requests,
+    members,
     membership,
+    pending_invites,
+    remove_member,
+    request_to_join,
     require_membership,
+    resolve_join_request,
     retry_provision,
+    set_member_status,
 )
 from app.student import load_user
 from app.templating import templates
 
 router = APIRouter()
+
+
+def _require_owner(request: Request, db: Session, project_id: str) -> tuple[Project, ProjectMember]:
+    user, project, member = require_membership(request, db, project_id)
+    if member.role != "owner":
+        raise HTTPException(status_code=403, detail="owner only")
+    return project, member
 
 
 @router.get("/projects/new")
@@ -51,15 +68,45 @@ def create(
 
 @router.get("/projects/{project_id}")
 def workspace(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
-    """The project workspace. Renders even when provisioning failed (offers a retry)."""
+    """The project workspace. Non-members see a join page; the owner sees member management."""
     user = load_user(request, db)
     if user is None:
         return RedirectResponse("/login", status_code=303)
     project = db.get(Project, project_id)
-    member = membership(db, project_id, user.id) if project else None
-    if project is None or member is None or member.status != "active":
+    if project is None:
         return RedirectResponse("/home", status_code=303)
-    ctx = {"user": user, "project": project, "member": member, "is_owner": member.role == "owner"}
+    member = membership(db, project_id, user.id)
+    if member is None or member.status != "active":
+        # Not a member (or disabled): offer to request to join.
+        pending = db.scalar(
+            select(ProjectJoinRequest).where(
+                ProjectJoinRequest.project_id == project_id,
+                ProjectJoinRequest.user_id == user.id,
+                ProjectJoinRequest.status == "pending",
+            )
+        )
+        disabled = member is not None and member.status == "disabled"
+        return templates.TemplateResponse(
+            request,
+            "project_join.html",
+            {
+                "user": user,
+                "project": project,
+                "requested": pending is not None,
+                "disabled": disabled,
+            },
+        )
+    is_owner = member.role == "owner"
+    ctx = {
+        "user": user,
+        "project": project,
+        "member": member,
+        "is_owner": is_owner,
+        "members": members(db, project_id) if is_owner else [],
+        "invites": pending_invites(db, project_id) if is_owner else [],
+        "requests": join_requests(db, project_id) if is_owner else [],
+        "invite_base": str(request.base_url).rstrip("/"),
+    }
     return templates.TemplateResponse(request, "project.html", ctx)
 
 
@@ -96,3 +143,81 @@ def delete(request: Request, project_id: str, db: Session = Depends(get_db)) -> 
         raise HTTPException(status_code=403, detail="only the owner can delete a project")
     delete_project(db, project, user.email)
     return RedirectResponse("/home", status_code=303)
+
+
+# ------------------------------------------------------------------------ collaboration (M5.6) ----
+@router.post("/projects/{project_id}/invite")
+def invite(
+    request: Request,
+    project_id: str,
+    email: Annotated[str, Form()],
+    db: Session = Depends(get_db),
+) -> Any:
+    project, _owner = _require_owner(request, db, project_id)
+    if "@" in email and len(email) <= 320:
+        create_invite(db, project, load_user(request, db), email)  # type: ignore[arg-type]
+    return RedirectResponse(f"/projects/{project_id}", status_code=303)
+
+
+@router.get("/invite/{token}")
+def accept_invite_link(request: Request, token: str, db: Session = Depends(get_db)) -> Any:
+    """Open an invite link. Requires login (with the invited email); then joins and opens it."""
+    user = load_user(request, db)
+    if user is None:
+        request.session["after_login"] = f"/invite/{token}"
+        return RedirectResponse("/login", status_code=303)
+    project = accept_invite(db, token, user)
+    if project is None:
+        return templates.TemplateResponse(
+            request,
+            "error.html",
+            {
+                "title": "Invite not valid",
+                "message": "This invite has expired, was already used, "
+                "or was sent to a different email address.",
+            },
+            status_code=404,
+        )
+    return RedirectResponse(f"/projects/{project.id}", status_code=303)
+
+
+@router.post("/projects/{project_id}/join")
+def join(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    user = load_user(request, db)
+    if user is None:
+        return RedirectResponse("/login", status_code=303)
+    project = db.get(Project, project_id)
+    if project is None:
+        return RedirectResponse("/home", status_code=303)
+    if membership(db, project_id, user.id) is None:
+        request_to_join(db, project, user)
+    return RedirectResponse(f"/projects/{project_id}", status_code=303)
+
+
+@router.post("/projects/{project_id}/requests/{req_id}/{decision}")
+def resolve_request(
+    request: Request, project_id: str, req_id: str, decision: str, db: Session = Depends(get_db)
+) -> Any:
+    project, _owner = _require_owner(request, db, project_id)
+    req = db.get(ProjectJoinRequest, req_id)
+    if req and req.project_id == project_id and req.status == "pending":
+        resolve_join_request(db, project, req, approve=(decision == "approve"))
+    return RedirectResponse(f"/projects/{project_id}", status_code=303)
+
+
+@router.post("/projects/{project_id}/members/{member_id}/{action}")
+def manage_member(
+    request: Request, project_id: str, member_id: str, action: str, db: Session = Depends(get_db)
+) -> Any:
+    project, owner_member = _require_owner(request, db, project_id)
+    target = db.get(ProjectMember, member_id)
+    if target is None or target.project_id != project_id or target.role == "owner":
+        # never disable/remove an owner through this path
+        return RedirectResponse(f"/projects/{project_id}", status_code=303)
+    if action == "disable":
+        set_member_status(db, project, target, active=False)
+    elif action == "enable":
+        set_member_status(db, project, target, active=True)
+    elif action == "remove":
+        remove_member(db, project, target)
+    return RedirectResponse(f"/projects/{project_id}", status_code=303)

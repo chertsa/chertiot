@@ -12,6 +12,7 @@ from app.auth import oauth
 from app.config import get_settings
 from app.db import get_db
 from app.models import PortalUser
+from app.project import accept_pending_invites_for
 from app.ratelimit import rate_limited
 from app.templating import templates
 
@@ -68,7 +69,10 @@ async def callback(request: Request, db: Session = Depends(get_db)) -> Any:
     request.session["id_token"] = token.get("id_token")
     audit(db, email, "login")
     # No personal TB tenant at login (D13): a user's tenants come from the projects they own/join.
-    return RedirectResponse("/home", status_code=303)
+    # Silently accept any project invites addressed to this email.
+    accept_pending_invites_for(db, user)
+    dest = request.session.pop("after_login", None) or "/home"
+    return RedirectResponse(dest, status_code=303)
 
 
 @router.get("/auth/verified")

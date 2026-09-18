@@ -15,7 +15,13 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.audit import audit
-from app.models import PortalUser, Project, ProjectMember
+from app.models import (
+    PortalUser,
+    Project,
+    ProjectInvite,
+    ProjectJoinRequest,
+    ProjectMember,
+)
 from app.onboarding import sysadmin_client
 from app.provisioning import (
     ProvisioningError,
@@ -197,3 +203,150 @@ def as_project(member: ProjectMember) -> Iterator[tuple[TbClient, TbClient]]:
             session.close()
     finally:
         sysadmin.close()
+
+
+# ------------------------------------------------------------------------ collaboration (M5.6) ----
+def members(db: Session, project_id: str) -> list[tuple[ProjectMember, PortalUser]]:
+    """Every membership (any status) with its portal user, owners first."""
+    rows = db.execute(
+        select(ProjectMember, PortalUser)
+        .join(PortalUser, PortalUser.id == ProjectMember.user_id)
+        .where(ProjectMember.project_id == project_id)
+        .order_by(ProjectMember.role.desc(), ProjectMember.added_at)
+    ).all()
+    return [(m, u) for m, u in rows]
+
+
+def add_member(
+    db: Session, project: Project, user: PortalUser, role: str = "member"
+) -> ProjectMember:
+    """Add (or reactivate) a human as a Tenant-Admin of the project tenant. Idempotent."""
+    member = membership(db, project.id, user.id)
+    if member is None:
+        member = ProjectMember(project_id=project.id, user_id=user.id, role=role)
+        db.add(member)
+    member.status = "active"
+    sysadmin = sysadmin_client()
+    try:
+        member.tb_user_id = ensure_member_user(sysadmin, project, user)
+    finally:
+        sysadmin.close()
+    audit(db, user.email, "project.member.add", project.slug, role=role)
+    db.commit()
+    return member
+
+
+def set_member_status(
+    db: Session, project: Project, member: ProjectMember, *, active: bool
+) -> None:
+    """Enable/disable a member. Disabled members are blocked at the portal gate (the sole access
+    path — D13), so their project data stays intact and re-enabling is instant."""
+    member.status = "active" if active else "disabled"
+    act = "project.member.enable" if active else "project.member.disable"
+    audit(db, member.user_id, act, project.slug)
+    db.commit()
+
+
+def remove_member(db: Session, project: Project, member: ProjectMember) -> None:
+    """Remove a member: delete their TB user in the project tenant and the portal row."""
+    if member.tb_user_id:
+        sysadmin = sysadmin_client()
+        try:
+            sysadmin.delete_user(member.tb_user_id)
+        except Exception:  # noqa: BLE001
+            log.info("member TB user %s already gone", member.tb_user_id)
+        finally:
+            sysadmin.close()
+    audit(db, member.user_id, "project.member.remove", project.slug)
+    db.delete(member)
+    db.commit()
+
+
+def create_invite(db: Session, project: Project, owner: PortalUser, email: str) -> ProjectInvite:
+    invite = ProjectInvite(
+        project_id=project.id, invited_email=email.strip().lower(), invited_by=owner.id
+    )
+    db.add(invite)
+    audit(db, owner.email, "project.invite", project.slug, invited=invite.invited_email)
+    db.commit()
+    return invite
+
+
+def accept_invite(db: Session, token: str, user: PortalUser) -> Project | None:
+    """Accept an invite by token if it belongs to this user's email. Returns the project."""
+    invite = db.scalar(select(ProjectInvite).where(ProjectInvite.token == token))
+    if invite is None or invite.status != "pending":
+        return None
+    if invite.invited_email != user.email.lower():
+        return None
+    project = db.get(Project, invite.project_id)
+    if project is None:
+        return None
+    add_member(db, project, user)
+    invite.status = "accepted"
+    db.commit()
+    return project
+
+
+def accept_pending_invites_for(db: Session, user: PortalUser) -> None:
+    """On login: silently accept any pending invites addressed to this user's email."""
+    pending = db.scalars(
+        select(ProjectInvite).where(
+            ProjectInvite.invited_email == user.email.lower(), ProjectInvite.status == "pending"
+        )
+    ).all()
+    for invite in pending:
+        project = db.get(Project, invite.project_id)
+        if project and project.provisioning_state == "provisioned":
+            add_member(db, project, user)
+            invite.status = "accepted"
+    if pending:
+        db.commit()
+
+
+def request_to_join(db: Session, project: Project, user: PortalUser) -> ProjectJoinRequest:
+    existing = db.scalar(
+        select(ProjectJoinRequest).where(
+            ProjectJoinRequest.project_id == project.id,
+            ProjectJoinRequest.user_id == user.id,
+            ProjectJoinRequest.status == "pending",
+        )
+    )
+    if existing:
+        return existing
+    req = ProjectJoinRequest(project_id=project.id, user_id=user.id)
+    db.add(req)
+    audit(db, user.email, "project.join_request", project.slug)
+    db.commit()
+    return req
+
+
+def join_requests(db: Session, project_id: str) -> list[tuple[ProjectJoinRequest, PortalUser]]:
+    rows = db.execute(
+        select(ProjectJoinRequest, PortalUser)
+        .join(PortalUser, PortalUser.id == ProjectJoinRequest.user_id)
+        .where(ProjectJoinRequest.project_id == project_id, ProjectJoinRequest.status == "pending")
+        .order_by(ProjectJoinRequest.created_at)
+    ).all()
+    return [(r, u) for r, u in rows]
+
+
+def resolve_join_request(
+    db: Session, project: Project, req: ProjectJoinRequest, *, approve: bool
+) -> None:
+    if approve:
+        user = db.get(PortalUser, req.user_id)
+        if user:
+            add_member(db, project, user)
+    req.status = "approved" if approve else "denied"
+    db.commit()
+
+
+def pending_invites(db: Session, project_id: str) -> list[ProjectInvite]:
+    return list(
+        db.scalars(
+            select(ProjectInvite).where(
+                ProjectInvite.project_id == project_id, ProjectInvite.status == "pending"
+            )
+        )
+    )
