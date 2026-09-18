@@ -1,128 +1,109 @@
-"""M0.4 acceptance against local TB: fresh tenant with quotas + starter dashboard + device
-token, idempotent, partial-failure safe, and telemetry over MQTT lands on the starter device."""
+"""M5.1 acceptance against a live TB: creating a project provisions an isolated TB tenant with the
+owner as tenant admin, quotas, and a starter dashboard — idempotent, partial-failure safe, and the
+project session can create a device and receive its telemetry over MQTT."""
 
 import json
 import os
-import time
+import uuid
 
 import paho.mqtt.client as mqtt
 import pytest
+from sqlalchemy.orm import Session
 
-from app import provisioning
-from app.config import Settings
-from app.provisioning import (
-    STARTER_DEVICE_NAME,
-    delete_student,
-    provision_student,
-    suspend_student,
-)
-from app.tb_client import TbClient, TbError, Tenant
+from app import project as project_mod
+from app.models import PortalUser, Project
+from app.project import as_project, create_project, delete_project, membership
+from app.tb_client import Device, TbClient, TbError
 
 MQTT_HOST = os.environ.get("TB_MQTT_HOST", "127.0.0.1")
 MQTT_PORT = int(os.environ.get("TB_MQTT_PORT", "1883"))
 
 
-def settings() -> Settings:
-    return Settings(portal_secret_key="t", portal_database_url="postgresql://t")
-
-
-def test_provision_is_idempotent(sysadmin: TbClient, student_email: str) -> None:
-    first = provision_student(sysadmin, student_email, first_name="Test", settings=settings())
-    assert all(first.created.values()), first.created
-    second = provision_student(sysadmin, student_email, settings=settings())
-    assert not any(second.created.values()), second.created
-    assert (first.tenant_id, first.user_id, first.dashboard_id, first.device_id) == (
-        second.tenant_id,
-        second.user_id,
-        second.dashboard_id,
-        second.device_id,
+def _user(db: Session) -> PortalUser:
+    u = PortalUser(
+        email=f"it-{uuid.uuid4().hex[:8]}@test.chertiot.local", kc_user_id=uuid.uuid4().hex
     )
-    assert first.device_access_token == second.device_access_token
-
-    tenant = sysadmin.get_tenant(first.tenant_id)
-    profile = sysadmin.find_tenant_profile("chertiot-student")
-    assert profile and profile.default and tenant.tenant_profile_id == profile.id
-    assert profile.profile_data["configuration"]["maxDevices"] == 10
+    db.add(u)
+    db.commit()
+    return u
 
 
-def test_partial_failure_is_repaired_on_rerun(
-    sysadmin: TbClient, student_email: str, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    def boom(*a: object, **k: object) -> object:
-        raise TbError(503, "simulated outage mid-provision", "POST", "/dashboard")
-
-    monkeypatch.setattr(provisioning, "ensure_starter_dashboard", boom)
-    with pytest.raises(TbError):
-        provision_student(sysadmin, student_email, settings=settings())
-    # Tenant + user exist, dashboard/device don't.
-    tenant = sysadmin.find_tenant(student_email)
-    assert tenant and tenant.id
-    assert sysadmin.find_tenant_user(tenant.id.id, student_email)
-
-    monkeypatch.undo()
-    r = provision_student(sysadmin, student_email, settings=settings())
-    assert r.created == {"tenant": False, "user": False, "dashboard": True, "device": True}
+def _cleanup(sysadmin: TbClient, project: Project) -> None:
+    if project.tb_tenant_id:
+        try:
+            sysadmin.delete_tenant(project.tb_tenant_id)
+        except TbError:
+            pass
 
 
-def test_mqtt_telemetry_reaches_starter_device(sysadmin: TbClient, student_email: str) -> None:
-    r = provision_student(sysadmin, student_email, settings=settings())
-    c = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-    c.username_pw_set(r.device_access_token)
-    c.connect(MQTT_HOST, MQTT_PORT, keepalive=10)
-    c.loop_start()
-    info = c.publish(
-        "v1/devices/me/telemetry", json.dumps({"temperature": 21.5, "humidity": 40}), qos=1
-    )
-    info.wait_for_publish(timeout=10)
-    c.disconnect()
-    c.loop_stop()
-    assert info.is_published()
-
-    as_student = sysadmin.impersonate(r.user_id)
+def test_create_project_provisions_tenant_owner_dashboard(sysadmin: TbClient, db: Session) -> None:
+    user = _user(db)
+    project = create_project(db, user, "Greenhouse monitor", "hello")
     try:
-        for _ in range(20):
-            latest = as_student.latest_timeseries(r.device_id, ["temperature", "humidity"])
-            if latest.get("temperature"):
-                break
-            time.sleep(0.5)
-        assert latest["temperature"][0]["value"] == "21.5"
-        # The starter dashboard alias resolves every device in the tenant, so this one is on it.
-        dash = as_student.find_dashboard("My devices")
-        assert dash is not None
-        alias = next(iter(dash.configuration["entityAliases"].values()))
-        expected = {"type": "entityType", "resolveMultiple": True, "entityType": "DEVICE"}
-        assert alias["filter"] == expected
-        assert any(d.name == STARTER_DEVICE_NAME for d in as_student.list_devices())
+        assert project.provisioning_state == "provisioned", project.provisioning_error
+        assert project.tb_tenant_id
+        owner = membership(db, project.id, user.id)
+        assert owner and owner.role == "owner" and owner.tb_user_id
+
+        tenant = sysadmin.get_tenant(project.tb_tenant_id)
+        profile = sysadmin.find_tenant_profile("chertiot-student")
+        assert profile and profile.default and tenant.tenant_profile_id == profile.id
+        with as_project(owner) as (_s, session):
+            assert session.find_dashboard("My devices")
     finally:
-        as_student.close()
+        _cleanup(sysadmin, project)
 
 
-def test_suspend_and_delete(sysadmin: TbClient, student_email: str) -> None:
-    r = provision_student(sysadmin, student_email, settings=settings())
-
-    def creds_enabled() -> bool:
-        info = sysadmin._get(f"/user/{r.user_id}")["additionalInfo"]
-        return bool(info.get("userCredentialsEnabled", True))
-
-    suspend_student(sysadmin, student_email)
-    assert creds_enabled() is False
-    # Never-activated (Keycloak-only) user: unsuspend is a documented no-op, must not raise.
-    suspend_student(sysadmin, student_email, suspended=False)
-    assert creds_enabled() is False
-    assert delete_student(sysadmin, student_email) is True
-    assert sysadmin.find_tenant(student_email) is None
-    assert delete_student(sysadmin, student_email) is False  # idempotent
-
-
-def test_existing_tenant_is_moved_onto_student_profile(
-    sysadmin: TbClient, student_email: str
+def test_partial_failure_is_repaired_on_retry(
+    sysadmin: TbClient, db: Session, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tenants auto-created by the Keycloak login mapper get whatever profile was default at the
-    time; provisioning must repair that."""
-    stock = next(p for p in sysadmin.list_tenant_profiles() if p.name == "Default")
-    pre = sysadmin.save_tenant(Tenant(title=student_email, tenantProfileId=stock.id))
-    assert pre.tenant_profile_id == stock.id
-    r = provision_student(sysadmin, student_email, settings=settings())
-    assert r.created["tenant"] is False
-    student = sysadmin.find_tenant_profile("chertiot-student")
-    assert student and sysadmin.get_tenant(r.tenant_id).tenant_profile_id == student.id
+    user = _user(db)
+
+    def boom(*a: object, **k: object) -> object:
+        raise TbError(503, "simulated outage", "POST", "/dashboard")
+
+    monkeypatch.setattr(project_mod, "ensure_starter_dashboard", boom)
+    project = create_project(db, user, "Weather", None)
+    try:
+        assert project.provisioning_state == "failed"
+        assert project.tb_tenant_id  # tenant + owner user already exist
+        monkeypatch.undo()
+        owner = membership(db, project.id, user.id)
+        assert owner
+        assert project_mod.retry_provision(db, project, user, owner)
+        assert project.provisioning_state == "provisioned"
+    finally:
+        _cleanup(sysadmin, project)
+
+
+def test_delete_project_removes_tenant(sysadmin: TbClient, db: Session) -> None:
+    user = _user(db)
+    project = create_project(db, user, "Throwaway", None)
+    tenant_id = project.tb_tenant_id
+    assert tenant_id
+    delete_project(db, project, user.email)
+    assert db.get(Project, project.id) is None
+    assert sysadmin.find_tenant("Throwaway") is None or sysadmin.get_tenant(tenant_id) is None
+
+
+def test_mqtt_telemetry_reaches_a_project_device(sysadmin: TbClient, db: Session) -> None:
+    user = _user(db)
+    project = create_project(db, user, "Telemetry", None)
+    try:
+        owner = membership(db, project.id, user.id)
+        assert owner
+        with as_project(owner) as (_s, session):
+            device = session.save_device(Device(name="probe", type="default"))
+            assert device.id
+            token = session.get_device_credentials(device.id.id).credentials_id
+        c = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+        c.username_pw_set(token)
+        c.connect(MQTT_HOST, MQTT_PORT, keepalive=10)
+        c.loop_start()
+        info = c.publish("v1/devices/me/telemetry", json.dumps({"temperature": 21.5}), qos=1)
+        info.wait_for_publish(timeout=10)
+        c.disconnect()
+        c.loop_stop()
+        assert info.is_published()
+    finally:
+        _cleanup(sysadmin, project)

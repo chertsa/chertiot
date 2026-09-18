@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}New project — CHERT IoT{% endblock %}
+{% block content %}
+<div class="dash-head"><div><h1>{{ _("New project") }}</h1></div></div>
+
+{% if error %}<div class="callout callout--error"><p>{{ error }}</p></div>{% endif %}
+
+<div class="panel" style="max-width:560px">
+  <form method="post" action="/projects">
+    <label class="field">
+      <span class="field__label">{{ _("Project name") }}</span>
+      <input class="input" name="name" required minlength="2" maxlength="120"
+             placeholder="{{ _('e.g. Greenhouse monitor') }}" autofocus>
+    </label>
+    <label class="field" style="margin-top:1rem">
+      <span class="field__label">{{ _("Description") }} <span class="helper">({{ _("optional") }})</span></span>
+      <textarea class="input" name="description" rows="3" maxlength="500"
+                placeholder="{{ _('What will this project do?') }}"></textarea>
+    </label>
+    <p class="helper" style="margin-top:1rem">{{ _("This creates an isolated environment — its own devices, flows, notebooks, alerts and dashboards.") }}</p>
+    <div style="margin-top:1rem">
+      <button class="btn btn--primary" type="submit">{{ _("Create project") }}</button>
+      <a class="btn btn--secondary" href="/home">{{ _("Cancel") }}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

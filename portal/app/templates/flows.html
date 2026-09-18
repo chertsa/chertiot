@@ -9,7 +9,7 @@
   <p>{{ _("Your own Node-RED editor: wire your device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard credentials are pre-injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN.") }}</p>
   {% if state == "ready" %}
     <p><a class="btn btn--primary" href="{{ editor_url }}" target="_blank" rel="noopener">{{ _("Open the editor") }}</a></p>
-    <form method="post" action="/flows/stop"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Stop my instance") }}</button></form>
+    <form method="post" action="/projects/{{ project.id }}/flows/stop"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Stop my instance") }}</button></form>
     <p class="helper">{{ _("Instances stop automatically after 30 minutes without use; your flows are kept.") }}</p>
   {% elif state == "starting" %}
     <div class="building">
@@ -19,11 +19,11 @@
         <p class="helper" style="margin:.25rem 0 0">{{ _("This takes a few seconds. The editor opens automatically when it's ready — please don't open it yet.") }}</p>
       </div>
     </div>
-    <form method="post" action="/flows/stop" style="margin-top:1rem"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Cancel") }}</button></form>
+    <form method="post" action="/projects/{{ project.id }}/flows/stop" style="margin-top:1rem"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Cancel") }}</button></form>
     <script>
       (function () {
         function check() {
-          fetch('/flows/ready', {credentials: 'same-origin', cache: 'no-store'})
+          fetch('/projects/{{ project.id }}/flows/ready', {credentials: 'same-origin', cache: 'no-store'})
             .then(function (r) { return r.json(); })
             .then(function (d) { if (d && d.ready) { location.reload(); } else { setTimeout(check, 2000); } })
             .catch(function () { setTimeout(check, 3000); });
@@ -32,7 +32,7 @@
       })();
     </script>
   {% else %}
-    <form method="post" action="/flows/start"><button class="btn btn--primary" type="submit">{{ _("Start my Node-RED") }}</button></form>
+    <form method="post" action="/projects/{{ project.id }}/flows/start"><button class="btn btn--primary" type="submit">{{ _("Start my Node-RED") }}</button></form>
     <p class="helper">{{ _("Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you. You'll see a “building” indicator until it's ready.") }}</p>
   {% endif %}
 {% endif %}

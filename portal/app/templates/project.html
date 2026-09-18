@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+<div class="dash-head">
+  <div>
+    <p class="overline"><a href="/home">{{ _("Projects") }}</a> / {{ project.slug }}</p>
+    <h1>{{ project.name }}</h1>
+  </div>
+</div>
+
+{% if project.provisioning_state == 'failed' %}
+  <div class="callout callout--error"><p>{{ _("We could not set up this project:") }} {{ project.provisioning_error }}</p></div>
+  <form method="post" action="/projects/{{ project.id }}/provision"><button class="btn btn--primary" type="submit">{{ _("Try again") }}</button></form>
+{% elif project.provisioning_state != 'provisioned' %}
+  <div class="callout callout--info"><p>{{ _("Setting up this project…") }}</p></div>
+  <form method="post" action="/projects/{{ project.id }}/provision"><button class="btn btn--primary" type="submit">{{ _("Set up now") }}</button></form>
+{% else %}
+
+  <div id="dash-live" aria-live="polite">
+    <div class="kpi-row">
+      {% for _i in range(4) %}<div class="kpi kpi--skeleton"><div class="kpi__value">…</div><div class="kpi__label">{{ _("Loading…") }}</div></div>{% endfor %}
+    </div>
+  </div>
+
+  <h2 class="section-h">{{ _("Tools") }}</h2>
+  <div class="grid-cards">
+    <a class="card" href="/projects/{{ project.id }}/devices"><div class="card__title">{{ _("Devices") }}</div><div class="card__desc">{{ _("Add devices, get tokens and starter code.") }}</div></a>
+    <a class="card" href="/projects/{{ project.id }}/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("This project's Node-RED: wire devices to logic and actions, no code required.") }}</div></a>
+    <a class="card" href="/projects/{{ project.id }}/lora"><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on this project's dashboard.") }}</div></a>
+    <a class="card" href="/projects/{{ project.id }}/alerts"><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div></a>
+    <a class="card" href="https://lab.{{ request.url.hostname }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Lab (notebooks)") }}</div><div class="card__desc">{{ _("Analyse this project's telemetry in a Python notebook — pandas & matplotlib.") }}</div></a>
+  </div>
+
+  <p class="helper" style="margin-top:1rem">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}
+    <form method="post" action="/projects/{{ project.id }}/dashboard/reset" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
+  </p>
+
+  {% if is_owner %}
+  <p class="helper" style="margin-top:2rem">{{ _("Deleting a project permanently removes its devices, data, flows and dashboards.") }}
+    <form method="post" action="/projects/{{ project.id }}/delete" style="display:inline" onsubmit="return confirm('{{ _("Delete this project and all its data? This cannot be undone.") }}')"><button class="btn btn--danger btn--sm" type="submit">{{ _("Delete project") }}</button></form>
+  </p>
+  {% endif %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script>
+    (function () {
+      function drawChart() {
+        var data = document.getElementById('chart-data');
+        var cv = document.getElementById('tsChart');
+        if (!data || !cv || !window.Chart) return;
+        var s = {}; try { s = JSON.parse(data.textContent || '{}'); } catch (e) { return; }
+        var labels = (s.temperature || s.humidity || []).map(function (p) { return p.t; });
+        var ds = [];
+        if (s.temperature && s.temperature.length) ds.push({label: 'Temperature °C', data: s.temperature.map(function (p) { return p.v; }), borderColor: '#E8641E', backgroundColor: 'rgba(232,100,30,.08)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2});
+        if (s.humidity && s.humidity.length) ds.push({label: 'Humidity %', data: s.humidity.map(function (p) { return p.v; }), borderColor: '#3B7DD8', backgroundColor: 'rgba(59,125,216,.06)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2, yAxisID: 'y1'});
+        new Chart(cv, {type: 'line', data: {labels: labels, datasets: ds}, options: {responsive: true, maintainAspectRatio: false, interaction: {intersect: false, mode: 'index'}, plugins: {legend: {labels: {boxWidth: 12}}}, scales: {x: {ticks: {maxTicksLimit: 8, autoSkip: true}, grid: {display: false}}, y: {position: 'left'}, y1: {position: 'right', grid: {drawOnChartArea: false}}}}});
+      }
+      function load() {
+        fetch('/projects/{{ project.id }}/panel', {headers: {'X-Requested-With': 'fetch'}, credentials: 'same-origin'})
+          .then(function (r) { return r.text(); })
+          .then(function (html) { document.getElementById('dash-live').innerHTML = html; drawChart(); })
+          .catch(function () {
+            document.getElementById('dash-live').innerHTML =
+              '<div class="panel"><p class="helper">{{ _("Live data is taking a moment.") }} <a href="">{{ _("Retry") }}</a></p></div>';
+          });
+      }
+      load();
+    })();
+  </script>
+{% endif %}
+{% endblock %}

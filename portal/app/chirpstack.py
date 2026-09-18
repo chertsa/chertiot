@@ -60,17 +60,19 @@ class ChirpStack:
         resp = stub.CreateApiKey(internal_pb2.CreateApiKeyRequest(api_key=key), metadata=self._auth)
         return str(resp.token)
 
-    def ensure_application(self, tenant_id: str) -> str:
+    def ensure_application(self, tenant_id: str, name: str = APP_NAME) -> str:
+        """Find-or-create a ChirpStack application by name. One application per CHERT project
+        (name = the project slug), so a project's LoRa devices are isolated (D13)."""
         stub = api.ApplicationServiceStub(self._ch)
         listed = stub.List(
             application_pb2.ListApplicationsRequest(limit=100, tenant_id=tenant_id),
             metadata=self._auth,
         )
         for a in listed.result:
-            if a.name == APP_NAME:
+            if a.name == name:
                 return str(a.id)
         app = application_pb2.Application(
-            name=APP_NAME, description="CHERT IoT student LoRa devices", tenant_id=tenant_id
+            name=name, description="CHERT IoT project LoRa devices", tenant_id=tenant_id
         )
         return str(
             stub.Create(

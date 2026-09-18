@@ -1,70 +1,42 @@
 {% extends "base.html" %}
-{% block title %}My lab — CHERT IoT{% endblock %}
+{% block title %}My projects — CHERT IoT{% endblock %}
 {% block content %}
 <div class="dash-head">
   <div>
     <p class="overline">{{ user.cohort }}</p>
-    <h1>{{ _("My lab") }}</h1>
+    <h1>{{ _("My projects") }}</h1>
   </div>
-  {% if user.provisioning_state == 'provisioned' %}
-  <a class="btn btn--primary btn--sm" href="/dashboard/open" target="_blank" rel="noopener">{{ _("Open full dashboard") }} ↗</a>
-  {% endif %}
+  <a class="btn btn--primary btn--sm" href="/projects/new">+ {{ _("New project") }}</a>
 </div>
 
-{% if user.provisioning_state == 'provisioned' %}
-  <div id="dash-live" aria-live="polite">
-    <div class="kpi-row">
-      {% for _i in range(4) %}<div class="kpi kpi--skeleton"><div class="kpi__value">…</div><div class="kpi__label">{{ _("Loading…") }}</div></div>{% endfor %}
+{% if projects %}
+<div class="grid-cards">
+  {% for p in projects %}
+  <a class="card" href="/projects/{{ p.project.id }}">
+    <div class="card__title">{{ p.project.name }}
+      {% if p.role == 'owner' %}<span class="tag">{{ _("owner") }}</span>{% else %}<span class="tag">{{ _("member") }}</span>{% endif %}
     </div>
-  </div>
-
-  <h2 class="section-h">{{ _("Tools") }}</h2>
-  <div class="grid-cards">
-    <a class="card" href="/devices"><div class="card__title">{{ _("My devices") }}</div><div class="card__desc">{{ _("Add devices, get tokens and starter code.") }}</div></a>
-    <a class="card" href="/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("Your own Node-RED: wire devices to logic and actions, no code required.") }}</div></a>
-    <a class="card" href="/lora"><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on your dashboard.") }}</div></a>
-    <a class="card" href="/alerts"><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div></a>
-    <a class="card" href="https://lab.{{ request.url.hostname }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Lab (notebooks)") }}</div><div class="card__desc">{{ _("Analyse your telemetry in a Python notebook — pandas &amp; matplotlib, pre-wired to your data.") }}</div></a>
-    <a class="card" href="/docs/"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
-    <a class="card" href="/explore"><div class="card__title">{{ _("Explore the lab") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div></a>
-    <a class="card" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div></a>
-  </div>
-  <p class="helper" style="margin-top:1rem">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}
-    <form method="post" action="/dashboard/reset" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
-  </p>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-  <script>
-    (function () {
-      function drawChart() {
-        var data = document.getElementById('chart-data');
-        var cv = document.getElementById('tsChart');
-        if (!data || !cv || !window.Chart) return;
-        var s = {}; try { s = JSON.parse(data.textContent || '{}'); } catch (e) { return; }
-        var labels = (s.temperature || s.humidity || []).map(function (p) { return p.t; });
-        var ds = [];
-        if (s.temperature && s.temperature.length) ds.push({label: 'Temperature °C', data: s.temperature.map(function (p) { return p.v; }), borderColor: '#E8641E', backgroundColor: 'rgba(232,100,30,.08)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2});
-        if (s.humidity && s.humidity.length) ds.push({label: 'Humidity %', data: s.humidity.map(function (p) { return p.v; }), borderColor: '#3B7DD8', backgroundColor: 'rgba(59,125,216,.06)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2, yAxisID: 'y1'});
-        new Chart(cv, {type: 'line', data: {labels: labels, datasets: ds}, options: {responsive: true, maintainAspectRatio: false, interaction: {intersect: false, mode: 'index'}, plugins: {legend: {labels: {boxWidth: 12}}}, scales: {x: {ticks: {maxTicksLimit: 8, autoSkip: true}, grid: {display: false}}, y: {position: 'left'}, y1: {position: 'right', grid: {drawOnChartArea: false}}}}});
-      }
-      function load() {
-        fetch('/home/panel', {headers: {'X-Requested-With': 'fetch'}, credentials: 'same-origin'})
-          .then(function (r) { return r.text(); })
-          .then(function (html) { document.getElementById('dash-live').innerHTML = html; drawChart(); })
-          .catch(function () {
-            document.getElementById('dash-live').innerHTML =
-              '<div class="panel"><p class="helper">{{ _("Live data is taking a moment.") }} <a href="/home">{{ _("Retry") }}</a></p></div>';
-          });
-      }
-      load();
-    })();
-  </script>
-
-{% elif user.provisioning_state == 'failed' %}
-  <div class="callout callout--error"><p>{{ _("We could not set up your lab:") }} {{ user.provisioning_error }}</p></div>
-  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">{{ _("Try again") }}</button></form>
+    <div class="card__desc">{{ p.project.description or _("No description yet.") }}</div>
+    <div class="helper" style="margin-top:.5rem">
+      {% if p.project.provisioning_state == 'provisioned' %}<span class="dot dot--on"></span>{{ _("Ready") }}
+      {% elif p.project.provisioning_state == 'failed' %}<span class="dot dot--off"></span>{{ _("Setup failed") }}
+      {% else %}<span class="dot"></span>{{ _("Setting up…") }}{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
 {% else %}
-  <div class="callout callout--info"><p>{{ _("Setting up your lab…") }}</p></div>
-  <form method="post" action="/home/provision"><button class="btn btn--primary" type="submit">{{ _("Set up now") }}</button></form>
+<div class="panel">
+  <h2 class="panel__title">{{ _("Start your first project") }}</h2>
+  <p class="helper">{{ _("A project is your own isolated space — its own devices, flows, notebooks, alerts and dashboards. Create one to begin.") }}</p>
+  <p style="margin-top:1rem"><a class="btn btn--primary" href="/projects/new">+ {{ _("New project") }}</a></p>
+</div>
 {% endif %}
+
+<h2 class="section-h" style="margin-top:2rem">{{ _("Learn") }}</h2>
+<div class="grid-cards">
+  <a class="card" href="/docs/"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
+  <a class="card" href="/explore"><div class="card__title">{{ _("Explore the stack") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div></a>
+  <a class="card" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div></a>
+</div>
 {% endblock %}

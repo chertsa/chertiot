@@ -12,10 +12,10 @@ from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
 from app.export import MAX_RANGE_MS, iter_rows, stream_csv, stream_json
+from app.project import as_project, require_membership
 from app.provisioning import ensure_starter_dashboard
 from app.ratelimit import rate_limited
 from app.snippets import TRACKS, placeholders, render
-from app.student import as_student, require_provisioned
 from app.tb_client import Device, TbClient, TbError
 from app.templating import templates
 
@@ -55,47 +55,65 @@ def _max_devices(sysadmin: TbClient, tenant_id: str | None) -> int | None:
     return int(limit) if limit else None  # 0 = unlimited in TB
 
 
-@router.get("/devices")
-def list_devices(request: Request, db: Session = Depends(get_db), error: str = "") -> Any:
-    user = require_provisioned(request, db)
-    with as_student(user) as (sysadmin, student):
+@router.get("/projects/{project_id}/devices")
+def list_devices(
+    request: Request, project_id: str, db: Session = Depends(get_db), error: str = ""
+) -> Any:
+    user, project, member = require_membership(request, db, project_id)
+    with as_project(member) as (sysadmin, student):
         rows = _device_rows(sysadmin, student)
-        limit = _max_devices(sysadmin, user.tb_tenant_id)
-    ctx = {"user": user, "devices": rows, "limit": limit, "used": len(rows), "error": error}
+        limit = _max_devices(sysadmin, project.tb_tenant_id)
+    ctx = {
+        "user": user,
+        "project": project,
+        "devices": rows,
+        "limit": limit,
+        "used": len(rows),
+        "error": error,
+    }
     return templates.TemplateResponse(request, "devices.html", ctx)
 
 
-@router.post("/devices")
+@router.post("/projects/{project_id}/devices")
 def create_device(
-    request: Request, name: Annotated[str, Form()], db: Session = Depends(get_db)
+    request: Request, project_id: str, name: Annotated[str, Form()], db: Session = Depends(get_db)
 ) -> Any:
-    user = require_provisioned(request, db)
+    user, project, member = require_membership(request, db, project_id)
     name = name.strip()
     if not NAME_RE.match(name):
         return RedirectResponse(
-            "/devices?error=Device+names+are+2-48+letters,+digits,+spaces,+_+or+-", 303
+            f"/projects/{project.id}/devices"
+            "?error=Device+names+are+2-48+letters,+digits,+spaces,+_+or+-",
+            303,
         )
-    with as_student(user) as (sysadmin, student):
-        limit = _max_devices(sysadmin, user.tb_tenant_id)
+    with as_project(member) as (sysadmin, student):
+        limit = _max_devices(sysadmin, project.tb_tenant_id)
         if limit and len(student.list_devices()) >= limit:
             return RedirectResponse(
-                f"/devices?error=You+have+reached+your+limit+of+{limit}+devices", 303
+                f"/projects/{project.id}/devices"
+                f"?error=You+have+reached+your+limit+of+{limit}+devices",
+                303,
             )
         try:
             device = student.save_device(Device(name=name, type="default"))
         except TbError as e:
             msg = "A device with that name already exists" if "exists" in e.message else e.message
-            return RedirectResponse(f"/devices?error={msg.replace(' ', '+')}", 303)
+            return RedirectResponse(
+                f"/projects/{project.id}/devices?error={msg.replace(' ', '+')}", 303
+            )
     audit(db, user.email, "device.create", name)
     db.commit()
-    return RedirectResponse(f"/devices/{device.id.id if device.id else ''}", 303)
+    dev_id = device.id.id if device.id else ""
+    return RedirectResponse(f"/projects/{project.id}/devices/{dev_id}", 303)
 
 
-@router.get("/devices/{device_id}")
-def device_detail(request: Request, device_id: str, db: Session = Depends(get_db)) -> Any:
-    user = require_provisioned(request, db)
+@router.get("/projects/{project_id}/devices/{device_id}")
+def device_detail(
+    request: Request, project_id: str, device_id: str, db: Session = Depends(get_db)
+) -> Any:
+    user, project, member = require_membership(request, db, project_id)
     s = get_settings()
-    with as_student(user) as (sysadmin, student):
+    with as_project(member) as (sysadmin, student):
         try:
             device = student.get_device(device_id)  # 404/403 if not in this tenant
         except TbError as e:
@@ -105,6 +123,7 @@ def device_detail(request: Request, device_id: str, db: Session = Depends(get_db
     last = attrs.get("lastActivityTime")
     ctx = {
         "user": user,
+        "project": project,
         "device": device,
         "token": creds.credentials_id,
         "active": bool(attrs.get("active")),
@@ -116,14 +135,14 @@ def device_detail(request: Request, device_id: str, db: Session = Depends(get_db
     return templates.TemplateResponse(request, "device.html", ctx)
 
 
-@router.get("/devices/{device_id}/snippet/{track}")
+@router.get("/projects/{project_id}/devices/{device_id}/snippet/{track}")
 def download_snippet(
-    request: Request, device_id: str, track: str, db: Session = Depends(get_db)
+    request: Request, project_id: str, device_id: str, track: str, db: Session = Depends(get_db)
 ) -> Any:
-    user = require_provisioned(request, db)
+    user, project, member = require_membership(request, db, project_id)
     if track not in TRACKS:
         raise HTTPException(status_code=404)
-    with as_student(user) as (sysadmin, student):
+    with as_project(member) as (sysadmin, student):
         try:
             device = student.get_device(device_id)
         except TbError as e:
@@ -134,9 +153,13 @@ def download_snippet(
     return PlainTextResponse(body, headers=headers)
 
 
-@router.get("/devices/{device_id}/export", dependencies=[Depends(rate_limited("export", 5, 3600))])
+@router.get(
+    "/projects/{project_id}/devices/{device_id}/export",
+    dependencies=[Depends(rate_limited("export", 5, 3600))],
+)
 def export_telemetry(
     request: Request,
+    project_id: str,
     device_id: str,
     keys: str = "temperature,humidity",
     hours: float = 24,
@@ -144,11 +167,11 @@ def export_telemetry(
     db: Session = Depends(get_db),
 ) -> Any:
     """Own-data export (M3.4): CSV/JSON, ≤31 days, row-capped, 5 exports/hour per IP."""
-    user = require_provisioned(request, db)
+    user, project, member = require_membership(request, db, project_id)
     end_ts = int(time.time() * 1000)
     start_ts = end_ts - min(int(hours * 3600 * 1000), MAX_RANGE_MS)
     key_list = [k.strip() for k in keys.split(",") if k.strip()][:10]
-    with as_student(user) as (_sysadmin, student):
+    with as_project(member) as (_sysadmin, student):
         try:
             student.get_device(device_id)  # any error here means it is not theirs
         except TbError as e:
@@ -169,53 +192,61 @@ def export_telemetry(
     )
 
 
-@router.post("/devices/{device_id}/rename")
+@router.post("/projects/{project_id}/devices/{device_id}/rename")
 def rename_device(
-    request: Request, device_id: str, name: Annotated[str, Form()], db: Session = Depends(get_db)
+    request: Request,
+    project_id: str,
+    device_id: str,
+    name: Annotated[str, Form()],
+    db: Session = Depends(get_db),
 ) -> Any:
-    user = require_provisioned(request, db)
+    user, project, member = require_membership(request, db, project_id)
     name = name.strip()
     if not NAME_RE.match(name):
         raise HTTPException(status_code=422, detail="invalid name")
-    with as_student(user) as (sysadmin, student):
+    with as_project(member) as (sysadmin, student):
         device = student.get_device(device_id)
         old = device.name
         device.name = name
         student.save_device(device)
     audit(db, user.email, "device.rename", name, old=old)
     db.commit()
-    return RedirectResponse(f"/devices/{device_id}", 303)
+    return RedirectResponse(f"/projects/{project.id}/devices/{device_id}", 303)
 
 
-@router.post("/devices/{device_id}/revoke")
-def revoke_token(request: Request, device_id: str, db: Session = Depends(get_db)) -> Any:
+@router.post("/projects/{project_id}/devices/{device_id}/revoke")
+def revoke_token(
+    request: Request, project_id: str, device_id: str, db: Session = Depends(get_db)
+) -> Any:
     """Rotate the access token: the old one stops working immediately (lost/leaked token)."""
-    user = require_provisioned(request, db)
-    with as_student(user) as (sysadmin, student):
+    user, project, member = require_membership(request, db, project_id)
+    with as_project(member) as (sysadmin, student):
         student.get_device(device_id)
         student.rotate_device_token(device_id, secrets.token_urlsafe(15)[:20])
     audit(db, user.email, "device.token_rotated", device_id)
     db.commit()
-    return RedirectResponse(f"/devices/{device_id}", 303)
+    return RedirectResponse(f"/projects/{project.id}/devices/{device_id}", 303)
 
 
-@router.post("/devices/{device_id}/delete")
-def delete_device(request: Request, device_id: str, db: Session = Depends(get_db)) -> Any:
-    user = require_provisioned(request, db)
-    with as_student(user) as (sysadmin, student):
+@router.post("/projects/{project_id}/devices/{device_id}/delete")
+def delete_device(
+    request: Request, project_id: str, device_id: str, db: Session = Depends(get_db)
+) -> Any:
+    user, project, member = require_membership(request, db, project_id)
+    with as_project(member) as (sysadmin, student):
         device = student.get_device(device_id)
         student.delete_device(device_id)
     audit(db, user.email, "device.delete", device.name)
     db.commit()
-    return RedirectResponse("/devices", 303)
+    return RedirectResponse(f"/projects/{project.id}/devices", 303)
 
 
-@router.post("/dashboard/reset")
-def reset_dashboard(request: Request, db: Session = Depends(get_db)) -> Any:
+@router.post("/projects/{project_id}/dashboard/reset")
+def reset_dashboard(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
     """Re-import the starter dashboard over the student's copy (D5)."""
-    user = require_provisioned(request, db)
-    with as_student(user) as (sysadmin, student):
+    user, project, member = require_membership(request, db, project_id)
+    with as_project(member) as (sysadmin, student):
         ensure_starter_dashboard(student, reset=True)
     audit(db, user.email, "dashboard.reset")
     db.commit()
-    return RedirectResponse("/home", 303)
+    return RedirectResponse(f"/projects/{project.id}", 303)

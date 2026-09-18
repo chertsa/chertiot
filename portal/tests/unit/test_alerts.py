@@ -4,7 +4,7 @@ from app.models import AlertRule
 
 def _rule(**kw):  # noqa: ANN003, ANN202
     base = {
-        "user_id": "u",
+        "project_id": "p",
         "device_name": "dev-1",
         "key": "temperature",
         "op": ">",

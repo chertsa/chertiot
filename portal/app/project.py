@@ -1,0 +1,199 @@
+"""Project domain logic (D13/M5.1): a project is an isolated ThingsBoard **tenant**; the owner and
+members are Tenant-Admin users inside it. The portal is the identity broker — it creates a TB tenant
+per project and one TB Tenant-Admin user per human per project, then opens per-project sessions via
+sysadmin impersonation (never TB's DB — D10)."""
+
+from __future__ import annotations
+
+import logging
+import re
+from collections.abc import Iterator
+from contextlib import contextmanager
+
+from fastapi import HTTPException, Request
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.audit import audit
+from app.models import PortalUser, Project, ProjectMember
+from app.onboarding import sysadmin_client
+from app.provisioning import (
+    ProvisioningError,
+    ensure_starter_dashboard,
+    ensure_student_profile,
+    require_id,
+)
+from app.student import load_user
+from app.tb_client import TbClient, Tenant, User
+
+log = logging.getLogger(__name__)
+
+# TB user emails are globally unique, so a human gets a synthetic per-project TB address. These
+# accounts never receive mail or log in with a password — the portal brokers their sessions.
+SYNTH_EMAIL_DOMAIN = "proj.chertiot.local"
+
+
+def slugify(name: str) -> str:
+    s = re.sub(r"[^a-z0-9]+", "-", name.strip().lower()).strip("-")
+    return (s or "project")[:40]
+
+
+def unique_slug(db: Session, name: str) -> str:
+    base = slugify(name)
+    slug, n = base, 1
+    while db.scalar(select(Project.id).where(Project.slug == slug)):
+        n += 1
+        slug = f"{base}-{n}"
+    return slug
+
+
+def member_tb_email(project: Project, user: PortalUser) -> str:
+    return f"{project.slug}-{user.id[:8]}@{SYNTH_EMAIL_DOMAIN}"
+
+
+def projects_for(db: Session, user_id: str) -> list[tuple[Project, ProjectMember]]:
+    """Active memberships → (project, membership), newest project first."""
+    rows = db.execute(
+        select(Project, ProjectMember)
+        .join(ProjectMember, ProjectMember.project_id == Project.id)
+        .where(ProjectMember.user_id == user_id, ProjectMember.status == "active")
+        .order_by(Project.created_at.desc())
+    ).all()
+    return [(p, m) for p, m in rows]
+
+
+def membership(db: Session, project_id: str, user_id: str) -> ProjectMember | None:
+    return db.scalar(
+        select(ProjectMember).where(
+            ProjectMember.project_id == project_id, ProjectMember.user_id == user_id
+        )
+    )
+
+
+def require_membership(
+    request: Request, db: Session, project_id: str
+) -> tuple[PortalUser, Project, ProjectMember]:
+    """Gate a project route: the caller must be a signed-in, active, provisioned member."""
+    user = load_user(request, db)
+    if user is None:
+        raise HTTPException(status_code=303, headers={"Location": "/login"})
+    project = db.get(Project, project_id)
+    member = membership(db, project_id, user.id) if project else None
+    if project is None or member is None or member.status != "active":
+        raise HTTPException(status_code=303, headers={"Location": "/home"})
+    if project.provisioning_state != "provisioned" or not member.tb_user_id:
+        raise HTTPException(status_code=303, headers={"Location": f"/projects/{project_id}"})
+    return user, project, member
+
+
+# ---------------------------------------------------------------- provisioning (via sysadmin) ----
+def _provision(sysadmin: TbClient, project: Project, owner: PortalUser) -> str:
+    """Create the project's TB tenant + the owner's Tenant-Admin user + starter dashboard.
+    Returns the owner's tb_user_id. Idempotent: reuses stored ids when present."""
+    profile = ensure_student_profile(sysadmin)  # student quotas are the default profile
+    if not project.tb_tenant_id:
+        tenant = sysadmin.save_tenant(
+            Tenant(
+                title=project.name,
+                email=f"{project.slug}@{SYNTH_EMAIL_DOMAIN}",
+                tenantProfileId=profile.id,
+            )
+        )
+        project.tb_tenant_id = require_id(tenant, "tenant")
+    tb_user_id = ensure_member_user(sysadmin, project, owner)
+    student = sysadmin.impersonate(tb_user_id)
+    try:
+        ensure_starter_dashboard(student)
+    finally:
+        student.close()
+    return tb_user_id
+
+
+def ensure_member_user(sysadmin: TbClient, project: Project, user: PortalUser) -> str:
+    """Find-or-create this human's Tenant-Admin user inside the project tenant."""
+    if not project.tb_tenant_id:
+        raise ProvisioningError("project has no tb_tenant_id")
+    email = member_tb_email(project, user)
+    existing = sysadmin.find_tenant_user(project.tb_tenant_id, email)
+    if existing and existing.id:
+        return existing.id.id
+    created = sysadmin.save_user(
+        User(
+            email=email,
+            authority="TENANT_ADMIN",
+            tenantId={"entityType": "TENANT", "id": project.tb_tenant_id},
+            firstName=(user.email.split("@")[0])[:40],
+        )
+    )
+    return require_id(created, "member user")
+
+
+def create_project(db: Session, owner: PortalUser, name: str, description: str | None) -> Project:
+    """Create the portal row, provision the TB tenant + owner membership, and commit. On a TB
+    failure the project is saved as 'failed' so the workspace can offer a retry (never raises)."""
+    project = Project(
+        slug=unique_slug(db, name), name=name.strip()[:120], description=(description or "").strip()
+    )
+    db.add(project)
+    db.flush()
+    member = ProjectMember(project_id=project.id, user_id=owner.id, role="owner")
+    db.add(member)
+    sysadmin = sysadmin_client()
+    try:
+        member.tb_user_id = _provision(sysadmin, project, owner)
+        project.provisioning_state, project.provisioning_error = "provisioned", None
+        audit(db, owner.email, "project.create", project.slug, tb_tenant_id=project.tb_tenant_id)
+    except Exception as e:  # noqa: BLE001 — record failure, let the UI retry
+        log.exception("project provisioning failed for %s", project.slug)
+        project.provisioning_state, project.provisioning_error = "failed", str(e)[:500]
+    finally:
+        sysadmin.close()
+    db.commit()
+    return project
+
+
+def retry_provision(
+    db: Session, project: Project, owner: PortalUser, member: ProjectMember
+) -> bool:
+    sysadmin = sysadmin_client()
+    try:
+        member.tb_user_id = _provision(sysadmin, project, owner)
+        project.provisioning_state, project.provisioning_error = "provisioned", None
+    except Exception as e:  # noqa: BLE001
+        log.exception("project provisioning retry failed for %s", project.slug)
+        project.provisioning_state, project.provisioning_error = "failed", str(e)[:500]
+        db.commit()
+        return False
+    db.commit()
+    return True
+
+
+def delete_project(db: Session, project: Project, actor_email: str) -> None:
+    """Irreversible: delete the TB tenant (devices, dashboards, telemetry) and portal rows."""
+    if project.tb_tenant_id:
+        sysadmin = sysadmin_client()
+        try:
+            sysadmin.delete_tenant(project.tb_tenant_id)
+        finally:
+            sysadmin.close()
+    for m in db.scalars(select(ProjectMember).where(ProjectMember.project_id == project.id)):
+        db.delete(m)
+    audit(db, actor_email, "project.delete", project.slug)
+    db.delete(project)
+    db.commit()
+
+
+@contextmanager
+def as_project(member: ProjectMember) -> Iterator[tuple[TbClient, TbClient]]:
+    """Yields (sysadmin, member-session) clients for the project tenant; both closed after."""
+    if not member.tb_user_id:
+        raise HTTPException(status_code=409, detail="project not provisioned")
+    sysadmin = sysadmin_client()
+    try:
+        session = sysadmin.impersonate(member.tb_user_id)
+        try:
+            yield sysadmin, session
+        finally:
+            session.close()
+    finally:
+        sysadmin.close()

@@ -10,7 +10,7 @@
   <tbody>
   {% for d in devices %}
     <tr>
-      <td><a href="/devices/{{ d.id }}">{{ d.name }}</a>{% if d.label %} <span class="helper">{{ d.label }}</span>{% endif %}</td>
+      <td><a href="/projects/{{ project.id }}/devices/{{ d.id }}">{{ d.name }}</a>{% if d.label %} <span class="helper">{{ d.label }}</span>{% endif %}</td>
       <td>{% if d.active %}<span class="callout--success">{{ _("Online") }}</span>{% else %}<span class="helper">{{ _("Offline") }}</span>{% endif %}</td>
       <td>{% if d.last_seen %}<time datetime="{{ d.last_seen.isoformat() }}">{{ d.last_seen.strftime('%Y-%m-%d %H:%M') }} UTC</time>{% else %}<span class="helper">{{ _("Never") }}</span>{% endif %}</td>
     </tr>
@@ -20,7 +20,7 @@
   </tbody>
 </table>
 <h2>{{ _("Add device") }}</h2>
-<form class="form" method="post" action="/devices">
+<form class="form" method="post" action="/projects/{{ project.id }}/devices">
   <div class="field"><label class="label" for="name">{{ _("Device name") }}</label><input class="input" id="name" name="name" required minlength="2" maxlength="48" placeholder="kitchen-sensor"></div>
   <div><button class="btn btn--primary" type="submit"{% if limit and used >= limit %} disabled{% endif %}>{{ _("Add device") }}</button></div>
 </form>

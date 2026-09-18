@@ -8,9 +8,9 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.chirpstack import ChirpStack, new_app_key, new_dev_eui
-from app.models import LoraDevice, PortalUser
+from app.models import LoraDevice, Project, ProjectMember
+from app.project import as_project
 from app.provisioning import require_id
-from app.student import as_student
 from app.tb_client import Device
 
 
@@ -31,21 +31,26 @@ def client(db: Session) -> tuple[ChirpStack, str]:
     return ChirpStack(token), tenant_id
 
 
-def register(db: Session, user: PortalUser) -> LoraDevice:
-    """Create a LoRa device: a ChirpStack OTAA device + a matching TB device, mapped by DevEUI."""
+def register(db: Session, project: Project, member: ProjectMember) -> LoraDevice:
+    """Create a LoRa device in a PROJECT: a ChirpStack OTAA device (in the project's own ChirpStack
+    application) + a matching TB device in the project tenant, mapped by DevEUI."""
     cs, tenant_id = client(db)
-    app_id = cs.ensure_application(tenant_id)
+    app_id = cs.ensure_application(tenant_id, name=project.slug)
     profile_id = cs.ensure_device_profile(tenant_id)
     dev_eui = new_dev_eui()
     app_key = new_app_key()
     tb_name = f"lora-{dev_eui[:6]}"
-    with as_student(user) as (_sysadmin, student):
-        device = student.find_device(tb_name) or student.save_device(
+    with as_project(member) as (_sysadmin, session):
+        device = session.find_device(tb_name) or session.save_device(
             Device(name=tb_name, label="LoRaWAN device", type="lora")
         )
         require_id(device, "device")
     cs.create_device(app_id, profile_id, dev_eui, tb_name, app_key)
-    mapping = LoraDevice(dev_eui=dev_eui, user_id=user.id, tb_device_name=tb_name, app_key=app_key)
+    if not project.chirpstack_application_id:
+        project.chirpstack_application_id = app_id
+    mapping = LoraDevice(
+        dev_eui=dev_eui, project_id=project.id, tb_device_name=tb_name, app_key=app_key
+    )
     db.add(mapping)
     db.commit()
     return mapping

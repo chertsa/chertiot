@@ -10,18 +10,19 @@ from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
 from app.models import LoraDevice
-from app.student import require_provisioned
+from app.project import require_membership
 from app.templating import templates
 
 router = APIRouter()
 
 
-@router.get("/lora")
-def lora_page(request: Request, db: Session = Depends(get_db)) -> Any:
-    user = require_provisioned(request, db)
-    devices = list(db.scalars(select(LoraDevice).where(LoraDevice.user_id == user.id)))
+@router.get("/projects/{project_id}/lora")
+def lora_page(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    user, project, member = require_membership(request, db, project_id)
+    devices = list(db.scalars(select(LoraDevice).where(LoraDevice.project_id == project.id)))
     ctx = {
         "user": user,
+        "project": project,
         "enabled": lora_mod.enabled(),
         "devices": devices,
         "domain": get_settings().domain,
@@ -29,11 +30,11 @@ def lora_page(request: Request, db: Session = Depends(get_db)) -> Any:
     return templates.TemplateResponse(request, "lora.html", ctx)
 
 
-@router.post("/lora")
-def add_lora_device(request: Request, db: Session = Depends(get_db)) -> Any:
-    user = require_provisioned(request, db)
+@router.post("/projects/{project_id}/lora")
+def add_lora_device(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    user, project, member = require_membership(request, db, project_id)
     if lora_mod.enabled():
-        mapping = lora_mod.register(db, user)
+        mapping = lora_mod.register(db, project, member)
         audit(db, user.email, "lora.register", mapping.dev_eui)
         db.commit()
-    return RedirectResponse("/lora", status_code=303)
+    return RedirectResponse(f"/projects/{project.id}/lora", status_code=303)

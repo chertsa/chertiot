@@ -12,7 +12,6 @@ from app.auth import oauth
 from app.config import get_settings
 from app.db import get_db
 from app.models import PortalUser
-from app.onboarding import ensure_provisioned
 from app.ratelimit import rate_limited
 from app.templating import templates
 
@@ -68,7 +67,7 @@ async def callback(request: Request, db: Session = Depends(get_db)) -> Any:
     request.session["role"] = user.role
     request.session["id_token"] = token.get("id_token")
     audit(db, email, "login")
-    ensure_provisioned(db, user)  # idempotent; failures are recorded, not raised
+    # No personal TB tenant at login (D13): a user's tenants come from the projects they own/join.
     return RedirectResponse("/home", status_code=303)
 
 

@@ -16,9 +16,10 @@ import sys
 from typing import Any
 
 import paho.mqtt.client as mqtt
+from sqlalchemy import select
 
 from app.db import session_factory
-from app.models import LoraDevice, PortalUser
+from app.models import LoraDevice, Project, ProjectMember
 from app.onboarding import sysadmin_client
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s lora-bridge %(message)s")
@@ -54,13 +55,19 @@ def _forward(dev_eui: str, telemetry: dict[str, Any]) -> None:
         if mapping is None:
             log.info("uplink for unmapped DevEUI %s — ignored", dev_eui)
             return
-        user = db.get(PortalUser, mapping.user_id)
+        project = db.get(Project, mapping.project_id)
+        # Any active member's Tenant-Admin user opens a session in the project tenant (owner first).
+        member = db.scalar(
+            select(ProjectMember)
+            .where(ProjectMember.project_id == mapping.project_id, ProjectMember.status == "active")
+            .order_by(ProjectMember.role.desc())  # 'owner' > 'member'
+        )
         device_name = mapping.tb_device_name
-    if user is None or not user.tb_user_id:
+    if project is None or member is None or not member.tb_user_id:
         return
     sysadmin = sysadmin_client()
     try:
-        student = sysadmin.impersonate(user.tb_user_id)
+        student = sysadmin.impersonate(member.tb_user_id)
         try:
             device = student.find_device(device_name)
             if device is None or not device.id:

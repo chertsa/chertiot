@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ device.name }} — CHERT IoT{% endblock %}
 {% block content %}
-<p class="overline"><a href="/home">{{ _("My lab") }}</a> › <a href="/devices">{{ _("My devices") }}</a></p>
+<p class="overline"><a href="/home">{{ _("My lab") }}</a> › <a href="/projects/{{ project.id }}/devices">{{ _("My devices") }}</a></p>
 <h1>{{ device.name }}</h1>
 <p>{% if active %}<span class="callout--success">{{ _("Online") }}</span>{% else %}<span class="helper">{{ _("Offline") }}</span>{% endif %}{% if last_seen %} · {{ _("last seen") }} {{ last_seen.strftime('%Y-%m-%d %H:%M') }} UTC{% endif %}</p>
 
@@ -18,27 +18,27 @@
 <p class="helper">{{ _("Your token and the broker address are already filled in. Download the file for your board, add your Wi-Fi details, flash it.") }}</p>
 {% for t in tracks %}
 <details{% if loop.first %} open{% endif %}>
-  <summary><strong>{{ t.title }}</strong> — <a href="/devices/{{ device.id.id }}/snippet/{{ t.key }}" download>{{ t.filename }}</a></summary>
+  <summary><strong>{{ t.title }}</strong> — <a href="/projects/{{ project.id }}/devices/{{ device.id.id }}/snippet/{{ t.key }}" download>{{ t.filename }}</a></summary>
   <pre class="token" style="white-space: pre; overflow-x: auto; padding: var(--space-3)"><code class="language-{{ t.language }}">{{ snippets[t.key] }}</code></pre>
 </details>
 {% endfor %}
 
 <h2>{{ _("Export") }}</h2>
-<p><a class="btn btn--secondary btn--sm" href="/devices/{{ device.id.id }}/export?hours=24&fmt=csv">{{ _("Download 24h CSV") }}</a> <a class="btn btn--secondary btn--sm" href="/devices/{{ device.id.id }}/export?hours=24&fmt=json">{{ _("Download 24h JSON") }}</a></p>
+<p><a class="btn btn--secondary btn--sm" href="/projects/{{ project.id }}/devices/{{ device.id.id }}/export?hours=24&fmt=csv">{{ _("Download 24h CSV") }}</a> <a class="btn btn--secondary btn--sm" href="/projects/{{ project.id }}/devices/{{ device.id.id }}/export?hours=24&fmt=json">{{ _("Download 24h JSON") }}</a></p>
 
 <h2>{{ _("Manage") }}</h2>
 <div class="grid-cards">
-  <form class="card" method="post" action="/devices/{{ device.id.id }}/rename">
+  <form class="card" method="post" action="/projects/{{ project.id }}/devices/{{ device.id.id }}/rename">
     <div class="card__title">{{ _("Rename") }}</div>
     <div class="field"><label class="label" for="name">{{ _("New name") }}</label><input class="input" id="name" name="name" value="{{ device.name }}" required minlength="2" maxlength="48"></div>
     <div><button class="btn btn--secondary btn--sm" type="submit">{{ _("Rename") }}</button></div>
   </form>
-  <form class="card" method="post" action="/devices/{{ device.id.id }}/revoke" onsubmit="return confirm('{{ _("Old token stops working immediately. Continue?") }}')">
+  <form class="card" method="post" action="/projects/{{ project.id }}/devices/{{ device.id.id }}/revoke" onsubmit="return confirm('{{ _("Old token stops working immediately. Continue?") }}')">
     <div class="card__title">{{ _("Revoke token") }}</div>
     <div class="card__desc">{{ _("Lost or leaked the token? Issue a new one. Devices using the old token disconnect.") }}</div>
     <div><button class="btn btn--secondary btn--sm" type="submit">{{ _("Issue new token") }}</button></div>
   </form>
-  <form class="card" method="post" action="/devices/{{ device.id.id }}/delete" onsubmit="return confirm('{{ _("Delete this device and all its data?") }}')">
+  <form class="card" method="post" action="/projects/{{ project.id }}/devices/{{ device.id.id }}/delete" onsubmit="return confirm('{{ _("Delete this device and all its data?") }}')">
     <div class="card__title">{{ _("Delete device") }}</div>
     <div class="card__desc">{{ _("Removes the device and its telemetry. This cannot be undone.") }}</div>
     <div><button class="btn btn--danger btn--sm" type="submit">{{ _("Delete device") }}</button></div>

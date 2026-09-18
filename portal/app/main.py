@@ -12,7 +12,17 @@ from app.auth import configure_oauth
 from app.config import get_settings
 from app.i18n import translator
 from app.keycloak_admin import KeycloakError
-from app.routers import alerts, auth, devices, home, instructor, internal, lora, signup
+from app.routers import (
+    alerts,
+    auth,
+    devices,
+    home,
+    instructor,
+    internal,
+    lora,
+    projects,
+    signup,
+)
 from app.routers import flows as flows_router
 from app.tb_client import TbError
 from app.templating import templates
@@ -69,6 +79,7 @@ app.mount(
     "/static", StaticFiles(directory=str(Path(__file__).resolve().parent / "static")), name="static"
 )
 app.include_router(home.router)
+app.include_router(projects.router)
 app.include_router(signup.router)
 app.include_router(auth.router)
 app.include_router(devices.router)
