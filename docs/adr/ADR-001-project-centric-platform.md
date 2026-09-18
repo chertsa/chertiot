@@ -101,16 +101,18 @@ the current demo tenant). Prod reset only after staging is green end-to-end.
   tenants, device isolation, MQTT ingest, dashboard/quota.
 - **M5.2 — Flows per project.** Node-RED instance per project; forward_auth by project ownership;
   MQTT token scoped to the project. *Accept:* each project's editor is separate; cross-project denied.
-- **M5.3 — Alerts + Notebooks per project.** `AlertRule(project_id)`; Jupyter named-server per project.
-  *Accept:* alerts fire only for the project's devices; each project has its own notebook workspace.
+- **M5.3 — Alerts + Notebooks per project. ✅ DONE (staging).** `AlertRule(project_id)`; JupyterHub
+  named-server per project; `/internal/lab-token` scoped to project membership (verified on staging).
 - **M5.4 — LoRa per project.** ChirpStack Application per project; register LoRa devices into it.
   *Accept:* uplink from a project's LoRa device lands only on that project's dashboard.
-- **M5.5 — Lifecycle & reports.** Portfolio dashboard + per-project lifecycle/report view (devices,
-  uptime, message volume, alarms, activity timeline). Demote the showroom to "Explore the stack".
+- **M5.5 — Lifecycle & reports. ✅ DONE (staging).** Per-project report (/projects/{id}/report:
+  KPIs, device roster, alarm history, 24h chart, membership) + portfolio summary on home; showroom
+  demoted to "Explore the stack".
 - **M5.6 — Collaboration. ✅ DONE (staging, 2026-09-18).** Owner/members, link-based invites (+auto-
   accept on login), request-to-join + approve/deny, enable/disable/remove. Members are Tenant-Admins of
   the shared project tenant. E2E verified on staging. (Email delivery of invites = later; links for now.)
-- **M5.7 — Fresh reset + demo project.** Prod reset, reseed the demo *project*, docs/UAT refresh.
+- **M5.7 — Prod cutover + demo project. ⏳ RUNBOOK READY.** docs/runbooks/M5.7-prod-cutover.md —
+  the destructive prod steps (wipe tenants, drop DB) are owner-run (classifier gates prod automation).
 
 ## Collaboration & membership (v1.1 — owner-added 2026-09-18)
 Requirements: a project has an **owner** and **members**; a user can **invite** others to a project;
