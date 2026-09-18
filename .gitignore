@@ -19,3 +19,6 @@ secrets/alertmanager_smtp_password
 thingsboard-brand/build/
 thingsboard-brand/upstream/
 docs/uat/UAT-CREDENTIALS.md
+
+# Owner UAT walkthroughs (local only — public repo, may show on-screen emails/tokens)
+docs/owner_uat/
