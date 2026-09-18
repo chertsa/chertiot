@@ -3,14 +3,31 @@
 {% block content %}
 <p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
 <h1>{{ _("Teaching") }}</h1>
-<h2>{{ _("Class codes") }}</h2>
+
+<h2 class="section-h">{{ _("Platform overview") }}</h2>
+<div class="grid-cards">
+  <a class="card" href="/teach/projects">
+    <div class="card__title">{{ overview.projects }}</div>
+    <div class="card__desc">{{ _("Projects") }}</div>
+  </a>
+  <div class="card">
+    <div class="card__title">{{ overview.active_projects }}</div>
+    <div class="card__desc">{{ _("Active projects") }}</div>
+  </div>
+  <div class="card">
+    <div class="card__title">{{ overview.members }}</div>
+    <div class="card__desc">{{ _("Active members") }}</div>
+  </div>
+</div>
+
+<h2 class="section-h" style="margin-top:2rem">{{ _("Class codes") }}</h2>
 <table class="table">
   <thead><tr><th>{{ _("Code") }}</th><th>{{ _("Cohort") }}</th><th>{{ _("Used") }}</th><th>{{ _("Expires") }}</th><th>{{ _("Students") }}</th><th></th></tr></thead>
   <tbody>
   {% for c in codes %}
     <tr {% if not c.active %}style="opacity:.5"{% endif %}>
       <td><code class="token">{{ c.code }}</code></td>
-      <td><a href="/teach/cohort/{{ c.cohort }}">{{ c.cohort }}</a></td>
+      <td>{{ c.cohort }}</td>
       <td>{{ c.uses }}/{{ c.max_uses }}</td>
       <td>{% if c.expires_at %}{{ c.expires_at.strftime('%Y-%m-%d') }}{% endif %}</td>
       <td>{{ counts.get(c.cohort, 0) }}</td>

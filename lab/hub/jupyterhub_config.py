@@ -37,7 +37,10 @@ c.DockerSpawner.prefix = "jupyter"
 c.DockerSpawner.mem_limit = "512M"
 c.DockerSpawner.cpu_limit = 1.0
 c.DockerSpawner.notebook_dir = "/home/jovyan/work"
-c.DockerSpawner.volumes = {"jupyter-{username}": "/home/jovyan/work"}
+# One notebook workspace PER PROJECT (M5.3): named servers, volume keyed by user + server (project).
+c.JupyterHub.allow_named_servers = True
+c.DockerSpawner.volumes = {"jupyter-{username}-{servername}": "/home/jovyan/work"}
+c.JupyterHub.default_url = "/hub/home"
 c.JupyterHub.hub_ip = "0.0.0.0"
 c.JupyterHub.hub_connect_ip = "jupyterhub"
 
@@ -46,10 +49,13 @@ LAB_SECRET = os.environ["LAB_INTERNAL_SECRET"]
 
 
 async def pre_spawn_hook(spawner):
+    # The named server is the CHERT project id; mint that project's TB session for the notebook.
+    # The portal rejects the spawn (403) unless this user is an active member of that project.
     email = spawner.user.name
+    project_id = spawner.name  # named-server name = project id ("" for the default server)
     r = requests.post(
         f"{PORTAL_INTERNAL}/internal/lab-token",
-        json={"email": email},
+        json={"email": email, "project_id": project_id},
         headers={"X-Lab-Secret": LAB_SECRET},
         timeout=30,
     )
@@ -60,6 +66,7 @@ async def pre_spawn_hook(spawner):
             "TB_JWT": body["token"],
             "TB_URL": os.environ.get("TB_INTERNAL_URL", "http://tb:8080"),
             "TB_PUBLIC_URL": f"https://app.{DOMAIN}",
+            "CHERT_PROJECT": project_id,
         }
     )
 

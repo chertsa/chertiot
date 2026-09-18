@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.dashboard import dashboard_data
+from app.dashboard import alarm_history, dashboard_data
 from app.db import get_db
 from app.models import Project, ProjectJoinRequest, ProjectMember
 from app.project import (
@@ -134,6 +134,26 @@ def panel(request: Request, project_id: str, db: Session = Depends(get_db)) -> A
     except Exception:  # noqa: BLE001 - upstream slow/down: degrade, don't 503
         ctx["unavailable"] = True
     return templates.TemplateResponse(request, "home_panel.html", ctx)
+
+
+@router.get("/projects/{project_id}/report")
+def report(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    """A per-project lifecycle report: KPIs, device roster, alarm history, 24h chart, membership."""
+    user, project, member = require_membership(request, db, project_id)
+    ctx: dict[str, Any] = {
+        "user": user,
+        "project": project,
+        "unavailable": False,
+        "members": members(db, project_id),
+        "alarm_history": [],
+    }
+    try:
+        with as_project(member) as (sysadmin, session):
+            ctx.update(dashboard_data(sysadmin, session))
+            ctx["alarm_history"] = alarm_history(session)
+    except Exception:  # noqa: BLE001
+        ctx["unavailable"] = True
+    return templates.TemplateResponse(request, "project_report.html", ctx)
 
 
 @router.post("/projects/{project_id}/delete")

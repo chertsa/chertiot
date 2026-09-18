@@ -1,6 +1,8 @@
-"""Instructor console (M3.3, D6): class codes, roster, suspend/reactivate — portal-only.
+"""Instructor console (D6, D13): class codes + read-mostly project oversight — portal-only.
 
-Roster shows operational data only (last-seen, device count), never telemetry.
+The platform is project-centric (D13): a project is an isolated ThingsBoard tenant, and humans
+own or join projects. Instructor oversight here shows operational data only (project roster,
+best-effort device counts), never telemetry.
 """
 
 import logging
@@ -15,10 +17,8 @@ from sqlalchemy.orm import Session
 
 from app.audit import audit
 from app.db import get_db
-from app.keycloak_admin import KeycloakAdmin
-from app.models import ClassCode, PortalUser
+from app.models import ClassCode, PortalUser, Project, ProjectMember
 from app.onboarding import sysadmin_client
-from app.provisioning import suspend_student
 from app.student import load_user
 from app.templating import templates
 
@@ -49,7 +49,18 @@ def console(request: Request, db: Session = Depends(get_db)) -> Any:
             .group_by(PortalUser.cohort)
         ).all()
     }
-    ctx = {"user": me, "codes": codes, "counts": counts}
+    overview = {
+        "projects": db.scalar(select(func.count()).select_from(Project)) or 0,
+        "active_projects": db.scalar(
+            select(func.count()).select_from(Project).where(Project.status == "active")
+        )
+        or 0,
+        "members": db.scalar(
+            select(func.count()).select_from(ProjectMember).where(ProjectMember.status == "active")
+        )
+        or 0,
+    }
+    ctx = {"user": me, "codes": codes, "counts": counts, "overview": overview}
     return templates.TemplateResponse(request, "teach/console.html", ctx)
 
 
@@ -90,86 +101,63 @@ def deactivate_code(request: Request, code: str, db: Session = Depends(get_db)) 
     return RedirectResponse("/teach", status_code=303)
 
 
-@router.get("/cohort/{cohort}")
-def roster(request: Request, cohort: str, db: Session = Depends(get_db)) -> Any:
+@router.get("/projects")
+def projects_roster(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Read-only roster of every project (D6/D13): owner, active-member count, provisioning state
+    and a best-effort device count (impersonate the owner's TB user). One TB failure per row is
+    swallowed so the page never 500s."""
     me = require_instructor(request, db)
-    owns = db.scalar(
-        select(func.count())
-        .select_from(ClassCode)
-        .where(ClassCode.cohort == cohort, ClassCode.instructor_email == me.email)
-    )
-    if not owns and me.role != "admin":
-        raise HTTPException(status_code=403)
-    students = list(db.scalars(select(PortalUser).where(PortalUser.cohort == cohort)))
+    projects = list(db.scalars(select(Project).order_by(Project.created_at.desc())))
+
+    member_counts: dict[str, int] = {
+        str(pid): int(n)
+        for pid, n in db.execute(
+            select(ProjectMember.project_id, func.count())
+            .where(ProjectMember.status == "active")
+            .group_by(ProjectMember.project_id)
+        ).all()
+    }
+    owners: dict[str, tuple[ProjectMember, str]] = {
+        m.project_id: (m, u.email)
+        for m, u in db.execute(
+            select(ProjectMember, PortalUser)
+            .join(PortalUser, PortalUser.id == ProjectMember.user_id)
+            .where(ProjectMember.role == "owner")
+        ).all()
+    }
+
     rows: list[dict[str, Any]] = []
     sysadmin = sysadmin_client()
     try:
-        for s in students:
-            entry: dict[str, Any] = {
-                "email": s.email,
-                "state": s.provisioning_state,
-                "last_login": s.last_login_at,
-                "suspended": s.role == "suspended",
-                "devices": None,
-                "last_seen": None,
-            }
-            if s.tb_user_id:
+        for p in projects:
+            owner_member, owner_email = owners.get(p.id, (None, None))
+            devices: int | None = None
+            if owner_member is not None and owner_member.tb_user_id:
                 try:
-                    student_client = sysadmin.impersonate(s.tb_user_id)
+                    student_client = sysadmin.impersonate(owner_member.tb_user_id)
                     try:
-                        devices = student_client.list_devices()
-                        entry["devices"] = len(devices)
-                        actives = []
-                        for d in devices:
-                            if d.id:
-                                attrs = student_client.server_attributes(
-                                    d.id.id, ["lastActivityTime"]
-                                )
-                                if attrs.get("lastActivityTime"):
-                                    actives.append(int(attrs["lastActivityTime"]))
-                        if actives:
-                            entry["last_seen"] = datetime.fromtimestamp(max(actives) / 1000, UTC)
+                        devices = len(student_client.list_devices())
                     finally:
                         student_client.close()
-                except Exception as e:  # noqa: BLE001 — roster stays usable if one student errors
-                    log.debug("roster row failed for %s: %r", s.email, e)
-            rows.append(entry)
+                except Exception as e:  # noqa: BLE001 — roster stays usable if one project errors
+                    log.debug("device count failed for project %s: %r", p.slug, e)
+            rows.append(
+                {
+                    "name": p.name,
+                    "slug": p.slug,
+                    "owner_email": owner_email,
+                    "members": member_counts.get(p.id, 0),
+                    "state": p.provisioning_state,
+                    "created_at": p.created_at,
+                    "devices": devices,
+                }
+            )
     finally:
         sysadmin.close()
-    ctx = {"user": me, "cohort": cohort, "rows": rows}
+    ctx = {"user": me, "rows": rows}
     return templates.TemplateResponse(request, "teach/roster.html", ctx)
 
 
-@router.post("/cohort/{cohort}/suspend")
-def toggle_suspend(
-    request: Request,
-    cohort: str,
-    email: Annotated[str, Form()],
-    action: Annotated[str, Form()],
-    db: Session = Depends(get_db),
-) -> Any:
-    """Suspend = disable in Keycloak (authoritative) + TB credentials flag (belt and braces)."""
-    me = require_instructor(request, db)
-    target = db.scalar(select(PortalUser).where(PortalUser.email == email.lower()))
-    if target is None or target.cohort != cohort:
-        raise HTTPException(status_code=404)
-    owns = db.scalar(
-        select(func.count())
-        .select_from(ClassCode)
-        .where(ClassCode.cohort == cohort, ClassCode.instructor_email == me.email)
-    )
-    if not owns and me.role != "admin":
-        raise HTTPException(status_code=403)
-    suspend = action == "suspend"
-    kc = KeycloakAdmin()
-    if target.kc_user_id:
-        kc.set_enabled(target.kc_user_id, not suspend)
-    sysadmin = sysadmin_client()
-    try:
-        suspend_student(sysadmin, target.email, suspended=suspend)
-    finally:
-        sysadmin.close()
-    target.role = "suspended" if suspend else "student"
-    audit(db, me.email, f"student.{action}", target.email, cohort=cohort)
-    db.commit()
-    return RedirectResponse(f"/teach/cohort/{cohort}", status_code=303)
+# TODO(D13): identity-level suspend (disable a Keycloak user via KeycloakAdmin().set_enabled) is
+# still valid but no longer belongs to a cohort/tenant; wire it to a per-user admin view when the
+# project-centric people-management surface lands. The old per-user-tenant suspend is gone.

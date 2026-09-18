@@ -28,7 +28,8 @@
     <a class="card" href="/projects/{{ project.id }}/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("This project's Node-RED: wire devices to logic and actions, no code required.") }}</div></a>
     <a class="card" href="/projects/{{ project.id }}/lora"><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on this project's dashboard.") }}</div></a>
     <a class="card" href="/projects/{{ project.id }}/alerts"><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div></a>
-    <a class="card" href="https://lab.{{ request.url.hostname }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Lab (notebooks)") }}</div><div class="card__desc">{{ _("Analyse this project's telemetry in a Python notebook — pandas & matplotlib.") }}</div></a>
+    <a class="card" href="https://lab.{{ request.url.hostname }}/hub/spawn/{{ user.email | urlencode }}/{{ project.id }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Lab (notebooks)") }}</div><div class="card__desc">{{ _("Analyse this project's telemetry in a Python notebook — pandas & matplotlib, scoped to this project.") }}</div></a>
+    <a class="card" href="/projects/{{ project.id }}/report"><div class="card__title">{{ _("Report") }}</div><div class="card__desc">{{ _("Lifecycle report: devices, fleet health, alarm history and 24h trends.") }}</div></a>
   </div>
 
   {% if is_owner %}

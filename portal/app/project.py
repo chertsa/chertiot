@@ -269,6 +269,17 @@ def create_invite(db: Session, project: Project, owner: PortalUser, email: str) 
     db.add(invite)
     audit(db, owner.email, "project.invite", project.slug, invited=invite.invited_email)
     db.commit()
+    # Best-effort invite email (the link also shows in the owner's Members panel).
+    from app.config import get_settings
+    from app.email import send_email
+
+    link = f"{get_settings().portal_public_url.rstrip('/')}/invite/{invite.token}"
+    send_email(
+        invite.invited_email,
+        f"You're invited to the CHERT IoT project “{project.name}”",
+        f"{owner.email} invited you to collaborate on the project “{project.name}”.\n\n"
+        f"Open this link to join (sign in with this email address):\n{link}\n",
+    )
     return invite
 
 

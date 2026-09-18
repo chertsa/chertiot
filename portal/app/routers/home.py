@@ -38,7 +38,14 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
     if user is None:
         return RedirectResponse("/login", status_code=303)
     projects = [{"project": p, "role": m.role} for p, m in projects_for(db, user.id)]
-    return templates.TemplateResponse(request, "home.html", {"user": user, "projects": projects})
+    summary = {
+        "total": len(projects),
+        "owned": sum(1 for p in projects if p["role"] == "owner"),
+        "member": sum(1 for p in projects if p["role"] != "owner"),
+    }
+    return templates.TemplateResponse(
+        request, "home.html", {"user": user, "projects": projects, "summary": summary}
+    )
 
 
 # --- Explore the lab: every engine that powers CHERT IoT, grouped like the systems poster. ---

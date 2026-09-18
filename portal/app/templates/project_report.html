@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} — report — CHERT IoT{% endblock %}
+{% block content %}
+<div class="dash-head">
+  <div>
+    <p class="overline"><a href="/home">{{ _("Projects") }}</a> / <a href="/projects/{{ project.id }}">{{ project.slug }}</a> / {{ _("Report") }}</p>
+    <h1>{{ project.name }} — {{ _("Report") }}</h1>
+  </div>
+  <a class="btn btn--secondary btn--sm" href="/projects/{{ project.id }}">← {{ _("Workspace") }}</a>
+</div>
+
+<div class="panel">
+  <table class="dtable">
+    <tbody>
+      <tr><td>{{ _("Status") }}</td><td><span class="dot {{ 'dot--on' if project.status == 'active' else 'dot--off' }}"></span>{{ project.status }}</td></tr>
+      <tr><td>{{ _("Created") }}</td><td class="muted">{{ project.created_at.strftime('%Y-%m-%d') if project.created_at else '—' }}</td></tr>
+      <tr><td>{{ _("Members") }}</td><td>{{ members|length }}</td></tr>
+      <tr><td>{{ _("Provisioning") }}</td><td>{{ project.provisioning_state }}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+{% if unavailable %}
+<div class="panel"><p class="helper">{{ _("Live data is unavailable right now.") }} <a href="">{{ _("Retry") }}</a></p></div>
+{% else %}
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi__value">{{ device_count or 0 }}{% if max_devices %}<span class="kpi__sub">/{{ max_devices }}</span>{% endif %}</div><div class="kpi__label">{{ _("Devices") }}</div></div>
+  <div class="kpi"><div class="kpi__value">{{ online_count or 0 }}</div><div class="kpi__label">{{ _("Online now") }}</div></div>
+  <div class="kpi {{ 'kpi--alarm' if alarm_count else '' }}"><div class="kpi__value">{{ alarm_count or 0 }}</div><div class="kpi__label">{{ _("Active alarms") }}</div></div>
+  <div class="kpi"><div class="kpi__value">{{ (online_count / device_count * 100) | round | int if device_count else 0 }}<span class="kpi__sub">%</span></div><div class="kpi__label">{{ _("Fleet online") }}</div></div>
+</div>
+
+{% if chart %}
+<div class="panel">
+  <h2 class="panel__title">{{ _("Last 24 hours") }}</h2>
+  <div class="chart-box"><canvas id="tsChart"></canvas></div>
+  <script type="application/json" id="chart-data">{{ chart | safe }}</script>
+</div>
+{% endif %}
+
+<div class="dash-grid">
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Devices") }}</h2>
+    {% if devices %}
+    <table class="dtable">
+      <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Latest") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
+      <tbody>
+      {% for d in devices %}
+        <tr><td><strong>{{ d.name }}</strong>{% if d.label %}<div class="muted">{{ d.label }}</div>{% endif %}</td>
+          <td><span class="dot {{ 'dot--on' if d.active else 'dot--off' }}"></span>{{ _("Online") if d.active else _("Offline") }}</td>
+          <td class="muted">{{ d.reading or '—' }}</td><td class="muted">{{ d.last_seen or _("Never") }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}<p class="helper">{{ _("No devices yet.") }}</p>{% endif %}
+  </div>
+
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Alarm history") }}</h2>
+    {% if alarm_history %}
+    <ul class="alarm-list">
+      {% for a in alarm_history %}
+      <li class="alarm alarm--{{ a.severity|lower }}">
+        <span class="alarm__sev">{{ a.severity }}</span>
+        <span class="alarm__type">{{ a.type }}</span>
+        <span class="alarm__meta">{{ a.device }} · {{ a.status }} · {{ a.time }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}<p class="helper">{{ _("No alarms recorded.") }}</p>{% endif %}
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  (function () {
+    var data = document.getElementById('chart-data');
+    var cv = document.getElementById('tsChart');
+    if (!data || !cv || !window.Chart) return;
+    var s = {}; try { s = JSON.parse(data.textContent || '{}'); } catch (e) { return; }
+    var labels = (s.temperature || s.humidity || []).map(function (p) { return p.t; });
+    var ds = [];
+    if (s.temperature && s.temperature.length) ds.push({label: 'Temperature °C', data: s.temperature.map(function (p) { return p.v; }), borderColor: '#E8641E', backgroundColor: 'rgba(232,100,30,.08)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2});
+    if (s.humidity && s.humidity.length) ds.push({label: 'Humidity %', data: s.humidity.map(function (p) { return p.v; }), borderColor: '#3B7DD8', backgroundColor: 'rgba(59,125,216,.06)', tension: .35, fill: true, pointRadius: 0, borderWidth: 2, yAxisID: 'y1'});
+    new Chart(cv, {type: 'line', data: {labels: labels, datasets: ds}, options: {responsive: true, maintainAspectRatio: false, interaction: {intersect: false, mode: 'index'}, plugins: {legend: {labels: {boxWidth: 12}}}, scales: {x: {ticks: {maxTicksLimit: 8, autoSkip: true}, grid: {display: false}}, y: {position: 'left'}, y1: {position: 'right', grid: {drawOnChartArea: false}}}}});
+  })();
+</script>
+{% endif %}
+{% endblock %}

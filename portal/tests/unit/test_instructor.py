@@ -47,10 +47,25 @@ def test_create_and_deactivate_code(client: TestClient, db: Session, monkeypatch
     assert db.get(ClassCode, code.code).active is False  # type: ignore[union-attr]
 
 
-def test_roster_scoped_to_own_cohorts(client: TestClient, db: Session, monkeypatch) -> None:  # noqa: ANN001
+def test_projects_roster(client: TestClient, db: Session, monkeypatch) -> None:  # noqa: ANN001
+    from app.models import Project, ProjectMember
+
     _instructor(client, db, monkeypatch)
-    db.add(ClassCode(code="MINE-1", cohort="mine", instructor_email="prof@uni.edu"))
-    db.add(PortalUser(id="s-2", email="a@x.io", kc_user_id="k2", cohort="mine"))
+    db.add_all(
+        [
+            PortalUser(id="s-2", email="a@x.io", kc_user_id="k2"),
+            Project(
+                id="pr1",
+                slug="alpha",
+                name="Alpha",
+                provisioning_state="provisioned",
+                tb_tenant_id="t1",
+            ),
+            ProjectMember(
+                project_id="pr1", user_id="s-2", role="owner", tb_user_id="tb-a", status="active"
+            ),
+        ]
+    )
     db.commit()
 
     class NoTB:
@@ -60,37 +75,14 @@ def test_roster_scoped_to_own_cohorts(client: TestClient, db: Session, monkeypat
         def close(self) -> None: ...
 
     monkeypatch.setattr("app.routers.instructor.sysadmin_client", lambda: NoTB())
-    r = client.get("/teach/cohort/mine")
-    assert r.status_code == 200 and "a@x.io" in r.text
-    assert client.get("/teach/cohort/other").status_code == 403
+    r = client.get("/teach/projects")
+    # roster lists the project + its owner; device count degrades to "—" without TB
+    assert r.status_code == 200 and "Alpha" in r.text and "a@x.io" in r.text
 
 
-def test_suspend_flow(client: TestClient, db: Session, monkeypatch) -> None:  # noqa: ANN001
-    _instructor(client, db, monkeypatch)
-    db.add(ClassCode(code="MINE-2", cohort="m2", instructor_email="prof@uni.edu"))
-    db.add(PortalUser(id="s-3", email="b@x.io", kc_user_id="kc-b", cohort="m2", tb_user_id="tb-b"))
+def test_projects_roster_requires_instructor(client: TestClient, db: Session, monkeypatch) -> None:  # noqa: ANN001
+    student = PortalUser(id="s-9", email="kid2@x.io", kc_user_id="kc-s9", role="student")
+    db.add(student)
     db.commit()
-    kc_calls, tb_calls = [], []
-
-    class FakeKC:
-        def set_enabled(self, uid: str, enabled: bool) -> None:
-            kc_calls.append((uid, enabled))
-
-    monkeypatch.setattr("app.routers.instructor.KeycloakAdmin", FakeKC)
-    monkeypatch.setattr(
-        "app.routers.instructor.suspend_student",
-        lambda sa, email, suspended: tb_calls.append((email, suspended)),
-    )
-
-    class NoTB:
-        def close(self) -> None: ...
-
-    monkeypatch.setattr("app.routers.instructor.sysadmin_client", lambda: NoTB())
-    r = client.post("/teach/cohort/m2/suspend", data={"email": "b@x.io", "action": "suspend"})
-    assert r.status_code == 303
-    assert kc_calls == [("kc-b", False)] and tb_calls == [("b@x.io", True)]
-    db.expire_all()
-    assert db.scalar(db.query(PortalUser).statement.where(PortalUser.email == "b@x.io")) is not None
-    from sqlalchemy import select
-
-    assert db.scalar(select(PortalUser).where(PortalUser.email == "b@x.io")).role == "suspended"  # type: ignore[union-attr]
+    monkeypatch.setattr("app.routers.instructor.load_user", lambda request, db: student)
+    assert client.get("/teach/projects").status_code == 403

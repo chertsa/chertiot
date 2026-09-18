@@ -23,6 +23,35 @@ _TS_KEYS = [
 _max_devices_cache: dict[str, Any] = {"ts": 0.0, "value": None}
 
 
+def alarm_history(session: TbClient, limit: int = 30) -> list[dict[str, Any]]:
+    """Recent alarms (any status) for the project's report — newest first, best-effort."""
+    try:
+        data = session._get(  # noqa: SLF001
+            "/alarms",
+            pageSize=limit,
+            page=0,
+            sortProperty="createdTime",
+            sortOrder="DESC",
+        )
+    except Exception:  # noqa: BLE001
+        return []
+    rows = data.get("data", []) if isinstance(data, dict) else []
+    out = []
+    for a in rows:
+        out.append(
+            {
+                "type": a.get("type"),
+                "severity": a.get("severity", ""),
+                "status": a.get("status", ""),
+                "device": a.get("originatorName", ""),
+                "time": datetime.fromtimestamp(a.get("createdTime", 0) / 1000, UTC).strftime(
+                    "%Y-%m-%d %H:%M"
+                ),
+            }
+        )
+    return out
+
+
 def dashboard_data(sysadmin: TbClient, session: TbClient) -> dict[str, Any]:
     """Live metrics for one project tenant. Defensive: partial failures degrade, never raise."""
     out: dict[str, Any] = {

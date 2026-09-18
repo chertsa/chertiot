@@ -45,6 +45,14 @@ class Settings(BaseSettings):
     tb_quota_max_devices: int | None = None
     tb_quota_device_msg_rate: str | None = None  # e.g. "10:1,300:60"
 
+    # SMTP (project invite emails, M5.6). Same creds TB uses; dev points at mailpit.
+    smtp_host: str = ""
+    smtp_port: int = 587
+    smtp_user: str = ""
+    smtp_password: str = ""
+    smtp_from: str = "no-reply@chertiot.com"
+    smtp_starttls: bool = True
+
     @property
     def device_mqtt_host(self) -> str:
         return self.mqtt_host or self.domain

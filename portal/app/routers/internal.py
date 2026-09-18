@@ -12,32 +12,38 @@ from app.config import get_settings
 from app.db import get_db
 from app.models import PortalUser
 from app.onboarding import sysadmin_client
+from app.project import membership
 
 router = APIRouter()
 
 
 class LabTokenRequest(BaseModel):
     email: str
+    project_id: str
 
 
 @router.post("/internal/lab-token")
 def lab_token(req: LabTokenRequest, request: Request, db: Session = Depends(get_db)) -> Any:
-    """The student's own TB JWT for notebook use (M3.2). Same impersonation mechanism the portal
-    uses for every tenant-scoped action; isolation is ThingsBoard's own (D10)."""
+    """A notebook's TB JWT for ONE project (M5.3): the caller's own Tenant-Admin session in that
+    project tenant, via sysadmin impersonation. Requires an active membership — this is the whole
+    isolation story for per-project notebooks (D10/D13)."""
     secret = get_settings().lab_internal_secret
     given = request.headers.get("x-lab-secret", "")
     if not secret or not hmac.compare_digest(given, secret):
         raise HTTPException(status_code=403)
     user = db.scalar(select(PortalUser).where(PortalUser.email == req.email.lower()))
-    if user is None or not user.tb_user_id:
-        raise HTTPException(status_code=404, detail="no provisioned user")
+    if user is None:
+        raise HTTPException(status_code=404, detail="unknown user")
+    member = membership(db, req.project_id, user.id)
+    if member is None or member.status != "active" or not member.tb_user_id:
+        raise HTTPException(status_code=403, detail="not an active member of this project")
     sysadmin = sysadmin_client()
     try:
-        student = sysadmin.impersonate(user.tb_user_id)
+        session = sysadmin.impersonate(member.tb_user_id)
         try:
-            token = student._tokens.token if student._tokens else ""
+            token = session._tokens.token if session._tokens else ""  # noqa: SLF001
         finally:
-            student.close()
+            session.close()
     finally:
         sysadmin.close()
     return {"token": token}
