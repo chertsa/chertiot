@@ -1,0 +1,37 @@
+{
+  "anno-list-panel": {
+    "aria-label-remove-filter": "إزالة المرشّح: {{filterToRemove}}",
+    "filter": "المرشّح:",
+    "loading": "جارٍ التحميل...",
+    "no-annotations-found": "لم يُعثر على تعليقات زمنية"
+  },
+  "annotation-list-item": {
+    "tooltip-created-by": "أنشأه:<br/> {{email}}"
+  },
+  "category-annotation-query": "استعلام التعليق الزمني",
+  "category-display": "العرض",
+  "category-link-behaviour": "سلوك الرابط",
+  "description-tags": "طابِق وسوم التعليق الزمني",
+  "link-target-options": {
+    "label-dashboard": "لوحة المعلومات",
+    "label-panel": "لوحة عرض"
+  },
+  "name-limit": "الحد",
+  "name-link-target": "هدف الرابط",
+  "name-query-filter": "مرشّح الاستعلام",
+  "name-show-tags": "إظهار الوسوم",
+  "name-show-time": "إظهار الوقت",
+  "name-show-user": "إظهار المستخدم",
+  "name-tags": "الوسوم",
+  "name-time-after": "الوقت بعد",
+  "name-time-before": "الوقت قبل",
+  "name-time-range": "النطاق الزمني",
+  "query-filter-options": {
+    "label-all-dashboards": "جميع لوحات المعلومات",
+    "label-this-dashboard": "لوحة المعلومات هذه"
+  },
+  "time-range-options": {
+    "label-none": "بلا",
+    "label-this-dashboard": "لوحة المعلومات هذه"
+  }
+}

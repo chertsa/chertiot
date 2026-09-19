@@ -1,0 +1,42 @@
+{
+  "get-geometry-field": {
+    "warning-gazetteer-not-found": "لم يُعثر على دليل المواقع",
+    "warning-no-geometry": "تعذّر العثور على الهندسة",
+    "warning-select-geohash": "اختر حقل Geohash",
+    "warning-select-lat-long": "اختر حقلي خط العرض/خط الطول",
+    "warning-select-lookup": "اختر حقل البحث",
+    "warning-unable-to-find": "تعذّر العثور على حقول الموقع"
+  },
+  "location-editor": {
+    "geohash-field": {
+      "no-fields-message": "لم يُعثر على حقول نصية"
+    },
+    "latitude-field": {
+      "no-fields-message": "لم يُعثر على حقول رقمية"
+    },
+    "longitude-field": {
+      "no-fields-message": "لم يُعثر على حقول رقمية"
+    },
+    "lookup-field": {
+      "no-fields-message": "لم يُعثر على حقول نصية"
+    },
+    "name-gazetteer": "دليل المواقع",
+    "name-geohash-field": "حقل Geohash",
+    "name-latitude-field": "حقل خط العرض",
+    "name-location-mode": "وضع الموقع",
+    "name-longitude-field": "حقل خط الطول",
+    "name-lookup-field": "حقل البحث"
+  },
+  "location-more-editor": {
+    "mode-options": {
+      "description-auto": "التعرّف تلقائيًا على بيانات الموقع بناءً على أسماء الحقول الافتراضية",
+      "description-coords": "تحديد حقلي خط العرض وخط الطول",
+      "description-geohash": "تحديد حقل Geohash",
+      "description-lookup": "تحديد دليل المواقع وحقل البحث",
+      "label-auto": "تلقائي",
+      "label-coords": "إحداثيات",
+      "label-geohash": "Geohash",
+      "label-lookup": "بحث"
+    }
+  }
+}

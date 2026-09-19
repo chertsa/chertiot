@@ -38,7 +38,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "GeoJSON", "PromQL", "LogQL", "TraceQL", "UTC", "LDAP", "SAML", "OAuth2", "JWT", "gRPC",
     "GET", "POST", "PUT", "PATCH", "DELETE", "InfluxDB", "Graphite", "Tempo", "Pyroscope",
     "Grafana Cloud", "Grafana Enterprise", "Grafana Labs", "Grafana Alerting", "Grafana Assistant",
-    "Grafana Live", "Grafana Play",
+    "Grafana Live", "Grafana Play", "Geohash", "GeoJSON",
     "Cloud", "Enterprise",  # Grafana edition/tier badge labels, kept as the product tier name
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
@@ -127,7 +127,9 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             en_vars, en_tags = tokens(en.get(k, ""))
             en_val = en.get(k, "")
         if isinstance(av, str) and av.strip() == "":
-            errors.append(f"[{ns}] empty ar value: {k}")
+            # An empty Arabic value is only wrong when the English source has text to translate.
+            if not (isinstance(en_val, str) and en_val.strip() == ""):
+                errors.append(f"[{ns}] empty ar value: {k}")
             continue
         av_vars, av_tags = tokens(av)
         if b is not None:

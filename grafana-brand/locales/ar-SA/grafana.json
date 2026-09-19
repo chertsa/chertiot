@@ -1,5 +1,41 @@
 {
   "_comment": "الشيفرة هي مصدر الحقيقة للعبارات الإنجليزية. ينبغي تحديثها في المكوّنات مباشرةً، مع تحديد صيغ الجمع الإضافية في هذا الملف.",
+  "access-control": {
+    "add-permission": {
+      "built-in-aria-label": "منتقي الأدوار المدمجة",
+      "level-aria-label": "مستوى الإذن",
+      "permissions-aria-label": "شريط تمرير الأذونات",
+      "role-label": "الدور",
+      "role-select-aria-label": "الدور المراد إضافة إذن جديد له",
+      "serviceaccount-label": "حساب خدمة",
+      "team-label": "فريق",
+      "title": "إضافة إذن لـ",
+      "user-label": "مستخدم"
+    },
+    "add-permissions": {
+      "save": "حفظ"
+    },
+    "permission-list": {
+      "permission": "إذن"
+    },
+    "permission-list-item": {
+      "inherited": "موروث من المجلد",
+      "locked-aria-label": "مؤشر إذن مقفل",
+      "remove-aria-label": "إزالة الإذن لـ {{identifier}}",
+      "tooltip-inherited-permission": "إذن موروث",
+      "tooltip-provisioned-permission": "إذن مُهيّأ تلقائيًا"
+    },
+    "permissions": {
+      "add-label": "إضافة إذن",
+      "loading": "جارٍ تحميل الأذونات...",
+      "no-permissions": "لا توجد أذونات",
+      "permissions-change-warning": "سيغيّر هذا أذونات هذا المجلد وجميع فروعه.",
+      "role": "الدور",
+      "serviceaccount": "حساب خدمة",
+      "team": "فريق",
+      "user": "مستخدم"
+    }
+  },
   "action-editor": {
     "modal": {
       "cancel-button": "إلغاء",
@@ -26,6 +62,43 @@
     },
     "variables-editor": {
       "placeholder-type": "النوع"
+    }
+  },
+  "annolist": {
+    "anno-list-panel": {
+      "aria-label-remove-filter": "إزالة المرشّح: {{filterToRemove}}",
+      "filter": "المرشّح:",
+      "loading": "جارٍ التحميل...",
+      "no-annotations-found": "لم يُعثر على تعليقات زمنية"
+    },
+    "annotation-list-item": {
+      "tooltip-created-by": "أنشأه:<br/> {{email}}"
+    },
+    "category-annotation-query": "استعلام التعليق الزمني",
+    "category-display": "العرض",
+    "category-link-behaviour": "سلوك الرابط",
+    "description-tags": "طابِق وسوم التعليق الزمني",
+    "link-target-options": {
+      "label-dashboard": "لوحة المعلومات",
+      "label-panel": "لوحة عرض"
+    },
+    "name-limit": "الحد",
+    "name-link-target": "هدف الرابط",
+    "name-query-filter": "مرشّح الاستعلام",
+    "name-show-tags": "إظهار الوسوم",
+    "name-show-time": "إظهار الوقت",
+    "name-show-user": "إظهار المستخدم",
+    "name-tags": "الوسوم",
+    "name-time-after": "الوقت بعد",
+    "name-time-before": "الوقت قبل",
+    "name-time-range": "النطاق الزمني",
+    "query-filter-options": {
+      "label-all-dashboards": "جميع لوحات المعلومات",
+      "label-this-dashboard": "لوحة المعلومات هذه"
+    },
+    "time-range-options": {
+      "label-none": "بلا",
+      "label-this-dashboard": "لوحة المعلومات هذه"
     }
   },
   "annotations": {
@@ -423,6 +496,48 @@
     "incomplete-request-error": "عذرًا، لم أتمكّن من إكمال طلبك. يُرجى المحاولة مجددًا.",
     "send-custom-feedback": "إرسال"
   },
+  "geo": {
+    "get-geometry-field": {
+      "warning-gazetteer-not-found": "لم يُعثر على دليل المواقع",
+      "warning-no-geometry": "تعذّر العثور على الهندسة",
+      "warning-select-geohash": "اختر حقل Geohash",
+      "warning-select-lat-long": "اختر حقلي خط العرض/خط الطول",
+      "warning-select-lookup": "اختر حقل البحث",
+      "warning-unable-to-find": "تعذّر العثور على حقول الموقع"
+    },
+    "location-editor": {
+      "geohash-field": {
+        "no-fields-message": "لم يُعثر على حقول نصية"
+      },
+      "latitude-field": {
+        "no-fields-message": "لم يُعثر على حقول رقمية"
+      },
+      "longitude-field": {
+        "no-fields-message": "لم يُعثر على حقول رقمية"
+      },
+      "lookup-field": {
+        "no-fields-message": "لم يُعثر على حقول نصية"
+      },
+      "name-gazetteer": "دليل المواقع",
+      "name-geohash-field": "حقل Geohash",
+      "name-latitude-field": "حقل خط العرض",
+      "name-location-mode": "وضع الموقع",
+      "name-longitude-field": "حقل خط الطول",
+      "name-lookup-field": "حقل البحث"
+    },
+    "location-more-editor": {
+      "mode-options": {
+        "description-auto": "التعرّف تلقائيًا على بيانات الموقع بناءً على أسماء الحقول الافتراضية",
+        "description-coords": "تحديد حقلي خط العرض وخط الطول",
+        "description-geohash": "تحديد حقل Geohash",
+        "description-lookup": "تحديد دليل المواقع وحقل البحث",
+        "label-auto": "تلقائي",
+        "label-coords": "إحداثيات",
+        "label-geohash": "Geohash",
+        "label-lookup": "بحث"
+      }
+    }
+  },
   "get-enterprise": {
     "requires-license": "يتطلب ترخيص Grafana Enterprise",
     "title": "Enterprise"
@@ -593,6 +708,45 @@
   "import-overview": {
     "error-provisioning-status": "تعذّر التحقق مما إذا كان المجلد الهدف مُدارًا بواسطة مستودع. يُرجى المحاولة مجددًا أو التواصل مع مسؤول.",
     "error-provisioning-status-title": "تعذّر تحديد حالة التهيئة التلقائية"
+  },
+  "inspector": {
+    "inspect-data-tab": {
+      "loading": "جارٍ التحميل",
+      "no-data": "لا توجد بيانات"
+    },
+    "inspect-error-tab": {
+      "error-status-message": "الحالة: {{errorStatus}}. الرسالة:",
+      "error-status-no-message": "الحالة: {{errorStatus}}",
+      "error-trace-message": "(معرّف التتبّع: {{errorTrace}})"
+    },
+    "inspect-jsontab": {
+      "apply": "تطبيق",
+      "support": "الدعم"
+    },
+    "query": {
+      "collapse-all": "طيّ الكل",
+      "copy-to-clipboard": "نسخ إلى الحافظة",
+      "description": "يتيح لك فاحص الاستعلامات عرض الطلب والاستجابة الخام. لجمع هذه البيانات يحتاج Grafana إلى إصدار استعلام جديد. انقر على زر التحديث أدناه لتشغيل استعلام جديد.",
+      "expand-all": "توسيع الكل",
+      "no-data": "لم يُجمع أي طلب أو استجابة بعد. اضغط زر التحديث",
+      "refresh": "تحديث"
+    },
+    "query-inspector": {
+      "count-frames_zero": "لا إطارات، ",
+      "count-frames_one": "إطار واحد، ",
+      "count-frames_two": "إطاران، ",
+      "count-frames_few": "{{count}} إطارات، ",
+      "count-frames_many": "{{count}} إطارًا، ",
+      "count-frames_other": "{{count}} إطار، ",
+      "count-rows_zero": "لا صفوف",
+      "count-rows_one": "صف واحد",
+      "count-rows_two": "صفّان",
+      "count-rows_few": "{{count}} صفوف",
+      "count-rows_many": "{{count}} صفًّا",
+      "count-rows_other": "{{count}} صف",
+      "query-inspector": "فاحص الاستعلامات",
+      "text-loading-query-inspector": "جارٍ تحميل فاحص الاستعلامات..."
+    }
   },
   "invites": {
     "invitee-row": {
@@ -852,6 +1006,86 @@
     },
     "title": "أحدث المقالات من المدونة"
   },
+  "node-graph": {
+    "category-edges": "الحواف",
+    "category-node-graph": "رسم العُقد البياني",
+    "category-nodes": "العُقد",
+    "layout-algorithm-options": {
+      "description-force": "استخدام تخطيط موجّه بالقوة",
+      "description-grid": "استخدام تخطيط شبكي",
+      "description-layered": "استخدام تخطيط طبقي",
+      "label-force": "موجّه بالقوة",
+      "label-grid": "شبكي",
+      "label-layered": "طبقي"
+    },
+    "name-arc-sections": "أقسام القوس",
+    "name-layout-algorithm": "خوارزمية التخطيط",
+    "name-main-stat-unit": "وحدة الإحصاء الرئيسية",
+    "name-secondary-stat-unit": "وحدة الإحصاء الثانوية",
+    "name-zoom-mode": "وضع التكبير",
+    "zoom-mode-options": {
+      "description-cooperative": "يتيح لك تمرير الصفحة بشكل طبيعي",
+      "description-greedy": "يتفاعل مع جميع إيماءات التكبير",
+      "label-cooperative": "تعاوني",
+      "label-greedy": "جشِع"
+    }
+  },
+  "nodeGraph": {
+    "arc-options-editor": {
+      "add-arc": "إضافة قوس",
+      "title-remove-arc": "إزالة القوس"
+    },
+    "edge": {
+      "aria-label-from-to": "حافة من: {{from}} إلى: {{to}}"
+    },
+    "edge-header": {
+      "label-source-target": "المصدر → الهدف"
+    },
+    "marker": {
+      "100-node-count": "أكثر من 100 عقدة",
+      "aria-label-hidden-marker": "علامة العُقد المخفية: {{marker}}",
+      "node-count_zero": "لا عُقد",
+      "node-count_one": "عقدة واحدة",
+      "node-count_two": "عقدتان",
+      "node-count_few": "{{count}} عُقد",
+      "node-count_many": "{{count}} عقدة",
+      "node-count_other": "{{count}} عقدة"
+    },
+    "node": {
+      "aria-label-node-title": "عقدة: {{nodeName}}"
+    },
+    "node-graph": {
+      "aria-label-layered-layout-performance-warning": "تحذير أداء التخطيط الطبقي",
+      "aria-label-nodes-hidden-warning": "تحذير إخفاء العُقد",
+      "computing-layout": "جارٍ حساب التخطيط",
+      "hidden-nodes_zero": "<0></0> لا توجد عُقد مخفية لأسباب تتعلق بالأداء.",
+      "hidden-nodes_one": "<0></0> عقدة واحدة مخفية لأسباب تتعلق بالأداء.",
+      "hidden-nodes_two": "<0></0> عقدتان مخفيتان لأسباب تتعلق بالأداء.",
+      "hidden-nodes_few": "<0></0> {{count}} عُقد مخفية لأسباب تتعلق بالأداء.",
+      "hidden-nodes_many": "<0></0> {{count}} عقدة مخفية لأسباب تتعلق بالأداء.",
+      "hidden-nodes_other": "<0></0> {{count}} عقدة مخفية لأسباب تتعلق بالأداء.",
+      "no-data": "لا توجد بيانات",
+      "processed-nodes_zero": "<0></0> قد يكون التخطيط الطبقي بطيئًا.",
+      "processed-nodes_one": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع عقدة واحدة.",
+      "processed-nodes_two": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع عقدتين.",
+      "processed-nodes_few": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عُقد.",
+      "processed-nodes_many": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عقدة.",
+      "processed-nodes_other": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عقدة."
+    },
+    "node-graph-panel": {
+      "no-data-found-in-response": "لم يُعثر على بيانات في الاستجابة"
+    },
+    "node-header": {
+      "label-subtitle": "عنوان فرعي",
+      "label-title": "العنوان"
+    },
+    "view-controls": {
+      "hide-config": "إخفاء الإعداد",
+      "show-config": "إظهار الإعداد",
+      "title-zoom-in": "تكبير",
+      "title-zoom-out": "تصغير"
+    }
+  },
   "notifications": {
     "empty-state": {
       "description": "ستظهر هنا الإشعارات التي تلقّيتها",
@@ -976,6 +1210,66 @@
       "pie": "مخطط دائري"
     }
   },
+  "playlist": {
+    "playlist-new-page": {
+      "page-nav": {
+        "text": {
+          "new-playlist": "قائمة تشغيل جديدة"
+        }
+      }
+    },
+    "playlist-table-rows": {
+      "aria-label-playlist-item": "عنصر قائمة التشغيل، {{itemType}}، {{itemValue}}",
+      "multiple-dashboards-found": "عُثر على عناصر متعددة: {{items}}",
+      "no-dashboards-found": "لم يُعثر على لوحات معلومات",
+      "not-found": "غير موجود: {{items}}"
+    },
+    "start-modal": {
+      "button-start": "بدء {{title}}",
+      "description-customize-dashboard-elements-visibility": "تخصيص ظهور عناصر لوحة المعلومات",
+      "description-hide-logo": "إخفاء تذييل العلامة التجارية من لوحة المعلومات",
+      "description-panel-heights-adjusted-screen": "ستُضبط ارتفاعات اللوحات لتلائم حجم الشاشة",
+      "description-playlist-nav": "إظهار زرّي السابق والتالي للتنقّل يدويًا بين لوحات المعلومات",
+      "label-autofit": "ملاءمة تلقائية",
+      "label-dashboard-links": "روابط لوحة المعلومات",
+      "label-display-dashboard-controls": "عرض عناصر تحكّم لوحة المعلومات",
+      "label-hide-logo": "إخفاء الشعار",
+      "label-mode": "الوضع",
+      "label-playlist-nav": "أزرار التنقّل",
+      "label-time-and-refresh": "الوقت والتحديث",
+      "label-variables": "المتغيرات",
+      "modes": {
+        "label": {
+          "kiosk": "كشك",
+          "normal": "عادي"
+        }
+      },
+      "title-start-playlist": "بدء قائمة التشغيل"
+    }
+  },
+  "playlist-edit": {
+    "error-prefix": "خطأ في تحميل قائمة التشغيل:",
+    "form": {
+      "add-tag-label": "إضافة حسب الوسم",
+      "add-tag-placeholder": "اختر وسمًا",
+      "add-title-label": "إضافة حسب العنوان",
+      "cancel": "إلغاء",
+      "heading": "إضافة لوحات معلومات",
+      "interval-label": "الفاصل",
+      "interval-placeholder": "5m",
+      "interval-required": "الفاصل مطلوب",
+      "name-label": "الاسم",
+      "name-placeholder": "الاسم",
+      "name-required": "الاسم مطلوب",
+      "save": "حفظ",
+      "table-delete": "حذف عنصر قائمة التشغيل",
+      "table-drag": "إعادة ترتيب عنصر قائمة التشغيل",
+      "table-empty": "قائمة التشغيل فارغة. أضف لوحات معلومات أدناه.",
+      "table-heading": "لوحات المعلومات"
+    },
+    "sub-title": "تتنقّل قائمة التشغيل عبر قائمة محددة مسبقًا من لوحات المعلومات. يمكن أن تكون قائمة التشغيل طريقة رائعة لبناء وعي بالموقف، أو ببساطة لعرض مقاييسك على فريقك أو زوّارك.",
+    "title": "تعديل قائمة التشغيل"
+  },
   "playlist-page": {
     "card": {
       "delete": "حذف قائمة التشغيل",
@@ -1061,6 +1355,33 @@
     },
     "saved-success": "تم حفظ التغييرات بنجاح"
   },
+  "provisioned-resource-form": {
+    "save-or-delete-resource-shared-fields": {
+      "comment-placeholder-describe-changes-optional": "أضف ملاحظة لوصف تغييراتك (اختياري)",
+      "custom-value-description": "اضغط Enter لإنشاء فرع جديد",
+      "description-branch": "اختر فرعًا موجودًا أو أدخل اسم فرع جديد لإنشاء فرع",
+      "description-branch-restricted": "هذا المستودع مقيّد بالفرع المُهيّأ فقط",
+      "description-file-path": "مسار الملف داخل المستودع (.json أو .yaml)",
+      "description-filename": "اسم ملف لوحة المعلومات (.json أو .yaml)",
+      "description-folder": "مجلد داخل المستودع. اتركه فارغًا لجذر المستودع.",
+      "description-folder-path": "مسار المجلد داخل المستودع",
+      "description-inside-repository": "",
+      "info-branch-disabled": "الدفع إلى الفرع المُهيّأ مُعطّل",
+      "label-branch": "الفرع",
+      "label-comment": "تعليق",
+      "label-filename": "اسم الملف",
+      "label-path": "المسار",
+      "label-repository-folder": "مجلد المستودع",
+      "path-exists": "يوجد بالفعل ملف بهذا الاسم في هذا المسار",
+      "placeholder-branch": "اختر أو أدخل اسم الفرع",
+      "placeholder-folder": "اختر أو أدخل مسار المجلد",
+      "suffix-configured-branch": "الفرع المُزامَن",
+      "suffix-last-used": "آخر فرع",
+      "suffix-new-branch": "فرع جديد",
+      "suffix-pr-branch": "فرع طلب السحب",
+      "suffix-read-only-branch": " (للقراءة فقط)"
+    }
+  },
   "provisioned-resource-preview-banner": {
     "preview-banner": {
       "behind-branch-text": "هذا المورد متأخّر عن الفرع في {{repoType}}.",
@@ -1077,6 +1398,43 @@
     "title-deleted-resource-in-branch": "تم حذف مورد في فرع في {{repoType}}.",
     "title-loaded-pull-request-in-repo": "هذا المورد مُحمّل من الفرع الذي أنشأته للتو في {{repoType}} وهو مرئي لك وحدك",
     "title-updated-resource-in-branch": "تم تحديث مورد في فرع في {{repoType}}."
+  },
+  "public-dashboard-users-access-list": {
+    "dashboard-modal": {
+      "external-link": "رابط خارجي",
+      "loading-text": "جارٍ التحميل...",
+      "open-dashboard-list-text": "فتح قائمة لوحات المعلومات",
+      "sharing-setting": "إعدادات المشاركة"
+    },
+    "delete-user-modal": {
+      "delete-user-button-text": "حذف المستخدم",
+      "delete-user-cancel-button": "إلغاء",
+      "delete-user-revoke-access-button": "إبطال الوصول",
+      "revoke-access-title": "إبطال الوصول",
+      "revoke-user-access-modal-desc-line1": "هل أنت متأكد أنك تريد إبطال الوصول لـ {{email}}؟"
+    },
+    "delete-user-shared-dashboards-modal": {
+      "revoke-user-access-modal-desc-line2": "سيؤدي هذا الإجراء إلى إبطال وصول {{email}} فورًا إلى جميع لوحات المعلومات المشتركة."
+    },
+    "modal": {
+      "shared-dashboard-modal-title": "لوحات المعلومات المشتركة"
+    },
+    "table-body": {
+      "dashboard-count_zero": "لا لوحات معلومات",
+      "dashboard-count_one": "لوحة معلومات واحدة",
+      "dashboard-count_two": "لوحتا معلومات",
+      "dashboard-count_few": "{{count}} لوحات معلومات",
+      "dashboard-count_many": "{{count}} لوحة معلومات",
+      "dashboard-count_other": "{{count}} لوحة معلومات"
+    },
+    "table-header": {
+      "activated-label": "مُفعّل",
+      "activated-tooltip": "أبكر وقت كان فيه المستخدم نشطًا في لوحة معلومات",
+      "email-label": "البريد الإلكتروني",
+      "last-active-label": "آخر نشاط",
+      "origin-label": "المصدر",
+      "role-label": "الدور"
+    }
   },
   "query-editor-renderer": {
     "datasource-load-error-body": "اختر مصدر بيانات لهذا الاستعلام للمتابعة.",
@@ -1216,6 +1574,44 @@
       "title": "اسم لوحة المعلومات موجود بالفعل"
     }
   },
+  "scopes": {
+    "dashboards": {
+      "collapse": "طيّ",
+      "exchange": "تغيير النطاق الجذري إلى {{scope}}",
+      "expand": "توسيع",
+      "loading": "جارٍ تحميل لوحات المعلومات",
+      "noResultsForFilter": "لم يُعثر على نتائج لاستعلامك",
+      "noResultsForFilterClear": "مسح البحث",
+      "noResultsForScopes": "لم يُعثر على لوحات معلومات أو روابط للنطاقات المحددة",
+      "noResultsNoScopes": "لم تُحدَّد أي نطاقات",
+      "search": "بحث",
+      "toggle": {
+        "collapse": "طيّ قائمة لوحات المعلومات المقترحة",
+        "disabled": "قائمة لوحات المعلومات المقترحة مُعطّلة بسبب وضع القراءة فقط",
+        "expand": "توسيع قائمة لوحات المعلومات المقترحة"
+      }
+    },
+    "selector": {
+      "apply": "تطبيق",
+      "cancel": "إلغاء",
+      "error-title": "حدث خطأ غير متوقّع",
+      "input": {
+        "placeholder": "لا نطاقات",
+        "remove-all": "إزالة الكل",
+        "removeAll": "إزالة جميع النطاقات",
+        "tooltip": "اختر نطاقًا"
+      },
+      "title": "اختر النطاقات"
+    },
+    "tree": {
+      "headline": {
+        "noResults": "لم يُعثر على نتائج لاستعلامك",
+        "recommended": "موصى به",
+        "results": "النتائج"
+      },
+      "search": "بحث {{parentTitle}}"
+    }
+  },
   "search": {
     "action-row": {
       "panel-type": "اللوحة: {{panel}}"
@@ -1337,6 +1733,33 @@
       "create-button": "إنشاء لوحة مكتبة"
     }
   },
+  "share-panel-image": {
+    "disabled-help": "احفظ لوحة المعلومات لتفعيل توليد الصورة",
+    "download-disabled-help": "ولّد صورة أولًا لتفعيل التنزيل",
+    "error-title": "فشل توليد الصورة",
+    "form": {
+      "label": "إعدادات صورة اللوحة"
+    },
+    "preview": {
+      "title": "معاينة اللوحة"
+    },
+    "settings": {
+      "height-label": "الارتفاع",
+      "height-min": "يجب أن يكون الارتفاع مساويًا لـ 1 أو أكبر",
+      "height-placeholder": "500",
+      "height-required": "الارتفاع مطلوب",
+      "max-warning": "القيم القصوى للإعدادات محدودة بخدمة عارض الصور",
+      "scale-factor-label": "معامل التحجيم",
+      "scale-factor-min": "يجب أن يكون معامل التحجيم مساويًا لـ 1 أو أكبر",
+      "scale-factor-placeholder": "1",
+      "scale-factor-required": "معامل التحجيم مطلوب",
+      "title": "إعدادات الصورة",
+      "width-label": "العرض",
+      "width-min": "يجب أن يكون العرض مساويًا لـ 1 أو أكبر",
+      "width-placeholder": "1000",
+      "width-required": "العرض مطلوب"
+    }
+  },
   "share-playlist": {
     "checkbox-description": "ستُضبط ارتفاعات اللوحات لتلائم حجم الشاشة",
     "checkbox-label": "ملاءمة تلقائية",
@@ -1442,6 +1865,37 @@
       "alert-name": "اسم التنبيه",
       "state": "الحالة"
     }
+  },
+  "snapshot": {
+    "empty-state": {
+      "message": "لم تنشئ أي لقطات بعد",
+      "more-info": "يمكنك إنشاء لقطة لأي لوحة معلومات عبر نافذة <1>المشاركة</1>. <4>معرفة المزيد</4>"
+    },
+    "external-badge": "خارجي",
+    "name-column-header": "الاسم",
+    "share": {
+      "cancel-button": "إلغاء",
+      "copy-link-button": "نسخ الرابط",
+      "delete-button": "حذف اللقطة",
+      "delete-description": "هل أنت متأكد أنك تريد حذف هذه اللقطة؟",
+      "delete-permission-tooltip": "ليس لديك إذن لحذف اللقطات",
+      "delete-title": "حذف اللقطة",
+      "deleted-alert": "تم حذف اللقطة. قد يستغرق مسحها من ذاكرات CDN المؤقتة ساعة.",
+      "expiration-label": "تنتهي خلال",
+      "info-alert": "تشارك لقطة لوحة معلومات Grafana لوحةً علنًا مع إزالة البيانات الحساسة مثل الاستعلامات وروابط اللوحات، وتُبقي فقط المقاييس المرئية وأسماء السلاسل. يمكن لأي شخص لديه الرابط الوصول إلى اللقطة.",
+      "learn-more-button": "معرفة المزيد",
+      "local-button": "نشر اللقطة",
+      "name-label": "اسم اللقطة",
+      "new-snapshot-button": "لقطة جديدة",
+      "success-creation": "تم إنشاء لقطتك",
+      "success-delete": "تم حذف لقطتك",
+      "view-all-button": "عرض جميع اللقطات"
+    },
+    "share-panel": {
+      "info-alert": "تشارك لقطة لوحة Grafana لوحةً علنًا مع إزالة البيانات الحساسة مثل الاستعلامات وروابط اللوحات، وتُبقي فقط المقاييس المرئية وأسماء السلاسل. يمكن لأي شخص لديه الرابط الوصول إلى اللقطة."
+    },
+    "url-column-header": "رابط اللقطة",
+    "view-button": "عرض"
   },
   "sort-picker": {
     "select-aria-label": "فرز"

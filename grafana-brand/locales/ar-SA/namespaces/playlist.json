@@ -1,0 +1,37 @@
+{
+  "playlist-new-page": {
+    "page-nav": {
+      "text": {
+        "new-playlist": "قائمة تشغيل جديدة"
+      }
+    }
+  },
+  "playlist-table-rows": {
+    "aria-label-playlist-item": "عنصر قائمة التشغيل، {{itemType}}، {{itemValue}}",
+    "multiple-dashboards-found": "عُثر على عناصر متعددة: {{items}}",
+    "no-dashboards-found": "لم يُعثر على لوحات معلومات",
+    "not-found": "غير موجود: {{items}}"
+  },
+  "start-modal": {
+    "button-start": "بدء {{title}}",
+    "description-customize-dashboard-elements-visibility": "تخصيص ظهور عناصر لوحة المعلومات",
+    "description-hide-logo": "إخفاء تذييل العلامة التجارية من لوحة المعلومات",
+    "description-panel-heights-adjusted-screen": "ستُضبط ارتفاعات اللوحات لتلائم حجم الشاشة",
+    "description-playlist-nav": "إظهار زرّي السابق والتالي للتنقّل يدويًا بين لوحات المعلومات",
+    "label-autofit": "ملاءمة تلقائية",
+    "label-dashboard-links": "روابط لوحة المعلومات",
+    "label-display-dashboard-controls": "عرض عناصر تحكّم لوحة المعلومات",
+    "label-hide-logo": "إخفاء الشعار",
+    "label-mode": "الوضع",
+    "label-playlist-nav": "أزرار التنقّل",
+    "label-time-and-refresh": "الوقت والتحديث",
+    "label-variables": "المتغيرات",
+    "modes": {
+      "label": {
+        "kiosk": "كشك",
+        "normal": "عادي"
+      }
+    },
+    "title-start-playlist": "بدء قائمة التشغيل"
+  }
+}

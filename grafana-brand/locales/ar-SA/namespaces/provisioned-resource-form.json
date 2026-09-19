@@ -1,0 +1,27 @@
+{
+  "save-or-delete-resource-shared-fields": {
+    "comment-placeholder-describe-changes-optional": "أضف ملاحظة لوصف تغييراتك (اختياري)",
+    "custom-value-description": "اضغط Enter لإنشاء فرع جديد",
+    "description-branch": "اختر فرعًا موجودًا أو أدخل اسم فرع جديد لإنشاء فرع",
+    "description-branch-restricted": "هذا المستودع مقيّد بالفرع المُهيّأ فقط",
+    "description-file-path": "مسار الملف داخل المستودع (.json أو .yaml)",
+    "description-filename": "اسم ملف لوحة المعلومات (.json أو .yaml)",
+    "description-folder": "مجلد داخل المستودع. اتركه فارغًا لجذر المستودع.",
+    "description-folder-path": "مسار المجلد داخل المستودع",
+    "description-inside-repository": "",
+    "info-branch-disabled": "الدفع إلى الفرع المُهيّأ مُعطّل",
+    "label-branch": "الفرع",
+    "label-comment": "تعليق",
+    "label-filename": "اسم الملف",
+    "label-path": "المسار",
+    "label-repository-folder": "مجلد المستودع",
+    "path-exists": "يوجد بالفعل ملف بهذا الاسم في هذا المسار",
+    "placeholder-branch": "اختر أو أدخل اسم الفرع",
+    "placeholder-folder": "اختر أو أدخل مسار المجلد",
+    "suffix-configured-branch": "الفرع المُزامَن",
+    "suffix-last-used": "آخر فرع",
+    "suffix-new-branch": "فرع جديد",
+    "suffix-pr-branch": "فرع طلب السحب",
+    "suffix-read-only-branch": " (للقراءة فقط)"
+  }
+}
