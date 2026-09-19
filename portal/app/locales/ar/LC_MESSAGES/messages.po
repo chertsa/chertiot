@@ -491,6 +491,16 @@ msgid ""
 " does."
 msgstr "كل محرك مفتوح المصدر يشغّل CHERT IoT — افتحه أو تعرّف على وظيفته."
 
+#: app/templates/home.html:45
+msgid "Monitoring (Grafana)"
+msgstr "المراقبة (Grafana)"
+
+#: app/templates/home.html:45
+msgid "Dashboards over Prometheus. Opens with your CHERT sign-in — no separate password."
+msgstr ""
+"لوحات المعلومات فوق Prometheus. تُفتح بتسجيل دخولك إلى CHERT — دون كلمة مرور "
+"منفصلة."
+
 #: app/templates/home.html:30
 msgid "System status"
 msgstr "حالة النظام"

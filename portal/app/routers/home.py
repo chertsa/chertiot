@@ -113,10 +113,10 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "name": "Grafana",
                 "ver": "13.1.4",
                 "lic": "AGPL-3.0",
-                "access": "admin",
+                "access": "open",
                 "url": "https://grafana.{d}",
-                "desc": "Dashboards over Prometheus. Sign in with "
-                "“Sign in with CHERT IoT” (SSO), not a password.",
+                "desc": "Monitoring dashboards over Prometheus. Opens with your "
+                "CHERT sign-in — no separate password.",
             },
             {
                 "name": "Alertmanager",

@@ -42,6 +42,7 @@
 <div class="grid-cards">
   <a class="card" href="/docs/"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
   <a class="card" href="/explore"><div class="card__title">{{ _("Explore the stack") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div></a>
+  <a class="card" href="https://grafana.{{ request.url.hostname }}" target="_blank" rel="noopener"><div class="card__title">{{ _("Monitoring (Grafana)") }}</div><div class="card__desc">{{ _("Dashboards over Prometheus. Opens with your CHERT sign-in — no separate password.") }}</div></a>
   <a class="card" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div></a>
 </div>
 {% endblock %}
