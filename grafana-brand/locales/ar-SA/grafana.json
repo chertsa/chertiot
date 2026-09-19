@@ -1,0 +1,375 @@
+{
+  "_comment": "الشيفرة هي مصدر الحقيقة للعبارات الإنجليزية. ينبغي تحديثها في المكوّنات مباشرةً، مع تحديد صيغ الجمع الإضافية في هذا الملف.",
+  "actions": {
+    "action-editor": {
+      "button": {
+        "style": {
+          "background-color": "اللون"
+        }
+      },
+      "label-headers": "الترويسات",
+      "label-url": "URL",
+      "placeholder-url": "URL"
+    },
+    "params-editor": {
+      "aria-label-add": "إضافة",
+      "aria-label-delete": "حذف",
+      "placeholder-key": "المفتاح",
+      "placeholder-name": "الاسم",
+      "placeholder-value": "القيمة"
+    },
+    "variables-editor": {
+      "placeholder-type": "النوع"
+    }
+  },
+  "common": {
+    "all": "الكل",
+    "apply": "تطبيق",
+    "cancel": "إلغاء",
+    "collapse": "طيّ",
+    "disabled": "مُعطّل",
+    "discard": "تجاهل",
+    "edit": "تعديل",
+    "help": "مساعدة",
+    "loading": "جارٍ التحميل...",
+    "locale": {
+      "default": "افتراضي"
+    },
+    "save": "حفظ",
+    "search": "بحث",
+    "view": "عرض"
+  },
+  "core": {
+    "versionHistory": {
+      "comparison": {
+        "header": {
+          "hide-json-diff": "إخفاء فرق JSON ",
+          "show-json-diff": "عرض فرق JSON ",
+          "text": "الإصدار {{version}} حُدِّث بواسطة {{createdBy}} ({{ageString}}) {{message}}"
+        },
+        "select": "اختر إصدارين لبدء المقارنة"
+      },
+      "no-properties-changed": "لم تتغيّر أي خصائص ذات صلة",
+      "table": {
+        "notes": "ملاحظات",
+        "updated": "التاريخ",
+        "updatedBy": "حُدِّث بواسطة",
+        "version": "الإصدار"
+      },
+      "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
+    }
+  },
+  "errors": {
+    "dashboard-settings": {
+      "annotations": {
+        "datasource": "مصدر البيانات المحدد لا يدعم التعليقات الزمنية. الرجاء اختيار مصدر بيانات آخر."
+      }
+    }
+  },
+  "forgot-password": {
+    "back-button": "العودة إلى تسجيل الدخول",
+    "change-password": {
+      "confirm-label": "تأكيد كلمة المرور الجديدة",
+      "default-password-alert": "الاستمرار في استخدام كلمة المرور الافتراضية يُعرّضك لمخاطر أمنية.",
+      "new-password-label": "كلمة المرور الجديدة",
+      "skip-button": "تخطّي",
+      "submit-button": "إرسال",
+      "tooltip-skip-button": "إذا تخطّيت، فسيُطلب منك تغيير كلمة المرور في المرة القادمة التي تسجّل فيها الدخول."
+    },
+    "contact-admin": "هل نسيت اسم المستخدم أو البريد الإلكتروني؟ تواصل مع مسؤول Grafana.",
+    "email-sent": "تم إرسال بريد إلكتروني يحتوي على رابط إعادة التعيين إلى عنوان البريد. من المفترض أن تستلمه قريبًا.",
+    "reset-password-header": "إعادة تعيين كلمة المرور",
+    "send-email-button": "إرسال بريد إعادة التعيين",
+    "user-field-description": "أدخل معلوماتك ليُرسل إليك رابط إعادة التعيين",
+    "user-field-label": "مستخدم",
+    "user-field-placeholder": "البريد الإلكتروني أو اسم المستخدم"
+  },
+  "invites": {
+    "invitee-row": {
+      "aria-label-revoke-invite": "إلغاء الدعوة"
+    },
+    "invitees-table": {
+      "email": "البريد الإلكتروني",
+      "name": "الاسم"
+    },
+    "signup-invited-page": {
+      "complete-following": "يُرجى إكمال ما يلي واختيار كلمة مرور لقبول دعوتك والمتابعة:",
+      "custom-has-invited-you": "<0>{{invitedBy}}</0> دعاك للانضمام إلى Grafana والمنظمة <3>{{orgName}}</3>",
+      "default-has-invited-you": "<0>شخص ما</0> دعاك للانضمام إلى Grafana والمنظمة <3>{{orgName}}</3>",
+      "greeting-custom": "مرحبًا {{greeting}}.",
+      "greeting-default": "مرحبًا بك.",
+      "label-email": "البريد الإلكتروني",
+      "label-name": "الاسم",
+      "label-password": "كلمة المرور",
+      "label-username": "اسم المستخدم",
+      "message": {
+        "email-is-invalid": "البريد الإلكتروني غير صالح"
+      },
+      "placeholder-name-optional": "الاسم (اختياري)",
+      "placeholder-password": "كلمة المرور",
+      "placeholder-username": "اسم المستخدم",
+      "sign-up": "إنشاء حساب"
+    }
+  },
+  "link": {
+    "share": {
+      "config-alert-description": "سيؤدي تحديث إعداداتك إلى تعديل رابط النسخ الافتراضي ليشمل هذه التغييرات. يُرجى ملاحظة أن هذه الإعدادات تُحفظ ضمن نطاق متصفحك الحالي.",
+      "config-alert-title": "إعدادات الرابط",
+      "config-description": "أنشئ رابطًا مباشرًا ومخصصًا لمشاركة لوحة المعلومات داخل منظمتك، مع إعدادات التخصيص التالية:",
+      "copy-link-button": "نسخ الرابط",
+      "copy-to-clipboard": "تم نسخ الرابط إلى الحافظة",
+      "short-url-label": "اختصار الرابط",
+      "time-range-description": "غيّر النطاق الزمني النسبي الحالي إلى نطاق زمني مطلق",
+      "time-range-label": "تثبيت النطاق الزمني"
+    },
+    "share-panel": {
+      "config-description": "أنشئ رابطًا مباشرًا ومخصصًا لمشاركة لوحة العرض داخل منظمتك، مع إعدادات التخصيص التالية:",
+      "copy-image-link": "نسخ رابط الصورة",
+      "download-image": "تنزيل الصورة",
+      "render-image": "توليد الصورة"
+    }
+  },
+  "login": {
+    "divider": {
+      "connecting-text": "أو"
+    },
+    "error": {
+      "blocked": "لقد تجاوزت عدد محاولات تسجيل الدخول لهذا المستخدم. الرجاء المحاولة لاحقًا.",
+      "invalid-user-or-password": "اسم مستخدم أو كلمة مرور غير صحيحة",
+      "title": "فشل تسجيل الدخول",
+      "unknown": "حدث خطأ غير معروف"
+    },
+    "forgot-password": "هل نسيت كلمة المرور؟",
+    "form": {
+      "password-label": "كلمة المرور",
+      "password-placeholder": "كلمة المرور",
+      "password-required": "كلمة المرور مطلوبة",
+      "submit-label": "تسجيل الدخول",
+      "submit-loading-label": "جارٍ تسجيل الدخول...",
+      "username-label": "البريد الإلكتروني أو اسم المستخدم",
+      "username-placeholder": "البريد الإلكتروني أو اسم المستخدم",
+      "username-required": "البريد الإلكتروني أو اسم المستخدم مطلوب"
+    },
+    "layout": {
+      "update-password": "حدّث كلمة المرور"
+    },
+    "services": {
+      "sing-in-with-prefix": "تسجيل الدخول باستخدام {{serviceName}}"
+    },
+    "signup": {
+      "button-label": "إنشاء حساب",
+      "new-to-question": "جديد على Grafana؟"
+    }
+  },
+  "notifications": {
+    "empty-state": {
+      "description": "ستظهر هنا الإشعارات التي تلقّيتها",
+      "title": "لقد اطّلعت على كل شيء!"
+    },
+    "select-all": "تحديد كل الإشعارات",
+    "select-notification": "تحديد {{title}}",
+    "stored-notifications": {
+      "dismiss-notifications": "تجاهل الإشعارات",
+      "title-alert": "تعرض هذه الصفحة الأخطاء والتحذيرات السابقة. بعد تجاهلها، لا يمكن استرجاعها."
+    }
+  },
+  "oauth": {
+    "form": {
+      "server-discovery-action-button": "أدخل عنوان URL لاكتشاف OpenID Connect",
+      "server-discovery-modal-close": "إغلاق",
+      "server-discovery-modal-loading": "جارٍ التحميل...",
+      "server-discovery-modal-submit": "إرسال"
+    },
+    "login": {
+      "error": "رفض موفّر تسجيل الدخول طلب تسجيل الدخول"
+    }
+  },
+  "org": {
+    "new-org-page": {
+      "create": "إنشاء",
+      "description": "تحتوي كل منظمة على لوحات المعلومات ومصادر البيانات والإعدادات الخاصة بها، والتي لا يمكن مشاركتها بين المنظمات. ورغم أن المستخدمين قد ينتمون إلى أكثر من منظمة، فإن تعدد المنظمات يُستخدم غالبًا في عمليات النشر متعددة المستأجرين.",
+      "label-organization-name": "اسم المنظمة",
+      "placeholder-org-name": "اسم المنظمة"
+    },
+    "org-details-page": {
+      "title": {
+        "confirm-preferences-update": "تأكيد تحديث التفضيلات"
+      }
+    },
+    "org-profile": {
+      "label-organization-name": "اسم المنظمة",
+      "label-organization-profile": "ملف المنظمة",
+      "update-organization-name": "تحديث اسم المنظمة"
+    },
+    "select-org-page": {
+      "description": "لقد تلقّيت دعوة للانضمام إلى منظمة أخرى! يُرجى اختيار المنظمة التي تريد استخدامها الآن. يمكنك تغيير ذلك لاحقًا في أي وقت."
+    },
+    "user-invite-form": {
+      "back": "رجوع",
+      "disabled-message": "لم يعد هذا النموذج مستخدمًا. لدعوة مستخدم جديد، يُرجى النقر على الزر لإدارة الدعوات خارجيًا.",
+      "disabled-title": "مستخدمون مُدارون خارجيًا",
+      "label-email-or-username": "البريد الإلكتروني أو اسم المستخدم",
+      "label-name": "الاسم",
+      "label-send-invite-email": "إرسال بريد الدعوة",
+      "placeholder-optional": "(اختياري)",
+      "role": "الدور",
+      "submit": "إرسال",
+      "tooltip": "يمكنك الآن اختيار الخيار «بلا دور أساسي» وإضافة الأذونات وفق احتياجاتك المخصصة. يمكنك العثور على مزيد من المعلومات في <1>وثائقنا</1>."
+    },
+    "user-invite-page": {
+      "sub-title": "أرسل دعوة أو أضف مستخدم Grafana حاليًا إلى المنظمة.<1> {{orgName}}</1>",
+      "text": {
+        "invite-user": "دعوة مستخدم"
+      }
+    }
+  },
+  "org-picker": {
+    "noOptionsMessage-no-organizations-found": "لا توجد منظمات",
+    "select-placeholder": "اختيار المنظمة"
+  },
+  "page": {
+    "editable-title": {
+      "cancel-tooltip": "إلغاء",
+      "edit-tooltip": "تعديل العنوان",
+      "error": "حدث خطأ غير معروف",
+      "label": "الاسم",
+      "placeholder": "الاسم",
+      "required": "الرجاء إدخال عنوان",
+      "save-tooltip": "حفظ"
+    }
+  },
+  "profile": {
+    "change-password": {
+      "cancel-button": "إلغاء",
+      "cannot-change-password-message": "لا يمكن تغيير كلمة المرور هنا.",
+      "change-password-button": "تغيير كلمة المرور",
+      "confirm-password-label": "تأكيد كلمة المرور",
+      "confirm-password-required": "تأكيد كلمة المرور الجديدة مطلوب",
+      "ldap-auth-proxy-message": "لا يمكنك تغيير كلمة المرور عند تسجيل الدخول باستخدام LDAP أو وكيل المصادقة.",
+      "new-password-label": "كلمة المرور الجديدة",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة",
+      "new-password-same-as-old": "لا يمكن أن تكون كلمة المرور الجديدة مطابقة للقديمة.",
+      "old-password-label": "كلمة المرور القديمة",
+      "old-password-required": "كلمة المرور القديمة مطلوبة",
+      "passwords-must-match": "يجب أن تتطابق كلمتا المرور",
+      "strong-password-validation-register": "كلمة المرور لا تتوافق مع سياسة كلمات المرور القوية"
+    },
+    "change-theme": "تغيير السمة",
+    "enable-kiosk-mode": "تفعيل وضع الكشك",
+    "feature-toggle-page": {
+      "profile-not-enabled": "الملف الشخصي غير مُفعّل."
+    },
+    "feature-toggles-age": {
+      "enable-in-config": "فعّل الملف الشخصي في ملف إعداد Grafana."
+    },
+    "input-suffix": {
+      "content-login-details-locked-because-managed-another": "بيانات تسجيل الدخول مقفلة لأنها تُدار في نظام آخر."
+    },
+    "user-organizations": {
+      "text-loading-organizations": "جارٍ تحميل المنظمات..."
+    },
+    "user-sessions": {
+      "browser-details": "{{browser}} على {{os}} {{osVersion}}",
+      "now": "الآن",
+      "sessions": "الجلسات"
+    },
+    "user-teams": {
+      "aria-label-user-teams-table": "جدول فرق المستخدم",
+      "email": "البريد الإلكتروني",
+      "members": "الأعضاء",
+      "name": "الاسم",
+      "teams": "الفرق",
+      "text-loading-teams": "جارٍ تحميل الفرق..."
+    }
+  },
+  "sign-up": {
+    "back-button": "العودة إلى تسجيل الدخول",
+    "confirm-password-label": "تأكيد كلمة المرور",
+    "email-label": "البريد الإلكتروني",
+    "org-name-label": "اسم المنظمة",
+    "password-label": "كلمة المرور",
+    "submit-button": "إرسال",
+    "user-name-label": "اسمك",
+    "user-name-placeholder": "(اختياري)",
+    "verification-code-label": "رمز التحقق من البريد الإلكتروني (أُرسل إلى بريدك)",
+    "verify": {
+      "back-button": "العودة إلى تسجيل الدخول",
+      "complete-button": "إكمال إنشاء الحساب",
+      "email-description": "أدخل عنوان بريدك الإلكتروني ليُرسل إليك رابط التحقق",
+      "email-label": "البريد الإلكتروني",
+      "header": "التحقق من البريد الإلكتروني",
+      "info": "تم إرسال بريد إلكتروني يحتوي على رابط التحقق إلى عنوان البريد. من المفترض أن تستلمه قريبًا.",
+      "send-button": "إرسال بريد التحقق"
+    }
+  },
+  "text": {
+    "category-text": "نص",
+    "mode-options": {
+      "label-code": "شفرة",
+      "label-html": "HTML",
+      "label-markdown": "Markdown"
+    },
+    "name-content": "المحتوى",
+    "name-language": "اللغة",
+    "name-mode": "الوضع",
+    "name-show-line-numbers": "إظهار أرقام الأسطر",
+    "name-show-mini-map": "إظهار الخريطة المصغّرة"
+  },
+  "user-orgs": {
+    "current-org-button": "الحالية",
+    "name-column": "الاسم",
+    "role-column": "الدور",
+    "select-org-button": "اختيار المنظمة",
+    "title": "المنظمات"
+  },
+  "user-profile": {
+    "fields": {
+      "email-error": "البريد الإلكتروني مطلوب",
+      "email-label": "البريد الإلكتروني",
+      "name-error": "الاسم مطلوب",
+      "name-label": "الاسم",
+      "username-label": "اسم المستخدم"
+    },
+    "tabs": {
+      "general": "عام"
+    }
+  },
+  "user-session": {
+    "auth-module-column": "موفّر الهوية",
+    "browser-column": "المتصفح ونظام التشغيل",
+    "created-at-column": "تاريخ الدخول",
+    "identity-provider-column": "موفّر الهوية",
+    "ip-column": "عنوان IP",
+    "revoke": "إلغاء جلسة المستخدم",
+    "seen-at-column": "آخر ظهور"
+  },
+  "user-sessions": {
+    "loading": "جارٍ تحميل الجلسات..."
+  },
+  "users": {
+    "empty-state": {
+      "message": "لا يوجد مستخدمون"
+    },
+    "token-revoked-modal": {
+      "auto-revoked": "أُلغي رمز جلستك تلقائيًا لأنك بلغت <strong>الحد الأقصى وهو {{numSessions}} جلسات متزامنة</strong> لحسابك.",
+      "resume-message": "<strong>لاستئناف جلستك، سجّل الدخول مجددًا.</strong>تواصل مع المسؤول أو تفضّل بزيارة صفحة الترخيص لمراجعة حصتك إذا كنت تُسجَّل خروجك تلقائيًا بشكل متكرر.",
+      "sign-in": "تسجيل الدخول",
+      "title-you-have-been-automatically-signed-out": "تم تسجيل خروجك تلقائيًا"
+    },
+    "users-action-bar-unconnected": {
+      "invite": "دعوة",
+      "options": {
+        "label": {
+          "users": "المستخدمون"
+        }
+      },
+      "placeholder-search-login-email": "ابحث عن مستخدم بالاسم أو البريد الإلكتروني أو اسم الدخول"
+    }
+  },
+  "welcome": {
+    "welcome-banner": {
+      "need-help": "تحتاج مساعدة؟",
+      "welcome-to-grafana": "مرحبًا بك في Grafana"
+    }
+  }
+}

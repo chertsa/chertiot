@@ -28,9 +28,16 @@ BIDI_RE = re.compile("[‎‏‪-‮⁦-⁩؜]")
 # Identifiers that must stay Latin; if present in EN they must remain in AR.
 PROTECTED = ["Grafana", "Prometheus", "Loki", "MQTT", "HTTP", "HTTPS", "JSON", "SQL", "API",
              "URL", "UID", "CPU", "RAM", "TBEL", "OAuth", "Kafka", "Redis", "gRPC"]
-# EN values equal to one of these may legitimately be identical in AR (kept Latin).
-IDENTICAL_OK = set(PROTECTED) | {"Grafana", "Prometheus", "Loki", "API", "JSON", "URL", "UID",
-                                 "SQL", "HTTP", "MQTT", "CPU", "RAM", "OK", "ID"}
+# EN values equal to one of these may legitimately be identical in AR (kept Latin): protected
+# identifiers plus format/query-language/protocol/product tokens that are conventionally not
+# translated in an Arabic UI.
+IDENTICAL_OK = set(PROTECTED) | {
+    "Grafana", "Prometheus", "Loki", "API", "JSON", "URL", "UID", "SQL", "HTTP", "MQTT",
+    "CPU", "RAM", "OK", "ID",
+    "HTML", "Markdown", "CSV", "TSV", "XML", "YAML", "YML", "PDF", "PNG", "SVG", "JPEG",
+    "GeoJSON", "PromQL", "LogQL", "TraceQL", "UTC", "LDAP", "SAML", "OAuth2", "JWT", "gRPC",
+    "GET", "POST", "PUT", "PATCH", "DELETE", "InfluxDB", "Graphite", "Tempo", "Pyroscope",
+}
 GLOSSARY = {
     "dashboard": "لوحة المعلومات", "panel": "لوحة عرض", "data source": "مصدر البيانات",
     "query": "استعلام", "alert": "تنبيه", "alerting": "التنبيهات", "alert rule": "قاعدة تنبيه",
