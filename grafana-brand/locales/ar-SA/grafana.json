@@ -152,6 +152,59 @@
       "missing-series": "تتطلب المخططات الشريطية حقلًا نصيًا أو زمنيًا"
     }
   },
+  "bargauge": {
+    "bar-size-options": {
+      "label-auto": "تلقائي",
+      "label-manual": "يدوي"
+    },
+    "category-bar-gauge": "مقياس شريطي",
+    "description-max-height": "الحد الأقصى لارتفاع الصف (الاتجاه الأفقي)",
+    "description-min-height": "الحد الأدنى لارتفاع الصف (الاتجاه الأفقي)",
+    "description-min-width": "الحد الأدنى لعرض العمود (الاتجاه الرأسي)",
+    "description-show-unfilled-area": "عند التفعيل يعرض المنطقة غير المملوءة باللون الرمادي",
+    "display-mode-options": {
+      "label-basic": "أساسي",
+      "label-gradient": "متدرّج",
+      "label-retro": "LCD كلاسيكي"
+    },
+    "name-bar-size": "حجم الشريط",
+    "name-display-mode": "وضع العرض",
+    "name-max-height": "الحد الأقصى للارتفاع",
+    "name-min-height": "الحد الأدنى للارتفاع",
+    "name-min-width": "الحد الأدنى للعرض",
+    "name-name-placement": "موضع الاسم",
+    "name-placement-options": {
+      "label-auto": "تلقائي",
+      "label-hidden": "مخفي",
+      "label-left": "يسار",
+      "label-top": "أعلى"
+    },
+    "name-show-unfilled-area": "إظهار المنطقة غير المملوءة",
+    "name-value-display": "عرض القيمة",
+    "presets": {
+      "basic": "أساسي",
+      "basic_desc": "أشرطة أفقية، لون القيمة من العتبات",
+      "basic-vertical": "أساسي رأسي",
+      "basic-vertical_desc": "أشرطة رأسية، لون العتبة، قيمة نصية",
+      "gradient": "متدرّج",
+      "gradient_desc": "أشرطة أفقية، تعبئة متدرّجة من العتبات",
+      "gradient-BlYlRd": "متدرّج أزرق-أحمر",
+      "gradient-BlYlRd_desc": "أفقي، تعبئة متدرّجة، مقياس أزرق-أصفر-أحمر",
+      "gradient-vertical": "متدرّج رأسي",
+      "gradient-vertical_desc": "رأسي، تعبئة متدرّجة، بدون مسار غير مملوء",
+      "retro-lcd": "LCD كلاسيكي",
+      "retro-lcd_desc": "أفقي، نمط LCD، مقياس أخضر-أصفر-أحمر"
+    },
+    "suggestions": {
+      "basic": "مقياس شريطي",
+      "lcd": "مقياس شريطي - LCD"
+    },
+    "value-display-options": {
+      "label-hidden": "مخفي",
+      "label-text-color": "لون النص",
+      "label-value-color": "لون القيمة"
+    }
+  },
   "bookmarks-page": {
     "empty": {
       "message": "يبدو أنك لم تنشئ أي إشارات مرجعية بعد",
@@ -335,6 +388,67 @@
     "json-disabled-tooltip": "أصلح أخطاء صياغة YAML للتبديل إلى JSON",
     "yaml-disabled-tooltip": "أصلح أخطاء صياغة JSON للتبديل إلى YAML"
   },
+  "dashboard-settings": {
+    "annotations": {
+      "title": "التعليقات الزمنية"
+    },
+    "dashboard-delete-button": "حذف لوحة المعلومات",
+    "delete-modal": {
+      "confirmation-text": "حذف",
+      "delete-button": "حذف",
+      "title": "حذف"
+    },
+    "delete-modal-restore-dashboards-prefix": "سيؤدي هذا الإجراء إلى حذف لوحة المعلومات.",
+    "delete-modal-text": "هل تريد حذف لوحة المعلومات هذه؟",
+    "general": {
+      "auto-refresh-description": "حدّد فواصل التحديث التلقائي التي ينبغي أن تكون متاحة في قائمة التحديث التلقائي. استخدم التنسيق '5s' للثواني، و'1m' للدقائق، و'1h' للساعات، و'1d' للأيام (مثال: '5s,10s,30s,1m,5m,15m,30m,1h,2h,1d').",
+      "auto-refresh-label": "التحديث التلقائي",
+      "default-grid-description": "اختر نوع التخطيط الذي سيُستخدم للصفوف وعلامات التبويب الجديدة",
+      "default-grid-label": "الشبكة الافتراضية",
+      "description-label": "الوصف",
+      "editable-description": "اضبطها للقراءة فقط لتعطيل كل التعديل. أعد تحميل لوحة المعلومات لتفعيل التغييرات",
+      "editable-label": "قابلة للتعديل",
+      "folder-label": "مجلد",
+      "panel-options-graph-tooltip-description": "يتحكّم في سلوك التلميح والإبراز عند التمرير عبر اللوحات المختلفة. أعد تحميل لوحة المعلومات لتفعيل التغييرات",
+      "panel-options-graph-tooltip-label": "تلميح الرسم البياني",
+      "panel-options-label": "خيارات اللوحة",
+      "panels-preload-description": "عند التفعيل ستبدأ جميع اللوحات في التحميل بمجرد تحميل لوحة المعلومات.",
+      "panels-preload-label": "تحميل اللوحات مسبقًا",
+      "tags-label": "الوسوم",
+      "title": "عام",
+      "title-label": "العنوان"
+    },
+    "json-editor": {
+      "save-button": "حفظ التغييرات",
+      "save-button-disabled-tooltip": "أصلح أخطاء التحقق قبل الحفظ",
+      "save-button-disabled-tooltip-yaml": "يحتوي المستند على أخطاء تحقق. بدّل إلى JSON لرؤية تفاصيل الأخطاء المضمّنة.",
+      "subtitle": "نموذج JSON أدناه هو بنية البيانات التي تُعرّف لوحة المعلومات. يشمل ذلك إعدادات لوحة المعلومات وإعدادات اللوحات والتخطيط والاستعلامات وما إلى ذلك.",
+      "title": "نموذج JSON"
+    },
+    "links": {
+      "title": "الروابط"
+    },
+    "permissions": {
+      "title": "الأذونات"
+    },
+    "time-picker": {
+      "hide-time-picker": "إخفاء منتقي الوقت",
+      "now-delay-description": "استبعاد البيانات الحديثة التي قد تكون غير مكتملة.",
+      "now-delay-label": "تأخير «الآن»",
+      "refresh-live-dashboards-description": "تحديث اللوحات باستمرار عندما يتضمّن النطاق الزمني الوقت الحالي",
+      "refresh-live-dashboards-label": "تحديث لوحات المعلومات المباشرة",
+      "time-options-label": "خيارات الوقت",
+      "time-zone-label": "المنطقة الزمنية",
+      "week-start-label": "بداية الأسبوع"
+    },
+    "variables": {
+      "title": "المتغيرات"
+    },
+    "versions": {
+      "provisioned-warning": "هذه لوحة المعلومات مُدارة بواسطة مستودع. سجلّ الإصدارات غير متاح للوحات المعلومات المُهيّأة تلقائيًا.",
+      "title": "الإصدارات"
+    }
+  },
   "dashboards": {
     "filters-overview": {
       "all-filters": "جميع المرشّحات",
@@ -491,6 +605,69 @@
       "description-round": "يُرجع قيمة عدد صحيح مقرّبة. يمكنه العمل على قيم قياسية أو سلاسل."
     }
   },
+  "expressions": {
+    "classic-conditions": {
+      "label-conditions": "الشروط"
+    },
+    "condition": {
+      "of": "من",
+      "to": "إلى",
+      "when": "عند"
+    },
+    "expression-query-editor": {
+      "helper-text-sql": "شغّل SQL بلهجة MySQL على الجداول المُرجَعة من مصادر بياناتك. تتوفّر استعلامات مصدر البيانات (أي \"A\"، \"B\") كجداول ويُشار إليها باسم الاستعلام. تتوفّر الحقول كأعمدة، كما تُرجَع من مصدر البيانات.",
+      "label-operation": "العملية"
+    },
+    "math": {
+      "available-math-functions": "دوال الرياضيات المتاحة",
+      "run-math-operations": "شغّل عمليات رياضية على استعلام واحد أو أكثر. تشير إلى الاستعلام بـ {{refExample}} أي {{ref1}}، {{ref2}}، {{ref3}}إلخ.<br/>مثال: <12>{{example}}</12>",
+      "tooltip-footer": "راجع وثائقنا الإضافية حول <2>تعبيرات الرياضيات</2>.",
+      "tooltip-title": "عامل الرياضيات",
+      "tooltip-trigger": "تعبير"
+    },
+    "query-toolbox": {
+      "tooltip-collapse-editor": "طيّ المحرّر",
+      "tooltip-copy-query": "نسخ الاستعلام",
+      "tooltip-expand-editor": "توسيع المحرّر",
+      "tooltip-format-query": "تنسيق الاستعلام",
+      "tooltip-run-query": "اضغط ctrl/cmd+enter لتشغيل الاستعلام"
+    },
+    "reduce": {
+      "label-function": "الدالة",
+      "label-input": "الإدخال",
+      "label-mode": "الوضع",
+      "replace-with-number": {
+        "label-replace-with": "الاستبدال بـ"
+      }
+    },
+    "resample": {
+      "label-downsample": "تقليل العيّنات",
+      "label-input": "الإدخال",
+      "label-resample-to": "إعادة أخذ العيّنات إلى",
+      "label-upsample": "زيادة العيّنات",
+      "tooltip-s-m-h": "10s, 1m, 30m, 1h"
+    },
+    "sql-expr": {
+      "button-run-query": "تشغيل الاستعلام"
+    },
+    "sql-expression": {
+      "editor": {
+        "aria-label": "محرّر تعبيرات SQL"
+      }
+    },
+    "sql-schema": {
+      "error-title": "خطأ",
+      "loading": "جارٍ تحميل معلومات المخطط...",
+      "no-data-title": "لا تتوفّر معلومات مخطط",
+      "no-fields-desc": "لم يُرجع هذا الاستعلام أي معلومات مخطط.",
+      "no-fields-title": "لا توجد معلومات مخطط",
+      "query-error-title": "خطأ في الاستعلام",
+      "schema-inspector": "فاحص المخطط"
+    },
+    "threshold": {
+      "label-input": "الإدخال"
+    }
+  },
   "folder-filter": {
     "select-aria-label": "مرشّح المجلدات",
     "select-placeholder": "التصفية حسب المجلد"
@@ -592,6 +769,92 @@
     },
     "tutorial-card": {
       "complete": "مكتمل"
+    }
+  },
+  "gops": {
+    "config-card": {
+      "text-loading-configuration": "جارٍ تحميل الإعداد...."
+    },
+    "configure-irm": {
+      "configure": "تهيئة",
+      "irm-apps": "تطبيقات IRM"
+    },
+    "essentials": {
+      "title-essentials": "الأساسيات"
+    },
+    "progress-bar": {
+      "steps-status": "<0>{{stepsDone}}</0> من {{totalStepsToDo}}"
+    },
+    "progress-status": {
+      "your-progress": "تقدّمك"
+    },
+    "use-get-configuration-for-ui": {
+      "get-connect-data-source-configuration": {
+        "title": {
+          "connect-data-source": "ربط مصدر بيانات"
+        }
+      },
+      "title": {
+        "essentials": "الأساسيات"
+      }
+    },
+    "use-get-essentials-configuration": {
+      "essential-content": {
+        "description": {
+          "configure-grafana-alerting": "تهيئة Grafana Alerting",
+          "create-integration-alerting-contact-point": "أنشئ تكامل IRM لنقطة اتصال تنبيه.",
+          "initialize-incident-plugin-declare-manage-incidents": "هيّئ إضافة Incident للإعلان عن الحوادث وإدارتها.",
+          "practice-solving-an-incident": "تدرّب على حل حادثة",
+          "receive-alerts-oncall-notifications-within-environment": "استلم التنبيهات وإشعارات OnCall داخل بيئة الدردشة الخاصة بك.",
+          "select-chat-ops-channels-to-route-notifications": "اختر قنوات ChatOps لتوجيه الإشعارات"
+        },
+        "label": {
+          "add": "إضافة",
+          "connect": "ربط",
+          "initialize": "تهيئة",
+          "select-integration": "اختيار التكامل",
+          "start-drill": "بدء التدريب"
+        },
+        "title": {
+          "add-slack-notifications-to-irm-integrations": "إضافة إشعارات Slack إلى تكاملات IRM",
+          "connect-alerting-to-irm": "ربط التنبيهات بـ IRM",
+          "connect-irm-to-your-slack-workspace": "ربط IRM بمساحة عمل Slack الخاصة بك",
+          "connect-your-messaging-workspace-to-incident": "ربط مساحة عمل المراسلة بـ Incident",
+          "connect-your-messaging-workspace-to-on-call": "ربط مساحة عمل المراسلة بـ OnCall",
+          "create-incident-drill": "إنشاء تدريب حوادث",
+          "detect": "الكشف",
+          "initialize-incident-plugin": "تهيئة إضافة Incident",
+          "messaging-workspace-channel-on-call-integration": "إضافة قناة مساحة عمل المراسلة إلى تكامل OnCall",
+          "respond": "الاستجابة",
+          "test-your-configuration": "اختبار إعدادك"
+        }
+      },
+      "get-grafana-alerting-config-steps": {
+        "description": {
+          "create-alert-monitor-system": "أنشئ قاعدة تنبيه لمراقبة نظامك.",
+          "create-on-call-integration-alerting-contact-point": "أنشئ تكامل OnCall لنقطة اتصال تنبيه.",
+          "create-slos-to-monitor-your-service": "أنشئ أهداف مستوى خدمة (SLOs) لمراقبة خدمتك."
+        },
+        "label": {
+          "connect": "ربط",
+          "create": "إنشاء",
+          "enable": "تفعيل"
+        },
+        "steps": {
+          "label": {
+            "edit": "تعديل"
+          },
+          "title": {
+            "update-default-contact-point": "تحديث نقطة الاتصال الافتراضية"
+          }
+        },
+        "title": {
+          "connect-alerting-to-on-call": "ربط التنبيهات بـ OnCall",
+          "create-alert-rule": "إنشاء قاعدة تنبيه",
+          "create-slo": "إنشاء هدف مستوى خدمة (SLO)",
+          "enable-slo-alerting": "تفعيل تنبيهات هدف مستوى الخدمة"
+        }
+      }
     }
   },
   "graph": {

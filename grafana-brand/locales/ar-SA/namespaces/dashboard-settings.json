@@ -1,0 +1,61 @@
+{
+  "annotations": {
+    "title": "التعليقات الزمنية"
+  },
+  "dashboard-delete-button": "حذف لوحة المعلومات",
+  "delete-modal": {
+    "confirmation-text": "حذف",
+    "delete-button": "حذف",
+    "title": "حذف"
+  },
+  "delete-modal-restore-dashboards-prefix": "سيؤدي هذا الإجراء إلى حذف لوحة المعلومات.",
+  "delete-modal-text": "هل تريد حذف لوحة المعلومات هذه؟",
+  "general": {
+    "auto-refresh-description": "حدّد فواصل التحديث التلقائي التي ينبغي أن تكون متاحة في قائمة التحديث التلقائي. استخدم التنسيق '5s' للثواني، و'1m' للدقائق، و'1h' للساعات، و'1d' للأيام (مثال: '5s,10s,30s,1m,5m,15m,30m,1h,2h,1d').",
+    "auto-refresh-label": "التحديث التلقائي",
+    "default-grid-description": "اختر نوع التخطيط الذي سيُستخدم للصفوف وعلامات التبويب الجديدة",
+    "default-grid-label": "الشبكة الافتراضية",
+    "description-label": "الوصف",
+    "editable-description": "اضبطها للقراءة فقط لتعطيل كل التعديل. أعد تحميل لوحة المعلومات لتفعيل التغييرات",
+    "editable-label": "قابلة للتعديل",
+    "folder-label": "مجلد",
+    "panel-options-graph-tooltip-description": "يتحكّم في سلوك التلميح والإبراز عند التمرير عبر اللوحات المختلفة. أعد تحميل لوحة المعلومات لتفعيل التغييرات",
+    "panel-options-graph-tooltip-label": "تلميح الرسم البياني",
+    "panel-options-label": "خيارات اللوحة",
+    "panels-preload-description": "عند التفعيل ستبدأ جميع اللوحات في التحميل بمجرد تحميل لوحة المعلومات.",
+    "panels-preload-label": "تحميل اللوحات مسبقًا",
+    "tags-label": "الوسوم",
+    "title": "عام",
+    "title-label": "العنوان"
+  },
+  "json-editor": {
+    "save-button": "حفظ التغييرات",
+    "save-button-disabled-tooltip": "أصلح أخطاء التحقق قبل الحفظ",
+    "save-button-disabled-tooltip-yaml": "يحتوي المستند على أخطاء تحقق. بدّل إلى JSON لرؤية تفاصيل الأخطاء المضمّنة.",
+    "subtitle": "نموذج JSON أدناه هو بنية البيانات التي تُعرّف لوحة المعلومات. يشمل ذلك إعدادات لوحة المعلومات وإعدادات اللوحات والتخطيط والاستعلامات وما إلى ذلك.",
+    "title": "نموذج JSON"
+  },
+  "links": {
+    "title": "الروابط"
+  },
+  "permissions": {
+    "title": "الأذونات"
+  },
+  "time-picker": {
+    "hide-time-picker": "إخفاء منتقي الوقت",
+    "now-delay-description": "استبعاد البيانات الحديثة التي قد تكون غير مكتملة.",
+    "now-delay-label": "تأخير «الآن»",
+    "refresh-live-dashboards-description": "تحديث اللوحات باستمرار عندما يتضمّن النطاق الزمني الوقت الحالي",
+    "refresh-live-dashboards-label": "تحديث لوحات المعلومات المباشرة",
+    "time-options-label": "خيارات الوقت",
+    "time-zone-label": "المنطقة الزمنية",
+    "week-start-label": "بداية الأسبوع"
+  },
+  "variables": {
+    "title": "المتغيرات"
+  },
+  "versions": {
+    "provisioned-warning": "هذه لوحة المعلومات مُدارة بواسطة مستودع. سجلّ الإصدارات غير متاح للوحات المعلومات المُهيّأة تلقائيًا.",
+    "title": "الإصدارات"
+  }
+}

@@ -153,7 +153,9 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             # Skip values with no translatable text once {{vars}}/tags are removed (punctuation,
             # numbers, or interpolation-only strings are legitimately identical).
             stripped = TAG_RE.sub("", VAR_RE.sub("", en_val))
-            if re.search(r"[A-Za-z]", stripped) and not DURATION_RE.match(en_val.strip()):
+            toks = [t for t in re.split(r"[,\s]+", en_val.strip()) if t]
+            all_durations = bool(toks) and all(DURATION_RE.match(t) for t in toks)
+            if re.search(r"[A-Za-z]", stripped) and not all_durations:
                 warnings.append(f"[{ns}] {k}: ar identical to en ('{en_val[:40]}')")
         if isinstance(en_val, str) and isinstance(av, str):
             for p in PROTECTED:

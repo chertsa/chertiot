@@ -1,0 +1,53 @@
+{
+  "bar-size-options": {
+    "label-auto": "تلقائي",
+    "label-manual": "يدوي"
+  },
+  "category-bar-gauge": "مقياس شريطي",
+  "description-max-height": "الحد الأقصى لارتفاع الصف (الاتجاه الأفقي)",
+  "description-min-height": "الحد الأدنى لارتفاع الصف (الاتجاه الأفقي)",
+  "description-min-width": "الحد الأدنى لعرض العمود (الاتجاه الرأسي)",
+  "description-show-unfilled-area": "عند التفعيل يعرض المنطقة غير المملوءة باللون الرمادي",
+  "display-mode-options": {
+    "label-basic": "أساسي",
+    "label-gradient": "متدرّج",
+    "label-retro": "LCD كلاسيكي"
+  },
+  "name-bar-size": "حجم الشريط",
+  "name-display-mode": "وضع العرض",
+  "name-max-height": "الحد الأقصى للارتفاع",
+  "name-min-height": "الحد الأدنى للارتفاع",
+  "name-min-width": "الحد الأدنى للعرض",
+  "name-name-placement": "موضع الاسم",
+  "name-placement-options": {
+    "label-auto": "تلقائي",
+    "label-hidden": "مخفي",
+    "label-left": "يسار",
+    "label-top": "أعلى"
+  },
+  "name-show-unfilled-area": "إظهار المنطقة غير المملوءة",
+  "name-value-display": "عرض القيمة",
+  "presets": {
+    "basic": "أساسي",
+    "basic_desc": "أشرطة أفقية، لون القيمة من العتبات",
+    "basic-vertical": "أساسي رأسي",
+    "basic-vertical_desc": "أشرطة رأسية، لون العتبة، قيمة نصية",
+    "gradient": "متدرّج",
+    "gradient_desc": "أشرطة أفقية، تعبئة متدرّجة من العتبات",
+    "gradient-BlYlRd": "متدرّج أزرق-أحمر",
+    "gradient-BlYlRd_desc": "أفقي، تعبئة متدرّجة، مقياس أزرق-أصفر-أحمر",
+    "gradient-vertical": "متدرّج رأسي",
+    "gradient-vertical_desc": "رأسي، تعبئة متدرّجة، بدون مسار غير مملوء",
+    "retro-lcd": "LCD كلاسيكي",
+    "retro-lcd_desc": "أفقي، نمط LCD، مقياس أخضر-أصفر-أحمر"
+  },
+  "suggestions": {
+    "basic": "مقياس شريطي",
+    "lcd": "مقياس شريطي - LCD"
+  },
+  "value-display-options": {
+    "label-hidden": "مخفي",
+    "label-text-color": "لون النص",
+    "label-value-color": "لون القيمة"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "classic-conditions": {
+    "label-conditions": "الشروط"
+  },
+  "condition": {
+    "of": "من",
+    "to": "إلى",
+    "when": "عند"
+  },
+  "expression-query-editor": {
+    "helper-text-sql": "شغّل SQL بلهجة MySQL على الجداول المُرجَعة من مصادر بياناتك. تتوفّر استعلامات مصدر البيانات (أي \"A\"، \"B\") كجداول ويُشار إليها باسم الاستعلام. تتوفّر الحقول كأعمدة، كما تُرجَع من مصدر البيانات.",
+    "label-operation": "العملية"
+  },
+  "math": {
+    "available-math-functions": "دوال الرياضيات المتاحة",
+    "run-math-operations": "شغّل عمليات رياضية على استعلام واحد أو أكثر. تشير إلى الاستعلام بـ {{refExample}} أي {{ref1}}، {{ref2}}، {{ref3}}إلخ.<br/>مثال: <12>{{example}}</12>",
+    "tooltip-footer": "راجع وثائقنا الإضافية حول <2>تعبيرات الرياضيات</2>.",
+    "tooltip-title": "عامل الرياضيات",
+    "tooltip-trigger": "تعبير"
+  },
+  "query-toolbox": {
+    "tooltip-collapse-editor": "طيّ المحرّر",
+    "tooltip-copy-query": "نسخ الاستعلام",
+    "tooltip-expand-editor": "توسيع المحرّر",
+    "tooltip-format-query": "تنسيق الاستعلام",
+    "tooltip-run-query": "اضغط ctrl/cmd+enter لتشغيل الاستعلام"
+  },
+  "reduce": {
+    "label-function": "الدالة",
+    "label-input": "الإدخال",
+    "label-mode": "الوضع",
+    "replace-with-number": {
+      "label-replace-with": "الاستبدال بـ"
+    }
+  },
+  "resample": {
+    "label-downsample": "تقليل العيّنات",
+    "label-input": "الإدخال",
+    "label-resample-to": "إعادة أخذ العيّنات إلى",
+    "label-upsample": "زيادة العيّنات",
+    "tooltip-s-m-h": "10s, 1m, 30m, 1h"
+  },
+  "sql-expr": {
+    "button-run-query": "تشغيل الاستعلام"
+  },
+  "sql-expression": {
+    "editor": {
+      "aria-label": "محرّر تعبيرات SQL"
+    }
+  },
+  "sql-schema": {
+    "error-title": "خطأ",
+    "loading": "جارٍ تحميل معلومات المخطط...",
+    "no-data-title": "لا تتوفّر معلومات مخطط",
+    "no-fields-desc": "لم يُرجع هذا الاستعلام أي معلومات مخطط.",
+    "no-fields-title": "لا توجد معلومات مخطط",
+    "query-error-title": "خطأ في الاستعلام",
+    "schema-inspector": "فاحص المخطط"
+  },
+  "threshold": {
+    "label-input": "الإدخال"
+  }
+}

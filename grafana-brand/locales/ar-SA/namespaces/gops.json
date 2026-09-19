@@ -1,0 +1,86 @@
+{
+  "config-card": {
+    "text-loading-configuration": "جارٍ تحميل الإعداد...."
+  },
+  "configure-irm": {
+    "configure": "تهيئة",
+    "irm-apps": "تطبيقات IRM"
+  },
+  "essentials": {
+    "title-essentials": "الأساسيات"
+  },
+  "progress-bar": {
+    "steps-status": "<0>{{stepsDone}}</0> من {{totalStepsToDo}}"
+  },
+  "progress-status": {
+    "your-progress": "تقدّمك"
+  },
+  "use-get-configuration-for-ui": {
+    "get-connect-data-source-configuration": {
+      "title": {
+        "connect-data-source": "ربط مصدر بيانات"
+      }
+    },
+    "title": {
+      "essentials": "الأساسيات"
+    }
+  },
+  "use-get-essentials-configuration": {
+    "essential-content": {
+      "description": {
+        "configure-grafana-alerting": "تهيئة Grafana Alerting",
+        "create-integration-alerting-contact-point": "أنشئ تكامل IRM لنقطة اتصال تنبيه.",
+        "initialize-incident-plugin-declare-manage-incidents": "هيّئ إضافة Incident للإعلان عن الحوادث وإدارتها.",
+        "practice-solving-an-incident": "تدرّب على حل حادثة",
+        "receive-alerts-oncall-notifications-within-environment": "استلم التنبيهات وإشعارات OnCall داخل بيئة الدردشة الخاصة بك.",
+        "select-chat-ops-channels-to-route-notifications": "اختر قنوات ChatOps لتوجيه الإشعارات"
+      },
+      "label": {
+        "add": "إضافة",
+        "connect": "ربط",
+        "initialize": "تهيئة",
+        "select-integration": "اختيار التكامل",
+        "start-drill": "بدء التدريب"
+      },
+      "title": {
+        "add-slack-notifications-to-irm-integrations": "إضافة إشعارات Slack إلى تكاملات IRM",
+        "connect-alerting-to-irm": "ربط التنبيهات بـ IRM",
+        "connect-irm-to-your-slack-workspace": "ربط IRM بمساحة عمل Slack الخاصة بك",
+        "connect-your-messaging-workspace-to-incident": "ربط مساحة عمل المراسلة بـ Incident",
+        "connect-your-messaging-workspace-to-on-call": "ربط مساحة عمل المراسلة بـ OnCall",
+        "create-incident-drill": "إنشاء تدريب حوادث",
+        "detect": "الكشف",
+        "initialize-incident-plugin": "تهيئة إضافة Incident",
+        "messaging-workspace-channel-on-call-integration": "إضافة قناة مساحة عمل المراسلة إلى تكامل OnCall",
+        "respond": "الاستجابة",
+        "test-your-configuration": "اختبار إعدادك"
+      }
+    },
+    "get-grafana-alerting-config-steps": {
+      "description": {
+        "create-alert-monitor-system": "أنشئ قاعدة تنبيه لمراقبة نظامك.",
+        "create-on-call-integration-alerting-contact-point": "أنشئ تكامل OnCall لنقطة اتصال تنبيه.",
+        "create-slos-to-monitor-your-service": "أنشئ أهداف مستوى خدمة (SLOs) لمراقبة خدمتك."
+      },
+      "label": {
+        "connect": "ربط",
+        "create": "إنشاء",
+        "enable": "تفعيل"
+      },
+      "steps": {
+        "label": {
+          "edit": "تعديل"
+        },
+        "title": {
+          "update-default-contact-point": "تحديث نقطة الاتصال الافتراضية"
+        }
+      },
+      "title": {
+        "connect-alerting-to-on-call": "ربط التنبيهات بـ OnCall",
+        "create-alert-rule": "إنشاء قاعدة تنبيه",
+        "create-slo": "إنشاء هدف مستوى خدمة (SLO)",
+        "enable-slo-alerting": "تفعيل تنبيهات هدف مستوى الخدمة"
+      }
+    }
+  }
+}
