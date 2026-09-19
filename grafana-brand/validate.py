@@ -159,7 +159,10 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             all_durations = bool(toks) and all(DURATION_RE.match(t) for t in toks)
             # A whitespace-free token containing a path/URL slash is code (e.g. /path/to/x.pem).
             code_path = " " not in en_val.strip() and "/" in en_val.strip()
-            if re.search(r"[A-Za-z]", stripped) and not all_durations and not code_path:
+            # A value made only of kept identifiers (e.g. "Markdown + HTML") is legitimately identical.
+            alpha_tokens = re.findall(r"[A-Za-z][A-Za-z0-9]*", stripped)
+            all_kept = bool(alpha_tokens) and all(t in IDENTICAL_OK for t in alpha_tokens)
+            if re.search(r"[A-Za-z]", stripped) and not all_durations and not code_path and not all_kept:
                 warnings.append(f"[{ns}] {k}: ar identical to en ('{en_val[:40]}')")
         if isinstance(en_val, str) and isinstance(av, str):
             for p in PROTECTED:

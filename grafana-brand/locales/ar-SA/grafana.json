@@ -2191,6 +2191,113 @@
   "page-loader": {
     "default": "جارٍ التحميل ..."
   },
+  "panel": {
+    "dashlist": {
+      "empty-state-message": "لم تُهيّأ أي مجموعات لوحات معلومات",
+      "recently-viewed-dashboards": "لوحات المعلومات المشاهَدة مؤخرًا",
+      "search": "بحث",
+      "starred-dashboards": "لوحات المعلومات المميّزة بنجمة"
+    },
+    "get-data-links-variable-suggestions": {
+      "value-time-var": {
+        "label": {
+          "time": "الوقت"
+        }
+      }
+    },
+    "get-field-links-supplier": {
+      "text": {
+        "data": "البيانات",
+        "field": "الحقل",
+        "series": "السلسلة",
+        "value": "القيمة"
+      }
+    },
+    "get-field-vars": {
+      "label": {
+        "display-name": "الاسم المعروض",
+        "name": "الاسم"
+      }
+    },
+    "get-panel-links-variable-suggestions": {
+      "label": {
+        "all-variables": "جميع المتغيرات"
+      }
+    },
+    "header-menu": {
+      "copy": "نسخ",
+      "copy-styles": "نسخ الأنماط",
+      "create-library-panel": "إنشاء لوحة مكتبة",
+      "duplicate": "تكرار",
+      "edit": "تعديل",
+      "explore": "استكشاف",
+      "get-help": "الحصول على مساعدة",
+      "hide-legend": "إخفاء وسيلة الإيضاح",
+      "inspect": "فحص",
+      "inspect-data": "البيانات",
+      "inspect-json": "JSON اللوحة",
+      "more": "المزيد...",
+      "new-alert-rule": "قاعدة تنبيه جديدة",
+      "paste-styles": "لصق الأنماط",
+      "query": "استعلام",
+      "remove": "إزالة",
+      "replace-library-panel": "استبدال لوحة المكتبة",
+      "share": "مشاركة",
+      "show-legend": "إظهار وسيلة الإيضاح",
+      "styles": "الأنماط",
+      "time-settings": "إعدادات الوقت",
+      "unlink-library-panel": "إلغاء ربط لوحة المكتبة",
+      "view": "عرض"
+    },
+    "panel-data-error-view": {
+      "missing-value": {
+        "number": "البيانات تفتقد حقلًا رقميًا",
+        "string": "البيانات تفتقد حقلًا نصيًا",
+        "time": "البيانات تفتقد حقلًا زمنيًا",
+        "unknown": "تعذّر تصوّر البيانات"
+      },
+      "no-value": {
+        "default": "لا توجد بيانات"
+      },
+      "open-visualization-suggestions": "فتح اقتراحات التصوّر",
+      "switch-to-table": "التبديل إلى جدول"
+    },
+    "panel-plugin-error": {
+      "text-load-error": "راجع سجلّات بدء تشغيل الخادم لمزيد من المعلومات. <br/>إذا حُمّلت هذه الإضافة من Git، فتأكّد من أنها جُمِّعت.",
+      "title-load-error": "خطأ في التحميل: {{panelId}}",
+      "title-not-found": "لم يُعثر على إضافة اللوحة: {{id}}"
+    },
+    "panel-renderer": {
+      "failed-to-load-plugin": "فشل تحميل الإضافة: {{error}}",
+      "loading-plugin-panel": "جارٍ تحميل لوحة الإضافة...",
+      "no-panel-component": "يبدو أن الإضافة التي تحاول تحميلها لا تحتوي على مكوّن لوحة.",
+      "no-panel-data": "لا توجد بيانات لوحة"
+    },
+    "panel-type-card": {
+      "aria-label-delete-button-on-panel-type-card": "زر الحذف على بطاقة نوع اللوحة",
+      "title-click-to-close": "انقر مجددًا لإغلاق هذا القسم",
+      "tooltip-delete": "حذف"
+    },
+    "visualization-suggestions": {
+      "error-loading-some-suggestions": {
+        "message": "تعذّر تحميل بعض الاقتراحات"
+      },
+      "error-loading-suggestions": {
+        "message": "حدث خطأ أثناء تحميل اقتراحات التصوّر.",
+        "plugin-failed": "فشل تحميل إضافة اللوحة: {{ pluginId }}.",
+        "title": "خطأ",
+        "try-again-button": "حاول مجددًا"
+      },
+      "or-divider": "أو",
+      "run-query-hint": "شغّل استعلامًا لبدء رؤية التصوّرات المقترحة",
+      "start-without-data-description": "أضف لوحات لا تتطلب استعلامًا",
+      "start-without-data-title": "البدء بدون بيانات",
+      "unknown-viz-type": "نوع تصوّر غير معروف"
+    },
+    "viz-type-picker": {
+      "could-anything-matching-query": "تعذّر العثور على أي شيء يطابق استعلامك"
+    }
+  },
   "panel-data-pane": {
     "try-new-editor": {
       "label": "جرّب المحرّر الجديد",
@@ -3184,6 +3291,105 @@
     "unmark-as-starred": "إزالة علامة المفضّل",
     "unmark-as-starred-with-title": "إزالة علامة المفضّل عن «{{title}}»"
   },
+  "stat": {
+    "add-orientation-option": {
+      "description-orientation": "اتجاه التخطيط",
+      "name-orientation": "الاتجاه",
+      "orientation-options": {
+        "label-auto": "تلقائي",
+        "label-horizontal": "أفقي",
+        "label-vertical": "رأسي"
+      }
+    },
+    "add-standard-data-reduce-options": {
+      "category-value-options": "خيارات القيمة",
+      "description-calculation": "اختر دالة اختزال / حسابًا",
+      "description-fields": "اختر الحقول التي ينبغي تضمينها في اللوحة",
+      "description-limit": "الحد الأقصى لعدد الصفوف المعروضة",
+      "description-show": "احسب قيمة واحدة لكل عمود أو سلسلة أو اعرض كل صف",
+      "fields-options": {
+        "label-all-fields": "جميع الحقول",
+        "label-numeric-fields": "الحقول الرقمية"
+      },
+      "name-calculation": "الحساب",
+      "name-fields": "الحقول",
+      "name-limit": "الحد",
+      "name-show": "إظهار",
+      "show-options": {
+        "label-all-values": "جميع القيم",
+        "label-calculate": "حساب"
+      }
+    },
+    "category-stat-styles": "أنماط الإحصاء",
+    "color-mode-options": {
+      "label-background-gradient": "خلفية متدرّجة",
+      "label-background-solid": "خلفية صلبة",
+      "label-none": "بلا",
+      "label-value": "القيمة"
+    },
+    "description-graph-mode": "وضع الرسم البياني / المخطط المصغّر للوحة الإحصاء",
+    "description-text-mode": "التحكّم فيما إذا كان يُعرض الاسم والقيمة أم الاسم فقط",
+    "graph-mode": {
+      "options": {
+        "label-area": "منطقة",
+        "label-none": "بلا"
+      }
+    },
+    "name-color-modcolor-mode-options": {
+      "label": "وضع اللون"
+    },
+    "name-graph-mode": "وضع الرسم البياني",
+    "name-show-percent-change": "إظهار نسبة التغيّر المئوية",
+    "name-text-alignment": "محاذاة النص",
+    "name-text-mode": "وضع النص",
+    "name-wide-layout": "تخطيط عريض",
+    "percent-change-color-mode": "وضع لون نسبة التغيّر المئوية",
+    "percent-change-color-mode-options": {
+      "label-inverted": "معكوس",
+      "label-same-as-value": "مطابق للقيمة",
+      "label-standard": "قياسي"
+    },
+    "presets": {
+      "horizontal-threshold-value": "قيمة عتبة أفقية",
+      "horizontal-threshold-value-desc": "أفقي، لون القيمة من العتبات، بدون مخطط مصغّر",
+      "horizontal-threshold-value-sparkline": "قيمة عتبة أفقية مع مخطط مصغّر",
+      "horizontal-threshold-value-sparkline-desc": "أفقي، لون القيمة من العتبات، مخطط مصغّر بمنطقة",
+      "list": "قائمة",
+      "list_desc": "قائمة أفقية مدمجة، متوسّطة، الاسم والقيمة، مخطط مصغّر",
+      "threshold-background": "خلفية العتبة",
+      "threshold-background-desc": "لون الخلفية من العتبات، بدون مخطط مصغّر",
+      "threshold-background-sparkline": "خلفية العتبة مع مخطط مصغّر",
+      "threshold-background-sparkline-desc": "لون الخلفية من العتبات، مخطط مصغّر بمنطقة",
+      "threshold-value": "قيمة العتبة",
+      "threshold-value-desc": "لون القيمة من العتبات، بدون مخطط مصغّر",
+      "threshold-value-sparkline": "قيمة العتبة مع مخطط مصغّر",
+      "threshold-value-sparkline-desc": "لون القيمة من العتبات، مخطط مصغّر بمنطقة",
+      "wide-list": "قائمة عريضة",
+      "wide-list-desc": "أفقي، الاسم والقيمة، مخطط مصغّر بمنطقة، لون واحد"
+    },
+    "suggestions": {
+      "stat": "إحصاء",
+      "stat-color-background": "إحصاء - خلفية ملوّنة",
+      "stat-discrete-values": "إحصاء - قيم منفصلة",
+      "stat-discrete-values-color-background": "إحصاء - قيم منفصلة - خلفية ملوّنة",
+      "stat-single-string": "إحصاء - سلسلة نصية واحدة"
+    },
+    "text-alignment-options": {
+      "label-auto": "تلقائي",
+      "label-center": "توسيط"
+    },
+    "text-mode-options": {
+      "label-auto": "تلقائي",
+      "label-name": "الاسم",
+      "label-none": "بلا",
+      "label-value": "القيمة",
+      "label-value-and-name": "القيمة والاسم"
+    },
+    "wide-layout-options": {
+      "label-off": "إيقاف",
+      "label-on": "تشغيل"
+    }
+  },
   "state-timeline": {
     "align-values-options": {
       "label-center": "توسيط",
@@ -3253,6 +3459,101 @@
   },
   "swagger": {
     "login": "تسجيل الدخول"
+  },
+  "table": {
+    "bar-gauge-cell-options-editor": {
+      "label-gauge-display-mode": "وضع عرض المقياس",
+      "label-value-display": "عرض القيمة"
+    },
+    "category-cell-options": "خيارات الخلية",
+    "category-table": "جدول",
+    "category-table-footer": "تذييل الجدول",
+    "cell-height-options": {
+      "label-large": "كبير",
+      "label-medium": "متوسط",
+      "label-small": "صغير"
+    },
+    "cell-types": {
+      "actions": "الإجراءات",
+      "auto": "تلقائي",
+      "color-background": "خلفية ملوّنة",
+      "color-text": "نص ملوّن",
+      "data-links": "روابط البيانات",
+      "gauge": "مقياس",
+      "image": "صورة",
+      "json": "عرض JSON",
+      "markdown": "Markdown + HTML",
+      "pill": "شارة",
+      "sparkline": "مخطط مصغّر"
+    },
+    "color-background-cell-options-editor": {
+      "description-apply-to-entire-row": "إذا حُدِّد، سيُلوّن الصف بأكمله كما ستُلوّن هذه الخلية.",
+      "label-apply-to-entire-row": "تطبيق على الصف بأكمله",
+      "label-background-display-mode": "وضع عرض الخلفية"
+    },
+    "column-alignment-options": {
+      "label-auto": "تلقائي",
+      "label-center": "توسيط",
+      "label-left": "يسار",
+      "label-right": "يمين"
+    },
+    "container": {
+      "content": "قد يؤثّر عرض عدد كبير جدًا من الأعمدة في جدول واحد على الأداء ويجعل قراءة البيانات أصعب. فكّر في تحسين استعلاماتك.",
+      "show-all-series": "إظهار جميع الأعمدة",
+      "show-only-series": "عرض {{MAX_NUMBER_OF_COLUMNS}} أعمدة فقط"
+    },
+    "description-calculation": "اختر دالة اختزال / حسابًا",
+    "description-cell-value-inspect": "تفعيل فحص قيمة الخلية في نافذة منبثقة",
+    "description-column-filter": "تفعيل/تعطيل مرشّحات الحقول في الجدول",
+    "description-frozen-columns": "تُجمّد الأعمدة من الجانب الأيسر للجدول",
+    "description-min-column-width": "الحد الأدنى للعرض لإعادة تحجيم العمود تلقائيًا",
+    "description-styling-from-field": "حقل يحتوي على كائنات JSON بخصائص CSS",
+    "description-tooltip-from-field": "عرض خلية من حقل (مخفي أو مرئي) في تلميح",
+    "image-cell-options-editor": {
+      "description-alt-text": "نص بديل يُعرض إذا تعذّر عرض صورة أو للمستخدمين الذين يستعملون قارئ شاشة",
+      "description-title-text": "نص يُعرض عند تمرير المؤشر فوق الصورة",
+      "label-alt-text": "النص البديل",
+      "label-title-text": "نص العنوان"
+    },
+    "link-wrapper": {
+      "menu": "عرض روابط البيانات والإجراءات"
+    },
+    "markdown-cell-options-editor": {
+      "description-dynamic-height": "نوصي بتفعيل الترقيم مع هذا الخيار لتجنّب مشكلات الأداء.",
+      "label": {
+        "text-alpha": "ألفا"
+      },
+      "label-dynamic-height": "ارتفاع ديناميكي"
+    },
+    "name-calculation": "الحساب",
+    "name-cell-height": "ارتفاع الخلية",
+    "name-cell-type": "نوع الخلية",
+    "name-cell-value-inspect": "فحص قيمة الخلية",
+    "name-column-alignment": "محاذاة العمود",
+    "name-column-filter": "مرشّح العمود",
+    "name-column-width": "عرض العمود",
+    "name-enable-pagination": "تفعيل الترقيم",
+    "name-frozen-columns": "الأعمدة المجمّدة",
+    "name-hide-in-table": "إخفاء في الجدول",
+    "name-max-height": "الحد الأقصى لارتفاع الصف",
+    "name-min-column-width": "الحد الأدنى لعرض العمود",
+    "name-show-table-header": "إظهار ترويسة الجدول",
+    "name-styling-from-field": "التنسيق من الحقل",
+    "name-tooltip-from-field": "التلميح من الحقل",
+    "name-tooltip-placement": "موضع التلميح",
+    "name-wrap-header-text": "التفاف نص الترويسة",
+    "name-wrap-text": "التفاف النص",
+    "no-value-placeholder": "لا توجد صفوف",
+    "placeholder-column-width": "تلقائي",
+    "placeholder-frozen-columns": "بلا",
+    "placeholder-max-height": "بلا",
+    "tooltip-placement-options": {
+      "label-auto": "تلقائي",
+      "label-bottom": "أسفل",
+      "label-left": "يسار",
+      "label-right": "يمين",
+      "label-top": "أعلى"
+    }
   },
   "tag-filter": {
     "clear-button": "مسح الوسوم",

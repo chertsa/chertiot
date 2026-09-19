@@ -1,0 +1,95 @@
+{
+  "bar-gauge-cell-options-editor": {
+    "label-gauge-display-mode": "وضع عرض المقياس",
+    "label-value-display": "عرض القيمة"
+  },
+  "category-cell-options": "خيارات الخلية",
+  "category-table": "جدول",
+  "category-table-footer": "تذييل الجدول",
+  "cell-height-options": {
+    "label-large": "كبير",
+    "label-medium": "متوسط",
+    "label-small": "صغير"
+  },
+  "cell-types": {
+    "actions": "الإجراءات",
+    "auto": "تلقائي",
+    "color-background": "خلفية ملوّنة",
+    "color-text": "نص ملوّن",
+    "data-links": "روابط البيانات",
+    "gauge": "مقياس",
+    "image": "صورة",
+    "json": "عرض JSON",
+    "markdown": "Markdown + HTML",
+    "pill": "شارة",
+    "sparkline": "مخطط مصغّر"
+  },
+  "color-background-cell-options-editor": {
+    "description-apply-to-entire-row": "إذا حُدِّد، سيُلوّن الصف بأكمله كما ستُلوّن هذه الخلية.",
+    "label-apply-to-entire-row": "تطبيق على الصف بأكمله",
+    "label-background-display-mode": "وضع عرض الخلفية"
+  },
+  "column-alignment-options": {
+    "label-auto": "تلقائي",
+    "label-center": "توسيط",
+    "label-left": "يسار",
+    "label-right": "يمين"
+  },
+  "container": {
+    "content": "قد يؤثّر عرض عدد كبير جدًا من الأعمدة في جدول واحد على الأداء ويجعل قراءة البيانات أصعب. فكّر في تحسين استعلاماتك.",
+    "show-all-series": "إظهار جميع الأعمدة",
+    "show-only-series": "عرض {{MAX_NUMBER_OF_COLUMNS}} أعمدة فقط"
+  },
+  "description-calculation": "اختر دالة اختزال / حسابًا",
+  "description-cell-value-inspect": "تفعيل فحص قيمة الخلية في نافذة منبثقة",
+  "description-column-filter": "تفعيل/تعطيل مرشّحات الحقول في الجدول",
+  "description-frozen-columns": "تُجمّد الأعمدة من الجانب الأيسر للجدول",
+  "description-min-column-width": "الحد الأدنى للعرض لإعادة تحجيم العمود تلقائيًا",
+  "description-styling-from-field": "حقل يحتوي على كائنات JSON بخصائص CSS",
+  "description-tooltip-from-field": "عرض خلية من حقل (مخفي أو مرئي) في تلميح",
+  "image-cell-options-editor": {
+    "description-alt-text": "نص بديل يُعرض إذا تعذّر عرض صورة أو للمستخدمين الذين يستعملون قارئ شاشة",
+    "description-title-text": "نص يُعرض عند تمرير المؤشر فوق الصورة",
+    "label-alt-text": "النص البديل",
+    "label-title-text": "نص العنوان"
+  },
+  "link-wrapper": {
+    "menu": "عرض روابط البيانات والإجراءات"
+  },
+  "markdown-cell-options-editor": {
+    "description-dynamic-height": "نوصي بتفعيل الترقيم مع هذا الخيار لتجنّب مشكلات الأداء.",
+    "label": {
+      "text-alpha": "ألفا"
+    },
+    "label-dynamic-height": "ارتفاع ديناميكي"
+  },
+  "name-calculation": "الحساب",
+  "name-cell-height": "ارتفاع الخلية",
+  "name-cell-type": "نوع الخلية",
+  "name-cell-value-inspect": "فحص قيمة الخلية",
+  "name-column-alignment": "محاذاة العمود",
+  "name-column-filter": "مرشّح العمود",
+  "name-column-width": "عرض العمود",
+  "name-enable-pagination": "تفعيل الترقيم",
+  "name-frozen-columns": "الأعمدة المجمّدة",
+  "name-hide-in-table": "إخفاء في الجدول",
+  "name-max-height": "الحد الأقصى لارتفاع الصف",
+  "name-min-column-width": "الحد الأدنى لعرض العمود",
+  "name-show-table-header": "إظهار ترويسة الجدول",
+  "name-styling-from-field": "التنسيق من الحقل",
+  "name-tooltip-from-field": "التلميح من الحقل",
+  "name-tooltip-placement": "موضع التلميح",
+  "name-wrap-header-text": "التفاف نص الترويسة",
+  "name-wrap-text": "التفاف النص",
+  "no-value-placeholder": "لا توجد صفوف",
+  "placeholder-column-width": "تلقائي",
+  "placeholder-frozen-columns": "بلا",
+  "placeholder-max-height": "بلا",
+  "tooltip-placement-options": {
+    "label-auto": "تلقائي",
+    "label-bottom": "أسفل",
+    "label-left": "يسار",
+    "label-right": "يمين",
+    "label-top": "أعلى"
+  }
+}
