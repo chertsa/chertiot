@@ -1,0 +1,54 @@
+{
+  "advanced-settings-section": {
+    "edit-button": "تعديل",
+    "subtitle": "التعيينات، وإجراءات أمان إضافية، والمزيد.",
+    "title": "الإعدادات المتقدمة"
+  },
+  "alert": {
+    "discard-success": "تم تجاهل إعدادات LDAP",
+    "error-fetching": "خطأ في جلب إعدادات LDAP",
+    "error-saving": "خطأ في حفظ إعدادات LDAP",
+    "error-validate-form": "خطأ في التحقق من إعدادات LDAP",
+    "saved": "تم حفظ إعدادات LDAP"
+  },
+  "bind-dn": {
+    "description": "الاسم المميّز للحساب المُستخدم للربط والمصادقة مع خادم LDAP.",
+    "label": "Bind DN",
+    "placeholder": "مثال: cn=admin,dc=grafana,dc=org"
+  },
+  "bind-password": {
+    "label": "كلمة مرور الربط"
+  },
+  "buttons-section": {
+    "disable-button": "تعطيل",
+    "discard-button": "تجاهل",
+    "save-and-enable-button": "حفظ وتفعيل",
+    "save-button": "حفظ",
+    "test-button": "اختبار"
+  },
+  "documentation": "الوثائق",
+  "host": {
+    "description": "اسم المضيف أو عنوان IP لخادم LDAP الذي تريد الاتصال به.",
+    "error": "مضيف الخادم حقل مطلوب",
+    "label": "مضيف الخادم",
+    "placeholder": "مثال: 127.0.0.1"
+  },
+  "login-form-alert": {
+    "description": "إعداد LDAP الخاص بك لا يعمل لأن نموذج تسجيل الدخول الأساسي مُعطّل حاليًا. يُرجى تفعيل نموذج تسجيل الدخول لاستخدام مصادقة LDAP. يمكنك تفعيله في صفحة المصادقة ضمن «إعدادات المصادقة».",
+    "title": "تسجيل الدخول الأساسي مُعطّل"
+  },
+  "search_filter": {
+    "description": "مرشّح بحث LDAP المُستخدم لتحديد إدخالات معينة داخل الدليل.",
+    "error": "مرشّح البحث حقل مطلوب",
+    "label": "مرشّح البحث",
+    "placeholder": "مثال: cn=%s"
+  },
+  "search-base-dns": {
+    "description": "مصفوفة من أسماء القاعدة المميّزة للبحث خلالها.",
+    "error": "قاعدة البحث المميّزة (DNS) حقل مطلوب",
+    "label": "Search base DNS",
+    "placeholder": "مثال: dc=grafana,dc=org"
+  },
+  "subtitle": "يتيح تكامل LDAP في Grafana لمستخدمي Grafana تسجيل الدخول باستخدام بيانات اعتماد LDAP الخاصة بهم. اعرف المزيد في <2><0>وثائقنا</0></2>.",
+  "title": "الإعدادات الأساسية"
+}

@@ -1,0 +1,37 @@
+{
+  "additional-fields-options": {
+    "label-ignore": "تجاهل",
+    "label-include": "تضمين"
+  },
+  "candle-style-options": {
+    "label-candles": "شموع",
+    "label-ohlc-bars": "أعمدة OHLC"
+  },
+  "category-candlestick": "شموع يابانية",
+  "color-strategy-options": {
+    "label-since-open": "منذ الفتح",
+    "label-since-prior-close": "منذ الإغلاق السابق"
+  },
+  "description-additional-fields": "استخدم خيارات السلاسل الزمنية القياسية لتهيئة أي حقول غير مرتبطة أعلاه",
+  "description-close": "القيمة عند نهاية الفترة",
+  "description-high": "القيمة القصوى ضمن الفترة",
+  "description-low": "القيمة الدنيا ضمن الفترة",
+  "description-open": "القيمة عند بداية الفترة",
+  "description-volume": "عدد العينات ضمن الفترة",
+  "mode-options": {
+    "label-both": "كلاهما",
+    "label-candles": "شموع",
+    "label-volume": "الحجم"
+  },
+  "name-additional-fields": "حقول إضافية",
+  "name-candle-style": "نمط الشموع",
+  "name-close": "الإغلاق",
+  "name-color-strategy": "استراتيجية الألوان",
+  "name-down-color": "لون الهبوط",
+  "name-high": "الأعلى",
+  "name-low": "الأدنى",
+  "name-mode": "الوضع",
+  "name-open": "الفتح",
+  "name-up-color": "لون الصعود",
+  "name-volume": "الحجم"
+}

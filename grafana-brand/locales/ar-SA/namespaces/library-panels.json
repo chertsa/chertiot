@@ -1,0 +1,63 @@
+{
+  "add-library-panel-modal": {
+    "title-create-library-panel": "إنشاء لوحة مكتبة"
+  },
+  "confirm": {
+    "delete-panel": "هل تريد حذف هذه اللوحة؟"
+  },
+  "delete-library-panel-modal": {
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "title-delete-library-panel": "حذف لوحة المكتبة"
+  },
+  "empty-state": {
+    "message": "لم يُعثر على لوحات مكتبة"
+  },
+  "folder-link": {
+    "dashboards": "لوحات المعلومات"
+  },
+  "has-connected-dashboards": {
+    "dashboard-name": "اسم لوحة المعلومات"
+  },
+  "library-panel-info": {
+    "last-edited": "آخر تعديل في {{timeAgo}} بواسطة<person />",
+    "usage-count_zero": "غير مستخدمة في أي لوحة معلومات",
+    "usage-count_one": "مستخدمة في لوحة معلومات واحدة",
+    "usage-count_two": "مستخدمة في لوحتي معلومات",
+    "usage-count_few": "مستخدمة في {{count}} لوحات معلومات",
+    "usage-count_many": "مستخدمة في {{count}} لوحة معلومات",
+    "usage-count_other": "مستخدمة في {{count}} لوحة معلومات"
+  },
+  "library-panels-search": {
+    "placeholder-search-by-name-or-description": "ابحث بالاسم أو الوصف أو اسم المجلد"
+  },
+  "loading-indicator": {
+    "loading-library-panel": "جارٍ تحميل لوحة المكتبة..."
+  },
+  "loading-panel-text": "جارٍ تحميل لوحة المكتبة",
+  "modal": {
+    "body_zero": "لا تُستخدم هذه اللوحة في أي لوحة معلومات.",
+    "body_one": "تُستخدم هذه اللوحة في لوحة معلومات واحدة. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+    "body_two": "تُستخدم هذه اللوحة في لوحتي معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+    "body_few": "تُستخدم هذه اللوحة في {{count}} لوحات معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+    "body_many": "تُستخدم هذه اللوحة في {{count}} لوحة معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+    "body_other": "تُستخدم هذه اللوحة في {{count}} لوحة معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+    "button-cancel": "إلغاء",
+    "button-view-panel1": "عرض اللوحة في {{label}}...",
+    "button-view-panel2": "عرض اللوحة في لوحة معلومات...",
+    "panel-not-linked": "اللوحة غير مرتبطة بلوحة معلومات. أضف اللوحة إلى لوحة معلومات وأعد المحاولة.",
+    "select-no-options-message": "لم يُعثر على لوحات معلومات",
+    "select-placeholder": "ابدأ الكتابة للبحث عن لوحة معلومات",
+    "title": "عرض اللوحة في لوحة معلومات"
+  },
+  "save": {
+    "error": "خطأ في حفظ لوحة المكتبة: «{{errorMsg}}»",
+    "success": "تم حفظ لوحة المكتبة"
+  },
+  "search-controls": {
+    "label": {
+      "alphabetically-az": "أبجديًا (أ–ي)",
+      "alphabetically-za": "أبجديًا (ي–أ)"
+    }
+  }
+}

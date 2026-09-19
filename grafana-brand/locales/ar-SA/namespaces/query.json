@@ -1,0 +1,51 @@
+{
+  "query-editor-row-header": {
+    "hidden": "مخفي",
+    "query-name-div-title-edit-query-name": "تعديل اسم الاستعلام"
+  },
+  "query-error-alert": {
+    "error-details": "تفاصيل خطأ الاستعلام",
+    "fix-with-assistant": "الإصلاح باستخدام المساعد",
+    "original-query": "الاستعلام الأصلي",
+    "trace-id": "(معرّف التتبّع: {{traceId}})"
+  },
+  "query-group": {
+    "add-query": "إضافة استعلام",
+    "expression": "تعبير",
+    "title-data-source-help": "مساعدة مصدر البيانات"
+  },
+  "query-group-options-editor": {
+    "collapsed-interval": "الفاصل = {{intervalDesc}}",
+    "collapsed-max-data-points": "الأقصى = {{mdDesc}}",
+    "hide-time-info": "إخفاء معلومات الوقت",
+    "Query options-title-query-options": "خيارات الاستعلام",
+    "relative-time": "الوقت النسبي",
+    "relative-time-tooltip": "يتجاوز النطاق الزمني النسبي للوحات الفردية، مما يجعلها مختلفة عمّا هو محدد في منتقي وقت لوحة المعلومات في الزاوية العلوية اليمنى. على سبيل المثال لتهيئة «آخر 5 دقائق» ينبغي أن يكون الوقت النسبي <1>{{relativeFrom}}</1> و<4>{{relativeTo}}</4>، أو متغيرات مثل <6>{{variable}}</6>.",
+    "render-cache-timeout-option": {
+      "cache-timeout": "مهلة التخزين المؤقت"
+    },
+    "render-interval-option": {
+      "interval": "الفاصل",
+      "interval-tooltip": "الفاصل المُقيَّم الذي يُرسل إلى مصدر البيانات ويُستخدم في <1>$__interval</1> و<4>$__interval_ms</4>. هذه القيمة ليست مساوية تمامًا لـ <6>النطاق الزمني / الحد الأقصى لنقاط البيانات</6>، بل تقارب سلسلة من الأرقام السحرية.",
+      "min-interval": "الحد الأدنى للفاصل",
+      "min-interval-tooltip": "حد أدنى للفاصل. يُوصى بضبطه على تردد الكتابة، على سبيل المثال <1>1m</1> إذا كانت بياناتك تُكتب كل دقيقة. يمكن ضبط القيمة الافتراضية في إعدادات مصدر البيانات لمعظم مصادر البيانات.",
+      "time-range-max-data-points": "النطاق الزمني / الحد الأقصى لنقاط البيانات"
+    },
+    "render-max-data-points-option": {
+      "max-data-points": "الحد الأقصى لنقاط البيانات",
+      "max-data-points-tooltip": "الحد الأقصى لنقاط البيانات لكل سلسلة. يُستخدم مباشرةً من قبل بعض مصادر البيانات ويُستخدم في حساب الفاصل التلقائي. مع البيانات المتدفقة تُستخدم هذه القيمة للمخزن المؤقت المتجدّد.",
+      "width-of-panel": "عرض اللوحة"
+    },
+    "render-query-caching-ttloption": {
+      "cache-ttl": "مدة بقاء التخزين المؤقت (TTL)"
+    },
+    "time-shift": "إزاحة الوقت",
+    "time-shift-tooltip": "يتجاوز النطاق الزمني للوحات الفردية بإزاحة بدايتها ونهايتها نسبةً إلى منتقي الوقت. على سبيل المثال لتهيئة «آخر ساعة» ينبغي أن تكون إزاحة الوقت <1>{{relativeFrom}}</1> و<4>{{relativeTo}}</4>، أو متغيرات مثل <6>{{variable}}</6>."
+  },
+  "query-group-top-section": {
+    "data-source": "مصدر البيانات",
+    "query-inspector": "فاحص الاستعلامات",
+    "query-tab-help-button-title-open-data-source-help": "فتح مساعدة مصدر البيانات",
+    "title-data-source-help": "مساعدة مصدر البيانات"
+  }
+}

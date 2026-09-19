@@ -161,6 +161,43 @@
   "bouncing-loader": {
     "label": "جارٍ التحميل"
   },
+  "candlestick": {
+    "additional-fields-options": {
+      "label-ignore": "تجاهل",
+      "label-include": "تضمين"
+    },
+    "candle-style-options": {
+      "label-candles": "شموع",
+      "label-ohlc-bars": "أعمدة OHLC"
+    },
+    "category-candlestick": "شموع يابانية",
+    "color-strategy-options": {
+      "label-since-open": "منذ الفتح",
+      "label-since-prior-close": "منذ الإغلاق السابق"
+    },
+    "description-additional-fields": "استخدم خيارات السلاسل الزمنية القياسية لتهيئة أي حقول غير مرتبطة أعلاه",
+    "description-close": "القيمة عند نهاية الفترة",
+    "description-high": "القيمة القصوى ضمن الفترة",
+    "description-low": "القيمة الدنيا ضمن الفترة",
+    "description-open": "القيمة عند بداية الفترة",
+    "description-volume": "عدد العينات ضمن الفترة",
+    "mode-options": {
+      "label-both": "كلاهما",
+      "label-candles": "شموع",
+      "label-volume": "الحجم"
+    },
+    "name-additional-fields": "حقول إضافية",
+    "name-candle-style": "نمط الشموع",
+    "name-close": "الإغلاق",
+    "name-color-strategy": "استراتيجية الألوان",
+    "name-down-color": "لون الهبوط",
+    "name-high": "الأعلى",
+    "name-low": "الأدنى",
+    "name-mode": "الوضع",
+    "name-open": "الفتح",
+    "name-up-color": "لون الصعود",
+    "name-volume": "الحجم"
+  },
   "carousel": {
     "close": "إغلاق",
     "error": "حدث خطأ ما أثناء تحميل الصور",
@@ -786,6 +823,60 @@
       "edit-layer-title": "تعديل اسم الطبقة"
     }
   },
+  "ldap-settings-page": {
+    "advanced-settings-section": {
+      "edit-button": "تعديل",
+      "subtitle": "التعيينات، وإجراءات أمان إضافية، والمزيد.",
+      "title": "الإعدادات المتقدمة"
+    },
+    "alert": {
+      "discard-success": "تم تجاهل إعدادات LDAP",
+      "error-fetching": "خطأ في جلب إعدادات LDAP",
+      "error-saving": "خطأ في حفظ إعدادات LDAP",
+      "error-validate-form": "خطأ في التحقق من إعدادات LDAP",
+      "saved": "تم حفظ إعدادات LDAP"
+    },
+    "bind-dn": {
+      "description": "الاسم المميّز للحساب المُستخدم للربط والمصادقة مع خادم LDAP.",
+      "label": "Bind DN",
+      "placeholder": "مثال: cn=admin,dc=grafana,dc=org"
+    },
+    "bind-password": {
+      "label": "كلمة مرور الربط"
+    },
+    "buttons-section": {
+      "disable-button": "تعطيل",
+      "discard-button": "تجاهل",
+      "save-and-enable-button": "حفظ وتفعيل",
+      "save-button": "حفظ",
+      "test-button": "اختبار"
+    },
+    "documentation": "الوثائق",
+    "host": {
+      "description": "اسم المضيف أو عنوان IP لخادم LDAP الذي تريد الاتصال به.",
+      "error": "مضيف الخادم حقل مطلوب",
+      "label": "مضيف الخادم",
+      "placeholder": "مثال: 127.0.0.1"
+    },
+    "login-form-alert": {
+      "description": "إعداد LDAP الخاص بك لا يعمل لأن نموذج تسجيل الدخول الأساسي مُعطّل حاليًا. يُرجى تفعيل نموذج تسجيل الدخول لاستخدام مصادقة LDAP. يمكنك تفعيله في صفحة المصادقة ضمن «إعدادات المصادقة».",
+      "title": "تسجيل الدخول الأساسي مُعطّل"
+    },
+    "search_filter": {
+      "description": "مرشّح بحث LDAP المُستخدم لتحديد إدخالات معينة داخل الدليل.",
+      "error": "مرشّح البحث حقل مطلوب",
+      "label": "مرشّح البحث",
+      "placeholder": "مثال: cn=%s"
+    },
+    "search-base-dns": {
+      "description": "مصفوفة من أسماء القاعدة المميّزة للبحث خلالها.",
+      "error": "قاعدة البحث المميّزة (DNS) حقل مطلوب",
+      "label": "Search base DNS",
+      "placeholder": "مثال: dc=grafana,dc=org"
+    },
+    "subtitle": "يتيح تكامل LDAP في Grafana لمستخدمي Grafana تسجيل الدخول باستخدام بيانات اعتماد LDAP الخاصة بهم. اعرف المزيد في <2><0>وثائقنا</0></2>.",
+    "title": "الإعدادات الأساسية"
+  },
   "legend": {
     "container": {
       "series-color-and-icon": "لون السلسلة",
@@ -805,6 +896,69 @@
     "empty-state": {
       "message": "لم تنشئ أي لوحات مكتبة بعد",
       "more-info": "أنشئ لوحة مكتبة من أي لوحة موجودة في لوحة المعلومات عبر قائمة سياق اللوحة. <2>معرفة المزيد</2>"
+    }
+  },
+  "library-panels": {
+    "add-library-panel-modal": {
+      "title-create-library-panel": "إنشاء لوحة مكتبة"
+    },
+    "confirm": {
+      "delete-panel": "هل تريد حذف هذه اللوحة؟"
+    },
+    "delete-library-panel-modal": {
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "title-delete-library-panel": "حذف لوحة المكتبة"
+    },
+    "empty-state": {
+      "message": "لم يُعثر على لوحات مكتبة"
+    },
+    "folder-link": {
+      "dashboards": "لوحات المعلومات"
+    },
+    "has-connected-dashboards": {
+      "dashboard-name": "اسم لوحة المعلومات"
+    },
+    "library-panel-info": {
+      "last-edited": "آخر تعديل في {{timeAgo}} بواسطة<person />",
+      "usage-count_zero": "غير مستخدمة في أي لوحة معلومات",
+      "usage-count_one": "مستخدمة في لوحة معلومات واحدة",
+      "usage-count_two": "مستخدمة في لوحتي معلومات",
+      "usage-count_few": "مستخدمة في {{count}} لوحات معلومات",
+      "usage-count_many": "مستخدمة في {{count}} لوحة معلومات",
+      "usage-count_other": "مستخدمة في {{count}} لوحة معلومات"
+    },
+    "library-panels-search": {
+      "placeholder-search-by-name-or-description": "ابحث بالاسم أو الوصف أو اسم المجلد"
+    },
+    "loading-indicator": {
+      "loading-library-panel": "جارٍ تحميل لوحة المكتبة..."
+    },
+    "loading-panel-text": "جارٍ تحميل لوحة المكتبة",
+    "modal": {
+      "body_zero": "لا تُستخدم هذه اللوحة في أي لوحة معلومات.",
+      "body_one": "تُستخدم هذه اللوحة في لوحة معلومات واحدة. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+      "body_two": "تُستخدم هذه اللوحة في لوحتي معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+      "body_few": "تُستخدم هذه اللوحة في {{count}} لوحات معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+      "body_many": "تُستخدم هذه اللوحة في {{count}} لوحة معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+      "body_other": "تُستخدم هذه اللوحة في {{count}} لوحة معلومات. يُرجى اختيار لوحة المعلومات التي تريد عرض اللوحة فيها:",
+      "button-cancel": "إلغاء",
+      "button-view-panel1": "عرض اللوحة في {{label}}...",
+      "button-view-panel2": "عرض اللوحة في لوحة معلومات...",
+      "panel-not-linked": "اللوحة غير مرتبطة بلوحة معلومات. أضف اللوحة إلى لوحة معلومات وأعد المحاولة.",
+      "select-no-options-message": "لم يُعثر على لوحات معلومات",
+      "select-placeholder": "ابدأ الكتابة للبحث عن لوحة معلومات",
+      "title": "عرض اللوحة في لوحة معلومات"
+    },
+    "save": {
+      "error": "خطأ في حفظ لوحة المكتبة: «{{errorMsg}}»",
+      "success": "تم حفظ لوحة المكتبة"
+    },
+    "search-controls": {
+      "label": {
+        "alphabetically-az": "أبجديًا (أ–ي)",
+        "alphabetically-za": "أبجديًا (ي–أ)"
+      }
     }
   },
   "link": {
@@ -902,6 +1056,50 @@
   "manage-dashbaords": {
     "import-dashboard-form": {
       "description-existing-library-panels": "قائمة لوحات المكتبة الحالية. لا تتأثّر هذه اللوحات بالاستيراد."
+    }
+  },
+  "manage-dashboards": {
+    "import-dashboard-form": {
+      "cancel": "إلغاء",
+      "change-uid": "تغيير uid",
+      "description-library-panels-imported": "قائمة لوحات المكتبة الجديدة التي ستُستورد.",
+      "description-unique-identifier-uid": "يمكن استخدام المعرّف الفريد (UID) للوحة المعلومات لتمييزها بشكل فريد بين عدة عمليات تثبيت لـ Grafana. يتيح UID الحصول على عناوين URL ثابتة للوصول إلى لوحات المعلومات، لذا فإن تغيير عنوان لوحة المعلومات لن يكسر أي روابط محفوظة لتلك اللوحة.",
+      "label-existing-library-panels": "لوحات المكتبة الحالية",
+      "label-folder": "مجلد",
+      "label-name": "الاسم",
+      "label-new-library-panels": "لوحات المكتبة الجديدة",
+      "label-unique-identifier-uid": "المعرّف الفريد (UID)",
+      "options": "الخيارات"
+    },
+    "import-dashboard-overview-un-connected": {
+      "importing-from": "استيراد لوحة المعلومات من <1>Grafana.com</1>",
+      "published-by": "نشرها",
+      "updated-on": "حُدِّثت في"
+    },
+    "import-overview": {
+      "invalid-schema-action": "جرّب لوحة معلومات أخرى",
+      "invalid-schema-body": "تعذّر استيراد لوحة المعلومات لأن مخططها ليس بإصدار معروف.",
+      "invalid-schema-title": "مخطط لوحة معلومات غير صالح أو غير معروف"
+    },
+    "snapshot-list-table": {
+      "body-delete": "هل أنت متأكد أنك تريد حذف '{{snapshotToRemove}}'؟",
+      "confirmText-delete": "حذف",
+      "title-delete": "حذف"
+    },
+    "unthemed-dashboard-import": {
+      "subTitle": {
+        "import-dashboard-from-file-or-grafanacom": "استيراد لوحة معلومات من ملف أو من Grafana.com"
+      },
+      "text": {
+        "import-dashboard": "استيراد لوحة معلومات"
+      }
+    },
+    "validation-srv": {
+      "message-name-required": "الاسم مطلوب",
+      "message-reserved-name": "هذا اسم محجوز ولا يمكن استخدامه لمجلد.",
+      "message-same-name": "توجد بالفعل لوحة معلومات أو مجلد بالاسم نفسه",
+      "message-same-name-current-folder": "توجد بالفعل لوحة معلومات أو مجلد بالاسم نفسه في المجلد الحالي",
+      "message-same-name-general": "يوجد بالفعل مجلد أو لوحة معلومات بالاسم نفسه في المجلد الجذري"
     }
   },
   "manage-owner-references": {
@@ -1107,6 +1305,55 @@
     },
     "login": {
       "error": "رفض موفّر تسجيل الدخول طلب تسجيل الدخول"
+    }
+  },
+  "options-ui": {
+    "color": {
+      "clear-tooltip": "مسح الإعدادات"
+    },
+    "field-color": {
+      "color-by-label": "تلوين السلاسل حسب"
+    },
+    "registry": {
+      "get-all-option-editors": {
+        "description-time-zone": "اختيار المنطقة الزمنية",
+        "name-time-zone": "المنطقة الزمنية"
+      },
+      "standard-field-condigs": {
+        "category-data-links": "روابط البيانات والإجراءات"
+      },
+      "standard-field-configs": {
+        "category": "الخيارات القياسية",
+        "category-thresholds": "العتبات",
+        "category-value-mappings": "تعيينات القيم",
+        "description-display-name": "تغيير اسم الحقل أو السلسلة",
+        "description-field-min-max": "حساب الحد الأدنى والأقصى لكل حقل",
+        "description-max": "اتركه فارغًا للحساب بناءً على جميع القيم",
+        "description-min": "اتركه فارغًا للحساب بناءً على جميع القيم",
+        "description-no-value": "ما يُعرض عند عدم وجود قيمة",
+        "description-value-mappings": "تعديل نص العرض بناءً على قيمة الإدخال",
+        "name-actions": "الإجراءات",
+        "name-ad-hoc": "قابل للتصفية",
+        "name-color-scheme": "نظام الألوان",
+        "name-data-links": "روابط البيانات",
+        "name-decimals": "المنازل العشرية",
+        "name-display-name": "الاسم المعروض",
+        "name-field-min-max": "الحد الأدنى/الأقصى للحقل",
+        "name-max": "الأقصى",
+        "name-min": "الأدنى",
+        "name-no-value": "لا قيمة",
+        "name-thresholds": "العتبات",
+        "name-unit": "الوحدة",
+        "name-value-mappings": "تعيينات القيم",
+        "placeholder-decimals": "تلقائي",
+        "placeholder-display-name": "بلا",
+        "placeholder-max": "تلقائي",
+        "placeholder-min": "تلقائي",
+        "placeholder-unit": "بلا"
+      }
+    },
+    "units": {
+      "clear-tooltip": "مسح اختيار الوحدة"
     }
   },
   "org": {
@@ -1436,6 +1683,57 @@
       "role-label": "الدور"
     }
   },
+  "query": {
+    "query-editor-row-header": {
+      "hidden": "مخفي",
+      "query-name-div-title-edit-query-name": "تعديل اسم الاستعلام"
+    },
+    "query-error-alert": {
+      "error-details": "تفاصيل خطأ الاستعلام",
+      "fix-with-assistant": "الإصلاح باستخدام المساعد",
+      "original-query": "الاستعلام الأصلي",
+      "trace-id": "(معرّف التتبّع: {{traceId}})"
+    },
+    "query-group": {
+      "add-query": "إضافة استعلام",
+      "expression": "تعبير",
+      "title-data-source-help": "مساعدة مصدر البيانات"
+    },
+    "query-group-options-editor": {
+      "collapsed-interval": "الفاصل = {{intervalDesc}}",
+      "collapsed-max-data-points": "الأقصى = {{mdDesc}}",
+      "hide-time-info": "إخفاء معلومات الوقت",
+      "Query options-title-query-options": "خيارات الاستعلام",
+      "relative-time": "الوقت النسبي",
+      "relative-time-tooltip": "يتجاوز النطاق الزمني النسبي للوحات الفردية، مما يجعلها مختلفة عمّا هو محدد في منتقي وقت لوحة المعلومات في الزاوية العلوية اليمنى. على سبيل المثال لتهيئة «آخر 5 دقائق» ينبغي أن يكون الوقت النسبي <1>{{relativeFrom}}</1> و<4>{{relativeTo}}</4>، أو متغيرات مثل <6>{{variable}}</6>.",
+      "render-cache-timeout-option": {
+        "cache-timeout": "مهلة التخزين المؤقت"
+      },
+      "render-interval-option": {
+        "interval": "الفاصل",
+        "interval-tooltip": "الفاصل المُقيَّم الذي يُرسل إلى مصدر البيانات ويُستخدم في <1>$__interval</1> و<4>$__interval_ms</4>. هذه القيمة ليست مساوية تمامًا لـ <6>النطاق الزمني / الحد الأقصى لنقاط البيانات</6>، بل تقارب سلسلة من الأرقام السحرية.",
+        "min-interval": "الحد الأدنى للفاصل",
+        "min-interval-tooltip": "حد أدنى للفاصل. يُوصى بضبطه على تردد الكتابة، على سبيل المثال <1>1m</1> إذا كانت بياناتك تُكتب كل دقيقة. يمكن ضبط القيمة الافتراضية في إعدادات مصدر البيانات لمعظم مصادر البيانات.",
+        "time-range-max-data-points": "النطاق الزمني / الحد الأقصى لنقاط البيانات"
+      },
+      "render-max-data-points-option": {
+        "max-data-points": "الحد الأقصى لنقاط البيانات",
+        "max-data-points-tooltip": "الحد الأقصى لنقاط البيانات لكل سلسلة. يُستخدم مباشرةً من قبل بعض مصادر البيانات ويُستخدم في حساب الفاصل التلقائي. مع البيانات المتدفقة تُستخدم هذه القيمة للمخزن المؤقت المتجدّد.",
+        "width-of-panel": "عرض اللوحة"
+      },
+      "render-query-caching-ttloption": {
+        "cache-ttl": "مدة بقاء التخزين المؤقت (TTL)"
+      },
+      "time-shift": "إزاحة الوقت",
+      "time-shift-tooltip": "يتجاوز النطاق الزمني للوحات الفردية بإزاحة بدايتها ونهايتها نسبةً إلى منتقي الوقت. على سبيل المثال لتهيئة «آخر ساعة» ينبغي أن تكون إزاحة الوقت <1>{{relativeFrom}}</1> و<4>{{relativeTo}}</4>، أو متغيرات مثل <6>{{variable}}</6>."
+    },
+    "query-group-top-section": {
+      "data-source": "مصدر البيانات",
+      "query-inspector": "فاحص الاستعلامات",
+      "query-tab-help-button-title-open-data-source-help": "فتح مساعدة مصدر البيانات",
+      "title-data-source-help": "مساعدة مصدر البيانات"
+    }
+  },
   "query-editor-renderer": {
     "datasource-load-error-body": "اختر مصدر بيانات لهذا الاستعلام للمتابعة.",
     "datasource-load-error-title": "فشل تحميل مصدر البيانات لهذا الاستعلام",
@@ -1459,6 +1757,60 @@
       "show-response": "إظهار الاستجابة"
     },
     "query-editor-not-exported": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
+  },
+  "recent-queries": {
+    "description_zero": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال اليوم الماضي",
+    "description_one": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال اليوم الماضي",
+    "description_two": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال اليومين الماضيين",
+    "description_few": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال الـ {{count}} أيام الماضية",
+    "description_many": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال الـ {{count}} يومًا الماضية",
+    "description_other": "الاستعلامات الأخيرة هي الاستعلامات التي شغّلتها في الاستكشاف خلال الـ {{count}} يوم الماضية",
+    "error-state": {
+      "title": "حدث خطأ ما!"
+    },
+    "filters": {
+      "all-queries": "جميع الاستعلامات",
+      "clear": "مسح",
+      "datasource-label": "اسم مصدر البيانات",
+      "datasource-placeholder": "اختر اسم مصدر البيانات",
+      "header": "المرشّحات",
+      "panel-label": "المرشّحات",
+      "remember-filters-label": "تذكّر المرشّحات",
+      "remember-filters-subtext": "تُستعاد إعداداتك في الزيارة القادمة",
+      "search-label": "بحث",
+      "search-placeholder": "ابحث حسب...",
+      "sort-label": "فرز",
+      "sort-placeholder": "فرز الأحدث",
+      "starred": "الاستعلامات المميّزة بنجمة",
+      "starred-label": "الاستعلامات المميّزة بنجمة"
+    },
+    "list": {
+      "empty": "لم يُعثر على استعلامات أخيرة",
+      "loading": "جارٍ التحميل..."
+    },
+    "modal": {
+      "aria-label": "الاستعلامات الأخيرة",
+      "tabs": {
+        "recent": "الاستعلامات الأخيرة",
+        "saved": "الاستعلامات المحفوظة",
+        "saved-badge": "Cloud",
+        "saved-tooltip": "الاستعلامات المحفوظة متاحة في Cloud وEnterprise."
+      }
+    },
+    "row": {
+      "save": "حفظ الاستعلام",
+      "select-query": "اختيار الاستعلام",
+      "star": "تمييز بنجمة",
+      "star-tooltip": "تم تمييز الاستعلام بنجمة!",
+      "unstar": "إزالة النجمة"
+    },
+    "sort": {
+      "newest": "الأحدث أولًا"
+    },
+    "sort-option": {
+      "newest": "فرز الأحدث",
+      "oldest": "فرز الأقدم"
+    }
   },
   "recently-deleted": {
     "buttons": {
@@ -1899,6 +2251,54 @@
   },
   "sort-picker": {
     "select-aria-label": "فرز"
+  },
+  "splash-screen": {
+    "aria-label": "ما الجديد في Grafana",
+    "assistant": {
+      "badge": "جديد",
+      "bullet-1": "استكشف بياناتك بمطالبة المساعد بتوليد استعلامات لك",
+      "bullet-2": "أنشئ لوحات معلومات شاملة في دقائق",
+      "bullet-3": "دمج أعضاء الفريق الجدد في أيام لا أسابيع",
+      "cta": "أرِني",
+      "subtitle": "استخدم الذكاء الاصطناعي للتعامل مع كل شيء من الإعداد إلى توليد الاستعلامات",
+      "title": "Grafana Assistant متاح الآن لمستخدمي OSS"
+    },
+    "badge": {
+      "new": "جديد في G13"
+    },
+    "close": "إغلاق",
+    "dynamic-dashboards": {
+      "bullet-1": "قسّم المحتوى إلى علامات تبويب للتبديل السريع",
+      "bullet-2": "أظهر أو أخفِ اللوحات بناءً على متغيرات القالب وشروط أخرى",
+      "bullet-3": "رتّب اللوحات تلقائيًا في شبكة لتخطيط فعّال",
+      "cta": "أرِني",
+      "subtitle": "اجعل لوحات معلوماتك أكثر تأثيرًا وأسهل في الاستكشاف",
+      "title": "أضف علامات تبويب وشروط لوحات إلى لوحات معلوماتك"
+    },
+    "git-sync": {
+      "bullet-1": "خزّن إعداد لوحة معلوماتك بأمان في أي مستودع git",
+      "bullet-2": "تتبّع التغييرات - ومَن أجراها",
+      "bullet-3": "يعمل مع العديد من سيناريوهات النشر مثل التطوير-الإنتاج، والإتاحة العالية، والمثيلات المشتركة بين عدة فرق",
+      "cta": "أرِني",
+      "subtitle": "أضف التحكّم في الإصدارات والتعاون والموثوقية إلى لوحات معلوماتك",
+      "title": "زامِن لوحات معلوماتك مع Git"
+    },
+    "library-of-things": {
+      "bullet-1": "ابدأ من تخطيط نظيف بدلًا من البناء من الصفر",
+      "bullet-2": "حمّل قالبًا وخصّصه وفق احتياجاتك",
+      "bullet-3": "استكشف واستخدم لوحات معلومات المجتمع المصمّمة لمصدر بياناتك",
+      "cta": "أرِني",
+      "subtitle": "اصل إلى لوحة معلومات مفيدة أسرع بالبدء من تصميم مُجرّب",
+      "title": "ابدأ لوحات المعلومات بسرعة عبر الاقتراحات والقوالب"
+    },
+    "nav": {
+      "counter": "الشريحة {{current}} من {{total}}",
+      "go-to": "الانتقال إلى الشريحة {{number}}",
+      "label": "تنقّل الشرائح",
+      "next": "الشريحة التالية",
+      "prev": "الشريحة السابقة"
+    },
+    "slide-announcement": "الشريحة {{current}} من {{total}}: {{title}}"
   },
   "sql-expressions": {
     "explain-query": "شرح الاستعلام",
@@ -2353,6 +2753,53 @@
     "welcome-banner": {
       "need-help": "تحتاج مساعدة؟",
       "welcome-to-grafana": "مرحبًا بك في Grafana"
+    }
+  },
+  "xychart": {
+    "category-xychart": "مخطط XY",
+    "errors": {
+      "nodata": "لا توجد بيانات",
+      "unknown": "خطأ غير معروف"
+    },
+    "name-fill-opacity": "عتامة التعبئة",
+    "name-line-style": "نمط الخط",
+    "name-line-width": "عرض الخط",
+    "name-max-point-size": "الحد الأقصى لحجم النقطة",
+    "name-min-point-size": "الحد الأدنى لحجم النقطة",
+    "name-point-shape": "شكل النقطة",
+    "name-point-size": "حجم النقطة",
+    "name-point-stroke-width": "عرض حدّ النقطة",
+    "name-series-mapping": "تعيين السلاسل",
+    "name-show": "إظهار",
+    "point-shape-options": {
+      "label-circle": "دائرة",
+      "label-square": "مربع"
+    },
+    "series-editor": {
+      "add-series": "إضافة سلسلة",
+      "aria-label-select-series": "اختر السلسلة {{seriesNum}}",
+      "label-color-field": "حقل اللون",
+      "label-frame": "الإطار",
+      "label-size-field": "حقل الحجم",
+      "label-x-field": "حقل X",
+      "label-y-field": "حقل Y",
+      "placeholder-all-frames": "جميع الإطارات",
+      "placeholder-select-frame": "اختر إطارًا",
+      "placeholder-x-field": "أول حقل رقمي أو زمني في كل إطار",
+      "placeholder-y-field": "حقول الأرقام المتبقية في كل إطار",
+      "tooltip-delete-series": "حذف السلسلة"
+    },
+    "series-mapping-options": {
+      "label-auto": "تلقائي",
+      "label-manual": "يدوي"
+    },
+    "show-options": {
+      "label-both": "كلاهما",
+      "label-lines": "خطوط",
+      "label-points": "نقاط"
+    },
+    "suggestions": {
+      "scatter-plot": "مخطط مبعثر"
     }
   }
 }
