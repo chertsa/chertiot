@@ -1,0 +1,6 @@
+{
+  "basic-roles": {
+    "label": "الأدوار الأساسية"
+  },
+  "user-count": "+{{numUsers}}"
+}

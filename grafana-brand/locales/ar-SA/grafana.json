@@ -1,5 +1,11 @@
 {
   "_comment": "الشيفرة هي مصدر الحقيقة للعبارات الإنجليزية. ينبغي تحديثها في المكوّنات مباشرةً، مع تحديد صيغ الجمع الإضافية في هذا الملف.",
+  "action-editor": {
+    "modal": {
+      "cancel-button": "إلغاء",
+      "save-button": "حفظ"
+    }
+  },
   "actions": {
     "action-editor": {
       "button": {
@@ -28,12 +34,39 @@
       "sign-in": "تسجيل الدخول"
     }
   },
+  "app-notification": {
+    "item": {
+      "trace-id": "معرّف التتبّع: {{traceId}}"
+    }
+  },
+  "auth-config-auth-config-page-unconnected": {
+    "subtitle": "أدر إعدادات المصادقة وقم بتهيئة الدخول الموحّد. اعرف المزيد في <2>وثائقنا</2>."
+  },
+  "bar-chart": {
+    "warn": {
+      "missing-numeric": "لم يُعثر على حقول رقمية",
+      "missing-series": "تتطلب المخططات الشريطية حقلًا نصيًا أو زمنيًا"
+    }
+  },
   "bookmarks-page": {
     "empty": {
       "message": "يبدو أنك لم تنشئ أي إشارات مرجعية بعد",
       "tip": "مرّر المؤشر فوق أي عنصر في قائمة التنقل وانقر على أيقونة الإشارة المرجعية لإضافته هنا."
     }
   },
+  "bouncing-loader": {
+    "label": "جارٍ التحميل"
+  },
+  "clipboard-button": {
+    "inline-toast": {
+      "success": "تم النسخ"
+    }
+  },
+  "close-button": {
+    "tooltip": "إغلاق"
+  },
+  "cloud-enterprise-feature-badge": "Cloud وEnterprise",
+  "cloud-feature-badge": "Cloud",
   "command-palette": {
     "action": {
       "change-theme": "تغيير السمة",
@@ -80,6 +113,11 @@
     "search": "بحث",
     "view": "عرض"
   },
+  "configuration-tracker": {
+    "config-card": {
+      "complete": "مكتمل"
+    }
+  },
   "core": {
     "versionHistory": {
       "comparison": {
@@ -99,6 +137,21 @@
       },
       "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
     }
+  },
+  "dashboard-links": {
+    "empty-state": {
+      "button-title": "إضافة رابط لوحة معلومات",
+      "info-box-content": "تتيح لك روابط لوحة المعلومات وضع روابط إلى لوحات معلومات ومواقع ويب أخرى أسفل ترويسة لوحة المعلومات مباشرةً. <2>معرفة المزيد</2>",
+      "title": "لم تُضف أي روابط للوحة المعلومات بعد"
+    }
+  },
+  "dashboard-scene-help-wizard": {
+    "support-bundle": "يمكنك أيضًا الحصول على حزمة دعم تحتوي على معلومات حول مثيل Grafana ومصادر البيانات المُهيّأة لديك في <1>قسم حِزم الدعم</1>."
+  },
+  "dashboard-schema-editor": {
+    "format-label": "التنسيق:",
+    "json-disabled-tooltip": "أصلح أخطاء صياغة YAML للتبديل إلى JSON",
+    "yaml-disabled-tooltip": "أصلح أخطاء صياغة JSON للتبديل إلى YAML"
   },
   "dashboards": {
     "filters-overview": {
@@ -163,6 +216,21 @@
       "tooltip": "تساعدك فحوصات المستشار في العثور على مشكلات في مصادر بياناتك والإضافات"
     }
   },
+  "diff-viewer": {
+    "loading": "جارٍ تحميل الفروق..."
+  },
+  "embed": {
+    "share": {
+      "time-range-description": "غيّر النطاق الزمني النسبي الحالي إلى نطاق زمني مطلق",
+      "time-range-label": "تثبيت النطاق الزمني"
+    }
+  },
+  "embedded-panel": {
+    "powered-by": "مدعوم بواسطة"
+  },
+  "empty-list-cta": {
+    "pro-tip": "نصيحة احترافية: {{proTip}}"
+  },
   "entity-not-found": {
     "community-link": "مساعدة المجتمع",
     "description": "نبحث لكن يبدو أننا لا نستطيع العثور على {{lowerCaseEntity}} هذا. يُرجى التحقق من الرابط (URL) والمحاولة مجددًا.",
@@ -176,6 +244,7 @@
       }
     }
   },
+  "exemplar-tooltip-header": "مثال توضيحي",
   "folder-filter": {
     "select-aria-label": "مرشّح المجلدات",
     "select-placeholder": "التصفية حسب المجلد"
@@ -206,6 +275,15 @@
     "user-field-description": "أدخل معلوماتك ليُرسل إليك رابط إعادة التعيين",
     "user-field-label": "مستخدم",
     "user-field-placeholder": "البريد الإلكتروني أو اسم المستخدم"
+  },
+  "gen-ai": {
+    "apply-suggestion": "تطبيق",
+    "incomplete-request-error": "عذرًا، لم أتمكّن من إكمال طلبك. يُرجى المحاولة مجددًا.",
+    "send-custom-feedback": "إرسال"
+  },
+  "get-enterprise": {
+    "requires-license": "يتطلب ترخيص Grafana Enterprise",
+    "title": "Enterprise"
   },
   "gettingstarted": {
     "docs-card": {
@@ -346,6 +424,10 @@
       "loading": "جارٍ تحميل لوحات المعلومات المميّزة بنجمة..."
     }
   },
+  "import-overview": {
+    "error-provisioning-status": "تعذّر التحقق مما إذا كان المجلد الهدف مُدارًا بواسطة مستودع. يُرجى المحاولة مجددًا أو التواصل مع مسؤول.",
+    "error-provisioning-status-title": "تعذّر تحديد حالة التهيئة التلقائية"
+  },
   "invites": {
     "invitee-row": {
       "aria-label-revoke-invite": "إلغاء الدعوة"
@@ -373,6 +455,13 @@
       "sign-up": "إنشاء حساب"
     }
   },
+  "label-dropdown-info": "لا تجد تسميتك؟ أدخلها يدويًا",
+  "legend": {
+    "container": {
+      "series-color-and-icon": "لون السلسلة",
+      "show-all-series": "...إظهار جميع العناصر ({{total}})"
+    }
+  },
   "link": {
     "share": {
       "config-alert-description": "سيؤدي تحديث إعداداتك إلى تعديل رابط النسخ الافتراضي ليشمل هذه التغييرات. يُرجى ملاحظة أن هذه الإعدادات تُحفظ ضمن نطاق متصفحك الحالي.",
@@ -391,6 +480,7 @@
       "render-image": "توليد الصورة"
     }
   },
+  "lock-icon": "أيقونة القفل",
   "login": {
     "divider": {
       "connecting-text": "أو"
@@ -422,6 +512,14 @@
       "button-label": "إنشاء حساب",
       "new-to-question": "جديد على Grafana؟"
     }
+  },
+  "manage-dashbaords": {
+    "import-dashboard-form": {
+      "description-existing-library-panels": "قائمة لوحات المكتبة الحالية. لا تتأثّر هذه اللوحات بالاستيراد."
+    }
+  },
+  "metric-select": {
+    "noOptionsMessage-no-options-found": "لا توجد خيارات"
   },
   "navigation": {
     "breadcrumbs": {
@@ -574,6 +672,25 @@
       "save-tooltip": "حفظ"
     }
   },
+  "page-loader": {
+    "default": "جارٍ التحميل ..."
+  },
+  "panel-data-pane": {
+    "try-new-editor": {
+      "label": "جرّب المحرّر الجديد",
+      "tooltip": "التبديل إلى تجربة محرّر الاستعلامات الجديدة"
+    }
+  },
+  "playlists": {
+    "empty-state": {
+      "message": "لا توجد قوائم تشغيل"
+    }
+  },
+  "plugin": {
+    "plugin-details-deprecated-warning": {
+      "body-deprecated": "هذه الإضافة من نوع {{pluginType}} <4>مُهملة</4> وقد أُزيلت من الكتالوج."
+    }
+  },
   "profile": {
     "change-password": {
       "cancel-button": "إلغاء",
@@ -618,6 +735,33 @@
       "text-loading-teams": "جارٍ تحميل الفرق..."
     }
   },
+  "provisioned-folder-preview-banner": {
+    "folder-pushed-to-repository": "تم دفع المجلد إلى المستودع",
+    "sync-needed": "تم دفع المجلد بنجاح إلى المستودع لكنه غير متاح بعد في Grafana. سيظهر بمجرد مزامنة التغييرات من المستودع",
+    "view-folder": "عرض حالة المستودع"
+  },
+  "provisioned-request": {
+    "push-success": {
+      "prefix": "تم دفع التغييرات بنجاح إلى"
+    },
+    "saved-success": "تم حفظ التغييرات بنجاح"
+  },
+  "query-library": {
+    "exposed-compoment": {
+      "tooltip": "فتح مكتبة الاستعلامات"
+    }
+  },
+  "recentlyDeleted": {
+    "filter": {
+      "placeholder": "ابحث عن لوحات المعلومات"
+    }
+  },
+  "reduce": {
+    "strictMode": {
+      "description": "عند استخدام <1>وضع الاختزال الصارم</1>، ستؤدي الدالة <3>fill(null)</3> (InfluxQL) إلى <6>NaN</6>. <9>راجع الوثائق لمزيد من التفاصيل.</9>",
+      "title": "سلوك الوضع الصارم"
+    }
+  },
   "refresh-picker": {
     "aria-label": {
       "choose-interval": "التحديث التلقائي متوقّف. اختر فاصل وقت التحديث",
@@ -642,6 +786,12 @@
       "label": "العودة إلى {{title}}"
     },
     "dismissable-button": "إغلاق"
+  },
+  "role-picker-drawer": {
+    "basic-roles": {
+      "label": "الأدوار الأساسية"
+    },
+    "user-count": "+{{numUsers}}"
   },
   "route-error": {
     "description": "من المرجّح أن Grafana قد حُدِّث. يُرجى محاولة إعادة تحميل الصفحة.",
@@ -705,6 +855,40 @@
       }
     }
   },
+  "select": {
+    "select-menu": {
+      "selected-count": "محدد"
+    }
+  },
+  "service-account-picker": {
+    "noOptionsMessage-no-service-accounts-found": "لم يُعثر على حسابات خدمة",
+    "select-aria-label": "منتقي حساب الخدمة",
+    "select-placeholder": "ابدأ الكتابة للبحث عن حسابات الخدمة"
+  },
+  "share-drawer": {
+    "confirm-action": {
+      "back-arrow-button": "زر الرجوع",
+      "cancel-button": "إلغاء"
+    }
+  },
+  "shared": {
+    "preferences": {
+      "theme": {
+        "dark-label": "داكن",
+        "light-label": "فاتح",
+        "system-label": "تفضيل النظام"
+      }
+    }
+  },
+  "shared-dashboard": {
+    "delete-modal": {
+      "revoke-body-text": "هل أنت متأكد أنك تريد إبطال هذا الوصول؟ لن يعود بالإمكان مشاركة لوحة المعلومات.",
+      "revoke-title": "إبطال الوصول"
+    },
+    "fields": {
+      "timezone-label": "المنطقة الزمنية"
+    }
+  },
   "sign-up": {
     "back-button": "العودة إلى تسجيل الدخول",
     "confirm-password-label": "تأكيد كلمة المرور",
@@ -724,6 +908,23 @@
       "info": "تم إرسال بريد إلكتروني يحتوي على رابط التحقق إلى عنوان البريد. من المفترض أن تستلمه قريبًا.",
       "send-button": "إرسال بريد التحقق"
     }
+  },
+  "silences-table": {
+    "header": {
+      "alert-name": "اسم التنبيه",
+      "state": "الحالة"
+    }
+  },
+  "sort-picker": {
+    "select-aria-label": "فرز"
+  },
+  "sql-expressions": {
+    "explain-query": "شرح الاستعلام",
+    "generate-suggestion": "توليد اقتراح",
+    "improve-query": "تحسين الاستعلام"
+  },
+  "swagger": {
+    "login": "تسجيل الدخول"
   },
   "tag-filter": {
     "clear-button": "مسح الوسوم",
@@ -864,6 +1065,10 @@
     "name-show-line-numbers": "إظهار أرقام الأسطر",
     "name-show-mini-map": "إظهار الخريطة المصغّرة"
   },
+  "theme-playground": {
+    "label-base-theme": "السمة الأساسية",
+    "title": "ساحة تجربة السمات"
+  },
   "time-period": {
     "1_day": "يوم واحد",
     "1_hour": "ساعة واحدة",
@@ -937,12 +1142,32 @@
       "select-search-input": "اكتب للبحث (الدولة، المدينة، الاختصار)"
     }
   },
+  "timeline": {
+    "missing-field": {
+      "all": "لا توجد حقول قابلة للرسم",
+      "time": "لا تحتوي البيانات على حقل زمني"
+    }
+  },
+  "transformation-editor": {
+    "no-options": {
+      "description": "سيُطبَّق {{name}} تلقائيًا على بياناتك ما لم يُعطَّل التحويل.",
+      "title": "لا توجد خيارات للتهيئة"
+    }
+  },
+  "transformation-editor-renderer": {
+    "no-transformation-editor-title": "لا يحتوي التحويل على مكوّن محرّر"
+  },
   "user-orgs": {
     "current-org-button": "الحالية",
     "name-column": "الاسم",
     "role-column": "الدور",
     "select-org-button": "اختيار المنظمة",
     "title": "المنظمات"
+  },
+  "user-picker": {
+    "noOptionsMessage-no-users-found": "لا يوجد مستخدمون",
+    "select-aria-label": "منتقي المستخدم",
+    "select-placeholder": "ابدأ الكتابة للبحث عن مستخدم"
   },
   "user-profile": {
     "fields": {
@@ -988,6 +1213,11 @@
       "placeholder-search-login-email": "ابحث عن مستخدم بالاسم أو البريد الإلكتروني أو اسم الدخول"
     }
   },
+  "users-access-list": {
+    "tabs": {
+      "shared-dashboard-users-tab-title": "مستخدمو لوحة المعلومات المشتركة"
+    }
+  },
   "variable": {
     "adhoc": {
       "placeholder": "اختر قيمة"
@@ -1003,6 +1233,11 @@
     },
     "textbox": {
       "placeholder": "أدخل قيمة المتغير"
+    }
+  },
+  "visualization": {
+    "data-hover-view": {
+      "link": "رابط"
     }
   },
   "welcome": {

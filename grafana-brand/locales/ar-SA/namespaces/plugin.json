@@ -1,0 +1,5 @@
+{
+  "plugin-details-deprecated-warning": {
+    "body-deprecated": "هذه الإضافة من نوع {{pluginType}} <4>مُهملة</4> وقد أُزيلت من الكتالوج."
+  }
+}

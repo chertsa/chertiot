@@ -1,0 +1,5 @@
+{
+  "format-label": "التنسيق:",
+  "json-disabled-tooltip": "أصلح أخطاء صياغة YAML للتبديل إلى JSON",
+  "yaml-disabled-tooltip": "أصلح أخطاء صياغة JSON للتبديل إلى YAML"
+}
