@@ -45,7 +45,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Start TLS", "Group DN", "Org ID", "Org DN",  # LDAP/config field & toggle names kept Latin
     "Logfmt", "logfmt", "Regex", "regex",  # log/query format & syntax names
     "Kubernetes", "OnCall", "SLO", "SLOs", "IRM", "Grafana Quaderno", "Grafana Alloy", "k6",  # product/feature names
-    "RPM", "hz", "Hz",  # engineering unit abbreviations
+    "RPM", "hz", "Hz", "PSI",  # engineering unit abbreviations
     "csv", "json", "txt", "ms", "ns", "OTel",  # lowercase file-format / unit / product tokens
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.

@@ -3035,6 +3035,502 @@
       }
     }
   },
+  "grafana-data": {
+    "datetime": {
+      "rangeutils": {
+        "getBaseRangeOptions": {
+          "dayBeforeYesterday": "أول أمس",
+          "previousFiscalQuarter": "الربع المالي السابق",
+          "previousFiscalYear": "السنة المالية السابقة",
+          "previousMonth": "الشهر السابق",
+          "previousWeek": "الأسبوع السابق",
+          "previousYear": "السنة السابقة",
+          "thisDayLastWeek": "هذا اليوم الأسبوع الماضي",
+          "thisFiscalQuarter": "هذا الربع المالي",
+          "thisFiscalQuarterSoFar": "هذا الربع المالي حتى الآن",
+          "thisFiscalYear": "هذه السنة المالية",
+          "thisFiscalYearSoFar": "هذه السنة المالية حتى الآن",
+          "thisMonth": "هذا الشهر",
+          "thisMonthSoFar": "هذا الشهر حتى الآن",
+          "thisWeek": "هذا الأسبوع",
+          "thisWeekSoFar": "هذا الأسبوع حتى الآن",
+          "thisYear": "هذه السنة",
+          "thisYearSoFar": "هذه السنة حتى الآن",
+          "today": "اليوم",
+          "todaySoFar": "اليوم حتى الآن",
+          "yesterday": "أمس"
+        },
+        "lastNDays_zero": "آخر {{count}} يوم",
+        "lastNDays_one": "آخر يوم",
+        "lastNDays_two": "آخر يومين",
+        "lastNDays_few": "آخر {{count}} أيام",
+        "lastNDays_many": "آخر {{count}} يومًا",
+        "lastNDays_other": "آخر {{count}} يوم",
+        "lastNHours_zero": "آخر {{count}} ساعة",
+        "lastNHours_one": "آخر ساعة",
+        "lastNHours_two": "آخر ساعتين",
+        "lastNHours_few": "آخر {{count}} ساعات",
+        "lastNHours_many": "آخر {{count}} ساعة",
+        "lastNHours_other": "آخر {{count}} ساعة",
+        "lastNMinutes_zero": "آخر {{count}} دقيقة",
+        "lastNMinutes_one": "آخر دقيقة",
+        "lastNMinutes_two": "آخر دقيقتين",
+        "lastNMinutes_few": "آخر {{count}} دقائق",
+        "lastNMinutes_many": "آخر {{count}} دقيقة",
+        "lastNMinutes_other": "آخر {{count}} دقيقة",
+        "lastNMonths_zero": "آخر {{count}} شهر",
+        "lastNMonths_one": "آخر شهر",
+        "lastNMonths_two": "آخر شهرين",
+        "lastNMonths_few": "آخر {{count}} أشهر",
+        "lastNMonths_many": "آخر {{count}} شهرًا",
+        "lastNMonths_other": "آخر {{count}} شهر",
+        "lastNYears_zero": "آخر {{count}} سنة",
+        "lastNYears_one": "آخر سنة",
+        "lastNYears_two": "آخر سنتين",
+        "lastNYears_few": "آخر {{count}} سنوات",
+        "lastNYears_many": "آخر {{count}} سنة",
+        "lastNYears_other": "آخر {{count}} سنة",
+        "nextNDays_zero": "{{count}} يوم قادم",
+        "nextNDays_one": "اليوم التالي",
+        "nextNDays_two": "اليومين التاليين",
+        "nextNDays_few": "{{count}} أيام قادمة",
+        "nextNDays_many": "{{count}} يومًا قادمًا",
+        "nextNDays_other": "{{count}} يوم قادم",
+        "nextNHours_zero": "{{count}} ساعة قادمة",
+        "nextNHours_one": "الساعة التالية",
+        "nextNHours_two": "الساعتين التاليتين",
+        "nextNHours_few": "{{count}} ساعات قادمة",
+        "nextNHours_many": "{{count}} ساعةً قادمة",
+        "nextNHours_other": "{{count}} ساعة قادمة",
+        "nextNMinutes_zero": "{{count}} دقيقة قادمة",
+        "nextNMinutes_one": "الدقيقة التالية",
+        "nextNMinutes_two": "الدقيقتين التاليتين",
+        "nextNMinutes_few": "{{count}} دقائق قادمة",
+        "nextNMinutes_many": "{{count}} دقيقةً قادمة",
+        "nextNMinutes_other": "{{count}} دقيقة قادمة",
+        "nextNMonths_zero": "{{count}} شهر قادم",
+        "nextNMonths_one": "الشهر التالي",
+        "nextNMonths_two": "الشهرين التاليين",
+        "nextNMonths_few": "{{count}} أشهر قادمة",
+        "nextNMonths_many": "{{count}} شهرًا قادمًا",
+        "nextNMonths_other": "{{count}} شهر قادم",
+        "nextNYears_zero": "{{count}} سنة قادمة",
+        "nextNYears_one": "السنة التالية",
+        "nextNYears_two": "السنتين التاليتين",
+        "nextNYears_few": "{{count}} سنوات قادمة",
+        "nextNYears_many": "{{count}} سنةً قادمة",
+        "nextNYears_other": "{{count}} سنة قادمة"
+      }
+    },
+    "field": {
+      "fieldColor": {
+        "accessibleGroup": "ميسّر",
+        "otherGroup": "أخرى"
+      }
+    },
+    "valueFormats": {
+      "categories": {
+        "acceleration": {
+          "formats": {
+            "name-feet-sec": "قدم/ث²",
+            "name-g-unit": "وحدة G",
+            "name-meters-sec": "متر/ث²"
+          },
+          "name": "التسارع"
+        },
+        "angle": {
+          "formats": {
+            "name-arc-minutes": "دقائق قوسية",
+            "name-arc-seconds": "ثوانٍ قوسية",
+            "name-degrees": "درجات (°)",
+            "name-gradian": "غراد",
+            "name-radians": "راديان"
+          },
+          "name": "الزاوية"
+        },
+        "area": {
+          "formats": {
+            "name-acres": "فدّان (ac)",
+            "name-hectares": "هكتار (ha)",
+            "name-square-feet": "قدم مربّع (ft²)",
+            "name-square-meters": "متر مربّع (m²)",
+            "name-square-miles": "ميل مربّع (mi²)"
+          },
+          "name": "المساحة"
+        },
+        "boolean": {
+          "formats": {
+            "name-on-off": "تشغيل / إيقاف",
+            "name-true-false": "صحيح / خطأ",
+            "name-yes-no": "نعم / لا"
+          },
+          "name": "منطقي"
+        },
+        "computation": {
+          "formats": {
+            "name-eflops": "EFLOP/s",
+            "name-flops": "FLOP/s",
+            "name-gflops": "GFLOP/s",
+            "name-mflops": "MFLOP/s",
+            "name-pflops": "PFLOP/s",
+            "name-tflops": "TFLOP/s",
+            "name-yflops": "YFLOP/s",
+            "name-zflops": "ZFLOP/s"
+          },
+          "name": "الحوسبة"
+        },
+        "concentration": {
+          "formats": {
+            "name-g-m3": "جرام لكل متر مكعّب (g/m³)",
+            "name-g-nm3": "جرام لكل متر مكعّب طبيعي (g/Nm³)",
+            "name-mg-dl": "مليجرام لكل ديسيلتر (mg/dL)",
+            "name-mg-m3": "مليجرام لكل متر مكعّب (mg/m³)",
+            "name-mg-nm3": "مليجرام لكل متر مكعّب طبيعي (mg/Nm³)",
+            "name-mmol-l": "مليمول لكل لتر (mmol/L)",
+            "name-ng-m3": "نانوجرام لكل متر مكعّب (ng/m³)",
+            "name-ng-nm3": "نانوجرام لكل متر مكعّب طبيعي (ng/Nm³)",
+            "name-ppb": "جزء في المليار (ppb)",
+            "name-ppm": "جزء في المليون (ppm)",
+            "name-ug-m3": "ميكروجرام لكل متر مكعّب (μg/m³)",
+            "name-ug-nm3": "ميكروجرام لكل متر مكعّب طبيعي (μg/Nm³)"
+          },
+          "name": "التركيز"
+        },
+        "currency": {
+          "formats": {
+            "name-bgn": "ليف بلغاري (BGN)",
+            "name-brl": "ريال برازيلي (R$)",
+            "name-btc": "بيتكوين (฿)",
+            "name-chf": "فرنك سويسري (CHF)",
+            "name-czk": "كورونا تشيكية (czk)",
+            "name-dkk": "كرونة دنماركية (kr)",
+            "name-eur": "يورو (€)",
+            "name-gbp": "جنيه إسترليني (£)",
+            "name-idr": "روبية إندونيسية (Rp)",
+            "name-ils": "شيكل إسرائيلي جديد (₪)",
+            "name-inr": "روبية هندية (₹)",
+            "name-isk": "كرونة آيسلندية (kr)",
+            "name-jpy": "ين (¥)",
+            "name-krw": "وون كوري جنوبي (₩)",
+            "name-mbtc": "ملي بيتكوين (฿)",
+            "name-myr": "رينغيت ماليزي (RM)",
+            "name-nok": "كرونة نرويجية (kr)",
+            "name-php": "بيزو فلبيني (PHP)",
+            "name-pln": "زلوتي بولندي (PLN)",
+            "name-pyg": "غواراني (₲)",
+            "name-rub": "روبل (₽)",
+            "name-sek": "كرونة سويدية (kr)",
+            "name-try": "ليرة تركية (₺)",
+            "name-uah": "هريفنيا (₴)",
+            "name-ubtc": "مايكرو بيتكوين (฿)",
+            "name-usd": "دولار ($)",
+            "name-uyu": "بيزو أوروغواي (UYU)",
+            "name-vnd": "دونغ فيتنامي (VND)",
+            "name-xpf": "فرنك CFP (XPF)",
+            "name-zar": "راند جنوب أفريقي (R)"
+          },
+          "name": "العملة"
+        },
+        "data": {
+          "formats": {
+            "name-bits-iec": "بت (IEC)",
+            "name-bits-si": "بت (SI)",
+            "name-bytes-iec": "بايت (IEC)",
+            "name-bytes-si": "بايت (SI)",
+            "name-gibibytes": "جيبي بايت",
+            "name-gigabytes": "جيجابايت",
+            "name-kibibytes": "كيبي بايت",
+            "name-kilobytes": "كيلوبايت",
+            "name-mebibytes": "ميبي بايت",
+            "name-megabytes": "ميجابايت",
+            "name-pebibytes": "بيبي بايت",
+            "name-petabytes": "بيتابايت",
+            "name-tebibytes": "تيبي بايت",
+            "name-terabytes": "تيرابايت"
+          },
+          "name": "البيانات"
+        },
+        "data-rate": {
+          "formats": {
+            "name-bits-sec-iec": "بت/ث (IEC)",
+            "name-bits-sec-si": "بت/ث (SI)",
+            "name-bytes-sec-iec": "بايت/ث (IEC)",
+            "name-bytes-sec-si": "بايت/ث (SI)",
+            "name-gibibits-sec": "جيبي بت/ث",
+            "name-gibibytes-sec": "جيبي بايت/ث",
+            "name-gigabits-sec": "جيجابت/ث",
+            "name-gigabytes-sec": "جيجابايت/ث",
+            "name-kibibits-sec": "كيبي بت/ث",
+            "name-kibibytes-sec": "كيبي بايت/ث",
+            "name-kilobits-sec": "كيلوبت/ث",
+            "name-kilobytes-sec": "كيلوبايت/ث",
+            "name-mebibits-sec": "ميبي بت/ث",
+            "name-mebibytes-sec": "ميبي بايت/ث",
+            "name-megabits-sec": "ميجابت/ث",
+            "name-megabytes-sec": "ميجابايت/ث",
+            "name-packets-sec": "حزم/ث",
+            "name-pebibits-sec": "بيبي بت/ث",
+            "name-pebibytes-sec": "بيبي بايت/ث",
+            "name-petabits-sec": "بيتابت/ث",
+            "name-petabytes-sec": "بيتابايت/ث",
+            "name-tebibits-sec": "تيبي بت/ث",
+            "name-tebibytes-sec": "تيبي بايت/ث",
+            "name-terabits-sec": "تيرابت/ث",
+            "name-terabytes-sec": "تيرابايت/ث"
+          },
+          "name": "معدّل البيانات"
+        },
+        "date-time": {
+          "formats": {
+            "name-datetime-default": "التاريخ والوقت الافتراضي",
+            "name-datetime-iso": "التاريخ والوقت ISO",
+            "name-datetime-iso-no-date": "التاريخ والوقت ISO (بلا تاريخ إذا كان اليوم)",
+            "name-datetime-local": "التاريخ والوقت المحلي",
+            "name-datetime-local-no-date": "التاريخ والوقت المحلي (بلا تاريخ إذا كان اليوم)",
+            "name-datetime-us": "التاريخ والوقت US",
+            "name-datetime-us-no-date": "التاريخ والوقت US (بلا تاريخ إذا كان اليوم)",
+            "name-from-now": "من الآن"
+          },
+          "name": "التاريخ والوقت"
+        },
+        "energy": {
+          "formats": {
+            "name-ampere": "أمبير (A)",
+            "name-ampere-hour": "أمبير-ساعة (Ah)",
+            "name-decibel-milliwatt": "ديسيبل-مليواط (dBm)",
+            "name-electron-volt": "إلكترون فولت (eV)",
+            "name-farad": "فاراد (F)",
+            "name-femtofarad": "فيمتوفاراد (fF)",
+            "name-gigawatt": "جيجاواط (GW)",
+            "name-henry": "هنري (H)",
+            "name-joule": "جول (J)",
+            "name-kiloampere": "كيلوأمبير (kA)",
+            "name-kiloampere-hour": "كيلوأمبير-ساعة (kAh)",
+            "name-kiloohm": "كيلوأوم (kΩ)",
+            "name-kilovolt": "كيلوفولت (kV)",
+            "name-kilovolt-ampere": "كيلوفولت-أمبير (kVA)",
+            "name-kilovolt-ampere-reactive": "كيلوفولت-أمبير تفاعلي (kVAr)",
+            "name-kilowatt": "كيلوواط (kW)",
+            "name-kilowatt-hour": "كيلوواط-ساعة (kWh)",
+            "name-kilowatt-min": "كيلوواط-دقيقة (kWm)",
+            "name-lumens": "لومن (Lm)",
+            "name-megaohm": "ميجاأوم (MΩ)",
+            "name-megawatt": "ميجاواط (MW)",
+            "name-megawatt-hour": "ميجاواط-ساعة (MWh)",
+            "name-microfarad": "ميكروفاراد (µF)",
+            "name-microhenry": "ميكروهنري (µH)",
+            "name-milliampere": "ملي أمبير (mA)",
+            "name-milliampere-hour": "ملي أمبير-ساعة (mAh)",
+            "name-millihenry": "ملي هنري (mH)",
+            "name-milliohm": "ملي أوم (mΩ)",
+            "name-millivolt": "ملي فولت (mV)",
+            "name-milliwatt": "ملي واط (mW)",
+            "name-nanofarad": "نانوفاراد (nF)",
+            "name-ohm": "أوم (Ω)",
+            "name-picofarad": "بيكوفاراد (pF)",
+            "name-volt": "فولت (V)",
+            "name-volt-ampere": "فولت-أمبير (VA)",
+            "name-volt-ampere-reactive": "فولت-أمبير تفاعلي (VAr)",
+            "name-watt": "واط (W)",
+            "name-watt-hour": "واط-ساعة (Wh)",
+            "name-watt-hour-per-kg": "واط-ساعة لكل كيلوجرام (Wh/kg)",
+            "name-watt-square-meter": "واط لكل متر مربّع (W/m²)"
+          },
+          "name": "الطاقة"
+        },
+        "flow": {
+          "formats": {
+            "name-cubic-feet-min": "قدم مكعّب/دقيقة (cfm)",
+            "name-cubic-feet-sec": "قدم مكعّب/ث (cfs)",
+            "name-cubic-meters-sec": "متر مكعّب/ث (cms)",
+            "name-gallons-min": "جالون/دقيقة (gpm)",
+            "name-litre-hour": "لتر/ساعة",
+            "name-litre-min": "لتر/دقيقة (L/min)",
+            "name-lux": "لوكس (lx)",
+            "name-millilitre-min": "مليلتر/دقيقة (mL/min)"
+          },
+          "name": "التدفّق"
+        },
+        "force": {
+          "formats": {
+            "name-kilonewton-meters": "كيلونيوتن-متر (kNm)",
+            "name-kilonewtons": "كيلونيوتن (kN)",
+            "name-newton-meters": "نيوتن-متر (Nm)",
+            "name-newtons": "نيوتن (N)"
+          },
+          "name": "القوة"
+        },
+        "hash-rate": {
+          "formats": {
+            "name-exahashes-sec": "إكسا تجزئة/ث",
+            "name-gigahashes-sec": "جيجا تجزئة/ث",
+            "name-hashes-sec": "تجزئة/ث",
+            "name-kilohashes-sec": "كيلو تجزئة/ث",
+            "name-megahashes-sec": "ميجا تجزئة/ث",
+            "name-petahashes-sec": "بيتا تجزئة/ث",
+            "name-terahashes-sec": "تيرا تجزئة/ث"
+          },
+          "name": "معدّل التجزئة"
+        },
+        "length": {
+          "formats": {
+            "name-centimeter": "سنتيمتر (cm)",
+            "name-feet": "قدم (ft)",
+            "name-inch": "بوصة (in)",
+            "name-kilometer": "كيلومتر (km)",
+            "name-meter": "متر (m)",
+            "name-mile": "ميل (mi)",
+            "name-millimeter": "مليمتر (mm)"
+          },
+          "name": "الطول"
+        },
+        "mass": {
+          "formats": {
+            "name-gram": "جرام (g)",
+            "name-kilogram": "كيلوجرام (kg)",
+            "name-metric-ton": "طن متري (t)",
+            "name-milligram": "مليجرام (mg)",
+            "name-pound": "رطل (lb)"
+          },
+          "name": "الكتلة"
+        },
+        "misc": {
+          "formats": {
+            "name-candala": "كانديلا (cd)",
+            "name-decibel": "ديسيبل",
+            "name-hexadecimal": "سداسي عشري",
+            "name-hexadecimal-0x": "سداسي عشري (0x)",
+            "name-humidity": "الرطوبة (%H)",
+            "name-locale": "تنسيق اللغة المحلية",
+            "name-number": "رقم",
+            "name-percent-1": "نسبة مئوية (0.0-1.0)",
+            "name-percent-100": "نسبة مئوية (0-100)",
+            "name-pixels": "بكسل",
+            "name-scientific": "الترميز العلمي",
+            "name-short": "مختصر",
+            "name-si-short": "SI مختصر",
+            "name-string": "سلسلة نصية"
+          },
+          "name": "متفرّقات"
+        },
+        "pressure": {
+          "formats": {
+            "name-bars": "بار",
+            "name-hectopascals": "هكتوباسكال",
+            "name-inches-mercury": "بوصات زئبق",
+            "name-kilobars": "كيلوبار",
+            "name-kilopascals": "كيلوباسكال",
+            "name-millibars": "ملي بار",
+            "name-pascals": "باسكال",
+            "name-psi": "PSI"
+          },
+          "name": "الضغط"
+        },
+        "radiation": {
+          "formats": {
+            "name-becquerel": "بيكريل (Bq)",
+            "name-curie": "كوري (Ci)",
+            "name-exposure": "التعرّض (C/kg)",
+            "name-gray": "جراي (Gy)",
+            "name-microsievert": "ميكروسيفرت (µSv)",
+            "name-microsievert-hour": "ميكروسيفرت/ساعة (µSv/h)",
+            "name-millisievert": "ملي سيفرت (mSv)",
+            "name-millisievert-hour": "ملي سيفرت/ساعة (mSv/h)",
+            "name-rad": "راد",
+            "name-rem": "ريم",
+            "name-roentgen": "رونتجن (R)",
+            "name-sievert": "سيفرت (Sv)",
+            "name-sievert-hour": "سيفرت/ساعة (Sv/h)"
+          },
+          "name": "الإشعاع"
+        },
+        "rotational-speed": {
+          "formats": {
+            "name-degrees-sec": "درجات في الثانية (°/s)",
+            "name-gigahertz": "جيجاهرتز (GHz)",
+            "name-hertz": "هرتز (Hz)",
+            "name-kilohertz": "كيلوهرتز (kHz)",
+            "name-megahertz": "ميجاهرتز (MHz)",
+            "name-radians-sec": "راديان في الثانية (rad/s)",
+            "name-rpm": "دورة في الدقيقة (rpm)"
+          },
+          "name": "السرعة الدورانية"
+        },
+        "temperature": {
+          "formats": {
+            "name-celsius": "مئوية (°C)",
+            "name-fahrenheit": "فهرنهايت (°F)",
+            "name-kelvin": "كلفن (K)"
+          },
+          "name": "درجة الحرارة"
+        },
+        "throughput": {
+          "formats": {
+            "name-counts-min": "عدّات/دقيقة (cpm)",
+            "name-counts-sec": "عدّات/ث (cps)",
+            "name-events-min": "أحداث/دقيقة (epm)",
+            "name-events-sec": "أحداث/ث (eps)",
+            "name-io-ops-sec": "عمليات إدخال/إخراج/ث (iops)",
+            "name-messages-min": "رسائل/دقيقة (mpm)",
+            "name-messages-sec": "رسائل/ث (mps)",
+            "name-ops-min": "عمليات/دقيقة (opm)",
+            "name-ops-sec": "عمليات/ث (ops)",
+            "name-reads-min": "قراءات/دقيقة (rpm)",
+            "name-reads-sec": "قراءات/ث (rps)",
+            "name-records-min": "سجلّات/دقيقة (rpm)",
+            "name-records-sec": "سجلّات/ث (rps)",
+            "name-requests-min": "طلبات/دقيقة (rpm)",
+            "name-requests-sec": "طلبات/ث (rps)",
+            "name-rows-min": "صفوف/دقيقة (rpm)",
+            "name-rows-sec": "صفوف/ث (rps)",
+            "name-writes-min": "كتابات/دقيقة (wpm)",
+            "name-writes-sec": "كتابات/ث (wps)"
+          },
+          "name": "الإنتاجية"
+        },
+        "time": {
+          "formats": {
+            "name-clock-ms": "ساعة (ms)",
+            "name-clock-s": "ساعة (s)",
+            "name-days": "أيام (d)",
+            "name-duration-dhms": "مدة (d hh:mm:ss)",
+            "name-duration-hms": "مدة (hh:mm:ss)",
+            "name-duration-ms": "مدة (ms)",
+            "name-duration-s": "مدة (s)",
+            "name-hertz": "هرتز (1/s)",
+            "name-hours": "ساعات (h)",
+            "name-microseconds": "ميكروثانية (µs)",
+            "name-milliseconds": "ميلي ثانية (ms)",
+            "name-minutes": "دقائق (m)",
+            "name-nanoseconds": "نانو ثانية (ns)",
+            "name-seconds": "ثوانٍ (s)",
+            "name-timeticks": "نبضات زمنية (s/100)"
+          },
+          "name": "الوقت"
+        },
+        "velocity": {
+          "formats": {
+            "name-kilometers-hour": "كيلومتر/ساعة (km/h)",
+            "name-knot": "عقدة (kn)",
+            "name-meters-second": "متر/ثانية (m/s)",
+            "name-miles-hour": "ميل/ساعة (mph)"
+          },
+          "name": "السرعة"
+        },
+        "volume": {
+          "formats": {
+            "name-cubic-decimeter": "ديسيمتر مكعّب",
+            "name-cubic-meter": "متر مكعّب",
+            "name-gallons": "جالون",
+            "name-litre": "لتر (L)",
+            "name-millilitre": "مليلتر (mL)",
+            "name-normal-cubic-meter": "متر مكعّب طبيعي"
+          },
+          "name": "الحجم"
+        }
+      }
+    }
+  },
   "graph": {
     "container": {
       "content": "قد يؤثّر عرض عدد كبير جدًا من السلاسل في لوحة واحدة على الأداء ويجعل قراءة البيانات أصعب. فكّر في تحسين استعلاماتك.",
