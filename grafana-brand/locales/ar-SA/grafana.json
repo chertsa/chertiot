@@ -3492,6 +3492,271 @@
       "body-deprecated": "هذه الإضافة من نوع {{pluginType}} <4>مُهملة</4> وقد أُزيلت من الكتالوج."
     }
   },
+  "plugins": {
+    "app-root-page": {
+      "access-denied": {
+        "permission": "ليس لديك إذن لرؤية هذه الصفحة.",
+        "title-access-denied": "تم رفض الوصول"
+      },
+      "error-loading-plugin": "فشل تحميل الإضافة",
+      "no-root-app-page-component-found": "لم يُعثر على مكوّن صفحة تطبيق جذرية"
+    },
+    "browse": {
+      "aria-label-plugin-type-filter": "مرشّح نوع الإضافة",
+      "filter-by-options": {
+        "label": {
+          "all": "الكل",
+          "installed": "مُثبَّت",
+          "new-updates": "تحديثات جديدة"
+        }
+      },
+      "label": {
+        "all": "الكل",
+        "applications": "التطبيقات",
+        "data-sources": "مصادر البيانات",
+        "panels": "اللوحات"
+      },
+      "label-search": "بحث",
+      "label-state": "الحالة",
+      "label-type": "النوع",
+      "subtitle": "وسّع تجربة Grafana بإضافات اللوحات والتطبيقات. للعثور على مزيد من مصادر البيانات انتقل إلى <2>الاتصالات</2>.",
+      "tooltip-filter-disabled": "عُطّل هذا المرشّح لأن خادم Grafana لا يمكنه الوصول إلى grafana.com"
+    },
+    "catalog": {
+      "no-updates-available": "لا تتوفّر تحديثات",
+      "update-all": {
+        "all-plugins-updated": "تم تحديث جميع الإضافات!",
+        "available-header": "متاح",
+        "button": "تحديث الكل ({{length}})",
+        "cloud-update-message": "* قد يستغرق توفّر الإضافات للاستخدام بضع دقائق.",
+        "error": "خطأ في تحديث الإضافة: {{errorMessage}}",
+        "error-status-text": "فشل - راجع رسائل الخطأ",
+        "header": "الإضافات التالية لها تحديث متاح",
+        "installed-header": "مُثبَّت",
+        "modal-confirmation": "تحديث",
+        "modal-dismiss": "إغلاق",
+        "modal-in-progress": "جارٍ التحديث...",
+        "modal-title": "تحديث الإضافات",
+        "name-header": "الاسم",
+        "update-header": "تحديث",
+        "update-status-text": "إضافة مُحدَّثة"
+      },
+      "versions": {
+        "confirmation-text": "هل أنت متأكد حقًا أنك تريد الرجوع إلى الإصدار {{version}}؟ عادةً لا ينبغي أن تفعل هذا",
+        "downgrade-confirm": "الرجوع لإصدار أقدم",
+        "downgrade-title": "الرجوع بإصدار الإضافة"
+      }
+    },
+    "details": {
+      "connections-tab": {
+        "description": "لديك حاليًا مصادر البيانات التالية مُهيّأة لـ {{pluginName}}، انقر على بلاطة لعرض تفاصيل الإعداد. يمكنك العثور على جميع اتصالات مصادر بياناتك في <4><0>الاتصالات</0> - <3>مصادر البيانات</3>.</4>"
+      },
+      "disabled-error": {
+        "angular-deprecation-link": "اقرأ المزيد عن إهمال Angular",
+        "angular-error-text": "عُطّلت هذه الإضافة لأن Grafana لم يعد يدعم الإضافات المبنية على Angular. يمكنك محاولة تحديث الإضافة إلى أحدث إصدار لحل هذه المشكلة. ثم اختبرها للتأكد من أنها تعمل كما هو متوقّع.",
+        "angular-error-text-no-non-angular-version": "عُطّلت هذه الإضافة لأن Grafana لم يعد يدعم الإضافات المبنية على Angular. للأسف، لا يزال أحدث إصدار من هذه الإضافة يستخدم Angular لذا عليك انتظار مؤلّف الإضافة لترحيلها لمواصلة استخدامها.",
+        "contact-server-admin": "يُرجى التواصل مع مسؤول الخادم لديك لحل هذه المشكلة.",
+        "failed-backend-start-text": "فشل بدء تشغيل هذه الإضافة. يمكن أن توفّر سجلّات الخادم مزيدًا من المعلومات.",
+        "invalid-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا أنه غير صالح. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+        "manage-plugins-link": "اقرأ المزيد عن إدارة الإضافات",
+        "missing-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا عدم وجود توقيع لهذه الإضافة. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+        "modified-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا أن محتوى هذه الإضافة لا يطابق توقيعها. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+        "title": "الإضافة مُعطّلة",
+        "unknown-error-text": "فشلنا في تشغيل هذه الإضافة لسبب غير معروف ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة صالحة منها."
+      },
+      "labels": {
+        "contactGrafanaLabs": "التواصل مع Grafana Labs",
+        "customLinks": "روابط مخصصة ",
+        "customLinksTooltip": "يوفّر هذه الروابط مطوّر الإضافة لتقديم موارد ومعلومات إضافية خاصة بالمطوّر",
+        "dependencies": "التبعيات",
+        "documentation": "الوثائق",
+        "downloads": "التنزيلات",
+        "from": "من",
+        "installedVersion": "الإصدار المُثبَّت",
+        "latestReleaseDate": "تاريخ آخر إصدار:",
+        "latestVersion": "أحدث إصدار",
+        "license": "الترخيص",
+        "moreDetails": "رؤى الإضافة حاليًا في مرحلة المعاينة، شارك ملاحظاتك لمساعدتنا في إبراز أكثر المعلومات فائدةً <2>هنا</2>.",
+        "pluginInsights": {
+          "header": "رؤى الإضافة"
+        },
+        "pluginInsightsSuccessTooltip": "جميع الفحوصات ذات الصلة موجودة ومُتحقَّق منها",
+        "pluginInsightsWarningTooltip": "فحص واحد أو أكثر يحتاج إلى انتباه",
+        "raiseAnIssue": "طرح مشكلة",
+        "reportAbuse": "الإبلاغ عن مشكلة ",
+        "reportAbuseTooltip": "أبلغ عن المشكلات المتعلقة بالإضافات الخبيثة أو الضارة مباشرةً إلى Grafana Labs.",
+        "repository": "المستودع",
+        "signature": "التوقيع",
+        "sponsorDeveloper": "ادعم هذا المطوّر",
+        "status": "الحالة"
+      },
+      "modal": {
+        "cancel": "إلغاء",
+        "copyEmail": "نسخ عنوان البريد الإلكتروني",
+        "description": "هذه الميزة للإبلاغ عن سلوك خبيث أو ضار داخل الإضافات. لمخاوف الإضافات، راسلنا عبر البريد الإلكتروني على: ",
+        "node": "ملاحظة: للمشكلات العامة للإضافات مثل العلل أو طلبات الميزات، يُرجى التواصل مع مؤلّف الإضافة باستخدام الروابط المُقدَّمة. ",
+        "title": "الإبلاغ عن مشكلة في إضافة"
+      }
+    },
+    "empty-state": {
+      "message": "لم يُعثر على إضافات"
+    },
+    "extensions": {
+      "extension-error-alert-description": "راجع وحدة التحكّم لمزيد من التفاصيل حول الخطأ.",
+      "extension-error-alert-title": "فشل تحميل الامتداد: \"{{pluginId}}/{{extensionTitle}}\""
+    },
+    "extensions-log-data-source": {
+      "message": {
+        "ok": "OK"
+      }
+    },
+    "filter": {
+      "disabled": "عُطّل هذا المرشّح لأن خادم Grafana لا يمكنه الوصول إلى grafana.com",
+      "sort": "فرز",
+      "sort-list": "فرز قائمة الإضافات",
+      "state": "الحالة"
+    },
+    "get-feature-state-info": {
+      "text": {
+        "alpha": "ألفا",
+        "beta": "بيتا",
+        "deprecated": "مُهمل"
+      }
+    },
+    "get-started-with-app": {
+      "disable": "تعطيل",
+      "enable": "تفعيل"
+    },
+    "get-started-with-data-source": {
+      "add-new-data-source": "إضافة مصدر بيانات جديد",
+      "title-button-disabled": "الإضافة غير قابلة للاستخدام بعد، قد يستغرق إكمال التثبيت بعض الوقت."
+    },
+    "install-controls": {
+      "contact-us": "تواصل معنا",
+      "install": "تثبيت",
+      "installing": "جارٍ التثبيت",
+      "update": "تحديث",
+      "updating": "جارٍ التحديث"
+    },
+    "install-controls-button": {
+      "title-uninstall-modal": "إلغاء تثبيت {{plugin}}",
+      "uninstall-controls": {
+        "body-uninstall-plugin": "هل أنت متأكد أنك تريد إلغاء تثبيت هذه الإضافة؟",
+        "confirmText-confirm": "تأكيد"
+      }
+    },
+    "install-controls-warning": {
+      "body-not-published": "هذه الإضافة غير منشورة على <2>grafana.com/plugins</2> ولا يمكن إدارتها عبر الكتالوج.",
+      "enterprise-plugin-info": "هذه الإضافة متاحة فقط في Grafana Cloud وGrafana Enterprise.",
+      "learn-more": "معرفة المزيد",
+      "title-dev-alert": "هذا إصدار تطوير من الإضافة ولا يمكن إلغاء تثبيته.",
+      "title-plugin-doesnt-support-version-grafana": "هذه الإضافة لا تدعم إصدار Grafana لديك.",
+      "title-remote-plugins-unavailable": "عُطّلت عناصر تحكّم التثبيت لأن خادم Grafana لا يمكنه الوصول إلى grafana.com.",
+      "title-renderer-plugins-cannot-managed-plugin-catalog": "لا يمكن إدارة إضافات العارض عبر كتالوج الإضافات."
+    },
+    "log-view-filters": {
+      "label-extension": "الامتداد",
+      "label-plugin-id": "معرّف الإضافة",
+      "label-severity": "الخطورة"
+    },
+    "no-updates-available": {
+      "message": "جميع الإضافات محدّثة"
+    },
+    "not-found-plugin": {
+      "body-plugin-not-found": "تعذّر العثور على تلك الإضافة. يُرجى التحقق من صحة الرابط أو <br/>الانتقال إلى <3>كتالوج الإضافات</3>.",
+      "title-plugin-not-found": "لم يُعثر على الإضافة"
+    },
+    "plugin-actions": {
+      "refresh-changes": "أعد تحميل الصفحة لرؤية التغييرات"
+    },
+    "plugin-dashboards": {
+      "dashboards-included-plugin": "لا توجد لوحات معلومات مضمّنة مع هذه الإضافة",
+      "loading": "جارٍ التحميل..."
+    },
+    "plugin-deprecated-badge": {
+      "text-deprecated": "مُهمل",
+      "tooltip-plugin-deprecated-longer-receives-updates": "هذه الإضافة مُهملة ولم تعد تتلقّى تحديثات."
+    },
+    "plugin-details-body": {
+      "needs-service-account": "تحتاج إضافة {{pluginName}} إلى حساب خدمة ليتمكّن من الاستعلام عن Grafana. تحتوي القائمة التالية على الأذونات المتاحة لحساب الخدمة:",
+      "page-not-found": "لم يُعثر على الصفحة."
+    },
+    "plugin-details-deprecated-warning": {
+      "title-deprecated": "مُهمل"
+    },
+    "plugin-details-header-dependencies": {
+      "grafana-dependency": "Grafana {{grafanaDependency}}"
+    },
+    "plugin-details-page": {
+      "not-found-model": {
+        "subTitle": {
+          "requested-belong-plugin": "المعرّف المطلوب لا ينتمي إلى أي إضافة"
+        },
+        "text": {
+          "unknown-plugin": "إضافة غير معروفة"
+        }
+      }
+    },
+    "plugin-details-signature": {
+      "body-invalid-plugin-signature": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. التحقق من توقيع الإضافة جزء من إجراءاتنا الأمنية لضمان أن الإضافات آمنة وموثوقة. لا يمكن لـ Grafana Labs ضمان سلامة هذه الإضافة غير الموقّعة. اطلب من مؤلّف الإضافة طلب توقيعها.",
+      "read-more-about-plugins-signing": "اقرأ المزيد عن توقيع الإضافات.",
+      "title-invalid-plugin-signature": "توقيع إضافة غير صالح"
+    },
+    "plugin-disabled-badge": {
+      "text-disabled": "مُعطّل"
+    },
+    "plugin-enterprise-badge": {
+      "aria-label-enterprise": "Enterprise",
+      "text-enterprise": "Enterprise",
+      "title-requires-a-grafana-enterprise-license": "يتطلب ترخيص Grafana Enterprise"
+    },
+    "plugin-help": {
+      "error": "حدث خطأ أثناء تحميل المساعدة.",
+      "loading": "جارٍ تحميل المساعدة...",
+      "not-found": "لم يُعثر على مساعدة للاستعلام."
+    },
+    "plugin-installed-badge": {
+      "text-installed": "مُثبَّت"
+    },
+    "plugin-list-item": {
+      "label-author": "بواسطة {{author}}",
+      "title-icon-plugin-type": "إضافة {{pluginType}}"
+    },
+    "plugin-update-available-badge": {
+      "update-available": "تحديث متاح!"
+    },
+    "plugin-usage": {
+      "num-usages": "{{pluginName}} مُستخدَم <2>{{numUsages}}</2> مرة.",
+      "title-not-used-yet": "{{pluginName}} غير مُستخدَم في أي لوحات معلومات بعد"
+    },
+    "plugins-errors-info": {
+      "disabled-list": "الإضافات التالية مُعطّلة وغير معروضة في القائمة أدناه:",
+      "read-more-about-plugin-signing": "اقرأ المزيد عن توقيع الإضافات",
+      "title-unsigned-plugins": "عُثر على إضافات غير موقّعة أثناء تهيئة الإضافات. لا يمكن لـ Grafana Labs ضمان سلامة هذه الإضافات. نوصي باستخدام الإضافات الموقّعة فقط."
+    },
+    "search-field": {
+      "placeholder-search-grafana-plugins": "ابحث في إضافات Grafana"
+    },
+    "use-plugin-details-tabs": {
+      "nav-model-children": {
+        "text": {
+          "dashboards": "لوحات المعلومات"
+        }
+      }
+    },
+    "version-install-button": {
+      "text-installed": "مُثبَّت"
+    },
+    "version-list": {
+      "deprecated": "مُهمل",
+      "grafana-dependency": "تبعية Grafana",
+      "installed-version": "{{versionNumber}} (الإصدار المُثبَّت)",
+      "latest-compatible-version": "{{versionNumber}} (أحدث إصدار متوافق)",
+      "latest-release-date": "تاريخ آخر إصدار",
+      "no-version-history-was-found": "لم يُعثر على سجلّ إصدارات.",
+      "version": "الإصدار"
+    }
+  },
   "profile": {
     "change-password": {
       "cancel-button": "إلغاء",
@@ -3800,6 +4065,203 @@
       "query-inspector": "فاحص الاستعلامات",
       "query-tab-help-button-title-open-data-source-help": "فتح مساعدة مصدر البيانات",
       "title-data-source-help": "مساعدة مصدر البيانات"
+    }
+  },
+  "query-editor-next": {
+    "action": {
+      "add-transformation-filter": "إضافة مرشّح",
+      "cancel-delete": "إلغاء",
+      "confirm-delete": "حذف",
+      "confirm-delete-confirm": "تأكيد",
+      "delete-confirmation-group": "تأكيد الحذف",
+      "disable": "تعطيل {{type}}",
+      "duplicate": "تكرار {{type}}",
+      "enable": "تفعيل {{type}}",
+      "error": "خطأ",
+      "hide": "إخفاء {{type}}",
+      "hide-help": "إخفاء مساعدة مصدر البيانات",
+      "hide-transformation-help": "إخفاء مساعدة التحويل",
+      "more-actions": "مزيد من إجراءات {{type}}",
+      "remove": "إزالة {{type}}",
+      "remove-transformation-filter": "إزالة المرشّح",
+      "show": "إظهار {{type}}",
+      "show-help": "إظهار مساعدة مصدر البيانات",
+      "show-transformation-help": "إظهار مساعدة التحويل",
+      "transformation-debug": "تصحيح"
+    },
+    "alerts": {
+      "no-alerts": "لا توجد قواعد تنبيه لهذه اللوحة",
+      "no-alerts-description": "أنشئ قاعدة تنبيه ليصلك إشعار عندما تستوفي بياناتك شروطًا معينة."
+    },
+    "bulk-actions": {
+      "change-datasource": "تغيير مصدر البيانات للاستعلامات المحددة",
+      "datasource": "مصدر البيانات",
+      "delete": "حذف",
+      "delete-confirm-body": "لا يمكن التراجع عن هذا الإجراء.",
+      "delete-confirm-title_zero": "حذف {{count}} عنصر؟",
+      "delete-confirm-title_one": "حذف عنصر واحد؟",
+      "delete-confirm-title_two": "حذف عنصرين؟",
+      "delete-confirm-title_few": "حذف {{count}} عناصر؟",
+      "delete-confirm-title_many": "حذف {{count}} عنصرًا؟",
+      "delete-confirm-title_other": "حذف {{count}} عنصر؟",
+      "delete-tooltip": "حذف المحدد",
+      "delete-transformations-confirm-title_zero": "حذف {{count}} تحويل؟",
+      "delete-transformations-confirm-title_one": "حذف تحويل واحد؟",
+      "delete-transformations-confirm-title_two": "حذف تحويلين؟",
+      "delete-transformations-confirm-title_few": "حذف {{count}} تحويلات؟",
+      "delete-transformations-confirm-title_many": "حذف {{count}} تحويلًا؟",
+      "delete-transformations-confirm-title_other": "حذف {{count}} تحويل؟",
+      "disable": "تعطيل",
+      "disable-all-tooltip": "تعطيل المحدد",
+      "empty-hint": "اختر عناصر لتطبيق الإجراءات",
+      "enable": "تفعيل",
+      "enable-all-tooltip": "تفعيل المحدد",
+      "exit-multi-select": "الخروج من التحديد المتعدد",
+      "hide": "إخفاء",
+      "hide-all-tooltip": "إخفاء المحدد",
+      "show": "إظهار",
+      "show-all-tooltip": "إظهار المحدد",
+      "toolbar-label": "الإجراءات الجماعية"
+    },
+    "delete-modal": {
+      "body-transformation": "قد تؤدي إزالة تحويل واحد إلى كسر غيره."
+    },
+    "details-sidebar": {
+      "cache-timeout": "مهلة التخزين المؤقت",
+      "cache-timeout-tooltip": "إذا كان مخزن السلاسل الزمنية لديك يحتوي على تخزين مؤقت للاستعلامات، يمكن لهذا الخيار تجاوز مهلة التخزين المؤقت الافتراضية. حدّد قيمة رقمية بالثواني.",
+      "cache-ttl": "مدة بقاء التخزين المؤقت (TTL)",
+      "cache-ttl-tooltip": "مدة بقاء التخزين المؤقت: كم من الوقت ستُخزَّن نتائج الاستعلامات في هذه اللوحة مؤقتًا، بالمللي ثانية.",
+      "hide-time-override": "إخفاء معلومات الوقت",
+      "hide-time-override-tooltip": "يُخفي تجاوز الوقت المعروض في ترويسة اللوحة عند ضبط الوقت النسبي أو إزاحة الوقت.",
+      "interval": "الفاصل",
+      "interval-tooltip": "الفاصل المُقيَّم الذي يُرسل إلى مصدر البيانات ويُستخدم في $__interval و$__interval_ms.",
+      "max-data-points": "الحد الأقصى لنقاط البيانات",
+      "max-data-points-tooltip": "الحد الأقصى لنقاط البيانات لكل سلسلة. يُستخدم مباشرةً من قبل بعض مصادر البيانات ويُستخدم في حساب الفاصل التلقائي.",
+      "min-interval": "الحد الأدنى للفاصل",
+      "min-interval-tooltip": "حد أدنى للفاصل. يُوصى بضبطه على تردد الكتابة، على سبيل المثال 1m إذا كانت بياناتك تُكتب كل دقيقة.",
+      "no-limit": "بلا حد",
+      "relative-time": "الوقت النسبي",
+      "relative-time-tooltip": "يتجاوز النطاق الزمني النسبي للوحات الفردية. على سبيل المثال، لتهيئة «آخر 5 دقائق» استخدم now-5m.",
+      "time-range-max-data-points": "النطاق الزمني / الحد الأقصى لنقاط البيانات",
+      "time-shift": "إزاحة الوقت",
+      "time-shift-tooltip": "يتجاوز النطاق الزمني للوحات الفردية بإزاحة بدايتها ونهايتها نسبةً إلى منتقي الوقت.",
+      "width-of-panel": "عرض اللوحة"
+    },
+    "edit-query-name": "تعديل اسم الاستعلام",
+    "experimental-button": {
+      "aria-label": "خيارات الميزة التجريبية",
+      "back-to-classic": "العودة إلى المحرّر الكلاسيكي",
+      "give-feedback": "إرسال ملاحظات",
+      "tooltip": "خيارات الميزة التجريبية"
+    },
+    "footer": {
+      "edit-option": "تعديل {{label}}",
+      "inspect-queries": "فحص الاستعلامات",
+      "label": {
+        "interval": "الفاصل",
+        "max-data-points": "الحد الأقصى لنقاط البيانات",
+        "min-interval": "الحد الأدنى للفاصل",
+        "relative-time": "الوقت النسبي",
+        "time-shift": "إزاحة الوقت"
+      },
+      "placeholder": {
+        "no-limit": "بلا حد"
+      },
+      "query-inspector": "فاحص الاستعلامات",
+      "query-options": "خيارات الاستعلام"
+    },
+    "header": {
+      "alert": "تنبيه",
+      "expression": "تعبير",
+      "pending-expression": "اختر تعبيرًا",
+      "pending-expression-cancel": "إلغاء",
+      "pending-transformation": "اختر تحويلًا",
+      "pending-transformation-cancel": "إلغاء",
+      "transformation": "تحويل"
+    },
+    "help": {
+      "close": "إغلاق المساعدة",
+      "close-aria": "إغلاق لوحة المساعدة"
+    },
+    "labels": {
+      "alert": "تنبيه",
+      "expression": "تعبير",
+      "query": "استعلام",
+      "transformation": "تحويل"
+    },
+    "queries-empty-state": {
+      "add-query": "إضافة استعلام",
+      "message": "أضف استعلامًا أو تعبيرًا أو تحويلًا للبدء"
+    },
+    "sidebar": {
+      "add-below": "إضافة أسفل {{id}}",
+      "add-expression": "إضافة تعبير",
+      "add-expression-disabled": "التعبيرات غير مدعومة مع مصدر بيانات لوحة المعلومات",
+      "add-query": "إضافة استعلام",
+      "add-query-or-expression": "إضافة استعلام أو تعبير",
+      "add-saved-query": "إضافة استعلام محفوظ",
+      "add-transformation": "إضافة تحويل",
+      "add-transformation-below": "إضافة تحويل أسفل {{id}}",
+      "alerts_zero": "التنبيهات ({{count}})",
+      "alerts_one": "التنبيهات ({{count}})",
+      "alerts_two": "التنبيهات ({{count}})",
+      "alerts_few": "التنبيهات ({{count}})",
+      "alerts_many": "التنبيهات ({{count}})",
+      "alerts_other": "التنبيهات ({{count}})",
+      "alerts-loading": "التنبيهات",
+      "card-click": "اختيار البطاقة {{id}}",
+      "card-multi-select": "تضمين البطاقة {{id}} في التحديد الجماعي",
+      "data": "البيانات",
+      "enter-stacked-view": "الدخول إلى العرض المكدّس",
+      "exit-stacked-view": "الخروج من العرض المكدّس",
+      "footer-items_zero": "لا عناصر",
+      "footer-items_one": "عنصر واحد",
+      "footer-items_two": "عنصران",
+      "footer-items_few": "{{count}} عناصر",
+      "footer-items_many": "{{count}} عنصرًا",
+      "footer-items_other": "{{count}} عنصر",
+      "footer-items-alert_zero": "لا تنبيهات",
+      "footer-items-alert_one": "تنبيه واحد",
+      "footer-items-alert_two": "تنبيهان",
+      "footer-items-alert_few": "{{count}} تنبيهات",
+      "footer-items-alert_many": "{{count}} تنبيهًا",
+      "footer-items-alert_other": "{{count}} تنبيه",
+      "footer-select": "اختيار...",
+      "footer-select-label": "اختيار عناصر متعددة",
+      "new-type": "{{type}} جديد",
+      "queries-empty": "لا توجد استعلامات أو تعبيرات",
+      "queries-expressions": "الاستعلامات والتعبيرات",
+      "toggle-size": "تبديل حجم الشريط الجانبي",
+      "transformations": "التحويلات",
+      "transformations-empty": "لا توجد تحويلات",
+      "view-toggle": "عرض"
+    },
+    "stacked": {
+      "exit": "الخروج من العرض المكدّس",
+      "exit-aria-label": "الخروج من العرض المكدّس",
+      "hidden-aria-label": "مخفي",
+      "scroll-area-aria-label": "عناصر المحرّر المكدّس",
+      "showing-items_zero": "لا عناصر لعرضها",
+      "showing-items_one": "عرض عنصر واحد",
+      "showing-items_two": "عرض عنصرين",
+      "showing-items_few": "عرض {{count}} عناصر",
+      "showing-items_many": "عرض {{count}} عنصرًا",
+      "showing-items_other": "عرض {{count}} عنصر",
+      "transformation": "تحويل"
+    },
+    "transformation-debug": {
+      "input-data": "بيانات الإدخال",
+      "output-data": "بيانات الإخراج",
+      "title": "تصحيح التحويل"
+    },
+    "transformation-filter": {
+      "annotations": "بيانات التعليقات الزمنية",
+      "label": "تطبيق التحويل على",
+      "series": "نتائج الاستعلام والتحويل"
+    },
+    "validation": {
+      "duplicate-name": "اسم الاستعلام موجود بالفعل",
+      "empty-name": "اسم استعلام فارغ غير مسموح به"
     }
   },
   "query-editor-renderer": {

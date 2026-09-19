@@ -1,0 +1,197 @@
+{
+  "action": {
+    "add-transformation-filter": "إضافة مرشّح",
+    "cancel-delete": "إلغاء",
+    "confirm-delete": "حذف",
+    "confirm-delete-confirm": "تأكيد",
+    "delete-confirmation-group": "تأكيد الحذف",
+    "disable": "تعطيل {{type}}",
+    "duplicate": "تكرار {{type}}",
+    "enable": "تفعيل {{type}}",
+    "error": "خطأ",
+    "hide": "إخفاء {{type}}",
+    "hide-help": "إخفاء مساعدة مصدر البيانات",
+    "hide-transformation-help": "إخفاء مساعدة التحويل",
+    "more-actions": "مزيد من إجراءات {{type}}",
+    "remove": "إزالة {{type}}",
+    "remove-transformation-filter": "إزالة المرشّح",
+    "show": "إظهار {{type}}",
+    "show-help": "إظهار مساعدة مصدر البيانات",
+    "show-transformation-help": "إظهار مساعدة التحويل",
+    "transformation-debug": "تصحيح"
+  },
+  "alerts": {
+    "no-alerts": "لا توجد قواعد تنبيه لهذه اللوحة",
+    "no-alerts-description": "أنشئ قاعدة تنبيه ليصلك إشعار عندما تستوفي بياناتك شروطًا معينة."
+  },
+  "bulk-actions": {
+    "change-datasource": "تغيير مصدر البيانات للاستعلامات المحددة",
+    "datasource": "مصدر البيانات",
+    "delete": "حذف",
+    "delete-confirm-body": "لا يمكن التراجع عن هذا الإجراء.",
+    "delete-confirm-title_zero": "حذف {{count}} عنصر؟",
+    "delete-confirm-title_one": "حذف عنصر واحد؟",
+    "delete-confirm-title_two": "حذف عنصرين؟",
+    "delete-confirm-title_few": "حذف {{count}} عناصر؟",
+    "delete-confirm-title_many": "حذف {{count}} عنصرًا؟",
+    "delete-confirm-title_other": "حذف {{count}} عنصر؟",
+    "delete-tooltip": "حذف المحدد",
+    "delete-transformations-confirm-title_zero": "حذف {{count}} تحويل؟",
+    "delete-transformations-confirm-title_one": "حذف تحويل واحد؟",
+    "delete-transformations-confirm-title_two": "حذف تحويلين؟",
+    "delete-transformations-confirm-title_few": "حذف {{count}} تحويلات؟",
+    "delete-transformations-confirm-title_many": "حذف {{count}} تحويلًا؟",
+    "delete-transformations-confirm-title_other": "حذف {{count}} تحويل؟",
+    "disable": "تعطيل",
+    "disable-all-tooltip": "تعطيل المحدد",
+    "empty-hint": "اختر عناصر لتطبيق الإجراءات",
+    "enable": "تفعيل",
+    "enable-all-tooltip": "تفعيل المحدد",
+    "exit-multi-select": "الخروج من التحديد المتعدد",
+    "hide": "إخفاء",
+    "hide-all-tooltip": "إخفاء المحدد",
+    "show": "إظهار",
+    "show-all-tooltip": "إظهار المحدد",
+    "toolbar-label": "الإجراءات الجماعية"
+  },
+  "delete-modal": {
+    "body-transformation": "قد تؤدي إزالة تحويل واحد إلى كسر غيره."
+  },
+  "details-sidebar": {
+    "cache-timeout": "مهلة التخزين المؤقت",
+    "cache-timeout-tooltip": "إذا كان مخزن السلاسل الزمنية لديك يحتوي على تخزين مؤقت للاستعلامات، يمكن لهذا الخيار تجاوز مهلة التخزين المؤقت الافتراضية. حدّد قيمة رقمية بالثواني.",
+    "cache-ttl": "مدة بقاء التخزين المؤقت (TTL)",
+    "cache-ttl-tooltip": "مدة بقاء التخزين المؤقت: كم من الوقت ستُخزَّن نتائج الاستعلامات في هذه اللوحة مؤقتًا، بالمللي ثانية.",
+    "hide-time-override": "إخفاء معلومات الوقت",
+    "hide-time-override-tooltip": "يُخفي تجاوز الوقت المعروض في ترويسة اللوحة عند ضبط الوقت النسبي أو إزاحة الوقت.",
+    "interval": "الفاصل",
+    "interval-tooltip": "الفاصل المُقيَّم الذي يُرسل إلى مصدر البيانات ويُستخدم في $__interval و$__interval_ms.",
+    "max-data-points": "الحد الأقصى لنقاط البيانات",
+    "max-data-points-tooltip": "الحد الأقصى لنقاط البيانات لكل سلسلة. يُستخدم مباشرةً من قبل بعض مصادر البيانات ويُستخدم في حساب الفاصل التلقائي.",
+    "min-interval": "الحد الأدنى للفاصل",
+    "min-interval-tooltip": "حد أدنى للفاصل. يُوصى بضبطه على تردد الكتابة، على سبيل المثال 1m إذا كانت بياناتك تُكتب كل دقيقة.",
+    "no-limit": "بلا حد",
+    "relative-time": "الوقت النسبي",
+    "relative-time-tooltip": "يتجاوز النطاق الزمني النسبي للوحات الفردية. على سبيل المثال، لتهيئة «آخر 5 دقائق» استخدم now-5m.",
+    "time-range-max-data-points": "النطاق الزمني / الحد الأقصى لنقاط البيانات",
+    "time-shift": "إزاحة الوقت",
+    "time-shift-tooltip": "يتجاوز النطاق الزمني للوحات الفردية بإزاحة بدايتها ونهايتها نسبةً إلى منتقي الوقت.",
+    "width-of-panel": "عرض اللوحة"
+  },
+  "edit-query-name": "تعديل اسم الاستعلام",
+  "experimental-button": {
+    "aria-label": "خيارات الميزة التجريبية",
+    "back-to-classic": "العودة إلى المحرّر الكلاسيكي",
+    "give-feedback": "إرسال ملاحظات",
+    "tooltip": "خيارات الميزة التجريبية"
+  },
+  "footer": {
+    "edit-option": "تعديل {{label}}",
+    "inspect-queries": "فحص الاستعلامات",
+    "label": {
+      "interval": "الفاصل",
+      "max-data-points": "الحد الأقصى لنقاط البيانات",
+      "min-interval": "الحد الأدنى للفاصل",
+      "relative-time": "الوقت النسبي",
+      "time-shift": "إزاحة الوقت"
+    },
+    "placeholder": {
+      "no-limit": "بلا حد"
+    },
+    "query-inspector": "فاحص الاستعلامات",
+    "query-options": "خيارات الاستعلام"
+  },
+  "header": {
+    "alert": "تنبيه",
+    "expression": "تعبير",
+    "pending-expression": "اختر تعبيرًا",
+    "pending-expression-cancel": "إلغاء",
+    "pending-transformation": "اختر تحويلًا",
+    "pending-transformation-cancel": "إلغاء",
+    "transformation": "تحويل"
+  },
+  "help": {
+    "close": "إغلاق المساعدة",
+    "close-aria": "إغلاق لوحة المساعدة"
+  },
+  "labels": {
+    "alert": "تنبيه",
+    "expression": "تعبير",
+    "query": "استعلام",
+    "transformation": "تحويل"
+  },
+  "queries-empty-state": {
+    "add-query": "إضافة استعلام",
+    "message": "أضف استعلامًا أو تعبيرًا أو تحويلًا للبدء"
+  },
+  "sidebar": {
+    "add-below": "إضافة أسفل {{id}}",
+    "add-expression": "إضافة تعبير",
+    "add-expression-disabled": "التعبيرات غير مدعومة مع مصدر بيانات لوحة المعلومات",
+    "add-query": "إضافة استعلام",
+    "add-query-or-expression": "إضافة استعلام أو تعبير",
+    "add-saved-query": "إضافة استعلام محفوظ",
+    "add-transformation": "إضافة تحويل",
+    "add-transformation-below": "إضافة تحويل أسفل {{id}}",
+    "alerts_zero": "التنبيهات ({{count}})",
+    "alerts_one": "التنبيهات ({{count}})",
+    "alerts_two": "التنبيهات ({{count}})",
+    "alerts_few": "التنبيهات ({{count}})",
+    "alerts_many": "التنبيهات ({{count}})",
+    "alerts_other": "التنبيهات ({{count}})",
+    "alerts-loading": "التنبيهات",
+    "card-click": "اختيار البطاقة {{id}}",
+    "card-multi-select": "تضمين البطاقة {{id}} في التحديد الجماعي",
+    "data": "البيانات",
+    "enter-stacked-view": "الدخول إلى العرض المكدّس",
+    "exit-stacked-view": "الخروج من العرض المكدّس",
+    "footer-items_zero": "لا عناصر",
+    "footer-items_one": "عنصر واحد",
+    "footer-items_two": "عنصران",
+    "footer-items_few": "{{count}} عناصر",
+    "footer-items_many": "{{count}} عنصرًا",
+    "footer-items_other": "{{count}} عنصر",
+    "footer-items-alert_zero": "لا تنبيهات",
+    "footer-items-alert_one": "تنبيه واحد",
+    "footer-items-alert_two": "تنبيهان",
+    "footer-items-alert_few": "{{count}} تنبيهات",
+    "footer-items-alert_many": "{{count}} تنبيهًا",
+    "footer-items-alert_other": "{{count}} تنبيه",
+    "footer-select": "اختيار...",
+    "footer-select-label": "اختيار عناصر متعددة",
+    "new-type": "{{type}} جديد",
+    "queries-empty": "لا توجد استعلامات أو تعبيرات",
+    "queries-expressions": "الاستعلامات والتعبيرات",
+    "toggle-size": "تبديل حجم الشريط الجانبي",
+    "transformations": "التحويلات",
+    "transformations-empty": "لا توجد تحويلات",
+    "view-toggle": "عرض"
+  },
+  "stacked": {
+    "exit": "الخروج من العرض المكدّس",
+    "exit-aria-label": "الخروج من العرض المكدّس",
+    "hidden-aria-label": "مخفي",
+    "scroll-area-aria-label": "عناصر المحرّر المكدّس",
+    "showing-items_zero": "لا عناصر لعرضها",
+    "showing-items_one": "عرض عنصر واحد",
+    "showing-items_two": "عرض عنصرين",
+    "showing-items_few": "عرض {{count}} عناصر",
+    "showing-items_many": "عرض {{count}} عنصرًا",
+    "showing-items_other": "عرض {{count}} عنصر",
+    "transformation": "تحويل"
+  },
+  "transformation-debug": {
+    "input-data": "بيانات الإدخال",
+    "output-data": "بيانات الإخراج",
+    "title": "تصحيح التحويل"
+  },
+  "transformation-filter": {
+    "annotations": "بيانات التعليقات الزمنية",
+    "label": "تطبيق التحويل على",
+    "series": "نتائج الاستعلام والتحويل"
+  },
+  "validation": {
+    "duplicate-name": "اسم الاستعلام موجود بالفعل",
+    "empty-name": "اسم استعلام فارغ غير مسموح به"
+  }
+}

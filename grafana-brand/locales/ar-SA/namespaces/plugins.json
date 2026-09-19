@@ -1,0 +1,265 @@
+{
+  "app-root-page": {
+    "access-denied": {
+      "permission": "ليس لديك إذن لرؤية هذه الصفحة.",
+      "title-access-denied": "تم رفض الوصول"
+    },
+    "error-loading-plugin": "فشل تحميل الإضافة",
+    "no-root-app-page-component-found": "لم يُعثر على مكوّن صفحة تطبيق جذرية"
+  },
+  "browse": {
+    "aria-label-plugin-type-filter": "مرشّح نوع الإضافة",
+    "filter-by-options": {
+      "label": {
+        "all": "الكل",
+        "installed": "مُثبَّت",
+        "new-updates": "تحديثات جديدة"
+      }
+    },
+    "label": {
+      "all": "الكل",
+      "applications": "التطبيقات",
+      "data-sources": "مصادر البيانات",
+      "panels": "اللوحات"
+    },
+    "label-search": "بحث",
+    "label-state": "الحالة",
+    "label-type": "النوع",
+    "subtitle": "وسّع تجربة Grafana بإضافات اللوحات والتطبيقات. للعثور على مزيد من مصادر البيانات انتقل إلى <2>الاتصالات</2>.",
+    "tooltip-filter-disabled": "عُطّل هذا المرشّح لأن خادم Grafana لا يمكنه الوصول إلى grafana.com"
+  },
+  "catalog": {
+    "no-updates-available": "لا تتوفّر تحديثات",
+    "update-all": {
+      "all-plugins-updated": "تم تحديث جميع الإضافات!",
+      "available-header": "متاح",
+      "button": "تحديث الكل ({{length}})",
+      "cloud-update-message": "* قد يستغرق توفّر الإضافات للاستخدام بضع دقائق.",
+      "error": "خطأ في تحديث الإضافة: {{errorMessage}}",
+      "error-status-text": "فشل - راجع رسائل الخطأ",
+      "header": "الإضافات التالية لها تحديث متاح",
+      "installed-header": "مُثبَّت",
+      "modal-confirmation": "تحديث",
+      "modal-dismiss": "إغلاق",
+      "modal-in-progress": "جارٍ التحديث...",
+      "modal-title": "تحديث الإضافات",
+      "name-header": "الاسم",
+      "update-header": "تحديث",
+      "update-status-text": "إضافة مُحدَّثة"
+    },
+    "versions": {
+      "confirmation-text": "هل أنت متأكد حقًا أنك تريد الرجوع إلى الإصدار {{version}}؟ عادةً لا ينبغي أن تفعل هذا",
+      "downgrade-confirm": "الرجوع لإصدار أقدم",
+      "downgrade-title": "الرجوع بإصدار الإضافة"
+    }
+  },
+  "details": {
+    "connections-tab": {
+      "description": "لديك حاليًا مصادر البيانات التالية مُهيّأة لـ {{pluginName}}، انقر على بلاطة لعرض تفاصيل الإعداد. يمكنك العثور على جميع اتصالات مصادر بياناتك في <4><0>الاتصالات</0> - <3>مصادر البيانات</3>.</4>"
+    },
+    "disabled-error": {
+      "angular-deprecation-link": "اقرأ المزيد عن إهمال Angular",
+      "angular-error-text": "عُطّلت هذه الإضافة لأن Grafana لم يعد يدعم الإضافات المبنية على Angular. يمكنك محاولة تحديث الإضافة إلى أحدث إصدار لحل هذه المشكلة. ثم اختبرها للتأكد من أنها تعمل كما هو متوقّع.",
+      "angular-error-text-no-non-angular-version": "عُطّلت هذه الإضافة لأن Grafana لم يعد يدعم الإضافات المبنية على Angular. للأسف، لا يزال أحدث إصدار من هذه الإضافة يستخدم Angular لذا عليك انتظار مؤلّف الإضافة لترحيلها لمواصلة استخدامها.",
+      "contact-server-admin": "يُرجى التواصل مع مسؤول الخادم لديك لحل هذه المشكلة.",
+      "failed-backend-start-text": "فشل بدء تشغيل هذه الإضافة. يمكن أن توفّر سجلّات الخادم مزيدًا من المعلومات.",
+      "invalid-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا أنه غير صالح. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+      "manage-plugins-link": "اقرأ المزيد عن إدارة الإضافات",
+      "missing-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا عدم وجود توقيع لهذه الإضافة. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+      "modified-signature-text": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. أثناء ذلك، اكتشفنا أن محتوى هذه الإضافة لا يطابق توقيعها. لا يمكننا ضمان موثوقية هذه الإضافة ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة موثّقة منها.",
+      "title": "الإضافة مُعطّلة",
+      "unknown-error-text": "فشلنا في تشغيل هذه الإضافة لسبب غير معروف ولذلك عطّلناها. نوصي بإعادة تثبيت الإضافة للتأكد من تشغيل نسخة صالحة منها."
+    },
+    "labels": {
+      "contactGrafanaLabs": "التواصل مع Grafana Labs",
+      "customLinks": "روابط مخصصة ",
+      "customLinksTooltip": "يوفّر هذه الروابط مطوّر الإضافة لتقديم موارد ومعلومات إضافية خاصة بالمطوّر",
+      "dependencies": "التبعيات",
+      "documentation": "الوثائق",
+      "downloads": "التنزيلات",
+      "from": "من",
+      "installedVersion": "الإصدار المُثبَّت",
+      "latestReleaseDate": "تاريخ آخر إصدار:",
+      "latestVersion": "أحدث إصدار",
+      "license": "الترخيص",
+      "moreDetails": "رؤى الإضافة حاليًا في مرحلة المعاينة، شارك ملاحظاتك لمساعدتنا في إبراز أكثر المعلومات فائدةً <2>هنا</2>.",
+      "pluginInsights": {
+        "header": "رؤى الإضافة"
+      },
+      "pluginInsightsSuccessTooltip": "جميع الفحوصات ذات الصلة موجودة ومُتحقَّق منها",
+      "pluginInsightsWarningTooltip": "فحص واحد أو أكثر يحتاج إلى انتباه",
+      "raiseAnIssue": "طرح مشكلة",
+      "reportAbuse": "الإبلاغ عن مشكلة ",
+      "reportAbuseTooltip": "أبلغ عن المشكلات المتعلقة بالإضافات الخبيثة أو الضارة مباشرةً إلى Grafana Labs.",
+      "repository": "المستودع",
+      "signature": "التوقيع",
+      "sponsorDeveloper": "ادعم هذا المطوّر",
+      "status": "الحالة"
+    },
+    "modal": {
+      "cancel": "إلغاء",
+      "copyEmail": "نسخ عنوان البريد الإلكتروني",
+      "description": "هذه الميزة للإبلاغ عن سلوك خبيث أو ضار داخل الإضافات. لمخاوف الإضافات، راسلنا عبر البريد الإلكتروني على: ",
+      "node": "ملاحظة: للمشكلات العامة للإضافات مثل العلل أو طلبات الميزات، يُرجى التواصل مع مؤلّف الإضافة باستخدام الروابط المُقدَّمة. ",
+      "title": "الإبلاغ عن مشكلة في إضافة"
+    }
+  },
+  "empty-state": {
+    "message": "لم يُعثر على إضافات"
+  },
+  "extensions": {
+    "extension-error-alert-description": "راجع وحدة التحكّم لمزيد من التفاصيل حول الخطأ.",
+    "extension-error-alert-title": "فشل تحميل الامتداد: \"{{pluginId}}/{{extensionTitle}}\""
+  },
+  "extensions-log-data-source": {
+    "message": {
+      "ok": "OK"
+    }
+  },
+  "filter": {
+    "disabled": "عُطّل هذا المرشّح لأن خادم Grafana لا يمكنه الوصول إلى grafana.com",
+    "sort": "فرز",
+    "sort-list": "فرز قائمة الإضافات",
+    "state": "الحالة"
+  },
+  "get-feature-state-info": {
+    "text": {
+      "alpha": "ألفا",
+      "beta": "بيتا",
+      "deprecated": "مُهمل"
+    }
+  },
+  "get-started-with-app": {
+    "disable": "تعطيل",
+    "enable": "تفعيل"
+  },
+  "get-started-with-data-source": {
+    "add-new-data-source": "إضافة مصدر بيانات جديد",
+    "title-button-disabled": "الإضافة غير قابلة للاستخدام بعد، قد يستغرق إكمال التثبيت بعض الوقت."
+  },
+  "install-controls": {
+    "contact-us": "تواصل معنا",
+    "install": "تثبيت",
+    "installing": "جارٍ التثبيت",
+    "update": "تحديث",
+    "updating": "جارٍ التحديث"
+  },
+  "install-controls-button": {
+    "title-uninstall-modal": "إلغاء تثبيت {{plugin}}",
+    "uninstall-controls": {
+      "body-uninstall-plugin": "هل أنت متأكد أنك تريد إلغاء تثبيت هذه الإضافة؟",
+      "confirmText-confirm": "تأكيد"
+    }
+  },
+  "install-controls-warning": {
+    "body-not-published": "هذه الإضافة غير منشورة على <2>grafana.com/plugins</2> ولا يمكن إدارتها عبر الكتالوج.",
+    "enterprise-plugin-info": "هذه الإضافة متاحة فقط في Grafana Cloud وGrafana Enterprise.",
+    "learn-more": "معرفة المزيد",
+    "title-dev-alert": "هذا إصدار تطوير من الإضافة ولا يمكن إلغاء تثبيته.",
+    "title-plugin-doesnt-support-version-grafana": "هذه الإضافة لا تدعم إصدار Grafana لديك.",
+    "title-remote-plugins-unavailable": "عُطّلت عناصر تحكّم التثبيت لأن خادم Grafana لا يمكنه الوصول إلى grafana.com.",
+    "title-renderer-plugins-cannot-managed-plugin-catalog": "لا يمكن إدارة إضافات العارض عبر كتالوج الإضافات."
+  },
+  "log-view-filters": {
+    "label-extension": "الامتداد",
+    "label-plugin-id": "معرّف الإضافة",
+    "label-severity": "الخطورة"
+  },
+  "no-updates-available": {
+    "message": "جميع الإضافات محدّثة"
+  },
+  "not-found-plugin": {
+    "body-plugin-not-found": "تعذّر العثور على تلك الإضافة. يُرجى التحقق من صحة الرابط أو <br/>الانتقال إلى <3>كتالوج الإضافات</3>.",
+    "title-plugin-not-found": "لم يُعثر على الإضافة"
+  },
+  "plugin-actions": {
+    "refresh-changes": "أعد تحميل الصفحة لرؤية التغييرات"
+  },
+  "plugin-dashboards": {
+    "dashboards-included-plugin": "لا توجد لوحات معلومات مضمّنة مع هذه الإضافة",
+    "loading": "جارٍ التحميل..."
+  },
+  "plugin-deprecated-badge": {
+    "text-deprecated": "مُهمل",
+    "tooltip-plugin-deprecated-longer-receives-updates": "هذه الإضافة مُهملة ولم تعد تتلقّى تحديثات."
+  },
+  "plugin-details-body": {
+    "needs-service-account": "تحتاج إضافة {{pluginName}} إلى حساب خدمة ليتمكّن من الاستعلام عن Grafana. تحتوي القائمة التالية على الأذونات المتاحة لحساب الخدمة:",
+    "page-not-found": "لم يُعثر على الصفحة."
+  },
+  "plugin-details-deprecated-warning": {
+    "title-deprecated": "مُهمل"
+  },
+  "plugin-details-header-dependencies": {
+    "grafana-dependency": "Grafana {{grafanaDependency}}"
+  },
+  "plugin-details-page": {
+    "not-found-model": {
+      "subTitle": {
+        "requested-belong-plugin": "المعرّف المطلوب لا ينتمي إلى أي إضافة"
+      },
+      "text": {
+        "unknown-plugin": "إضافة غير معروفة"
+      }
+    }
+  },
+  "plugin-details-signature": {
+    "body-invalid-plugin-signature": "يفحص Grafana Labs كل إضافة للتحقق من أنها تحمل توقيعًا رقميًا صالحًا. التحقق من توقيع الإضافة جزء من إجراءاتنا الأمنية لضمان أن الإضافات آمنة وموثوقة. لا يمكن لـ Grafana Labs ضمان سلامة هذه الإضافة غير الموقّعة. اطلب من مؤلّف الإضافة طلب توقيعها.",
+    "read-more-about-plugins-signing": "اقرأ المزيد عن توقيع الإضافات.",
+    "title-invalid-plugin-signature": "توقيع إضافة غير صالح"
+  },
+  "plugin-disabled-badge": {
+    "text-disabled": "مُعطّل"
+  },
+  "plugin-enterprise-badge": {
+    "aria-label-enterprise": "Enterprise",
+    "text-enterprise": "Enterprise",
+    "title-requires-a-grafana-enterprise-license": "يتطلب ترخيص Grafana Enterprise"
+  },
+  "plugin-help": {
+    "error": "حدث خطأ أثناء تحميل المساعدة.",
+    "loading": "جارٍ تحميل المساعدة...",
+    "not-found": "لم يُعثر على مساعدة للاستعلام."
+  },
+  "plugin-installed-badge": {
+    "text-installed": "مُثبَّت"
+  },
+  "plugin-list-item": {
+    "label-author": "بواسطة {{author}}",
+    "title-icon-plugin-type": "إضافة {{pluginType}}"
+  },
+  "plugin-update-available-badge": {
+    "update-available": "تحديث متاح!"
+  },
+  "plugin-usage": {
+    "num-usages": "{{pluginName}} مُستخدَم <2>{{numUsages}}</2> مرة.",
+    "title-not-used-yet": "{{pluginName}} غير مُستخدَم في أي لوحات معلومات بعد"
+  },
+  "plugins-errors-info": {
+    "disabled-list": "الإضافات التالية مُعطّلة وغير معروضة في القائمة أدناه:",
+    "read-more-about-plugin-signing": "اقرأ المزيد عن توقيع الإضافات",
+    "title-unsigned-plugins": "عُثر على إضافات غير موقّعة أثناء تهيئة الإضافات. لا يمكن لـ Grafana Labs ضمان سلامة هذه الإضافات. نوصي باستخدام الإضافات الموقّعة فقط."
+  },
+  "search-field": {
+    "placeholder-search-grafana-plugins": "ابحث في إضافات Grafana"
+  },
+  "use-plugin-details-tabs": {
+    "nav-model-children": {
+      "text": {
+        "dashboards": "لوحات المعلومات"
+      }
+    }
+  },
+  "version-install-button": {
+    "text-installed": "مُثبَّت"
+  },
+  "version-list": {
+    "deprecated": "مُهمل",
+    "grafana-dependency": "تبعية Grafana",
+    "installed-version": "{{versionNumber}} (الإصدار المُثبَّت)",
+    "latest-compatible-version": "{{versionNumber}} (أحدث إصدار متوافق)",
+    "latest-release-date": "تاريخ آخر إصدار",
+    "no-version-history-was-found": "لم يُعثر على سجلّ إصدارات.",
+    "version": "الإصدار"
+  }
+}
