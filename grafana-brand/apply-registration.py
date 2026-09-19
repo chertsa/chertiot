@@ -51,7 +51,17 @@ def main() -> int:
                       f"  {{ code: {CONST}, name: '{NAME}' }},\n];")
         return t
 
-    # 3) languages.test.ts — add ar-SA to the pinned expectedLanguages list.
+    # 3) index.ts — re-export the code constant from the package barrel, alongside every other
+    #    language constant, so `import { ARABIC_SAUDI_ARABIA } from '@grafana/i18n'` resolves.
+    def add_export(t: str) -> str:
+        if CONST in t:
+            return t
+        anchor = "  CHINESE_TRADITIONAL,\n  PSEUDO_LOCALE,"
+        if anchor not in t:
+            raise SystemExit("index.ts: export anchor not found (upstream changed)")
+        return t.replace(anchor, f"  CHINESE_TRADITIONAL,\n  {CONST},\n  PSEUDO_LOCALE,")
+
+    # 4) languages.test.ts — add ar-SA to the pinned expectedLanguages list.
     def add_test(t: str) -> str:
         if f"code: '{CODE}'" in t:
             return t
@@ -61,6 +71,7 @@ def main() -> int:
 
     edit(i18n / "constants.ts", add_const)
     edit(i18n / "languages.ts", add_language)
+    edit(i18n / "index.ts", add_export)
     edit(i18n / "languages.test.ts", add_test)
 
     # sanity: the code must be canonical and match Grafana's subtag regex
