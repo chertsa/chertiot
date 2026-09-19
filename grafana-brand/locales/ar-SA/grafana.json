@@ -100,6 +100,69 @@
       "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
     }
   },
+  "dashboards": {
+    "filters-overview": {
+      "all-filters": "جميع المرشّحات",
+      "open": "نظرة عامة على المرشّحات"
+    },
+    "panel-queries": {
+      "add-from-saved-queries": "إضافة من الاستعلامات المحفوظة"
+    },
+    "settings": {
+      "variables": {
+        "dependencies": {
+          "button": "إظهار التبعيات",
+          "title": "التبعيات"
+        }
+      }
+    }
+  },
+  "data-source-list": {
+    "empty-state": {
+      "button-title": "إضافة مصدر بيانات",
+      "pro-tip": "يمكنك أيضًا تعريف مصادر البيانات عبر ملفات الإعداد. <2>معرفة المزيد</2>",
+      "title": "لم تُعرَّف أي مصادر بيانات"
+    }
+  },
+  "data-source-picker": {
+    "add-new-data-source": "إعداد مصدر بيانات جديد",
+    "built-in-list": {
+      "description-dashboard": "إعادة استخدام نتائج الاستعلام من تصورات أخرى",
+      "description-grafana": "اكتشف التصورات باستخدام بيانات وهمية",
+      "description-mixed": "استخدام مصادر بيانات متعددة"
+    },
+    "list": {
+      "no-data-source-message": "لا توجد مصادر بيانات"
+    },
+    "modal": {
+      "configure-new-data-source": "افتح علامة تبويب جديدة وأعدّ مصدر بيانات",
+      "input-placeholder": "اختر مصدر بيانات",
+      "title": "اختر مصدر بيانات"
+    },
+    "open-advanced-button": "فتح منتقي مصدر البيانات المتقدم"
+  },
+  "data-source-testing-status-page": {
+    "error-more-details-link": "انقر <2>هنا</2> لمعرفة المزيد عن هذا الخطأ.",
+    "success-more-details-links": "بعد ذلك، يمكنك البدء في تصوّر البيانات عبر <2>إنشاء لوحة معلومات من الصفر</2>، أو عرض <5>لوحات المعلومات المقترحة</5>، أو الاستعلام عن البيانات في <9>عرض الاستكشاف</9>.",
+    "success-more-details-links-no-suggestions": "بعد ذلك، يمكنك البدء في تصوّر البيانات عبر <2>إنشاء لوحة معلومات من الصفر</2> أو الاستعلام عن البيانات في <6>عرض الاستكشاف</6>."
+  },
+  "data-sources": {
+    "datasource-add-button": {
+      "label": "إضافة مصدر بيانات جديد"
+    },
+    "empty-state": {
+      "message": "لا توجد مصادر بيانات"
+    },
+    "list": {
+      "label": "مصادر البيانات"
+    },
+    "run-advisor-checks-button": {
+      "label": "تفعيل فحوصات المستشار",
+      "running": "جارٍ إجراء الفحوصات",
+      "success": "تم إنشاء فحوصات المستشار بنجاح. انتقل إلى الإدارة > المستشار لمزيد من التفاصيل.",
+      "tooltip": "تساعدك فحوصات المستشار في العثور على مشكلات في مصادر بياناتك والإضافات"
+    }
+  },
   "entity-not-found": {
     "community-link": "مساعدة المجتمع",
     "description": "نبحث لكن يبدو أننا لا نستطيع العثور على {{lowerCaseEntity}} هذا. يُرجى التحقق من الرابط (URL) والمحاولة مجددًا.",
@@ -111,6 +174,19 @@
       "annotations": {
         "datasource": "مصدر البيانات المحدد لا يدعم التعليقات الزمنية. الرجاء اختيار مصدر بيانات آخر."
       }
+    }
+  },
+  "folder-filter": {
+    "select-aria-label": "مرشّح المجلدات",
+    "select-placeholder": "التصفية حسب المجلد"
+  },
+  "folders": {
+    "api": {
+      "anonymous-user": "مجهول",
+      "folder-delete-error-provisioned": "تعذّر حذف مجلد مُهيّأ تلقائيًا. لإزالته، احذفه من المستودع وزامِن لتطبيق التغييرات.",
+      "folder-deleted-success": "تم حذف المجلد",
+      "folder-move-error-provisioned": "تعذّر نقل مجلد مُهيّأ تلقائيًا. لنقله، انقله في المستودع وزامِن لتطبيق التغييرات.",
+      "folder-moved-success": "تم نقل المجلد"
     }
   },
   "forgot-password": {
@@ -649,6 +725,132 @@
       "send-button": "إرسال بريد التحقق"
     }
   },
+  "tag-filter": {
+    "clear-button": "مسح الوسوم",
+    "loading": "جارٍ التحميل...",
+    "no-tags": "لا توجد وسوم",
+    "placeholder": "التصفية حسب الوسم",
+    "select-aria-label": "مرشّح الوسوم",
+    "tag-option-label": "خيار الوسم"
+  },
+  "team-picker": {
+    "noOptionsMessage-no-teams-found": "لا توجد فرق",
+    "select-aria-label": "منتقي الفريق",
+    "select-placeholder": "اختر فريقًا"
+  },
+  "teams": {
+    "build-nav-model": {
+      "nav-model": {
+        "subTitle": {
+          "manage-members-and-settings": "إدارة الأعضاء والإعدادات"
+        },
+        "text": {
+          "settings": "الإعدادات"
+        }
+      },
+      "team-folders": {
+        "text": {
+          "folders": "المجلدات"
+        }
+      },
+      "team-group-sync": {
+        "text": {
+          "external-group-sync": "مزامنة المجموعات الخارجية"
+        }
+      },
+      "text": {
+        "members": "الأعضاء"
+      }
+    },
+    "create-team": {
+      "checkbox-text-create-team-folder-team-folder": "إنشاء مجلد للفريق تلقائيًا",
+      "create": "إنشاء",
+      "description-create-team-folder": "يؤدي هذا إلى إنشاء مجلد مرتبط بالفريق، حيث يمكن للمستخدمين إضافة موارد مثل لوحات المعلومات والجداول الزمنية بالأذونات المناسبة.",
+      "description-email": "هذا اختياري ويُستخدم بشكل أساسي للسماح بصور رمزية مخصصة للفريق",
+      "failed-to-create": "فشل إنشاء الفريق: ",
+      "folder-create-failed": "فشل إنشاء المجلد: ",
+      "folder-create-failed-help": "يمكنك إنشاء المجلد وتعيينه لفريق يدويًا من متصفح لوحات المعلومات.",
+      "folder-creation-link": "فتح المجلد",
+      "folder-creation-loading": "جارٍ إنشاء المجلد...",
+      "folder-creation-success": "تم إنشاء المجلد بنجاح.",
+      "label-create-team-folder": "مجلد الفريق",
+      "label-email": "البريد الإلكتروني",
+      "label-name": "الاسم",
+      "label-role": "الدور",
+      "role-creation-success": "تم إنشاء الأدوار بنجاح.",
+      "roles-create-failed": "فشل إنشاء الأدوار: ",
+      "roles-create-permission-issue": "ليس لديك أذونات لتعيين الأدوار",
+      "roles-creation-loading": "جارٍ إنشاء الأدوار...",
+      "team-creation-link": "فتح تفاصيل الفريق",
+      "team-creation-loading": "جارٍ إنشاء الفريق...",
+      "team-creation-success": "تم إنشاء الفريق بنجاح."
+    },
+    "empty-state": {
+      "button-title": "فريق جديد",
+      "message": "لا توجد فرق",
+      "pro-tip": "عيّن أذونات المجلدات ولوحات المعلومات للفرق بدلًا من المستخدمين لتسهيل الإدارة. <2>معرفة المزيد</2>",
+      "title": "لم تنشئ أي فرق بعد"
+    },
+    "team-group-sync": {
+      "add-group": "إضافة مجموعة",
+      "add-group-button": "إضافة مجموعة",
+      "aria-label-remove": "إزالة المجموعة {{groupName}}",
+      "external-group-id": "معرّف المجموعة الخارجية",
+      "external-group-sync": "مزامنة المجموعات الخارجية",
+      "label-add-external-group": "إضافة مجموعة خارجية",
+      "team-sync-upgrade": "أضف مجموعة لتفعيل مزامنة الفرق مجانًا خلال فترتك التجريبية من Grafana Pro",
+      "text": {
+        "add-group": "إضافة مجموعة"
+      },
+      "title-there-external-groups": "لا توجد مجموعات خارجية للمزامنة معها",
+      "tooltip-add-external-group": "مثال على مجموعة LDAP: {{example}}"
+    },
+    "team-list": {
+      "columns": {
+        "aria-label-delete-button": "حذف الفريق {{teamName}}",
+        "aria-label-edit-team": "تعديل الفريق {{teamName}}",
+        "delete-modal": {
+          "confirm-button": "حذف",
+          "title": "حذف"
+        },
+        "delete-modal-invalid-text": "هذا الفريق مالك لمجلد واحد أو أكثر. أزل الملكية أولًا للمتابعة.",
+        "delete-modal-invalid-title": "تعذّر حذف الفريق",
+        "delete-modal-text": "سيؤدي هذا الإجراء إلى حذف الفريق «<1>{{ teamName }}</1>».",
+        "title-edit-team": "تعديل الفريق",
+        "tooltip-delete-button": "حذف {{teamName}}",
+        "tooltip-edit-team": "تعديل الفريق"
+      },
+      "failed-to-check-folders": "تعذّر التحقق مما إذا كان الفريق يملك مجلدات. يُرجى المحاولة مجددًا.",
+      "loading-teams": "جارٍ تحميل الفرق...",
+      "new-team": "فريق جديد",
+      "placeholder-search-teams": "ابحث في الفرق"
+    },
+    "team-pages": {
+      "team-folders": {
+        "empty-state-content": "يمكنك إعداد ملكية مجلد من صفحة تفاصيل المجلد",
+        "empty-state-message": "لا يملك هذا الفريق أي مجلدات بعد.",
+        "error-loading-folders": "تعذّر تحميل مجلدات الفريق",
+        "loading": "جارٍ التحميل...",
+        "open-folder": "فتح المجلد",
+        "table": {
+          "name": "الاسم",
+          "path": "المسار الكامل"
+        }
+      }
+    },
+    "team-settings": {
+      "description-email": "هذا اختياري ويُستخدم بشكل أساسي لتعيين الصورة الرمزية لملف الفريق (عبر خدمة Gravatar)",
+      "label-email": "البريد الإلكتروني",
+      "label-name": "الاسم",
+      "label-numerical-identifier": "المعرّف الرقمي",
+      "label-role": "الدور",
+      "label-team-details": "تفاصيل الفريق",
+      "save": "حفظ تفاصيل الفريق"
+    },
+    "team-sync-upgrade-content": {
+      "description": "تسهّل مزامنة الفرق إدارة وصول المستخدمين في Grafana، من خلال التحديث الفوري لفرق كل مستخدم وأذوناته في Grafana بناءً على عضويته في مجموعة الدخول الموحّد، بدلًا من التحديث عند تسجيل المستخدمين الدخول"
+    }
+  },
   "text": {
     "category-text": "نص",
     "mode-options": {
@@ -784,6 +986,23 @@
         }
       },
       "placeholder-search-login-email": "ابحث عن مستخدم بالاسم أو البريد الإلكتروني أو اسم الدخول"
+    }
+  },
+  "variable": {
+    "adhoc": {
+      "placeholder": "اختر قيمة"
+    },
+    "dropdown": {
+      "placeholder": "أدخل قيمة المتغير"
+    },
+    "picker": {
+      "link-all": "الكل",
+      "option-all": "الكل",
+      "option-selected-values": "محدد ({{numSelected}})",
+      "option-tooltip": "مسح التحديدات"
+    },
+    "textbox": {
+      "placeholder": "أدخل قيمة المتغير"
     }
   },
   "welcome": {
