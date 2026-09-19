@@ -152,6 +152,76 @@
       "missing-series": "تتطلب المخططات الشريطية حقلًا نصيًا أو زمنيًا"
     }
   },
+  "barchart": {
+    "config": {
+      "category-thresholds": "العتبات",
+      "description-color-by-field": "استخدم قيمة اللون لحقل شقيق لتلوين قيمة كل شريط.",
+      "description-x-label-max-length": "ستُقتطع تسميات المحور X إلى الطول المُقدَّم",
+      "name-bar-radius": "نصف قطر الشريط",
+      "name-bar-width": "عرض الشريط",
+      "name-color-by-field": "التلوين حسب الحقل",
+      "name-fill-opacity": "عتامة التعبئة",
+      "name-full-highlight": "إبراز المنطقة الكاملة عند التمرير",
+      "name-gradient-mode": "وضع التدرّج",
+      "name-group-width": "عرض المجموعة",
+      "name-line-width": "عرض الخط",
+      "name-orientation": "الاتجاه",
+      "name-rotate-x-labels": "تدوير تسميات محور X",
+      "name-show-thresholds": "إظهار العتبات",
+      "name-show-values": "إظهار القيم",
+      "name-stacking": "التكديس",
+      "name-transform": "التحويل",
+      "name-x-axis": "المحور X",
+      "name-x-label-max-length": "الطول الأقصى لتسمية محور X",
+      "name-x-label-min-spacing": "الحد الأدنى للمسافة بين تسميات محور X",
+      "orientation-options": {
+        "label-auto": "تلقائي",
+        "label-horizontal": "أفقي",
+        "label-line-vertical": "رأسي"
+      },
+      "placeholder-x-axis": "أول حقل نصي أو زمني",
+      "placeholder-x-label-max-length": "بلا",
+      "show-values-options": {
+        "label-always": "دائمًا",
+        "label-auto": "تلقائي",
+        "label-never": "أبدًا"
+      },
+      "transform-options": {
+        "description-constant": "ستُعرض القيمة الأولى كخط ثابت",
+        "description-negative-y": "اقلب النتائج إلى قيم سالبة على المحور Y",
+        "label-constant": "ثابت",
+        "label-negative-y": "Y السالب"
+      }
+    },
+    "presets": {
+      "fixed-purple-hue": "درجة أرجوانية ثابتة",
+      "palette-classic": "لوحة ألوان كلاسيكية",
+      "palette-classic-stacked": "لوحة ألوان كلاسيكية مكدّسة",
+      "viridis-hue": "درجة Viridis"
+    },
+    "suggestions": {
+      "horizontal": "مخطط شريطي أفقي",
+      "hz-stacked": "مخطط شريطي أفقي - مكدّس",
+      "hz-stacked-percent": "مخطط شريطي أفقي - مكدّس بالنسبة المئوية",
+      "vert-stacked": "مخطط شريطي - مكدّس",
+      "vert-stacked-percent": "مخطط شريطي - مكدّس بالنسبة المئوية",
+      "vertical": "مخطط شريطي"
+    },
+    "tick-spacing-editor": {
+      "content-require-space-from-the-right-side": "يتطلب مسافة من الجانب الأيمن",
+      "gaps-options": {
+        "description-large": "يتطلب مسافة {{spacing}}",
+        "description-medium": "يتطلب مسافة {{spacing}}",
+        "description-none": "إظهار جميع علامات التدرّج",
+        "description-small": "يتطلب مسافة {{spacing}}",
+        "label-large": "كبير",
+        "label-medium": "متوسط",
+        "label-none": "بلا",
+        "label-small": "صغير"
+      },
+      "label-rtl": "RTL"
+    }
+  },
   "bargauge": {
     "bar-size-options": {
       "label-auto": "تلقائي",
@@ -371,6 +441,78 @@
     "json-field": {
       "label": "الاستيراد عبر نموذج JSON للوحة المعلومات",
       "validation-required": "يلزم نموذج JSON للوحة المعلومات"
+    }
+  },
+  "dashboard-library": {
+    "card": {
+      "community-badge": "المجتمع",
+      "customize-with-assistant-button": "التخصيص باستخدام المساعد",
+      "customize-with-assistant-button-label": "التخصيص باستخدام المساعد: {{title}}",
+      "datasource-provided-badge": "مقدّم من مصدر البيانات",
+      "details-tooltip": "التفاصيل",
+      "no-preview": "لا تتوفّر معاينة ",
+      "view-dashboard-button": "عرض لوحة المعلومات",
+      "view-dashboard-button-label": "عرض لوحة المعلومات: {{title}}",
+      "view-template-button": "عرض القالب",
+      "view-template-button-label": "عرض القالب: {{title}}"
+    },
+    "community-error-title": "خطأ في تحميل لوحة معلومات المجتمع",
+    "community-mapping-form": {
+      "auto-mapped_zero": "لم تُهيَّأ أي مصادر بيانات تلقائيًا:",
+      "auto-mapped_one": "تمت تهيئة مصدر بيانات واحد تلقائيًا:",
+      "auto-mapped_two": "تمت تهيئة مصدري بيانات تلقائيًا:",
+      "auto-mapped_few": "تمت تهيئة {{count}} مصادر بيانات تلقائيًا:",
+      "auto-mapped_many": "تمت تهيئة {{count}} مصدر بيانات تلقائيًا:",
+      "auto-mapped_other": "تمت تهيئة {{count}} مصدر بيانات تلقائيًا:",
+      "back": "العودة إلى لوحات المعلومات",
+      "constants-title": "متغيرات لوحة المعلومات",
+      "datasources-title": "تهيئة مصدر البيانات",
+      "description": "تتطلب لوحة المعلومات هذه تهيئة مصدر بيانات. اختر مصادر البيانات لكل إدخال أدناه.",
+      "preview": "معاينة لوحة المعلومات"
+    },
+    "community-mapping-select-datasource": "اختر مصدر بيانات",
+    "compatibility-auto-map-failed": "تعذّر تعيين جميع إدخالات مصادر البيانات لهذه لوحة المعلومات تلقائيًا. يتطلب فحص التوافق حل جميع متغيرات مصدر البيانات.",
+    "compatibility-badge": {
+      "check": "فحص التوافق",
+      "check-tooltip": "يتحقق من عدد مقاييس لوحة المعلومات التي تطابق مصدر بياناتك.",
+      "checking": "جارٍ الفحص",
+      "error-text": "خطأ",
+      "error-tooltip": "فشل فحص التوافق. أولًا، تحقّق من أن <2>مصدر البيانات</2> يعمل. ثم افتح لوحة المعلومات وراجع <6>المتغيرات</6>.",
+      "not-supported-tooltip": "هذا النوع من لوحات المعلومات أو مصادر البيانات غير مدعوم بعد. تُدعم حاليًا مصادر بيانات Prometheus فقط ولوحات المعلومات غير الديناميكية (v1).",
+      "score-text": "{{score}}% متوافق",
+      "tooltip-green": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة.",
+      "tooltip-orange": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة. قد تحتوي لوحة المعلومات هذه على لوحات تتطلب تخصيصًا كبيرًا.",
+      "tooltip-red": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة. ستتطلب لوحة المعلومات هذه تخصيصًا كبيرًا للاستعلامات."
+    },
+    "create-from-scratch": "إنشاء لوحة معلومات من الصفر بدلًا من ذلك",
+    "dashboard-card": {
+      "details": {
+        "datasource": "مصدر البيانات",
+        "dependencies": "التبعيات",
+        "id": "ID",
+        "last-update": "آخر تحديث",
+        "published-by": "نشرها",
+        "view-on-grafana-com": "عرض على Grafana.com"
+      },
+      "no-description": "لا يتوفّر وصف"
+    },
+    "merged-description": "تصفّح واختر من لوحات المعلومات المقدّمة من مصدر البيانات أو من المجتمع",
+    "merged-empty-no-dashboards": "لا تتوفّر لوحات معلومات لمصدر البيانات هذا.",
+    "merged-empty-search": "جرّب مصطلح بحث مختلفًا أو تصفّح المزيد من لوحات المعلومات على Grafana.com.",
+    "merged-empty-title": "لم يُعثر على لوحات معلومات",
+    "merged-empty-title-with-datasource": "لم يُعثر على لوحات معلومات {{datasourceType}}",
+    "merged-search-placeholder": "ابحث في لوحات المعلومات...",
+    "merged-search-placeholder-with-datasource": "ابحث في لوحات معلومات {{datasourceType}}...",
+    "modal": {
+      "title": "لوحات المعلومات المقترحة",
+      "title-mapping-with-name": "تهيئة مصادر البيانات لـ {{dashboardName}}",
+      "title-with-datasource": "لوحات المعلومات المقترحة لمصدر بيانات {{datasourceType}} الخاص بك"
+    },
+    "suggested-error-description": "فشل تحميل لوحة المعلومات المقترحة.",
+    "suggested-error-title": "خطأ في تحميل لوحة المعلومات المقترحة",
+    "template-dashboard-modal": {
+      "description": "ابدأ مع قوالب Grafana باستخدام بيانات عيّنة. اربط بياناتك لتشغيلها بمقاييس حقيقية.",
+      "title": "ابدأ لوحة معلومات من قالب"
     }
   },
   "dashboard-links": {
@@ -704,6 +846,77 @@
     "description": "قد لا تُحفظ التغييرات التي أجريتها.",
     "discard-button": "تجاهل التغييرات غير المحفوظة",
     "title": "مغادرة الصفحة؟"
+  },
+  "gauge": {
+    "category-gauge": "مقياس",
+    "category-radial-bar": "مقياس",
+    "config": {
+      "bar-shape": "نمط الشريط",
+      "bar-shape-flat": "مسطّح",
+      "bar-shape-rounded": "مدوّر",
+      "bar-width": "معامل عرض الشريط",
+      "effects": {
+        "bar-glow": "توهّج الشريط",
+        "center-glow": "توهّج المركز",
+        "gradient": "تدرّج",
+        "label": "التأثيرات"
+      },
+      "endpoint-marker": "علامة نقطة النهاية",
+      "endpoint-marker-description": "التوهّج مدعوم فقط في الوضع الداكن",
+      "endpoint-marker-glow": "توهّج",
+      "endpoint-marker-none": "بلا",
+      "endpoint-marker-point": "نقطة",
+      "neutral": {
+        "description": "اتركه فارغًا لاستخدام الحد الأدنى كنقطة محايدة",
+        "placeholder": "بلا",
+        "title": "القيمة المحايدة"
+      },
+      "segment-count": "المقاطع",
+      "segment-spacing": "المسافة بين المقاطع",
+      "shape": "النمط",
+      "shape-circle": "دائرة",
+      "shape-gauge": "قوس",
+      "sparkline": "إظهار المخطط المصغّر",
+      "text-mode": "وضع النص",
+      "text-mode-auto": "تلقائي",
+      "text-mode-name": "الاسم",
+      "text-mode-none": "بلا",
+      "text-mode-value": "القيمة",
+      "text-mode-value-and-name": "القيمة والاسم",
+      "threshold-labels": "إظهار التسميات",
+      "threshold-labels-description": "عرض قيم العتبة والقيم المحايدة",
+      "threshold-markers": "إظهار العتبات"
+    },
+    "data-links-actions-menu": "فتح قائمة روابط البيانات والإجراءات",
+    "description-min-height": "الحد الأدنى لارتفاع الصف (الاتجاه الأفقي)",
+    "description-min-width": "الحد الأدنى لعرض العمود (الاتجاه الرأسي)",
+    "gauge-size-options": {
+      "label-auto": "تلقائي",
+      "label-manual": "يدوي"
+    },
+    "name-gauge-size": "حجم المقياس",
+    "name-min-height": "الحد الأدنى للارتفاع",
+    "name-min-width": "الحد الأدنى للعرض",
+    "neutral": "محايد {{value}}",
+    "presets": {
+      "circle": "دائرة",
+      "circle_desc": "دائرة كاملة، لون العتبة، مع مخطط مصغّر",
+      "gradient": "تدرّج",
+      "gradient_desc": "مقياس قوسي، تعبئة متدرّجة أخضر-أصفر-أحمر",
+      "neon": "نيون",
+      "neon_desc": "دائرة، شريط مدوّر، تأثيرات توهّج، أحمر ثابت",
+      "neonSegmented": "نيون مقسّم",
+      "neonSegmented_desc": "دائرة، 10 مقاطع مدوّرة، تأثيرات توهّج، أزرق ثابت",
+      "segmented": "مقسّم",
+      "segmented_desc": "قوس متقطّع، لون العتبة، مع مخطط مصغّر",
+      "standard": "قياسي",
+      "standard_desc": "مقياس قوسي، لون العتبة، مع مخطط مصغّر"
+    },
+    "suggestions": {
+      "arc": "مقياس",
+      "circular": "مقياس دائري"
+    },
+    "threshold": "عتبة {{value}}"
   },
   "gen-ai": {
     "apply-suggestion": "تطبيق",
@@ -3005,6 +3218,118 @@
     },
     "textbox": {
       "placeholder": "أدخل قيمة المتغير"
+    }
+  },
+  "variables": {
+    "ad-hoc-filter": {
+      "label-and": "و"
+    },
+    "ad-hoc-filter-key": {
+      "plus-segment": {
+        "aria-label-add-filter": "إضافة مرشّح"
+      }
+    },
+    "create-ad-hoc-variable-adapter": {
+      "description": {
+        "add-keyvalue-filters-on-the-fly": "أضف مرشّحات مفتاح/قيمة أثناء العمل."
+      }
+    },
+    "create-custom-variable-adapter": {
+      "description": {
+        "define-variable-values-manually": "تعريف قيم المتغير يدويًا"
+      }
+    },
+    "create-interval-variable-adapter": {
+      "description": {
+        "define-timespan-interval": "تعريف فاصل زمني (على سبيل المثال: {{timeIntervals}})"
+      }
+    },
+    "create-query-variable-adapter": {
+      "description": {
+        "variable-values-fetched-datasource-query": "تُجلب قيم المتغير من استعلام مصدر بيانات"
+      }
+    },
+    "create-switch-variable-adapter": {
+      "description": "متغير يمكن تبديله بين التشغيل والإيقاف"
+    },
+    "data-source-variable-slice": {
+      "text": {
+        "default": "افتراضي",
+        "no-data-sources-found": "لم يُعثر على مصادر بيانات"
+      }
+    },
+    "empty-state": {
+      "button-title": "إضافة متغير",
+      "info-box-content": "تتيح المتغيرات لوحات معلومات أكثر تفاعلية وديناميكية. بدلًا من ترميز أشياء مثل أسماء الخوادم أو المستشعرات في استعلامات المقاييس، يمكنك استخدام المتغيرات في مكانها. تظهر المتغيرات كقوائم في أعلى لوحة المعلومات. تسهّل هذه القوائم المنسدلة تغيير البيانات المعروضة في لوحة معلوماتك.",
+      "info-box-content-2": "راجع <2>وثائق القوالب والمتغيرات</2> لمزيد من المعلومات.",
+      "title": "لم تُضف أي متغيرات بعد"
+    },
+    "legacy-variable-query-editor": {
+      "placeholder-metric-name-or-tags-query": "اسم المقياس أو استعلام الوسوم"
+    },
+    "no-unknowns": {
+      "no-renamed-or-missing-variables-found": "لم يُعثر على متغيرات مُعاد تسميتها أو مفقودة."
+    },
+    "query-variable-refresh-select": {
+      "description-update-values-variable": "متى تُحدَّث قيم هذا المتغير",
+      "label-refresh": "تحديث"
+    },
+    "query-variable-sort-select": {
+      "description-values-variable": "كيفية فرز قيم هذا المتغير",
+      "name-sort": "فرز",
+      "sort_options": {
+        "label": {
+          "alphabetical-asc": "أبجدي (تصاعدي)",
+          "alphabetical-caseinsensitive-asc": "أبجدي (غير حساس لحالة الأحرف، تصاعدي)",
+          "alphabetical-caseinsensitive-desc": "أبجدي (غير حساس لحالة الأحرف، تنازلي)",
+          "alphabetical-desc": "أبجدي (تنازلي)",
+          "disabled": "مُعطّل",
+          "natural-asc": "طبيعي (تصاعدي)",
+          "natural-desc": "طبيعي (تنازلي)",
+          "numerical-asc": "عددي (تصاعدي)",
+          "numerical-desc": "عددي (تنازلي)"
+        }
+      }
+    },
+    "query-variable-static-options": {
+      "description": "أضف خيارات مخصصة إضافةً إلى نتائج الاستعلام"
+    },
+    "query-variable-static-options-sort-select": {
+      "description-values-variable": "كيفية فرز الخيارات الثابتة مع نتائج الاستعلام"
+    },
+    "static-options": {
+      "add-option-button-label": "إضافة خيار جديد"
+    },
+    "text-box-variable-editor": {
+      "name-default-value": "القيمة الافتراضية",
+      "placeholder-default-value-if-any": "القيمة الافتراضية، إن وُجدت",
+      "text-options": "خيارات النص"
+    },
+    "transform-usages-to-network": {
+      "result": {
+        "label": {
+          "dashboard": "لوحة المعلومات"
+        }
+      }
+    },
+    "unknown-table": {
+      "loading": "جارٍ التحميل...",
+      "no-unknowns": "لم يُعثر على متغيرات مُعاد تسميتها أو مفقودة.",
+      "renamed-or-missing-variables": "متغيرات مُعاد تسميتها أو مفقودة",
+      "tooltip-renamed-or-missing-variables": "انقر لتوسيع قائمة بجميع مراجع المتغيرات التي أُعيد تسميتها أو المفقودة من لوحة المعلومات.",
+      "variable": "متغير"
+    },
+    "variable-options": {
+      "aria-label-toggle-all-values": "تبديل جميع القيم"
+    },
+    "variables-unknown-button": {
+      "usage-title": "عرض الاستخدامات لـ: {{variableId}}",
+      "VariablesUnknownButton-tooltip-show-usages": "عرض الاستخدامات"
+    },
+    "variables-unknown-table": {
+      "collapse-label": "متغيرات مُعاد تسميتها أو مفقودة",
+      "collapse-tooltip": "انقر لتوسيع قائمة بجميع مراجع المتغيرات التي أُعيد تسميتها أو المفقودة من لوحة المعلومات.",
+      "loading": "جارٍ التحميل..."
     }
   },
   "visualization": {

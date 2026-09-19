@@ -1,0 +1,71 @@
+{
+  "category-gauge": "مقياس",
+  "category-radial-bar": "مقياس",
+  "config": {
+    "bar-shape": "نمط الشريط",
+    "bar-shape-flat": "مسطّح",
+    "bar-shape-rounded": "مدوّر",
+    "bar-width": "معامل عرض الشريط",
+    "effects": {
+      "bar-glow": "توهّج الشريط",
+      "center-glow": "توهّج المركز",
+      "gradient": "تدرّج",
+      "label": "التأثيرات"
+    },
+    "endpoint-marker": "علامة نقطة النهاية",
+    "endpoint-marker-description": "التوهّج مدعوم فقط في الوضع الداكن",
+    "endpoint-marker-glow": "توهّج",
+    "endpoint-marker-none": "بلا",
+    "endpoint-marker-point": "نقطة",
+    "neutral": {
+      "description": "اتركه فارغًا لاستخدام الحد الأدنى كنقطة محايدة",
+      "placeholder": "بلا",
+      "title": "القيمة المحايدة"
+    },
+    "segment-count": "المقاطع",
+    "segment-spacing": "المسافة بين المقاطع",
+    "shape": "النمط",
+    "shape-circle": "دائرة",
+    "shape-gauge": "قوس",
+    "sparkline": "إظهار المخطط المصغّر",
+    "text-mode": "وضع النص",
+    "text-mode-auto": "تلقائي",
+    "text-mode-name": "الاسم",
+    "text-mode-none": "بلا",
+    "text-mode-value": "القيمة",
+    "text-mode-value-and-name": "القيمة والاسم",
+    "threshold-labels": "إظهار التسميات",
+    "threshold-labels-description": "عرض قيم العتبة والقيم المحايدة",
+    "threshold-markers": "إظهار العتبات"
+  },
+  "data-links-actions-menu": "فتح قائمة روابط البيانات والإجراءات",
+  "description-min-height": "الحد الأدنى لارتفاع الصف (الاتجاه الأفقي)",
+  "description-min-width": "الحد الأدنى لعرض العمود (الاتجاه الرأسي)",
+  "gauge-size-options": {
+    "label-auto": "تلقائي",
+    "label-manual": "يدوي"
+  },
+  "name-gauge-size": "حجم المقياس",
+  "name-min-height": "الحد الأدنى للارتفاع",
+  "name-min-width": "الحد الأدنى للعرض",
+  "neutral": "محايد {{value}}",
+  "presets": {
+    "circle": "دائرة",
+    "circle_desc": "دائرة كاملة، لون العتبة، مع مخطط مصغّر",
+    "gradient": "تدرّج",
+    "gradient_desc": "مقياس قوسي، تعبئة متدرّجة أخضر-أصفر-أحمر",
+    "neon": "نيون",
+    "neon_desc": "دائرة، شريط مدوّر، تأثيرات توهّج، أحمر ثابت",
+    "neonSegmented": "نيون مقسّم",
+    "neonSegmented_desc": "دائرة، 10 مقاطع مدوّرة، تأثيرات توهّج، أزرق ثابت",
+    "segmented": "مقسّم",
+    "segmented_desc": "قوس متقطّع، لون العتبة، مع مخطط مصغّر",
+    "standard": "قياسي",
+    "standard_desc": "مقياس قوسي، لون العتبة، مع مخطط مصغّر"
+  },
+  "suggestions": {
+    "arc": "مقياس",
+    "circular": "مقياس دائري"
+  },
+  "threshold": "عتبة {{value}}"
+}

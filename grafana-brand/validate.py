@@ -41,6 +41,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Grafana Live", "Grafana Play", "Geohash", "GeoJSON",
     "Cloud", "Enterprise",  # Grafana edition/tier badge labels, kept as the product tier name
     "Bind DN", "Search base DNS",  # standard LDAP field names, conventionally kept Latin
+    "RTL", "LTR",  # direction acronyms used as compact option labels
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")

@@ -1,0 +1,112 @@
+{
+  "ad-hoc-filter": {
+    "label-and": "و"
+  },
+  "ad-hoc-filter-key": {
+    "plus-segment": {
+      "aria-label-add-filter": "إضافة مرشّح"
+    }
+  },
+  "create-ad-hoc-variable-adapter": {
+    "description": {
+      "add-keyvalue-filters-on-the-fly": "أضف مرشّحات مفتاح/قيمة أثناء العمل."
+    }
+  },
+  "create-custom-variable-adapter": {
+    "description": {
+      "define-variable-values-manually": "تعريف قيم المتغير يدويًا"
+    }
+  },
+  "create-interval-variable-adapter": {
+    "description": {
+      "define-timespan-interval": "تعريف فاصل زمني (على سبيل المثال: {{timeIntervals}})"
+    }
+  },
+  "create-query-variable-adapter": {
+    "description": {
+      "variable-values-fetched-datasource-query": "تُجلب قيم المتغير من استعلام مصدر بيانات"
+    }
+  },
+  "create-switch-variable-adapter": {
+    "description": "متغير يمكن تبديله بين التشغيل والإيقاف"
+  },
+  "data-source-variable-slice": {
+    "text": {
+      "default": "افتراضي",
+      "no-data-sources-found": "لم يُعثر على مصادر بيانات"
+    }
+  },
+  "empty-state": {
+    "button-title": "إضافة متغير",
+    "info-box-content": "تتيح المتغيرات لوحات معلومات أكثر تفاعلية وديناميكية. بدلًا من ترميز أشياء مثل أسماء الخوادم أو المستشعرات في استعلامات المقاييس، يمكنك استخدام المتغيرات في مكانها. تظهر المتغيرات كقوائم في أعلى لوحة المعلومات. تسهّل هذه القوائم المنسدلة تغيير البيانات المعروضة في لوحة معلوماتك.",
+    "info-box-content-2": "راجع <2>وثائق القوالب والمتغيرات</2> لمزيد من المعلومات.",
+    "title": "لم تُضف أي متغيرات بعد"
+  },
+  "legacy-variable-query-editor": {
+    "placeholder-metric-name-or-tags-query": "اسم المقياس أو استعلام الوسوم"
+  },
+  "no-unknowns": {
+    "no-renamed-or-missing-variables-found": "لم يُعثر على متغيرات مُعاد تسميتها أو مفقودة."
+  },
+  "query-variable-refresh-select": {
+    "description-update-values-variable": "متى تُحدَّث قيم هذا المتغير",
+    "label-refresh": "تحديث"
+  },
+  "query-variable-sort-select": {
+    "description-values-variable": "كيفية فرز قيم هذا المتغير",
+    "name-sort": "فرز",
+    "sort_options": {
+      "label": {
+        "alphabetical-asc": "أبجدي (تصاعدي)",
+        "alphabetical-caseinsensitive-asc": "أبجدي (غير حساس لحالة الأحرف، تصاعدي)",
+        "alphabetical-caseinsensitive-desc": "أبجدي (غير حساس لحالة الأحرف، تنازلي)",
+        "alphabetical-desc": "أبجدي (تنازلي)",
+        "disabled": "مُعطّل",
+        "natural-asc": "طبيعي (تصاعدي)",
+        "natural-desc": "طبيعي (تنازلي)",
+        "numerical-asc": "عددي (تصاعدي)",
+        "numerical-desc": "عددي (تنازلي)"
+      }
+    }
+  },
+  "query-variable-static-options": {
+    "description": "أضف خيارات مخصصة إضافةً إلى نتائج الاستعلام"
+  },
+  "query-variable-static-options-sort-select": {
+    "description-values-variable": "كيفية فرز الخيارات الثابتة مع نتائج الاستعلام"
+  },
+  "static-options": {
+    "add-option-button-label": "إضافة خيار جديد"
+  },
+  "text-box-variable-editor": {
+    "name-default-value": "القيمة الافتراضية",
+    "placeholder-default-value-if-any": "القيمة الافتراضية، إن وُجدت",
+    "text-options": "خيارات النص"
+  },
+  "transform-usages-to-network": {
+    "result": {
+      "label": {
+        "dashboard": "لوحة المعلومات"
+      }
+    }
+  },
+  "unknown-table": {
+    "loading": "جارٍ التحميل...",
+    "no-unknowns": "لم يُعثر على متغيرات مُعاد تسميتها أو مفقودة.",
+    "renamed-or-missing-variables": "متغيرات مُعاد تسميتها أو مفقودة",
+    "tooltip-renamed-or-missing-variables": "انقر لتوسيع قائمة بجميع مراجع المتغيرات التي أُعيد تسميتها أو المفقودة من لوحة المعلومات.",
+    "variable": "متغير"
+  },
+  "variable-options": {
+    "aria-label-toggle-all-values": "تبديل جميع القيم"
+  },
+  "variables-unknown-button": {
+    "usage-title": "عرض الاستخدامات لـ: {{variableId}}",
+    "VariablesUnknownButton-tooltip-show-usages": "عرض الاستخدامات"
+  },
+  "variables-unknown-table": {
+    "collapse-label": "متغيرات مُعاد تسميتها أو مفقودة",
+    "collapse-tooltip": "انقر لتوسيع قائمة بجميع مراجع المتغيرات التي أُعيد تسميتها أو المفقودة من لوحة المعلومات.",
+    "loading": "جارٍ التحميل..."
+  }
+}

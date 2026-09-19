@@ -1,0 +1,70 @@
+{
+  "config": {
+    "category-thresholds": "العتبات",
+    "description-color-by-field": "استخدم قيمة اللون لحقل شقيق لتلوين قيمة كل شريط.",
+    "description-x-label-max-length": "ستُقتطع تسميات المحور X إلى الطول المُقدَّم",
+    "name-bar-radius": "نصف قطر الشريط",
+    "name-bar-width": "عرض الشريط",
+    "name-color-by-field": "التلوين حسب الحقل",
+    "name-fill-opacity": "عتامة التعبئة",
+    "name-full-highlight": "إبراز المنطقة الكاملة عند التمرير",
+    "name-gradient-mode": "وضع التدرّج",
+    "name-group-width": "عرض المجموعة",
+    "name-line-width": "عرض الخط",
+    "name-orientation": "الاتجاه",
+    "name-rotate-x-labels": "تدوير تسميات محور X",
+    "name-show-thresholds": "إظهار العتبات",
+    "name-show-values": "إظهار القيم",
+    "name-stacking": "التكديس",
+    "name-transform": "التحويل",
+    "name-x-axis": "المحور X",
+    "name-x-label-max-length": "الطول الأقصى لتسمية محور X",
+    "name-x-label-min-spacing": "الحد الأدنى للمسافة بين تسميات محور X",
+    "orientation-options": {
+      "label-auto": "تلقائي",
+      "label-horizontal": "أفقي",
+      "label-line-vertical": "رأسي"
+    },
+    "placeholder-x-axis": "أول حقل نصي أو زمني",
+    "placeholder-x-label-max-length": "بلا",
+    "show-values-options": {
+      "label-always": "دائمًا",
+      "label-auto": "تلقائي",
+      "label-never": "أبدًا"
+    },
+    "transform-options": {
+      "description-constant": "ستُعرض القيمة الأولى كخط ثابت",
+      "description-negative-y": "اقلب النتائج إلى قيم سالبة على المحور Y",
+      "label-constant": "ثابت",
+      "label-negative-y": "Y السالب"
+    }
+  },
+  "presets": {
+    "fixed-purple-hue": "درجة أرجوانية ثابتة",
+    "palette-classic": "لوحة ألوان كلاسيكية",
+    "palette-classic-stacked": "لوحة ألوان كلاسيكية مكدّسة",
+    "viridis-hue": "درجة Viridis"
+  },
+  "suggestions": {
+    "horizontal": "مخطط شريطي أفقي",
+    "hz-stacked": "مخطط شريطي أفقي - مكدّس",
+    "hz-stacked-percent": "مخطط شريطي أفقي - مكدّس بالنسبة المئوية",
+    "vert-stacked": "مخطط شريطي - مكدّس",
+    "vert-stacked-percent": "مخطط شريطي - مكدّس بالنسبة المئوية",
+    "vertical": "مخطط شريطي"
+  },
+  "tick-spacing-editor": {
+    "content-require-space-from-the-right-side": "يتطلب مسافة من الجانب الأيمن",
+    "gaps-options": {
+      "description-large": "يتطلب مسافة {{spacing}}",
+      "description-medium": "يتطلب مسافة {{spacing}}",
+      "description-none": "إظهار جميع علامات التدرّج",
+      "description-small": "يتطلب مسافة {{spacing}}",
+      "label-large": "كبير",
+      "label-medium": "متوسط",
+      "label-none": "بلا",
+      "label-small": "صغير"
+    },
+    "label-rtl": "RTL"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "card": {
+    "community-badge": "المجتمع",
+    "customize-with-assistant-button": "التخصيص باستخدام المساعد",
+    "customize-with-assistant-button-label": "التخصيص باستخدام المساعد: {{title}}",
+    "datasource-provided-badge": "مقدّم من مصدر البيانات",
+    "details-tooltip": "التفاصيل",
+    "no-preview": "لا تتوفّر معاينة ",
+    "view-dashboard-button": "عرض لوحة المعلومات",
+    "view-dashboard-button-label": "عرض لوحة المعلومات: {{title}}",
+    "view-template-button": "عرض القالب",
+    "view-template-button-label": "عرض القالب: {{title}}"
+  },
+  "community-error-title": "خطأ في تحميل لوحة معلومات المجتمع",
+  "community-mapping-form": {
+    "auto-mapped_zero": "لم تُهيَّأ أي مصادر بيانات تلقائيًا:",
+    "auto-mapped_one": "تمت تهيئة مصدر بيانات واحد تلقائيًا:",
+    "auto-mapped_two": "تمت تهيئة مصدري بيانات تلقائيًا:",
+    "auto-mapped_few": "تمت تهيئة {{count}} مصادر بيانات تلقائيًا:",
+    "auto-mapped_many": "تمت تهيئة {{count}} مصدر بيانات تلقائيًا:",
+    "auto-mapped_other": "تمت تهيئة {{count}} مصدر بيانات تلقائيًا:",
+    "back": "العودة إلى لوحات المعلومات",
+    "constants-title": "متغيرات لوحة المعلومات",
+    "datasources-title": "تهيئة مصدر البيانات",
+    "description": "تتطلب لوحة المعلومات هذه تهيئة مصدر بيانات. اختر مصادر البيانات لكل إدخال أدناه.",
+    "preview": "معاينة لوحة المعلومات"
+  },
+  "community-mapping-select-datasource": "اختر مصدر بيانات",
+  "compatibility-auto-map-failed": "تعذّر تعيين جميع إدخالات مصادر البيانات لهذه لوحة المعلومات تلقائيًا. يتطلب فحص التوافق حل جميع متغيرات مصدر البيانات.",
+  "compatibility-badge": {
+    "check": "فحص التوافق",
+    "check-tooltip": "يتحقق من عدد مقاييس لوحة المعلومات التي تطابق مصدر بياناتك.",
+    "checking": "جارٍ الفحص",
+    "error-text": "خطأ",
+    "error-tooltip": "فشل فحص التوافق. أولًا، تحقّق من أن <2>مصدر البيانات</2> يعمل. ثم افتح لوحة المعلومات وراجع <6>المتغيرات</6>.",
+    "not-supported-tooltip": "هذا النوع من لوحات المعلومات أو مصادر البيانات غير مدعوم بعد. تُدعم حاليًا مصادر بيانات Prometheus فقط ولوحات المعلومات غير الديناميكية (v1).",
+    "score-text": "{{score}}% متوافق",
+    "tooltip-green": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة.",
+    "tooltip-orange": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة. قد تحتوي لوحة المعلومات هذه على لوحات تتطلب تخصيصًا كبيرًا.",
+    "tooltip-red": "{{score}}% ({{found}}/{{total}}) من المقاييس متطابقة. ستتطلب لوحة المعلومات هذه تخصيصًا كبيرًا للاستعلامات."
+  },
+  "create-from-scratch": "إنشاء لوحة معلومات من الصفر بدلًا من ذلك",
+  "dashboard-card": {
+    "details": {
+      "datasource": "مصدر البيانات",
+      "dependencies": "التبعيات",
+      "id": "ID",
+      "last-update": "آخر تحديث",
+      "published-by": "نشرها",
+      "view-on-grafana-com": "عرض على Grafana.com"
+    },
+    "no-description": "لا يتوفّر وصف"
+  },
+  "merged-description": "تصفّح واختر من لوحات المعلومات المقدّمة من مصدر البيانات أو من المجتمع",
+  "merged-empty-no-dashboards": "لا تتوفّر لوحات معلومات لمصدر البيانات هذا.",
+  "merged-empty-search": "جرّب مصطلح بحث مختلفًا أو تصفّح المزيد من لوحات المعلومات على Grafana.com.",
+  "merged-empty-title": "لم يُعثر على لوحات معلومات",
+  "merged-empty-title-with-datasource": "لم يُعثر على لوحات معلومات {{datasourceType}}",
+  "merged-search-placeholder": "ابحث في لوحات المعلومات...",
+  "merged-search-placeholder-with-datasource": "ابحث في لوحات معلومات {{datasourceType}}...",
+  "modal": {
+    "title": "لوحات المعلومات المقترحة",
+    "title-mapping-with-name": "تهيئة مصادر البيانات لـ {{dashboardName}}",
+    "title-with-datasource": "لوحات المعلومات المقترحة لمصدر بيانات {{datasourceType}} الخاص بك"
+  },
+  "suggested-error-description": "فشل تحميل لوحة المعلومات المقترحة.",
+  "suggested-error-title": "خطأ في تحميل لوحة المعلومات المقترحة",
+  "template-dashboard-modal": {
+    "description": "ابدأ مع قوالب Grafana باستخدام بيانات عيّنة. اربط بياناتك لتشغيلها بمقاييس حقيقية.",
+    "title": "ابدأ لوحة معلومات من قالب"
+  }
+}
