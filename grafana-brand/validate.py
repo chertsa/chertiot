@@ -44,6 +44,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "RTL", "LTR",  # direction acronyms used as compact option labels
     "Start TLS", "Group DN", "Org ID", "Org DN",  # LDAP/config field & toggle names kept Latin
     "Logfmt", "logfmt", "Regex", "regex",  # log/query format & syntax names
+    "Kubernetes", "OnCall", "SLO", "SLOs", "IRM", "Grafana Quaderno", "Grafana Alloy", "k6",  # product/feature names
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")

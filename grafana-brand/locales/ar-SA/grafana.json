@@ -1004,6 +1004,204 @@
       "tooltip": "تساعدك فحوصات المستشار في العثور على مشكلات في مصادر بياناتك والإضافات"
     }
   },
+  "datasources": {
+    "add-new-data-source-button": {
+      "tooltip-no-permission": "ليس لديك إذن لتهيئة مصادر بيانات جديدة"
+    },
+    "alert-success-message": {
+      "aria-label-create-a-dashboard": "إنشاء لوحة معلومات",
+      "aria-label-explore-data": "استكشاف البيانات",
+      "aria-label-suggested-dashboards": "لوحات المعلومات المقترحة"
+    },
+    "build-a-dashboard-button": {
+      "blank": "فارغة",
+      "build-a-dashboard": "إنشاء لوحة معلومات",
+      "from-suggestions": "من الاقتراحات"
+    },
+    "build-categories": {
+      "categories": {
+        "title": {
+          "cloud": "Cloud",
+          "distributed-tracing": "التتبّع الموزّع",
+          "enterprise-plugins": "إضافات Enterprise",
+          "industrial-io-t": "الصناعة وإنترنت الأشياء",
+          "logging-document-databases": "التسجيل وقواعد البيانات المستندية",
+          "others": "أخرى",
+          "profiling": "التوصيف",
+          "sql": "SQL",
+          "time-series-databases": "قواعد بيانات السلاسل الزمنية"
+        }
+      }
+    },
+    "build-nav-model": {
+      "analytics": {
+        "text": {
+          "insights": "الرؤى"
+        }
+      },
+      "caching": {
+        "text": {
+          "cache": "التخزين المؤقت"
+        }
+      },
+      "ds-permissions": {
+        "text": {
+          "permissions": "الأذونات"
+        }
+      },
+      "nav-model": {
+        "text": {
+          "settings": "الإعدادات"
+        }
+      },
+      "text": {
+        "dashboards": "لوحات المعلومات"
+      }
+    },
+    "button-row": {
+      "delete": "حذف",
+      "save-and-test": "حفظ واختبار",
+      "test": "اختبار"
+    },
+    "cloud-info-box": {
+      "body-alert": "أو تجنّب العناء واحصل على {{dsName}} كمصدر بيانات مُدار بالكامل وقابل للتوسّع ومُستضاف من Grafana Labs مع <4>خطة Grafana Cloud المجانية للأبد</4>.",
+      "title-alert": "هيّئ مصدر بيانات {{dsName}} أدناه"
+    },
+    "dashboards-table": {
+      "aria-label-delete-dashboard": "حذف لوحة المعلومات",
+      "import": "استيراد"
+    },
+    "data-source-categories": {
+      "find-more-data-source-plugins": "العثور على مزيد من إضافات مصادر البيانات"
+    },
+    "data-source-load-error": {
+      "back": "رجوع",
+      "check-updates": "حدث خطأ غير معروف أثناء تحميل الإضافة. يُرجى التحقق من وجود تحديثات.",
+      "delete": "حذف",
+      "load-error-title": "خطأ في تحميل الإضافة",
+      "not-found": "لم يُعثر على مصدر البيانات"
+    },
+    "data-source-missing-rights-message": {
+      "title-missing-rights": "صلاحيات مفقودة"
+    },
+    "data-source-picker": {
+      "aria-label-select-a-data-source": "اختر مصدر بيانات"
+    },
+    "data-source-plugin-config-page": {
+      "page-not-found": "لم يُعثر على الصفحة: {{page}}"
+    },
+    "data-source-plugin-state": {
+      "plugin-state": "حالة الإضافة"
+    },
+    "data-source-read-only-message": {
+      "title-provisioned-data-source": "مصدر بيانات مُهيّأ تلقائيًا"
+    },
+    "data-source-settings-reducer": {
+      "message": {
+        "testing-could-couple-minutes": "جارٍ الاختبار... قد يستغرق هذا بضع دقائق"
+      }
+    },
+    "data-source-type-card": {
+      "aria-label-learn-more": "{{dataSourcePluginName}}، تعرّف على المزيد."
+    },
+    "data-sources-list-card": {
+      "explore": "استكشاف"
+    },
+    "default-button": {
+      "active": "مصدر البيانات هذا مضبوط حاليًا كالافتراضي.",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "error": "فشل تحديث مصدر البيانات الافتراضي",
+      "make": "جعله افتراضيًا",
+      "make-confirm": "هل أنت متأكد أنك تريد ضبط مصدر البيانات هذا كافتراضي لجميع المستخدمين؟",
+      "remove": "إزالة الافتراضي",
+      "remove-confirm": "هل أنت متأكد أنك تريد إزالة الحالة الافتراضية من مصدر البيانات هذا لجميع المستخدمين؟",
+      "tooltip": "مصدر البيانات الافتراضي مُحدَّد مسبقًا في اللوحات الجديدة."
+    },
+    "edit-data-source-actions": {
+      "add-favorite": "إضافة إلى المفضلة",
+      "explore-data": "استكشاف البيانات",
+      "open-in-explore": "فتح في عرض الاستكشاف",
+      "remove-favorite": "إزالة من المفضلة"
+    },
+    "error-details-link": {
+      "aria-label-more-details-about-the-error": "مزيد من التفاصيل حول الخطأ"
+    },
+    "get-enterprise-phantom-plugins": {
+      "description": {
+        "adobe-analytics-datasource": "مصدر بيانات Adobe Analytics",
+        "app-dynamics-integration-and-data-source": "تكامل ومصدر بيانات AppDynamics",
+        "atlassian-statuspage-datasource": "مصدر بيانات Atlassian Statuspage",
+        "aurora-data-source": "مصدر بيانات Aurora",
+        "azure-cosmos-db-datasource": "مصدر بيانات Azure CosmosDB",
+        "azure-devops-datasource": "مصدر بيانات Azure Devops",
+        "catchpoint-datasource": "مصدر بيانات Catchpoint",
+        "cloudflare-datasource": "مصدر بيانات Cloudflare",
+        "cockroach-db-datasource": "مصدر بيانات CockroachDB",
+        "data-dog-integration-and-data-source": "تكامل ومصدر بيانات DataDog",
+        "drone-datasource": "مصدر بيانات Drone",
+        "git-lab-integration-and-datasource": "تكامل ومصدر بيانات GitLab",
+        "honeycomb-integration-and-datasource": "تكامل ومصدر بيانات Honeycomb",
+        "ibmdb2-datasource": "مصدر بيانات IBM Db2",
+        "jira-integration-and-datasource": "تكامل ومصدر بيانات Jira",
+        "logic-monitor-devices-datasource": "مصدر بيانات LogicMonitor Devices",
+        "mongo-db-integration-and-data-source": "تكامل ومصدر بيانات MongoDB",
+        "netlify-datasource": "مصدر بيانات Netlify",
+        "new-relic-integration-and-data-source": "تكامل ومصدر بيانات New Relic",
+        "pager-duty-datasource": "مصدر بيانات PagerDuty",
+        "salesforce-integration-and-datasource": "تكامل ومصدر بيانات Salesforce",
+        "sap-hana-integration-and-data-source": "تكامل ومصدر بيانات SAP HANA®",
+        "service-now-integration-and-data-source": "تكامل ومصدر بيانات ServiceNow",
+        "signal-fx-integration-and-datasource": "تكامل ومصدر بيانات SignalFx",
+        "snowflake-integration-and-data-source": "تكامل ومصدر بيانات Snowflake",
+        "solarwinds-datasource": "مصدر بيانات SolarWinds",
+        "sumo-logic-integration-and-datasource": "تكامل ومصدر بيانات SumoLogic",
+        "visualize-and-explore-dynatrace-data": "تصوّر واستكشف بيانات Dynatrace",
+        "visualize-and-explore-oracle-sql": "تصوّر واستكشف Oracle SQL",
+        "visualize-and-explore-splunk-logs": "تصوّر واستكشف سجلّات Splunk",
+        "wavefront-integration-and-data-source": "تكامل ومصدر بيانات Wavefront",
+        "zendesk-datasource": "مصدر بيانات Zendesk"
+      }
+    },
+    "get-grafana-cloud-phantom-plugin": {
+      "description": {
+        "hosted-graphite-prometheus-and-loki": "Graphite وPrometheus وLoki المُستضافة"
+      }
+    },
+    "list": {
+      "failed-high": "فشل",
+      "failed-high-tooltip": "مصدر البيانات هذا لديه إخفاقات حرجة أبلغ عنها مستشار Grafana.",
+      "failed-low": "تحذير",
+      "failed-low-tooltip": "مصدر البيانات هذا لديه مشكلات غير حرجة أبلغ عنها مستشار Grafana.",
+      "starred": "المميّزة بنجمة"
+    },
+    "new-data-source-view": {
+      "cancel": "إلغاء",
+      "placeholder-filter-by-name-or-type": "التصفية حسب الاسم أو النوع"
+    },
+    "update-data-source": {
+      "error-info": {
+        "message": {
+          "an-unexpected-error-occurred": "حدث خطأ غير متوقّع."
+        }
+      }
+    },
+    "use-data-source-info": {
+      "badge-text-not-supported": "غير مدعوم",
+      "badge-text-success": "نجاح",
+      "badge-text-supported": "مدعوم",
+      "label": {
+        "advisor": "المستشار",
+        "alerting": "التنبيهات",
+        "type": "النوع"
+      }
+    },
+    "use-delete-loaded-data-source": {
+      "title": {
+        "delete": "حذف"
+      }
+    }
+  },
   "debug": {
     "cursor-view": {
       "no-events-yet": "لا أحداث بعد"
@@ -2430,6 +2628,344 @@
     },
     "clear": {
       "title": "مسح الكل"
+    }
+  },
+  "nav": {
+    "add-new-connections": {
+      "title": "إضافة اتصال جديد"
+    },
+    "admin": {
+      "subtitle": "إدارة الإعدادات على مستوى الخادم والوصول إلى الموارد مثل المنظمات والمستخدمين والتراخيص",
+      "title": "مسؤول الخادم"
+    },
+    "agentic-testing": {
+      "title": "الاختبار الوكيلي"
+    },
+    "alert-list-legacy": {
+      "title": "قواعد التنبيه"
+    },
+    "alerting": {
+      "subtitle": "تعرّف على المشكلات في أنظمتك بعد لحظات من حدوثها",
+      "title": "التنبيهات"
+    },
+    "alerting-activity": {
+      "subtitle": "عرض التنبيهات والإشعارات النشطة",
+      "title": "نشاط التنبيهات"
+    },
+    "alerting-admin": {
+      "subtitle": "إدارة إعدادات Alertmanager وتفعيل استقبال التنبيهات المُدارة من Grafana",
+      "title": "الإعدادات"
+    },
+    "alerting-alerts": {
+      "subtitle": "تصوّر التنبيهات النشطة وقيد الانتظار",
+      "title": "نشاط التنبيهات"
+    },
+    "alerting-am-routes": {
+      "subtitle": "حدّد كيفية توجيه التنبيهات إلى نقاط الاتصال",
+      "title": "سياسات الإشعارات"
+    },
+    "alerting-channels": {
+      "title": "قنوات الإشعارات"
+    },
+    "alerting-groups": {
+      "subtitle": "شاهد التنبيهات المجمّعة ذات الإشعارات النشطة",
+      "title": "الإشعارات النشطة"
+    },
+    "alerting-home": {
+      "title": "الرئيسية"
+    },
+    "alerting-legacy": {
+      "title": "التنبيهات (القديمة)"
+    },
+    "alerting-list": {
+      "subtitle": "القواعد التي تحدّد ما إذا كان التنبيه سيُطلَق",
+      "title": "قواعد التنبيه"
+    },
+    "alerting-receivers": {
+      "subtitle": "اختر كيفية إشعار نقاط الاتصال عند إطلاق مثيل تنبيه",
+      "title": "نقاط الاتصال"
+    },
+    "alerting-silences": {
+      "subtitle": "إيقاف الإشعارات من قاعدة تنبيه واحدة أو أكثر",
+      "title": "حالات الإسكات"
+    },
+    "alerting-upgrade": {
+      "subtitle": "رقِّ تنبيهاتك القديمة الحالية وقنوات الإشعارات إلى Grafana Alerting الجديد",
+      "title": "ترقية التنبيهات"
+    },
+    "alerts-and-incidents": {
+      "subtitle": "تطبيقات التنبيه وإدارة الحوادث",
+      "title": "التنبيهات وإدارة الحوادث (IRM)"
+    },
+    "alerts-recently-deleted": {
+      "subtitle": "عرض قواعد التنبيه المحذوفة مؤخرًا",
+      "title": "المحذوفة مؤخرًا"
+    },
+    "application": {
+      "title": "التطبيق"
+    },
+    "apps": {
+      "subtitle": "إضافات التطبيقات التي توسّع تجربة Grafana",
+      "title": "مزيد من التطبيقات"
+    },
+    "authentication": {
+      "title": "المصادقة"
+    },
+    "bookmarks": {
+      "title": "الإشارات المرجعية"
+    },
+    "bookmarks-empty": {
+      "title": "ضع إشارة مرجعية للصفحات لتظهر هنا"
+    },
+    "collector": {
+      "title": "أداة الجمع"
+    },
+    "config": {
+      "title": "الإدارة"
+    },
+    "config-access": {
+      "subtitle": "تهيئة الوصول للمستخدمين والفرق وحسابات الخدمة الفرديين",
+      "title": "المستخدمون والوصول"
+    },
+    "config-general": {
+      "subtitle": "إدارة التفضيلات والإعدادات الافتراضية عبر Grafana",
+      "title": "عام"
+    },
+    "config-plugins": {
+      "subtitle": "تثبيت الإضافات وتعريف العلاقات بين البيانات",
+      "title": "الإضافات والبيانات"
+    },
+    "connect-data": {
+      "title": "ربط البيانات"
+    },
+    "connections": {
+      "subtitle": "تصفّح وأنشئ اتصالات جديدة",
+      "title": "الاتصالات"
+    },
+    "correlations": {
+      "subtitle": "إضافة الارتباطات وتهيئتها",
+      "title": "الارتباطات"
+    },
+    "create": {
+      "title": "إنشاء"
+    },
+    "create-alert": {
+      "title": "قاعدة تنبيه جديدة"
+    },
+    "create-dashboard": {
+      "title": "لوحة المعلومات"
+    },
+    "create-folder": {
+      "title": "مجلد"
+    },
+    "create-import": {
+      "title": "استيراد لوحة معلومات"
+    },
+    "dashboards": {
+      "subtitle": "أنشئ وأدر لوحات المعلومات لتصوّر بياناتك",
+      "title": "لوحات المعلومات"
+    },
+    "data-sources": {
+      "subtitle": "عرض وإدارة اتصالات مصادر البيانات المتصلة",
+      "title": "مصادر البيانات"
+    },
+    "databases": {
+      "title": "قاعدة البيانات"
+    },
+    "datasources": {
+      "subtitle": "إضافة مصادر البيانات وتهيئتها",
+      "title": "مصادر البيانات"
+    },
+    "detect": {
+      "title": "الكشف"
+    },
+    "drilldown": {
+      "title": "التعمّق"
+    },
+    "explore": {
+      "title": "استكشاف"
+    },
+    "frontend": {
+      "subtitle": "احصل على رؤى مراقبة المستخدم الحقيقي",
+      "title": "الواجهة الأمامية"
+    },
+    "frontend-app": {
+      "title": "الواجهة الأمامية"
+    },
+    "global-orgs": {
+      "subtitle": "مثيلات معزولة من Grafana تعمل على الخادم نفسه",
+      "title": "المنظمات"
+    },
+    "global-users": {
+      "subtitle": "إدارة المستخدمين في Grafana",
+      "title": "المستخدمون"
+    },
+    "grafana-quaderno": {
+      "title": "Grafana Quaderno"
+    },
+    "help": {
+      "title": "مساعدة"
+    },
+    "help/community": "المجتمع",
+    "help/documentation": "الوثائق",
+    "help/keyboard-shortcuts": "اختصارات لوحة المفاتيح",
+    "help/support": "الدعم",
+    "home": {
+      "title": "الرئيسية"
+    },
+    "incidents": {
+      "title": "الحوادث"
+    },
+    "infrastructure": {
+      "subtitle": "افهم صحة بنيتك التحتية",
+      "title": "البنية التحتية"
+    },
+    "integrations": {
+      "title": "التكاملات"
+    },
+    "k6": {
+      "title": "الأداء"
+    },
+    "kubernetes": {
+      "title": "Kubernetes"
+    },
+    "library-panels": {
+      "subtitle": "لوحات قابلة لإعادة الاستخدام يمكن إضافتها إلى لوحات معلومات متعددة",
+      "title": "لوحات المكتبة"
+    },
+    "machine-learning": {
+      "subtitle": "استكشف ميزات الذكاء الاصطناعي والتعلّم الآلي",
+      "title": "الذكاء الاصطناعي والتعلّم الآلي"
+    },
+    "manage-folder": {
+      "subtitle": "إدارة لوحات معلومات المجلد وأذوناته"
+    },
+    "migrate-to-cloud": {
+      "subtitle": "انسخ الموارد من تثبيتك المُدار ذاتيًا إلى مكدّس سحابي",
+      "title": "الترحيل إلى Grafana Cloud"
+    },
+    "monitoring": {
+      "subtitle": "حلول مراقبة جاهزة للاستخدام",
+      "title": "إمكانية المراقبة"
+    },
+    "new": {
+      "title": "جديد"
+    },
+    "new-dashboard": {
+      "title": "لوحة معلومات جديدة"
+    },
+    "new-folder": {
+      "title": "مجلد جديد"
+    },
+    "oncall": {
+      "title": "OnCall"
+    },
+    "org-settings": {
+      "subtitle": "إدارة التفضيلات عبر منظمة",
+      "title": "التفضيلات الافتراضية"
+    },
+    "playlists": {
+      "subtitle": "مجموعات من لوحات المعلومات تُعرض في تسلسل",
+      "title": "قوائم التشغيل"
+    },
+    "plugins": {
+      "subtitle": "وسّع تجربة Grafana بالإضافات",
+      "title": "الإضافات"
+    },
+    "private-data-source-connections": {
+      "subtitle": "استعلم عن البيانات الموجودة داخل شبكة مؤمّنة دون فتح الشبكة لحركة المرور الواردة من Grafana Cloud. تعرّف على المزيد في وثائقنا.",
+      "title": "اتصال مصدر البيانات الخاص"
+    },
+    "profile/notifications": {
+      "title": "سجلّ الإشعارات"
+    },
+    "profile/password": {
+      "title": "تغيير كلمة المرور"
+    },
+    "profile/settings": {
+      "title": "الملف الشخصي"
+    },
+    "profiles": {
+      "title": "الملفات الشخصية"
+    },
+    "recently-deleted": {
+      "subtitle": "تُحفظ لوحات المعلومات المحذوفة لمدة تصل إلى 12 شهرًا أو حتى بلوغ حد السجلّ البالغ 1000 لوحة معلومات.",
+      "title": "المحذوفة مؤخرًا"
+    },
+    "recorded-queries": {
+      "title": "الاستعلامات المسجّلة"
+    },
+    "reporting": {
+      "title": "إعداد التقارير"
+    },
+    "scenes": {
+      "title": "المشاهد"
+    },
+    "search": {
+      "placeholderCommandPalette": "بحث..."
+    },
+    "search-dashboards": {
+      "title": "البحث في لوحات المعلومات"
+    },
+    "server-settings": {
+      "subtitle": "عرض الإعدادات المُعرّفة في إعداد Grafana",
+      "title": "الإعدادات"
+    },
+    "service-accounts": {
+      "subtitle": "استخدم حسابات الخدمة لتشغيل أعباء عمل آلية في Grafana",
+      "title": "حسابات الخدمة"
+    },
+    "setup-guide": {
+      "title": "دليل البدء"
+    },
+    "shared-dashboard": {
+      "subtitle": "إدارة لوحات معلومات منظمتك المشتركة خارجيًا",
+      "title": "لوحات المعلومات المشتركة"
+    },
+    "sign-out": {
+      "title": "تسجيل الخروج"
+    },
+    "slo": {
+      "title": "SLO"
+    },
+    "snapshots": {
+      "subtitle": "تمثيلات تفاعلية متاحة للعموم للحظة زمنية من لوحات المعلومات واللوحات",
+      "title": "اللقطات"
+    },
+    "starred": {
+      "title": "المميّزة بنجمة"
+    },
+    "starred-empty": {
+      "title": "ستظهر هنا لوحات المعلومات المميّزة بنجمة"
+    },
+    "statistics-and-licensing": {
+      "title": "الإحصاءات والترخيص"
+    },
+    "storage": {
+      "subtitle": "إدارة تخزين الملفات",
+      "title": "التخزين"
+    },
+    "support-bundles": {
+      "subtitle": "تنزيل حِزم الدعم",
+      "title": "حِزم الدعم"
+    },
+    "synthetics": {
+      "title": "المراقبة التركيبية"
+    },
+    "teams": {
+      "subtitle": "مجموعات من المستخدمين لهم احتياجات مشتركة من لوحات المعلومات والأذونات",
+      "title": "الفرق"
+    },
+    "testing-and-synthetics": {
+      "subtitle": "حسّن الأداء برؤى k6 والمراقبة التركيبية",
+      "title": "الاختبار والمراقبة التركيبية"
+    },
+    "upgrading": {
+      "title": "الإحصاءات والترخيص"
+    },
+    "users": {
+      "subtitle": "ادعُ المستخدمين وعيّن لهم الأدوار",
+      "title": "المستخدمون"
     }
   },
   "navigation": {
