@@ -1,0 +1,170 @@
+{
+  "background-size-editor": {
+    "options": {
+      "label-contain": "احتواء",
+      "label-cover": "تغطية",
+      "label-fill": "ملء",
+      "label-original": "الأصلي",
+      "label-tile": "تجانب"
+    }
+  },
+  "color-dimension-editor": {
+    "label-fixed-color": "لون ثابت",
+    "noOptionsMessage-no-fields-found": "لم يُعثر على حقول"
+  },
+  "direction-dimension-editor": {
+    "description-field": "الاتجاه بناءً على قيمة الحقل",
+    "description-fixed": "قيمة اتجاه ثابتة",
+    "label-direction": "الاتجاه",
+    "label-field": "الحقل",
+    "label-fixed": "ثابت",
+    "label-source": "المصدر"
+  },
+  "file-dropzone-custom-children": {
+    "upload": "رفع"
+  },
+  "file-uploader": {
+    "preview": {
+      "label-preview": "معاينة"
+    }
+  },
+  "folder-picker-tab": {
+    "label-folder": "مجلد",
+    "placeholder-search": "بحث"
+  },
+  "resource-dimension-editor": {
+    "description-field": "استخدام نتيجة حقل نصي",
+    "description-fixed": "قيمة ثابتة",
+    "label-field": "الحقل",
+    "label-fixed": "ثابت",
+    "label-mappings": "التعيينات",
+    "label-source": "المصدر"
+  },
+  "resource-picker": {
+    "aria-label-clear-value": "مسح القيمة",
+    "render-small-resource-picker": {
+      "set-icon": "تعيين أيقونة"
+    }
+  },
+  "resource-picker-popover": {
+    "cancel": "إلغاء",
+    "folder": "مجلد",
+    "select": "اختيار",
+    "url": "URL"
+  },
+  "scalar-dimension-editor": {
+    "fixed-value-options": {
+      "label-fixed-values": "قيمة ثابتة"
+    },
+    "label": "قياسي",
+    "label-limit": "الحد",
+    "label-value": "القيمة",
+    "noOptionsMessage-no-fields-found": "لم يُعثر على حقول",
+    "scalar-options": {
+      "description-clamped": "استخدام قيم الحقل، مقيّدة بالحد الأقصى والأدنى",
+      "description-mod": "استخدام قيم الحقل، الباقي من الحد الأقصى",
+      "label-clamped": "مقيّد",
+      "label-mod": "باقي القسمة"
+    }
+  },
+  "scale-dimension-editor": {
+    "fixed-value-option": {
+      "label": {
+        "fixed-value": "قيمة ثابتة"
+      }
+    },
+    "label-max": "الأقصى",
+    "label-min": "الأدنى",
+    "label-value": "القيمة",
+    "noOptionsMessage-no-fields-found": "لم يُعثر على حقول"
+  },
+  "text-dimension-editor": {
+    "aria-label-clear-value": "مسح القيمة",
+    "description-field": "عرض قيمة الحقل",
+    "description-fixed": "قيمة ثابتة",
+    "label-field": "الحقل",
+    "label-fixed": "ثابت",
+    "label-source": "المصدر",
+    "label-template": "قالب",
+    "label-value": "القيمة"
+  },
+  "threshold-editor": {
+    "tooltip-remove-threshold": "إزالة العتبة {{thresholdNumber}}"
+  },
+  "thresholds-editor": {
+    "add-threshold": "إضافة عتبة",
+    "aria-label-threshold": "عتبة {{thresholdNumber}}",
+    "description-percentage-means-thresholds-relative": "النسبة المئوية تعني عتبات نسبية إلى الحد الأدنى والأقصى",
+    "modes": {
+      "description": {
+        "threshold-based-percent-between-minmax": "اختر العتبة بناءً على النسبة المئوية بين الحد الأدنى/الأقصى",
+        "thresholds-based-absolute-values": "اختر العتبات بناءً على القيم المطلقة"
+      },
+      "label": {
+        "absolute": "مطلق",
+        "percentage": "نسبة مئوية"
+      }
+    },
+    "thresholds-mode": "وضع العتبات",
+    "value-base": "الأساس"
+  },
+  "urlpicker-tab": {
+    "label-preview": "معاينة"
+  },
+  "value-mapping-edit-row": {
+    "drag-handle-label": "إعادة ترتيب صف تعيين القيمة",
+    "duplicate-value-mapping-aria-label-duplicate-value-mapping": "تكرار تعيين القيمة",
+    "duplicate-value-mapping-tooltip-duplicate": "تكرار",
+    "placeholder-exact-value-to-match": "القيمة الدقيقة للمطابقة",
+    "placeholder-from": "من",
+    "placeholder-optional-display-text": "نص عرض اختياري",
+    "placeholder-regular-expression": "تعبير نمطي",
+    "placeholder-to": "إلى",
+    "remove-value-mapping-aria-label-delete-value-mapping": "حذف تعيين القيمة",
+    "remove-value-mapping-tooltip-delete": "حذف",
+    "set-color": "تعيين اللون",
+    "special-match-options": {
+      "description": {
+        "boolean-false-values": "قيم منطقية خاطئة",
+        "boolean-true-values": "قيم منطقية صحيحة",
+        "empty-string": "سلسلة فارغة",
+        "matches-against-number-na-n-not-a-number": "يطابق Number.NaN (ليس رقمًا)",
+        "matches-null-and-undefined-values": "يطابق قيم null وundefined",
+        "matches-null-undefined-and-na-n": "يطابق null وundefined وNaN"
+      },
+      "label": {
+        "empty": "فارغ"
+      }
+    },
+    "tooltip-remove-color": "إزالة اللون",
+    "tooltip-remove-icon": "إزالة الأيقونة"
+  },
+  "value-mappings-editor": {
+    "add-value-mappings": "إضافة تعيينات القيم",
+    "edit-value-mappings": "تعديل تعيينات القيم",
+    "title-value-mappings": "تعيينات القيم"
+  },
+  "value-mappings-editor-modal": {
+    "cancel": "إلغاء",
+    "color": "اللون",
+    "condition": "الشرط",
+    "display-text": "نص العرض",
+    "icon": "أيقونة",
+    "label-add-a-new-mapping": "إضافة تعيين جديد",
+    "mapping-types": {
+      "description": {
+        "match-a-numerical-range-of-values": "مطابقة نطاق رقمي من القيم",
+        "match-a-regular-expression-with-replacement": "مطابقة تعبير نمطي مع الاستبدال",
+        "match-a-specific-text-value": "مطابقة قيمة نصية محددة",
+        "match-boolean-empty-values": "المطابقة على null وNaN والقيم المنطقية والفارغة"
+      },
+      "label": {
+        "range": "نطاق",
+        "regex": "تعبير نمطي",
+        "special": "خاص",
+        "value": "القيمة"
+      }
+    },
+    "update": "تحديث"
+  }
+}

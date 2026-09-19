@@ -1,0 +1,145 @@
+{
+  "category-basemap-layer": "طبقة الخريطة الأساسية",
+  "category-map-controls": "عناصر تحكّم الخريطة",
+  "category-map-layers": "طبقات الخريطة",
+  "category-map-view": "عرض الخريطة",
+  "coordinates-map-view-editor": {
+    "label-latitude": "خط العرض",
+    "label-longitude": "خط الطول"
+  },
+  "debug-overlay": {
+    "center": "المركز:",
+    "zoom": "التكبير:"
+  },
+  "description-initial-view": "سيظهر هذا الموقع عند تحميل اللوحة أول مرة.",
+  "description-mouse-wheel-zoom": "تفعيل التحكّم في التكبير عبر عجلة الفأرة",
+  "description-no-repeat": "منع الخريطة من التكرار أفقيًا",
+  "description-share-view": "استخدم العرض نفسه عبر لوحات متعددة.  ملاحظة: قد يتطلب هذا إعادة تحميل لوحة المعلومات.",
+  "description-show-attribution": "إظهار معلومات إسناد مصدر الخريطة في أسفل اليمين",
+  "description-show-debug": "إظهار معلومات الخريطة",
+  "description-show-measure": "إظهار أدوات إجراء القياسات على الخريطة",
+  "description-show-scale": "الإشارة إلى مقياس الخريطة",
+  "description-show-zoom": "إظهار أزرار التحكّم في التكبير في الزاوية العلوية اليسرى",
+  "description-sync-view-variable": "تخزين حدود العرض في متغير لوحة معلومات للاستخدام في الاستعلامات",
+  "description-variable-name": "حدّد متغير لوحة المعلومات لتخزين حدود العرض",
+  "fit-map-view-editor": {
+    "all-layers-editor-fragment": {
+      "label-layer": "الطبقة"
+    },
+    "label-data": "البيانات",
+    "last-only-editor-fragment": {
+      "label-padding": "الحشو",
+      "tooltip-padding-relative-percent-beyond-extent": "يضبط الحشو بنسبة مئوية نسبية تتجاوز نطاق البيانات"
+    }
+  },
+  "frame-multi-selection-editor": {
+    "placeholder-change-filter": "تغيير المرشّح"
+  },
+  "frame-selection-editor": {
+    "placeholder-change-filter": "تغيير المرشّح"
+  },
+  "geomap-panel": {
+    "aria-label-map": "خريطة قابلة للتنقّل"
+  },
+  "geomap-style-rules-editor": {
+    "aria-label-add-geomap-style-rule": "إضافة قاعدة نمط للخريطة"
+  },
+  "layer-editor": {
+    "category-base-layer": "الطبقة الأساسية",
+    "description-display-tooltip": "إظهار التلميح للطبقة",
+    "name-data": "البيانات",
+    "name-display-tooltip": "عرض التلميح",
+    "name-layer-type": "نوع الطبقة",
+    "name-opacity": "العتامة"
+  },
+  "layers-editor": {
+    "label-add-layer": "إضافة طبقة",
+    "no-layers": "لا طبقات؟"
+  },
+  "map-view-editor": {
+    "label-max-zoom": "الحد الأقصى للتكبير",
+    "label-view": "العرض",
+    "label-zoom": "التكبير",
+    "use-current-map-settings": "استخدام إعدادات الخريطة الحالية"
+  },
+  "markers-layer": {
+    "description-show-legend": "إظهار وسيلة إيضاح الخريطة",
+    "name-show-legend": "إظهار وسيلة الإيضاح",
+    "name-styles": "الأنماط"
+  },
+  "markers-legend": {
+    "title-symbol": "الرمز"
+  },
+  "measure-overlay": {
+    "aria-label-close": "إغلاق أدوات القياس",
+    "tooltip-show-measure-tools": "إظهار أدوات القياس"
+  },
+  "name-initial-view": "العرض الأولي",
+  "name-mouse-wheel-zoom": "التكبير بعجلة الفأرة",
+  "name-no-repeat": "عدم تكرار الخريطة",
+  "name-share-view": "مشاركة العرض",
+  "name-show-attribution": "إظهار الإسناد",
+  "name-show-debug": "إظهار التصحيح",
+  "name-show-measure": "إظهار أدوات القياس",
+  "name-show-scale": "إظهار المقياس",
+  "name-show-zoom": "إظهار التحكّم في التكبير",
+  "name-sync-view-variable": "مزامنة العرض مع متغير لوحة المعلومات",
+  "name-tooltip": "التلميح",
+  "name-variable-name": "اسم المتغير",
+  "photos-layer": {
+    "noFieldsMessage-no-string-fields": "لم يُعثر على حقول نصية"
+  },
+  "plugin": {
+    "basemap-layer-configured-server-admin": "طبقة الخريطة الأساسية مُهيّأة بواسطة مسؤول الخادم."
+  },
+  "style-editor": {
+    "horizontal-align-options": {
+      "label-center": "توسيط",
+      "label-left": "يسار",
+      "label-right": "يمين"
+    },
+    "label-align": "المحاذاة",
+    "label-baseline": "خط الأساس",
+    "label-color": "اللون",
+    "label-fill-opacity": "عتامة التعبئة",
+    "label-font-size": "حجم الخط",
+    "label-opacity": "العتامة",
+    "label-rotation-angle": "زاوية الدوران",
+    "label-size": "الحجم",
+    "label-symbol": "الرمز",
+    "label-symbol-horizontal-align": "المحاذاة الأفقية للرمز",
+    "label-symbol-vertical-align": "المحاذاة الرأسية للرمز",
+    "label-text-label": "تسمية النص",
+    "label-x-offset": "إزاحة X",
+    "label-y-offset": "إزاحة Y",
+    "placeholderText-select-symbol": "اختر رمزًا",
+    "placeholderText-select-symbol-or-add-text": "اختر رمزًا أو أضف تسمية نصية",
+    "vertical-align-options": {
+      "label-bottom": "أسفل",
+      "label-center": "توسيط",
+      "label-top": "أعلى"
+    }
+  },
+  "style-rule-editor": {
+    "aria-label-comparison-operator": "عامل المقارنة",
+    "aria-label-comparison-value": "قيمة المقارنة",
+    "aria-label-delete-style-rule": "حذف قاعدة النمط",
+    "aria-label-feature-property": "خاصية المعلم",
+    "label-rule": "قاعدة",
+    "placeholder-feature-property": "خاصية المعلم",
+    "placeholder-numeric-value": "قيمة رقمية",
+    "placeholder-value": "قيمة"
+  },
+  "tooltip-options": {
+    "description-details": "إظهار نافذة منبثقة عند التمرير",
+    "description-none": "إظهار المحتوى عند النقر، لا عند التمرير",
+    "label-details": "التفاصيل",
+    "label-none": "بلا"
+  },
+  "utils": {
+    "get-next-layer-name": "طبقة {{name}}"
+  },
+  "variable-name-editor": {
+    "placeholder": "اختر متغيرًا"
+  }
+}

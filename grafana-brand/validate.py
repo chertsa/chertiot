@@ -43,6 +43,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Bind DN", "Search base DNS",  # standard LDAP field names, conventionally kept Latin
     "RTL", "LTR",  # direction acronyms used as compact option labels
     "Start TLS", "Group DN", "Org ID", "Org DN",  # LDAP/config field & toggle names kept Latin
+    "Logfmt", "logfmt", "Regex", "regex",  # log/query format & syntax names
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")
