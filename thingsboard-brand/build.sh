@@ -23,6 +23,11 @@ fi
 
 step "apply patch series"
 ( cd "$SRC" && git checkout -- . && for p in ../patches/*.patch; do echo " - $(basename "$p")"; git apply --check "$p"; git apply "$p"; done )
+step "merge Arabic UI translations (locale-only; validated against en_US)"
+python3 merge-ar-additions.py \
+  "$SRC/ui-ngx/src/assets/locale/locale.constant-ar_AR.json" \
+  "$SRC/ui-ngx/src/assets/locale/locale.constant-en_US.json"
+
 step "copy brand assets"
 cp assets/logo_title_white.svg "$SRC/ui-ngx/src/assets/logo_title_white.svg"
 cp assets/logo_white.svg       "$SRC/ui-ngx/src/assets/logo_white.svg"
