@@ -42,6 +42,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Cloud", "Enterprise",  # Grafana edition/tier badge labels, kept as the product tier name
     "Bind DN", "Search base DNS",  # standard LDAP field names, conventionally kept Latin
     "RTL", "LTR",  # direction acronyms used as compact option labels
+    "Start TLS", "Group DN", "Org ID", "Org DN",  # LDAP/config field & toggle names kept Latin
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")
@@ -156,7 +157,9 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             stripped = TAG_RE.sub("", VAR_RE.sub("", en_val))
             toks = [t for t in re.split(r"[,\s]+", en_val.strip()) if t]
             all_durations = bool(toks) and all(DURATION_RE.match(t) for t in toks)
-            if re.search(r"[A-Za-z]", stripped) and not all_durations:
+            # A whitespace-free token containing a path/URL slash is code (e.g. /path/to/x.pem).
+            code_path = " " not in en_val.strip() and "/" in en_val.strip()
+            if re.search(r"[A-Za-z]", stripped) and not all_durations and not code_path:
                 warnings.append(f"[{ns}] {k}: ar identical to en ('{en_val[:40]}')")
         if isinstance(en_val, str) and isinstance(av, str):
             for p in PROTECTED:

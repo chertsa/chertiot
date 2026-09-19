@@ -64,6 +64,84 @@
       "placeholder-type": "النوع"
     }
   },
+  "alertlist": {
+    "category-alert-state-filter": "مرشّح حالة التنبيه",
+    "category-filter": "المرشّح",
+    "category-options": "الخيارات",
+    "category-stat-styles": "أنماط الإحصاء",
+    "descriptino-alerts-linked-to-dashboard": "إظهار التنبيهات المرتبطة بلوحة المعلومات هذه فقط",
+    "description-alert-instance-label": "تصفية مثيلات التنبيه باستخدام استعلام التسميات، مثال: {severity=\"critical\", instance=~\"cluster-us-.+\"}",
+    "description-alert-name": "التصفية بحثًا عن التنبيهات المحتوية على هذا النص",
+    "description-datasource": "التصفية من مصدر التنبيه",
+    "description-folder": "التصفية بحثًا عن التنبيهات في المجلد المحدد (لقواعد التنبيه المُدارة من Grafana فقط)",
+    "description-group-by": "تصفية التنبيهات باستخدام استعلام التسميات",
+    "description-group-mode": "كيفية تجميع مثيلات التنبيه",
+    "description-max-items": "الحد الأقصى للتنبيهات المعروضة",
+    "description-show-inactive-alerts": "تضمين قواعد التنبيه التي لها 0 (صفر) مثيل. لأن هذه القواعد ليس لها مثيلات، تبقى مخفية إذا كان مرشّح تسمية مثيل التنبيه مُهيّأً.",
+    "description-sort-order": "ترتيب فرز التنبيهات ومثيلات التنبيه",
+    "description-stat-color-mode": "التحكّم في كيفية تلوين قيمة الإحصاء أو الخلفية",
+    "description-stat-thresholds": "حدّد العتبات لتلوين قيمة الإحصاء بناءً على عدد التنبيهات",
+    "description-stat-value-mappings": "تعديل نص العرض بناءً على عدد التنبيهات",
+    "description-view-mode": "التبديل بين عرض القائمة وعرض الإحصاء",
+    "group-by": {
+      "aria-label-group-by-label-keys": "التجميع حسب مفاتيح التسمية",
+      "placeholder-group-by": "التجميع حسب"
+    },
+    "group-mode-options": {
+      "label-custom-grouping": "تجميع مخصص",
+      "label-default-grouping": "تجميع افتراضي"
+    },
+    "name-alert-instance-label": "تسمية مثيل التنبيه",
+    "name-alert-name": "اسم التنبيه",
+    "name-alerts-linked-to-dashboard": "التنبيهات المرتبطة بلوحة المعلومات هذه",
+    "name-datasource": "مصدر البيانات",
+    "name-error": "خطأ",
+    "name-firing": "التنبيه / نشط",
+    "name-folder": "مجلد",
+    "name-group-by": "التجميع حسب",
+    "name-group-mode": "وضع التجميع",
+    "name-max-items": "الحد الأقصى للعناصر",
+    "name-no-data": "لا توجد بيانات",
+    "name-normal": "عادي",
+    "name-pending": "قيد الانتظار",
+    "name-recovering": "قيد التعافي",
+    "name-show-inactive-alerts": "إظهار التنبيهات التي لها 0 مثيل",
+    "name-sort-order": "ترتيب الفرز",
+    "name-stat-color-mode": "وضع اللون",
+    "name-stat-thresholds": "العتبات",
+    "name-stat-value-mappings": "تعيينات القيم",
+    "name-view-mode": "وضع العرض",
+    "sort-order-options": {
+      "label-alphabetical-asc": "أبجدي (تصاعدي)",
+      "label-alphabetical-desc": "أبجدي (تنازلي)",
+      "label-importance": "الأهمية",
+      "label-time-asc": "الوقت (تصاعدي)",
+      "label-time-desc": "الوقت (تنازلي)"
+    },
+    "stat-color-mode": {
+      "label-background-gradient": "خلفية متدرّجة",
+      "label-background-solid": "خلفية صلبة",
+      "label-none": "بلا",
+      "label-value": "القيمة"
+    },
+    "ungrouped-mode-view": {
+      "active-for": "لمدة <1>{{duration}}</1>",
+      "aria-label-view-alert-rule": "عرض قاعدة التنبيه",
+      "view-alert-rule": "عرض قاعدة التنبيه"
+    },
+    "unified-alert-list": {
+      "clear": "مسح",
+      "text-loading": "جارٍ التحميل..."
+    },
+    "unified-alert-list-panel": {
+      "body-permission-required": "عذرًا، ليس لديك الأذونات المطلوبة لقراءة قواعد التنبيه.",
+      "title-permission-required": "إذن مطلوب"
+    },
+    "view-mode-options": {
+      "label-list": "قائمة",
+      "label-stat": "إحصاء"
+    }
+  },
   "annolist": {
     "anno-list-panel": {
       "aria-label-remove-filter": "إزالة المرشّح: {{filterToRemove}}",
@@ -401,6 +479,147 @@
   "configuration-tracker": {
     "config-card": {
       "complete": "مكتمل"
+    }
+  },
+  "connections": {
+    "add-new-connection": {
+      "filter-by-options": {
+        "label": {
+          "all": "الكل",
+          "installed": "مُثبَّت",
+          "new-updates": "تحديثات جديدة"
+        }
+      },
+      "label": {
+        "by-downloads": "حسب التنزيلات",
+        "by-name-az": "حسب الاسم (أ-ي)",
+        "by-name-za": "حسب الاسم (ي-أ)",
+        "by-published-date": "حسب تاريخ النشر",
+        "by-updated-date": "حسب تاريخ التحديث"
+      }
+    },
+    "advisor-redirect-notice": {
+      "aria-label-link-to-advisor": "رابط إلى المستشار",
+      "body": "جرّب المستشار الجديد لاكتشاف المشكلات المحتملة في مصادر بياناتك والإضافات.",
+      "go-to-advisor": "الانتقال إلى المستشار"
+    },
+    "cache-feature-highlight-page": {
+      "header": "يمكن أن يحسّن التخزين المؤقت للاستعلامات أوقات التحميل ويقلّل تكاليف API بتخزين نتائج استعلامات مصدر البيانات مؤقتًا. عندما تُرسل أنت أو مستخدمون آخرون الاستعلام نفسه، ستأتي النتائج من التخزين المؤقت بدلًا من مصدر البيانات.",
+      "item-1": "أوقات تحميل أسرع للوحات المعلومات، خصوصًا الشائعة منها.",
+      "item-2": "تكاليف API مخفّضة.",
+      "item-3": "تقليل احتمال أن تفرض واجهات API حدودًا على المعدل أو تخنق الطلبات.",
+      "title": "حسّن الاستعلامات عبر التخزين المؤقت للاستعلامات في Grafana Cloud"
+    },
+    "cloud": {
+      "connections-home-page": {
+        "add-new-connection": {
+          "subtitle": "اربط البيانات بـ Grafana عبر مصادر البيانات والتكاملات والتطبيقات"
+        },
+        "collector": {
+          "subtitle": "أدر إعداد Grafana Alloy، توزيعتنا من OpenTelemetry Collector"
+        },
+        "collector-setup": {
+          "subtitle": "هيّئ وأدر أدوات جمع القياسات لديك"
+        },
+        "data-sources": {
+          "subtitle": "أدر اتصالات مصادر البيانات الحالية"
+        },
+        "fleet-management": {
+          "subtitle": "أدر مخزون أدوات الجمع لديك وهيّئ أسطولك عن بُعد"
+        },
+        "instrumentation-hub": {
+          "subtitle": "جهّز جميع خدماتك بنقرة واحدة باستخدام التجهيز المستمر ومراقبة Kubernetes."
+        },
+        "integrations": {
+          "subtitle": "أدر تكاملاتك النشطة"
+        },
+        "private-data-source-connections": {
+          "subtitle": "أدر اتصالات شبكتك الخاصة لمصادر البيانات"
+        },
+        "subtitle": "اربط بنيتك التحتية بـ Grafana Cloud باستخدام مصادر البيانات والتكاملات والتطبيقات. استخدم هذه الصفحة لإضافة وإدارة كل شيء من استيعاب البيانات إلى الاتصالات الخاصة وخطوط أنابيب القياس."
+      }
+    },
+    "connect-data": {
+      "apps-header": "التطبيقات",
+      "datasources-header": "مصادر البيانات",
+      "empty-message": "لم يُعثر على نتائج تطابق استعلامك",
+      "request-data-source": "طلب مصدر بيانات جديد",
+      "roadmap": "عرض خارطة الطريق"
+    },
+    "connections-home-page": {
+      "welcome-to-connections": "مرحبًا بك في الاتصالات"
+    },
+    "connections-redirect-notice": {
+      "body": "لمصادر البيانات موطن جديد! يمكنك اكتشاف مصادر بيانات جديدة أو إدارة الموجودة في <0>صفحة الاتصالات</0>، المتاحة من القائمة الرئيسية."
+    },
+    "data-source-details-page": {
+      "subTitle": {
+        "datasource-could-found": "لم يُعثر على مصدر بيانات بهذا المعرّف."
+      },
+      "text": {
+        "unknown-datasource": "مصدر بيانات غير معروف"
+      }
+    },
+    "feature-highlight-page": {
+      "foot-note": "بعد إنشاء حساب، يمكنك بسهولة <2>ترحيل هذا المثيل إلى Grafana Cloud</2> باستخدام مساعد الترحيل الخاص بنا.",
+      "footer": "أنشئ حساب Grafana Cloud مجاني لبدء استخدام أذونات مصدر البيانات. تتوفّر هذه الميزة أيضًا مع ترخيص Grafana Enterprise.",
+      "footer-link": "تعرّف على Enterprise",
+      "link-button-label": "إنشاء حساب"
+    },
+    "insights-feature-highlight-page": {
+      "header": "توفّر رؤى الاستخدام معلومات تفصيلية عن استخدام مصدر البيانات، مثل عدد المشاهدات والاستعلامات والأخطاء التي واجهها المستخدمون. يمكنك استخدام ذلك لتحسين تجربة المستخدمين واستكشاف المشكلات.",
+      "item-1": "أثبت وحسّن قيمة خدمة المراقبة لديك بتتبّع تفاعل المستخدمين",
+      "item-2": "حافظ على أداء Grafana بتحديد وإصلاح مصادر البيانات البطيئة والمعرّضة للأخطاء",
+      "item-3": "نظّف مثيلك بالعثور على مصادر البيانات غير المستخدمة وإزالتها",
+      "item-4": "راجع رؤى استخدام مصادر البيانات الفردية بنظرة سريعة في الواجهة، وافرز نتائج البحث حسب الاستخدام والأخطاء، أو تعمّق في سجلّات الاستخدام التفصيلية",
+      "title": "افهم استخدام مصادر بياناتك مع Grafana Cloud"
+    },
+    "new-data-source-page": {
+      "subTitle": {
+        "choose-a-data-source-type": "اختر نوع مصدر البيانات"
+      },
+      "text": {
+        "add-data-source": "إضافة مصدر بيانات"
+      }
+    },
+    "no-access-modal": {
+      "connection-contact-grafana-admin": "لإضافة اتصال جديد، تواصل مع مسؤول Grafana.",
+      "editor-warning": "لا يمكن للمحرّرين إضافة اتصالات جديدة. يمكنك التحقق مما إذا كان مُهيّأً بالفعل في <2>مصادر البيانات</2>.",
+      "links": "الروابط",
+      "okay": "حسنًا"
+    },
+    "not-found-datasource": {
+      "body": "ربما أخطأت في كتابة الرابط (URL) أو أن الإضافة ذات المعرّف <1></1> غير متاحة.<br/>لرؤية قائمة بمصادر البيانات المتاحة يُرجى <5>النقر هنا</5>."
+    },
+    "oss": {
+      "connections-home-page": {
+        "add-new-connection": {
+          "subtitle": "الاتصال بمصدر بيانات جديد"
+        },
+        "data-sources": {
+          "title": "عرض مصادر البيانات المُهيّأة"
+        },
+        "subtitle": "أدر اتصالات مصادر بياناتك في مكان واحد. استخدم هذه الصفحة لإضافة مصدر بيانات جديد أو إدارة اتصالاتك الحالية."
+      }
+    },
+    "permissions-feature-highlight-page": {
+      "header": "باستخدام أذونات مصدر البيانات، يمكنك حماية البيانات الحساسة بتقييد الوصول إلى مصدر البيانات هذا لمستخدمين وفرق وأدوار محددة.",
+      "item-1": "احمِ البيانات الحساسة، مثل سجلّات الأمان وقواعد بيانات الإنتاج والمعلومات المُعرِّفة للأشخاص",
+      "item-2": "نظّف تجربة المستخدمين بإخفاء مصادر البيانات التي لا يحتاجون إليها",
+      "item-3": "شارك الوصول إلى Grafana بحرية أكبر، مع العلم أن المستخدمين لن يروا بيانات حساسة عن غير قصد",
+      "title": "أمّن الوصول إلى البيانات عبر أذونات مصدر البيانات في Grafana Cloud"
+    },
+    "use-data-source-settings-nav": {
+      "node": {
+        "subTitle": {
+          "data-source-error": "خطأ في مصدر البيانات"
+        }
+      },
+      "page-nav": {
+        "text": {
+          "data-source-nav-node": "عقدة تنقّل مصدر البيانات"
+        }
+      }
     }
   },
   "core": {
@@ -1298,6 +1517,89 @@
     "layer-name": {
       "edit-layer-title": "تعديل اسم الطبقة"
     }
+  },
+  "ldap-drawer": {
+    "attributes-section": {
+      "description": "حدّد سمات LDAP التي تُطابق الاسم الأول للمستخدم واسم العائلة والبريد الإلكتروني، لضمان استرجاع التطبيق لمعلومات المستخدم وعرضها بشكل صحيح.",
+      "email-label": "البريد الإلكتروني",
+      "label": "السمات",
+      "member-of-label": "عضو في",
+      "name-label": "الاسم",
+      "surname-label": "اسم العائلة",
+      "username-label": "اسم المستخدم"
+    },
+    "extra-security-section": {
+      "client-cert-label": "مسار شهادة العميل",
+      "client-cert-value-label": "محتوى شهادة العميل",
+      "client-cert-value-placeholder": "محتوى شهادة العميل بترميز base64",
+      "client-key-label": "مسار مفتاح العميل",
+      "client-key-placeholder": "/path/to/client_key.pem",
+      "client-key-value-label": "محتوى مفتاح العميل",
+      "client-key-value-placeholder": "محتوى مفتاح العميل بترميز base64",
+      "encryption-provider-base-64": "محتوى مُرمَّز بـ Base64",
+      "encryption-provider-description": "توفّر شهادة X.509 الجزء العام، بينما يوفّر المفتاح الخاص الصادر بتنسيق PKCS#8 الجزء الخاص من التشفير غير المتماثل.",
+      "encryption-provider-file-path": "المسار إلى الملفات",
+      "encryption-provider-label": "مواصفات توفير مفتاح التشفير والشهادة.",
+      "label": "إجراءات أمان إضافية",
+      "min-tls-version-description": "هذا هو الحد الأدنى لإصدار TLS المسموح به. القيم المقبولة هي: TLS1.2، TLS1.3.",
+      "min-tls-version-label": "الحد الأدنى لإصدار TLS",
+      "root-ca-cert-label": "مسار شهادة CA الجذرية",
+      "root-ca-cert-placeholder": "/path/to/root_ca_cert.pem",
+      "root-ca-cert-value-label": "محتوى شهادة CA الجذرية",
+      "root-ca-cert-value-placeholder": "مثال: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t",
+      "start-tls-description": "إذا ضُبط على صحيح، استخدم LDAP مع STARTTLS بدلًا من LDAPS",
+      "start-tls-label": "Start TLS",
+      "tls-ciphers-label": "خوارزميات تشفير TLS",
+      "tls-ciphers-placeholder": "مثال: TLS_AES_256_GCM_SHA384",
+      "use-ssl-description": "اضبط على صحيح إذا كان ينبغي لخادم LDAP استخدام اتصال TLS (إما مع STARTTLS أو LDAPS)",
+      "use-ssl-label": "استخدام SSL",
+      "use-ssl-tooltip": "للحصول على قائمة كاملة بخوارزميات التشفير وإصدارات TLS المدعومة، راجع:"
+    },
+    "group-mapping": {
+      "grafana-admin": {
+        "description": "إذا فُعّل، سيكون جميع المستخدمين من هذه المجموعة مسؤولي Grafana",
+        "label": "مسؤول Grafana"
+      },
+      "group-dn": {
+        "description": "اسم المفتاح المُستخدم لاستخراج رمز الهوية من رمز OAuth2 المُرجَع.",
+        "label": "Group DN"
+      },
+      "org-id": {
+        "description": "معرّف قاعدة بيانات منظمة Grafana. ستُستخدم المنظمة الافتراضية (ID 1) إذا تُرك فارغًا",
+        "label": "Org ID"
+      },
+      "org-role": {
+        "label": "دور المنظمة *"
+      },
+      "remove": {
+        "button": "إزالة تعيين المجموعة"
+      }
+    },
+    "group-mapping-section": {
+      "add": {
+        "button": "إضافة تعيين مجموعة"
+      },
+      "description": "تعيين مجموعات LDAP إلى أدوار منظمة Grafana",
+      "group-search-base-dns-label": "قاعدة بحث المجموعات المميّزة (DNS)",
+      "group-search-base-dns-placeholder": "مثال: ou=groups,dc=example,dc=com",
+      "group-search-filter-description": "يُستخدم لتصفية وتحديد إدخالات المجموعات داخل الدليل",
+      "group-search-filter-label": "مرشّح بحث المجموعات",
+      "group-search-filter-user-attribute-description": "يحدّد المستخدمين ضمن إدخالات المجموعات لأغراض التصفية",
+      "group-search-filter-user-attribute-label": "سمة اسم المجموعة",
+      "label": "تعيين المجموعات",
+      "skip-org-role-sync-description": "منع مزامنة أدوار المنظمة للمستخدمين من موفّر الهوية الخاص بك",
+      "skip-org-role-sync-label": "تخطّي مزامنة أدوار المنظمة"
+    },
+    "misc-section": {
+      "allow-sign-up-descrition": "إذا لم يُفعّل، يمكن فقط لمستخدمي Grafana الحاليين تسجيل الدخول باستخدام LDAP",
+      "allow-sign-up-label": "السماح بالتسجيل",
+      "label": "متفرّقات",
+      "port-description": "المنفذ الافتراضي هو 389 بدون SSL أو 636 مع SSL",
+      "port-label": "المنفذ",
+      "timeout-description": "مهلة بالثواني للاتصال بخادم LDAP",
+      "timeout-label": "المهلة"
+    },
+    "title": "الإعدادات المتقدمة"
   },
   "ldap-settings-page": {
     "advanced-settings-section": {
@@ -2526,6 +2828,101 @@
       "message": "لم يُعثر على حسابات خدمة",
       "more-info": "تذكّر أنه يمكنك منح أذونات محددة للوصول عبر واجهة API لتطبيقات أخرى",
       "title": "لم تنشئ أي حسابات خدمة بعد"
+    }
+  },
+  "serviceaccounts": {
+    "create-token-modal": {
+      "close": "إغلاق",
+      "copy-clipboard": "نسخ إلى الحافظة",
+      "copy-to-clipboard-and-close": "نسخ إلى الحافظة والإغلاق",
+      "description-name-to-easily-identify-the-token": "اسم لتمييز الرمز بسهولة",
+      "description-no-expiration-disabled": "لا يمكن إنشاء رمز بلا تاريخ انتهاء عند تهيئة حد لأيام انتهاء الرمز",
+      "description-token": "انسخ الرمز الآن لأنك لن تتمكّن من رؤيته مرة أخرى. يتطلب فقدان الرمز إنشاء رمز جديد.",
+      "generate-token": "توليد رمز",
+      "label-display-name": "الاسم المعروض",
+      "label-expiration": "الانتهاء",
+      "label-expiration-date": "تاريخ الانتهاء",
+      "label-no-expiration": "بلا انتهاء",
+      "label-set-expiration-date": "تعيين تاريخ الانتهاء",
+      "label-token": "الرمز"
+    },
+    "get-actions-cell": {
+      "add-token": "إضافة رمز",
+      "aria-label-delete-button": "حذف حساب الخدمة {{serviceAccountName}}",
+      "disable": "تعطيل",
+      "enable": "تفعيل",
+      "tooltip-managed-service-account-cannot-modified": "هذا حساب خدمة مُدار ولا يمكن تعديله"
+    },
+    "get-role-cell": {
+      "aria-label-role": "الدور"
+    },
+    "service-account-page-unconnected": {
+      "add-service-account-token": "إضافة رمز حساب خدمة",
+      "body-delete-service-account": "هل أنت متأكد أنك تريد حذف حساب الخدمة هذا؟",
+      "body-disable-service-account": "هل أنت متأكد أنك تريد تعطيل حساب الخدمة هذا؟",
+      "confirmText-delete-service-account": "حذف حساب الخدمة",
+      "confirmText-disable-service-account": "تعطيل حساب الخدمة",
+      "delete-service-account": "حذف حساب الخدمة",
+      "disable-service-account": "تعطيل حساب الخدمة",
+      "enable-service-account": "تفعيل حساب الخدمة",
+      "page-nav": {
+        "subTitle": {
+          "manage-settings-individual-service-account": "إدارة إعدادات حساب خدمة فردي."
+        }
+      },
+      "title-delete-service-account": "حذف حساب الخدمة",
+      "title-disable-service-account": "تعطيل حساب الخدمة",
+      "tokens": "الرموز",
+      "tooltip-managed-service-account-cannot-modified": "هذا حساب خدمة مُدار ولا يمكن تعديله"
+    },
+    "service-account-profile": {
+      "information": "المعلومات",
+      "label-creation-date": "تاريخ الإنشاء",
+      "label-id": "ID",
+      "label-name": "الاسم",
+      "label-numerical-identifier": "المعرّف الرقمي",
+      "label-roles": "الأدوار",
+      "used-by": "مُستخدَم بواسطة"
+    },
+    "service-account-profile-row": {
+      "confirmText-save": "حفظ",
+      "edit": "تعديل"
+    },
+    "service-account-role-row": {
+      "aria-label-role": "الدور"
+    },
+    "service-account-tokens-table": {
+      "aria-label-delete-button": "حذف رمز حساب الخدمة {{key}}",
+      "created": "أُنشئ",
+      "expires": "ينتهي",
+      "last-used-at": "آخر استخدام في",
+      "name": "الاسم"
+    },
+    "service-accounts-list-page-unconnected": {
+      "add-service-account": "إضافة حساب خدمة",
+      "body-delete_zero": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} والرموز المصاحبة؟",
+      "body-delete_one": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} ورمز مصاحب واحد؟",
+      "body-delete_two": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} ورمزين مصاحبين؟",
+      "body-delete_few": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} و{{count}} رموز مصاحبة؟",
+      "body-delete_many": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} و{{count}} رمزًا مصاحبًا؟",
+      "body-delete_other": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}} و{{count}} رمز مصاحب؟",
+      "body-delete-with-tokens": "هل أنت متأكد أنك تريد حذف {{serviceAccountName}}؟",
+      "body-disable-service-account": "هل أنت متأكد أنك تريد تعطيل '{{accountToDisable}}'؟",
+      "confirmText-delete": "حذف",
+      "confirmText-disable-service-account": "تعطيل حساب الخدمة",
+      "placeholder-search-service-account-by-name": "ابحث عن حساب خدمة بالاسم",
+      "sub-title": "يمكن استخدام حسابات الخدمة ورموزها للمصادقة مع Grafana API. اعرف المزيد في <2>وثائقنا.</2>",
+      "title-delete-service-account": "حذف حساب الخدمة",
+      "title-disable-service-account": "تعطيل حساب الخدمة"
+    },
+    "token-expiration": {
+      "content-this-token-has-expired": "انتهت صلاحية هذا الرمز",
+      "expired-label": "منتهي الصلاحية",
+      "never": "أبدًا"
+    },
+    "token-revoked": {
+      "content-token-publicly-exposed-please-rotate": "تم كشف هذا الرمز علنًا. يُرجى تدوير هذا الرمز",
+      "revoked-label": "مُلغى"
     }
   },
   "share-dashboard": {

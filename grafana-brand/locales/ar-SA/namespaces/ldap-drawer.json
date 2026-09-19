@@ -1,0 +1,83 @@
+{
+  "attributes-section": {
+    "description": "حدّد سمات LDAP التي تُطابق الاسم الأول للمستخدم واسم العائلة والبريد الإلكتروني، لضمان استرجاع التطبيق لمعلومات المستخدم وعرضها بشكل صحيح.",
+    "email-label": "البريد الإلكتروني",
+    "label": "السمات",
+    "member-of-label": "عضو في",
+    "name-label": "الاسم",
+    "surname-label": "اسم العائلة",
+    "username-label": "اسم المستخدم"
+  },
+  "extra-security-section": {
+    "client-cert-label": "مسار شهادة العميل",
+    "client-cert-value-label": "محتوى شهادة العميل",
+    "client-cert-value-placeholder": "محتوى شهادة العميل بترميز base64",
+    "client-key-label": "مسار مفتاح العميل",
+    "client-key-placeholder": "/path/to/client_key.pem",
+    "client-key-value-label": "محتوى مفتاح العميل",
+    "client-key-value-placeholder": "محتوى مفتاح العميل بترميز base64",
+    "encryption-provider-base-64": "محتوى مُرمَّز بـ Base64",
+    "encryption-provider-description": "توفّر شهادة X.509 الجزء العام، بينما يوفّر المفتاح الخاص الصادر بتنسيق PKCS#8 الجزء الخاص من التشفير غير المتماثل.",
+    "encryption-provider-file-path": "المسار إلى الملفات",
+    "encryption-provider-label": "مواصفات توفير مفتاح التشفير والشهادة.",
+    "label": "إجراءات أمان إضافية",
+    "min-tls-version-description": "هذا هو الحد الأدنى لإصدار TLS المسموح به. القيم المقبولة هي: TLS1.2، TLS1.3.",
+    "min-tls-version-label": "الحد الأدنى لإصدار TLS",
+    "root-ca-cert-label": "مسار شهادة CA الجذرية",
+    "root-ca-cert-placeholder": "/path/to/root_ca_cert.pem",
+    "root-ca-cert-value-label": "محتوى شهادة CA الجذرية",
+    "root-ca-cert-value-placeholder": "مثال: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t",
+    "start-tls-description": "إذا ضُبط على صحيح، استخدم LDAP مع STARTTLS بدلًا من LDAPS",
+    "start-tls-label": "Start TLS",
+    "tls-ciphers-label": "خوارزميات تشفير TLS",
+    "tls-ciphers-placeholder": "مثال: TLS_AES_256_GCM_SHA384",
+    "use-ssl-description": "اضبط على صحيح إذا كان ينبغي لخادم LDAP استخدام اتصال TLS (إما مع STARTTLS أو LDAPS)",
+    "use-ssl-label": "استخدام SSL",
+    "use-ssl-tooltip": "للحصول على قائمة كاملة بخوارزميات التشفير وإصدارات TLS المدعومة، راجع:"
+  },
+  "group-mapping": {
+    "grafana-admin": {
+      "description": "إذا فُعّل، سيكون جميع المستخدمين من هذه المجموعة مسؤولي Grafana",
+      "label": "مسؤول Grafana"
+    },
+    "group-dn": {
+      "description": "اسم المفتاح المُستخدم لاستخراج رمز الهوية من رمز OAuth2 المُرجَع.",
+      "label": "Group DN"
+    },
+    "org-id": {
+      "description": "معرّف قاعدة بيانات منظمة Grafana. ستُستخدم المنظمة الافتراضية (ID 1) إذا تُرك فارغًا",
+      "label": "Org ID"
+    },
+    "org-role": {
+      "label": "دور المنظمة *"
+    },
+    "remove": {
+      "button": "إزالة تعيين المجموعة"
+    }
+  },
+  "group-mapping-section": {
+    "add": {
+      "button": "إضافة تعيين مجموعة"
+    },
+    "description": "تعيين مجموعات LDAP إلى أدوار منظمة Grafana",
+    "group-search-base-dns-label": "قاعدة بحث المجموعات المميّزة (DNS)",
+    "group-search-base-dns-placeholder": "مثال: ou=groups,dc=example,dc=com",
+    "group-search-filter-description": "يُستخدم لتصفية وتحديد إدخالات المجموعات داخل الدليل",
+    "group-search-filter-label": "مرشّح بحث المجموعات",
+    "group-search-filter-user-attribute-description": "يحدّد المستخدمين ضمن إدخالات المجموعات لأغراض التصفية",
+    "group-search-filter-user-attribute-label": "سمة اسم المجموعة",
+    "label": "تعيين المجموعات",
+    "skip-org-role-sync-description": "منع مزامنة أدوار المنظمة للمستخدمين من موفّر الهوية الخاص بك",
+    "skip-org-role-sync-label": "تخطّي مزامنة أدوار المنظمة"
+  },
+  "misc-section": {
+    "allow-sign-up-descrition": "إذا لم يُفعّل، يمكن فقط لمستخدمي Grafana الحاليين تسجيل الدخول باستخدام LDAP",
+    "allow-sign-up-label": "السماح بالتسجيل",
+    "label": "متفرّقات",
+    "port-description": "المنفذ الافتراضي هو 389 بدون SSL أو 636 مع SSL",
+    "port-label": "المنفذ",
+    "timeout-description": "مهلة بالثواني للاتصال بخادم LDAP",
+    "timeout-label": "المهلة"
+  },
+  "title": "الإعدادات المتقدمة"
+}
