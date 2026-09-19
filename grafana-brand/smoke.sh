@@ -28,15 +28,18 @@ docker run --rm --entrypoint sh "$IMAGE" -c "grep -rlq -- 'ar-SA' $BUILD" \
 echo "ar-SA present in compiled bundle: OK"
 
 echo "== ar-SA catalog shipped in the image =="
-# The catalog must be in the image. Prefer the compiled chunk (import() target). Terser may emit the
-# Arabic as \u escapes, so fall back to the raw JSON that webpack leaves under public/locales — either
-# proves the catalog ships; report which. Both absent is a real failure.
-if docker run --rm --entrypoint sh "$IMAGE" -c "grep -rlq 'لوحة المعلومات' $BUILD 2>/dev/null"; then
-  echo "compiled ar-SA catalog string found in build/: OK"
+# The catalog must be in the image. Terser emits the Arabic as \u06xx escapes in the EXECUTABLE
+# chunk (the literal UTF-8 survives only in the .js.map source map), so a literal-string grep over
+# build/ would falsely match the map, not the served code. Check the executable chunks for escaped
+# Arabic codepoints (\u06.. = the Arabic Unicode block, an ASCII pattern so no nested-escaping), and
+# fall back to the raw JSON webpack leaves under public/locales. Report which; both absent is a real
+# failure. (The authoritative "the loader actually resolves ar-SA" proof is the jest i18n test.)
+if docker run --rm --entrypoint sh "$IMAGE" -c 'for f in '"$BUILD"'/*.js; do grep -lq "\\\\u06" "$f" 2>/dev/null && exit 0; done; exit 1'; then
+  echo "ar-SA catalog compiled into an executable JS chunk (Arabic \\u06xx codepoints served): OK"
 elif docker run --rm --entrypoint sh "$IMAGE" -c "test -s $LOCALES/ar-SA/grafana.json && grep -q 'لوحة المعلومات' $LOCALES/ar-SA/grafana.json"; then
   echo "ar-SA catalog present as raw JSON at locales/ar-SA/grafana.json: OK (the import() loader compiles it into a chunk)"
 else
-  echo "ERROR: ar-SA catalog not found in build/ or locales/ar-SA/"; exit 1
+  echo "ERROR: ar-SA catalog not found in build/ chunks or locales/ar-SA/"; exit 1
 fi
 
 echo "== container starts + /api/health =="
