@@ -1444,6 +1444,881 @@
       "notification-policies-contact-points": "تُرسَل الإشعارات إلى نقاط الاتصال المحددة في سياسة الإشعارات",
       "periodically-queries-data-sources": "يستعلم تنبيه Grafana دوريًا عن مصادر البيانات ويقيّم الشرط المُعرّف في قاعدة التنبيه",
       "route-alert-notifications": "<0>وجّه إشعارات التنبيه</0> إما مباشرةً إلى نقطة اتصال أو عبر سياسات الإشعارات لمزيد من المرونة"
+    },
+    "global-config": {
+      "title-failed-to-fetch-notification-template": "فشل جلب قالب الإشعار"
+    },
+    "global-config-alert": {
+      "body": "لكل Alertmanager خارجي يمكنك تعريف إعدادات عامة، مثل عناوين الخوادم وأسماء المستخدمين وكلمات المرور، لجميع نقاط الاتصال المدعومة.",
+      "edit-global-config": "تعديل الإعداد العام",
+      "title-global-config-for-contact-points": "الإعداد العام لنقاط الاتصال",
+      "view-global-config": "عرض الإعداد العام"
+    },
+    "global-config-form": {
+      "save-global-config": "حفظ الإعداد العام",
+      "saving": "جارٍ الحفظ...",
+      "title-error-saving-receiver": "خطأ في حفظ المستلم"
+    },
+    "grafana-alertmanager-delivery-warning": {
+      "admin-hint-all": "لتغيير إعداد Alertmanager الخاص بك، انتقل إلى صفحة إدارة التنبيهات. إذا لم يكن لديك وصول، تواصل مع مسؤولك.",
+      "admin-hint-external": "لتغيير إعداد Alertmanager الخاص بك، انتقل إلى صفحة إدارة التنبيهات. إذا لم يكن لديك وصول، تواصل مع مسؤولك.",
+      "configuration-changes-all": "تأكّد من إجراء تغييرات الإعداد في Alertmanagers الصحيحة؛ الداخلية والخارجية. تغيير واحد لن يؤثّر في الأخرى.",
+      "configuration-changes-external": "Grafana مُهيّأ لإرسال التنبيهات إلى Alertmanagers خارجية فقط. تغيير إعداد Grafana Alertmanager لن يؤثّر في تسليم تنبيهاتك.",
+      "title-grafana-alerts-delivered-alertmanager": "تنبيهات Grafana لا تُسلَّم إلى Grafana Alertmanager",
+      "title-you-have-additional-alertmanagers-to-configure": "لديك Alertmanagers إضافية لتهيئتها"
+    },
+    "grafana-common-channel-settings": {
+      "description-disable-resolved-message": "تعطيل رسالة الحل [OK] التي تُرسَل عند عودة حالة التنبيه إلى خطأ",
+      "label-disable-resolved-message": "تعطيل رسالة الحل"
+    },
+    "grafana-evaluation-behavior-step": {
+      "loadingMessage-loading-groups": "جارٍ تحميل المجموعات...",
+      "message": {
+        "must-be-a-positive-integer": "يجب أن يكون عددًا صحيحًا موجبًا.",
+        "must-enter-a-group-name": "يجب إدخال اسم مجموعة"
+      },
+      "missing-series-resolve-placeholder": "الافتراضي: 2",
+      "or": "أو",
+      "placeholder-select-an-evaluation-group": "اختر مجموعة تقييم...",
+      "text-configure-no-data-and-error-handling": "تهيئة معالجة عدم وجود البيانات والأخطاء",
+      "title-set-evaluation-behavior": "تعيين سلوك التقييم"
+    },
+    "grafana-folder-and-labels-step": {
+      "title-add-folder-and-labels": "إضافة مجلد وتسميات"
+    },
+    "grafana-modify-export": {
+      "body-invalid-rule-id": "معرّف UID للقاعدة في عنوان URL للصفحة غير صالح. يُرجى التحقق من الرابط والمحاولة مجددًا.",
+      "title-invalid-rule-id": "معرّف قاعدة غير صالح"
+    },
+    "grafana-modify-export-page": {
+      "text": {
+        "modify-export": "تعديل التصدير"
+      }
+    },
+    "grafana-mute-timing-exporter-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-mute-timings-exporter-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-policies-exporter-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-receiver-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-receiver-form": {
+      "body-loading-on-call-integration-failed": "تم تفعيل إضافة Grafana OnCall في مثيلات Grafana الخاصة بك لكن يتعذّر الوصول إليها. يُرجى التحقق من إعداد الإضافة",
+      "text-loading-notifiers": "جارٍ تحميل المُشعِرات...",
+      "title-loading-on-call-integration-failed": "فشل تحميل تكامل OnCall"
+    },
+    "grafana-receivers-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-rule-design-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-rule-design-exporter": {
+      "title-export-group": "تصدير المجموعة"
+    },
+    "grafana-rule-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-rule-folder-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-rule-folder-exporter": {
+      "title-drawer": "تصدير قواعد {{folderName}}"
+    },
+    "grafana-rule-group-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "grafana-rule-group-exporter": {
+      "title-drawer": "تصدير قواعد {{groupName}}"
+    },
+    "grafana-rules": {
+      "export-all-grafana-rules-aria-label-export-all-grafana-rules": "تصدير جميع قواعد Grafana",
+      "export-all-grafana-rules-tooltip-export-all-grafanamanaged-rules": "تصدير جميع القواعد المُدارة من Grafana",
+      "no-rules-found": "لم يُعثر على قواعد.",
+      "tooltip-create-new-grafanamanaged-recording-rule": "إنشاء قاعدة تسجيل جديدة مُدارة من Grafana"
+    },
+    "grafana-rules-export-preview": {
+      "text-loading": "جارٍ التحميل...."
+    },
+    "group-and-namespace-fields": {
+      "group-picker-label-group": "المجموعة",
+      "message": {
+        "required": "مطلوب."
+      },
+      "namespace-picker-label-namespace": "مساحة الاسم"
+    },
+    "group-by": {
+      "aria-label-group-by-label-keys": "التجميع حسب مفاتيح التسمية",
+      "custom-group-by": "تجميع مخصص حسب",
+      "placeholder-group-by": "التجميع حسب",
+      "tooltip-group-by": "جمّع الإشعارات باستخدام مجموعة مختلفة من التسميات. يمكن أن يساعد هذا الخيار في التحقق من إعدادات تجميع سياسات الإشعارات الخاصة بك."
+    },
+    "group-details": {
+      "ds-features-error": "خطأ في تحميل تفاصيل مصدر البيانات",
+      "edit": "تعديل",
+      "export": "تصدير",
+      "folder": "مجلد",
+      "group-loading-error": "خطأ في تحميل المجموعة",
+      "interval": "الفاصل",
+      "namespace": "مساحة الاسم",
+      "new": "جديد",
+      "title": {
+        "back": "العودة إلى التنبيهات"
+      }
+    },
+    "group-edit": {
+      "ds-error": "خطأ في تحميل تفاصيل مصدر البيانات",
+      "form": {
+        "delete": "حذف",
+        "delete-body": "هل أنت متأكد أنك تريد حذف مجموعة القواعد هذه؟",
+        "delete-confirm": "حذف",
+        "delete-title": "حذف مجموعة القواعد",
+        "folder-label": "مجلد",
+        "group-name-label": "اسم مجموعة التقييم",
+        "group-name-required": "اسم المجموعة مطلوب",
+        "interval-description": "كم مرة تُقيَّم المجموعة",
+        "interval-label": "فاصل التقييم",
+        "namespace-label": "مساحة الاسم",
+        "namespace-required": "مساحة الاسم مطلوبة",
+        "rules-description": "اسحب القواعد لإعادة الترتيب",
+        "rules-label": "قواعد التنبيه والتسجيل",
+        "save": "حفظ",
+        "update-error": "فشل تحديث مجموعة القواعد",
+        "update-success": "تم تحديث مجموعة القواعد بنجاح"
+      },
+      "group-federated": "مجموعة القواعد هذه موحّدة",
+      "group-federated-description": "لا يمكن تعديل مجموعات القواعد الموحّدة من Grafana.",
+      "group-not-editable": "لا يمكن تعديل المجموعة المحددة",
+      "group-not-editable-description": "تنتمي هذه المجموعة إلى مصدر بيانات لا يدعم التعديل.",
+      "group-plugin-provided": "مجموعة القواعد هذه مُدارة بواسطة إضافة",
+      "group-plugin-provided-description": "لا يمكن تعديل مجموعات القواعد المُهيّأة بواسطة إضافة من Grafana. أدرها من الإضافة التي تملكها.",
+      "group-provisioned": "مجموعة القواعد هذه مُهيّأة تلقائيًا",
+      "group-provisioned-description": "لا يمكن تعديل مجموعات القواعد المُهيّأة تلقائيًا من Grafana. حدّث إعداد التهيئة المصدري بدلًا من ذلك.",
+      "page-title": "تعديل مجموعة القواعد",
+      "rule-group-error": "خطأ في تحميل مجموعة القواعد"
+    },
+    "group-loader": {
+      "group-load-failed": "فشل تحميل القواعد من المجموعة {{ groupName }} في {{ namespaceName }}",
+      "no-rules": "لم يُعثر على قواعد في هذه المجموعة"
+    },
+    "group-wrapper": {
+      "toggle": "تبديل المجموعة"
+    },
+    "header": {
+      "tooltip-remove": "إزالة التعبير \"{{refId}}\""
+    },
+    "history-apidatasource": {
+      "message": {
+        "data-source-is-working": "مصدر البيانات يعمل"
+      },
+      "title": {
+        "success": "نجاح"
+      }
+    },
+    "home": {
+      "irm-card-description": "وحّد المناوبة والتنبيه والاستجابة للحوادث مع Grafana Cloud IRM.",
+      "irm-card-item-1": "أدر جداول المناوبة بتقويمك أو Terraform.",
+      "irm-card-item-2": "استجب للحوادث عبر الويب أو التطبيق أو Slack أو قنوات أخرى.",
+      "irm-card-item-3": "حدّد الأسباب الجذرية بدقة باستخدام Grafana SIFT المدعوم بالذكاء الاصطناعي.",
+      "irm-card-item-4": "حلّل الحوادث السابقة لتحسين الاستجابة والمرونة.",
+      "irm-card-title": "الاستجابة للحوادث وإدارتها",
+      "label-get-started": "ابدأ",
+      "label-insights": "الرؤى",
+      "synthetic-monitoring-card-description": "راقب تدفقات المستخدمين الحرجة والمواقع وواجهات API خارجيًا، من مواقع عالمية.",
+      "synthetic-monitoring-card-item-1": "حاكِ رحلات المستخدم الشاملة بفحوصات المتصفح.",
+      "synthetic-monitoring-card-item-2": "شغّل فحوصات ping وDNS وHTTP/S وTCP في كل طبقة شبكة.",
+      "synthetic-monitoring-card-item-3": "استخدم أكثر من 20 مسبارًا عالميًا أو مسبارات خاصة خلف جدار الحماية الخاص بك.",
+      "synthetic-monitoring-card-item-4": "تتبّع أهداف مستوى الخدمة (SLOs) بتنبيهات بنمط Prometheus مدمجة — مباشرةً من الواجهة.",
+      "synthetic-monitoring-card-title": "المراقبة التركيبية"
+    },
+    "import-to-gma": {
+      "action-button": "استيراد",
+      "additional-settings": "إعدادات إضافية",
+      "alert-rules": "قواعد التنبيه",
+      "confirm": {
+        "body": "هل أنت متأكد أنك تريد بدء الاستيراد؟ سيؤدي هذا الإجراء إلى إنشاء موارد جديدة في Grafana Alerting.",
+        "confirm": "بدء الاستيراد",
+        "error-body": "فشل استيراد الموارد. يُرجى التحقق من تفاصيل الخطأ والمحاولة مجددًا.",
+        "error-title": "فشل الاستيراد",
+        "importing-body": "جارٍ استيراد الموارد إلى Grafana Alerting. يُرجى الانتظار...",
+        "importing-title": "جارٍ الاستيراد...",
+        "success-body": "تم استيراد الموارد بنجاح. جارٍ إعادة التوجيه...",
+        "success-title": "نجح الاستيراد",
+        "title": "تأكيد الاستيراد"
+      },
+      "confirm-modal": {
+        "confirm": "استيراد",
+        "loading": "جارٍ التحميل...",
+        "loading-body": "جارٍ تحضير البيانات للاستيراد. قد يستغرق هذا بعض الوقت...",
+        "no-rules-body": "لا توجد قواعد للاستيراد. يُرجى اختيار مساحة اسم أو مجموعة قواعد مختلفة.",
+        "no-rules-body-yaml": "لا توجد قواعد للاستيراد. يُرجى اختيار ملف yaml مختلف.",
+        "no-rules-title": "لا توجد قواعد للاستيراد",
+        "not-using-rules-managed-by-integrations-or-plugins": {
+          "text": "القواعد المُدارة بواسطة التكاملات أو الإضافات لا ينبغي استيرادها إلى القواعد المُدارة من Grafana.",
+          "title": "معلومات"
+        },
+        "plugin-rules-warning": {
+          "text": "اكتشفنا أن بعض القواعد مُدارة بواسطة إضافات. لن تُستورد هذه القواعد.",
+          "title": "بعض القواعد مستبعدة من الاستيراد"
+        },
+        "target-folder-rules": "قواعد المجلد الهدف التي قد تُستبدل",
+        "title": "تأكيد الاستيراد"
+      },
+      "datasource": {
+        "help-info": {
+          "content": "تعرض القائمة المنسدلة فقط مصادر بيانات Mimir أو Loki التي تتوفّر لها واجهة ruler API.",
+          "title": "مصدر البيانات"
+        },
+        "label": "مصدر البيانات",
+        "required-message": "يُرجى اختيار مصدر بيانات"
+      },
+      "error": "فشل استيراد قواعد التنبيه: {{error}}",
+      "group": {
+        "description": "اكتب للبحث عن مجموعة موجودة",
+        "label": "المجموعة"
+      },
+      "import-location-and-filters": "موقع الاستيراد والمرشّحات",
+      "import-source": "مصدر الاستيراد",
+      "info-description": "يساعدك هذا المعالج في استيراد قواعد التنبيه وموارد الإشعارات من مصادر خارجية إلى Grafana Alerting. لمزيد من المعلومات، راجع <2>الوثائق</2>.",
+      "info-title": "معالج الاستيراد",
+      "namespace": {
+        "description": "اكتب للبحث عن مساحة اسم موجودة",
+        "label": "مساحة الاسم"
+      },
+      "pageTitle": "استيراد قواعد التنبيه",
+      "pause": {
+        "label": "إيقاف قواعد التنبيه المستوردة"
+      },
+      "pause-recording": {
+        "label": "إيقاف قواعد التسجيل المستوردة"
+      },
+      "preview": {
+        "error": "فشل تحميل المحتوى: {{error}}",
+        "loading": "جارٍ تحميل المحتوى...",
+        "notifications-title": "معاينة إعداد الإشعارات",
+        "rules-title": "معاينة قواعد التنبيه"
+      },
+      "recording-rules": "قواعد التسجيل",
+      "renamed-intervals_zero": "ستُعاد تسمية {{count}} فترة زمنية",
+      "renamed-intervals_one": "ستُعاد تسمية فترة زمنية واحدة",
+      "renamed-intervals_two": "ستُعاد تسمية فترتين زمنيتين",
+      "renamed-intervals_few": "ستُعاد تسمية {{count}} فترات زمنية",
+      "renamed-intervals_many": "ستُعاد تسمية {{count}} فترة زمنية",
+      "renamed-intervals_other": "ستُعاد تسمية {{count}} فترة زمنية",
+      "renamed-receivers_zero": "ستُعاد تسمية {{count}} نقطة اتصال",
+      "renamed-receivers_one": "ستُعاد تسمية نقطة اتصال واحدة",
+      "renamed-receivers_two": "ستُعاد تسمية نقطتي اتصال",
+      "renamed-receivers_few": "ستُعاد تسمية {{count}} نقاط اتصال",
+      "renamed-receivers_many": "ستُعاد تسمية {{count}} نقطة اتصال",
+      "renamed-receivers_other": "ستُعاد تسمية {{count}} نقطة اتصال",
+      "review": {
+        "back": "قواعد التنبيه",
+        "filter": "تصفية",
+        "folder": "المجلد الهدف",
+        "heading": "مراجعة الاستيراد",
+        "namespace": "مساحة الاسم",
+        "nothing": "لا شيء للاستيراد",
+        "nothing-desc": "تم تخطّي كلتا الخطوتين. ارجع وهيّئ مصدر استيراد واحدًا على الأقل.",
+        "notifications-skipped": "لن تُستورد موارد الإشعارات.",
+        "notifications-title": "موارد الإشعارات",
+        "pause": "إيقاف القواعد",
+        "pause-alerting": "قواعد التنبيه متوقّفة",
+        "pause-all": "جميع القواعد متوقّفة",
+        "pause-none": "لا قواعد متوقّفة",
+        "pause-recording": "قواعد التسجيل متوقّفة",
+        "policy-tree": "شجرة السياسات",
+        "routing": "توجيه الإشعارات",
+        "routing-none": "لم تُحدَّد شجرة سياسات",
+        "routing-tree": "شجرة السياسات: {{name}}",
+        "rules-skipped": "لن تُستورد قواعد التنبيه.",
+        "rules-title": "قواعد التنبيه",
+        "skipped": "مُتخطّى",
+        "source": "المصدر",
+        "start": "بدء الاستيراد",
+        "subtitle": "راجع كل قسم وبمجرد أن تكون راضيًا، ابدأ الاستيراد.",
+        "validation-error": "فشل التحقق.",
+        "validation-ok": "لم يُعثر على تعارضات. جاهز للاستيراد.",
+        "validation-warning": "ستُعاد تسمية بعض الموارد لتجنّب التعارضات.",
+        "will-import-config": "سيستورد هذا الإعداد",
+        "will-import-rules": "سيستورد القواعد",
+        "will-import-rules-count_zero": "سيستورد {{count}} قاعدة",
+        "will-import-rules-count_one": "سيستورد قاعدة واحدة",
+        "will-import-rules-count_two": "سيستورد قاعدتين",
+        "will-import-rules-count_few": "سيستورد {{count}} قواعد",
+        "will-import-rules-count_many": "سيستورد {{count}} قاعدة",
+        "will-import-rules-count_other": "سيستورد {{count}} قاعدة"
+      },
+      "routing-tree": {
+        "default-policy": "السياسة الافتراضية"
+      },
+      "source": {
+        "datasource": "قواعد مُدارة من مصادر بيانات موجودة",
+        "datasource-description": "استيراد القواعد من مصادر البيانات الموجودة",
+        "yaml": "ملف Prometheus YAML",
+        "yaml-description": "استيراد القواعد من ملف Prometheus YAML."
+      },
+      "step1": {
+        "datasource": "مصدر بيانات Alertmanager",
+        "heading": "استيراد موارد الإشعارات",
+        "no-datasources": "لم يُعثر على مصادر بيانات Alertmanager",
+        "no-permission-desc": "ليس لديك إذن لاستيراد موارد الإشعارات. تحتاج إلى إذن <strong>alerting.notifications:write</strong>. يمكنك تخطّي هذه الخطوة.",
+        "no-permission-title": "أذونات غير كافية",
+        "policy-tree-desc": "عند الاستيراد، يُنشئ Grafana شجرة سياسات إشعارات منفصلة. أدخل اسمًا ستتعرّف عليه.",
+        "policy-tree-help": "عند استيراد إعداد Alertmanager هذا، سيُنشئ Grafana شجرة سياسات إشعارات منفصلة له. سيحدّد الاسم الذي تدخله هنا تلك الشجرة في الواجهة وهو ما تختاره عند استيراد قواعد التنبيه التي ينبغي أن تستخدم هذا التوجيه. استخدم تسمية ستتعرّف عليها — على سبيل المثال مصدر البيانات أو الفريق أو العنقود أو البيئة (مثل prometheus-prod أو platform-team).",
+        "policy-tree-help-title": "حول أسماء شجرة السياسات",
+        "policy-tree-name": "اسم شجرة السياسات",
+        "policy-tree-placeholder": "prometheus-prod",
+        "policy-tree-required": "اسم شجرة السياسات مطلوب",
+        "policy-tree-title": "اسم شجرة السياسات",
+        "select-datasource": "اختر مصدر بيانات",
+        "skip": "تخطّي هذه الخطوة",
+        "source": {
+          "datasource": "مصدر البيانات",
+          "datasource-desc": "الاستيراد من مصدر بيانات Alertmanager",
+          "yaml": "ملف YAML",
+          "yaml-desc": "الاستيراد من ملف إعداد Alertmanager YAML"
+        },
+        "source-title": "مصدر الاستيراد",
+        "subtitle": "استورد نقاط الاتصال وسياسات الإشعارات والقوالب وتوقيتات الكتم من Alertmanager خارجي.",
+        "upload": "رفع ملف YAML",
+        "validating": "جارٍ التحقق من الإعداد...",
+        "validation-error": "فشل التحقق",
+        "validation-error-desc": "فشل التحقق من الإعداد.",
+        "validation-success": "نجح التحقق",
+        "validation-success-desc": "لم يُعثر على تعارضات. الإعداد جاهز للاستيراد.",
+        "validation-warning": "ستُعاد تسمية بعض الموارد لتجنّب التعارضات مع الموجودة",
+        "yaml-file": "ملف إعداد Alertmanager YAML"
+      },
+      "step2": {
+        "datasource": "مصدر البيانات",
+        "group": "المجموعة",
+        "group-desc": "التصفية حسب المجموعة (اختياري)",
+        "heading": "استيراد قواعد التنبيه",
+        "namespace": "مساحة الاسم",
+        "namespace-desc": "التصفية حسب مساحة الاسم (اختياري)",
+        "no-permission-desc": "ليس لديك إذن لاستيراد قواعد التنبيه. تحتاج إلى إذنَي <strong>alerting.rules:create</strong> و<strong>alerting.provisioning:write</strong>. يمكنك تخطّي هذه الخطوة.",
+        "no-permission-title": "أذونات غير كافية",
+        "override-warning-body": "يحتوي المجلد الهدف بالفعل على قواعد تنبيه تشترك في مساحة الاسم نفسها مع القواعد المستوردة. قد تُستبدل هذه القواعد الموجودة أو تُزال أثناء الاستيراد.",
+        "override-warning-details": "القواعد التي قد تُستبدل",
+        "override-warning-title": "قد تُستبدل بعض القواعد الموجودة",
+        "pause-alerting": "إيقاف قواعد التنبيه المستوردة",
+        "pause-recording": "إيقاف قواعد التسجيل المستوردة",
+        "plugin-rules-warning-body": "اكتُشفت قواعد مُدارة بواسطة إضافات أو تكاملات أو المراقبة التركيبية ولن تُستورد.",
+        "plugin-rules-warning-title": "بعض القواعد مستبعدة من الاستيراد",
+        "policy-desc": "اختر كيفية توجيه التنبيهات المستوردة إلى نقاط الاتصال.",
+        "policy-title": "توجيه الإشعارات",
+        "policy-tree": "شجرة السياسات",
+        "policy-tree-desc": "اختر شجرة سياسات إشعارات لتوجيه التنبيهات المستوردة",
+        "select-group": "جميع المجموعات",
+        "select-namespace": "جميع مساحات الأسماء",
+        "select-policy": "اختر شجرة سياسات",
+        "settings-title": "إعدادات إضافية",
+        "skip": "تخطّي هذه الخطوة",
+        "skipped-step1": "تم تخطّي الخطوة 1",
+        "skipped-step1-desc": "لقد تخطّيت استيراد موارد Alertmanager. لا يزال بإمكانك استيراد القواعد وتوجيهها باستخدام سياسة Grafana الافتراضية أو تسمية مخصصة.",
+        "source": {
+          "datasource": "مصدر البيانات",
+          "datasource-desc": "الاستيراد من مصدر بيانات Prometheus أو Mimir أو Loki",
+          "yaml": "ملف YAML",
+          "yaml-desc": "الاستيراد من ملف قواعد Prometheus YAML"
+        },
+        "source-title": "مصدر الاستيراد",
+        "subtitle": "استورد قواعد التنبيه وقواعد التسجيل من مصدر خارجي.",
+        "target-datasource": "مصدر البيانات الهدف",
+        "target-datasource-desc": "مصدر بيانات Prometheus لتخزين قواعد التسجيل فيه",
+        "target-datasource-required": "يُرجى اختيار مصدر بيانات هدف",
+        "target-folder": "المجلد الهدف",
+        "target-folder-desc": "المجلد حيث ستُخزَّن القواعد المستوردة",
+        "upload": "رفع ملف YAML",
+        "yaml-error": "فشل تحليل ملف YAML: {{error}}",
+        "yaml-file": "ملف قواعد YAML",
+        "yaml-required": "يُرجى اختيار ملف"
+      },
+      "success": "تم استيراد قواعد التنبيه بنجاح إلى القواعد المُدارة من Grafana.",
+      "target-folder": {
+        "description": "المجلد المراد استيراد القواعد إليه",
+        "label": "المجلد الهدف"
+      },
+      "wizard": {
+        "cancel": "إلغاء",
+        "cancel-confirm-body": "هل أنت متأكد أنك تريد الإلغاء؟ ستُفقد كل تقدّمك.",
+        "cancel-confirm-no": "تجاهل",
+        "cancel-confirm-title": "إلغاء الاستيراد؟",
+        "cancel-confirm-yes": "تجاهل التغييرات",
+        "skip": "تخطّي",
+        "step-notifications": "موارد الإشعارات",
+        "step-notifications-desc": "نقاط الاتصال، السياسات، القوالب",
+        "step-review": "مراجعة واستيراد",
+        "step-review-desc": "معاينة وتأكيد الاستيراد",
+        "step-rules": "قواعد التنبيه",
+        "step-rules-desc": "قواعد التنبيه والتسجيل"
+      },
+      "yaml": {
+        "description": "اختر ملف YAML متوافقًا مع Prometheus للاستيراد",
+        "label": "ملف Prometheus YAML",
+        "required-message": "يُرجى اختيار ملف",
+        "target-datasource": "مصدر البيانات الهدف",
+        "target-datasource-description": "اختر مصدر البيانات الذي ستستعلمه القواعد المستوردة. تأكّد من توفّر المقاييس المستخدمة في القواعد المستوردة في مصدر البيانات هذا.",
+        "target-datasource-required": "يُرجى اختيار مصدر بيانات هدف"
+      },
+      "yaml-error": "فشل تحليل ملف YAML: {{error}}"
+    },
+    "import-to-gma-tool": {
+      "pageTitle": "الاستيراد إلى Grafana Alerting"
+    },
+    "inhibition-rules": {
+      "body": "يحتوي Alertmanager هذا على قواعد كبح مُهيّأة. قد تُكبت بعض التنبيهات عند إطلاق تنبيهات مطابِقة.",
+      "learn-more": "تعرّف على المزيد عن قواعد الكبح",
+      "title": "قواعد الكبح سارية"
+    },
+    "insights": {
+      "monitor-status-of-system": "راقب حالة نظامك",
+      "monitor-status-system-tooltip": "توفّر رؤى التنبيه لوحات معلومات جاهزة لمراقبة بيانات التنبيه الخاصة بك.",
+      "monitor-status-system-tooltip-identify": "يمكنك تحديد الأنماط في أسباب حدوث الأخطاء واكتشاف الاتجاهات في أداء التنبيه داخل منظمتك."
+    },
+    "insights-menu-button-renderer": {
+      "aria-label-rate-this-panel": "قيّم هذه اللوحة",
+      "help-us": "ساعدنا في تحسين هذه الصفحة بإخبارنا ما إذا كانت هذه اللوحة مفيدة لك!",
+      "menu": {
+        "label-explore": "استكشاف",
+        "label-rate-this-panel": "قيّم هذه اللوحة"
+      },
+      "modal": {
+        "i-like-it": "أعجبتني",
+        "title-rate-this-panel": "قيّم هذه اللوحة"
+      }
+    },
+    "inspector-yaml-tab": {
+      "apply": "تطبيق"
+    },
+    "instance-details": {
+      "drawer-time-range-short": {
+        "description": "النطاق الزمني المحدد أقصر من نافذة تقييم استعلام القاعدة لذا قد لا يتوفّر رسم بياني.",
+        "title": "النطاق الزمني أقصر من نافذة التقييم"
+      },
+      "history-error": "فشل تحميل سجلّ الحالة",
+      "history-error-desc": "تعذّر جلب سجلّ انتقال الحالة لهذا المثيل.",
+      "instance-history-heading": "السجلّ",
+      "no-history": "لا توجد تغييرات حالة حديثة",
+      "notifications-error": "تعذّر تحميل سجلّ الإشعارات",
+      "notifications-error-desc": "سيعرض الجدول الزمني تغييرات الحالة فقط. تحقّق من تفعيل سجلّ الإشعارات وحاول مجددًا.",
+      "state-error-description": "هذا المثيل في حالة <strong>خطأ</strong>. حدث خطأ في التقييم، لذا قد لا يتوفّر رسم بياني.",
+      "state-history": "تغييرات الحالة الأخيرة",
+      "state-nodata": {
+        "description": "هذا المثيل في حالة <strong>لا توجد بيانات</strong>. أُطلق التنبيه لأن الاستعلام لم يُرجع بيانات في نافذة التقييم، لذا قد لا يتوفّر رسم بياني."
+      },
+      "timeline-all-failed": "فشل",
+      "timeline-all-failed-plural": "فشل الكل",
+      "timeline-delivered": "سُلِّم",
+      "timeline-dot-all-failed": "فشلت جميع الإشعارات",
+      "timeline-dot-some-failed": "فشلت بعض الإشعارات",
+      "timeline-empty": "لم يُعثر على أحداث لهذا النطاق الزمني",
+      "timeline-failed": "فشل",
+      "timeline-filter-all": "الكل",
+      "timeline-filter-empty": "لا أحداث مطابِقة لهذا المرشّح",
+      "timeline-filter-notifications": "الإشعارات",
+      "timeline-filter-states": "تغييرات الحالة",
+      "timeline-loading": "جارٍ تحميل الجدول الزمني...",
+      "timeline-n-uniqueReceivers_zero": "{{count}} مستلم فريد",
+      "timeline-n-uniqueReceivers_one": "مستلم فريد واحد",
+      "timeline-n-uniqueReceivers_two": "مستلمان فريدان",
+      "timeline-n-uniqueReceivers_few": "{{count}} مستلمين فريدين",
+      "timeline-n-uniqueReceivers_many": "{{count}} مستلمًا فريدًا",
+      "timeline-n-uniqueReceivers_other": "{{count}} مستلم فريد",
+      "timeline-notification-label": "إشعار",
+      "timeline-partial-failure": "{{successCount}} سُلِّم، {{failedCount}} فشل",
+      "timeline-status-firing": "نشط",
+      "timeline-status-resolved": "مُحلّ",
+      "timeline-toggle-notifications": "تبديل تفاصيل الإشعار",
+      "view-notification-detail": "التفاصيل",
+      "view-notification-tooltip": "عرض تفاصيل الإشعار الكاملة"
+    },
+    "instance-match": {
+      "non-matching-labels": "التسميات غير المطابِقة",
+      "notification-policy": "عرض المسار"
+    },
+    "irm-integration": {
+      "connection-method": "كيفية الاتصال بـ IRM",
+      "disabled-description": "تفعيل IRM عبر تكامل Webhook",
+      "enabled-description": "طريقة سلسة للتعامل مع التنبيهات وإدارة الحوادث",
+      "existing-integration": "تكامل IRM موجود",
+      "existing-integration-description": "استخدام تكامل IRM موجود",
+      "integration": "تكامل IRM",
+      "integration-description": "تكامل IRM المراد إرسال التنبيهات إليه",
+      "integration-name": "اسم التكامل",
+      "integration-name-description": "اسم تكامل IRM الجديد",
+      "integration-name-exists": "يوجد تكامل بهذا الاسم بالفعل في IRM",
+      "integration-required": "اختيار تكامل IRM موجود مطلوب",
+      "new-integration": "تكامل IRM جديد",
+      "new-integration-description": "سيُنشأ تلقائيًا تكامل IRM جديد بلا سلاسل تصعيد",
+      "recommended": "موصى به",
+      "validation-failed": "فشل التحقق من اسم تكامل IRM. هل واجهة OnCall API متاحة؟"
+    },
+    "key-value-map-input": {
+      "name": "الاسم",
+      "value": "القيمة"
+    },
+    "key-value-template-data-table": {
+      "arguments": "الوسائط",
+      "description": "KeyValue هي مجموعة من أزواج المفتاح/القيمة النصية التي تمثّل التسميات والتعليقات الزمنية.",
+      "keyvalue-methods": "طرق المفتاح-القيمة",
+      "name": "الاسم",
+      "notes": "ملاحظات",
+      "returns": "يُرجع"
+    },
+    "labels-editor-modal": {
+      "title-edit-labels": "تعديل التسميات"
+    },
+    "labels-field": {
+      "labels": "التسميات",
+      "title-labels": "التسميات"
+    },
+    "labels-field-in-form": {
+      "add-labels": "إضافة تسميات",
+      "edit-labels": "تعديل التسميات",
+      "labels": "التسميات",
+      "no-labels-selected": "لم تُحدَّد تسميات",
+      "title-labels": "التسميات"
+    },
+    "labels-sub-form": {
+      "description": "اختر مفتاح/قيمة تسمية من الخيارات أدناه، أو اكتب واحدة جديدة واضغط Enter.",
+      "save": "حفظ"
+    },
+    "labels-without-suggestions": {
+      "message": {
+        "required": "مطلوب."
+      },
+      "placeholder-key": "مفتاح",
+      "placeholder-value": "قيمة"
+    },
+    "link-to-contact-points": {
+      "aria-label-view-or-create-contact-points": "عرض أو إنشاء نقاط اتصال",
+      "view-or-create-contact-points": "عرض أو إنشاء نقاط اتصال"
+    },
+    "list-view": {
+      "empty": {
+        "new-alert-rule": "قاعدة تنبيه جديدة",
+        "new-ds-managed-recording-rule": "قاعدة تسجيل جديدة مُدارة من مصدر البيانات",
+        "new-grafana-alerting-rule": "قاعدة تنبيه جديدة",
+        "new-grafana-recording-rule": "قاعدة تسجيل جديدة",
+        "new-recording-rule": "قاعدة تسجيل جديدة",
+        "no-rules-created": "لم تنشئ أي قواعد بعد",
+        "provisioning": "يمكنك أيضًا تعريف القواعد عبر التهيئة بالملفات أو Terraform"
+      },
+      "folder-actions": {
+        "button": {
+          "aria-label": "إجراءات المجلد",
+          "title": "الإجراءات"
+        },
+        "export": {
+          "aria-label": "تصدير مجلد القواعد",
+          "label": "تصدير مجلد القواعد"
+        }
+      },
+      "no-prom-or-loki-rules": "لا توجد مصادر بيانات Prometheus أو Loki مُهيّأة",
+      "no-rules": "لم يُعثر على قواعد.",
+      "section": {
+        "dataSourceManaged": {
+          "title": "مُدار من مصدر البيانات"
+        },
+        "grafanaManaged": {
+          "export-new-rule": "تصدير تعريف القاعدة",
+          "export-rules": "تصدير القواعد",
+          "loading": "جارٍ التحميل...",
+          "new-recording-rule": "قاعدة تسجيل جديدة",
+          "title": "مُدار من Grafana"
+        },
+        "loading-rules_zero": "جارٍ تحميل القواعد من {{count}} مصادر",
+        "loading-rules_one": "جارٍ تحميل القواعد من مصدر واحد",
+        "loading-rules_two": "جارٍ تحميل القواعد من مصدرين",
+        "loading-rules_few": "جارٍ تحميل القواعد من {{count}} مصادر",
+        "loading-rules_many": "جارٍ تحميل القواعد من {{count}} مصدرًا",
+        "loading-rules_other": "جارٍ تحميل القواعد من {{count}} مصدر"
+      }
+    },
+    "log-record-viewer-by-timestamp": {
+      "aria-label-state-history-by-timestamp": "سجلّ الحالة حسب الطابع الزمني"
+    },
+    "log-timeline-viewer": {
+      "label": {
+        "firing": "نشط",
+        "mixed": "مختلط",
+        "no-data": "لا توجد بيانات",
+        "normal": "عادي",
+        "pending": "قيد الانتظار",
+        "recovering": "قيد التعافي"
+      }
+    },
+    "loki-state-history": {
+      "clear-filters": "مسح المرشّحات",
+      "common-labels": "التسميات الشائعة",
+      "end-state": "حالة النهاية",
+      "error-unable-to-fetch": "تعذّر جلب سجلّ حالة التنبيه",
+      "loading": "جارٍ التحميل...",
+      "no-transitions-match-filters": "لا توجد انتقالات حالة تطابق المرشّحات المحددة",
+      "slow-query": {
+        "text": "يستغرق هذا الاستعلام وقتًا أطول من المتوقّع. قد يحدث هذا عندما يطابق مرشّح تعبير نمطي أو نفي عددًا كبيرًا جدًا من مثيلات التنبيه. فكّر في استخدام نطاق زمني أقصر أو مرشّح أكثر تحديدًا.",
+        "title": "الاستعلام يستغرق وقتًا أطول من المتوقّع"
+      },
+      "start-state": "حالة البداية",
+      "timeline-hidden": "يُخفى الجدول الزمني عندما تكون مرشّحات الحالة نشطة",
+      "title-error-fetching-the-state-history": "خطأ في جلب سجلّ الحالة",
+      "tooltip-common-labels": "التسميات الشائعة هي المرفقة بجميع مثيلات التنبيه"
+    },
+    "manage-permissions": {
+      "button": "إدارة الأذونات",
+      "title": "إدارة الأذونات"
+    },
+    "manual-and-automatic-routing": {
+      "routing-options": {
+        "label": {
+          "contact-point": "نقطة اتصال",
+          "notification-policy": "سياسة الإشعارات",
+          "select-contact-point": "اختر نقطة اتصال",
+          "use-notification-policy": "استخدام سياسة الإشعارات"
+        }
+      }
+    },
+    "match-details": {
+      "matched": "مطابَق",
+      "no-matchers-matched": "تطابق السياسة جميع التسميات"
+    },
+    "matcher-filter": {
+      "filter-alerts-using-label-querying-without-braces": "صفِّ التنبيهات باستخدام استعلام التسميات دون أقواس، مثال:",
+      "filter-alerts-using-label-querying-without-spaces": "صفِّ التنبيهات باستخدام استعلام التسميات دون مسافات، مثال:",
+      "invalid-use-of-spaces": "استخدام غير صالح للمسافات:",
+      "search-by-label": "البحث حسب التسمية",
+      "search-query-input-placeholder-search": "بحث",
+      "valid-use-of-spaces": "استخدام صالح للمسافات:"
+    },
+    "matchers-field": {
+      "add-matcher": "إضافة مطابِق",
+      "aria-label-operator": "العامل",
+      "aria-label-remove-matcher": "إزالة المطابِق",
+      "label-alert-rule": "قاعدة تنبيه",
+      "label-label": "التسمية",
+      "label-operator": "العامل",
+      "label-refine-affected-alerts": "تنقيح التنبيهات المتأثّرة",
+      "label-value": "القيمة",
+      "message": {
+        "required": "مطلوب."
+      },
+      "placeholder-label": "تسمية",
+      "placeholder-value": "قيمة",
+      "remove": "إزالة",
+      "tooltip-refine-which-alert-instances-silenced-selecting": "نقّح مثيلات التنبيه التي تُسكَت باختيار مطابِقات التسميات"
+    },
+    "math-expression-viewer": {
+      "input": "الإدخال"
+    },
+    "max-data-points-option": {
+      "label-max-data-points": "الحد الأقصى لنقاط البيانات",
+      "tooltip-max-data-points": "الحد الأقصى لنقاط البيانات لكل سلسلة. يُستخدم مباشرةً من قبل بعض مصادر البيانات ويُستخدم في حساب الفاصل التلقائي. مع البيانات المتدفقة تُستخدم هذه القيمة للمخزن المؤقت المتجدّد."
+    },
+    "migrate-to-gmabutton": {
+      "aria-label-new": "جديد"
+    },
+    "min-interval-option": {
+      "label-interval": "الفاصل",
+      "tooltip-interval": "الفاصل المُرسَل إلى مصدر البيانات. يُوصى بضبطه على تردد الكتابة، على سبيل المثال <1>1m</1> إذا كانت بياناتك تُكتب كل دقيقة."
+    },
+    "modify-export-rule-form": {
+      "action-buttons": {
+        "export": "تصدير"
+      }
+    },
+    "more-button": {
+      "aria-label": "المزيد",
+      "button-text": "المزيد"
+    },
+    "multiple-data-source-picker": {
+      "get-data-source-options": {
+        "grouped-options": {
+          "label": {
+            "data-sources-with-configured-alert-rules": "مصادر البيانات ذات قواعد التنبيه المُهيّأة",
+            "other-data-sources": "مصادر بيانات أخرى"
+          }
+        }
+      },
+      "noOptionsMessage-no-datasources-found": "لم يُعثر على مصادر بيانات"
+    },
+    "multiple-policies-view": {
+      "collapse-all": "طيّ الكل",
+      "expand-all": "توسيع الكل",
+      "policy-tree-filter-label": "السياسة",
+      "policy-tree-filter-placeholder": "اختر أشجار السياسات"
+    },
+    "mute-timing-actions-button": {
+      "body-delete-mute-timing": "هل أنت متأكد أنك تريد حذف \"{{muteTiming}}\"؟"
+    },
+    "mute-timing-actions-buttons": {
+      "text-disabled": "مُعطّل",
+      "title-delete-mute-timing": "حذف توقيت الكتم"
+    },
+    "mute-timing-fields": {
+      "am-active-timing-select-description-active-timings": "اختر فترة زمنية لتحديد متى تُرسَل الإشعارات فقط لقاعدة التنبيه هذه",
+      "am-mute-timing-select-description-mute-timings": "اختر توقيت كتم لتحديد متى لا تُرسَل الإشعارات لقاعدة التنبيه هذه",
+      "am-mute-timing-select-label-mute-timings": "توقيتات الكتم"
+    },
+    "mute-timing-form": {
+      "label-name": "الاسم"
+    },
+    "mute-timing-time-interval": {
+      "add-another-time-interval-item": "إضافة عنصر فترة زمنية آخر",
+      "description": "عنصر الفترة الزمنية هو تعريف للحظة زمنية. جميع الحقول قوائم، ويجب استيفاء عنصر قائمة واحد على الأقل لمطابقة الحقل. إذا تُرك حقل فارغًا، فستطابق أي لحظة زمنية الحقل. لكي تطابق لحظة زمنية فترة زمنية كاملة، يجب أن تطابق جميع الحقول. يمكن أن تحتوي الفترة الزمنية على عدة عناصر فترة زمنية.",
+      "description-dats-of-the-month": "أيام الشهر، 1:31، من شهر. يمكن استخدام القيم السالبة لتمثيل الأيام التي تبدأ من نهاية الشهر",
+      "description-months": "أشهر السنة إما بالأرقام أو باسم الشهر التقويمي الكامل",
+      "label-days-of-the-month": "أيام الشهر",
+      "label-days-of-the-week": "أيام الأسبوع",
+      "label-disable": "تعطيل",
+      "label-location": "الموقع",
+      "label-months": "الأشهر",
+      "label-time-intervals": "الفترات الزمنية",
+      "label-years": "السنوات",
+      "mute-timing-days-placeholder-example": "مثال: 1، 14:16، -1",
+      "mute-timing-months-placeholder-example-mayaugust-december": "مثال: 1:3، may:august، december",
+      "mute-timing-years-placeholder-example": "مثال: 2021:2022، 2030",
+      "remove-time-interval": "إزالة الفترة الزمنية"
+    },
+    "mute-timing-time-range": {
+      "add-another-time-range": "إضافة نطاق زمني آخر",
+      "content-this-time-interval-is-disabled": "هذه الفترة الزمنية مُعطّلة",
+      "description-time-range": "الوقت شاملًا وقت البداية وباستثناء وقت النهاية (بتوقيت UTC إذا لم يُحدَّد موقع، وإلا فبالتوقيت المحلي)",
+      "label-end-time": "وقت النهاية",
+      "label-start-time": "وقت البداية",
+      "label-time-range": "النطاق الزمني",
+      "mute-timing-ends-at-placeholder-hhmm": "HH:mm",
+      "mute-timing-starts-at-placeholder-hhmm": "HH:mm",
+      "title-remove": "إزالة",
+      "tooltip-remove-time-range": "إزالة النطاق الزمني"
+    },
+    "namespace-and-group-filter": {
+      "select-group": "اختر مجموعة",
+      "select-namespace": "اختر مساحة اسم"
+    },
+    "navigation": {
+      "active-notifications": "الإشعارات النشطة",
+      "alert-rules": "قواعد التنبيه",
+      "alerts": "التنبيهات",
+      "contact-points": "نقاط الاتصال",
+      "notification-policies": "سياسات الإشعارات",
+      "recently-deleted": "المحذوفة مؤخرًا",
+      "templates": "القوالب",
+      "time-intervals": "الفترات الزمنية"
+    },
+    "need-help-info": {
+      "need-help": "تحتاج مساعدة؟"
+    },
+    "need-help-info-for-contactpoint": {
+      "customize-notifications": "تتيح لك خيارات الكتم والتجميع والتوقيتات تخصيص كيفية إرسال الإشعارات.",
+      "notification-policies": "بدلًا من ذلك، بدّل زر <1>الخيارات المتقدمة</1> لتوجيه الإشعارات باستخدام سياسات الإشعارات لمزيد من المرونة.",
+      "select-contact-point": "اختر نقطة اتصال لإشعار جميع المستلمين فيها.",
+      "title-notify-by-selecting-a-contact-point": "الإشعار باختيار نقطة اتصال"
+    },
+    "need-help-info-for-notification-policy": {
+      "custom-labels": "تغيّر التسميات المخصصة طريقة توجيه إشعاراتك. أولًا، أضف تسميات إلى قاعدة التنبيه ثم اربطها بسياسة الإشعارات بإضافة مطابِقات التسميات.",
+      "notification-policies": "تُوجَّه مثيلات التنبيه النشطة إلى سياسات الإشعارات بناءً على التسميات المطابِقة. تطابق سياسة الإشعارات الافتراضية جميع مثيلات التنبيه.",
+      "read-more": "اقرأ عن سياسات الإشعارات.",
+      "title-notification-routing": "توجيه الإشعارات"
+    },
+    "new-mute-timing-page": {
+      "text": {
+        "add-time-interval": "فترة زمنية جديدة"
+      }
+    },
+    "new-rule-from-panel-button": {
+      "body-no-alerting-capable-query-found": "لا يمكن إنشاء تنبيهات من هذه اللوحة لأنه لم يُعثر على استعلام لمصدر بيانات قادر على التنبيه.",
+      "new-alert-rule": "قاعدة تنبيه جديدة",
+      "title-no-alerting-capable-query-found": "لم يُعثر على استعلام قادر على التنبيه"
+    },
+    "new-silence-page": {
+      "page-nav": {
+        "subTitle": {
+          "configure-silences-notifications-particular-alert": "هيّئ حالات الإسكات لإيقاف الإشعارات من قاعدة تنبيه معينة"
+        },
+        "text": {
+          "silence-alert-rule": "إسكات قاعدة التنبيه"
+        }
+      }
+    },
+    "no-alert-managers-available": {
+      "body-no-alertmanager-found": "تعذّر علينا العثور على أي Alertmanagers خارجية وقد لا يكون لديك وصول إلى Grafana Alertmanager المدمج.",
+      "title-no-alertmanager-found": "لم يُعثر على Alertmanager"
+    },
+    "notification-detail": {
+      "alert-count-inline_zero": "{{count}} تنبيه",
+      "alert-count-inline_one": "تنبيه واحد",
+      "alert-count-inline_two": "تنبيهان",
+      "alert-count-inline_few": "{{count}} تنبيهات",
+      "alert-count-inline_many": "{{count}} تنبيهًا",
+      "alert-count-inline_other": "{{count}} تنبيه",
+      "alert-status-firing": "نشط",
+      "alert-status-resolved": "مُحلّ",
+      "alerts-empty": "لم يُعثر على تنبيهات لهذا الإشعار.",
+      "alerts-loading": "جارٍ تحميل التنبيهات...",
+      "batch-all-ok": "نجح الكل",
+      "batch-count-many_zero": "{{count}} عملية تسليم",
+      "batch-count-many_one": "عملية تسليم واحدة",
+      "batch-count-many_two": "عمليتا تسليم",
+      "batch-count-many_few": "{{count}} عمليات تسليم",
+      "batch-count-many_many": "{{count}} عملية تسليم",
+      "batch-count-many_other": "{{count}} عملية تسليم",
+      "batch-count-one": "عملية تسليم واحدة",
+      "batch-failed_zero": "{{count}} فشل",
+      "batch-failed_one": "فشل واحد",
+      "batch-failed_two": "فشلان",
+      "batch-failed_few": "{{count}} فشل",
+      "batch-failed_many": "{{count}} فشلًا",
+      "batch-failed_other": "{{count}} فشل",
+      "common-annotations": "التعليقات الزمنية",
+      "common-labels": "التسميات",
+      "current": "الحالي",
+      "error-title": "خطأ في تحميل الإشعار",
+      "error-title-banner": "خطأ في التسليم",
+      "error-unknown": "خطأ غير معروف",
+      "field-group-key": "مفتاح المجموعة",
+      "field-integration-index": "فهرس التكامل",
+      "field-pipeline-time": "وقت خط الأنابيب",
+      "field-retry": "إعادة المحاولة",
+      "field-uuid": "UUID",
+      "info-group-labels": "تسميات المجموعة",
+      "loading": "جارٍ تحميل الإشعار...",
+      "menu-analyze": "تحليل إشعار التنبيه",
+      "menu-copy-link": "نسخ الرابط",
+      "menu-silence": "إسكات الإشعارات",
+      "menu-silence-no-permission": "ليس لديك إذن لإنشاء حالات إسكات",
+      "menu-view-contact-point": "عرض نقطة الاتصال",
+      "menu-view-contact-point-no-permission": "ليس لديك إذن لعرض نقاط الاتصال",
+      "menu-view-rule": "عرض قاعدة التنبيه",
+      "menu-view-rule-n": "عرض قاعدة التنبيه ({{n}})",
+      "more-details-heading": "مزيد من التفاصيل",
+      "no": "لا",
+      "no-common-data": "لا توجد تسميات أو تعليقات زمنية مشتركة عبر التنبيهات.",
+      "not-found-body": "لم يُقدَّم UUID. يُرجى التنقّل من قائمة الإشعارات.",
+      "not-found-title": "لم يُعثر على الإشعار",
+      "page-title": "عرض",
+      "related-loading": "جارٍ تحميل الإشعارات ذات الصلة...",
+      "retry-tooltip": "كانت هذه المحاولة إعادة لمحاولة سابقة",
+      "sidebar-contact-point": "نقطة اتصال",
+      "sidebar-delivery-failed": "فشل التسليم",
+      "sidebar-delivery-outcome": "نتيجة التسليم",
+      "sidebar-delivery-success": "سُلِّم بنجاح",
+      "sidebar-duration": "المدة",
+      "sidebar-integration": "التكامل",
+      "sidebar-retry": "إعادة المحاولة",
+      "sidebar-retry-value": "كانت هذه إعادة لمحاولة سابقة",
+      "sidebar-timestamp": "الطابع الزمني",
+      "tab-alerts": "التنبيهات",
+      "tab-overview": "نظرة عامة",
+      "tab-related": "ذات صلة",
+      "uuid-not-found-body": "لم يُعثر على إشعار بـ UUID: {{uuid}}",
+      "uuid-not-found-title": "لم يُعثر على الإشعار",
+      "yes": "نعم"
     }
   },
   "alertlist": {

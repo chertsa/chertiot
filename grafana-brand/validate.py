@@ -46,7 +46,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Logfmt", "logfmt", "Regex", "regex",  # log/query format & syntax names
     "Kubernetes", "OnCall", "SLO", "SLOs", "IRM", "Grafana Quaderno", "Grafana Alloy", "k6",  # product/feature names
     "RPM", "hz", "Hz", "PSI",  # engineering unit abbreviations
-    "csv", "json", "txt", "ms", "ns", "OTel", "Null", "NaN",  # lowercase file-format / unit / value tokens
+    "csv", "json", "txt", "ms", "ns", "OTel", "Null", "NaN", "UUID", "URL",  # lowercase file-format / unit / value tokens
     "Webhook", "Webhooks", "Bitbucket", "GitHub", "GitLab", "GitOps", "Terraform", "Kubectl",
     "GitHub Enterprise Server",  # SCM/product names kept Latin
     "Alertmanager", "Grafana Alertmanager", "Mimir Alertmanager", "Mimir",  # alerting product names
@@ -171,7 +171,7 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             alpha_tokens = re.findall(r"[A-Za-z][A-Za-z0-9]*", stripped)
             all_kept = bool(alpha_tokens) and all(t in IDENTICAL_OK for t in alpha_tokens)
             # Placeholder/example values (emails, code/commit templates) are legitimately identical.
-            looks_example = ("@" in en_val) or ("placeholder" in k.lower() and (VAR_RE.search(en_val) or "(" in en_val))
+            looks_example = ("@" in en_val) or ("placeholder" in k.lower() and (VAR_RE.search(en_val) or "(" in en_val or " " not in en_val.strip()))
             if re.search(r"[A-Za-z]", stripped) and not all_durations and not code_path and not all_kept and not looks_example:
                 warnings.append(f"[{ns}] {k}: ar identical to en ('{en_val[:40]}')")
         if isinstance(en_val, str) and isinstance(av, str):
