@@ -3657,6 +3657,392 @@
       "new-to-question": "جديد على Grafana؟"
     }
   },
+  "logs": {
+    "category-logs": "السجلّات",
+    "deduplication-options": {
+      "label-exact": "مطابق تمامًا",
+      "label-none": "بلا",
+      "label-numbers": "الأرقام",
+      "label-signature": "التوقيع"
+    },
+    "description-allow-download": "عند تفعيل عناصر التحكّم، أظهر خيارًا لتنزيل السجلّات المعروضة.",
+    "description-enable-field-selector": "تجريبي. أظهر مكوّنًا لإدارة الحقول المعروضة من السجلّات.",
+    "description-enable-infinite-scrolling": "تجريبي. اطلب مزيدًا من النتائج بالتمرير إلى أسفل قائمة السجلّات.",
+    "description-enable-logs-highlighting": "استخدم مخطط تلوين محددًا مسبقًا لإبراز الأجزاء ذات الصلة من أسطر السجلّ.",
+    "description-order": "أظهر أحدث السجلّات أو أقدمها أولًا. عند اختيار الأقدم أولًا، يمرّر العرض تلقائيًا إلى أحدث السجلّات في الأسفل.",
+    "description-prettify-json": "نسّق مدخلات سجلّ JSON بمسافات بادئة وفواصل أسطر.",
+    "description-show-controls": "اعرض عناصر تحكّم للانتقال إلى آخر أو أول سطر سجلّ، ومرشّحات حسب مستوى السجلّ.",
+    "description-show-log-attributes": "تجريبي. عند عرض سجلّات OTel، وعدم تحديد أي حقول معروضة، تضبط اللوحة تلقائيًا الحقول المعروضة بأزواج مفتاح-قيمة ذات صلة من التسميات والبيانات الوصفية.",
+    "description-unwrapped-columns": "حاذِ القيم باستخدام الأعمدة عند استخدام الحقول المعروضة.",
+    "description-wrap-lines": "اعرض السجلّات كسطر واحد أو لُفّ مدخلات السجلّ الطويلة لتلائم اللوحة.",
+    "field-selector": {
+      "aria-label-drag-and-drop-icon": "أيقونة السحب والإفلات",
+      "clear-button": "مسح",
+      "collapse": "طيّ الشريط الجانبي",
+      "expand": "توسيع الشريط الجانبي",
+      "label-title": "{{fieldName}} يظهر في {{percentage}}% من أسطر السجلّ",
+      "log-level": "إظهار مستوى السجلّ",
+      "placeholder-search-fields-by-name": "ابحث في الحقول بالاسم",
+      "title-drag-and-drop-to-reorder": "اسحب وأفلت لإعادة الترتيب"
+    },
+    "fields": {
+      "type": {
+        "loki": {
+          "indexed-label_zero": "التسميات المفهرسة",
+          "indexed-label_one": "التسميات المفهرسة",
+          "indexed-label_two": "التسميات المفهرسة",
+          "indexed-label_few": "التسميات المفهرسة",
+          "indexed-label_many": "التسميات المفهرسة",
+          "indexed-label_other": "التسميات المفهرسة",
+          "parsedl-label_zero": "الحقول المُحلَّلة",
+          "parsedl-label_one": "الحقول المُحلَّلة",
+          "parsedl-label_two": "الحقول المُحلَّلة",
+          "parsedl-label_few": "الحقول المُحلَّلة",
+          "parsedl-label_many": "الحقول المُحلَّلة",
+          "parsedl-label_other": "الحقول المُحلَّلة",
+          "structured-metadata_zero": "بيانات وصفية مُنظَّمة",
+          "structured-metadata_one": "بيانات وصفية مُنظَّمة",
+          "structured-metadata_two": "بيانات وصفية مُنظَّمة",
+          "structured-metadata_few": "بيانات وصفية مُنظَّمة",
+          "structured-metadata_many": "بيانات وصفية مُنظَّمة",
+          "structured-metadata_other": "بيانات وصفية مُنظَّمة"
+        }
+      }
+    },
+    "font-size-options": {
+      "label-default": "افتراضي",
+      "label-small": "صغير"
+    },
+    "get-dataframe-fields": {
+      "vars": {
+        "text": {
+          "labels": "التسميات"
+        }
+      }
+    },
+    "infinite-scroll": {
+      "end-of-range": "نهاية النطاق الزمني المحدد.",
+      "load-more": "مرّر لتحميل المزيد",
+      "load-newer": "جارٍ تحميل سجلّات أحدث...",
+      "load-older": "جارٍ تحميل سجلّات أقدم...",
+      "older-logs": "سجلّات أقدم"
+    },
+    "log-context-buttons": {
+      "center-matched-line": "توسيط السطر المطابق",
+      "label-wrap-lines": "لفّ الأسطر"
+    },
+    "log-details": {
+      "fields": "الحقول",
+      "links": "الروابط",
+      "log-line": "سطر السجلّ",
+      "no-details": "لا تتوفّر تفاصيل"
+    },
+    "log-details-body": {
+      "toggle-field-button": {
+        "tooltip-hide-log-line": "إخفاء سطر السجلّ",
+        "tooltip-show-log-line": "إظهار سطر السجلّ"
+      }
+    },
+    "log-labels": {
+      "collapse": "طيّ التسميات",
+      "expand": "توسيع التسميات"
+    },
+    "log-line": {
+      "has-error": "يحتوي على أخطاء",
+      "is-sampled": "مأخوذ كعيّنة",
+      "show-less": "عرض أقل",
+      "show-more": "عرض المزيد",
+      "tooltip-error": "خطأ: {{errorMessage}}"
+    },
+    "log-line-context": {
+      "center-matched-line": "توسيط السطر المطابق",
+      "newer-logs": "أحدث",
+      "no-more-logs-available": "لا تتوفّر سجلّات أخرى.",
+      "older-logs": "أقدم",
+      "open-in-split-view": "فتح في عرض مقسّم",
+      "show-original-log": "إظهار السجلّات الأصلية",
+      "show-original-log-tooltip": "امسح الحقول المعروضة وأظهر رسالة سطر السجلّ الأصلية",
+      "time-window-label": "نافذة وقت السياق",
+      "time-window-tooltip": "مقدار الوقت قبل وبعد السجلّ المُشار إليه",
+      "title-log-context": "سياق السجلّ",
+      "title-log-line": "سطر السجلّ المُشار إليه"
+    },
+    "log-line-details": {
+      "clear-search": "مسح",
+      "close-inline-details": "إغلاق تفاصيل هذا السجلّ",
+      "close-sidebar-details": "إغلاق الشريط الجانبي لتفاصيل السجلّ",
+      "copy-log-line": "نسخ رسالة سطر السجلّ",
+      "copy-log-line-json": "نسخ محتويات السجلّ كـ JSON",
+      "copy-shortlink": "نسخ الرابط المختصر",
+      "copy-to-clipboard": "نسخ إلى الحافظة",
+      "displayed-fields-section": "تنظيم الحقول المعروضة",
+      "fields": {
+        "adhoc-statistics": "إحصاءات فورية",
+        "copy-value-to-clipboard": "نسخ القيمة إلى الحافظة",
+        "filter-out": "استبعاد القيمة",
+        "filter-out-query": "استبعاد القيمة في الاستعلام {{query}}",
+        "toggle-field-button": {
+          "field-instead-message": "إظهار هذا الحقل بدلًا من الرسالة",
+          "hide-this-field": "إخفاء هذا الحقل"
+        }
+      },
+      "fields-section": "الحقول",
+      "filter-for-log-line": "التصفية لسطر السجلّ هذا",
+      "filter-out-log-line": "استبعاد سطر السجلّ هذا",
+      "hide-log-line": "إخفاء سطر السجلّ",
+      "inline-mode": "عرض مضمّن",
+      "inline-no-scrolls": "التبديل إلى العرض الموسّع",
+      "inline-with-scrolls": "التبديل إلى العرض المكثّف",
+      "link-value-tooltip": "قيمة الرابط",
+      "links-section": "الروابط",
+      "log-attributes-field": "سمات السجلّ",
+      "log-line-field": "سطر السجلّ",
+      "log-line-section": "سطر السجلّ",
+      "move-displayed-field-down": "تحريك لأسفل",
+      "move-displayed-field-up": "تحريك لأعلى",
+      "no-details": "لا توجد حقول لعرضها.",
+      "open-assistant": "شرح سطر السجلّ في Assistant",
+      "pin-line": "تثبيت السجلّ",
+      "remove-displayed-field": "إزالة الحقل",
+      "remove-log": "إزالة السجلّ",
+      "scroll-to-logline": "التمرير إلى سطر السجلّ",
+      "search": {
+        "no-results": "لا توجد نتائج لعرضها."
+      },
+      "search-placeholder": "ابحث في أسماء الحقول وقيمها",
+      "show-context": "إظهار السياق",
+      "show-log-line": "إظهار سطر السجلّ",
+      "sidebar-mode": "التثبيت إلى اليمين",
+      "trace": {
+        "error-message": "تعذّر استرجاع التتبّع.",
+        "error-tooltip": "ربما أُخذ التتبّع كعيّنة أو غير متاح مؤقتًا.",
+        "loading-message": "جارٍ تحميل التتبّع..."
+      },
+      "trace-section": "التتبّع",
+      "unpin-line": "إلغاء تثبيت السجلّ"
+    },
+    "log-line-menu": {
+      "copy-link": "نسخ الرابط إلى سطر السجلّ",
+      "copy-log-contents": "نسخ محتويات سطر السجلّ كـ JSON",
+      "copy-log-message": "نسخ رسالة سطر السجلّ",
+      "hide-details": "إظهار تفاصيل السجلّ",
+      "icon-label": "قائمة السجلّ",
+      "log-line": "سطر السجلّ",
+      "log-line-explainer": "شرح سطر السجلّ بإيجاز",
+      "open-assistant": "شرح سطر السجلّ في Assistant",
+      "pin-to-outline": "تثبيت السجلّ",
+      "show-context": "إظهار السياق",
+      "show-details": "إخفاء تفاصيل السجلّ",
+      "unpin-from-outline": "إلغاء تثبيت السجلّ"
+    },
+    "log-list-search": {
+      "close": "إغلاق البحث",
+      "filter": "تصفية السجلّات المطابقة",
+      "info": "بحث من جانب العميل عن سلاسل ضمن السجلّات المعروضة. لا يُخلط بينه وبين مرشّحات الاستعلام. استخدم هذا المكوّن للبحث عن سلاسل محددة في نتائج سجلّاتك.",
+      "input-placeholder": "ابحث في السجلّات",
+      "next": "النتيجة التالية",
+      "prev": "النتيجة السابقة"
+    },
+    "log-row-context-modal": {
+      "error-loading-log-more-logs": "خطأ في تحميل مزيد من السجلّات.",
+      "no-more-logs-available": "لا تتوفّر سجلّات أخرى.",
+      "open-in-split-view": "فتح في عرض مقسّم",
+      "title-log-context": "سياق السجلّ"
+    },
+    "log-row-menu-cell": {
+      "aria-label-copy-shortlink": "نسخ الرابط المختصر",
+      "aria-label-pin-line": "تثبيت السطر",
+      "aria-label-show-context": "إظهار السياق",
+      "aria-label-unpin-line": "إلغاء تثبيت السطر",
+      "tooltip-copy-shortlink": "نسخ الرابط المختصر",
+      "tooltip-copy-to-clipboard": "نسخ إلى الحافظة",
+      "tooltip-show-context": "إظهار السياق",
+      "tooltip-unpin-line": "إلغاء تثبيت السطر"
+    },
+    "log-row-message": {
+      "ellipsis": "… ",
+      "more": "المزيد",
+      "see-details": "عرض تفاصيل السجلّ",
+      "tooltip-error": "خطأ: {{errorMessage}}"
+    },
+    "log-rows": {
+      "disable-popover": {
+        "confirm": "تأكيد",
+        "message": "أنت على وشك تعطيل قائمة مرشّح السجلّات. لإعادة تفعيلها، حدّد نصًا في سطر سجلّ مع الضغط على مفتاح alt.",
+        "title": "تعطيل القائمة"
+      },
+      "disable-popover-message": {
+        "shortcut": "alt+تحديد للتفعيل مجددًا"
+      }
+    },
+    "log-series-to-logs-model": {
+      "label": {
+        "total-bytes-processed": "إجمالي البايتات المُعالَجة"
+      }
+    },
+    "logs": {
+      "timestamp-resolution": {
+        "label-milliseconds": "ميلي ثانية",
+        "label-nanoseconds": "نانو ثانية"
+      }
+    },
+    "logs-controls": {
+      "collapse": "طيّ",
+      "deduplication": "إزالة التكرار",
+      "disable-prettify-json": "طيّ سجلّات JSON",
+      "display-level-all": "جميع المستويات",
+      "download": "تنزيل السجلّات",
+      "download-logs": {
+        "csv": "csv",
+        "json": "json",
+        "txt": "txt"
+      },
+      "escape-newlines": "إصلاح تسلسلات الأسطر الجديدة والجدولة المُهرَّبة بشكل غير صحيح في أسطر السجلّ",
+      "expand": "توسيع",
+      "filter-levels": "تصفية المستويات",
+      "font-large": "تعيين خط كبير",
+      "font-small": "تعيين خط صغير",
+      "hide-search": "إغلاق البحث",
+      "hide-timestamps": "إخفاء الطوابع الزمنية",
+      "hide-unique-labels": "إخفاء التسميات الفريدة",
+      "label": {
+        "collapse": "موسّع",
+        "disable-highlighting": "إبراز النص",
+        "enable-highlighting": "نص عادي",
+        "escape-newlines": "تهريب الأسطر الجديدة",
+        "expand": "مطوي"
+      },
+      "labels": {
+        "font-large": "خط كبير",
+        "font-small": "خط صغير",
+        "hide-search": "إغلاق البحث",
+        "newest-first": "أحدث السجلّات أولًا",
+        "oldest-first": "أقدم السجلّات أولًا",
+        "show-search": "البحث في السجلّات"
+      },
+      "level": {
+        "unspecified": "غير محدد"
+      },
+      "line-wrapping": {
+        "enable": "تفعيل لفّ الأسطر",
+        "enable-prettify": "تفعيل لفّ الأسطر وتنسيق JSON",
+        "hide": "تعطيل لفّ الأسطر",
+        "state": {
+          "hide": "اللفّ مُعطّل",
+          "json": "لفّ JSON",
+          "wrap": "لفّ الأسطر"
+        },
+        "tooltip": "تعيين لفّ الأسطر"
+      },
+      "newest-first": "مرتّبة حسب أحدث السجلّات أولًا - انقر لإظهار الأقدم أولًا",
+      "oldest-first": "مرتّبة حسب أقدم السجلّات أولًا - انقر لإظهار الأحدث أولًا",
+      "prettify-json": "توسيع سجلّات JSON",
+      "remove-escaping": "إزالة التهريب",
+      "resolution-ms": "ms",
+      "resolution-ns": "ns",
+      "scroll-bottom": "التمرير إلى الأسفل",
+      "scroll-top": "التمرير إلى الأعلى",
+      "show-search": "البحث في نتيجة السجلّات",
+      "show-timestamps": "إظهار الطوابع الزمنية",
+      "show-unique-labels": "إظهار التسميات الفريدة",
+      "table-wrap-text": {
+        "disable": "تعطيل لفّ النص",
+        "disabled": "اللفّ مُعطّل",
+        "enable": "تفعيل لفّ النص",
+        "enabled": "اللفّ مُفعّل"
+      },
+      "timestamp": {
+        "hide": "إخفاء الطوابع الزمنية",
+        "label": "الطوابع الزمنية للسجلّ",
+        "label-hide": "إخفاء الطوابع الزمنية",
+        "label-ms": "عرض ms",
+        "label-ns": "عرض ns",
+        "milliseconds": "إظهار طوابع زمنية بالميلي ثانية",
+        "nanoseconds": "إظهار طوابع زمنية بالنانو ثانية",
+        "tooltip": "تعيين تنسيق الطابع الزمني"
+      },
+      "tooltip": {
+        "disable-highlighting": "تعطيل الإبراز",
+        "download": "تنزيل",
+        "enable-highlighting": "تفعيل الإبراز",
+        "filter-level": "تصفية نتيجة السجلّات حسب المستوى"
+      },
+      "unwrap-lines": "إلغاء لفّ الأسطر",
+      "unwrapped-columns": {
+        "disable": "تعطيل الأعمدة",
+        "disabled-label": "الأعمدة غير مدعومة",
+        "disabled-text": "الأعمدة مُفعّلة",
+        "enable": "تفعيل الأعمدة",
+        "enabled-text": "الأعمدة مُعطّلة",
+        "not-supported": "الأعمدة غير مدعومة عند تفعيل لفّ الأسطر"
+      },
+      "wrap-lines": "لفّ الأسطر"
+    },
+    "logs-panel": {
+      "render-common-labels": {
+        "common-labels": "التسميات الشائعة:"
+      }
+    },
+    "name-allow-download": "عرض عنصر تحكّم التنزيل",
+    "name-common-labels": "التسميات الشائعة",
+    "name-deduplication": "إزالة التكرار",
+    "name-details-mode": "وضع لوحة تفاصيل السجلّ",
+    "name-details-options": {
+      "label-inline": "مضمّن",
+      "label-sidebar": "شريط جانبي"
+    },
+    "name-enable-field-selector": "تفعيل مُحدِّد الحقول",
+    "name-enable-infinite-scrolling": "تفعيل التمرير اللانهائي",
+    "name-enable-log-details": "تفعيل تفاصيل السجلّ",
+    "name-enable-logs-highlighting": "تفعيل إبراز السجلّات",
+    "name-font-size": "حجم الخط",
+    "name-order": "الترتيب",
+    "name-prettify-json": "تنسيق JSON",
+    "name-show-controls": "إظهار عناصر التحكّم",
+    "name-show-level": "عرض مستوى السجلّ",
+    "name-time": "إظهار الطوابع الزمنية",
+    "name-unique-labels": "التسميات الفريدة",
+    "name-unwrapped-columns": "تفعيل الأعمدة للحقول المعروضة",
+    "name-wrap-lines": "لفّ الأسطر",
+    "order-options": {
+      "label-newest-first": "الأحدث أولًا",
+      "label-oldest-first": "الأقدم أولًا"
+    },
+    "out-of-range-message": {
+      "end-of-the-selected-time-range": "نهاية النطاق الزمني المحدد."
+    },
+    "popover-menu": {
+      "copy": "نسخ التحديد",
+      "disable-menu": "تعطيل القائمة",
+      "line-contains": "إضافة كمرشّح «السطر يحتوي»",
+      "line-contains-not": "إضافة كمرشّح «السطر لا يحتوي»",
+      "search-text": "البحث في النتائج"
+    },
+    "show-log-attributes": "تفعيل سمات السجلّ لسجلّات OTel",
+    "timestamp-format": "دقّة الطابع الزمني",
+    "un-themed-log-details": {
+      "aria-label-data-links": "روابط البيانات",
+      "aria-label-fields": "الحقول",
+      "aria-label-line": "سطر السجلّ",
+      "aria-label-log-level": "مستوى السجلّ",
+      "aria-label-no-details": "لا تفاصيل"
+    },
+    "un-themed-log-details-row": {
+      "filter-out": "استبعاد القيمة",
+      "filter-out-query": "استبعاد القيمة في الاستعلام {{query}}",
+      "title-copy-value-to-clipboard": "نسخ القيمة إلى الحافظة",
+      "toggle-field-button": {
+        "tooltip-field-instead-message": "إظهار هذا الحقل بدلًا من الرسالة",
+        "tooltip-hide-this-field": "إخفاء هذا الحقل"
+      },
+      "tooltip-adhoc-statistics": "إحصاءات فورية",
+      "tooltip-hide-adhoc-statistics": "إخفاء الإحصاءات الفورية"
+    },
+    "un-themed-log-label-stats": {
+      "field-log-stats": "{{label}}: {{total}} من {{rowCount}} صفوف تحتوي على ذلك الحقل",
+      "label-log-stats": "{{label}}: {{total}} من {{rowCount}} صفوف تحتوي على تلك التسمية"
+    }
+  },
   "logstable": {
     "category-table": "جدول السجلّات",
     "description-show-controls": "عرض عناصر تحكّم الجدول",
