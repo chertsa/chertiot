@@ -2,6 +2,8 @@
 // public/app/core/internationalization/ and run by Grafana's jest in CI (images.yml).
 // Complements: upstream languages.test.ts (pinned expected-language list, amended to include ar-SA)
 // and grafana-brand/tests/i18n-fallback.test.mjs (runtime fallback + Arabic plural resolution).
+import i18next from 'i18next';
+
 import { ARABIC_SAUDI_ARABIA } from '@grafana/i18n';
 
 import { LANGUAGES, VALID_LANGUAGES, NAMESPACES, GRAFANA_NAMESPACE } from './constants';
@@ -38,5 +40,28 @@ describe('CHERT ar-SA locale registration', () => {
   it('resolves the six Arabic CLDR plural categories (validator enforces all six per group)', () => {
     const cats = new Intl.PluralRules('ar-SA').resolvedOptions().pluralCategories.sort();
     expect(cats).toEqual(['few', 'many', 'one', 'other', 'two', 'zero']);
+  });
+
+  // The authoritative resolvedLanguage assertion the standalone (undefined) result cannot give.
+  it("resolves ar-SA as the active resolvedLanguage, with English fallback for missing keys", async () => {
+    const inst = i18next.createInstance();
+    await inst.init({
+      lng: 'ar-SA',
+      fallbackLng: 'en-US',
+      supportedLngs: VALID_LANGUAGES,
+      returnEmptyString: false,
+      ns: ['grafana'],
+      defaultNS: 'grafana',
+      resources: {
+        'en-US': { grafana: { present: 'Dashboards', onlyEnglish: 'Only in English' } },
+        'ar-SA': { grafana: { present: 'لوحات المعلومات' } },
+      },
+    });
+    // Registered + selected: the active language is exactly ar-SA (not a fallback).
+    expect(inst.resolvedLanguage).toBe('ar-SA');
+    // A present ar-SA key returns Arabic…
+    expect(inst.t('present')).toBe('لوحات المعلومات');
+    // …and a key missing from ar-SA falls back to the English value.
+    expect(inst.t('onlyEnglish')).toBe('Only in English');
   });
 });
