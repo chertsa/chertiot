@@ -832,6 +832,295 @@
   "bouncing-loader": {
     "label": "جارٍ التحميل"
   },
+  "browse-dashboards": {
+    "action": {
+      "bulk-delete-provisioned-resources": "حذف جماعي للموارد المُهيّأة",
+      "bulk-move-provisioned-resources": "نقل جماعي للموارد المُهيّأة",
+      "cancel-button": "إلغاء",
+      "confirmation-text": "حذف",
+      "delete-button": "حذف",
+      "delete-modal-folder-empty_zero": "المجلدات المحددة فارغة",
+      "delete-modal-folder-empty_one": "المجلد المحدد فارغ",
+      "delete-modal-folder-empty_two": "المجلدان المحددان فارغان",
+      "delete-modal-folder-empty_few": "المجلدات المحددة فارغة",
+      "delete-modal-folder-empty_many": "المجلدات المحددة فارغة",
+      "delete-modal-folder-empty_other": "المجلدات المحددة فارغة",
+      "delete-modal-folder-not-empty_zero": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "delete-modal-folder-not-empty_one": "يحتوي المجلد المحدد على موارد أخرى ستُحذف",
+      "delete-modal-folder-not-empty_two": "يحتوي المجلدان المحددان على موارد أخرى ستُحذف",
+      "delete-modal-folder-not-empty_few": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "delete-modal-folder-not-empty_many": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "delete-modal-folder-not-empty_other": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "delete-modal-restore-dashboards-common": "تُحفظ لوحات المعلومات المحذوفة في السجلّ لمدة تصل إلى 12 شهرًا. يمكن للمستخدمين ذوي أذونات الحذف استعادة لوحات المعلومات التي حذفوها، ويمكن للمسؤولين استعادة لوحات المعلومات التي حذفها أي مستخدم. السجلّ محدود بـ 1000 لوحة معلومات — قد تُزال الأقدم أسرع إذا بُلغ الحد.",
+      "delete-modal-restore-dashboards-prefix-folder": "سيؤدي هذا الإجراء إلى حذف المجلدات المحددة فورًا.",
+      "delete-modal-restore-dashboards-suffix-folder": "لا يمكن استعادة المجلدات.",
+      "delete-modal-title": "حذف",
+      "delete-provisioned-folder": "حذف مجلد مُهيّأ",
+      "deleting": "جارٍ الحذف...",
+      "manage-permissions-button": "إدارة الأذونات",
+      "move-button": "نقل",
+      "move-modal-alert": "قد يؤدي نقل هذا العنصر إلى تغيير أذوناته.",
+      "move-modal-field-label": "اسم المجلد",
+      "move-modal-folder-not-empty_zero": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "move-modal-folder-not-empty_one": "يحتوي المجلد المحدد على موارد أخرى ستُنقل معه",
+      "move-modal-folder-not-empty_two": "يحتوي المجلدان المحددان على موارد أخرى ستُنقل معهما",
+      "move-modal-folder-not-empty_few": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "move-modal-folder-not-empty_many": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "move-modal-folder-not-empty_other": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "move-modal-title": "نقل",
+      "move-provisioned-folder": "نقل مجلد مُهيّأ",
+      "moving": "جارٍ النقل...",
+      "new-folder-as-team-folder-checkbox-tooltip": "مجلدات الفريق هي مجلدات يملكها فريقك. استخدمها للاحتفاظ بمحتوى فريقك في مكان واحد—مما يسهّل العثور عليه وتنظيمه وإدارة الوصول إليه",
+      "new-folder-as-team-folder-label": "فريق",
+      "new-folder-name-required-phrase": "اسم المجلد مطلوب.",
+      "new-folder-owner-selector-checkbox": "تعيين مالك للمجلد",
+      "rename-provisioned-folder": "إعادة تسمية مجلد مُهيّأ",
+      "selected-mix-resources-modal-text": "لقد حددت موارد مُهيّأة وغير مُهيّأة معًا. لا يمكن معالجتها معًا. يُرجى اختيار موارد مُهيّأة فقط أو موارد غير مُهيّأة فقط والمحاولة مجددًا.",
+      "selected-mix-resources-modal-title": "تم تحديد أنواع موارد مختلطة"
+    },
+    "actions": {
+      "button-to-recently-deleted": "المحذوفة مؤخرًا"
+    },
+    "affected-folder-contents-error": "تعذّر علينا الحصول على معلومات عن محتويات المجلد.",
+    "browse-folder-alerting-page": {
+      "title-folder-not-found": "لم يُعثر على المجلد",
+      "title-ruler-namespace-error": "تعذّر تحميل القواعد"
+    },
+    "browse-view": {
+      "this-folder-is-empty": "هذا المجلد فارغ"
+    },
+    "bulk-actions": {
+      "error-generic": "حدث خطأ غير متوقّع أثناء إنشاء المهمة"
+    },
+    "bulk-delete-resources-form": {
+      "button-cancel": "إلغاء",
+      "button-delete": "حذف",
+      "button-deleting": "جارٍ الحذف...",
+      "default-commit-message": "حذف الموارد",
+      "delete-warning": "سيؤدي هذا إلى حذف المجلدات المحددة وفروعها.",
+      "error-deleting-resources": "خطأ في حذف الموارد",
+      "folder-empty_zero": "المجلدات المحددة فارغة",
+      "folder-empty_one": "المجلد المحدد فارغ",
+      "folder-empty_two": "المجلدان المحددان فارغان",
+      "folder-empty_few": "المجلدات المحددة فارغة",
+      "folder-empty_many": "المجلدات المحددة فارغة",
+      "folder-empty_other": "المجلدات المحددة فارغة",
+      "folder-not-empty_zero": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "folder-not-empty_one": "يحتوي المجلد المحدد على موارد أخرى ستُحذف",
+      "folder-not-empty_two": "يحتوي المجلدان المحددان على موارد أخرى ستُحذف",
+      "folder-not-empty_few": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "folder-not-empty_many": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "folder-not-empty_other": "تحتوي المجلدات المحددة على موارد أخرى ستُحذف",
+      "success-title": "تم حذف الموارد بنجاح"
+    },
+    "bulk-move-resources-form": {
+      "button-cancel": "إلغاء",
+      "button-move": "نقل",
+      "button-moving": "جارٍ النقل...",
+      "default-commit-message": "نقل الموارد",
+      "error": {
+        "read-only-message": "إذا كان لديك وصول مباشر إلى الهدف، فأجرِ التعديلات مباشرةً في المستودع الهدف.",
+        "read-only-saving-message": "المستودع للقراءة فقط ومُهيّأ في git. {{readOnlyMessage}}",
+        "read-only-title": "هذا المستودع للقراءة فقط",
+        "repository-not-found-message": "تعذّر العثور على المستودع للمجلد المحدد. يُرجى التأكد من أن المجلد مُهيّأ بشكل صحيح.",
+        "repository-not-found-title": "لم يُعثر على المستودع"
+      },
+      "error-already-in-target-folder": "الموارد المحددة موجودة بالفعل في المجلد الهدف.",
+      "error-moving-resources": "خطأ في نقل الموارد",
+      "error-no-target-folder-path": "مسار المجلد الهدف غير صالح أو فارغ، يُرجى الاختيار مجددًا.",
+      "folder-not-empty_zero": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "folder-not-empty_one": "يحتوي المجلد المحدد على موارد أخرى ستُنقل معه",
+      "folder-not-empty_two": "يحتوي المجلدان المحددان على موارد أخرى ستُنقل معهما",
+      "folder-not-empty_few": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "folder-not-empty_many": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "folder-not-empty_other": "تحتوي المجلدات المحددة على موارد أخرى ستُنقل معها",
+      "move-warning": "سيؤدي هذا إلى نقل المجلدات المحددة وفروعها. تعتمد المجلدات الهدف المتاحة على الموارد المحددة.",
+      "move-warning-tooltip": "يمكنك فقط نقل الموارد المُهيّأة ضمن مجلدها المُهيّأ، والموارد المحلية إلى مجلدات محلية.",
+      "success-title": "تم نقل الموارد بنجاح",
+      "target-folder": "المجلد الهدف"
+    },
+    "create-new": {
+      "dashboard-group": "لوحة المعلومات"
+    },
+    "dashboards-tree": {
+      "checkbox": {
+        "disabled-not-in-same-repo": "هذا العنصر ليس في المستودع نفسه للعناصر المحددة."
+      },
+      "collapse-folder-button": "طيّ المجلد {{title}}",
+      "expand-folder-button": "توسيع المجلد {{title}}",
+      "name-column": "الاسم",
+      "select-all-header-checkbox": "تحديد الكل",
+      "select-checkbox": "تحديد",
+      "tags-column": "الوسوم"
+    },
+    "delete": {
+      "success-multiple": "تم حذف لوحات المعلومات",
+      "success-single": "تم حذف لوحة المعلومات",
+      "view-recently-deleted": "عرض لوحات المعلومات المحذوفة"
+    },
+    "delete-folder": {
+      "read-only-message": "لحذف هذا المجلد، يُرجى إزالة المجلد من مستودعك."
+    },
+    "delete-provisioned-folder-form": {
+      "api-error": "فشل حذف المجلد",
+      "button-cancel": "إلغاء",
+      "button-delete": "حذف",
+      "button-deleting": "جارٍ الحذف...",
+      "delete-warning": "سيؤدي هذا إلى حذف هذا المجلد وجميع فروعه.",
+      "folder-empty": "المجلد المحدد فارغ",
+      "folder-not-empty": "يحتوي المجلد المحدد على موارد أخرى ستُحذف",
+      "missing-info": "حقول مطلوبة مفقودة",
+      "success-message": "تم حذف المجلد بنجاح"
+    },
+    "empty-state": {
+      "button-title": "إنشاء لوحة معلومات",
+      "pro-tip": "أضف/انقل لوحات المعلومات إلى مجلدك من <2>تصفّح لوحات المعلومات</2>",
+      "title": "لم تنشئ أي لوحات معلومات بعد",
+      "title-folder": "لا يحتوي هذا المجلد على أي لوحات معلومات بعد"
+    },
+    "filters": {
+      "all-teams": "جميع الفرق",
+      "owner-aria-label": "مرشّح المالك",
+      "owner-limit-warning": "عرض أول {{limit}} فرق فقط من أصل {{totalCount}}.",
+      "owner-limit-warning-icon": "تحذير حد مرشّح المالك",
+      "owner-load-error-icon": "خطأ تحميل مرشّح المالك",
+      "owner-load-error-prefix": "فشل تحميل الفرق بسبب خطأ:",
+      "owner-loading": "جارٍ تحميل الفرق...",
+      "owner-no-options": "لم يُعثر على فرق",
+      "owner-placeholder": "التصفية حسب المالك"
+    },
+    "folder-actions-button": {
+      "delete": "حذف هذا المجلد",
+      "delete-folder-error": "خطأ في حذف المجلد. يُرجى المحاولة لاحقًا.",
+      "folder-actions": "إجراءات المجلد",
+      "manage-permissions": "إدارة الأذونات",
+      "move": "نقل هذا المجلد"
+    },
+    "folder-owners": {
+      "owned-by": "مملوك لـ:"
+    },
+    "folder-picker": {
+      "accessible-label": "اختيار المجلد: {{ label }} محدد حاليًا",
+      "button-label": "اختيار مجلد",
+      "clear-selection": "مسح التحديد",
+      "empty-message": "لم يُعثر على مجلدات",
+      "error-title": "خطأ في تحميل بعض المجلدات",
+      "non-folder-item": "عنصر غير مجلد {{itemKind}} {{itemUID}}",
+      "root-title": "لوحات المعلومات",
+      "search-placeholder": "ابحث في المجلدات",
+      "shared-with-me": "مُشارَك معي",
+      "team-folders": "مجلدات الفريق",
+      "team-folders-error-title": "خطأ في تحميل مجلدات الفريق",
+      "unknown-error": "خطأ غير معروف"
+    },
+    "manage-folder-nav": {
+      "alert-rules": "قواعد التنبيه",
+      "dashboards": "لوحات المعلومات",
+      "panels": "اللوحات"
+    },
+    "my-team-folders": "مجلدات فريقي",
+    "name-cell": {
+      "no-items": "لا توجد عناصر"
+    },
+    "new-folder": {
+      "read-only-message": "لإنشاء هذا المجلد، يُرجى إضافة المورد في مستودعك مباشرةً."
+    },
+    "new-folder-form": {
+      "cancel-label": "إلغاء",
+      "create-label": "إنشاء",
+      "name-label": "اسم المجلد"
+    },
+    "new-provisioned-folder-form": {
+      "button-create": "إنشاء",
+      "button-creating": "جارٍ الإنشاء...",
+      "cancel": "إلغاء",
+      "error-invalid-characters": "اسم المجلد يحتوي على أحرف غير صالحة. يُسمح فقط بالأحرف والأرقام والمسافات والشرطات السفلية والواصلات.",
+      "error-missing-title-or-repo": "اسم المجلد أو معلومات المستودع مفقودة",
+      "error-required": "اسم المجلد مطلوب",
+      "error-saving": "حدث خطأ أثناء إنشاء المجلد.",
+      "folder-name-input-placeholder-enter-folder-name": "أدخل اسم المجلد",
+      "label-folder-name": "اسم المجلد",
+      "text-pull-request-created": "تم إنشاء طلب سحب بتغييرات على هذا المجلد:",
+      "title-pull-request-created": "تم إنشاء طلب السحب",
+      "title-this-repository-is-read-only": "هذا المستودع للقراءة فقط"
+    },
+    "no-results": {
+      "clear": "مسح البحث والمرشّحات",
+      "text": "لم يُعثر على نتائج لاستعلامك"
+    },
+    "quota-banner": {
+      "at-limit-body": "نظّف الموارد غير المستخدمة لتحرير مساحة.",
+      "at-limit-title": "لقد بلغت حدود تخزينك",
+      "nearing-body": "لا يمكن إنشاء موارد جديدة بمجرد بلوغ الحد. نظّف الموارد غير المستخدمة لتحرير مساحة.",
+      "nearing-title": "أنت تقترب من حدود تخزينك",
+      "request-extension": "طلب تمديد الحصة",
+      "resource-detail-dashboards": "لقد أنشأت {{usage}} من {{limit}} لوحة معلومات ({{percentage}}%).",
+      "resource-detail-folders": "لقد أنشأت {{usage}} من {{limit}} مجلد ({{percentage}}%)."
+    },
+    "readme": {
+      "add-readme": "إضافة README",
+      "edit-tooltip": "تعديل README",
+      "empty-message": "أضف README لوصف ما في هذا المجلد وأين تجد لوحات المعلومات المناسبة.",
+      "load-error-retry": "حاول مجددًا",
+      "load-error-title": "تعذّر تحميل README",
+      "parse-error": "تعذّر عرض محتوى README."
+    },
+    "recently-viewed": {
+      "clear": "مسح السجلّ",
+      "error": "تعذّر تحميل لوحات المعلومات المشاهَدة مؤخرًا.",
+      "retry": "إعادة المحاولة",
+      "title": "المشاهَدة مؤخرًا"
+    },
+    "rename-folder": {
+      "read-only-message": "لإعادة تسمية هذا المجلد، يُرجى تحديث المجلد في مستودعك مباشرةً."
+    },
+    "rename-provisioned-folder-form": {
+      "button-cancel": "إلغاء",
+      "button-rename": "إعادة تسمية",
+      "button-renaming": "جارٍ إعادة التسمية...",
+      "error-saving": "فشل إعادة تسمية المجلد",
+      "label-folder-name": "اسم المجلد",
+      "missing-info": "حقول مطلوبة مفقودة",
+      "success-message": "تمت إعادة تسمية المجلد بنجاح",
+      "title-required": "اسم المجلد مطلوب"
+    },
+    "restore": {
+      "all-failed_zero": "فشل استعادة {{count}} لوحة معلومات.",
+      "all-failed_one": "فشل استعادة لوحة معلومات واحدة.",
+      "all-failed_two": "فشل استعادة لوحتي معلومات.",
+      "all-failed_few": "فشل استعادة {{count}} لوحات معلومات.",
+      "all-failed_many": "فشل استعادة {{count}} لوحة معلومات.",
+      "all-failed_other": "فشل استعادة {{count}} لوحة معلومات.",
+      "failed-count_zero": "لم تفشل أي لوحة معلومات",
+      "failed-count_one": "فشلت لوحة معلومات واحدة",
+      "failed-count_two": "فشلت لوحتا معلومات",
+      "failed-count_few": "فشلت {{count}} لوحات معلومات",
+      "failed-count_many": "فشلت {{count}} لوحة معلومات",
+      "failed-count_other": "فشلت {{count}} لوحة معلومات",
+      "success-count_zero": "لم تُستعَد أي لوحة معلومات",
+      "success-count_one": "تمت استعادة لوحة معلومات واحدة بنجاح",
+      "success-count_two": "تمت استعادة لوحتي معلومات بنجاح",
+      "success-count_few": "تمت استعادة {{count}} لوحات معلومات بنجاح",
+      "success-count_many": "تمت استعادة {{count}} لوحة معلومات بنجاح",
+      "success-count_other": "تمت استعادة {{count}} لوحة معلومات بنجاح",
+      "success-multiple": "تمت استعادة لوحات المعلومات",
+      "success-single": "تمت استعادة لوحة المعلومات",
+      "view-dashboard": "عرض لوحة المعلومات",
+      "view-folder": "عرض المجلد"
+    },
+    "shared-with-me": "مُشارَك معي",
+    "text-this-repository-is-read-only": "إذا كان لديك وصول مباشر إلى الهدف، فانسخ JSON والصقه هناك.",
+    "trash-state-manager": {
+      "label": {
+        "alphabetically-az": "أبجديًا (أ–ي)",
+        "alphabetically-za": "أبجديًا (ي–أ)",
+        "deleted-by-az": "حُذفت بواسطة (أ–ي)",
+        "deleted-by-za": "حُذفت بواسطة (ي–أ)",
+        "deleted-newest": "محذوفة (الأحدث أولًا)",
+        "deleted-oldest": "محذوفة (الأقدم أولًا)"
+      }
+    }
+  },
   "candlestick": {
     "additional-fields-options": {
       "label-ignore": "تجاهل",
