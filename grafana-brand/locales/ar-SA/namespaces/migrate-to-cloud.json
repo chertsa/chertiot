@@ -1,0 +1,230 @@
+{
+  "building-snapshot": {
+    "description": "نجمع مواردك للترحيل إلى Grafana Cloud. من المفترض ألا يستغرق هذا سوى لحظة.",
+    "description-eta": "عادةً ما يستغرق إنشاء لقطة أقل من دقيقتين.",
+    "title": "جارٍ إنشاء اللقطة"
+  },
+  "can-i-move": {
+    "body": "يمكنك استخدام مساعد الترحيل لترحيل نسبة كبيرة من موارد Grafana لديك.",
+    "link-title": "تعرّف على الترحيل إلى Grafana Cloud",
+    "title": "أين يمكنني معرفة المزيد عن الترحيل إلى Grafana Cloud؟"
+  },
+  "configure-snapshot": {
+    "description": "اختر الموارد التي تريد تضمينها في اللقطة للترحيل.",
+    "description-sub-line": "قد تعتمد بعض الموارد على غيرها وستُحدَّد أو يُلغى تحديدها تلقائيًا.",
+    "resource-include-all": "تضمين الكل",
+    "title": "تهيئة اللقطة"
+  },
+  "connect-modal": {
+    "body-cloud-stack": "ستحتاج أيضًا إلى مكدّس سحابي. إذا سجّلت للتو، فسننشئ مكدّسك الأول تلقائيًا. إذا كان لديك حساب، فستحتاج إلى اختيار مكدّس أو إنشائه.",
+    "body-get-started": "للبدء، ستحتاج إلى حساب Grafana.com.",
+    "body-sign-up": "سجّل للحصول على حساب Grafana.com",
+    "body-token": "يحتاج تثبيت Grafana المُدار ذاتيًا إلى وصول خاص لترحيل المحتوى بأمان. ستحتاج إلى إنشاء رمز ترحيل على المكدّس السحابي الذي اخترته.",
+    "body-token-field": "رمز الترحيل",
+    "body-token-field-placeholder": "الصق الرمز هنا",
+    "body-token-instructions": "سجّل الدخول إلى مكدّسك السحابي وانتقل إلى الإدارة > عام > الترحيل إلى Grafana Cloud. أنشئ رمز ترحيل في تلك الشاشة والصق الرمز هنا.",
+    "body-view-stacks": "عرض مكدّساتي السحابية",
+    "cancel": "إلغاء",
+    "connect": "الاتصال بهذا المكدّس",
+    "connecting": "جارٍ الاتصال بهذا المكدّس...",
+    "title": "الاتصال بمكدّس سحابي",
+    "token-error-title": "خطأ في حفظ الرمز",
+    "token-errors": {
+      "instance-request-error": "حدث خطأ أثناء محاولة التحقق من اتصال المثيل السحابي. يُرجى التحقق من إعدادات الشبكة أو حالة المثيل السحابي.",
+      "instance-unreachable": "تعذّر الوصول إلى المثيل السحابي. تأكّد من أن المثيل قيد التشغيل وحاول مجددًا.",
+      "migration-disabled": "عمليات الترحيل السحابية مُعطّلة على هذا المثيل.",
+      "session-creation-failure": "حدث خطأ أثناء إنشاء الترحيل. يُرجى المحاولة مجددًا.",
+      "token-invalid": "الرمز غير صالح. أنشئ رمزًا جديدًا على مثيلك السحابي وحاول مجددًا.",
+      "token-not-saved": "حدث خطأ أثناء حفظ الرمز. راجع سجلّات خادم Grafana لمزيد من التفاصيل.",
+      "token-request-error": "حدث خطأ أثناء التحقق من الرمز. يُرجى مراجعة سجلّات مثيل Grafana.",
+      "token-validation-failure": "الرمز غير صالح. يُرجى التأكد من أن الرمز يطابق رمز الترحيل على مثيلك السحابي."
+    },
+    "token-required-error": "رمز الترحيل مطلوب"
+  },
+  "cta": {
+    "button": "ترحيل هذا المثيل إلى Cloud",
+    "header": "دعنا ندير مكدّس Grafana لديك"
+  },
+  "dashboard-info": {
+    "dashboard": "لوحة المعلومات {{dashboardUID}}"
+  },
+  "delete-migration-token-confirm": {
+    "body": "إذا سبق أن استخدمت هذا الرمز مع تثبيت مُدار ذاتيًا، فلن يعود بإمكان ذلك التثبيت رفع المحتوى.",
+    "confirm-button": "حذف الرمز",
+    "error-title": "خطأ في حذف الرمز",
+    "title": "حذف رمز الترحيل"
+  },
+  "folder-info": {
+    "folder": "المجلد {{folderUid}}",
+    "unable-to-load-folder": "تعذّر تحميل المجلد"
+  },
+  "get-started": {
+    "body": "يجب بدء عملية الترحيل من مثيل Grafana المُدار ذاتيًا لديك.",
+    "configure-pdc-link": "تهيئة PDC لهذا المكدّس",
+    "link-title": "تعرّف على المزيد عن Private Data Source Connect",
+    "step-1": "سجّل الدخول إلى مثيلك المُدار ذاتيًا وانتقل إلى الإدارة > عام > الترحيل إلى Grafana Cloud.",
+    "step-2": "اختر \"ترحيل هذا المثيل إلى Cloud\".",
+    "step-3": "سيُطلب منك رمز ترحيل. أنشئ واحدًا من هذه الشاشة. أدخل رمزك وانقر على \"الاتصال بهذا المكدّس\".",
+    "step-4": "بعد الاتصال بالمكدّس السحابي، انقر على \"إنشاء لقطة\" لإنشاء لقطة من مثيلك المُدار ذاتيًا.",
+    "step-5": "بعد إنشاء لقطة، انقر على \"رفع اللقطة\" لنسخ الموارد إلى مكدّسك السحابي.",
+    "step-6": "إذا كانت بعض مصادر بياناتك لن تعمل عبر الإنترنت العام، فستحتاج إلى تثبيت Private Data Source Connect في بيئتك المُدارة ذاتيًا.",
+    "title": "إجراء الترحيل"
+  },
+  "is-it-secure": {
+    "body": "تلتزم Grafana Labs بالحفاظ على أعلى معايير خصوصية البيانات والأمان. من خلال تطبيق تقنيات وإجراءات أمنية قياسية في الصناعة، نساعد في حماية بيانات عملائنا من الوصول أو الاستخدام أو الإفصاح غير المصرّح به.",
+    "link-title": "مركز الثقة لدى Grafana Labs",
+    "title": "هل هو آمن؟"
+  },
+  "migrate-to-this-stack": {
+    "body": "يمكنك ترحيل بعض الموارد بأمان من تثبيت Grafana المُدار ذاتيًا لديك إلى هذا المكدّس السحابي. للبدء، ستحتاج إلى توليد رمز ترحيل. سيستخدم مثيلك المُدار ذاتيًا الرمز للمصادقة مع هذا المكدّس السحابي.",
+    "link-title": "عرض دليل الترحيل الكامل",
+    "title": "دعنا نساعدك على الترحيل إلى هذا المكدّس"
+  },
+  "migration-token": {
+    "delete-button": "حذف الرمز",
+    "error-body": "تعذّر توليد رمز ترحيل. يُرجى المحاولة لاحقًا.",
+    "error-title": "حدث خطأ ما",
+    "generate-button": "توليد رمز ترحيل",
+    "generate-button-loading": "جارٍ توليد رمز ترحيل...",
+    "modal-close": "إغلاق",
+    "modal-copy-and-close": "نسخ إلى الحافظة والإغلاق",
+    "modal-copy-button": "نسخ إلى الحافظة",
+    "modal-field-description": "انسخ الرمز الآن، لأنك لن تتمكّن من رؤيته مرة أخرى. يتطلب فقدان هذا الرمز إنشاء رمز جديد.",
+    "modal-field-label": "الرمز",
+    "modal-title": "تم إنشاء رمز الترحيل",
+    "status": "الحالة الحالية: <2></2>"
+  },
+  "onprem": {
+    "cancel-snapshot-error-title": "خطأ في إلغاء إنشاء اللقطة",
+    "create-snapshot-error-duplicate-resource-type": "نوع مورد مكرّر. راجع سجلّات خادم Grafana لمزيد من التفاصيل",
+    "create-snapshot-error-empty-resource-types": "تحتاج إلى توفير نوع مورد واحد على الأقل لإنشاء اللقطة",
+    "create-snapshot-error-missing-dependency": "تبعية مفقودة. راجع سجلّات خادم Grafana لمزيد من التفاصيل",
+    "create-snapshot-error-title": "خطأ في إنشاء اللقطة",
+    "create-snapshot-error-unknown-resource-type": "نوع مورد غير معروف. راجع سجلّات خادم Grafana لمزيد من التفاصيل",
+    "disconnect-error-title": "خطأ في قطع الاتصال",
+    "error-see-server-logs": "راجع سجلّات خادم Grafana لمزيد من التفاصيل",
+    "get-session-error-title": "خطأ في تحميل إعداد الترحيل",
+    "get-snapshot-error-title": "خطأ في تحميل اللقطة",
+    "migration-finished-with-caveat-title": "اكتمل ترحيل الموارد",
+    "migration-finished-with-errors-body": "اكتمل الترحيل، لكن تعذّر ترحيل بعض العناصر إلى المكدّس السحابي. تحقّق من الموارد الفاشلة لمزيد من التفاصيل.",
+    "migration-finished-with-warnings-body": "اكتمل الترحيل مع بعض التحذيرات. تحقّق من الموارد الفردية لمزيد من التفاصيل",
+    "snapshot-error-status-body": "حدث خطأ أثناء إنشاء اللقطة أو بدء عملية الترحيل. راجع سجلّات خادم Grafana لمزيد من التفاصيل",
+    "snapshot-error-status-title": "خطأ في ترحيل الموارد",
+    "success-message": "تم بنجاح ترحيل {{successCount}} {{types, list}} إلى مثيل Grafana Cloud لديك.",
+    "success-message-generic": "تم بنجاح ترحيل {{successCount}} موارد إلى مثيل Grafana Cloud لديك.",
+    "success-title": "اكتمل الترحيل!",
+    "upload-snapshot-error-title": "خطأ في رفع اللقطة"
+  },
+  "pdc": {
+    "body": "قد يثير كشف مصادر بياناتك للإنترنت مخاوف أمنية. يتيح Private data source connect (PDC) لـ Grafana Cloud الوصول إلى مصادر بياناتك الحالية عبر نفق شبكة آمن.",
+    "link-title": "تعرّف على PDC",
+    "title": "ماذا لو لم تكن كل مصادر بياناتي على الإنترنت العام؟"
+  },
+  "pricing": {
+    "body": "يتوفّر لدى Grafana Cloud خطة مجانية سخية وتجربة استخدام غير محدودة لمدة 14 يومًا. بعد انتهاء تجربتك، ستُفوتر بناءً على الاستخدام الذي يتجاوز حدود الخطة المجانية.",
+    "link-title": "تسعير Grafana Cloud",
+    "title": "كم تكلفتها؟"
+  },
+  "resource-details": {
+    "dismiss-button": "حسنًا",
+    "error-messages": {
+      "alert-rules-group-quota-reached": "تم بلوغ الحد الأقصى لعدد مجموعات قواعد التنبيه: احذف بعض مجموعات قواعد التنبيه أو رقِّ خطتك وحاول مجددًا.",
+      "alert-rules-quota-reached": "تم بلوغ الحد الأقصى لعدد قواعد التنبيه: احذف بعض قواعد التنبيه أو رقِّ خطتك وحاول مجددًا.",
+      "dashboard-already-managed": "لوحة المعلومات مُهيّأة ومُدارة بالفعل بواسطة Grafana في المثيل السحابي. نوصي باستخدام لوحة المعلومات المُهيّأة من الآن فصاعدًا. إذا كنت لا تزال ترغب في نسخ لوحة المعلومات إلى المثيل السحابي، فغيّر معرّف لوحة المعلومات (ID) في JSON لوحة المعلومات، واحفظ لقطة جديدة وارفع مجددًا.",
+      "datasource-already-managed": "مصدر البيانات مُهيّأ ومُدار بالفعل بواسطة Grafana في المثيل السحابي. إذا كان هذا موردًا مختلفًا، فعيّن UID آخر وحاول مجددًا.",
+      "datasource-invalid-url": "يوجد مصدر بيانات بعنوان URL غير صالح. وفّر عنوان URL صالحًا وحاول مجددًا.",
+      "datasource-name-conflict": "يوجد مصدر بيانات بالاسم نفسه في المثيل الهدف. أعد تسمية أحدهما وحاول مجددًا.",
+      "folder-name-conflict": "يوجد مجلد بالاسم نفسه في المثيل الهدف. أعد تسمية أحدهما وحاول مجددًا.",
+      "generic-error": "حدث خطأ أثناء الترحيل. يُرجى مراجعة سجلّات الترحيل السحابي لمزيد من المعلومات.",
+      "internal-service-error": "حدث خطأ أثناء الترحيل. يُرجى مراجعة سجلّات خادم Grafana لمزيد من التفاصيل.",
+      "library-element-name-conflict": "يوجد عنصر مكتبة بالاسم نفسه في المثيل الهدف. أعد تسمية أحدهما وحاول مجددًا.",
+      "resource-conflict": "يوجد تعارض في الموارد مع المثيل الهدف. يُرجى مراجعة سجلّات خادم Grafana لمزيد من التفاصيل.",
+      "unexpected-error": "حدث خطأ أثناء الترحيل. يُرجى مراجعة سجلّات خادم Grafana لمزيد من التفاصيل.",
+      "unsupported-data-type": "ترحيل نوع البيانات هذا غير مدعوم حاليًا."
+    },
+    "error-title": "تعذّر ترحيل هذا المورد:",
+    "generic-title": "تفاصيل ترحيل المورد:",
+    "missing-message": "لم تُقدَّم رسالة.",
+    "resource-summary": "{{refId}} ({{typeName}})",
+    "title": "تفاصيل مورد الترحيل",
+    "warning-title": "تم ترحيل المورد مع تحذير:"
+  },
+  "resource-status": {
+    "error-details-button": "التفاصيل",
+    "failed": "خطأ",
+    "migrated": "تم الرفع إلى Cloud",
+    "migrating": "جارٍ الرفع...",
+    "not-migrated": "لم يُرفع بعد",
+    "unknown": "غير معروف",
+    "warning": "تم الرفع مع تحذير",
+    "warning-details-button": "التفاصيل"
+  },
+  "resource-table": {
+    "dashboard-load-error": "تعذّر تحميل لوحة المعلومات",
+    "error-library-element-sub": "عنصر المكتبة {{uid}}",
+    "error-library-element-title": "تعذّر تحميل عنصر المكتبة",
+    "unknown-datasource-title": "مصدر البيانات {{datasourceUID}}",
+    "unknown-datasource-type": "مصدر بيانات غير معروف"
+  },
+  "resource-type": {
+    "alert_rule": "قاعدة تنبيه",
+    "alert_rule_group": "مجموعة قواعد تنبيه",
+    "contact_point": "نقطة اتصال",
+    "dashboard": "لوحة المعلومات",
+    "datasource": "مصدر البيانات",
+    "folder": "مجلد",
+    "library_element": "عنصر مكتبة",
+    "mute_timing": "توقيت الكتم",
+    "notification_policy": "سياسة إشعارات",
+    "notification_template": "قالب إشعارات",
+    "plugin": "إضافة",
+    "unknown": "غير معروف"
+  },
+  "resource-types": {
+    "alert_rule": "قواعد التنبيه",
+    "alert_rule_group": "مجموعات قواعد التنبيه",
+    "contact_point": "نقاط الاتصال",
+    "dashboard": "لوحات المعلومات",
+    "datasource": "مصادر البيانات",
+    "folder": "المجلدات",
+    "library_element": "عناصر المكتبة",
+    "mute_timing": "توقيتات الكتم",
+    "notification_policy": "سياسات الإشعارات",
+    "notification_template": "قوالب الإشعارات",
+    "plugin": "الإضافات"
+  },
+  "summary": {
+    "cancel-snapshot": "إلغاء اللقطة",
+    "disconnect": "قطع الاتصال",
+    "errored-resource-count": "الأخطاء",
+    "page-loading": "جارٍ التحميل...",
+    "rebuild-snapshot": "إعادة تهيئة اللقطة",
+    "show-errors": "عرض الأخطاء فقط",
+    "snapshot-date": "طابع وقت اللقطة",
+    "snapshot-not-created": "لم تُنشأ بعد",
+    "start-migration": "إنشاء لقطة",
+    "successful-resource-count": "تم الترحيل بنجاح",
+    "target-stack-title": "جارٍ الرفع إلى",
+    "total-resource-count": "إجمالي الموارد",
+    "upload-migration": "رفع اللقطة"
+  },
+  "support-types-disclosure": {
+    "text": "تُنسخ الموارد إلى مكدّس Grafana Cloud لديك. <2>تعرّف على المزيد</2> عن المجموعة الكاملة من الموارد المدعومة وترحيل الإعدادات الأخرى."
+  },
+  "token-status": {
+    "active": "تم إنشاء الرمز وهو نشط",
+    "no-active": "لا يوجد رمز نشط",
+    "unknown": "غير معروف",
+    "unknown-error": "خطأ في استرجاع الرمز"
+  },
+  "what-is-cloud": {
+    "body": "Grafana Cloud منصّة مراقبة مُستضافة سحابيًا ومُدارة بالكامل ومثالية للبيئات السحابية الأصلية. إنها كل ما تحبّه في Grafana دون عناء الصيانة والترقية ودعم التثبيت.",
+    "link-title": "تعرّف على ميزات السحابة",
+    "title": "ما هي Grafana Cloud؟"
+  },
+  "why-host": {
+    "body": "إضافةً إلى راحة الاستضافة المُدارة، يشمل Grafana Cloud العديد من الميزات الحصرية للسحابة مثل أهداف مستوى الخدمة (SLOs) وإدارة الحوادث والتعلّم الآلي وتكاملات المراقبة القوية.",
+    "link-title": "مزيد من الأسئلة؟ تحدّث إلى خبير",
+    "title": "لماذا الاستضافة مع Grafana؟"
+  }
+}
