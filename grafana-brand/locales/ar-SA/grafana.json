@@ -1158,6 +1158,363 @@
     "name-up-color": "لون الصعود",
     "name-volume": "الحجم"
   },
+  "canvas": {
+    "apieditor": {
+      "label-endpoint": "نقطة النهاية",
+      "label-header-parameters": "معاملات الترويسة",
+      "label-method": "الطريقة",
+      "label-payload": "الحمولة",
+      "label-query-parameters": "معاملات الاستعلام",
+      "label-successmessage": "رسالة النجاح",
+      "render-test-apibutton": {
+        "test-api": "اختبار API",
+        "title-test-api": "اختبار API"
+      }
+    },
+    "button-item": {
+      "category-button": "زر",
+      "label": {
+        "center": "توسيط",
+        "left": "يسار",
+        "right": "يمين"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-api": "API",
+      "name-style": "النمط",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "button-style-editor": {
+      "label-variant": "النوع"
+    },
+    "canvas-context-menu": {
+      "close-editor": "إغلاق المحرّر",
+      "open-editor": "فتح المحرّر",
+      "render-menu-items": {
+        "add-item-menu-item": {
+          "label-add-item": "إضافة عنصر"
+        },
+        "edit-element-menu-item": {
+          "label-edit": "تعديل"
+        },
+        "label-bring-to-front": "إحضار إلى الأمام",
+        "label-delete": "حذف",
+        "label-duplicate": "تكرار",
+        "label-send-to-back": "إرسال إلى الخلف",
+        "set-background-menu-item": {
+          "label-set-background": "تعيين الخلفية"
+        }
+      }
+    },
+    "category-arrow-direction": "الاتجاه",
+    "category-background": "الخلفية",
+    "category-border": "الحدود",
+    "category-canvas": "لوحة الرسم",
+    "category-color": "اللون",
+    "category-data-links": "روابط البيانات والإجراءات",
+    "category-line-style": "نمط الخط",
+    "category-metric-value": "قيمة المقياس",
+    "category-radius": "نصف القطر",
+    "category-selected-connection": "الاتصال المحدد",
+    "category-selected-element": "العنصر المحدد ({{element}})",
+    "category-size": "الحجم",
+    "category-tooltip": "التلميح",
+    "cloud-item": {
+      "category-cloud": "سحابة",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "connection": {
+      "direction-options": {
+        "label-both": "كلاهما",
+        "label-forward": "للأمام",
+        "label-none": "بلا",
+        "label-reverse": "عكسي"
+      }
+    },
+    "description-experimental-types": "تفعيل تحديد أنواع العناصر التجريبية",
+    "description-inline-editing": "تفعيل تعديل اللوحة مباشرةً",
+    "description-pan-zoom": "تفعيل التحريك والتكبير",
+    "drone-front-item": {
+      "category-drone-front": "مقدمة الطائرة المسيّرة",
+      "name-roll-angle": "زاوية التدحرج"
+    },
+    "drone-side-item": {
+      "category-drone-side": "جانب الطائرة المسيّرة",
+      "name-pitch-angle": "زاوية الانحدار"
+    },
+    "drone-top-item": {
+      "category-drone-top": "أعلى الطائرة المسيّرة",
+      "name-back-left-rotor-rpm": "دورات المروحة الخلفية اليسرى RPM",
+      "name-back-right-rotor-rpm": "دورات المروحة الخلفية اليمنى RPM",
+      "name-front-left-rotor-rpm": "دورات المروحة الأمامية اليسرى RPM",
+      "name-front-right-rotor-rpm": "دورات المروحة الأمامية اليمنى RPM",
+      "name-yaw-angle": "زاوية الانعراج"
+    },
+    "element-editor": {
+      "category-layout": "التخطيط",
+      "description-unsupported": "نوع العنصر المحدد غير مدعوم بالإعدادات الحالية. يُرجى تفعيل أنواع العناصر المتقدمة.",
+      "name-quick-placement": "التمركز السريع"
+    },
+    "ellipse-item": {
+      "category-ellipse": "قطع ناقص",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "icon-item": {
+      "category-icon": "أيقونة",
+      "name-fill-color": "لون التعبئة",
+      "name-svg-path": "مسار SVG"
+    },
+    "inline-edit": {
+      "canvas-inline-editor": "محرّر لوحة الرسم المباشر",
+      "tooltip-close-inline-editor": "إغلاق المحرّر المباشر"
+    },
+    "inline-edit-body": {
+      "category-selected-element": "العنصر المحدد ({{element}})",
+      "label-add-item": "إضافة عنصر",
+      "please-select-an-element": "يُرجى اختيار عنصر"
+    },
+    "label-actions": "الإجراءات",
+    "label-color": "اللون",
+    "label-direction": "الاتجاه",
+    "label-image": "صورة",
+    "label-image-size": "حجم الصورة",
+    "label-line-style": "نمط الخط",
+    "label-links": "الروابط",
+    "label-radius": "نصف القطر",
+    "label-size": "الحجم",
+    "label-width": "العرض",
+    "layer-editor": {
+      "category-layer": "الطبقة",
+      "category-layout": "التخطيط",
+      "name-constraints": "القيود",
+      "name-elements": "العناصر"
+    },
+    "line-style-editor": {
+      "label-animate": "تحريك"
+    },
+    "line-style-options": {
+      "label-solid": "صلب"
+    },
+    "metric-value-item": {
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "name-align-text": "محاذاة النص",
+    "name-color": "لون النص",
+    "name-experimental-types": "أنواع العناصر التجريبية",
+    "name-inline-editing": "التعديل المباشر",
+    "name-pan-zoom": "التحريك والتكبير",
+    "name-text": "نص",
+    "name-text-size": "حجم النص",
+    "name-vertical-align": "محاذاة رأسية",
+    "not-found-display": {
+      "not-found": "<0>غير موجود: </0><config />"
+    },
+    "pan-zoom-help": {
+      "ctrl-right-mouse": "CTRL + زر الفأرة الأيمن",
+      "middle-mouse": "زر الفأرة الأوسط",
+      "pan-title": "تحريك:",
+      "reset-double-click": "إعادة تعيين: نقر مزدوج",
+      "title-pan-and-zoom-controls": "عناصر تحكّم التحريك والتكبير",
+      "zoom-scroll-wheel": "تكبير: عجلة التمرير"
+    },
+    "parallelogram-item": {
+      "category-parallelogram": "متوازي أضلاع",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "params-editor": {
+      "aria-label-add": "إضافة",
+      "aria-label-delete": "حذف",
+      "placeholder-key": "المفتاح",
+      "placeholder-value": "القيمة"
+    },
+    "placement-editor": {
+      "horizontal-options": {
+        "label-center": "توسيط",
+        "label-left": "يسار",
+        "label-left-and-right": "يسار ويمين",
+        "label-right": "يمين",
+        "label-scale": "تحجيم"
+      },
+      "label-constraints": "القيود",
+      "label-position": "الموضع",
+      "loading": "جارٍ التحميل...",
+      "vertical-options": {
+        "label-bottom": "أسفل",
+        "label-center": "توسيط",
+        "label-scale": "تحجيم",
+        "label-top": "أعلى",
+        "label-top-and-bottom": "أعلى وأسفل"
+      }
+    },
+    "quick-positioning": {
+      "tooltip-align-bottom": "محاذاة للأسفل",
+      "tooltip-align-horizontal-centers": "محاذاة المراكز الأفقية",
+      "tooltip-align-left": "محاذاة لليسار",
+      "tooltip-align-right": "محاذاة لليمين",
+      "tooltip-align-top": "محاذاة للأعلى",
+      "tooltip-align-vertical-centers": "محاذاة المراكز الرأسية"
+    },
+    "rectangle-item": {
+      "category-rectangle": "مستطيل",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "server-item": {
+      "category-server": "خادم",
+      "name-blink-rate": "معدّل الوميض [hz] (0 = إيقاف)",
+      "name-bulb-color": "لون المصباح",
+      "name-status-color": "لون الحالة",
+      "name-type": "النوع",
+      "type-options": {
+        "label-database": "قاعدة بيانات",
+        "label-single": "مفرد",
+        "label-stack": "مكدّس",
+        "label-terminal": "طرفية"
+      }
+    },
+    "text-display": {
+      "double-click-to-set": "انقر نقرًا مزدوجًا لتعيين النص"
+    },
+    "text-item": {
+      "category-text": "نص",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "tooltip-options": {
+      "label-disable-one-click": "تعطيل لعناصر النقرة الواحدة",
+      "name-tooltip-mode": "وضع التلميح",
+      "tooltip-mode-options": {
+        "label-disabled": "مُعطّل",
+        "label-enabled": "مُفعّل"
+      }
+    },
+    "tree-navigation-editor": {
+      "clear-selection": "مسح التحديد",
+      "frame-selection": "تحديد الإطار",
+      "label-add-item": "إضافة عنصر",
+      "missing-layer": "طبقة مفقودة؟",
+      "no-settings": "لا توجد إعدادات",
+      "switcher-icon": {
+        "title-node-icon": "أيقونة العقدة"
+      }
+    },
+    "tree-node-title": {
+      "title-duplicate": "تكرار",
+      "title-remove": "إزالة",
+      "tooltip-duplicate": "تكرار",
+      "tooltip-remove": "إزالة"
+    },
+    "triangle-item": {
+      "category-triangle": "مثلث",
+      "label": {
+        "bottom": "أسفل",
+        "center": "توسيط",
+        "left": "يسار",
+        "middle": "وسط",
+        "right": "يمين",
+        "top": "أعلى"
+      },
+      "name-align-text": "محاذاة النص",
+      "name-text": "نص",
+      "name-text-color": "لون النص",
+      "name-text-size": "حجم النص",
+      "name-vertical-align": "محاذاة رأسية",
+      "placeholder": {
+        "auto": "تلقائي"
+      }
+    },
+    "wind-turbine-item": {
+      "category-wind-turbine": "توربين رياح",
+      "name-rpm": "RPM"
+    }
+  },
   "carousel": {
     "close": "إغلاق",
     "error": "حدث خطأ ما أثناء تحميل الصور",
