@@ -1,0 +1,10 @@
+{
+  "layer-drag-drop-list": {
+    "draggable-aria-label": "اسحب وأفلت لإعادة الترتيب",
+    "duplicate-tooltip": "تكرار",
+    "remove-tooltip": "إزالة"
+  },
+  "layer-name": {
+    "edit-layer-title": "تعديل اسم الطبقة"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "button": {
+    "config-button-tooltip": "تهيئة لوحة المعلومات المشتركة",
+    "revoke-button-text": "إبطال الوصول",
+    "revoke-button-tooltip": "إبطال الوصول",
+    "view-button-tooltip": "عرض لوحة المعلومات المشتركة"
+  },
+  "empty-state": {
+    "message": "لم تنشئ أي لوحات معلومات مشتركة بعد",
+    "more-info": "أنشئ لوحة معلومات مشتركة من أي لوحة معلومات موجودة عبر نافذة <1>المشاركة</1>. <4>معرفة المزيد</4>"
+  },
+  "toggle": {
+    "pause-sharing-toggle-text": "إيقاف الوصول مؤقتًا"
+  }
+}

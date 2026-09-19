@@ -57,6 +57,12 @@
   "bouncing-loader": {
     "label": "جارٍ التحميل"
   },
+  "carousel": {
+    "close": "إغلاق",
+    "error": "حدث خطأ ما أثناء تحميل الصور",
+    "next": "التالي",
+    "previous": "السابق"
+  },
   "clipboard-button": {
     "inline-toast": {
       "success": "تم النسخ"
@@ -67,6 +73,21 @@
   },
   "cloud-enterprise-feature-badge": "Cloud وEnterprise",
   "cloud-feature-badge": "Cloud",
+  "combobox": {
+    "async": {
+      "error": "حدث خطأ أثناء تحميل الخيارات."
+    },
+    "clear": {
+      "title": "مسح القيمة"
+    },
+    "custom-value": {
+      "description": "استخدام قيمة مخصصة"
+    },
+    "options": {
+      "loading": "جارٍ تحميل الخيارات...",
+      "no-found": "لا توجد خيارات."
+    }
+  },
   "command-palette": {
     "action": {
       "change-theme": "تغيير السمة",
@@ -276,6 +297,12 @@
     "user-field-label": "مستخدم",
     "user-field-placeholder": "البريد الإلكتروني أو اسم المستخدم"
   },
+  "form-prompt": {
+    "continue-button": "متابعة التعديل",
+    "description": "قد لا تُحفظ التغييرات التي أجريتها.",
+    "discard-button": "تجاهل التغييرات غير المحفوظة",
+    "title": "مغادرة الصفحة؟"
+  },
   "gen-ai": {
     "apply-suggestion": "تطبيق",
     "incomplete-request-error": "عذرًا، لم أتمكّن من إكمال طلبك. يُرجى المحاولة مجددًا.",
@@ -298,6 +325,14 @@
     },
     "tutorial-card": {
       "complete": "مكتمل"
+    }
+  },
+  "graph": {
+    "container": {
+      "content": "قد يؤثّر عرض عدد كبير جدًا من السلاسل في لوحة واحدة على الأداء ويجعل قراءة البيانات أصعب. فكّر في تحسين استعلاماتك.",
+      "show-all-series": "إظهار الكل {{length}}",
+      "show-only-series": "عرض {{MAX_NUMBER_OF_TIME_SERIES}} سلسلة فقط",
+      "title": "رسم بياني"
     }
   },
   "help-modal": {
@@ -353,6 +388,22 @@
       "zoom-out-time-range": "تصغير النطاق الزمني"
     },
     "title": "الاختصارات"
+  },
+  "help-wizard": {
+    "download-snapshot": "تنزيل اللقطة ({{snapshotSize}})",
+    "github-comment": "نسخ تعليق GitHub",
+    "support-bundle": "يمكنك أيضًا الحصول على حزمة دعم تحتوي على معلومات حول مثيل Grafana ومصادر البيانات المُهيّأة لديك في <1>قسم حِزم الدعم</1>.",
+    "troubleshooting-help": "لطلب مساعدة في استكشاف الأخطاء، أرسل لقطة لهذه اللوحة إلى الدعم الفني لدى Grafana Labs. تحتوي اللقطة على بيانات استجابة الاستعلام وإعدادات اللوحة."
+  },
+  "histogram": {
+    "category-histogram": "مدرّج تكراري",
+    "histogram-panel": {
+      "no-histogram-found-in-response": "لم يُعثر على مدرّج تكراري في الاستجابة"
+    },
+    "name-fill-opacity": "عتامة التعبئة",
+    "name-gradient-mode": "وضع التدرّج",
+    "name-line-width": "عرض الخط",
+    "name-stacking": "التكديس"
   },
   "home": {
     "dashboard-tabs": {
@@ -456,10 +507,35 @@
     }
   },
   "label-dropdown-info": "لا تجد تسميتك؟ أدخلها يدويًا",
+  "layers": {
+    "layer-drag-drop-list": {
+      "draggable-aria-label": "اسحب وأفلت لإعادة الترتيب",
+      "duplicate-tooltip": "تكرار",
+      "remove-tooltip": "إزالة"
+    },
+    "layer-name": {
+      "edit-layer-title": "تعديل اسم الطبقة"
+    }
+  },
   "legend": {
     "container": {
       "series-color-and-icon": "لون السلسلة",
       "show-all-series": "...إظهار جميع العناصر ({{total}})"
+    }
+  },
+  "library-panel": {
+    "add-modal": {
+      "error": "توجد بالفعل لوحة مكتبة بهذا الاسم",
+      "folder": "الحفظ في مجلد",
+      "folder-description": "تُشتقّ أذونات لوحة المكتبة من أذونات المجلد",
+      "name": "اسم لوحة المكتبة"
+    },
+    "add-widget": {
+      "title": "إضافة لوحة من مكتبة اللوحات"
+    },
+    "empty-state": {
+      "message": "لم تنشئ أي لوحات مكتبة بعد",
+      "more-info": "أنشئ لوحة مكتبة من أي لوحة موجودة في لوحة المعلومات عبر قائمة سياق اللوحة. <2>معرفة المزيد</2>"
     }
   },
   "link": {
@@ -513,6 +589,18 @@
       "new-to-question": "جديد على Grafana؟"
     }
   },
+  "logstable": {
+    "category-table": "جدول السجلّات",
+    "description-show-controls": "عرض عناصر تحكّم الجدول",
+    "enable-log-details": {
+      "description": "عند التفعيل، تُعرض تفاصيل السجلّ لكل صف.",
+      "name": "تفعيل تفاصيل السجلّ"
+    },
+    "show-copy-log": {
+      "description": "تفعيل/تعطيل زر رابط سطر السجلّ في العمود الأول من كل صف",
+      "name": "إظهار زر رابط نسخ السجلّ"
+    }
+  },
   "manage-dashbaords": {
     "import-dashboard-form": {
       "description-existing-library-panels": "قائمة لوحات المكتبة الحالية. لا تتأثّر هذه اللوحات بالاستيراد."
@@ -520,6 +608,17 @@
   },
   "metric-select": {
     "noOptionsMessage-no-options-found": "لا توجد خيارات"
+  },
+  "multicombobox": {
+    "all": {
+      "title-deselect": "إلغاء تحديد الكل",
+      "title-deselect-filtered": "إلغاء تحديد الكل (مُرشَّح)",
+      "title-select": "تحديد الكل",
+      "title-select-filtered": "تحديد الكل (مُرشَّح)"
+    },
+    "clear": {
+      "title": "مسح الكل"
+    }
   },
   "navigation": {
     "breadcrumbs": {
@@ -681,6 +780,18 @@
       "tooltip": "التبديل إلى تجربة محرّر الاستعلامات الجديدة"
     }
   },
+  "panel-group-by": {
+    "button": "التجميع حسب",
+    "loading": "جارٍ تحميل الخيارات",
+    "no-options": "لا توجد خيارات",
+    "search-placeholder": "بحث"
+  },
+  "panel-type-filter": {
+    "clear-button": "مسح الأنواع",
+    "select-aria-label": "مرشّح نوع اللوحة",
+    "select-no-options": "لم يُعثر على أنواع لوحات",
+    "select-placeholder": "التصفية حسب النوع"
+  },
   "playlists": {
     "empty-state": {
       "message": "لا توجد قوائم تشغيل"
@@ -746,10 +857,29 @@
     },
     "saved-success": "تم حفظ التغييرات بنجاح"
   },
+  "query-editor-renderer": {
+    "datasource-load-error-body": "اختر مصدر بيانات لهذا الاستعلام للمتابعة.",
+    "datasource-load-error-title": "فشل تحميل مصدر البيانات لهذا الاستعلام",
+    "loading-datasource": "جارٍ تحميل مصدر البيانات",
+    "no-query-editor-component": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
+  },
   "query-library": {
     "exposed-compoment": {
       "tooltip": "فتح مكتبة الاستعلامات"
     }
+  },
+  "query-operation": {
+    "header": {
+      "collapse-row": "طيّ صف الاستعلام",
+      "datasource-help": "إظهار مساعدة مصدر البيانات",
+      "drag-and-drop": "اسحب وأفلت لإعادة الترتيب",
+      "duplicate-query": "تكرار الاستعلام",
+      "expand-row": "توسيع صف الاستعلام",
+      "hide-response": "إخفاء الاستجابة",
+      "remove-query": "إزالة الاستعلام",
+      "show-response": "إظهار الاستجابة"
+    },
+    "query-editor-not-exported": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
   },
   "recentlyDeleted": {
     "filter": {
@@ -799,6 +929,17 @@
     "error-unexpected-title": "حدث خطأ غير متوقّع",
     "reload-button": "إعادة التحميل",
     "title": "تعذّر العثور على ملف التطبيق"
+  },
+  "save-dashboards": {
+    "message-length": {
+      "info": "الرسالة مكوّنة من {{messageLength}} حرفًا، وهو ما يتجاوز الحد الأقصى البالغ 500 حرف. يُرجى تقصيرها قبل الحفظ.",
+      "title": "الرسالة طويلة جدًا"
+    },
+    "name-exists": {
+      "message-info": "توجد بالفعل لوحة معلومات بالاسم نفسه في المجلد المحدد، بما في ذلك لوحات المعلومات المحذوفة مؤخرًا.",
+      "message-suggestion": "يُرجى اختيار اسم أو مجلد مختلف.",
+      "title": "اسم لوحة المعلومات موجود بالفعل"
+    }
   },
   "search": {
     "action-row": {
@@ -860,16 +1001,76 @@
       "selected-count": "محدد"
     }
   },
+  "service-account-create-page": {
+    "create": {
+      "button": "إنشاء"
+    },
+    "name": {
+      "label": "الاسم المعروض",
+      "required-error": "الاسم المعروض مطلوب"
+    },
+    "page-nav": {
+      "label": "إنشاء حساب خدمة"
+    },
+    "role": {
+      "label": "الدور"
+    }
+  },
   "service-account-picker": {
     "noOptionsMessage-no-service-accounts-found": "لم يُعثر على حسابات خدمة",
     "select-aria-label": "منتقي حساب الخدمة",
     "select-placeholder": "ابدأ الكتابة للبحث عن حسابات الخدمة"
+  },
+  "service-accounts": {
+    "empty-state": {
+      "button-title": "إضافة حساب خدمة",
+      "message": "لم يُعثر على حسابات خدمة",
+      "more-info": "تذكّر أنه يمكنك منح أذونات محددة للوصول عبر واجهة API لتطبيقات أخرى",
+      "title": "لم تنشئ أي حسابات خدمة بعد"
+    }
+  },
+  "share-dashboard": {
+    "menu": {
+      "export-image-title": "تصدير كصورة",
+      "share-externally-title": "المشاركة خارجيًا",
+      "share-internally-title": "المشاركة داخليًا",
+      "share-snapshot-title": "مشاركة لقطة"
+    },
+    "share-button": "مشاركة",
+    "share-button-tooltip": "نسخ الرابط"
   },
   "share-drawer": {
     "confirm-action": {
       "back-arrow-button": "زر الرجوع",
       "cancel-button": "إلغاء"
     }
+  },
+  "share-panel": {
+    "drawer": {
+      "new-library-panel-title": "لوحة مكتبة جديدة",
+      "share-embed-title": "مشاركة التضمين",
+      "share-link-title": "إعدادات الرابط"
+    },
+    "menu": {
+      "new-library-panel-title": "لوحة مكتبة جديدة",
+      "share-embed-title": "مشاركة التضمين",
+      "share-link-title": "مشاركة الرابط",
+      "share-snapshot-title": "مشاركة لقطة"
+    },
+    "new-library-panel": {
+      "cancel-button": "إلغاء",
+      "create-button": "إنشاء لوحة مكتبة"
+    }
+  },
+  "share-playlist": {
+    "checkbox-description": "ستُضبط ارتفاعات اللوحات لتلائم حجم الشاشة",
+    "checkbox-label": "ملاءمة تلقائية",
+    "copy-link-button": "نسخ",
+    "link-url-label": "رابط URL",
+    "mode": "الوضع",
+    "mode-kiosk": "كشك",
+    "mode-normal": "عادي",
+    "title": "مشاركة قائمة التشغيل"
   },
   "shared": {
     "preferences": {
@@ -887,6 +1088,21 @@
     },
     "fields": {
       "timezone-label": "المنطقة الزمنية"
+    }
+  },
+  "shared-dashboard-list": {
+    "button": {
+      "config-button-tooltip": "تهيئة لوحة المعلومات المشتركة",
+      "revoke-button-text": "إبطال الوصول",
+      "revoke-button-tooltip": "إبطال الوصول",
+      "view-button-tooltip": "عرض لوحة المعلومات المشتركة"
+    },
+    "empty-state": {
+      "message": "لم تنشئ أي لوحات معلومات مشتركة بعد",
+      "more-info": "أنشئ لوحة معلومات مشتركة من أي لوحة معلومات موجودة عبر نافذة <1>المشاركة</1>. <4>معرفة المزيد</4>"
+    },
+    "toggle": {
+      "pause-sharing-toggle-text": "إيقاف الوصول مؤقتًا"
     }
   },
   "sign-up": {
@@ -922,6 +1138,12 @@
     "explain-query": "شرح الاستعلام",
     "generate-suggestion": "توليد اقتراح",
     "improve-query": "تحسين الاستعلام"
+  },
+  "stars": {
+    "mark-as-starred": "وضع علامة كمفضّل",
+    "mark-as-starred-with-title": "وضع علامة على «{{title}}» كمفضّل",
+    "unmark-as-starred": "إزالة علامة المفضّل",
+    "unmark-as-starred-with-title": "إزالة علامة المفضّل عن «{{title}}»"
   },
   "swagger": {
     "login": "تسجيل الدخول"
@@ -1069,6 +1291,16 @@
     "label-base-theme": "السمة الأساسية",
     "title": "ساحة تجربة السمات"
   },
+  "theme-preview": {
+    "breadcrumbs": {
+      "dashboards": "لوحات المعلومات",
+      "home": "الرئيسية"
+    },
+    "panel": {
+      "form-label": "تسمية النموذج",
+      "title": "لوحة عرض"
+    }
+  },
   "time-period": {
     "1_day": "يوم واحد",
     "1_hour": "ساعة واحدة",
@@ -1156,6 +1388,31 @@
   },
   "transformation-editor-renderer": {
     "no-transformation-editor-title": "لا يحتوي التحويل على مكوّن محرّر"
+  },
+  "transformations": {
+    "empty": {
+      "add-transformation-body": "تتيح التحويلات تغيير البيانات بطرق مختلفة قبل عرض تصوّرك.<br/>يشمل ذلك دمج البيانات معًا، وإعادة تسمية الحقول، وإجراء الحسابات، وتنسيق البيانات للعرض، والمزيد.",
+      "add-transformation-header": "إضافة تحويل"
+    },
+    "legacy": {
+      "empty": {
+        "add-transformation-body": "تتيح التحويلات تغيير البيانات بطرق مختلفة قبل عرض تصوّرك.<br/>يشمل ذلك دمج البيانات معًا، وإعادة تسمية الحقول، وإجراء الحسابات، وتنسيق البيانات للعرض، والمزيد.",
+        "add-transformation-header": "ابدأ تحويل البيانات"
+      }
+    }
+  },
+  "trend": {
+    "category-x-axis": "المحور X",
+    "description-x-field": "قيمة رقمية متزايدة",
+    "name-x-field": "حقل X",
+    "placeholder-x-field": "أول قيمة رقمية"
+  },
+  "upgrade-box": {
+    "discovery-text": "لقد اكتشفت ميزة Pro!",
+    "discovery-text-continued": "احصل على خطة Grafana Pro للوصول إلى {{featureName}}.",
+    "get-started": "ابدأ مع {{featureName}}",
+    "learn-more": "معرفة المزيد",
+    "upgrade-button": "ترقية"
   },
   "user-orgs": {
     "current-org-button": "الحالية",

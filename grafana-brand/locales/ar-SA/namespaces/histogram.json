@@ -1,0 +1,10 @@
+{
+  "category-histogram": "مدرّج تكراري",
+  "histogram-panel": {
+    "no-histogram-found-in-response": "لم يُعثر على مدرّج تكراري في الاستجابة"
+  },
+  "name-fill-opacity": "عتامة التعبئة",
+  "name-gradient-mode": "وضع التدرّج",
+  "name-line-width": "عرض الخط",
+  "name-stacking": "التكديس"
+}
