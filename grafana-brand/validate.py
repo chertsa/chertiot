@@ -37,6 +37,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "HTML", "Markdown", "CSV", "TSV", "XML", "YAML", "YML", "PDF", "PNG", "SVG", "JPEG",
     "GeoJSON", "PromQL", "LogQL", "TraceQL", "UTC", "LDAP", "SAML", "OAuth2", "JWT", "gRPC",
     "GET", "POST", "PUT", "PATCH", "DELETE", "InfluxDB", "Graphite", "Tempo", "Pyroscope",
+    "Grafana Cloud", "Grafana Enterprise", "Grafana Labs", "Grafana Alerting", "Grafana Assistant",
 }
 GLOSSARY = {
     "dashboard": "لوحة المعلومات", "panel": "لوحة عرض", "data source": "مصدر البيانات",
@@ -125,10 +126,20 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             errors.append(f"[{ns}] empty ar value: {k}")
             continue
         av_vars, av_tags = tokens(av)
-        if av_vars != en_vars:
-            errors.append(f"[{ns}] {k}: interpolation vars differ en={sorted(en_vars)} ar={sorted(av_vars)}")
-        if av_tags != en_tags:
-            errors.append(f"[{ns}] {k}: indexed tags differ en={sorted(en_tags)} ar={sorted(av_tags)}")
+        if b is not None:
+            # Plural form: i18next injects {{count}} implicitly, and some Arabic categories
+            # (zero/two) read better without spelling the number. So {{count}} is optional per
+            # form, but every NON-count variable must survive and no new variable may appear.
+            required = en_vars - {"{{count}}"}
+            if not (required <= av_vars <= en_vars):
+                errors.append(f"[{ns}] {k}: interpolation vars differ en={sorted(en_vars)} ar={sorted(av_vars)}")
+            if not (av_tags <= en_tags):
+                errors.append(f"[{ns}] {k}: indexed tags differ en={sorted(en_tags)} ar={sorted(av_tags)}")
+        else:
+            if av_vars != en_vars:
+                errors.append(f"[{ns}] {k}: interpolation vars differ en={sorted(en_vars)} ar={sorted(av_vars)}")
+            if av_tags != en_tags:
+                errors.append(f"[{ns}] {k}: indexed tags differ en={sorted(en_tags)} ar={sorted(av_tags)}")
         if BIDI_RE.search(av if isinstance(av, str) else ""):
             errors.append(f"[{ns}] {k}: contains bidi-control character")
         if isinstance(av, str) and isinstance(en_val, str) and av == en_val and en_val.strip() and en_val not in IDENTICAL_OK:

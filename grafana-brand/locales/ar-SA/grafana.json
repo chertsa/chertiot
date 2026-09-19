@@ -22,6 +22,47 @@
       "placeholder-type": "النوع"
     }
   },
+  "app-chrome": {
+    "skip-content-button": "التخطي إلى المحتوى الرئيسي",
+    "top-bar": {
+      "sign-in": "تسجيل الدخول"
+    }
+  },
+  "bookmarks-page": {
+    "empty": {
+      "message": "يبدو أنك لم تنشئ أي إشارات مرجعية بعد",
+      "tip": "مرّر المؤشر فوق أي عنصر في قائمة التنقل وانقر على أيقونة الإشارة المرجعية لإضافته هنا."
+    }
+  },
+  "command-palette": {
+    "action": {
+      "change-theme": "تغيير السمة",
+      "dark-theme": "داكن",
+      "dashboard-from-template": "لوحة معلومات من قالب",
+      "light-theme": "فاتح",
+      "scopes": "النطاقات"
+    },
+    "empty-state": {
+      "button-title": "البحث باستخدام Grafana Assistant",
+      "message": "لا توجد نتائج"
+    },
+    "scopes": {
+      "apply-selected-scopes": "تطبيق",
+      "selected-scopes-label": "النطاقات: "
+    },
+    "search-box": {
+      "placeholder": "ابحث أو انتقل إلى..."
+    },
+    "section": {
+      "actions": "الإجراءات",
+      "dashboard-search-results": "لوحات المعلومات",
+      "folder-search-results": "المجلدات",
+      "pages": "الصفحات",
+      "preferences": "التفضيلات",
+      "recent-dashboards": "لوحات المعلومات الأخيرة",
+      "recent-scopes": "النطاقات الأخيرة"
+    }
+  },
   "common": {
     "all": "الكل",
     "apply": "تطبيق",
@@ -59,6 +100,12 @@
       "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
     }
   },
+  "entity-not-found": {
+    "community-link": "مساعدة المجتمع",
+    "description": "نبحث لكن يبدو أننا لا نستطيع العثور على {{lowerCaseEntity}} هذا. يُرجى التحقق من الرابط (URL) والمحاولة مجددًا.",
+    "home-link": "العودة إلى الرئيسية",
+    "title": "{{entity}} غير موجود"
+  },
   "errors": {
     "dashboard-settings": {
       "annotations": {
@@ -83,6 +130,145 @@
     "user-field-description": "أدخل معلوماتك ليُرسل إليك رابط إعادة التعيين",
     "user-field-label": "مستخدم",
     "user-field-placeholder": "البريد الإلكتروني أو اسم المستخدم"
+  },
+  "gettingstarted": {
+    "docs-card": {
+      "complete": "مكتمل",
+      "learn-how": "تعلّم كيف في الوثائق"
+    },
+    "getting-started": {
+      "aria-label-to-advanced-tutorials": "إلى الدروس المتقدمة",
+      "aria-label-to-basic-tutorials": "إلى الدروس الأساسية",
+      "checking-completed-setup-steps": "جارٍ التحقق من خطوات الإعداد المكتملة",
+      "remove-this-panel": "إزالة هذه اللوحة"
+    },
+    "tutorial-card": {
+      "complete": "مكتمل"
+    }
+  },
+  "help-modal": {
+    "column-headers": {
+      "description": "الوصف",
+      "keys": "المفاتيح"
+    },
+    "shortcuts-aria-label": "قائمة اختصارات لوحة المفاتيح",
+    "shortcuts-category": {
+      "dashboard": "لوحة المعلومات",
+      "focused-panel": "اللوحة المركّز عليها",
+      "global": "عام",
+      "time-range": "النطاق الزمني"
+    },
+    "shortcuts-description": {
+      "change-theme": "تغيير السمة",
+      "collapse-all-rows": "طيّ جميع الصفوف",
+      "copy-time-range": "نسخ النطاق الزمني",
+      "dashboard-settings": "إعدادات لوحة المعلومات",
+      "duplicate-panel": "تكرار اللوحة",
+      "exit-edit/setting-views": "الخروج من عرض التعديل/الإعدادات",
+      "expand-all-rows": "توسيع جميع الصفوف",
+      "explore-panel": "استكشاف اللوحة",
+      "go-to-dashboards": "الانتقال إلى لوحات المعلومات",
+      "go-to-explore": "الانتقال إلى الاستكشاف",
+      "go-to-home-dashboard": "الانتقال إلى لوحة المعلومات الرئيسية",
+      "go-to-profile": "الانتقال إلى الملف الشخصي",
+      "inspect-panel": "فحص اللوحة",
+      "make-time-range-permanent": "جعل النطاق الزمني مطلقًا/دائمًا",
+      "move-time-range-back": "تحريك النطاق الزمني للخلف",
+      "move-time-range-forward": "تحريك النطاق الزمني للأمام",
+      "open-alerting": "الانتقال إلى التنبيهات",
+      "open-assistant": "فتح المساعد",
+      "open-search": "فتح البحث",
+      "open-share-embed-drawer": "مشاركة تضمين اللوحة",
+      "open-share-link-drawer": "مشاركة رابط اللوحة",
+      "open-shared-modal": "مشاركة لقطة اللوحة",
+      "paste-time-range": "لصق النطاق الزمني",
+      "refresh-all-panels": "تحديث جميع اللوحات",
+      "remove-panel": "إزالة اللوحة",
+      "save-dashboard": "حفظ لوحة المعلومات",
+      "show-all-shortcuts": "إظهار جميع اختصارات لوحة المفاتيح",
+      "toggle-active-mode": "تبديل وضع التفاعل/العرض",
+      "toggle-all-panel-legends": "تبديل وسائل إيضاح جميع اللوحات",
+      "toggle-auto-fit": "تبديل الملاءمة التلقائية للوحات (ميزة تجريبية)",
+      "toggle-exemplars": "تبديل الأمثلة (exemplars) في جميع اللوحات",
+      "toggle-graph-crosshair": "تبديل خط التوجيه المشترك للرسم البياني",
+      "toggle-kiosk": "تبديل وضع الكشك (يُخفي الشريط العلوي)",
+      "toggle-panel-edit": "تبديل عرض تعديل اللوحة",
+      "toggle-panel-fullscreen": "تبديل عرض اللوحة بملء الشاشة",
+      "toggle-panel-legend": "تبديل وسيلة إيضاح اللوحة",
+      "zoom-in-time-range": "تكبير النطاق الزمني",
+      "zoom-out-time-range": "تصغير النطاق الزمني"
+    },
+    "title": "الاختصارات"
+  },
+  "home": {
+    "dashboard-tabs": {
+      "most-used": "الأكثر استخدامًا",
+      "most-used-active": "لوحات المعلومات الأكثر استخدامًا",
+      "recent": "الأخيرة",
+      "recent-active": "لوحات المعلومات الأخيرة",
+      "retry": "إعادة المحاولة",
+      "starred": "المميّزة بنجمة",
+      "starred-active": "لوحات المعلومات المميّزة بنجمة"
+    },
+    "firing-alerts-card": {
+      "critical-count_zero": "لا تنبيهات حرجة",
+      "critical-count_one": "تنبيه حرج واحد",
+      "critical-count_two": "تنبيهان حرجان",
+      "critical-count_few": "{{count}} تنبيهات حرجة",
+      "critical-count_many": "{{count}} تنبيهًا حرجًا",
+      "critical-count_other": "{{count}} تنبيه حرج",
+      "empty": "ليس لديك تنبيهات نشطة.",
+      "empty-teams": "لا توجد تنبيهات نشطة لفرقك.",
+      "error-title": "تعذّر تحميل التنبيهات النشطة",
+      "high-count_zero": "لا تنبيهات عالية",
+      "high-count_one": "تنبيه عالٍ واحد",
+      "high-count_two": "تنبيهان عاليان",
+      "high-count_few": "{{count}} تنبيهات عالية",
+      "high-count_many": "{{count}} تنبيهًا عاليًا",
+      "high-count_other": "{{count}} تنبيه عالٍ",
+      "retry": "إعادة المحاولة",
+      "severity-critical": "حرج",
+      "severity-high": "عالٍ",
+      "severity-low": "منخفض",
+      "severity-minor": "طفيف",
+      "severity-unknown": "خطورة غير معروفة",
+      "title": "التنبيهات النشطة",
+      "view-all": "عرض جميع التنبيهات النشطة",
+      "view-rules": "عرض جميع قواعد التنبيه"
+    },
+    "home-page": {
+      "edition": {
+        "cloud": "Grafana Cloud",
+        "enterprise": "Grafana Enterprise",
+        "open-source": "Grafana"
+      },
+      "greeting": {
+        "afternoon": "طابت ظهيرتك.",
+        "evening": "مساء الخير.",
+        "morning": "صباح الخير."
+      },
+      "placeholder": "مرحبًا بك في {{edition}}."
+    },
+    "most-used-dashboards-tab": {
+      "empty": "ستظهر هنا لوحات المعلومات الأكثر مشاهدةً في منظمتك بمجرد جمع بيانات الاستخدام.",
+      "error-title": "تعذّر تحميل لوحات المعلومات الأكثر مشاهدةً",
+      "loading": "جارٍ تحميل لوحات المعلومات الأكثر مشاهدةً..."
+    },
+    "recent-dashboards-tab": {
+      "browse": "تصفّح لوحات المعلومات",
+      "clear": "مسح السجلّ",
+      "create": "أنشئ أول لوحة معلومات لك",
+      "empty": "ستظهر هنا لوحات المعلومات التي شاهدتها مؤخرًا.",
+      "empty-description": "بعد ربط بياناتك، يمكنك استخدام لوحات المعلومات للاستعلام عن بياناتك وتصوّرها باستخدام الرسوم البيانية والإحصاءات والجداول، أو إنشاء القوائم ونصوص Markdown وعناصر واجهة أخرى.",
+      "error-title": "تعذّر تحميل لوحات المعلومات المشاهَدة مؤخرًا",
+      "loading": "جارٍ تحميل لوحات المعلومات المشاهَدة مؤخرًا..."
+    },
+    "starred-dashboards-tab": {
+      "empty": "ستظهر هنا لوحات المعلومات المميّزة بنجمة.",
+      "empty-description": "يمكنك تمييز لوحات المعلومات المفضّلة لديك بالنقر على <1></1> من صفحة لوحة المعلومات.",
+      "error-title": "تعذّر تحميل لوحات المعلومات المميّزة بنجمة",
+      "loading": "جارٍ تحميل لوحات المعلومات المميّزة بنجمة..."
+    }
   },
   "invites": {
     "invitee-row": {
@@ -160,6 +346,80 @@
       "button-label": "إنشاء حساب",
       "new-to-question": "جديد على Grafana؟"
     }
+  },
+  "navigation": {
+    "breadcrumbs": {
+      "aria-label": "مسار التنقل"
+    },
+    "extension-sidebar": {
+      "button-tooltip": {
+        "close": "إغلاق {{title}}",
+        "open": "فتح {{title}}",
+        "open-all": "فتح مساعدي الذكاء الاصطناعي وتطبيقات الشريط الجانبي"
+      }
+    },
+    "help": {
+      "aria-label": "مساعدة",
+      "interactive-learning": {
+        "close-tooltip": "إغلاق التعلّم التفاعلي والمساعدة والوثائق",
+        "open-tooltip": "فتح التعلّم التفاعلي والمساعدة والوثائق"
+      },
+      "tooltip": "احصل على المساعدة وروابط مفيدة"
+    },
+    "invite-user": {
+      "invite-button": "دعوة",
+      "invite-new-user-button": "دعوة مستخدم جديد",
+      "invite-tooltip": "دعوة مستخدم",
+      "upgrade-button": "ترقية",
+      "upgrade-tooltip": "الترقية لإضافة مزيد من المستخدمين"
+    },
+    "item": {
+      "bookmark": {
+        "tooltip": "إضافة {{itemName}} إلى المفضلة"
+      }
+    },
+    "kiosk": {
+      "tv-alert": "اضغط ESC للخروج من وضع الكشك"
+    },
+    "megamenu": {
+      "close": "إغلاق القائمة",
+      "dialog-label": "التنقل",
+      "dock": "تثبيت القائمة",
+      "list-label": "التنقل",
+      "open": "القائمة الرئيسية",
+      "undock": "إلغاء تثبيت القائمة"
+    },
+    "megamenu-item": {
+      "children-error": "فشل تحميل العناصر",
+      "collapse-aria-label": "طيّ القسم: {{sectionName}}",
+      "expand-aria-label": "توسيع القسم: {{sectionName}}",
+      "loading-aria-label": "جارٍ تحميل {{sectionName}}"
+    },
+    "org-switcher": {
+      "aria-label": "تغيير المنظمة"
+    },
+    "profile": {
+      "aria-label": "الملف الشخصي"
+    },
+    "quick-add": {
+      "aria-label": "جديد",
+      "new-template-dashboard-button": "استخدام قالب"
+    },
+    "rss-button": "أحدث المقالات من المدونة"
+  },
+  "news": {
+    "category-news": "الأخبار",
+    "description-show-image": "يتحكّم في ما إذا كانت صورة (og:image) الاجتماعية لعنصر الخبر تُعرض فوق المحتوى النصي",
+    "description-url": "يدعم موجزات RSS وAtom",
+    "link-title": "الانتقال إلى مدونة Grafana Labs",
+    "name-show-image": "إظهار الصورة",
+    "name-url": "URL",
+    "news-panel": {
+      "body-error-loading-rss-feed": "تأكّد من صحة رابط الموجز (URL) ومن ضبط CORS بشكل صحيح على الخادم. راجع <2>وثائق لوحة الأخبار.</2>",
+      "loading": "جارٍ التحميل...",
+      "title-error-loading-rss-feed": "خطأ في تحميل موجز RSS"
+    },
+    "title": "أحدث المقالات من المدونة"
   },
   "notifications": {
     "empty-state": {
@@ -282,6 +542,93 @@
       "text-loading-teams": "جارٍ تحميل الفرق..."
     }
   },
+  "refresh-picker": {
+    "aria-label": {
+      "choose-interval": "التحديث التلقائي متوقّف. اختر فاصل وقت التحديث",
+      "duration-selected": "اختر فاصل وقت التحديث مع تحديد الفاصل الحالي {{durationAriaLabel}}"
+    },
+    "auto-option": {
+      "label": "تلقائي"
+    },
+    "live-option": {
+      "label": "مباشر"
+    },
+    "off-option": {
+      "label": "إيقاف"
+    },
+    "tooltip": {
+      "interval-selected": "تعيين فاصل التحديث التلقائي",
+      "turned-off": "التحديث التلقائي متوقّف"
+    }
+  },
+  "return-to-previous": {
+    "button": {
+      "label": "العودة إلى {{title}}"
+    },
+    "dismissable-button": "إغلاق"
+  },
+  "route-error": {
+    "description": "من المرجّح أن Grafana قد حُدِّث. يُرجى محاولة إعادة تحميل الصفحة.",
+    "error-title": "تفاصيل الخطأ",
+    "error-unexpected-title": "حدث خطأ غير متوقّع",
+    "reload-button": "إعادة التحميل",
+    "title": "تعذّر العثور على ملف التطبيق"
+  },
+  "search": {
+    "action-row": {
+      "panel-type": "اللوحة: {{panel}}"
+    },
+    "actions": {
+      "created-by-me": "أنشأتُها",
+      "include-panels": "تضمين اللوحات",
+      "remove-datasource-filter": "مصدر البيانات: {{datasource}}",
+      "sort-placeholder": "فرز",
+      "starred": "المميّزة بنجمة",
+      "view-as-folders": "عرض حسب المجلدات",
+      "view-as-list": "عرض كقائمة"
+    },
+    "dashboard-actions": {
+      "import": "استيراد لوحة معلومات",
+      "new": "جديد",
+      "new-dashboard": "لوحة معلومات جديدة",
+      "new-folder": "مجلد جديد",
+      "new-template-dashboard": "استخدام قالب"
+    },
+    "generate-columns": {
+      "score": "النتيجة"
+    },
+    "results-table": {
+      "datasource-header": "مصدر البيانات",
+      "deleted-by-header": "حُذفت بواسطة",
+      "deleted-by-removed": "حساب محذوف",
+      "deleted-by-unknown-short": "<0></0> غير معروف",
+      "deleted-by-unknown-tooltip": "تعذّر العثور على الحساب الذي حذف لوحة المعلومات هذه",
+      "deleted-less-than-1-min": "< دقيقة واحدة",
+      "deleted-remaining-header": "الوقت المتبقّي",
+      "location-header": "الموقع",
+      "name-header": "الاسم",
+      "tags-header": "الوسوم",
+      "type-dashboard": "لوحة المعلومات",
+      "type-folder": "مجلد",
+      "type-header": "النوع"
+    },
+    "search-input": {
+      "include-panels-placeholder": "ابحث عن لوحات المعلومات والمجلدات واللوحات",
+      "placeholder": "ابحث عن لوحات المعلومات والمجلدات"
+    },
+    "search-results-table": {
+      "aria-label-search-results-table": "جدول نتائج البحث",
+      "no-data": "لا توجد قيم"
+    },
+    "unified-searcher": {
+      "opts": {
+        "label": {
+          "alphabetically-az": "أبجديًا (أ-ي)",
+          "alphabetically-za": "أبجديًا (ي-أ)"
+        }
+      }
+    }
+  },
   "sign-up": {
     "back-button": "العودة إلى تسجيل الدخول",
     "confirm-password-label": "تأكيد كلمة المرور",
@@ -314,6 +661,79 @@
     "name-mode": "الوضع",
     "name-show-line-numbers": "إظهار أرقام الأسطر",
     "name-show-mini-map": "إظهار الخريطة المصغّرة"
+  },
+  "time-period": {
+    "1_day": "يوم واحد",
+    "1_hour": "ساعة واحدة",
+    "12_hours": "12 ساعة",
+    "30_days": "30 يومًا",
+    "6_hours": "6 ساعات",
+    "7_days": "7 أيام"
+  },
+  "time-picker": {
+    "absolute": {
+      "recent-title": "النطاقات المطلقة المستخدمة مؤخرًا",
+      "title": "نطاق زمني مطلق"
+    },
+    "calendar": {
+      "apply-button": "تطبيق النطاق الزمني",
+      "cancel-button": "إلغاء",
+      "close": "إغلاق التقويم",
+      "next-month": "الشهر التالي",
+      "previous-month": "الشهر السابق",
+      "select-time": "اختر نطاقًا زمنيًا"
+    },
+    "content": {
+      "empty-recent-list-docs": "<0><0>اقرأ الوثائق</0><1> لمعرفة المزيد حول كيفية إدخال نطاقات زمنية مخصصة.</1></0>",
+      "empty-recent-list-info": "يبدو أنك لم تستخدم منتقي الوقت هذا من قبل. بمجرد إدخال بعض الفواصل الزمنية، ستظهر هنا الفواصل المستخدمة مؤخرًا.",
+      "filter-placeholder": "ابحث في النطاقات السريعة"
+    },
+    "copy-paste": {
+      "copy-success-message": "تم نسخ النطاق الزمني إلى الحافظة",
+      "default-error-message": "{{error}} ليس نطاقًا زمنيًا صالحًا",
+      "default-error-title": "نطاق زمني غير صالح",
+      "tooltip-copy": "نسخ النطاق الزمني إلى الحافظة",
+      "tooltip-paste": "لصق النطاق الزمني"
+    },
+    "footer": {
+      "change-settings-button": "تغيير إعدادات الوقت",
+      "fiscal-year-option": "السنة المالية",
+      "fiscal-year-start": "شهر بداية السنة المالية",
+      "time-zone-option": "المنطقة الزمنية",
+      "time-zone-selection": "اختيار المنطقة الزمنية"
+    },
+    "range-content": {
+      "apply-button": "تطبيق النطاق الزمني",
+      "default-error": "أدخل تاريخًا ({{dateExample}}) أو وقتًا نسبيًا ({{relativeTimeExample1}}، {{relativeTimeExample2}})",
+      "fiscal-year": "السنة المالية: {{from}} - {{to}}",
+      "from-input": "من",
+      "open-input-calendar": "فتح التقويم",
+      "range-error": "يجب أن يكون تاريخ «من» قبل تاريخ «إلى»",
+      "to-input": "إلى"
+    },
+    "range-picker": {
+      "backwards-time-aria-label": "تحريك النطاق الزمني للخلف",
+      "current-time-selected": "النطاق الزمني المحدد: {{currentTimeRange}}",
+      "forwards-time-aria-label": "تحريك النطاق الزمني للأمام",
+      "to": "إلى",
+      "zoom-out-button": "تصغير النطاق الزمني",
+      "zoom-out-tooltip-new": "تصغير النطاق الزمني <br/> t -"
+    },
+    "time-range": {
+      "apply": "تطبيق النطاق الزمني",
+      "aria-role": "اختيار النطاق الزمني",
+      "default-title": "النطاقات الزمنية",
+      "example-title": "أمثلة على النطاقات الزمنية",
+      "from-label": "من",
+      "from-to": "{{timeOptionFrom}} إلى {{timeOptionTo}}",
+      "specify": "حدّد النطاق الزمني",
+      "submit-button-label": "زر إرسال منتقي الوقت",
+      "to-label": "إلى"
+    },
+    "zone": {
+      "select-aria-label": "منتقي المنطقة الزمنية",
+      "select-search-input": "اكتب للبحث (الدولة، المدينة، الاختصار)"
+    }
   },
   "user-orgs": {
     "current-org-button": "الحالية",
