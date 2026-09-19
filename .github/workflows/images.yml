@@ -6,6 +6,12 @@ name: images
 #  - chertiot/grafana:<ver>-bN     (Grafana + Arabic ar-SA locale, LTR-only, grafana-brand/build.sh)
 on:
   workflow_dispatch:
+    inputs:
+      image:
+        description: "Which image to build (manual runs only)"
+        type: choice
+        default: all
+        options: [all, caddy, nodered, grafana, thingsboard]
   push:
     tags: ["v*"]
     paths-ignore: []
@@ -14,6 +20,7 @@ permissions:
   packages: write
 jobs:
   caddy:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.image == 'all' || inputs.image == 'caddy' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -26,6 +33,7 @@ jobs:
           docker tag chertiot/caddy:${VER}-l4 ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
           docker push ghcr.io/${{ github.repository_owner }}/chertiot-caddy:${VER}-l4
   nodered:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.image == 'all' || inputs.image == 'nodered' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -40,6 +48,7 @@ jobs:
           docker build --build-arg NODERED_VERSION=${VER} -t "$IMG" nodered-brand/
           docker push "$IMG"
   grafana:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.image == 'all' || inputs.image == 'grafana' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120        # Go + Node + webpack full frontend build
     steps:
@@ -57,6 +66,7 @@ jobs:
           docker tag "$IMG" "ghcr.io/${{ github.repository_owner }}/chertiot-grafana:${IMG#chertiot/grafana:}"
           docker push "ghcr.io/${{ github.repository_owner }}/chertiot-grafana:${IMG#chertiot/grafana:}"
   thingsboard:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.image == 'all' || inputs.image == 'thingsboard' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
