@@ -28,6 +28,37 @@
       "placeholder-type": "النوع"
     }
   },
+  "annotations": {
+    "annotation-field-mapper": {
+      "annotation": "تعليق زمني",
+      "first-value": "القيمة الأولى",
+      "from": "من",
+      "noOptionsMessage-unknown-field-names": "أسماء حقول غير معروفة"
+    },
+    "empty-state": {
+      "button-title": "إضافة استعلام تعليق زمني",
+      "info-box-content": "<p>توفّر التعليقات الزمنية طريقة لدمج بيانات الأحداث في رسومك البيانية. تظهر على شكل خطوط رأسية وأيقونات على جميع لوحات الرسوم البيانية. عند تمرير المؤشر فوق أيقونة تعليق زمني يمكنك الحصول على نص الحدث ووسومه. يمكنك إضافة أحداث تعليقات زمنية مباشرةً من Grafana بالضغط على CTRL أو CMD مع النقر على الرسم البياني (أو سحب منطقة). ستُخزّن هذه في قاعدة بيانات التعليقات الزمنية في Grafana.</p>",
+      "info-box-content-2": "راجع <2>وثائق التعليقات الزمنية</2> لمزيد من المعلومات.",
+      "title": "لم تُضف أي استعلامات تعليقات زمنية مخصصة بعد"
+    },
+    "get-annotation-event-names": {
+      "help": {
+        "annotation-treated-as-range": "عند تعريف هذا الحقل، سيُعامَل التعليق الزمني كنطاق",
+        "results-split-on-comma": "ستُقسَّم النتائج عند الفاصلة (،)"
+      },
+      "placeholder": {
+        "text-or-the-first-field": "{{defaultField}}، أو أول حقل نصي",
+        "time-or-the-first-field": "{{defaultField}}، أو أول حقل زمني"
+      }
+    },
+    "standard-annotation-query-editor": {
+      "events-found": "{{numEvents}} أحداث (من {{numFields}} حقول)",
+      "no-events-found": "لم يُعثر على أحداث",
+      "no-query-editor": "التعليقات الزمنية غير مدعومة. يحتاج مصدر البيانات هذا إلى تصدير QueryEditor",
+      "test-annotation-query": "اختبار استعلام التعليق الزمني",
+      "title-query-result": "نتيجة الاستعلام"
+    }
+  },
   "app-chrome": {
     "skip-content-button": "التخطي إلى المحتوى الرئيسي",
     "top-bar": {
@@ -159,6 +190,26 @@
       "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
     }
   },
+  "dashboard-import": {
+    "file-dropzone": {
+      "primary-text": "رفع ملف JSON للوحة المعلومات",
+      "secondary-text": "اسحب وأفلت هنا أو انقر للتصفح"
+    },
+    "form-actions": {
+      "cancel": "إلغاء",
+      "load": "تحميل"
+    },
+    "gcom-field": {
+      "label": "ابحث عن لوحات معلومات للتطبيقات الشائعة واستوردها من <link />",
+      "load-button": "تحميل",
+      "placeholder": "عنوان URL للوحة معلومات Grafana.com أو المعرّف",
+      "validation-required": "يلزم عنوان URL أو معرّف للوحة معلومات Grafana"
+    },
+    "json-field": {
+      "label": "الاستيراد عبر نموذج JSON للوحة المعلومات",
+      "validation-required": "يلزم نموذج JSON للوحة المعلومات"
+    }
+  },
   "dashboard-links": {
     "empty-state": {
       "button-title": "إضافة رابط لوحة معلومات",
@@ -190,6 +241,20 @@
         }
       }
     }
+  },
+  "dashlist": {
+    "category-dashboard-list": "قائمة لوحات المعلومات",
+    "name-folder": "مجلد",
+    "name-include-current-template-variables": "تضمين قيم متغيرات القالب الحالية",
+    "name-include-current-time-range": "تضمين النطاق الزمني الحالي",
+    "name-max-items": "الحد الأقصى للعناصر",
+    "name-query": "استعلام",
+    "name-recently-viewed": "المشاهَدة مؤخرًا",
+    "name-search": "بحث",
+    "name-show-folder-names": "إظهار أسماء المجلدات",
+    "name-show-headings": "إظهار العناوين",
+    "name-starred": "المميّزة بنجمة",
+    "name-tags": "الوسوم"
   },
   "data-source-list": {
     "empty-state": {
@@ -237,6 +302,26 @@
       "tooltip": "تساعدك فحوصات المستشار في العثور على مشكلات في مصادر بياناتك والإضافات"
     }
   },
+  "debug": {
+    "cursor-view": {
+      "no-events-yet": "لا أحداث بعد"
+    },
+    "render-info-viewer": {
+      "data-counter": "البيانات: {{numDataChanges}}",
+      "elapsed-time": "الوقت: {{elapsed}} مللي ثانية",
+      "field": "الحقل",
+      "last": "الأخير",
+      "render-counter": "العرض: {{numRenders}}",
+      "schema-counter": "المخطط: {{numSchemaChanges}}",
+      "title-reset-counters": "إعادة تعيين العدّادات",
+      "tooltip-step-back": "خطوة للخلف",
+      "type": "النوع"
+    },
+    "state-view": {
+      "current-value": "القيمة الحالية: {{currentValue}} ",
+      "label-state-name": "اسم الحالة"
+    }
+  },
   "diff-viewer": {
     "loading": "جارٍ تحميل الفروق..."
   },
@@ -266,6 +351,36 @@
     }
   },
   "exemplar-tooltip-header": "مثال توضيحي",
+  "export": {
+    "json": {
+      "cancel-button": "إلغاء",
+      "copy-button": "نسخ إلى الحافظة",
+      "download-button": "تنزيل الملف",
+      "download-successful_toast_message": "تم تنزيل ملف JSON الخاص بك",
+      "export-format": "التنسيق",
+      "export-mode": "النموذج",
+      "info-text": "انسخ أو نزّل ملفًا يحتوي على تعريف لوحة معلوماتك",
+      "title": "تصدير لوحة المعلومات"
+    },
+    "menu": {
+      "export-as-json-label": "تصدير",
+      "export-as-json-tooltip": "تصدير"
+    }
+  },
+  "expression": {
+    "math": {
+      "description-abs": "يُرجع القيمة المطلقة لمعامله الذي يمكن أن يكون رقمًا أو سلسلة",
+      "description-ceil": "يقرّب الرقم إلى أقرب قيمة عدد صحيح لأعلى. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-floor": "يقرّب الرقم إلى أقرب قيمة عدد صحيح لأسفل. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-inf-nan-null": "الدوال inf للانهاية الموجبة، وinfn للانهاية السالبة، وnan، وnull تُرجع جميعها قيمة قياسية مفردة تطابق اسمها.",
+      "description-is-inf": "يُرجع 1 لقيم Inf (سالبة أو موجبة) و0 للقيم الأخرى. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-is-nan": "يُرجع 1 لقيم NaN و0 للقيم الأخرى. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-is-null": "يُرجع 1 لقيم null و0 للقيم الأخرى. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-is-number": "يُرجع 1 لجميع قيم الأعداد الحقيقية و0 لغير الأرقام. يمكنه العمل على قيم قياسية أو سلاسل.",
+      "description-log": "يُرجع اللوغاريتم الطبيعي لمعامله، الذي يمكن أن يكون رقمًا أو سلسلة",
+      "description-round": "يُرجع قيمة عدد صحيح مقرّبة. يمكنه العمل على قيم قياسية أو سلاسل."
+    }
+  },
   "folder-filter": {
     "select-aria-label": "مرشّح المجلدات",
     "select-placeholder": "التصفية حسب المجلد"
@@ -556,6 +671,35 @@
       "render-image": "توليد الصورة"
     }
   },
+  "live": {
+    "dashboard-changed-modal": {
+      "continue-editing": "متابعة التعديل",
+      "description": "تم تحديث لوحة المعلومات بواسطة جلسة أخرى. هل تريد متابعة التعديل أم تجاهل تغييراتك المحلية؟",
+      "discard-local-changes": "تجاهل التغييرات المحلية",
+      "title-dashboard-changed": "تغيّرت لوحة المعلومات"
+    },
+    "live-channel-editor": {
+      "description-grafana-live": "يدعم هذا تدفّقات الأحداث الفورية في نواة Grafana. هذه الميزة قيد التطوير المكثّف. توقّع تغيّر الواجهات والبنى مع اقترابها من الجاهزية للإنتاج.",
+      "namespace": "مساحة الاسم",
+      "path": "المسار",
+      "placeholder-select-watchable-resource": "اختر موردًا قابلًا للمراقبة",
+      "scope": "النطاق",
+      "title-grafana-live": "Grafana Live"
+    },
+    "live-connection-warning": {
+      "title-connection-to-server-is-lost": "فُقد الاتصال بالخادم..."
+    },
+    "live-panel": {
+      "error": "خطأ",
+      "grafana-requires-feature": "يتطلب Grafana Live علم ميزة لتشغيله",
+      "panel-editor-channel": "استخدم محرّر اللوحة لاختيار قناة",
+      "title-grafana-live": "Grafana Live",
+      "waiting-for-data": "في انتظار البيانات:"
+    },
+    "live-publish": {
+      "publish": "نشر"
+    }
+  },
   "lock-icon": "أيقونة القفل",
   "login": {
     "divider": {
@@ -605,6 +749,20 @@
     "import-dashboard-form": {
       "description-existing-library-panels": "قائمة لوحات المكتبة الحالية. لا تتأثّر هذه اللوحات بالاستيراد."
     }
+  },
+  "manage-owner-references": {
+    "error-load-team-details": "تعذّر تحميل تفاصيل الفريق",
+    "folder-owner-error": "خطأ في تحديث مالك المجلد",
+    "folder-owner-removed": "تمت إزالة مالك المجلد",
+    "folder-owner-updated": "تم تحديث مالك المجلد",
+    "manage-folder-owner": "إدارة مالك المجلد",
+    "manage-folder-owner-alert-text": "ستُعطى المجلدات المملوكة للفرق التي تنتمي إليها أولوية لك في منتقي المجلدات وأماكن أخرى.",
+    "manage-folder-owner-alert-title": "اختر فريقًا ليملك هذا المجلد للمساعدة في تنظيم مواردك.",
+    "save-owner": "حفظ المالك",
+    "select-owner": "اختر مالكًا",
+    "selected-team-not-found": "الفريق المحدد غير موجود، أو ليس لديك الأذونات اللازمة لعرضه.",
+    "team-not-found": "[فريق غير معروف]",
+    "unknown-error": "خطأ غير معروف"
   },
   "metric-select": {
     "noOptionsMessage-no-options-found": "لا توجد خيارات"
@@ -792,6 +950,52 @@
     "select-no-options": "لم يُعثر على أنواع لوحات",
     "select-placeholder": "التصفية حسب النوع"
   },
+  "piechart": {
+    "category-legend": "وسيلة الإيضاح",
+    "category-pie-chart": "مخطط دائري",
+    "description-labels": "اختر التسميات المراد عرضها في المخطط الدائري",
+    "description-pie-chart-type": "كيف ينبغي عرض المخطط الدائري",
+    "labels-options": {
+      "label-name": "الاسم",
+      "label-percent": "النسبة المئوية",
+      "label-value": "القيمة"
+    },
+    "legend-values-options": {
+      "label-percent": "النسبة المئوية",
+      "label-value": "القيمة"
+    },
+    "name-labels": "التسميات",
+    "name-legend-values": "قيم وسيلة الإيضاح",
+    "name-pie-chart-type": "نوع المخطط الدائري",
+    "pie-chart-type-options": {
+      "label-donut": "حلقي",
+      "label-pie": "دائري"
+    },
+    "suggestions": {
+      "donut": "مخطط حلقي",
+      "pie": "مخطط دائري"
+    }
+  },
+  "playlist-page": {
+    "card": {
+      "delete": "حذف قائمة التشغيل",
+      "edit": "تعديل قائمة التشغيل",
+      "start": "بدء قائمة التشغيل",
+      "tooltip": "مشاركة قائمة التشغيل"
+    },
+    "create-button": {
+      "title": "قائمة تشغيل جديدة"
+    },
+    "delete-modal": {
+      "body": "هل أنت متأكد أنك تريد حذف قائمة التشغيل {{name}}؟",
+      "confirm-text": "حذف"
+    },
+    "empty": {
+      "button": "إنشاء قائمة تشغيل",
+      "pro-tip": "يمكنك استخدام قوائم التشغيل لتدوير لوحات المعلومات على الشاشات دون تحكّم المستخدم. <2>معرفة المزيد</2>",
+      "title": "لم تُنشأ أي قوائم تشغيل بعد"
+    }
+  },
   "playlists": {
     "empty-state": {
       "message": "لا توجد قوائم تشغيل"
@@ -857,6 +1061,23 @@
     },
     "saved-success": "تم حفظ التغييرات بنجاح"
   },
+  "provisioned-resource-preview-banner": {
+    "preview-banner": {
+      "behind-branch-text": "هذا المورد متأخّر عن الفرع في {{repoType}}.",
+      "branch-text": "الفرع:",
+      "delete-from-branch": "سيظل بقية مستخدمي Grafana في منظمتك يرون هذا المورد حتى يُدمج هذا الفرع",
+      "not-saved": "سيظل بقية مستخدمي Grafana في منظمتك يرون النسخة الحالية المحفوظة في الفرع الافتراضي المُهيّأ حتى يُدمج هذا الفرع",
+      "open-in-repo-button": "فتح في {{repoType}}",
+      "open-pull-request-in-repo": "فتح طلب السحب في {{repoType}}",
+      "update-from-branch": "سيظل بقية مستخدمي Grafana في منظمتك يرون النسخة الحالية حتى يُدمج هذا الفرع",
+      "view-in-repo-button": "اعرضه في {{repoType}} لرؤية أحدث التغييرات.",
+      "view-pull-request-in-repo": "عرض طلب السحب في {{repoType}}"
+    },
+    "title-created-branch-in-repo": "تم إنشاء مورد جديد في فرع في {{repoType}}.",
+    "title-deleted-resource-in-branch": "تم حذف مورد في فرع في {{repoType}}.",
+    "title-loaded-pull-request-in-repo": "هذا المورد مُحمّل من الفرع الذي أنشأته للتو في {{repoType}} وهو مرئي لك وحدك",
+    "title-updated-resource-in-branch": "تم تحديث مورد في فرع في {{repoType}}."
+  },
   "query-editor-renderer": {
     "datasource-load-error-body": "اختر مصدر بيانات لهذا الاستعلام للمتابعة.",
     "datasource-load-error-title": "فشل تحميل مصدر البيانات لهذا الاستعلام",
@@ -880,6 +1101,37 @@
       "show-response": "إظهار الاستجابة"
     },
     "query-editor-not-exported": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
+  },
+  "recently-deleted": {
+    "buttons": {
+      "restore": "استعادة"
+    },
+    "limit-banner": {
+      "at-limit-body": "يحتفظ Grafana بما يصل إلى {{limit}} لوحة معلومات محذوفة مؤخرًا. تُزال الإدخالات الأقدم نهائيًا.",
+      "at-limit-title": "تم بلوغ حد لوحات المعلومات المحذوفة"
+    },
+    "page": {
+      "no-deleted-dashboards": "لم تحذف أي لوحات معلومات مؤخرًا.",
+      "no-deleted-dashboards-text": "عند حذف لوحة معلومات، تبقى في السجلّ لمدة تصل إلى 12 شهرًا قبل حذفها نهائيًا. يمكن للمستخدمين ذوي أذونات الحذف استعادة لوحات المعلومات التي حذفوها، ويمكن للمسؤولين استعادة لوحات المعلومات التي حذفها أي مستخدم.",
+      "no-search-result": "لم يُعثر على نتائج لاستعلامك"
+    },
+    "restore-modal": {
+      "folder-picker-text_zero": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "folder-picker-text_one": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "folder-picker-text_two": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "folder-picker-text_few": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "folder-picker-text_many": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "folder-picker-text_other": "يُرجى اختيار مجلد ستُستعاد فيه لوحات معلوماتك.",
+      "restore-button": "استعادة",
+      "restore-loading": "جارٍ الاستعادة...",
+      "text_zero": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحة معلومات.",
+      "text_one": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحة معلومات.",
+      "text_two": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحة معلومات.",
+      "text_few": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحات معلومات.",
+      "text_many": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحة معلومات.",
+      "text_other": "سيستعيد هذا الإجراء {{numberOfDashboards}} لوحة معلومات.",
+      "title": "استعادة لوحات المعلومات"
+    }
   },
   "recentlyDeleted": {
     "filter": {
@@ -916,6 +1168,29 @@
       "label": "العودة إلى {{title}}"
     },
     "dismissable-button": "إغلاق"
+  },
+  "role-picker": {
+    "built-in": {
+      "basic-roles": "الأدوار الأساسية"
+    },
+    "input": {
+      "no-roles": "لا توجد أدوار مُعيّنة",
+      "placeholder-select-role": "اختر دورًا"
+    },
+    "menu": {
+      "clear-button": "مسح الكل",
+      "tooltip": "يمكنك الآن اختيار الخيار «بلا دور أساسي» وإضافة الأذونات وفق احتياجاتك المخصصة. يمكنك العثور على مزيد من المعلومات في <1>وثائقنا</1>."
+    },
+    "menu-aria-label": "قائمة منتقي الأدوار",
+    "menu-group-option-aria-label": "خيار منتقي الأدوار",
+    "menu-option-aria-label": "خيار منتقي الأدوار",
+    "sub-menu": {
+      "clear-button": "مسح"
+    },
+    "sub-menu-aria-label": "قائمة منتقي الأدوار الفرعية",
+    "title": {
+      "description": "عيّن الأدوار للمستخدمين لضمان تحكّم دقيق في الوصول إلى ميزات Grafana وموارده. اعرف المزيد في <2>وثائقنا</2>."
+    }
   },
   "role-picker-drawer": {
     "basic-roles": {
@@ -1105,6 +1380,27 @@
       "pause-sharing-toggle-text": "إيقاف الوصول مؤقتًا"
     }
   },
+  "shared-preferences": {
+    "error": {
+      "get-preferences": "خطأ في تحميل التفضيلات",
+      "update-preferences": "خطأ في تحديث التفضيلات"
+    },
+    "fields": {
+      "home-dashboard-label": "لوحة المعلومات الرئيسية",
+      "home-dashboard-placeholder": "لوحة المعلومات الافتراضية",
+      "language-preference-label": "اللغة",
+      "language-preference-placeholder": "اختر اللغة",
+      "theme-description": "هل تستمتع بالسمات التجريبية؟ أخبرنا بما تودّ رؤيته <2>هنا.</2>",
+      "theme-label": "سمة الواجهة",
+      "week-start-label": "بداية الأسبوع"
+    },
+    "save": "حفظ التفضيلات",
+    "theme": {
+      "default-label": "افتراضي",
+      "experimental": "تجريبي"
+    },
+    "title": "التفضيلات"
+  },
   "sign-up": {
     "back-button": "العودة إلى تسجيل الدخول",
     "confirm-password-label": "تأكيد كلمة المرور",
@@ -1123,6 +1419,22 @@
       "header": "التحقق من البريد الإلكتروني",
       "info": "تم إرسال بريد إلكتروني يحتوي على رابط التحقق إلى عنوان البريد. من المفترض أن تستلمه قريبًا.",
       "send-button": "إرسال بريد التحقق"
+    }
+  },
+  "silences": {
+    "empty-state": {
+      "button-title": "إنشاء إسكات",
+      "title": "لم تنشئ أي حالات إسكات بعد"
+    },
+    "table": {
+      "add-silence-button": "إضافة إسكات",
+      "edit-button": "تعديل",
+      "expired-silences": "تُحذف حالات الإسكات المنتهية تلقائيًا بعد 5 أيام.",
+      "no-matching-silences": "لم يُعثر على حالات إسكات مطابقة؛",
+      "noConfig": "أنشئ نقطة اتصال جديدة لإنشاء إعداد باستخدام القيم الافتراضية أو تواصل مع مسؤولك لإعداد Alertmanager.",
+      "recreate-button": "إعادة الإنشاء",
+      "unsilence-button": "إلغاء الإسكات",
+      "view-button": "عرض"
     }
   },
   "silences-table": {
@@ -1144,6 +1456,73 @@
     "mark-as-starred-with-title": "وضع علامة على «{{title}}» كمفضّل",
     "unmark-as-starred": "إزالة علامة المفضّل",
     "unmark-as-starred-with-title": "إزالة علامة المفضّل عن «{{title}}»"
+  },
+  "state-timeline": {
+    "align-values-options": {
+      "label-center": "توسيط",
+      "label-left": "يسار",
+      "label-right": "يمين"
+    },
+    "category-state-timeline": "الجدول الزمني للحالة",
+    "name-align-values": "محاذاة القيم",
+    "name-connect-null-values": "وصل القيم الفارغة (null)",
+    "name-disconnect-values": "فصل القيم",
+    "name-fill-opacity": "عتامة التعبئة",
+    "name-line-width": "عرض الخط",
+    "name-merge-equal-consecutive-values": "دمج القيم المتساوية المتتالية",
+    "name-page-size": "حجم الصفحة (تفعيل الترقيم)",
+    "name-row-height": "ارتفاع الصف",
+    "name-show-values": "إظهار القيم",
+    "show-values-options": {
+      "label-always": "دائمًا",
+      "label-auto": "تلقائي",
+      "label-never": "أبدًا"
+    }
+  },
+  "status-history": {
+    "category-status-history": "سجلّ الحالة",
+    "name-column-width": "عرض العمود",
+    "name-fill-opacity": "عتامة التعبئة",
+    "name-line-width": "عرض الخط",
+    "name-page-size": "حجم الصفحة (تفعيل الترقيم)",
+    "name-row-height": "ارتفاع الصف",
+    "name-show-values": "إظهار القيم",
+    "show-values-options": {
+      "label-always": "دائمًا",
+      "label-auto": "تلقائي",
+      "label-never": "أبدًا"
+    },
+    "status-history-panel": {
+      "too-many-points_zero": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>(لم تُستلم أي نقاط)",
+      "too-many-points_one": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>(نقطة واحدة مُستلمة)",
+      "too-many-points_two": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>(نقطتان مُستلمتان)",
+      "too-many-points_few": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>({{count}} نقاط مُستلمة)",
+      "too-many-points_many": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>({{count}} نقطةً مُستلمة)",
+      "too-many-points_other": "عدد كبير جدًا من النقاط يتعذّر تصوّرها بشكل صحيح. <br/>حدّث الاستعلام لإرجاع نقاط أقل. <br/>({{count}} نقطة مُستلمة)"
+    }
+  },
+  "support-bundles": {
+    "new-bundle-button": {
+      "new-support-bundle": "حزمة دعم جديدة"
+    },
+    "support-bundles-create-unconnected": {
+      "cancel": "إلغاء",
+      "create": "إنشاء",
+      "sub-title": "اختر مكوّنات حزمة الدعم. ستكون حزمة الدعم متاحة لمدة 3 أيام بعد الإنشاء.",
+      "text": {
+        "create-support-bundle": "إنشاء حزمة دعم"
+      }
+    },
+    "support-bundles-unconnected": {
+      "created-on": "أُنشئت في",
+      "deprecation-warning-message": "حِزم الدعم مُهملة وستُزال قريبًا. لاستكشاف الأخطاء، اجمع سجلّات الخادم والإعدادات وتفاصيل التشخيص ذات الصلة يدويًا، ثم أرفقها بتذكرة الدعم الخاصة بك لدى Grafana.",
+      "deprecation-warning-title": "ميزة مُهملة",
+      "download": "تنزيل",
+      "expires": "تنتهي صلاحيتها",
+      "requested-by": "طلبها",
+      "sub-title": "تتيح لك حِزم الدعم جمع سجلّات Grafana وإعداداته وبياناته ومشاركتها بسهولة مع فريق Grafana Labs.",
+      "tooltip-remove-bundle": "إزالة الحزمة"
+    }
   },
   "swagger": {
     "login": "تسجيل الدخول"
@@ -1378,6 +1757,25 @@
     "missing-field": {
       "all": "لا توجد حقول قابلة للرسم",
       "time": "لا تحتوي البيانات على حقل زمني"
+    }
+  },
+  "traces": {
+    "adhocFilters": {
+      "customValue": "اكتب قيمة",
+      "duration1h": "1h",
+      "duration1m": "1m",
+      "duration1ms": "1ms",
+      "duration1s": "1s",
+      "durationLabel": "المدة",
+      "textSearchDescription": "ابحث عن نص في التتبّع",
+      "textSearchLabel": "بحث نصي"
+    },
+    "category-span-filters": "مرشّحات المقاطع",
+    "name-critical-path-only": "اختيار المسار الحرج",
+    "name-filters": "المرشّحات",
+    "name-show-matches-only": "إظهار التطابقات فقط",
+    "traces-panel": {
+      "no-data-found-in-response": "لم يُعثر على بيانات في الاستجابة"
     }
   },
   "transformation-editor": {

@@ -1,0 +1,16 @@
+{
+  "json": {
+    "cancel-button": "إلغاء",
+    "copy-button": "نسخ إلى الحافظة",
+    "download-button": "تنزيل الملف",
+    "download-successful_toast_message": "تم تنزيل ملف JSON الخاص بك",
+    "export-format": "التنسيق",
+    "export-mode": "النموذج",
+    "info-text": "انسخ أو نزّل ملفًا يحتوي على تعريف لوحة معلوماتك",
+    "title": "تصدير لوحة المعلومات"
+  },
+  "menu": {
+    "export-as-json-label": "تصدير",
+    "export-as-json-tooltip": "تصدير"
+  }
+}

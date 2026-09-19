@@ -1,0 +1,17 @@
+{
+  "preview-banner": {
+    "behind-branch-text": "هذا المورد متأخّر عن الفرع في {{repoType}}.",
+    "branch-text": "الفرع:",
+    "delete-from-branch": "سيظل بقية مستخدمي Grafana في منظمتك يرون هذا المورد حتى يُدمج هذا الفرع",
+    "not-saved": "سيظل بقية مستخدمي Grafana في منظمتك يرون النسخة الحالية المحفوظة في الفرع الافتراضي المُهيّأ حتى يُدمج هذا الفرع",
+    "open-in-repo-button": "فتح في {{repoType}}",
+    "open-pull-request-in-repo": "فتح طلب السحب في {{repoType}}",
+    "update-from-branch": "سيظل بقية مستخدمي Grafana في منظمتك يرون النسخة الحالية حتى يُدمج هذا الفرع",
+    "view-in-repo-button": "اعرضه في {{repoType}} لرؤية أحدث التغييرات.",
+    "view-pull-request-in-repo": "عرض طلب السحب في {{repoType}}"
+  },
+  "title-created-branch-in-repo": "تم إنشاء مورد جديد في فرع في {{repoType}}.",
+  "title-deleted-resource-in-branch": "تم حذف مورد في فرع في {{repoType}}.",
+  "title-loaded-pull-request-in-repo": "هذا المورد مُحمّل من الفرع الذي أنشأته للتو في {{repoType}} وهو مرئي لك وحدك",
+  "title-updated-resource-in-branch": "تم تحديث مورد في فرع في {{repoType}}."
+}

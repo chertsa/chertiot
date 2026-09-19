@@ -38,8 +38,11 @@ IDENTICAL_OK = set(PROTECTED) | {
     "GeoJSON", "PromQL", "LogQL", "TraceQL", "UTC", "LDAP", "SAML", "OAuth2", "JWT", "gRPC",
     "GET", "POST", "PUT", "PATCH", "DELETE", "InfluxDB", "Graphite", "Tempo", "Pyroscope",
     "Grafana Cloud", "Grafana Enterprise", "Grafana Labs", "Grafana Alerting", "Grafana Assistant",
+    "Grafana Live", "Grafana Play",
     "Cloud", "Enterprise",  # Grafana edition/tier badge labels, kept as the product tier name
 }
+# Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
+DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")
 GLOSSARY = {
     "dashboard": "لوحة المعلومات", "panel": "لوحة عرض", "data source": "مصدر البيانات",
     "query": "استعلام", "alert": "تنبيه", "alerting": "التنبيهات", "alert rule": "قاعدة تنبيه",
@@ -147,7 +150,7 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             # Skip values with no translatable text once {{vars}}/tags are removed (punctuation,
             # numbers, or interpolation-only strings are legitimately identical).
             stripped = TAG_RE.sub("", VAR_RE.sub("", en_val))
-            if re.search(r"[A-Za-z]", stripped):
+            if re.search(r"[A-Za-z]", stripped) and not DURATION_RE.match(en_val.strip()):
                 warnings.append(f"[{ns}] {k}: ar identical to en ('{en_val[:40]}')")
         if isinstance(en_val, str) and isinstance(av, str):
             for p in PROTECTED:

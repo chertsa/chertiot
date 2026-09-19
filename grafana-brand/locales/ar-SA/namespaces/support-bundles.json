@@ -1,0 +1,23 @@
+{
+  "new-bundle-button": {
+    "new-support-bundle": "حزمة دعم جديدة"
+  },
+  "support-bundles-create-unconnected": {
+    "cancel": "إلغاء",
+    "create": "إنشاء",
+    "sub-title": "اختر مكوّنات حزمة الدعم. ستكون حزمة الدعم متاحة لمدة 3 أيام بعد الإنشاء.",
+    "text": {
+      "create-support-bundle": "إنشاء حزمة دعم"
+    }
+  },
+  "support-bundles-unconnected": {
+    "created-on": "أُنشئت في",
+    "deprecation-warning-message": "حِزم الدعم مُهملة وستُزال قريبًا. لاستكشاف الأخطاء، اجمع سجلّات الخادم والإعدادات وتفاصيل التشخيص ذات الصلة يدويًا، ثم أرفقها بتذكرة الدعم الخاصة بك لدى Grafana.",
+    "deprecation-warning-title": "ميزة مُهملة",
+    "download": "تنزيل",
+    "expires": "تنتهي صلاحيتها",
+    "requested-by": "طلبها",
+    "sub-title": "تتيح لك حِزم الدعم جمع سجلّات Grafana وإعداداته وبياناته ومشاركتها بسهولة مع فريق Grafana Labs.",
+    "tooltip-remove-bundle": "إزالة الحزمة"
+  }
+}

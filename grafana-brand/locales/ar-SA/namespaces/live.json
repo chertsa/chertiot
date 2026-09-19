@@ -1,0 +1,29 @@
+{
+  "dashboard-changed-modal": {
+    "continue-editing": "متابعة التعديل",
+    "description": "تم تحديث لوحة المعلومات بواسطة جلسة أخرى. هل تريد متابعة التعديل أم تجاهل تغييراتك المحلية؟",
+    "discard-local-changes": "تجاهل التغييرات المحلية",
+    "title-dashboard-changed": "تغيّرت لوحة المعلومات"
+  },
+  "live-channel-editor": {
+    "description-grafana-live": "يدعم هذا تدفّقات الأحداث الفورية في نواة Grafana. هذه الميزة قيد التطوير المكثّف. توقّع تغيّر الواجهات والبنى مع اقترابها من الجاهزية للإنتاج.",
+    "namespace": "مساحة الاسم",
+    "path": "المسار",
+    "placeholder-select-watchable-resource": "اختر موردًا قابلًا للمراقبة",
+    "scope": "النطاق",
+    "title-grafana-live": "Grafana Live"
+  },
+  "live-connection-warning": {
+    "title-connection-to-server-is-lost": "فُقد الاتصال بالخادم..."
+  },
+  "live-panel": {
+    "error": "خطأ",
+    "grafana-requires-feature": "يتطلب Grafana Live علم ميزة لتشغيله",
+    "panel-editor-channel": "استخدم محرّر اللوحة لاختيار قناة",
+    "title-grafana-live": "Grafana Live",
+    "waiting-for-data": "في انتظار البيانات:"
+  },
+  "live-publish": {
+    "publish": "نشر"
+  }
+}

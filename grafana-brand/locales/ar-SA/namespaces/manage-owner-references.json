@@ -1,0 +1,14 @@
+{
+  "error-load-team-details": "تعذّر تحميل تفاصيل الفريق",
+  "folder-owner-error": "خطأ في تحديث مالك المجلد",
+  "folder-owner-removed": "تمت إزالة مالك المجلد",
+  "folder-owner-updated": "تم تحديث مالك المجلد",
+  "manage-folder-owner": "إدارة مالك المجلد",
+  "manage-folder-owner-alert-text": "ستُعطى المجلدات المملوكة للفرق التي تنتمي إليها أولوية لك في منتقي المجلدات وأماكن أخرى.",
+  "manage-folder-owner-alert-title": "اختر فريقًا ليملك هذا المجلد للمساعدة في تنظيم مواردك.",
+  "save-owner": "حفظ المالك",
+  "select-owner": "اختر مالكًا",
+  "selected-team-not-found": "الفريق المحدد غير موجود، أو ليس لديك الأذونات اللازمة لعرضه.",
+  "team-not-found": "[فريق غير معروف]",
+  "unknown-error": "خطأ غير معروف"
+}

@@ -1,0 +1,31 @@
+{
+  "annotation-field-mapper": {
+    "annotation": "تعليق زمني",
+    "first-value": "القيمة الأولى",
+    "from": "من",
+    "noOptionsMessage-unknown-field-names": "أسماء حقول غير معروفة"
+  },
+  "empty-state": {
+    "button-title": "إضافة استعلام تعليق زمني",
+    "info-box-content": "<p>توفّر التعليقات الزمنية طريقة لدمج بيانات الأحداث في رسومك البيانية. تظهر على شكل خطوط رأسية وأيقونات على جميع لوحات الرسوم البيانية. عند تمرير المؤشر فوق أيقونة تعليق زمني يمكنك الحصول على نص الحدث ووسومه. يمكنك إضافة أحداث تعليقات زمنية مباشرةً من Grafana بالضغط على CTRL أو CMD مع النقر على الرسم البياني (أو سحب منطقة). ستُخزّن هذه في قاعدة بيانات التعليقات الزمنية في Grafana.</p>",
+    "info-box-content-2": "راجع <2>وثائق التعليقات الزمنية</2> لمزيد من المعلومات.",
+    "title": "لم تُضف أي استعلامات تعليقات زمنية مخصصة بعد"
+  },
+  "get-annotation-event-names": {
+    "help": {
+      "annotation-treated-as-range": "عند تعريف هذا الحقل، سيُعامَل التعليق الزمني كنطاق",
+      "results-split-on-comma": "ستُقسَّم النتائج عند الفاصلة (،)"
+    },
+    "placeholder": {
+      "text-or-the-first-field": "{{defaultField}}، أو أول حقل نصي",
+      "time-or-the-first-field": "{{defaultField}}، أو أول حقل زمني"
+    }
+  },
+  "standard-annotation-query-editor": {
+    "events-found": "{{numEvents}} أحداث (من {{numFields}} حقول)",
+    "no-events-found": "لم يُعثر على أحداث",
+    "no-query-editor": "التعليقات الزمنية غير مدعومة. يحتاج مصدر البيانات هذا إلى تصدير QueryEditor",
+    "test-annotation-query": "اختبار استعلام التعليق الزمني",
+    "title-query-result": "نتيجة الاستعلام"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "adhocFilters": {
+    "customValue": "اكتب قيمة",
+    "duration1h": "1h",
+    "duration1m": "1m",
+    "duration1ms": "1ms",
+    "duration1s": "1s",
+    "durationLabel": "المدة",
+    "textSearchDescription": "ابحث عن نص في التتبّع",
+    "textSearchLabel": "بحث نصي"
+  },
+  "category-span-filters": "مرشّحات المقاطع",
+  "name-critical-path-only": "اختيار المسار الحرج",
+  "name-filters": "المرشّحات",
+  "name-show-matches-only": "إظهار التطابقات فقط",
+  "traces-panel": {
+    "no-data-found-in-response": "لم يُعثر على بيانات في الاستجابة"
+  }
+}
