@@ -1,4 +1,9 @@
 apiVersion: 1
+# Re-create so the fixed uid applies cleanly over a datasource provisioned earlier without one
+# (Grafana errors "data source not found" otherwise). Provisioned config is the source of truth.
+deleteDatasources:
+  - name: Prometheus
+    orgId: 1
 datasources:
   - name: Prometheus
     uid: prometheus
