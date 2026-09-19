@@ -1,0 +1,280 @@
+{
+  "add-to-org-modal": {
+    "label-organization": "منظمة",
+    "label-role": "الدور",
+    "title-add-to-an-organization": "إضافة إلى منظمة"
+  },
+  "admin-edit-org-page": {
+    "label-name": "الاسم",
+    "page-nav": {
+      "subTitle": {
+        "manage-settings-roles-organization": "إدارة الإعدادات وأدوار المستخدمين لمنظمة."
+      }
+    },
+    "render-missing-permission-message": {
+      "title-access-denied": "تم رفض الوصول"
+    }
+  },
+  "admin-orgs-table": {
+    "aria-label-delete-org": "حذف المنظمة",
+    "confirmText-delete": "حذف",
+    "title-delete": "حذف"
+  },
+  "anon-users": {
+    "not-found": "لم يُعثر على مستخدمين مجهولين."
+  },
+  "base-user-sessions": {
+    "body-force-logout-from-all-devices": "هل أنت متأكد أنك تريد فرض تسجيل الخروج من جميع الأجهزة؟",
+    "confirmText-confirm-logout": "تأكيد تسجيل الخروج",
+    "confirmText-force-logout": "فرض تسجيل الخروج",
+    "title-force-logout-from-all-devices": "فرض تسجيل الخروج من جميع الأجهزة"
+  },
+  "change-org-button": {
+    "confirmText-save": "حفظ"
+  },
+  "edit-org": {
+    "access-denied": "ليس لديك إذن لرؤية المستخدمين في هذه المنظمة. لتحديث هذه المنظمة، تواصل مع مسؤول الخادم لديك.",
+    "heading": "تعديل المنظمة",
+    "update-button": "تحديث",
+    "users-heading": "مستخدمو المنظمة"
+  },
+  "enterprise-auth-features-card": {
+    "dismiss": "تجاهل",
+    "heading": "مصادقة Enterprise",
+    "learn-more-link": "معرفة المزيد",
+    "text": "أدر المستخدمين والفرق والأذونات تلقائيًا باستخدام <strong>SAML</strong> و<strong>SCIM</strong> و<strong>LDAP</strong> و<strong>RBAC</strong> — متاح في Grafana Cloud وEnterprise."
+  },
+  "feature-listing": {
+    "title-auditing": "التدقيق",
+    "title-custom-branding": "العلامة التجارية المخصصة",
+    "title-dashboard-presence-indicators": "مؤشرات التواجد في لوحة المعلومات",
+    "title-dashboard-usage-stats-drawer": "درج إحصاءات استخدام لوحة المعلومات",
+    "title-data-source-permissions": "أذونات مصدر البيانات",
+    "title-enhanced-ldap-integration": "تكامل LDAP المُحسّن",
+    "title-enterprise-plugins": "إضافات Enterprise",
+    "title-find-unused-dashboards": "العثور على لوحات المعلومات غير المستخدمة",
+    "title-grafana-usage-insights": "رؤى استخدام Grafana",
+    "title-reporting": "إعداد التقارير",
+    "title-saml-authentication": "مصادقة SAML",
+    "title-settings-updates-at-runtime": "تحديثات الإعدادات أثناء التشغيل",
+    "title-sort-dashboards-by-popularity-in-search": "فرز لوحات المعلومات حسب الشعبية في البحث",
+    "title-team-sync": "مزامنة الفرق"
+  },
+  "get-enterprise": {
+    "contact-us": "تواصل معنا واحصل على تجربة مجانية",
+    "description": "يمكنك استخدام النسخة التجريبية مجانًا لمدة 30 يومًا. سنذكّرك بها قبل خمسة أيام من انتهاء الفترة التجريبية.",
+    "features-heading": "وظائف مُحسّنة",
+    "included-description": "التعويض، والعمل مع Grafana Labs على تحديد الأولويات المستقبلية، والتدريب من فريق Grafana الأساسي.",
+    "included-heading": "مُضمَّن أيضًا:",
+    "service-title": "في خدمتك",
+    "team-sync-details": "LDAP، GitHub OAuth، Auth Proxy، Okta",
+    "title": "احصل على Grafana Enterprise"
+  },
+  "ldap": {
+    "debug-subtitle": "تحقّق من إعداد LDAP وتعيين المستخدمين لديك.",
+    "debug-title": "تشخيصات LDAP",
+    "test-mapping-heading": "اختبار تعيين المستخدم",
+    "test-mapping-run-button": "تشغيل",
+    "text-loading-ldap-status": "جارٍ تحميل حالة LDAP..."
+  },
+  "ldap-connection-status": {
+    "columns": {
+      "content-connection-is-available": "الاتصال متاح",
+      "content-connection-is-not-available": "الاتصال غير متاح"
+    }
+  },
+  "ldap-error-box": {
+    "title-connection-error": "خطأ في الاتصال"
+  },
+  "ldap-page": {
+    "label-username": "اسم المستخدم"
+  },
+  "ldap-permissions": {
+    "active": "<0></0> نشط",
+    "admin": "<0></0> نعم",
+    "inactive": "<0></0> غير نشط"
+  },
+  "ldap-settings-page": {
+    "label-reset-to-default-values": "إعادة التعيين إلى القيم الافتراضية",
+    "title-more-actions": "مزيد من الإجراءات",
+    "tooltip-more-actions": "مزيد من الإجراءات"
+  },
+  "ldap-status": {
+    "title": "اتصال LDAP"
+  },
+  "ldap-sync": {
+    "debug-button": "تصحيح تعيين LDAP",
+    "external-sync-description": "مستخدم مُزامَن عبر LDAP. يجب إجراء بعض التغييرات في LDAP أو التعيينات.",
+    "external-sync-label": "المزامنة الخارجية",
+    "next-sync-label": "المزامنة المجدولة التالية",
+    "not-enabled": "غير مُفعّل",
+    "sync-button": "مزامنة المستخدم",
+    "title": "مزامنة LDAP"
+  },
+  "ldap-sync-info": {
+    "title": "مزامنة LDAP"
+  },
+  "ldap-user-groups": {
+    "columns": {
+      "content-no-matching-organizations-found": "لم يُعثر على منظمات مطابقة"
+    },
+    "no-org-found": "لا تطابق"
+  },
+  "ldap-user-info": {
+    "no-team": "لم يُعثر على فرق عبر LDAP"
+  },
+  "org-role-picker": {
+    "placeholder-choose-role": "اختر دورًا..."
+  },
+  "org-uers": {
+    "last-seen-never": "أبدًا"
+  },
+  "org-users": {
+    "not-editable": "دور هذا المستخدم غير قابل للتعديل لأنه مُزامَن من موفّر المصادقة لديك. راجع <1>وثائق مصادقة Grafana</1> للتفاصيل."
+  },
+  "org-users-table": {
+    "body-delete": "هل أنت متأكد أنك تريد حذف المستخدم {{user}}؟",
+    "columns": {
+      "aria-label-role": "الدور"
+    },
+    "confirmText-delete": "حذف",
+    "delete-aria-label": "حذف المستخدم: {{name}}",
+    "title-delete": "حذف"
+  },
+  "orgs": {
+    "delete-body": "هل أنت متأكد أنك تريد حذف '{{deleteOrgName}}'؟<br/> <5>ستُزال جميع لوحات المعلومات لهذه المنظمة!</5>",
+    "id-header": "ID",
+    "name-header": "الاسم",
+    "new-org-button": "منظمة جديدة"
+  },
+  "server-settings": {
+    "alerts-button": "إدارة التنبيهات",
+    "dashboards-button": "إدارة لوحات المعلومات",
+    "data-sources-button": "إدارة مصادر البيانات",
+    "not-found": "لم يُعثر على إحصاءات.",
+    "title": "إحصاءات المثيل",
+    "users-button": "إدارة المستخدمين"
+  },
+  "service-info": {
+    "title-critical-sla-hours": "اتفاقية مستوى الخدمة الحرجة: ساعتان",
+    "title-email": "البريد الإلكتروني",
+    "title-enterprise-plugins": "إضافات Enterprise",
+    "title-handinhand-support-in-the-upgrade-process": "دعم متكامل في عملية الترقية",
+    "title-phone": "الهاتف",
+    "title-private-slack-channel": "قناة Slack خاصة",
+    "title-unlimited-expert-support": "دعم خبير غير محدود",
+    "year-round-support": "دعم 24 × 7 × 365 عبر"
+  },
+  "settings": {
+    "info-description": "تُعرَّف إعدادات النظام هذه في grafana.ini أو custom.ini (أو تُتجاوز في متغيرات ENV). لتغييرها تحتاج حاليًا إلى إعادة تشغيل Grafana."
+  },
+  "un-themed-org-row": {
+    "confirmText-confirm-removal": "تأكيد الإزالة"
+  },
+  "upgrade-info": {
+    "title": "ترخيص Enterprise"
+  },
+  "user-admin-page": {
+    "page-nav": {
+      "subTitle": {
+        "manage-settings-for-an-individual-user": "إدارة إعدادات مستخدم فردي."
+      }
+    }
+  },
+  "user-create-page": {
+    "label-email": "البريد الإلكتروني",
+    "label-name": "الاسم",
+    "label-password": "كلمة المرور",
+    "label-username": "اسم المستخدم"
+  },
+  "user-ldap-sync-info": {
+    "label-ldap": "LDAP"
+  },
+  "user-list-admin-page-un-connected": {
+    "label": {
+      "active-last-days": "نشط آخر 30 يومًا",
+      "all-users": "جميع المستخدمين"
+    },
+    "placeholder-search-login-email": "ابحث عن مستخدم بالاسم أو البريد الإلكتروني أو اسم الدخول."
+  },
+  "user-list-anonymous-devices-page-un-connected": {
+    "label": {
+      "active-last-days": "نشط آخر 30 يومًا"
+    },
+    "placeholder-search-devices-by-ip-address": "ابحث عن الأجهزة بعنوان IP."
+  },
+  "user-list-page": {
+    "label-all-users": "جميع المستخدمين",
+    "label-anonymous-devices": "الأجهزة المجهولة",
+    "label-organization-users": "مستخدمو المنظمة",
+    "label-users": "المستخدمون"
+  },
+  "user-orgs": {
+    "add-button": "إضافة مستخدم إلى منظمة",
+    "change-role-button": "تغيير الدور",
+    "external-user-tooltip": "الدور المدمج لهذا المستخدم غير قابل للتعديل لأنه مُزامَن من موفّر المصادقة لديك. راجع <1>وثائق مصادقة Grafana</1> للتفاصيل.",
+    "remove-button": "إزالة من المنظمة",
+    "role-not-editable": "دور هذا المستخدم غير قابل للتعديل لأنه مُزامَن من موفّر المصادقة لديك. راجع <1>وثائق مصادقة Grafana</1> للتفاصيل.",
+    "title": "المنظمات"
+  },
+  "user-orgs-modal": {
+    "add-button": "إضافة إلى منظمة",
+    "cancel-button": "إلغاء"
+  },
+  "user-permissions": {
+    "change-button": "تغيير",
+    "confirmText-change": "تغيير",
+    "grafana-admin-key": "مسؤول Grafana",
+    "grafana-admin-no": "لا",
+    "grafana-admin-yes": "نعم",
+    "title": "الأذونات"
+  },
+  "user-profile": {
+    "body-delete": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+    "body-disable": "هل أنت متأكد أنك تريد تعطيل هذا المستخدم؟",
+    "confirmText-delete-user": "حذف المستخدم",
+    "confirmText-disable-user": "تعطيل المستخدم",
+    "delete-button": "حذف المستخدم",
+    "disable-button": "تعطيل المستخدم",
+    "edit-button": "تعديل",
+    "enable-button": "تفعيل المستخدم",
+    "label-email": "البريد الإلكتروني",
+    "label-name": "الاسم",
+    "label-numerical-identifier": "المعرّف الرقمي",
+    "label-password": "كلمة المرور",
+    "label-username": "اسم المستخدم",
+    "title": "معلومات المستخدم",
+    "title-delete-user": "حذف المستخدم",
+    "title-disable-user": "تعطيل المستخدم"
+  },
+  "user-profile-row": {
+    "confirmText-save": "حفظ"
+  },
+  "user-sessions": {
+    "browser-column": "المتصفح ونظام التشغيل",
+    "force-logout-all-button": "فرض تسجيل الخروج من جميع الأجهزة",
+    "force-logout-button": "فرض تسجيل الخروج",
+    "ip-column": "عنوان IP",
+    "last-seen-column": "آخر ظهور",
+    "logged-on-column": "تاريخ الدخول",
+    "now": "الآن",
+    "title": "الجلسات"
+  },
+  "users-create": {
+    "create-button": "إنشاء مستخدم"
+  },
+  "users-list": {
+    "create-button": "مستخدم جديد"
+  },
+  "users-table": {
+    "columns": {
+      "content-grafana-admin": "مسؤول Grafana",
+      "title-edit-user": "تعديل المستخدم"
+    },
+    "edit-aria-label": "تعديل المستخدم: {{name}}",
+    "edit-tooltip": "تعديل المستخدم",
+    "last-seen-never": "أبدًا",
+    "no-licensed-roles": "غير مُعيَّن",
+    "tooltip-assigned-role": "سيُعيَّن دور مُرخَّص عند تسجيل هذا المستخدم الدخول"
+  }
+}
