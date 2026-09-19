@@ -8523,6 +8523,977 @@
     "title-loaded-pull-request-in-repo": "هذا المورد مُحمّل من الفرع الذي أنشأته للتو في {{repoType}} وهو مرئي لك وحدك",
     "title-updated-resource-in-branch": "تم تحديث مورد في فرع في {{repoType}}."
   },
+  "provisioning": {
+    "bitbucket": {
+      "branch-required": "الفرع مطلوب",
+      "permissions": {
+        "pull-requests-label": "طلبات السحب",
+        "pull-requests-read-write": "قراءة وكتابة",
+        "repository-label": "المستودعات",
+        "repository-read-write-admin": "قراءة وكتابة",
+        "webhooks-label": "Webhooks",
+        "webhooks-read-write": "قراءة وكتابة"
+      },
+      "pr-workflow-description": "يتيح للمستخدمين اختيار ما إذا كانوا سيفتحون طلب سحب عند حفظ التغييرات. إذا كان المستودع لا يسمح بالتغييرات المباشرة على الفرع الرئيسي، فقد يظل طلب السحب مطلوبًا.",
+      "pr-workflow-label": "تفعيل خيار طلب السحب عند الحفظ",
+      "token-description": "رمز Bitbucket API مع أذونات المستودع",
+      "token-label": "رمز API",
+      "token-required": "رمز Bitbucket مطلوب",
+      "token-user-description": "اسم المستخدم الذي سيُستخدم للوصول إلى المستودع برمز API",
+      "token-user-required": "اسم المستخدم مطلوب",
+      "url-description": "عنوان URL لمستودع Bitbucket",
+      "url-pattern": "يجب أن يكون عنوان URL لمستودع صالحًا (https://hostname/owner/repo أو https://hostname/scm/project/repo)",
+      "url-required": "عنوان URL للمستودع مطلوب"
+    },
+    "bootstrap-step": {
+      "description-clear-repository-connection": "سيُستخدم هذا الاسم لاتصال المستودع والمجلد المعروض في الواجهة",
+      "empty": "فارغ",
+      "error-field-required": "هذا الحقل مطلوب.",
+      "error-repository-status-unhealthy-message": "حدثت مشكلة في الاتصال بالمستودع. يُرجى التحقق من إعدادات المستودع والمحاولة مجددًا.",
+      "error-repository-status-unhealthy-title": "حالة المستودع غير سليمة",
+      "external-storage-label": "تخزين خارجي",
+      "label-display-name": "الاسم المعروض",
+      "placeholder-my-repository-connection": "اتصال المستودع الخاص بي",
+      "retry-action": "إعادة المحاولة",
+      "text-loading-resource-information": "جارٍ تحميل معلومات الموارد...",
+      "unmanaged-resources-label": "موارد غير مُدارة",
+      "update-configuration-action": "عرض وثائق الإعداد",
+      "upgrade-action": "ترقية الحساب",
+      "warning-quota-may-exceed-message": "يحتوي مجلد المستودع هذا على حوالي {{fileCount}} مورد، وقد يتجاوز حد حسابك البالغ {{limit}}. إذا بُلغ الحد أثناء المزامنة، سيُتخطّى بعض الموارد. يمكنك المتابعة والتعديل لاحقًا، أو ترقية حسابك.",
+      "warning-quota-may-exceed-message-onprem": "يحتوي مجلد المستودع هذا على حوالي {{fileCount}} مورد، وقد يتجاوز حد مثيلك البالغ {{limit}}. إذا بُلغ الحد أثناء المزامنة، سيُتخطّى بعض الموارد. يمكنك المتابعة والتعديل لاحقًا، أو تحديث إعداد Grafana.",
+      "warning-quota-may-exceed-title": "قد يُتجاوز حد الموارد",
+      "dashboards-count_zero": "{{count}} لوحة معلومات",
+      "dashboards-count_one": "لوحة معلومات واحدة",
+      "dashboards-count_two": "لوحتا معلومات",
+      "dashboards-count_few": "{{count}} لوحات معلومات",
+      "dashboards-count_many": "{{count}} لوحة معلومات",
+      "dashboards-count_other": "{{count}} لوحة معلومات",
+      "files-count_zero": "{{count}} ملف",
+      "files-count_one": "ملف واحد",
+      "files-count_two": "ملفان",
+      "files-count_few": "{{count}} ملفات",
+      "files-count_many": "{{count}} ملفًا",
+      "files-count_other": "{{count}} ملف",
+      "folders-count_zero": "{{count}} مجلد",
+      "folders-count_one": "مجلد واحد",
+      "folders-count_two": "مجلدان",
+      "folders-count_few": "{{count}} مجلدات",
+      "folders-count_many": "{{count}} مجلدًا",
+      "folders-count_other": "{{count}} مجلد"
+    },
+    "branch-options": {
+      "description-enforce-template": "اجعل اسم الفرع للقراءة فقط في نوافذ الحفظ حتى لا يتمكّن المستخدمون من تجاوز الاسم المُولّد.",
+      "description-name-template": "قالب للفرع الذي يُنشئه سير عمل الفرع (طلب السحب). العناصر النائبة المتاحة: {{actionVar}}، {{kindVar}}، {{titleVar}}، {{userLoginVar}}، {{randomVar}} (رمز عشوائي قصير لتجنّب التعارضات). تُنقّى النتيجة إلى اسم فرع Git صالح. اتركه فارغًا لاستخدام الاسم المُولّد تلقائيًا.",
+      "label-branch-options": "خيارات الفرع",
+      "label-enforce-template": "فرض قالب اسم الفرع",
+      "label-name-template": "قالب اسم الفرع",
+      "placeholder-name-template": "grafana/{{actionVar}}-{{titleVar}}-{{randomVar}}"
+    },
+    "bulk-action": {
+      "success-title-branch": "تم دفع التغييرات المطلوبة إلى فرع"
+    },
+    "cloud-info-box": {
+      "body": "تخطَّ الإعداد واحصل على Git Sync مُدارًا ومُستضافًا بالكامل على Grafana Cloud مع <2>خطة Grafana Cloud المجانية للأبد</2>.",
+      "title": "يمكنك أيضًا استخدام Git Sync على Grafana Cloud"
+    },
+    "code-block": {
+      "aria-label-copy": "نسخ الشفرة إلى الحافظة"
+    },
+    "commit-message": {
+      "dashboard-create-default": "لوحة معلومات جديدة: {{title}}",
+      "dashboard-delete-default": "حذف لوحة المعلومات: {{title}}",
+      "dashboard-move-default": "نقل لوحة المعلومات: {{title}}",
+      "dashboard-rename-default": "إعادة تسمية لوحة المعلومات: {{title}}",
+      "dashboard-update-default": "حفظ لوحة المعلومات: {{title}}",
+      "folder-create-default": "إنشاء مجلد: {{title}}",
+      "folder-delete-default": "حذف مجلد: {{title}}",
+      "folder-move-default": "نقل مجلد: {{title}}",
+      "folder-rename-default": "إعادة تسمية مجلد: {{title}}",
+      "folder-update-default": "حفظ مجلد: {{title}}"
+    },
+    "commit-options": {
+      "description-enforce-template": "املأ رسالة الالتزام مسبقًا في نوافذ الحفظ من القالب أعلاه واجعلها للقراءة فقط.",
+      "label-commit-options": "خيارات الالتزام",
+      "label-enforce-template": "فرض قالب رسالة الالتزام",
+      "signer-required": "مطلوب عند تفعيل توقيع الالتزام.",
+      "signing-key-required": "مفتاح التوقيع مطلوب",
+      "smime-certificate-configured": "مُهيّأ",
+      "smime-certificate-required": "الشهادة مطلوبة"
+    },
+    "commit-signing-info": {
+      "description": "لتفعيل الالتزامات الموثّقة، <2>أعدّ توقيع الالتزام</2> لحسابك."
+    },
+    "config-form": {
+      "alert-repository-settings-saved": "تم حفظ إعدادات المستودع",
+      "alert-repository-settings-updated": "تم تحديث إعدادات المستودع",
+      "button-save": "حفظ",
+      "button-saving": "جارٍ الحفظ...",
+      "description-commit-message-template": "رسالة الالتزام المستخدمة عندما يحفظ شخص ما موردًا أو ينقله أو يعيد تسميته أو يحذفه ويترك حقل التعليق فارغًا. العناصر النائبة، تُملأ لكل عملية: {{actionVar}} (create/update/delete/move/rename)، {{kindVar}} (dashboard/folder)، {{idVar}} (معرّف مورد فريد)، {{titleVar}}، {{userNameVar}} (الاسم المعروض)، {{userLoginVar}} (اسم المستخدم)، {{userEmailVar}}. اتركه فارغًا لاستخدام الرسائل الافتراضية المدمجة.",
+      "description-connection": "اختر اتصال GitHub App المراد استخدامه",
+      "description-enabled": "بمجرد تفعيل السحب التلقائي، لا يمكن تغيير الهدف.",
+      "description-read-only": "لا يمكن تعديل الموارد عبر Grafana.",
+      "description-title": "اسم مقروء للإعداد",
+      "error-connection-required": "الاتصال مطلوب",
+      "error-fetch-branches": "فشل جلب الفروع",
+      "error-required": "هذا الحقل مطلوب.",
+      "error-save-failed": "فشل حفظ إعداد المستودع",
+      "error-save-repository": "فشل حفظ إعدادات المستودع",
+      "label-automatic-pulling": "السحب التلقائي",
+      "label-commit-message-template": "قالب رسالة الالتزام",
+      "label-connection": "اتصال GitHub App",
+      "label-enabled": "مُفعّل",
+      "label-interval-seconds": "الفاصل (بالثواني)",
+      "label-repository-type": "نوع المستودع",
+      "label-target": "الهدف",
+      "label-title": "العنوان",
+      "option-entire-instance": "المثيل بأكمله",
+      "option-folderless": "بلا مجلد",
+      "option-managed-folder": "مجلد مُدار",
+      "placeholder-commit-message-template": "feat(dashboards): {{actionVar}} {{titleVar}}",
+      "placeholder-interval-seconds": "60",
+      "placeholder-my-config": "إعدادي"
+    },
+    "connect-page": {
+      "subTitle": {
+        "connect-external-storage-manage-resources": "اتصل بتخزين خارجي لإدارة مواردك"
+      }
+    },
+    "connect-repository-button": {
+      "configure": "تهيئة",
+      "instance-fully-managed-tooltip": "التهيئة مُعطّلة لأن هذا المثيل مُدار بالكامل",
+      "max-repos-reached-tooltip": "وصل حسابك إلى الحد الأقصى لعدد المستودعات المتصلة",
+      "max-repos-reached-tooltip-onprem": "وصل مثيلك إلى الحد الأقصى لعدد المستودعات المتصلة. يمكنك زيادة الحد في إعداد Grafana."
+    },
+    "connect-step": {
+      "text-folders-not-available": "ستتوفّر اقتراحات المجلدات بعد اتصال المستودع.",
+      "text-repository-folders-not-ready": "حدثت مشكلة في الاتصال بالمستودع. لا يزال بإمكانك إدخال مسار المجلد يدويًا.",
+      "text-repository-not-ready": "حدثت مشكلة في الاتصال بالمستودع. لا يزال بإمكانك إدخال اسم الفرع يدويًا."
+    },
+    "connection": {
+      "disconnected-message": "فقد اتصال GitHub App هذا الوصول. ربما أُلغي تثبيت التطبيق أو أُبطل الوصول إلى المستودع.",
+      "disconnected-title": "الاتصال مقطوع"
+    },
+    "connection-form": {
+      "alert-connection-deleted": "تم حذف الاتصال",
+      "alert-connection-saved": "تم حفظ الاتصال",
+      "alert-connection-updated": "تم تحديث الاتصال",
+      "available-repositories": "هذا الاتصال لديه وصول إلى المستودعات التالية",
+      "back-to-connections": "العودة إلى الاتصالات",
+      "button-save": "حفظ",
+      "button-saving": "جارٍ الحفظ...",
+      "create-new-connection-button": "إنشاء اتصال",
+      "creating-connection-button": "جارٍ إنشاء الاتصال...",
+      "description-app-id": "معرّف GitHub App الخاص بك",
+      "description-description": "وصف اختياري لهذا الاتصال",
+      "description-installation-id": "معرّف تثبيت GitHub App الخاص بك",
+      "description-private-key": "المفتاح الخاص لـ GitHub App الخاص بك بتنسيق PEM",
+      "description-provider": "اختر نوع الموفّر",
+      "description-title": "اسم مقروء لهذا الاتصال",
+      "error-delete-connection": "فشل حذف الاتصال",
+      "error-required": "هذا الحقل مطلوب",
+      "error-save-connection": "فشل حفظ الاتصال",
+      "error-submit": "فشل حفظ الاتصال",
+      "grafana-repositories": "المستودعات التي تستخدم هذا الاتصال",
+      "label-app-id": "معرّف GitHub App",
+      "label-description": "الوصف",
+      "label-installation-id": "معرّف تثبيت GitHub",
+      "label-private-key": "المفتاح الخاص (PEM)",
+      "label-provider": "الموفّر",
+      "label-title": "العنوان",
+      "not-found": "لم يُعثر على الاتصال",
+      "not-found-description": "الاتصال الذي تبحث عنه غير موجود.",
+      "page-subtitle": "هيّئ اتصالًا للمصادقة مع موفّرين خارجيين",
+      "page-title-create": "إنشاء اتصال",
+      "page-title-edit": "تعديل الاتصال",
+      "placeholder-app-id": "123456",
+      "placeholder-description": "وصف اختياري",
+      "placeholder-installation-id": "12345678",
+      "placeholder-title": "تطبيق GitHub الخاص بي"
+    },
+    "connection-options": {
+      "loading": "جارٍ التحميل...",
+      "no-repos": "لا مستودعات",
+      "repos-truncated_zero": "{{shown}} +{{count}} أخرى",
+      "repos-truncated_one": "{{shown}} +{{count}} أخرى",
+      "repos-truncated_two": "{{shown}} +{{count}} أخرى",
+      "repos-truncated_few": "{{shown}} +{{count}} أخرى",
+      "repos-truncated_many": "{{shown}} +{{count}} أخرى",
+      "repos-truncated_other": "{{shown}} +{{count}} أخرى"
+    },
+    "connections": {
+      "add-connection": "إضافة اتصال",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "delete-confirm": "هل أنت متأكد أنك تريد حذف هذا الاتصال؟ لا يمكن التراجع عن هذا الإجراء.",
+      "delete-title": "حذف الاتصال",
+      "error-loading": "فشل تحميل الاتصالات",
+      "no-connections": "لا توجد اتصالات مُهيّأة",
+      "no-results": "لا توجد نتائج تطابق استعلامك",
+      "search-placeholder": "ابحث في الاتصالات",
+      "status-connected": "متصل",
+      "status-disconnected": "مقطوع",
+      "status-pending": "قيد الانتظار",
+      "status-unknown": "غير معروف",
+      "view": "عرض"
+    },
+    "delete-repository-button": {
+      "button-cancel": "إلغاء",
+      "button-delete": "حذف",
+      "confirm-delete-keep-resources": "هل أنت متأكد أنك تريد حذف إعداد المستودع مع الاحتفاظ بموارده؟",
+      "confirm-delete-with-resources": "هل أنت متأكد أنك تريد حذف إعداد المستودع وجميع موارده؟",
+      "delete": "حذف",
+      "delete-and-keep-resources": "حذف والاحتفاظ بالموارد",
+      "delete-and-remove-resources": "حذف وإزالة الموارد (افتراضي)",
+      "error-repository-delete": "فشل حذف المستودع",
+      "success-repository-deleted": "وُضعت إعدادات المستودع في قائمة انتظار الحذف",
+      "title-delete-repository-and-resources": "حذف إعداد المستودع وموارده",
+      "title-delete-repository-only": "حذف إعداد المستودع فقط"
+    },
+    "edit-repository-page": {
+      "back-to-repositories": "العودة إلى المستودعات",
+      "repository-config-exists-configuration": "تأكّد من وجود إعداد المستودع في ملف الإعداد.",
+      "subTitle": {
+        "configure-repository-storing-resources": "هيّئ مستودعًا لتخزين مواردك."
+      },
+      "text": {
+        "configure-repository": "تهيئة المستودع"
+      }
+    },
+    "empty-state": {
+      "no-jobs": "لا مهام..."
+    },
+    "enable-push-to-configured-branch-description": "السماح بالالتزامات المباشرة على الفرع المُزامَن.",
+    "enable-push-to-configured-branch-label": "تفعيل الدفع إلى الفرع المُزامَن",
+    "enhanced-features": {
+      "description": "استفد أقصى استفادة من تكامل GitHub الخاص بك بهذه الإضافات الاختيارية",
+      "description-instant-updates": "احصل على تحديثات فورية في Grafana بمجرد التزام التغييرات. راجع التغييرات ووافق عليها باستخدام طلبات السحب قبل نشرها.",
+      "description-visual-previews-dashboard-updates-directly-requests": "شاهد معاينات مرئية لتحديثات لوحة المعلومات مباشرةً في طلبات السحب",
+      "header": "عزّز تجربة GitHub الخاصة بك",
+      "set-up-image-rendering": "إعداد عرض الصور",
+      "set-up-public-webhooks": "إعداد Webhooks عامة",
+      "title-instant-updates-requests-webhooks": "تحديثات فورية وطلبات سحب مع Webhooks.",
+      "title-visual-previews-in-pull-requests": "معاينات مرئية في طلبات السحب مع عرض الصور"
+    },
+    "error": {
+      "branch-not-found-dashboard": "لقد اخترت فرعًا لا يحتوي على لوحة المعلومات هذه. اختر فرعًا آخر.",
+      "branch-not-found-folder": "لقد اخترت فرعًا لا يحتوي على هذا المجلد. اختر فرعًا آخر."
+    },
+    "error-title-default": "خطأ",
+    "expanded-row": {
+      "job-specification": "مواصفات المهمة",
+      "summary": "الملخّص"
+    },
+    "features-list": {
+      "actions": {
+        "set-up-required-feature-toggles": "إعداد مفاتيح الميزات المطلوبة"
+      },
+      "learn-more-documentation": "هل تريد معرفة المزيد؟ راجع <2>وثائقنا</2>.",
+      "manage-dashboards-provision-updates-automatically": "أدر لوحات المعلومات كشفرة في Git وهيّئ التحديثات تلقائيًا",
+      "manage-your-dashboards-with-remote-provisioning": "ابدأ مع Git Sync",
+      "store-dashboards-in-version-controlled-storage": "خزّن لوحات المعلومات في تخزين خاضع للتحكّم في الإصدارات لتنظيم أفضل وتتبّع للسجلّ"
+    },
+    "file-history-page": {
+      "back-to-repositories": "العودة إلى المستودعات",
+      "history-not-supported": "سجلّ الملفات غير مدعوم لهذا المستودع",
+      "repository-config-exists-configuration": "تأكّد من وجود إعداد المستودع في ملف الإعداد.",
+      "repository-not-found": "لم يُعثر على المستودع"
+    },
+    "file-status-page": {
+      "save": "حفظ",
+      "saving": "جارٍ الحفظ",
+      "title-error-loading-file": "خطأ في تحميل الملف"
+    },
+    "finish-step": {
+      "description-enable-previews": "يضيف معاينة صورة لتغييرات لوحة المعلومات في طلبات السحب. ستُشارَك صور لوحات معلومات Grafana في مستودع Git الخاص بك وتكون مرئية لأي شخص لديه وصول إلى المستودع.",
+      "description-image-rendering": "يتطلب عرض الصور. <2>إعداد عرض الصور</2>",
+      "description-read-only": "لا يمكن تعديل الموارد عبر Grafana.",
+      "description-sync-interval": "كم مرة تُزامَن التغييرات من المستودع",
+      "error-sync-interval-required": "فاصل المزامنة مطلوب",
+      "label-enable-previews": "تفعيل معاينات لوحة المعلومات في طلبات السحب",
+      "label-read-only": "للقراءة فقط",
+      "label-sync-interval": "فاصل المزامنة (بالثواني)"
+    },
+    "fix-folder-metadata": {
+      "button": "إصلاح معرّفات المجلدات"
+    },
+    "fix-folder-metadata-drawer": {
+      "cancel": "إلغاء",
+      "default-commit-message": "إصلاح بيانات المجلد الوصفية",
+      "error-message": "فشل بدء مهمة إصلاح بيانات المجلد الوصفية. يُرجى المحاولة مجددًا.",
+      "error-title": "خطأ في إصلاح بيانات المجلد الوصفية",
+      "read-only-message": "لا يمكن إصلاح بيانات المجلد الوصفية تلقائيًا.",
+      "submit": "إصلاح معرّفات المجلدات",
+      "submitting": "جارٍ الإصلاح...",
+      "success-title": "تم إصلاح بيانات المجلد الوصفية بنجاح",
+      "title": "إصلاح بيانات المجلد الوصفية"
+    },
+    "folder-permissions": {
+      "loading": "جارٍ التحميل..."
+    },
+    "folder-repository-list": {
+      "no-results-matching-your-query": "لا توجد نتائج تطابق استعلامك",
+      "partial-managed": "{{managedCount}}/{{resourceCount}} مورد مُدار بواسطة Git sync.",
+      "placeholder-search": "بحث",
+      "all-resources-managed_zero": "جميع الموارد الـ {{count}} مُدارة",
+      "all-resources-managed_one": "جميع الموارد الـ {{count}} مُدارة",
+      "all-resources-managed_two": "جميع الموارد الـ {{count}} مُدارة",
+      "all-resources-managed_few": "جميع الموارد الـ {{count}} مُدارة",
+      "all-resources-managed_many": "جميع الموارد الـ {{count}} مُدارة",
+      "all-resources-managed_other": "جميع الموارد الـ {{count}} مُدارة",
+      "unmanaged-resources_zero": "{{count}} مورد غير مُدار بواسطة Git sync.",
+      "unmanaged-resources_one": "{{count}} مورد غير مُدار بواسطة Git sync.",
+      "unmanaged-resources_two": "{{count}} مورد غير مُدار بواسطة Git sync.",
+      "unmanaged-resources_few": "{{count}} مورد غير مُدار بواسطة Git sync.",
+      "unmanaged-resources_many": "{{count}} مورد غير مُدار بواسطة Git sync.",
+      "unmanaged-resources_other": "{{count}} مورد غير مُدار بواسطة Git sync."
+    },
+    "get-default-values": {
+      "title": {
+        "repository": "المستودع"
+      }
+    },
+    "getting-started": {
+      "modal-description-public-access": "أعدّ وصولًا عامًا إلى مثيل Grafana الخاص بك لتفعيل تكامل GitHub",
+      "modal-description-required-features": "فعّل ميزات Grafana المطلوبة للتهيئة التلقائية",
+      "modal-title-set-up-public-access": "إعداد الوصول العام",
+      "modal-title-set-up-required-features": "إعداد الميزات المطلوبة",
+      "step-description-copy-url": "من مخرجات ngrok، انسخ عنوان URL لإعادة التوجيه https:// الذي يبدو هكذا:",
+      "step-description-enable-feature-toggles": "أضف مفتاح ميزة التهيئة التلقائية إلى ملف custom.ini الخاص بك.",
+      "step-description-start-ngrok": "شغّل هذا الأمر لإنشاء نفق آمن إلى Grafana المحلي لديك:",
+      "step-description-update-grafana-config": "أضف هذا إلى ملف custom.ini الخاص بك، مع استبدال عنوان URL بعنوان URL الفعلي لـ ngrok الخاص بك:",
+      "step-title-copy-url": "انسخ عنوان URL العام الخاص بك",
+      "step-title-enable-feature-toggles": "تفعيل مفاتيح الميزات المطلوبة",
+      "step-title-start-ngrok": "ابدأ ngrok للوصول العام المؤقت",
+      "step-title-update-grafana-config": "حدّث إعداد Grafana الخاص بك"
+    },
+    "getting-started-page": {
+      "subtitle-provisioning-feature": "عرض وإدارة اتصالات التهيئة التلقائية"
+    },
+    "git": {
+      "branch-required": "الفرع مطلوب",
+      "pr-workflow-description": "يتيح للمستخدمين اختيار ما إذا كانوا سيفتحون طلب سحب عند حفظ التغييرات. إذا كان المستودع لا يسمح بالتغييرات المباشرة على الفرع الرئيسي، فقد يظل طلب السحب مطلوبًا.",
+      "pr-workflow-label": "تفعيل خيار طلب السحب عند الحفظ",
+      "token-description": "رمز وصول أو كلمة مرور مستودع Git",
+      "token-label": "رمز الوصول",
+      "token-required": "رمز Git مطلوب",
+      "token-user-description": "اسم المستخدم الذي سيُستخدم للوصول إلى المستودع بالرمز",
+      "url-description": "عنوان URL لمستودع Git. تتطلب معظم الخوادم أن ينتهي عنوان URL بـ .git (مثال: https://host/owner/repo.git).",
+      "url-required": "عنوان URL للمستودع مطلوب",
+      "url-pattern": "يجب أن يكون عنوان URL لمستودع Git صالحًا"
+    },
+    "github": {
+      "branch-required": "الفرع مطلوب",
+      "pr-workflow-description": "يتيح للمستخدمين اختيار ما إذا كانوا سيفتحون طلب سحب عند حفظ التغييرات. إذا كان المستودع لا يسمح بالتغييرات المباشرة على الفرع الرئيسي، فقد يظل طلب السحب مطلوبًا.",
+      "pr-workflow-label": "تفعيل خيار طلب السحب عند الحفظ",
+      "token-description": "رمز GitHub Personal Access Token مع أذونات المستودع",
+      "token-label": "رمز الوصول الشخصي",
+      "token-required": "رمز GitHub مطلوب",
+      "url-description": "عنوان URL لمستودع GitHub",
+      "url-required": "عنوان URL للمستودع مطلوب"
+    },
+    "gitlab": {
+      "branch-required": "الفرع مطلوب",
+      "permissions": {
+        "api": "API",
+        "api-read-write": "قراءة وكتابة",
+        "repository-label": "المستودع",
+        "repository-read-write": "قراءة وكتابة",
+        "user-label": "مستخدم",
+        "user-read": "قراءة فقط"
+      },
+      "pr-workflow-description": "يتيح للمستخدمين اختيار ما إذا كانوا سيفتحون طلب دمج عند حفظ التغييرات. إذا كان المستودع لا يسمح بالتغييرات المباشرة على الفرع الرئيسي، فقد يظل طلب الدمج مطلوبًا.",
+      "pr-workflow-label": "تفعيل خيار طلب الدمج عند الحفظ",
+      "token-description": "رمز GitLab Project Access Token مع أذونات المستودع",
+      "token-label": "رمز وصول المشروع",
+      "token-required": "رمز GitLab مطلوب",
+      "url-description": "عنوان URL لمستودع GitLab",
+      "url-pattern": "يجب أن يكون عنوان URL لمستودع صالحًا (https://hostname/group/repository أو https://hostname/group/subgroup/repository)",
+      "url-required": "عنوان URL للمستودع مطلوب"
+    },
+    "history-view": {
+      "not-found": "لم يُعثر عليه"
+    },
+    "home-page": {
+      "button-delete-repositories": "حذف المستودعات",
+      "confirm-delete-repositories": "هل أنت متأكد أنك تريد حذف جميع المستودعات المُهيّأة؟ لا يمكن التراجع عن هذا الإجراء.",
+      "error-delete-all-repositories": "فشل حذف جميع المستودعات",
+      "subtitle": "عرض وإدارة مستودعاتك المُهيّأة",
+      "success-all-repositories-deleted": "تم حذف جميع المستودعات المُهيّأة",
+      "tab-connections": "الاتصالات",
+      "tab-connections-title": "قائمة الاتصالات",
+      "tab-getting-started": "ابدأ",
+      "tab-getting-started-title": "ابدأ",
+      "tab-migrate": "الترحيل إلى GitOps",
+      "tab-migrate-title": "الترحيل إلى GitOps",
+      "tab-repositories": "المستودعات",
+      "tab-repositories-title": "قائمة المستودعات",
+      "title-delete-all-configured-repositories": "حذف جميع المستودعات المُهيّأة"
+    },
+    "http-utils": {
+      "access-denied": "تم رفض الوصول. يُرجى التحقق من أذونات رمزك.",
+      "authentication-failed": "فشلت المصادقة. يُرجى التحقق من رمز الوصول الخاص بك.",
+      "request-failed": "فشل الطلب",
+      "resource-not-found": "لم يُعثر على المورد. يُرجى التحقق من عنوان URL أو المستودع."
+    },
+    "import": {
+      "cancel": "إلغاء",
+      "constant-required": "{{label}} يحتاج إلى قيمة",
+      "datasource-required": "يُرجى اختيار مصدر بيانات",
+      "error": "حدث خطأ أثناء استيراد لوحة المعلومات.",
+      "float-grid-items-body": "تحتوي لوحة المعلومات على عناصر شبكة بمواضع عائمة. هذا غير مدعوم من Grafana وستُقتطع الأرقام إلى أعداد صحيحة.",
+      "float-grid-items-title": "عناصر شبكة عائمة",
+      "import": "استيراد",
+      "importing": "جارٍ الاستيراد...",
+      "label-folder": "مجلد",
+      "label-name": "الاسم",
+      "library-panels-blocked-body": "تحتوي لوحة المعلومات هذه على لوحات مكتبة لا يمكن إنشاؤها عبر استيراد مُهيّأ. استورد إلى مجلد غير مُهيّأ بدلًا من ذلك، أو أزل مراجع لوحة المكتبة أولًا.",
+      "library-panels-blocked-title": "لوحات المكتبة غير مدعومة",
+      "name-required": "الاسم مطلوب"
+    },
+    "instance-sync-deprecation": {
+      "message": "مزامنة المثيل غير مدعومة بالكامل حاليًا وتكسر لوحات المكتبة والتنبيهات. لاستخدام لوحات المكتبة والتنبيهات، افصل مستودعك وأعد وصله باستخدام مزامنة المجلد بدلًا من ذلك.",
+      "title": "مزامنة المثيل غير مدعومة بالكامل"
+    },
+    "job-status": {
+      "label-view-details": "عرض التفاصيل",
+      "loading-finished-job": "جارٍ تحميل المهمة المنتهية...",
+      "no-job-found": "لم يُعثر على مهمة",
+      "no-job-found-message": "ربما حُذفت المهمة أو تعذّر استرجاعها. ألغِ العملية الحالية وابدأ من جديد.",
+      "retry-action": "إعادة المحاولة",
+      "starting": "جارٍ البدء...",
+      "status": {
+        "title-error-running-job": "خطأ في تشغيل المهمة",
+        "title-success-running-job": "اكتملت المهمة بنجاح",
+        "title-warning-running-job": "اكتملت المهمة مع تحذيرات"
+      },
+      "summary": "الملخّص",
+      "title": {
+        "error-fetching-active-job": "خطأ في جلب المهمة النشطة"
+      }
+    },
+    "local": {
+      "path-description": "مسار نظام الملفات المحلي إلى المستودع",
+      "path-label": "مسار المستودع",
+      "path-required": "مسار المستودع مطلوب"
+    },
+    "managed-badge": {
+      "classic-file-provisioning": "مُدار بواسطة: التهيئة عبر الملفات",
+      "kubectl": "مُدار بواسطة: Kubectl",
+      "plugin": "مُدار بواسطة: إضافة {{id}}",
+      "provisioned": "مُهيّأ",
+      "terraform": "مُدار بواسطة: Terraform"
+    },
+    "managed-by-repository-tooltip": "مُدار بواسطة: المستودع",
+    "managed-by-repository-tooltip-with-title": "مُدار بواسطة: المستودع {{title}}",
+    "message": {
+      "show-less": "عرض أقل",
+      "show-more": "عرض المزيد",
+      "truncated": "الرسالة مقتطعة"
+    },
+    "migrate": {
+      "dashboards": "لوحات المعلومات",
+      "drawer-cancel": "إلغاء",
+      "drawer-description": "ستُرحَّل جميع الموارد غير المُدارة بعد بواسطة Git إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-title": "الترحيل إلى GitOps",
+      "empty": "لا توجد موارد مُهيّأة بعد",
+      "error-title": "فشل تحميل إحصاءات التهيئة التلقائية",
+      "folders-error-body": "لا تزال النظرة العامة أعلاه دقيقة. لا يزال بإمكانك ترحيل كل شيء الآن، أو تحديث الصفحة لتحميل القائمة واختيار موارد فردية.",
+      "folders-error-title": "تعذّر تحميل قائمة الموارد المراد ترحيلها",
+      "general-folder-title": "عام (موارد الجذر)",
+      "header-subtitle": "أدر موارد Grafana مثل الشفرة — كل تغيير مُتتبَّع، وكل تحديث مُراجَع، وكل بيئة قابلة لإعادة الإنتاج. اربط مستودع Git للبدء.",
+      "header-title": "الترحيل إلى GitOps",
+      "loading": "جارٍ تحميل الإحصاءات...",
+      "loading-resources": "جارٍ تحميل الموارد...",
+      "migrate-button": "ترحيل كل شيء",
+      "migrate-button-blocked-tooltip": "لا يمكن لهذا المستودع الدفع إلى فرعه المُهيّأ",
+      "migrate-button-disabled-tooltip": "اختر مستودعًا هدفًا أولًا",
+      "migrate-button-empty-tooltip": "اختر موردًا واحدًا على الأقل للترحيل",
+      "migrate-button-selected": "ترحيل المحدد",
+      "migrate-everything": "ترحيل كل شيء",
+      "n-of-m-managed": "{{managed}} من {{total}} مُدار",
+      "repo-description": "المستودع الذي ستُرحَّل مواردك إليه.",
+      "repo-label": "المستودع الهدف",
+      "repo-no-push-body": "يدفع الترحيل مباشرةً إلى الفرع المُهيّأ للمستودع، لكن هذا المستودع غير مُعدّ للسماح بذلك. اختر مستودعًا يمكنه الدفع إلى فرعه المُهيّأ، أو حدّث سير عمل هذا المستودع.",
+      "repo-no-push-title": "لا يمكن استخدام هذا المستودع للترحيل",
+      "repo-placeholder": "اختر مستودعًا",
+      "resources-collapse": "طيّ {{folder}}",
+      "resources-expand": "توسيع {{folder}}",
+      "resources-select-all": "تحديد الكل",
+      "resources-select-folder": "تحديد المجلد {{folder}}",
+      "resources-sort-aria": "فرز المجلدات",
+      "resources-sort-count-asc": "الأقل موارد",
+      "resources-sort-count-desc": "الأكثر موارد",
+      "resources-sort-title-asc": "الاسم (أ–ي)",
+      "resources-sort-title-desc": "الاسم (ي–أ)",
+      "resources-to-migrate-all-managed": "جميع لوحات المعلومات مُدارة بالفعل بواسطة Git.",
+      "resources-to-migrate-empty": "لا توجد مجلدات أو موارد تطابق البحث الحالي.",
+      "resources-to-migrate-heading": "الموارد المراد ترحيلها",
+      "resources-to-migrate-search": "ابحث في المجلدات والموارد",
+      "resources-to-migrate-subtitle": "اختر مجلدات كاملة، أو لوحات معلومات فردية بداخلها. اختيار مجلد يُرحّل فقط الموارد الموجودة مباشرةً بداخله — أي شيء في المجلدات الفرعية يُرحّل عبر مجلده الخاص.",
+      "drawer-description-selective_zero": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-description-selective_one": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-description-selective_two": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-description-selective_few": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-description-selective_many": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "drawer-description-selective_other": "سيُرحَّل {{count}} مورد محدد (والمجلد الذي يحتويه) إلى المستودع المحدد. هذه عملية لمرة واحدة.",
+      "resources-folder-summary_zero": "{{count}} مورد",
+      "resources-folder-summary_one": "مورد واحد",
+      "resources-folder-summary_two": "موردان",
+      "resources-folder-summary_few": "{{count}} موارد",
+      "resources-folder-summary_many": "{{count}} موردًا",
+      "resources-folder-summary_other": "{{count}} مورد",
+      "resources-to-migrate-footer_zero": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-footer_one": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-footer_two": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-footer_few": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-footer_many": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-footer_other": "عرض {{shown}} من {{count}} مجلد",
+      "resources-to-migrate-migrate-all_zero": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-all_one": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-all_two": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-all_few": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-all_many": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-all_other": "ترحيل الكل ({{count}})",
+      "resources-to-migrate-migrate-selected_zero": "ترحيل المحدد ({{count}})",
+      "resources-to-migrate-migrate-selected_one": "ترحيل المحدد ({{count}})",
+      "resources-to-migrate-migrate-selected_two": "ترحيل المحدد ({{count}})",
+      "resources-to-migrate-migrate-selected_few": "ترحيل المحدد ({{count}})",
+      "resources-to-migrate-migrate-selected_many": "ترحيل المحدد ({{count}})",
+      "resources-to-migrate-migrate-selected_other": "ترحيل المحدد ({{count}})"
+    },
+    "missing-folder-metadata-banner": {
+      "error-message": "تعذّر التحقق مما إذا كان هذا المجلد يحتوي على ملف بيانات وصفية. يُرجى المحاولة لاحقًا.",
+      "error-title": "تعذّر التحقق من حالة بيانات المجلد الوصفية.",
+      "message": "بما أن هذا المجلد لا يحتوي على ملف بيانات وصفية، فإن معرّف المجلد يعتمد على مسار المجلد. إذا نقلت المجلد أو أعدت تسميته، سيتغيّر معرّف المجلد، وقد لا تنطبق الأذونات على المجلد.",
+      "repo-message": "المجلدات بلا ملفات بيانات وصفية تستخدم معرّفات قائمة على المسار. إذا نُقلت أو أُعيدت تسميتها، ستتغيّر معرّفاتها وقد تنكسر الأذونات.",
+      "repo-title": "بعض المجلدات تفتقد البيانات الوصفية في هذا المستودع.",
+      "title": "هذا المجلد يفتقد البيانات الوصفية."
+    },
+    "mode-options": {
+      "disabled": {
+        "folder-connected": "المزامنة الكاملة للمثيل مُعطّلة لأن مجلدًا آخر مُزامَن بالفعل مع مستودع.",
+        "not-allowed": "إعدادات التهيئة التلقائية لهذا المستودع تقيّد المزامنة بأهداف محددة. حدّث إعداد المستودع لتفعيل هذا الخيار.",
+        "not-supported": "هذا الخيار غير مدعوم بعد."
+      },
+      "folder": {
+        "description": "بعد الإعداد، سيُنشأ مجلد Grafana جديد ويُزامَن مع التخزين الخارجي. إذا كانت هناك أي موارد في التخزين الخارجي، فستُهيّأ إلى هذا المجلد الجديد. ستُخزَّن جميع الموارد الجديدة المُنشأة في هذا المجلد وتُدار إصداراتها في التخزين الخارجي.",
+        "label": "مزامنة التخزين الخارجي إلى مجلد Grafana جديد",
+        "subtitle": "استخدم هذا الخيار لمزامنة الموارد الخارجية إلى مجلد جديد دون التأثير في بقية مثيلك."
+      },
+      "folderless": {
+        "description": "بعد الإعداد، تُهيّأ الموارد من التخزين الخارجي في المستوى الأعلى دون إنشاء مجلد غلاف. تصبح المجلدات الفرعية في التخزين الخارجي مجلدات ذات مستوى أعلى. تُترك المستودعات والموارد الأخرى غير المُدارة بواسطة هذا المستودع دون مساس.",
+        "label": "مزامنة التخزين الخارجي مباشرةً على مستوى الجذر دون مجلد حاوٍ",
+        "subtitle": "استخدم هذا الخيار لمزامنة الموارد الخارجية إلى المستوى الأعلى، بلا مجلد غلاف، مع دعم المجلدات الفرعية والتعايش مع محتوى آخر."
+      },
+      "instance": {
+        "description": "ستُزامَن الموارد مع التخزين الخارجي وتُهيّأ في هذا المثيل. ستُرحَّل موارد Grafana الحالية وتُدمج إذا لزم الأمر. بعد الإعداد، ستُحفظ جميع الموارد والتغييرات الجديدة في التخزين الخارجي وتُهيّأ تلقائيًا مرة أخرى في المثيل.",
+        "label": "مزامنة جميع الموارد مع التخزين الخارجي",
+        "subtitle": "استخدم هذا الخيار إذا كنت تريد مزامنة وإدارة مثيل Grafana بأكمله عبر التخزين الخارجي."
+      }
+    },
+    "orphaned-drawer-notice": {
+      "body": "الحفظ والنقل والحذف عبر سير عمل Git غير متاحة. استخدم التحذير أعلى لوحة المعلومات لتحرير أو حذف لوحة المعلومات هذه إذا كنت مسؤولًا، أو تواصل مع مسؤول Grafana.",
+      "title": "مستودع التهيئة التلقائية لم يعد موجودًا"
+    },
+    "orphaned-repository-tooltip": "لم يُعثر على المستودع",
+    "orphaned-resource-banner": {
+      "confirm-delete-body": "سيؤدي هذا إلى حذف جميع لوحات المعلومات والمجلدات المُدارة بواسطة المستودع المفقود نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+      "confirm-delete-button": "حذف",
+      "confirm-delete-title": "حذف جميع الموارد من هذا المستودع؟",
+      "confirm-release-body": "سيؤدي هذا إلى إزالة تعليقات التهيئة التلقائية من جميع لوحات المعلومات والمجلدات المُدارة بواسطة المستودع المفقود، وتحويلها إلى موارد عادية يمكن حفظها وحذفها بشكل طبيعي.",
+      "confirm-release-button": "التحويل إلى محلي",
+      "confirm-release-title": "تحويل جميع الموارد إلى محلية من هذا المستودع؟",
+      "contact-admin": "تواصل مع مسؤول Grafana لتحويل هذا المورد إلى محلي أو حذف جميع الموارد من المستودع المفقود.",
+      "convert-to-local-button": "التحويل إلى محلي",
+      "delete-button": "حذف",
+      "go-to-dashboards": "الانتقال إلى لوحات المعلومات",
+      "job-error": "حدث خطأ أثناء معالجة الموارد اليتيمة",
+      "job-success": "تمت معالجة الموارد اليتيمة بنجاح",
+      "job-warning": "عُولجت بعض الموارد مع تحذيرات. يُرجى مراجعة النتائج.",
+      "message": "لا يمكن حفظ هذا المورد أو تعديله حتى يُحوَّل إلى محلي. سيؤثّر التحويل إلى محلي أو حذفه في جميع الموارد المُدارة بواسطة ذلك المستودع.",
+      "submit-error": "فشل إنشاء مهمة للموارد اليتيمة",
+      "title": "هذا المورد مُدار بواسطة مستودع لم يعد موجودًا"
+    },
+    "provisioning-wizard": {
+      "on-submit": {
+        "error": {
+          "no-repository-name": "حُفظ المستودع لكن لم يُرجع أي اسم"
+        },
+        "title": {
+          "repository-connection-failed": "فشل اتصال المستودع",
+          "repository-request-failed": "فشل طلب المستودع"
+        }
+      }
+    },
+    "pull-request-options": {
+      "description-enforce-template": "املأ عنوان طلب السحب مسبقًا في نوافذ الحفظ من القالب أعلاه واجعله للقراءة فقط.",
+      "description-title-template": "قالب لعنوان طلب السحب الذي يفتحه سير عمل الفرع. العناصر النائبة المتاحة: {{actionVar}}، {{kindVar}}، {{titleVar}}، {{userLoginVar}}. اتركه فارغًا لاستخدام السطر الأول من رسالة الالتزام.",
+      "label-enforce-template": "فرض قالب عنوان طلب السحب",
+      "label-pull-request-options": "خيارات طلب السحب",
+      "label-title-template": "قالب عنوان طلب السحب",
+      "placeholder-title-template": "{{actionVar}}: {{titleVar}}"
+    },
+    "quota-limit": {
+      "note": "ملاحظة:",
+      "to-increase-limits": "لإضافة مزيد من {{type}}،",
+      "update-configuration-link": "حدّث إعداد Grafana",
+      "upgrade-link": "رقِّ حسابك",
+      "message-both-repositories_zero": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories_one": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories_two": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories_few": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories_many": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories_other": "حسابك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_zero": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_one": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_two": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_few": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_many": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-repositories-onprem_other": "مثيلك محدود بـ {{count}} مستودعات متصلة",
+      "message-both-resources_zero": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources_one": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources_two": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources_few": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources_many": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources_other": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_zero": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_one": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_two": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_few": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_many": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-both-resources-onprem_other": "و{{count}} موارد مُزامَنة لكل مستودع.",
+      "message-repository_zero": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository_one": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository_two": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository_few": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository_many": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository_other": "حسابك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_zero": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_one": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_two": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_few": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_many": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-repository-onprem_other": "مثيلك محدود بـ {{count}} مستودعات متصلة.",
+      "message-resource_zero": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource_one": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource_two": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource_few": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource_many": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource_other": "حسابك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_zero": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_one": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_two": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_few": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_many": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع.",
+      "message-resource-onprem_other": "مثيلك محدود بـ {{count}} موارد مُزامَنة لكل مستودع."
+    },
+    "read-only-badge": {
+      "text": "للقراءة فقط"
+    },
+    "read-only-local-tooltip": "هذا المورد للقراءة فقط ومُهيّأ عبر التهيئة بالملفات. لإجراء أي تغييرات، حدّث المستودع المتصل. لتعديل الإعدادات انتقل إلى الإدارة > التهيئة التلقائية > المستودعات.",
+    "read-only-remote-tooltip": "هذا المورد للقراءة فقط ومُهيّأ عبر Git. لإجراء أي تغييرات، حدّث المستودع المتصل. لتعديل الإعدادات انتقل إلى الإدارة > التهيئة التلقائية > المستودعات.",
+    "recent-jobs": {
+      "column-action": "الإجراء",
+      "column-duration": "المدة",
+      "column-job-id": "معرّف المهمة",
+      "column-message": "الرسالة",
+      "column-started": "بدأت",
+      "column-status": "الحالة",
+      "error-loading-active-jobs": "خطأ في تحميل المهام النشطة",
+      "error-loading-historic-jobs": "خطأ في تحميل المهام التاريخية",
+      "jobs": "المهام"
+    },
+    "repository-actions": {
+      "connection": "الاتصال",
+      "settings": "الإعدادات",
+      "source-code": "الشفرة المصدرية"
+    },
+    "repository-card": {
+      "last-sync": "آخر مزامنة: {{date}}",
+      "settings": "الإعدادات",
+      "view": "عرض"
+    },
+    "repository-link": {
+      "delete-or-move-job": {
+        "compare-branch": "مقارنة الفرع",
+        "open-pull-request": "فتح طلب سحب",
+        "view-branch": "عرض الفرع",
+        "view-repository": "عرض المستودع"
+      },
+      "grafana-repository-synced": "مواردك الآن في تخزينك الخارجي ومُهيّأة في مثيلك. من الآن فصاعدًا، سيُزامَن مثيلك والتخزين الخارجي.",
+      "sync-job": {
+        "view-repository": "عرض المستودع"
+      }
+    },
+    "repository-list": {
+      "no-repositories": "لا توجد مستودعات مُهيّأة"
+    },
+    "repository-overview": {
+      "branch": "الفرع:",
+      "checked": "فُحص:",
+      "connection-status": "حالة الاتصال:",
+      "finished": "آخر سحب ناجح:",
+      "health": "الصحة",
+      "healthy": "سليم",
+      "job-id": "معرّف المهمة:",
+      "last-ref": "آخر مرجع:",
+      "messages": "الرسائل:",
+      "not-available": "غير متاح",
+      "path": "المسار:",
+      "pull-status": "حالة السحب",
+      "repo-url": "عنوان URL للمستودع:",
+      "resources": "الموارد",
+      "status": "الحالة:",
+      "unhealthy": "غير سليم",
+      "view-folder": "عرض المجلد",
+      "webhook": "Webhook",
+      "webhook-events": "الأحداث:",
+      "webhook-id": "المعرّف:",
+      "webhook-last-event": "آخر حدث:",
+      "webhook-url": "عرض Webhook"
+    },
+    "repository-status": {
+      "error": "فشل تحميل المستودع"
+    },
+    "repository-status-page": {
+      "back-to-repositories": "العودة إلى المستودعات",
+      "cleaning-up-resources": "جارٍ تنظيف موارد المستودع",
+      "not-found": "غير موجود",
+      "not-found-message": "لم يُعثر على المستودع",
+      "repository-config-exists-configuration": "تأكّد من وجود إعداد المستودع في ملف الإعداد.",
+      "tab-overview": "نظرة عامة",
+      "tab-overview-title": "نظرة عامة على المستودع",
+      "tab-resources": "الموارد",
+      "tab-resources-title": "ملفات وموارد المستودع",
+      "title": "حالة المستودع",
+      "title-queued-for-deletion": "في قائمة انتظار الحذف"
+    },
+    "repository-type-cards": {
+      "choose-provider": "اختر موفّرًا:",
+      "configure-file": "تهيئة التهيئة عبر الملفات",
+      "configure-with-provider": "التهيئة باستخدام {{ provider }}",
+      "provider-not-listed": "إذا لم يكن موفّرك مدرجًا:"
+    },
+    "repository-types": {
+      "bitbucket": "Bitbucket",
+      "bitbucket-description": "الاتصال بمستودعات Bitbucket",
+      "bitbucket-tooltip": "تكامل Bitbucket مُحسّن مع روابط عميقة إلى ملفات المصدر. ميزات مثل المزامنة عبر Webhook وتعليقات طلبات السحب والتحقق من إعدادات المستودع قادمة قريبًا.",
+      "github": "GitHub",
+      "github-description": "الاتصال بمستودعات GitHub",
+      "github-tooltip": "تكامل GitHub مُحسّن مع المزامنة عبر Webhook وتعليقات طلبات السحب وروابط عميقة إلى ملفات المصدر والتحقق من إعدادات المستودع.",
+      "gitlab": "GitLab",
+      "gitlab-description": "الاتصال بمستودعات GitLab",
+      "gitlab-tooltip": "تكامل GitLab مُحسّن مع روابط عميقة إلى ملفات المصدر. ميزات مثل المزامنة عبر Webhook وتعليقات طلبات السحب والتحقق من إعدادات المستودع قادمة قريبًا.",
+      "local": "محلي",
+      "local-description": "تهيئة التهيئة عبر الملفات",
+      "local-tooltip": "هيّئ لوحات المعلومات من نظام الملفات المحلي دون Git.",
+      "pure-git": "Git خالص",
+      "pure-git-description": "الاتصال بأي مستودع Git",
+      "pure-git-tooltip": "يتصل بأي مستودع Git باستخدام بروتوكول Smart HTTP v2. سير عمل المزامنة الأساسي دون ميزات خاصة بالموفّر (Webhooks، تعليقات طلبات السحب، الروابط العميقة)."
+    },
+    "resource-tree": {
+      "header-hash": "التجزئة",
+      "header-status": "الحالة",
+      "header-title": "العنوان",
+      "header-type": "النوع",
+      "missing-folder-metadata": "ملف بيانات المجلد الوصفية مفقود",
+      "search-placeholder": "ابحث بالمسار أو العنوان",
+      "source": "المصدر",
+      "status-pending": "قيد الانتظار",
+      "status-synced": "مُزامَن",
+      "view": "عرض"
+    },
+    "resource-view": {
+      "base": "الأساس",
+      "dashboard-preview": "معاينة لوحة المعلومات",
+      "existing-dashboard": "لوحة معلومات موجودة",
+      "history": "السجلّ",
+      "message": {
+        "removed-from-repo-test-ui": "أُزيل من واجهة اختبار المستودع",
+        "updated-from-repo-test-ui": "حُدِّث من واجهة اختبار المستودع"
+      },
+      "read-only-repo-tooltip": "هذا مستودع للقراءة فقط",
+      "repository": "المستودع",
+      "tab-info": {
+        "label": {
+          "dry-run-result-after-apply": "تشغيل تجريبي (النتيجة بعد التطبيق)",
+          "existing-from-grafana": "موجود (من Grafana)",
+          "file-from-repository": "ملف (من المستودع)"
+        }
+      },
+      "title-error-saving-file": "خطأ في حفظ الملف"
+    },
+    "setup-modal": {
+      "done": "تم",
+      "next": "التالي",
+      "previous": "السابق"
+    },
+    "shared": {
+      "branch-description": "الفرع المراد استخدامه للتهيئة التلقائية",
+      "branch-label": "الفرع",
+      "commit-signer-email-description": "يجب أن يطابق هوية مفتاح التوقيع.",
+      "commit-signer-email-label": "بريد الموقّع",
+      "commit-signer-email-placeholder": "noreply@grafana.com",
+      "commit-signer-name-description": "اسم موقّع الالتزام.",
+      "commit-signer-name-label": "اسم الموقّع",
+      "commit-signer-name-placeholder": "Grafana",
+      "path-description": "اختياري. المسار إلى المجلد الفرعي الذي يحتوي على الموارد التي تريد مزامنتها.",
+      "path-label": "المسار",
+      "progress-bar": {
+        "aria-label": "شريط التقدّم"
+      },
+      "signing-key-description": "المفتاح الخاص المستخدم لتوقيع الالتزامات. بلا عبارة مرور.",
+      "signing-key-label": "مفتاح التوقيع",
+      "signing-method-description": "وقّع الالتزامات ليتمكّن من التحقق من مؤلّفها تشفيريًا.",
+      "signing-method-label": "توقيع الالتزام",
+      "signing-method-none": "بلا",
+      "smime-certificate-description": "شهادة X.509 مقترنة بمفتاح التوقيع.",
+      "smime-certificate-label": "شهادة S/MIME",
+      "token-user-label": "اسم المستخدم",
+      "url-label": "عنوان URL للمستودع",
+      "url-pattern": "يجب أن يكون عنوان URL لمستودع صالحًا (https://hostname/owner/repo)"
+    },
+    "sidebar-item": {
+      "label-completed-step": "خطوة مكتملة",
+      "label-current-step": "الخطوة الحالية",
+      "label-pending-step": "خطوة قيد الانتظار"
+    },
+    "status-badge": {
+      "automatic-pulling-disabled-tooltip": "السحب التلقائي مُعطّل. راجع إعداد اتصالك لتفعيل السحب.",
+      "deleting": "جارٍ الحذف",
+      "disabled": "مُعطّل",
+      "error": "خطأ",
+      "pending": "قيد الانتظار",
+      "pulling": "جارٍ السحب",
+      "unknown": "غير معروف",
+      "up-to-date": "محدّث",
+      "waiting-for-health-check": "في انتظار تشغيل فحص الصحة",
+      "warning": "تحذير"
+    },
+    "success-title-default": "نجاح",
+    "sync-job": {
+      "error-no-job-id": "فشل بدء المهمة",
+      "error-no-repository-name": "لم يُقدَّم اسم مستودع",
+      "error-starting-job": "خطأ في بدء المهمة",
+      "migrate-default-message": "ترحيل موارد Grafana إلى المستودع"
+    },
+    "sync-repository": {
+      "error-pulling-resources": "خطأ في سحب الموارد",
+      "pull": "سحب",
+      "success-pull-started": "بدأ السحب",
+      "tooltip-unhealthy-repository": "تعذّر سحب مستودع غير سليم"
+    },
+    "synchronize-step": {
+      "field-errors": "اكتُشفت أخطاء في الإعداد",
+      "field-errors-message": "توجد مشكلات في إعداد المستودع. يُرجى مراجعة إعداداتك.",
+      "instance-migrate-resources-description": "تتطلب مزامنة المثيل أن تكون جميع الموارد مُدارة. ستُرحَّل الموارد الحالية تلقائيًا.",
+      "migrate-resources-description": "استورد لوحات المعلومات الحالية من التخزين الخارجي المتصل إلى مجلد التهيئة التلقائية المُنشأ في الخطوة السابقة",
+      "options": "الخيارات",
+      "repository-error": "خطأ في المستودع",
+      "repository-error-message": "تعذّر التحقق من حالة المستودع. يُرجى التحقق من إعداد المستودع والمحاولة مجددًا.",
+      "repository-unhealthy": "لا يمكن مزامنة المستودع. ألغِ التهيئة التلقائية وحاول مجددًا بمجرد حل المشكلة. انظر التفاصيل أدناه.",
+      "review-configuration": "مراجعة الإعداد",
+      "text-checking-repository": "جارٍ التحقق من حالة المستودع..."
+    },
+    "token-permissions-info": {
+      "and-click": "وانقر",
+      "bitbucket": {
+        "create-token-button": "إنشاء رمز API بالنطاقات",
+        "token-text": "رموز Bitbucket API"
+      },
+      "gitlab": {
+        "create-token-button": "إضافة رمز جديد",
+        "token-text": "رمز GitLab Personal Access Token"
+      },
+      "go-to": "انتقل إلى",
+      "make-sure": "أنشئ رمزًا بهذه الأذونات"
+    },
+    "validation": {
+      "hidden-characters": "يحتوي هذا الحقل على أحرف مخفية ربما أُدخلت عبر النسخ واللصق. يُرجى إعادة الكتابة أو تنظيف القيمة والمحاولة مجددًا.",
+      "url-with-credentials": "يجب ألا يتضمّن عنوان URL للمستودع اسم مستخدم أو كلمة مرور. أزل بيانات الاعتماد من عنوان URL واستخدم حقل الرمز بدلًا من ذلك."
+    },
+    "warning-title-default": "تحذير",
+    "watch-stream": {
+      "error-description": "تعذّر بدء التحديثات الفورية. حدّث الصفحة لرؤية أحدث البيانات.",
+      "error-title": "التحديثات المباشرة غير متاحة"
+    },
+    "webhook-section": {
+      "description-webhook-url": "يتجاوز عنوان URL المُكتشَف تلقائيًا لتسجيل Webhooks.",
+      "description-webhook-url-learn-more": "معرفة المزيد",
+      "label-webhook": "خيارات Webhook",
+      "label-webhook-url": "عنوان URL لـ Webhook",
+      "placeholder-webhook-url": "https://grafana.example.com"
+    },
+    "wizard": {
+      "alert-intro": "يُرجى الانتباه للقيود التالية. لمزيد من التفاصيل، راجع <2>وثائق Git Sync</2>.",
+      "alert-point-1": "لا يزال بالإمكان إنشاء الموارد أو تعديلها أو حذفها أثناء هذه العملية، لكن قد لا تُصدَّر التغييرات.",
+      "alert-point-3": "تعتمد مدة هذه العملية على عدد الموارد المعنية.",
+      "alert-point-4": "يمكن لمسؤولي مثيل Enterprise عرض شريط إعلان لإبلاغ المستخدمين بأن الترحيل جارٍ. راجع <2>هذا الدليل</2> للحصول على تعليمات خطوة بخطوة.",
+      "alert-point-folder-cleanup": "قد تحتاج إلى إزالة أو إدارة المجلدات الأصلية يدويًا بعد الترحيل.",
+      "alert-point-folder-structure": "عند ترحيل لوحات المعلومات الحالية، ستُستنسخ بنية المجلدات في المستودع. ستُفرَّغ المجلدات الأصلية من لوحات المعلومات لكنها قد تظل تحتوي على تنبيهات أو لوحات مكتبة.",
+      "alert-point-instance-alerts": "ستُفقد التنبيهات ولوحات المكتبة الحالية ولن تكون قابلة للاستخدام بعد الترحيل.",
+      "alert-point-permissions": "الأذونات الدقيقة غير مدعومة. تُطبَّق الأذونات الافتراضية: تُحفظ أدوار المسؤول والمحرّر والمشاهد بمستويات وصولها القياسية.",
+      "alert-point-unsupported": "التنبيهات ولوحات المكتبة غير مدعومة في المجلدات المُهيّأة.",
+      "alert-title": "مهم: راجع قيود Git Sync قبل المتابعة",
+      "auth-type-description": "توفّر كلتا الطريقتين وصولًا آمنًا إلى مستودعات GitHub الخاصة بك. اختر التي تناسب سير عملك ومتطلبات الأمان لديك.",
+      "auth-type-github-app-description": "استخدم GitHub App لأمان مُحسّن وتعاون الفريق. يُوصى به لبيئات الإنتاج.",
+      "auth-type-github-app-label": "الاتصال باستخدام GitHub App",
+      "auth-type-label": "طريقة المصادقة",
+      "auth-type-pat-description": "استخدم رمز وصول شخصيًا للمصادقة مع GitHub. مناسب للاستخدام الفردي والاختبار.",
+      "auth-type-pat-label": "الاتصال باستخدام رمز وصول شخصي",
+      "button-cancel": "إلغاء",
+      "button-cancelling": "جارٍ الإلغاء...",
+      "button-next": "إنهاء",
+      "button-start": "بدء المزامنة",
+      "connect-step": "اتصال",
+      "connect-step-local": "التهيئة عبر الملفات",
+      "connection-not-ready": "اتصال GitHub App المحدد غير جاهز. ستُحدَّث القائمة بمجرد جاهزية الاتصال.",
+      "discard-modal": {
+        "body": "سيؤدي هذا إلى حذف إعداد المستودع وستفقد كل التقدّم. هل أنت متأكد أنك تريد تجاهل تغييراتك؟",
+        "confirm": "نعم، تجاهل",
+        "dismiss": "متابعة العمل",
+        "title": "تجاهل إعداد المستودع؟"
+      },
+      "git-protocol-alert-body": "يتواصل نوع مستودع Git الخالص مع خادم Git الخاص بك باستخدام <2>بروتوكول Git v2 Smart HTTP</2>. SSH والبروتوكول القديم v1 غير مدعومين. تأكّد من أن خادم Git الخاص بك يدعم Smart HTTP قبل المتابعة. لمزيد من التفاصيل، راجع <5>وثائق حدود الاستخدام</5>.",
+      "git-protocol-alert-title": "يُدعم فقط بروتوكول Git v2 Smart HTTP",
+      "github-app-connection-status": "حالة الاتصال:",
+      "github-app-creation-default-error": "فشل إنشاء الاتصال",
+      "github-app-creation-failed": "فشل إنشاء اتصال GitHub App",
+      "github-app-error-loading": "فشل تحميل الاتصالات",
+      "github-app-error-required": "الاتصال مطلوب",
+      "github-app-help-instructions": "أنشئ GitHub App، وولّد مفتاحًا خاصًا، وثبّته، والصق التفاصيل أدناه. <2>عرض التعليمات خطوة بخطوة</2>",
+      "github-app-help-title": "هل تحتاج مساعدة في إنشاء GitHub App؟",
+      "github-app-mode-existing": "اختر تطبيقًا موجودًا",
+      "github-app-mode-label": "إعداد GitHub App",
+      "github-app-mode-new": "الاتصال بتطبيق جديد",
+      "github-app-no-connections": "لم يُعثر على اتصالات GitHub",
+      "github-app-no-connections-message": "ليس لديك أي اتصالات GitHub App موجودة. يُرجى اختيار \"الاتصال بتطبيق جديد\" لإنشاء واحد.",
+      "github-app-select-connection": "اختر اتصال GitHub App",
+      "github-enterprise-alert-body": "يُدعم GitHub Enterprise Server حاليًا فقط عبر نوع مستودع Git الخالص. تكامل GitHub Enterprise الأصلي مُخطّط وسيتوفّر في الأشهر القادمة.",
+      "github-enterprise-alert-title": "GitHub Enterprise Server",
+      "give-feedback-link": "إرسال ملاحظات",
+      "step-bootstrap": "اختر ما تريد مزامنته",
+      "step-configure-repo": "تهيئة المستودع",
+      "step-connect": "اتصال",
+      "step-finish": "اختر إعدادات إضافية",
+      "step-synchronize": "المزامنة مع التخزين الخارجي",
+      "sync-description": "زامِن الموارد مع التخزين الخارجي. بعد هذه الخطوة لمرة واحدة، ستُحفظ جميع التحديثات المستقبلية تلقائيًا في المستودع وتُهيّأ مرة أخرى في المثيل.",
+      "sync-option-migrate-resources": "ترحيل الموارد الحالية",
+      "title-bootstrap": "اختر ما تريد مزامنته",
+      "title-configure-repo": "تهيئة المستودع",
+      "title-connect": "الاتصال بالتخزين الخارجي",
+      "title-finish": "اختر إعدادات إضافية",
+      "title-synchronize": "المزامنة مع التخزين الخارجي"
+    },
+    "wizard-content": {
+      "button-cancel": "إلغاء",
+      "button-cancelling": "جارٍ الإلغاء...",
+      "button-previous": "السابق",
+      "button-submitting": "جارٍ الإرسال...",
+      "error-instance-repository-exists": "مستودع المثيل موجود بالفعل",
+      "error-save-repository-setting": "فشل حفظ إعداد المستودع"
+    }
+  },
   "public-dashboard": {
     "acknowledgment-checkboxes": {
       "ack-title": "قبل أن تجعل لوحة المعلومات عامة، أقرّ بما يلي:",
