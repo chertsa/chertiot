@@ -2537,6 +2537,577 @@
     }
   },
   "exemplar-tooltip-header": "مثال توضيحي",
+  "explore": {
+    "accordian-logs": {
+      "events": "الأحداث",
+      "footer": "الطوابع الزمنية للأحداث نسبية إلى وقت بدء التتبّع الكامل."
+    },
+    "accordian-references": {
+      "references": "المراجع",
+      "view-linked-span": "عرض المقطع المرتبط"
+    },
+    "add-to-dashboard": "إضافة إلى لوحة معلومات",
+    "basic-extensions": {
+      "aria-label-add": "إضافة"
+    },
+    "build-dashboard-panel-from-explore-state": {
+      "title": {
+        "new-panel": "لوحة جديدة"
+      }
+    },
+    "confirm-navigation-modal": {
+      "cancel": "إلغاء",
+      "new-tab": "هل تريد المتابعة في علامة التبويب الحالية أم فتح علامة تبويب جديدة؟",
+      "open": "فتح",
+      "open-in-new-tab": "فتح في علامة تبويب جديدة"
+    },
+    "content-outline": {
+      "tooltip-collapse-outline": "طيّ المخطط التفصيلي",
+      "tooltip-expand-outline": "توسيع المخطط التفصيلي"
+    },
+    "content-outline-item-button": {
+      "body": {
+        "aria-label-content-outline-item-collapse-button": "زر طيّ عنصر المخطط التفصيلي",
+        "aria-label-content-outline-item-delete-button": "حذف العنصر"
+      }
+    },
+    "correlation-editor-mode-bar": {
+      "content-correlations-editor-explore-experimental-feature": "محرّر الارتباطات في الاستكشاف ميزة تجريبية.",
+      "exit-correlation-editor": "الخروج من محرّر الارتباطات",
+      "save": "حفظ"
+    },
+    "correlation-helper": {
+      "add-transformation": "إضافة تحويل",
+      "aria-label-delete-transformation": "حذف التحويل",
+      "aria-label-edit-transformation": "تعديل التحويل",
+      "body-correlation-details": "سيظهر رابط الارتباط بجوار الحقل <1>{{resultField}}</1>. يمكنك استخدام المتغيرات التالية لإعداد ارتباطاتك:",
+      "expression": "تعبير: <1>{{expression}}</1>",
+      "label-description": "الوصف",
+      "label-description-header": "التسمية / الوصف",
+      "label-label": "التسمية",
+      "title-correlation-details": "تفاصيل الارتباط",
+      "tooltip-transformations": "يستخرج التحويل متغيرًا واحدًا أو أكثر من حقل واحد.",
+      "transformations": "التحويلات"
+    },
+    "correlation-transformation-add-modal": {
+      "add-transformation": "إضافة تحويل إلى الارتباط",
+      "added-variables": "سيضيف هذا التحويل المتغيرات التالية:",
+      "aria-label-field": "الحقل",
+      "aria-label-type": "النوع",
+      "body": "يستخرج التحويل متغيرات من حقل واحد. ستكون هذه المتغيرات متاحة إلى جانب متغيرات حقلك.",
+      "cancel": "إلغاء",
+      "edit-transformation": "تعديل التحويل",
+      "label-expression": "تعبير",
+      "label-expression-without-tooltip": "تعبير",
+      "label-field": "الحقل",
+      "label-type": "النوع",
+      "label-variable-name": "اسم المتغير",
+      "label-variable-name-without-tooltip": "اسم المتغير",
+      "title-add": "إضافة تحويل",
+      "title-edit": "تعديل التحويل"
+    },
+    "correlation-unsaved-changes-modal": {
+      "cancel": "إلغاء",
+      "continue-without-saving": "المتابعة دون حفظ",
+      "save-correlation": "حفظ الارتباط",
+      "title-unsaved-changes-to-correlation": "تغييرات غير محفوظة على الارتباط"
+    },
+    "custom-container": {
+      "body-find-plugin": "فشل العثور على إضافة لوحة بالمعرّف <1>{{pluginId}}</1>.",
+      "error-with-stack": "فشل الحصول على إضافة اللوحة",
+      "title-find-plugin": "فشل العثور على الإضافة"
+    },
+    "drop-down-menu": {
+      "aria-label-links": "الروابط",
+      "links": "الروابط"
+    },
+    "explore": {
+      "title-flame-graph": "الرسم البياني اللهبي",
+      "title-graph": "رسم بياني",
+      "title-logs": "السجلّات",
+      "title-logs-sample": "عيّنة السجلّات",
+      "title-node-graph": "رسم العُقد البياني",
+      "title-queries": "الاستعلامات",
+      "title-raw-prometheus": "Prometheus الخام",
+      "title-table": "جدول",
+      "title-traces": "التتبّعات"
+    },
+    "explore-query-inspector": {
+      "data-tab": {
+        "label": {
+          "data": "البيانات"
+        }
+      },
+      "error-tab": {
+        "label": {
+          "error": "خطأ"
+        }
+      },
+      "json-tab": {
+        "label": {
+          "json": "JSON"
+        }
+      },
+      "query-tab": {
+        "label": {
+          "query": "استعلام"
+        }
+      },
+      "stats-tab": {
+        "label": {
+          "stats": "الإحصاءات"
+        }
+      }
+    },
+    "explore-run-query-button": {
+      "run-button": {
+        "aria-label-run-query-options": "خيارات تشغيل الاستعلام"
+      }
+    },
+    "explore-toolbar": {
+      "outline": "المخطط التفصيلي",
+      "tooltip-content-outline": "المخطط التفصيلي للمحتوى"
+    },
+    "feature-toggle-page": {
+      "description-explore-disabled": "لتفعيل الاستكشاف، فعّله في إعداد Grafana:",
+      "title-explore-disabled": "الاستكشاف مُعطّل"
+    },
+    "get-field-links-for-explore": {
+      "text": {
+        "data": "البيانات",
+        "raw-value": "القيمة الخام"
+      }
+    },
+    "get-matches-metadata": {
+      "matches": "0 تطابقات"
+    },
+    "legacy-create-span-link-factory": {
+      "text": {
+        "tags": "الوسوم"
+      },
+      "title": {
+        "related-logs": "السجلّات ذات الصلة",
+        "session-for-this-span": "الجلسة لهذا المقطع"
+      },
+      "title-explore-metrics-for-this-span": "استكشاف المقاييس لهذا المقطع",
+      "title-explore-split": "استكشاف السجلّات لهذا في عرض مقسّم",
+      "title-session-for-this-span": "الجلسة لهذا المقطع"
+    },
+    "live-logs": {
+      "clear-logs": "مسح السجلّات",
+      "exit-live-mode": "الخروج من الوضع المباشر",
+      "last-line-received": "آخر سطر مستلم: منذ <elapsedTime />",
+      "pause": "إيقاف مؤقت",
+      "resume": "استئناف"
+    },
+    "live-tail-button": {
+      "live": "مباشر",
+      "pause-the-live-stream": "إيقاف البث المباشر مؤقتًا",
+      "paused": "متوقّف مؤقتًا",
+      "start-live-stream-your-logs": "بدء البث المباشر لسجلّاتك",
+      "stop-and-exit-the-live-stream": "إيقاف البث المباشر والخروج منه"
+    },
+    "logs": {
+      "logs-volume": {
+        "add-filters": "أضف مزيدًا من التسميات إلى استعلامك لتضييق نطاق بحثك.",
+        "decrease-timerange": "قلّل النطاق الزمني لاستعلامك.",
+        "max-bytes-error": "سيقرأ الاستعلام بايتات كثيرة جدًا. جرّب واحدًا أو أكثر مما يلي:",
+        "much-data": "يحاول الاستعلام الوصول إلى بيانات كثيرة جدًا. جرّب واحدًا أو أكثر مما يلي:"
+      },
+      "maximum-pinned-logs": "تم بلوغ الحد الأقصى وهو {{PINNED_LOGS_LIMIT}} سجلّ مثبّت. ألغِ تثبيت سجلّ لإضافة آخر.",
+      "missing-time-field-message": "يتطلب تصوّر السجلّات حقلًا زمنيًا. أضف عمودًا من النوع الزمني إلى استعلامك.",
+      "no-logs-found": "لم يُعثر على سجلّات.",
+      "scan-for-older-logs": "البحث عن سجلّات أقدم",
+      "stop-scan": "إيقاف البحث"
+    },
+    "logs-container": {
+      "label-logs": "السجلّات"
+    },
+    "logs-feedback": {
+      "give-feedback": "إرسال ملاحظات"
+    },
+    "logs-meta-row": {
+      "label": {
+        "deduplication-count": "عدد عمليات إزالة التكرار",
+        "showing-only-selected-fields": "عرض الحقول المحددة فقط"
+      },
+      "show-original-line": "إظهار السطر الأصلي"
+    },
+    "logs-sample-panel": {
+      "label": "عيّنة السجلّات",
+      "logs-sample-is-loading": "جارٍ تحميل عيّنة السجلّات...",
+      "no-logs-sample-data": "لا توجد بيانات عيّنة سجلّات.",
+      "open-in-split-view-button": {
+        "open-logs-in-split-view": "فتح السجلّات في عرض مقسّم"
+      },
+      "title-failed-sample-query": "فشل تحميل عيّنة السجلّات لهذا الاستعلام",
+      "tooltip": "إظهار أسطر السجلّ التي ساهمت في المقاييس المُصوَّرة"
+    },
+    "logs-table": {
+      "action-buttons": {
+        "copy-link": "نسخ الرابط إلى سطر السجلّ",
+        "copy-to-clipboard": "نسخ إلى الحافظة",
+        "inspect-value": "فحص القيمة",
+        "show-details": "إظهار التفاصيل",
+        "view-log-line": "عرض سطر السجلّ"
+      }
+    },
+    "logs-table-empty-fields": {
+      "no-fields": "لا حقول"
+    },
+    "logs-table-multi-select": {
+      "fields": "الحقول",
+      "reset": "إعادة تعيين",
+      "selected-fields": "الحقول المحددة",
+      "suggested-fields": "مقترح"
+    },
+    "logs-table-wrap": {
+      "aria-label-select-query-by-name": "اختيار الاستعلام بالاسم",
+      "label-select-query": "اختيار الاستعلام",
+      "tooltip-select-query-visualize-table": "اختر استعلامًا لتصوّره في الجدول"
+    },
+    "logs-volume-panel": {
+      "content-streaming": "جارٍ البث",
+      "partial-data-tips": "جرّب تقليل النطاق الزمني أو إضافة مزيد من التسميات إلى استعلامك."
+    },
+    "logs-volume-panel-list": {
+      "aria-label-reload-log-volume": "إعادة تحميل حجم السجلّ",
+      "label-reload-log-volume": "إعادة تحميل حجم السجلّ",
+      "loading": "جارٍ التحميل...",
+      "message-showing-partial-data-max-bytes": "سيقرأ الاستعلام بايتات كثيرة جدًا وتعذّر إكمال بعض الطلبات المجزّأة. ",
+      "message-showing-partial-data-timeout": "يحاول الاستعلام الوصول إلى بيانات كثيرة جدًا وتعذّر إكمال بعض الطلبات المجزّأة. ",
+      "title-failed-volume-query": "فشل تحميل حجم السجلّ لهذا الاستعلام",
+      "title-no-logs-volume-available": "لا يتوفّر حجم سجلّات",
+      "title-showing-partial-data": "عرض بيانات جزئية",
+      "title-unable-to-show-log-volume": "تعذّر عرض حجم السجلّ",
+      "visible-range-description": "النطاق من أقدم السجلّات إلى أحدثها في العرض"
+    },
+    "logs-volumne-panel-list": {
+      "body-no-logs-volume-available": "لا تتوفّر معلومات حجم للاستعلامات والنطاق الزمني الحاليين."
+    },
+    "next-prev-result": {
+      "aria-label-next": "زر النتيجة التالية",
+      "aria-label-prev": "زر النتيجة السابقة",
+      "depth": "العمق: {{depth}}",
+      "depth-span-filter-matches": "العمق: {{depth}}",
+      "services": "الخدمات: {{services}}",
+      "services-span-filter-matches": "الخدمات: {{total}}/{{services}}"
+    },
+    "no-data-source-call-to-action": {
+      "cta-element": {
+        "add-data-source": "إضافة مصدر بيانات"
+      },
+      "footer": {
+        "learn-more": "معرفة المزيد",
+        "pro-tip-define-sources-through-configuration-files": " نصيحة احترافية: يمكنك أيضًا تعريف مصادر البيانات عبر ملفات الإعداد. "
+      }
+    },
+    "pane": {
+      "loading-placeholder": "جارٍ التحميل..."
+    },
+    "queryless-apps-extensions": {
+      "aria-label-go-queryless": "الانتقال إلى وضع بلا استعلام",
+      "drilldown": "التعمّق"
+    },
+    "raw-list-container": {
+      "item-count": "سلسلة النتائج: {{numItems}}",
+      "label-expand-results": "توسيع النتائج"
+    },
+    "raw-list-item": {
+      "tooltip-copy-to-clipboard": "نسخ إلى الحافظة"
+    },
+    "references": {
+      "label-attributes": "السمات"
+    },
+    "rich-history": {
+      "close-tooltip": "إغلاق سجلّ الاستعلامات",
+      "datasource-a-z": "مصدر البيانات أ-ي",
+      "datasource-z-a": "مصدر البيانات ي-أ",
+      "newest-first": "الأحدث أولًا",
+      "oldest-first": "الأقدم أولًا",
+      "query-history": "سجلّ الاستعلامات",
+      "settings": "الإعدادات",
+      "starred": "المميّزة بنجمة"
+    },
+    "rich-history-card": {
+      "add-comment-form": "نموذج إضافة تعليق",
+      "add-comment-tooltip": "إضافة تعليق",
+      "add-to-library": "حفظ الاستعلام",
+      "cancel": "إلغاء",
+      "confirm-delete": "حذف",
+      "copy-query-tooltip": "نسخ الاستعلام إلى الحافظة",
+      "copy-shortened-link-tooltip": "نسخ الرابط المختصر إلى الحافظة",
+      "datasource-icon-label": "أيقونة مصدر البيانات",
+      "datasource-name-label": "اسم مصدر البيانات",
+      "datasource-not-exist": "مصدر البيانات لم يعد موجودًا",
+      "delete-query-confirmation-title": "حذف",
+      "delete-query-title": "حذف الاستعلام",
+      "delete-query-tooltip": "حذف الاستعلام",
+      "delete-starred-query-confirmation-text": "هل أنت متأكد أنك تريد حذف استعلامك المميّز بنجمة نهائيًا؟",
+      "edit-comment-tooltip": "تعديل التعليق",
+      "optional-description": "وصف اختياري لما يفعله الاستعلام.",
+      "query-comment-label": "تعليق الاستعلام",
+      "query-text-label": "نص الاستعلام",
+      "save-comment": "حفظ التعليق",
+      "star-query-tooltip": "تمييز الاستعلام بنجمة",
+      "unstar-query-tooltip": "إزالة نجمة الاستعلام",
+      "update-comment-form": "نموذج تحديث التعليق"
+    },
+    "rich-history-container": {
+      "loading": "جارٍ التحميل..."
+    },
+    "rich-history-notification": {
+      "query-copied": "تم نسخ الاستعلام إلى الحافظة",
+      "query-deleted": "تم حذف الاستعلام"
+    },
+    "rich-history-queries-tab": {
+      "displaying-partial-queries_zero": "عرض {{ count }} استعلام",
+      "displaying-partial-queries_one": "عرض استعلام واحد",
+      "displaying-partial-queries_two": "عرض استعلامين",
+      "displaying-partial-queries_few": "عرض {{ count }} استعلامات",
+      "displaying-partial-queries_many": "عرض {{ count }} استعلامًا",
+      "displaying-partial-queries_other": "عرض {{ count }} استعلام",
+      "displaying-queries_zero": "{{ count }} استعلام",
+      "displaying-queries_one": "استعلام واحد",
+      "displaying-queries_two": "استعلامان",
+      "displaying-queries_few": "{{ count }} استعلامات",
+      "displaying-queries_many": "{{ count }} استعلامًا",
+      "displaying-queries_other": "{{ count }} استعلام",
+      "filter-aria-label": "تصفية الاستعلامات لمصادر البيانات",
+      "filter-history": "تصفية السجلّ",
+      "filter-placeholder": "تصفية الاستعلامات لمصادر البيانات",
+      "history-local": "السجلّ محلي لمتصفحك ولا يُشارَك مع الآخرين.",
+      "loading": "جارٍ التحميل...",
+      "loading-results": "جارٍ تحميل النتائج...",
+      "search-placeholder": "ابحث في الاستعلامات",
+      "showing-queries": "عرض {{ shown }} من {{ total }} <0>تحميل المزيد</0>",
+      "sort-aria-label": "فرز الاستعلامات",
+      "sort-placeholder": "فرز الاستعلامات حسب"
+    },
+    "rich-history-settings-tab": {
+      "alert-info": "سيحتفظ Grafana بالإدخالات حتى {{optionLabel}}. لن تُحذف الإدخالات المميّزة بنجمة.",
+      "change-default-tab": "غيّر علامة التبويب النشطة الافتراضية من «سجلّ الاستعلامات» إلى «المميّزة بنجمة»",
+      "clear-history-info": "احذف كل سجلّ استعلاماتك نهائيًا.",
+      "clear-query-history": "مسح سجلّ الاستعلامات",
+      "clear-query-history-button": "مسح سجلّ الاستعلامات",
+      "delete-confirm": "حذف",
+      "delete-confirm-text": "هل أنت متأكد أنك تريد حذف سجلّ استعلاماتك نهائيًا؟",
+      "delete-title": "حذف",
+      "history-time-span": "المدى الزمني للسجلّ",
+      "history-time-span-description": "اختر الفترة الزمنية التي سيحفظ فيها Grafana سجلّ استعلاماتك. ستُخزَّن حتى {{MAX_HISTORY_ITEMS}} إدخال.",
+      "only-show-active-datasource": "إظهار الاستعلامات فقط لمصدر البيانات النشط حاليًا في الاستكشاف",
+      "query-history-deleted": "تم حذف سجلّ الاستعلامات",
+      "retention-period": {
+        "1-week": "أسبوع واحد",
+        "2-days": "يومان",
+        "2-weeks": "أسبوعان",
+        "5-days": "5 أيام"
+      }
+    },
+    "rich-history-starred-tab": {
+      "filter-queries-aria-label": "تصفية الاستعلامات لمصادر البيانات",
+      "filter-queries-placeholder": "تصفية الاستعلامات لمصادر البيانات",
+      "loading": "جارٍ التحميل...",
+      "loading-results": "جارٍ تحميل النتائج...",
+      "local-history-message": "السجلّ محلي لمتصفحك ولا يُشارَك مع الآخرين.",
+      "search-queries-placeholder": "ابحث في الاستعلامات",
+      "showing-queries": "عرض {{ shown }} من {{ total }} <0>تحميل المزيد</0>",
+      "sort-queries-aria-label": "فرز الاستعلامات",
+      "sort-queries-placeholder": "فرز الاستعلامات حسب"
+    },
+    "rich-history-utils": {
+      "a-week-ago": "قبل أسبوع",
+      "days-ago": "قبل {{num}} أيام",
+      "today": "اليوم",
+      "two-weeks-ago": "قبل أسبوعين",
+      "yesterday": "أمس"
+    },
+    "rich-history-utils-notification": {
+      "saving-failed": "فشل حفظ السجلّ الغني",
+      "update-failed": "فشل تحديث السجلّ الغني"
+    },
+    "run-query": {
+      "left-pane": "اللوحة اليسرى",
+      "right-pane": "اللوحة اليمنى",
+      "run-query-button": "تشغيل الاستعلام",
+      "switch-datasource-button": "تبديل مصدر البيانات وتشغيل الاستعلام"
+    },
+    "scoped-vars-from-span": {
+      "text": {
+        "span": "مقطع"
+      }
+    },
+    "scoped-vars-from-tags": {
+      "text": {
+        "tags": "الوسوم"
+      }
+    },
+    "scoped-vars-from-trace": {
+      "text": {
+        "trace": "تتبّع"
+      }
+    },
+    "search-bar-input": {
+      "placeholder-find": "بحث...",
+      "suffix": {
+        "tooltip-clear-input": "مسح الإدخال"
+      }
+    },
+    "secondary-actions": {
+      "add-from-query-library": "إضافة من الاستعلامات المحفوظة",
+      "query-add-button": "إضافة استعلام",
+      "query-add-button-aria-label": "إضافة استعلام",
+      "query-history-button": "سجلّ الاستعلامات",
+      "query-history-button-aria-label": "سجلّ الاستعلامات",
+      "query-inspector-button": "فاحص الاستعلامات",
+      "query-inspector-button-aria-label": "فاحص الاستعلامات",
+      "recent-queries-button": "الاستعلامات الأخيرة",
+      "recent-queries-button-aria-label": "الاستعلامات الأخيرة"
+    },
+    "show-all-spans": "إظهار جميع المقاطع",
+    "span-bar": {
+      "tooltip-critical-path": "مقطع على <1>المسار الحرج</1> للتتبّع / الطلب / سير العمل الكلي."
+    },
+    "span-bar-row": {
+      "tooltip-adaptive-traces-restored": "تمت الاستعادة بواسطة Adaptive Traces."
+    },
+    "span-detail": {
+      "label": {
+        "kind": "النوع:",
+        "library-name": "اسم المكتبة:",
+        "library-version": "إصدار المكتبة:",
+        "status": "الحالة:",
+        "status-message": "رسالة الحالة:",
+        "trace-state": "حالة التتبّع:"
+      },
+      "label-resource-attributes": "سمات المورد",
+      "label-span-attributes": "سمات المقطع",
+      "label-stack-trace": "تتبّع المكدّس",
+      "label-warnings": "التحذيرات",
+      "overview-items": {
+        "label": {
+          "child-count": "عدد الأبناء:",
+          "duration": "المدة:",
+          "service": "الخدمة:",
+          "start-time": "وقت البدء:"
+        }
+      },
+      "share-span": "مشاركة"
+    },
+    "span-flame-graph": {
+      "flame-graph": "الرسم البياني اللهبي"
+    },
+    "supplementary-result-error": {
+      "show-details": "إظهار التفاصيل"
+    },
+    "table": {
+      "no-data": "0 سلسلة مُرجَعة",
+      "title": "جدول",
+      "title-with-name": "جدول - {{name}}"
+    },
+    "time-sync-button": {
+      "aria-label-synced": "أوقات متزامنة",
+      "aria-label-unsynced": "أوقات غير متزامنة"
+    },
+    "timeline-collapser": {
+      "tooltip-collapse": "طيّ +1",
+      "tooltip-collapse-all": "طيّ الكل",
+      "tooltip-expand": "توسيع +1",
+      "tooltip-expand-all": "توسيع الكل"
+    },
+    "timeline-header-row": {
+      "title": "الخدمة والعملية"
+    },
+    "toolbar": {
+      "add-to-extensions": "إضافة",
+      "add-to-queryless-extensions": "الانتقال إلى وضع بلا استعلام",
+      "aria-label": "شريط أدوات الاستكشاف",
+      "copy-link": "نسخ عنوان URL",
+      "copy-link-abs-time": "نسخ عنوان URL المطلق",
+      "copy-links-absolute-category": "روابط URL متزامنة الوقت (شارك مع النطاق الزمني سليمًا)",
+      "copy-links-normal-category": "روابط URL عادية",
+      "copy-shortened-link": "نسخ عنوان URL المختصر",
+      "copy-shortened-link-abs-time": "نسخ عنوان URL المطلق المختصر",
+      "copy-shortened-link-label": "مشاركة",
+      "copy-shortened-link-menu": "فتح خيارات نسخ الرابط",
+      "refresh-picker-cancel": "إلغاء",
+      "refresh-picker-run": "تشغيل الاستعلام",
+      "split-close": " إغلاق ",
+      "split-close-tooltip": "إغلاق اللوحة المقسّمة",
+      "split-narrow": "تضييق اللوحة",
+      "split-title": "تقسيم",
+      "split-tooltip": "تقسيم اللوحة",
+      "split-widen": "توسيع اللوحة"
+    },
+    "trace-page-header": {
+      "aria-label-share-dropdown": "فتح قائمة خيارات مشاركة التتبّع",
+      "critical-path": "المسار الحرج",
+      "critical-path-tooltip": "يحدّد المقاطع في المسار الحرج—أطول تسلسل من المهام المعتمدة الذي يحدّد الحد الأدنى لمدة التتبّع.",
+      "duration": "المدة",
+      "errors": "الأخطاء",
+      "errors-tooltip": "يحدّد المقاطع التي تساوي حالتها خطأ.",
+      "export-started": "بدأ التصدير",
+      "filters": "المرشّحات",
+      "give-feedback": "ملاحظات",
+      "high-latency": "زمن استجابة عالٍ",
+      "high-latency-tooltip": "يحدّد أطول 10% من المقاطع في التتبّع (p90).",
+      "link-copied": "تم نسخ الرابط إلى الحافظة",
+      "overview": "نظرة عامة",
+      "path": "المسار",
+      "route": "المسار",
+      "services": "الخدمات",
+      "share": "مشاركة",
+      "share-copy-link": "نسخ الرابط",
+      "share-export-json": "التصدير كـ JSON",
+      "share-tooltip": "مشاركة التتبّع",
+      "start-time": "وقت البدء",
+      "target": "الهدف",
+      "title-share-thoughts-about-tracing-grafana": "شارك أفكارك حول التتبّع في Grafana.",
+      "tooltip-url": "{{route}} أو {{url}} أو {{target}} أو {{path}}",
+      "trace-id": "معرّف التتبّع",
+      "url": "URL"
+    },
+    "trace-view": {
+      "aria-label-copy": "نسخ إلى الحافظة",
+      "no-data": "لا توجد بيانات",
+      "tooltip-copy-icon": "تم النسخ"
+    },
+    "trace-view-container": {
+      "title-trace": "تتبّع"
+    },
+    "unconnected-node-graph-container": {
+      "count-warning": "({{numNodes}} عُقد، قد يكون التحميل بطيئًا)",
+      "title-node-graph": "رسم العُقد البياني"
+    },
+    "unthemed-logs": {
+      "description": {
+        "show-results-in-logs-visualisation": "إظهار النتائج في تصوّر السجلّات",
+        "show-results-in-table-visualisation": "إظهار النتائج في تصوّر الجدول"
+      },
+      "label": {
+        "logs": "السجلّات",
+        "table": "جدول"
+      },
+      "title-feedback": "ملاحظات",
+      "title-logs": "السجلّات",
+      "title-logs-volume": "حجم السجلّات"
+    },
+    "unthemed-viewing-layer": {
+      "reset-selection": "إعادة تعيين التحديد"
+    },
+    "unthemed-virtualized-trace-view": {
+      "title-scroll-to-top": "التمرير إلى الأعلى"
+    },
+    "use-focus-span-link": {
+      "create-focus-span-link": {
+        "link": {
+          "title": {
+            "deep-link-to-this-span": "رابط عميق إلى هذا المقطع"
+          }
+        }
+      }
+    }
+  },
   "export": {
     "json": {
       "cancel-button": "إلغاء",

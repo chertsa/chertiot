@@ -143,7 +143,8 @@ def validate_pair(en_path: Path, ns: str, ar_path: Path, require_complete: bool)
             # Plural form: i18next injects {{count}} implicitly, and some Arabic categories
             # (zero/two) read better without spelling the number. So {{count}} is optional per
             # form, but every NON-count variable must survive and no new variable may appear.
-            required = en_vars - {"{{count}}"}
+            count_vars = {v for v in en_vars if v.strip("{} ") == "count"}
+            required = en_vars - count_vars
             if not (required <= av_vars <= en_vars):
                 errors.append(f"[{ns}] {k}: interpolation vars differ en={sorted(en_vars)} ar={sorted(av_vars)}")
             if not (av_tags <= en_tags):
