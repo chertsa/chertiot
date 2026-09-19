@@ -1,0 +1,835 @@
+{
+  "axis-editor": {
+    "log-mode-options": {
+      "description": {
+        "split-the-buckets-based-on-size": "تقسيم الدلاء حسب الحجم"
+      },
+      "label": {
+        "split": "تقسيم"
+      }
+    },
+    "mode-options": {
+      "description": {
+        "split-the-buckets-based-on-count": "تقسيم الدلاء حسب العدد",
+        "split-the-buckets-based-on-size": "تقسيم الدلاء حسب الحجم"
+      },
+      "label": {
+        "count": "العدد",
+        "size": "الحجم"
+      }
+    },
+    "placeholder-auto": "تلقائي"
+  },
+  "basic-matcher-editor": {
+    "placeholder-value-or-variable": "قيمة أو متغير"
+  },
+  "binary-operation-options-editor": {
+    "label-operation": "العملية",
+    "placeholder-field-or-number": "حقل أو رقم",
+    "placeholder-fields-or-number": "حقل (حقول) أو رقم"
+  },
+  "calculate-field-transformer-editor": {
+    "calculation-modes": {
+      "label": {
+        "binary-operation": "عملية ثنائية",
+        "reduce-row": "اختزال الصف",
+        "row-index": "فهرس الصف",
+        "unary-operation": "عملية أحادية"
+      }
+    },
+    "label": {
+      "cumulative-functions": "الدوال التراكمية",
+      "window-functions": "دوال النافذة"
+    },
+    "label-alias": "اسم مستعار",
+    "label-mode": "الوضع",
+    "label-replace-all-fields": "استبدال جميع الحقول"
+  },
+  "calculate-heatmap": {
+    "add-heatmap-calculation-options": {
+      "name-x-bucket": "دلو X",
+      "name-y-bucket": "دلو Y",
+      "name-y-bucket-scale": "مقياس دلو Y"
+    }
+  },
+  "concatenate-transformer-editor": {
+    "label-label": "التسمية",
+    "label-name": "الاسم",
+    "name-modes": {
+      "label": {
+        "copy-frame-name-to-field": "نسخ اسم الإطار إلى اسم الحقل",
+        "ignore-the-frame-name": "تجاهل اسم الإطار",
+        "label-frame": "إضافة تسمية باسم الإطار"
+      }
+    },
+    "placeholder-frame": "إطار"
+  },
+  "config-from-query-transformer-editor": {
+    "label-apply-to": "تطبيق على",
+    "label-apply-to-options": "تطبيق على الخيارات",
+    "label-config-query": "استعلام الإعداد"
+  },
+  "convert-field-type-transformer-editor": {
+    "aria-label-add-a-convert-field-type-transformer": "إضافة تحويل نوع الحقل",
+    "aria-label-remove-convert-field-type-transformer": "إزالة تحويل نوع الحقل",
+    "convert-field-type": "تحويل نوع الحقل",
+    "description": {
+      "convert-to-specified-field-type": "تحويل حقل إلى نوع حقل محدد."
+    },
+    "label": {
+      "browser": "المتصفح",
+      "utc": "UTC"
+    },
+    "label-as": "كـ",
+    "label-date-format": "تنسيق التاريخ",
+    "label-field": "الحقل",
+    "label-input-format": "تنسيق الإدخال",
+    "label-join-with": "الربط بـ",
+    "label-set-timezone": "تعيين المنطقة الزمنية",
+    "name": {
+      "convert-field-type": "تحويل نوع الحقل"
+    },
+    "placeholder-type": "النوع",
+    "tags": {
+      "format-field": "تنسيق الحقل"
+    },
+    "tooltip-explicit-separator-joining-array-values": "استخدم فاصلًا صريحًا عند ربط قيم المصفوفة",
+    "tooltip-input-format": "حدّد تنسيق حقل الإدخال ليتمكّن Grafana من تحليل سلسلة التاريخ بشكل صحيح.",
+    "tooltip-specify-the-output-format": "حدّد تنسيق الإخراج.",
+    "tooltip-timezone-manually": "عيّن المنطقة الزمنية للتاريخ يدويًا"
+  },
+  "cumulative-options-editor": {
+    "label-calculation": "الحساب",
+    "label-field": "الحقل",
+    "placeholder-field": "الحقل"
+  },
+  "draggable-field-name": {
+    "rename-placeholder": "إعادة تسمية {{fieldName}}",
+    "title-drag-and-drop-to-reorder": "اسحب وأفلت لإعادة الترتيب",
+    "tooltip-disable": "تعطيل",
+    "tooltip-enable": "تفعيل"
+  },
+  "draggable-sort-order": {
+    "asc": "تصاعدي",
+    "desc": "تنازلي",
+    "off": "إيقاف"
+  },
+  "editors": {
+    "concatenate-transformer-editor": {
+      "description": {
+        "combine-all-fields": "دمج جميع الحقول في إطار واحد."
+      },
+      "name": {
+        "concatenate-fields": "دمج الحقول"
+      },
+      "tags": {
+        "combine": "دمج"
+      }
+    }
+  },
+  "enum-mapping-editor": {
+    "add-enum-value": "إضافة قيمة تعداد",
+    "generate-enum-values-from-data": "توليد قيم التعداد من البيانات"
+  },
+  "enum-mapping-row": {
+    "click-to-edit": "انقر للتعديل",
+    "drag-handle-label": "إعادة ترتيب صف تعيين التعداد",
+    "remove-enum-row-aria-label-delete-enum-row": "حذف صف التعداد",
+    "remove-enum-row-tooltip-delete": "حذف"
+  },
+  "extract-fields-transformer-editor": {
+    "description": {
+      "parse-fields-from-content": "تحليل الحقول من المحتوى (JSON، التسميات، إلخ)."
+    },
+    "field-name-picker-settings": {
+      "placeholderText": {
+        "select-field": "اختر حقلًا"
+      }
+    },
+    "label-delimiter": "الفاصل",
+    "label-format": "التنسيق",
+    "label-keep-time": "الاحتفاظ بالوقت",
+    "label-replace-all-fields": "استبدال جميع الحقول",
+    "label-source": "المصدر",
+    "name": {
+      "extract-fields": "استخراج الحقول"
+    },
+    "placeholder-auto": "تلقائي",
+    "placeholder-select-delimiter": "اختر الفاصل...",
+    "tooltip-regexp": "مثال: {{regexExample}}"
+  },
+  "field-config-mapping-handler-arguments-editor": {
+    "aria-label-threshold-color": "لون العتبة"
+  },
+  "field-lookup-transformer-editor": {
+    "description": {
+      "lookup-additional-fields-external-source": "استخدم قيمة حقل للبحث عن الدول أو الولايات أو المطارات."
+    },
+    "field-name-picker-settings": {
+      "noFieldsMessage": {
+        "no-text-fields-found": "لم يُعثر على حقول نصية"
+      },
+      "placeholderText": {
+        "select-text-field": "اختر حقلًا نصيًا"
+      }
+    },
+    "label-field": "الحقل",
+    "label-lookup": "بحث",
+    "name": {
+      "lookup-fields-from-resource": "البحث عن الحقول من المورد"
+    }
+  },
+  "field-to-config-mapping-editor": {
+    "additional-settings": "إعدادات إضافية",
+    "field": "الحقل",
+    "select": "اختيار",
+    "use-as": "استخدام كـ"
+  },
+  "filter-by-name-transformer-editor": {
+    "description": {
+      "remove-part-query-results-regex-pattern": "إزالة أجزاء من نتائج الاستعلام باستخدام نمط تعبير نمطي."
+    },
+    "label-from-variable": "من متغير",
+    "label-identifier": "المعرّف",
+    "label-use-variable": "استخدام متغير",
+    "label-variable": "متغير",
+    "name": {
+      "filter-fields-by-name": "تصفية الحقول بالاسم"
+    },
+    "placeholder-regular-expression-pattern": "نمط تعبير نمطي"
+  },
+  "filter-by-ref-id-transformer-editor": {
+    "description": {
+      "filter-data-by-query-useful-sharing-results": "إزالة الصفوف من البيانات بناءً على الاستعلام الأصلي"
+    },
+    "name": {
+      "filter-data-by-query": "تصفية البيانات حسب الاستعلام"
+    }
+  },
+  "filter-by-value-filter-editor": {
+    "aria-label-remove-filter": "إزالة المرشّح",
+    "label-field": "الحقل",
+    "label-match": "المطابقة",
+    "label-value": "القيمة",
+    "placeholder-field-name": "اسم الحقل",
+    "placeholder-select-test": "اختر الاختبار"
+  },
+  "filter-by-value-transformer-editor": {
+    "add-condition": "إضافة شرط",
+    "description": {
+      "remove-rows-query-results-user-defined-filters": "إزالة الصفوف من نتائج الاستعلام باستخدام مرشّحات مُعرّفة من المستخدم."
+    },
+    "filter-match": {
+      "label": {
+        "match-all": "مطابقة الكل",
+        "match-any": "مطابقة أي"
+      }
+    },
+    "filter-types": {
+      "label": {
+        "exclude": "استبعاد",
+        "include": "تضمين"
+      }
+    },
+    "label-conditions": "الشروط",
+    "label-filter-type": "نوع المرشّح",
+    "name": {
+      "filter-data-by-values": "تصفية البيانات حسب القيم"
+    }
+  },
+  "format-string-transfomer-editor": {
+    "field-name-picker-settings": {
+      "noFieldsMessage": {
+        "no-text-fields-found": "لم يُعثر على حقول نصية"
+      },
+      "placeholderText": {
+        "select-text-field": "اختر حقلًا نصيًا"
+      }
+    },
+    "label-field": "الحقل",
+    "label-format": "التنسيق",
+    "label-substring-range": "نطاق السلسلة الفرعية"
+  },
+  "format-string-transformer-editor": {
+    "description": {
+      "manipulate-string-fields-formatting": "التحكّم في تنسيق الحقول النصية."
+    },
+    "name": {
+      "format-string": "تنسيق السلسلة"
+    }
+  },
+  "format-time-transfomer-editor": {
+    "label-format": "التنسيق",
+    "label-set-timezone": "تعيين المنطقة الزمنية",
+    "label-time-field": "الحقل الزمني",
+    "tooltip-format": "تنسيق الإخراج للحقل المحدد كـ <2>سلسلة تنسيق Moment.js</2>.",
+    "tooltip-timezone-manually": "عيّن المنطقة الزمنية للتاريخ يدويًا"
+  },
+  "format-time-transformer-editor": {
+    "description": {
+      "set-based-on-time": "تعيين تنسيق إخراج حقل زمني"
+    },
+    "name": {
+      "format-time": "تنسيق الوقت"
+    }
+  },
+  "get-calculate-field-transform-registry-item": {
+    "description": {
+      "values-calculate-field": "استخدم قيم الصف لحساب حقل جديد."
+    },
+    "name": {
+      "add-field-from-calculation": "إضافة حقل من حساب"
+    }
+  },
+  "get-config-from-data-transformer": {
+    "description": {
+      "set-unit-min-max-and-more": "تعيين الوحدة والحد الأدنى والأقصى والمزيد."
+    },
+    "name": {
+      "config-from-query-results": "الإعداد من نتائج الاستعلام"
+    }
+  },
+  "get-heatmap-transformer": {
+    "description": {
+      "generate-heatmap-data-from-source": "توليد بيانات الخريطة الحرارية من بيانات المصدر."
+    },
+    "name": {
+      "create-heatmap": "إنشاء خريطة حرارية"
+    }
+  },
+  "get-join-by-labels-transformer": {
+    "description": {
+      "flatten-labeled-results-table-joined-labels": "تسطيح النتائج المُسمّاة في جدول مرتبط بالتسميات."
+    },
+    "name": {
+      "join-by-labels": "الربط حسب التسميات"
+    }
+  },
+  "get-partition-by-values-transformer": {
+    "description": {
+      "split-oneframe-dataset-multiple-series": "تقسيم مجموعة بيانات بإطار واحد إلى سلاسل متعددة."
+    },
+    "name": {
+      "partition-by-values": "التقسيم حسب القيم"
+    }
+  },
+  "get-rows-to-fields-transformer": {
+    "description": {
+      "convert-field-dynamic-config": "تحويل كل صف إلى حقل بإعداد ديناميكي."
+    },
+    "name": {
+      "rows-to-fields": "الصفوف إلى حقول"
+    }
+  },
+  "get-spatial-transformer": {
+    "description": {
+      "apply-spatial-operations-to-query-results": "تطبيق العمليات المكانية على نتائج الاستعلام."
+    },
+    "name": {
+      "spatial-operations": "العمليات المكانية"
+    }
+  },
+  "get-timezone-options": {
+    "label": {
+      "browser": "المتصفح",
+      "utc": "UTC"
+    }
+  },
+  "get-tooltips": {
+    "description": "مسار صالح لكائن json.",
+    "json-value": "قيمة JSON:",
+    "map-valid-paths": {
+      "description": {
+        "extract-fields-from-object": "=> استخراج الحقول من الكائن",
+        "extract-value": "=> استخراج <1>{{ value }}</1>",
+        "extract-value-first-element": "=> استخراج العنصر الأول <1>{{ value }}</1>",
+        "extract-value-second-element": "=> استخراج العنصر الثاني <1>{{ value }}</1>"
+      }
+    },
+    "valid-paths": "المسارات الصالحة:"
+  },
+  "get-transformer-option-pane": {
+    "root": {
+      "title": {
+        "root": "الجذر"
+      }
+    }
+  },
+  "group-by-field-configuration": {
+    "options": {
+      "label": {
+        "calculate": "حساب",
+        "group-by": "التجميع حسب"
+      }
+    },
+    "placeholder-calculations": "اختر الحساب (الحسابات)",
+    "placeholder-ignored": "مُتجاهَل",
+    "placeholder-select-stats": "اختر الإحصاءات"
+  },
+  "group-by-transformer-editor": {
+    "description": {
+      "group-series-by-field-calculate-stats": "تجميع البيانات حسب قيمة حقل وإنشاء بيانات مجمّعة."
+    },
+    "name": {
+      "group-by": "التجميع حسب"
+    },
+    "title-calc-alert": "لن يكون للحسابات تأثير إذا لم يُجمَّع أي حقل"
+  },
+  "group-to-nested-table": {
+    "aria-label-matcher-type": "اختر نوع المطابِق",
+    "aria-label-operation": "اختر العملية",
+    "aria-label-remove-rule": "إزالة القاعدة",
+    "button-add-rule": "إضافة قاعدة",
+    "label-calculations": "الحساب (الحسابات)",
+    "label-keep-nested-field": "الاحتفاظ بالحقل (الحقول) المتداخلة",
+    "placeholder": "اختر العملية",
+    "tooltip-keep-nested-field": "عند التفعيل، تُحفظ قيم الحقل الخام أيضًا في الجدول الفرعي المتداخل بجوار العمود المجمّع."
+  },
+  "group-to-nested-table-transformer-editor": {
+    "description": {
+      "group-by-field-value": "تجميع البيانات حسب قيمة حقل وإنشاء جداول متداخلة بالبيانات المجمّعة."
+    },
+    "description-expand-nested-rows": "إذا فُعّل، ستُوسَّع جميع الصفوف المتداخلة عند تحميل اللوحة",
+    "description-show-field-names": "إذا فُعّل، ستعرض الجداول المتداخلة أسماء الحقول كترويسة جدول",
+    "label-expand-nested-rows-by-default": "توسيع الصفوف المتداخلة افتراضيًا",
+    "label-show-field-names-in-nested-tables": "إظهار أسماء الحقول في الجداول المتداخلة",
+    "name": {
+      "group-to-nested-tables": "التجميع إلى جداول متداخلة"
+    },
+    "title-calc-alert": "لن يكون للحسابات تأثير إذا لم يُجمَّع أي حقل."
+  },
+  "grouping-to-matrix-transformer-editor": {
+    "description": {
+      "summarize-and-reorganize-data": "تلخيص البيانات وإعادة تنظيمها بناءً على ثلاثة حقول."
+    },
+    "label-cell-value": "قيمة الخلية",
+    "label-column": "العمود",
+    "label-empty-value": "القيمة الفارغة",
+    "label-row": "الصف",
+    "name": {
+      "grouping-to-matrix": "التجميع إلى مصفوفة"
+    }
+  },
+  "heatmap": {
+    "is-applicable-description": "يتطلب تحويل الخريطة الحرارية حقولًا ببيانات متوافقة مع الخريطة الحرارية. لم يُعثر على حقول ببيانات خريطة حرارية."
+  },
+  "histogram-transformer-editor": {
+    "description": {
+      "calculate-histogram-from-input-data": "حساب مدرّج تكراري من بيانات الإدخال."
+    },
+    "name": {
+      "histogram": "مدرّج تكراري"
+    },
+    "placeholder-auto": "تلقائي",
+    "placeholder-default": "الافتراضي: 30",
+    "placeholder-none": "بلا"
+  },
+  "index-options-editor": {
+    "label-as-percentile": "كنسبة مئوية",
+    "tooltip-transform-index-percentile": "تحويل فهرس الصف كنسبة مئوية."
+  },
+  "join-by-field-transformer-editor": {
+    "description": {
+      "combine-rows-from-2-tables": "دمج الصفوف من جدولين أو أكثر، بناءً على حقل مرتبط."
+    },
+    "name": {
+      "join-by-field": "الربط حسب الحقل"
+    }
+  },
+  "join-by-labels-transformer-editor": {
+    "error-required": "مطلوب",
+    "info": {
+      "input-contain-labels": "الإدخال لا يحتوي على أي تسميات",
+      "no-input-or-labels-found": "لم يُعثر على إدخال (أو تسميات)",
+      "title-no-input-found": "لم يُعثر على إدخال",
+      "title-no-labels-found": "لم يُعثر على تسميات"
+    },
+    "label-join": "ربط",
+    "label-value": "القيمة",
+    "tooltip-select-label-indicating-values": "اختر التسمية التي تشير إلى اسم القيم"
+  },
+  "jsonpath-editor": {
+    "add-path": "إضافة مسار",
+    "label-alias": "اسم مستعار",
+    "label-field": "الحقل",
+    "placeholder-valid-objectvalue": "مسار json صالح، مثال: \"object.value1\" أو \"object.value2[0]\"",
+    "tooltip-remove-path": "إزالة المسار"
+  },
+  "labels-as-fields-transformer-editor": {
+    "label-labels": "التسميات",
+    "label-mode": "الوضع",
+    "label-value-field-name": "اسم حقل القيمة",
+    "modes": {
+      "label": {
+        "columns": "أعمدة",
+        "rows": "صفوف"
+      }
+    },
+    "placeholder-optional-select-label": "(اختياري) اختر تسمية",
+    "tooltip-replace-value-field-label": "استبدال اسم حقل القيمة بتسمية"
+  },
+  "labels-to-fields-transformer-editor": {
+    "description": {
+      "groups-series-time-return-labels-tags-fields": "تجميع السلاسل حسب الوقت وإرجاع التسميات أو الوسوم كحقول."
+    },
+    "name": {
+      "labels-to-fields": "التسميات إلى حقول"
+    }
+  },
+  "limit-transformer-editor": {
+    "description": {
+      "limit-number-items-displayed": "تحديد عدد العناصر المعروضة."
+    },
+    "name": {
+      "limit": "الحد"
+    },
+    "placeholder-value-or-variable": "قيمة أو متغير"
+  },
+  "long-info": {
+    "ascending-order-duplicates": "الوقت بترتيب تصاعدي، لكن قد يحتوي على تكرارات",
+    "multiple-value-fields-may-exist": "قد توجد حقول قيم متعددة",
+    "single-frame": "إطار واحد",
+    "st-field-is-time": "الحقل الأول هو الحقل الزمني",
+    "string-values-separate": "تُمثَّل القيم النصية كحقول منفصلة بدلًا من تسميات"
+  },
+  "merge-transformer-editor": {
+    "description": {
+      "merge-multiple-series": "دمج سلاسل متعددة. ستُجمع القيم في صف واحد."
+    },
+    "merge-effect-applied-single-frame": "ليس للدمج تأثير عند تطبيقه على إطار واحد.",
+    "name": {
+      "merge": "دمج السلاسل/الجداول"
+    }
+  },
+  "multi-info": {
+    "all-values-are-numeric": "جميع القيم رقمية",
+    "frame-fields-value": "يحتوي كل إطار على حقلين: {{field1}}، {{field2}}",
+    "multiple-frames": "إطارات متعددة",
+    "string-values-are-represented-as-labels": "تُمثَّل القيم النصية كتسميات",
+    "time-in-ascending-order": "الوقت بترتيب تصاعدي"
+  },
+  "organize-fields-transformer-editor": {
+    "description": {
+      "reorder-hide-or-rename-fields": "إعادة ترتيب الحقول أو إخفاؤها أو إعادة تسميتها."
+    },
+    "field-order": "ترتيب الحقول",
+    "field-order-auto": "تلقائي",
+    "field-order-manual": "يدوي",
+    "first-frame-warning": "تنظيم الحقول يعمل فقط مع إطار واحد. فكّر في تطبيق تحويل ربط أو تصفية الإدخال أولًا.",
+    "name": {
+      "organize-fields": "تنظيم الحقول بالاسم"
+    }
+  },
+  "partion-by-values-editor": {
+    "tooltip-naming": "يحدّد كيفية عرض أسماء الحقول المحددة. عادةً ما يكون اسم الإطار أفضل للبيانات الجدولية"
+  },
+  "partition-by-values-editor": {
+    "keep-fields-options": {
+      "label": {
+        "no": "لا",
+        "yes": "نعم"
+      }
+    },
+    "label-field": "الحقل",
+    "label-keep-fields": "الاحتفاظ بالحقول",
+    "label-naming": "التسمية",
+    "label-select-field": "اختر حقلًا",
+    "naming-modes-options": {
+      "label": {
+        "as-frame-name": "كاسم إطار",
+        "as-label": "كتسمية"
+      }
+    },
+    "partition-values-works-single-frame": "التقسيم حسب القيم يعمل فقط مع إطار واحد.",
+    "tooltip-keeps-partition-fields-frames": "يحتفظ بحقول التقسيم في الإطارات"
+  },
+  "prepare-time-series": {
+    "description": {
+      "stretch-data-frames": "تمديد إطارات البيانات من التنسيق العريض إلى التنسيق الطويل."
+    },
+    "name": {
+      "prepare-time-series": "تحضير السلاسل الزمنية"
+    }
+  },
+  "prepare-time-series-editor": {
+    "label-format": "التنسيق",
+    "label-info": "معلومات",
+    "long-info": {
+      "description": {
+        "convert-each-frame-to-long-format": "تحويل كل إطار إلى التنسيق الطويل"
+      },
+      "label": {
+        "long-time-series": "سلاسل زمنية طويلة"
+      }
+    },
+    "multi-info": {
+      "description": {
+        "creates-frame-timenumber": "ينشئ إطارًا جديدًا لكل زوج وقت/رقم"
+      },
+      "label": {
+        "multiframe-time-series": "سلاسل زمنية متعددة الإطارات"
+      }
+    },
+    "wide-info": {
+      "description": {
+        "creates-single-frame-joined": "ينشئ إطارًا واحدًا مرتبطًا بالوقت"
+      },
+      "label": {
+        "wide-time-series": "سلاسل زمنية عريضة"
+      }
+    }
+  },
+  "query-validation-message": "فشل استعلام واحد أو أكثر في إرجاع الحقول. يمكن لهذا التحويل الإشارة فقط إلى الحقول من الاستعلامات ذات النتيجة الناجحة والمرئية.",
+  "range-matcher-editor": {
+    "and": "و",
+    "placeholder-from": "من",
+    "placeholder-to": "إلى"
+  },
+  "reduce-row-options-editor": {
+    "label-calculation": "الحساب",
+    "label-operation": "العملية"
+  },
+  "reduce-transformer-editor": {
+    "description": {
+      "reduce-to-single-value": "اختزال جميع الصفوف أو نقاط البيانات إلى قيمة واحدة (مثل الحد الأقصى، المتوسط)."
+    },
+    "label-calculations": "الحسابات",
+    "label-include-time": "تضمين الوقت",
+    "label-labels-to-fields": "التسميات إلى حقول",
+    "label-mode": "الوضع",
+    "modes": {
+      "description": {
+        "collapse-field-single-value": "طيّ كل حقل إلى قيمة واحدة",
+        "create-table-series-value": "إنشاء جدول بصف واحد لكل قيمة سلسلة"
+      },
+      "label": {
+        "reduce-fields": "اختزال الحقول",
+        "series-to-rows": "السلاسل إلى صفوف"
+      }
+    },
+    "name": {
+      "reduce": "اختزال"
+    },
+    "placeholder-choose-stat": "اختر الإحصاء"
+  },
+  "regex-matcher-editor": {
+    "placeholder-value-or-variable": "قيمة أو متغير",
+    "variable-regex-documentation": "يُنسّق المتغير متعدد القيم إلى سلسلة تعبير نمطي"
+  },
+  "regression": {
+    "description": {
+      "create-new-data-frame": "إنشاء إطار بيانات جديد يحتوي على قيم مُتنبَّأ بها بواسطة نموذج إحصائي."
+    },
+    "name": {
+      "trendline": "خط الاتجاه"
+    }
+  },
+  "regression-transformer-editor": {
+    "label": {
+      "cubic": "تكعيبي",
+      "decic": "من الدرجة العاشرة",
+      "nonic": "من الدرجة التاسعة",
+      "octic": "من الدرجة الثامنة",
+      "quadratic": "تربيعي",
+      "quartic": "من الدرجة الرابعة",
+      "quintic": "من الدرجة الخامسة",
+      "septic": "من الدرجة السابعة",
+      "sextic": "من الدرجة السادسة"
+    },
+    "label-degree": "الدرجة",
+    "label-model-type": "نوع النموذج",
+    "label-predicted-points": "النقاط المُتنبَّأ بها",
+    "label-x-field": "حقل X",
+    "label-y-field": "حقل Y",
+    "model-type-options": {
+      "label": {
+        "linear": "خطي",
+        "polynomial": "كثير الحدود"
+      }
+    },
+    "regression": "انحدار",
+    "tags": {
+      "regression-analysis": "تحليل الانحدار"
+    },
+    "tooltip-high-degree-polynomial": "يمكن أن تؤدي كثيرات الحدود عالية الدرجة (مثل الدرجة 4 أو أعلى) إلى اتجاهات مضلّلة وملاءمات غير مستقرة. تابع بحذر.",
+    "tooltip-number-of-xy-points-to-predict": "عدد نقاط X,Y المراد التنبؤ بها"
+  },
+  "rename-by-regex-transformer": {
+    "description": {
+      "rename-parts-using-regex": "إعادة تسمية أجزاء من نتائج الاستعلام باستخدام تعبير نمطي ونمط استبدال."
+    },
+    "name": {
+      "rename-fields-by-regex": "إعادة تسمية الحقول بتعبير نمطي"
+    }
+  },
+  "rename-by-regex-transformer-editor": {
+    "label-match": "المطابقة",
+    "label-replace": "الاستبدال",
+    "placeholder-regular-expression-pattern": "نمط تعبير نمطي",
+    "placeholder-replacement-pattern": "نمط الاستبدال"
+  },
+  "series-to-fields-transformer-editor": {
+    "label-field": "الحقل",
+    "label-mode": "الوضع",
+    "modes": {
+      "description": {
+        "combine-data-from-two-tables": "دمج البيانات من جدولين عند وجود قيم متطابقة في حقل مشترك بينهما.",
+        "join-on-a-field": "الربط على قيمة حقل بقيم مكرّرة. ربط خارجي غير فعّال يُستخدم بشكل أفضل للبيانات الجدولية (مثل SQL).",
+        "keep-all-rows": "الاحتفاظ بجميع الصفوف من أي جدول بقيمة. الربط على قيم حقل مميّزة. فعّال ويُستخدم بشكل أفضل للسلاسل الزمنية."
+      },
+      "label": {
+        "inner": "داخلي",
+        "outer-tabular": "خارجي (جدولي)",
+        "outer-time-series": "خارجي (سلاسل زمنية)"
+      }
+    }
+  },
+  "series-to-rows-transformer-editor": {
+    "description": {
+      "merge-multiple-series": "دمج سلاسل متعددة. إرجاع الوقت والمقياس والقيم كصف."
+    },
+    "name": {
+      "series-to-rows": "السلاسل إلى صفوف"
+    }
+  },
+  "smoothing": {
+    "description": "تقليل الضوضاء في بيانات السلاسل الزمنية عبر تقليل العيّنات التكيّفي.",
+    "effective-resolution": "الفعّالة: {{value}}",
+    "effective-resolution-tooltip": "الدقّة محدودة بضعف عدد نقاط البيانات ({{points}}).",
+    "is-applicable-description": "يتطلب تحويل التنعيم إطار سلاسل زمنية واحدًا على الأقل ليعمل. ليس لديك أي منها حاليًا.",
+    "name": "التنعيم",
+    "resolution": {
+      "label": "الدقّة",
+      "tooltip": "يتحكّم في شدة التنعيم. القيم الأقل تُنشئ تنعيمًا أكثر قوة. تُعرض البيانات الأصلية والمُنعَّمة معًا."
+    }
+  },
+  "sort-by-transformer-editor": {
+    "description": {
+      "sort-fields": "فرز الحقول في إطار."
+    },
+    "label-field": "الحقل",
+    "label-reverse": "عكس",
+    "name": {
+      "sort-by": "الفرز حسب"
+    },
+    "placeholder-select-field": "اختر حقلًا"
+  },
+  "supplier": {
+    "description": {
+      "apply-spatial-operations-to-the-geometry": "تطبيق العمليات المكانية على الهندسة",
+      "create-a-line-between-two-points": "إنشاء خط بين نقطتين",
+      "geometry-define-field-headingdistancearea": "استخدام الهندسة لتعريف حقل جديد (الاتجاه/المسافة/المساحة)"
+    },
+    "label": {
+      "area": "المساحة",
+      "as-line": "كخط",
+      "calculate-value": "حساب القيمة",
+      "distance": "المسافة",
+      "heading": "الاتجاه",
+      "line-builder": "منشئ الخطوط",
+      "prepare-spatial-field": "تحضير الحقل المكاني",
+      "transform": "تحويل"
+    }
+  },
+  "time-series-table": {
+    "description": {
+      "convert-to-table-rows": "تحويل بيانات السلاسل الزمنية إلى صفوف جدول بحيث يمكن عرضها بتنسيق جدولي أو مخطط مصغّر."
+    },
+    "is-applicable-description": {
+      "requires-time-series-frame": "يتطلب تحويل السلاسل الزمنية إلى جدول إطار سلاسل زمنية واحدًا على الأقل ليعمل. ليس لديك أي منها حاليًا."
+    },
+    "name": {
+      "time-series-to-table": "السلاسل الزمنية إلى جدول"
+    }
+  },
+  "time-series-table-transform-editor": {
+    "label-stat": "الإحصاء",
+    "label-time-field": "الحقل الزمني",
+    "tooltip-statistic-should-calculated-series": "الإحصاء الذي ينبغي حسابه لهذه السلسلة الزمنية.",
+    "tooltip-time-field": "الحقل الزمني الذي سيُستخدم للسلسلة الزمنية. إذا لم يُحدَّد، سيُستخدم أول حقل يُعثر عليه."
+  },
+  "transformation-editor": {
+    "loading": "جارٍ تحميل المحرّر..."
+  },
+  "transpose-transfomer-editor": {
+    "label-first-field-name": "اسم الحقل الأول",
+    "label-remaining-fields-name": "اسم الحقول المتبقية",
+    "placeholder-field": "الحقل",
+    "placeholder-value": "القيمة",
+    "tooltip-name-for-value-fields": "اسم حقول القيمة"
+  },
+  "transpose-transformer-editor": {
+    "description": {
+      "transpose-data-frame": "تبديل إطار البيانات (تبديل الصفوف والأعمدة)."
+    },
+    "name": {
+      "transpose": "تبديل"
+    },
+    "tags": {
+      "pivot": "محوري",
+      "transform": "تحويل",
+      "translate": "ترجمة"
+    }
+  },
+  "unary-operation-editor": {
+    "label-operation": "العملية",
+    "placeholder-field": "الحقل"
+  },
+  "utils": {
+    "get-categories-labels": {
+      "calculate-new-fields": "حساب حقول جديدة",
+      "combine": "دمج",
+      "create-new-visualization": "إنشاء تصوّر جديد",
+      "filter": "تصفية",
+      "perform-spatial-operations": "إجراء عمليات مكانية",
+      "reformat": "إعادة التنسيق",
+      "reorder-and-rename": "إعادة الترتيب والتسمية"
+    },
+    "special-value-options": {
+      "description": {
+        "boolean-false": "قيمة منطقية خاطئة",
+        "boolean-true": "قيمة منطقية صحيحة",
+        "empty-string": "سلسلة فارغة",
+        "null-value": "قيمة فارغة (Null)",
+        "number-value": "القيمة الرقمية 0"
+      },
+      "label": {
+        "boolean-false": "خطأ",
+        "boolean-true": "صحيح",
+        "empty-string": "فارغ",
+        "null-value": "Null",
+        "number-value": "صفر"
+      }
+    }
+  },
+  "wide-info": {
+    "multiple-value-fields-of-any-type": "حقول قيم متعددة من أي نوع",
+    "single-frame": "إطار واحد",
+    "st-field-is-shared-time": "الحقل الأول هو الحقل الزمني المشترك",
+    "time-in-ascending-order": "الوقت بترتيب تصاعدي"
+  },
+  "window-options-editor": {
+    "label-calculation": "الحساب",
+    "label-field": "الحقل",
+    "label-type": "النوع",
+    "label-window-size": "حجم النافذة",
+    "label-window-size-mode": "وضع حجم النافذة",
+    "label-window-size-percent": "حجم النافذة %",
+    "placeholder-auto": "تلقائي",
+    "placeholder-field": "الحقل",
+    "tooltip-window-size": "حجم النافذة",
+    "tooltip-window-size-percent": "عيّن حجم النافذة كنسبة مئوية من إجمالي البيانات",
+    "type-options": {
+      "label": {
+        "centered": "مركزي",
+        "trailing": "لاحق"
+      }
+    },
+    "window-size-mode-options": {
+      "label": {
+        "fixed": "ثابت",
+        "percentage": "نسبة مئوية"
+      }
+    }
+  }
+}

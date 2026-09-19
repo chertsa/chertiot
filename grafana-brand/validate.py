@@ -46,7 +46,7 @@ IDENTICAL_OK = set(PROTECTED) | {
     "Logfmt", "logfmt", "Regex", "regex",  # log/query format & syntax names
     "Kubernetes", "OnCall", "SLO", "SLOs", "IRM", "Grafana Quaderno", "Grafana Alloy", "k6",  # product/feature names
     "RPM", "hz", "Hz", "PSI",  # engineering unit abbreviations
-    "csv", "json", "txt", "ms", "ns", "OTel",  # lowercase file-format / unit / product tokens
+    "csv", "json", "txt", "ms", "ns", "OTel", "Null", "NaN",  # lowercase file-format / unit / value tokens
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")
