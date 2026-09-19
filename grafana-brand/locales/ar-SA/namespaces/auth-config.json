@@ -144,7 +144,8 @@
     "validate-id-token-label": "التحقق من رمز الهوية",
     "workload-identity-token-file-description": "مسار الملف إلى ملف الرمز المستخدم للمصادقة مع موفّر OAuth2. مطلوب فقط عند ضبط مصادقة العميل على \"workload_identity\". الافتراضي هو /var/run/secrets/azure/tokens/azure-identity-token.",
     "workload-identity-token-file-label": "ملف رمز {{ workloadIdentityLabel }}",
-    "workload-identity-token-file-required": "يجب ضبط هذا الحقل عند ضبط مصادقة العميل على \"Workload identity\"."
+    "workload-identity-token-file-required": "يجب ضبط هذا الحقل عند ضبط مصادقة العميل على \"Workload identity\".",
+    "team-ids-attribute-path-required": "يجب ضبط هذا الحقل إذا هُيّئت \"{{ teamIDsLabel }}\"."
   },
   "get-page-nav": {
     "subTitle": {

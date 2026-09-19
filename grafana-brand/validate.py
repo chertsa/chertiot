@@ -49,7 +49,8 @@ IDENTICAL_OK = set(PROTECTED) | {
     "csv", "json", "txt", "ms", "ns", "OTel", "Null", "NaN", "UUID", "URL",  # lowercase file-format / unit / value tokens
     "Webhook", "Webhooks", "Bitbucket", "GitHub", "GitLab", "GitOps", "Terraform", "Kubectl",
     "GitHub Enterprise Server",  # SCM/product names kept Latin
-    "Alertmanager", "Grafana Alertmanager", "Mimir Alertmanager", "Mimir",  # alerting product names
+    "Alertmanager", "Grafana Alertmanager", "Mimir Alertmanager", "Mimir", "Cortex",  # alerting product names
+    "templates", "template_files",  # Alertmanager YAML config section names
 }
 # Duration/interval literals (Grafana's own input syntax) are code, not prose — kept identical.
 DURATION_RE = re.compile(r"^\d+(?:\.\d+)?(?:ns|µs|us|ms|s|m|h|d|w|y|M)$")
