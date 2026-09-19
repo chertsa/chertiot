@@ -3,6 +3,7 @@ name: images
 #  - chertiot/caddy:<ver>-l4       (xcaddy: layer4 + replace-response)
 #  - chertiot/tb:<ver>-bN          (ThingsBoard CE + brand patch series, thingsboard-brand/build.sh)
 #  - chertiot/nodered:<ver>-bN     (Node-RED + Arabic ar-AR default, LTR-only, nodered-brand/Dockerfile)
+#  - chertiot/grafana:<ver>-bN     (Grafana + Arabic ar-SA locale, LTR-only, grafana-brand/build.sh)
 on:
   workflow_dispatch:
   push:
@@ -38,6 +39,23 @@ jobs:
           IMG=ghcr.io/${{ github.repository_owner }}/chertiot-nodered:${VER}-b${BN}
           docker build --build-arg NODERED_VERSION=${VER} -t "$IMG" nodered-brand/
           docker push "$IMG"
+  grafana:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120        # Go + Node + webpack full frontend build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: docker/login-action@v3
+        with: { registry: ghcr.io, username: "${{ github.actor }}", password: "${{ secrets.GITHUB_TOKEN }}" }
+      # Fail closed on tag/commit mismatch; register ar-SA; install + schema-validate locales;
+      # run the ar-SA runtime fallback test and the Grafana jest registration tests; docker build.
+      - run: RUN_GRAFANA_JEST=1 grafana-brand/build.sh
+      - run: grafana-brand/smoke.sh "$(cat grafana-brand/LAST_IMAGE)"
+      - run: |
+          IMG=$(cat grafana-brand/LAST_IMAGE)
+          docker tag "$IMG" "ghcr.io/${{ github.repository_owner }}/chertiot-grafana:${IMG#chertiot/grafana:}"
+          docker push "ghcr.io/${{ github.repository_owner }}/chertiot-grafana:${IMG#chertiot/grafana:}"
   thingsboard:
     runs-on: ubuntu-latest
     timeout-minutes: 120

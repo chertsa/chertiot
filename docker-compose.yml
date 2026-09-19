@@ -229,7 +229,7 @@ services:
 
   grafana:
     <<: [*restart, *logging]
-    image: grafana/grafana:${GRAFANA_VERSION}
+    image: ${GRAFANA_IMAGE:-grafana/grafana:${GRAFANA_VERSION}}
     profiles: [core]
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
