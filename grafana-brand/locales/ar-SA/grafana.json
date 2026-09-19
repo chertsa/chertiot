@@ -1297,6 +1297,98 @@
       "title": "رسم بياني"
     }
   },
+  "heatmap": {
+    "calculate-from-data-options": {
+      "label-no": "لا",
+      "label-yes": "نعم"
+    },
+    "category-cell-display": "عرض الخلية",
+    "category-colors": "الألوان",
+    "category-exemplars": "الأمثلة التوضيحية",
+    "category-heatmap": "خريطة حرارية",
+    "category-legend": "وسيلة الإيضاح",
+    "category-tooltip": "التلميح",
+    "category-y-axis": "المحور Y",
+    "error": {
+      "no-y-fields": "لم يُعثر على حقول رقمية للخريطة الحرارية"
+    },
+    "mode-options": {
+      "label-opacity": "العتامة",
+      "label-scheme": "المخطط اللوني"
+    },
+    "name-axis-label": "تسمية المحور",
+    "name-axis-width": "عرض المحور",
+    "name-calculate-from-data": "الحساب من البيانات",
+    "name-cell-gap": "فجوة الخلية",
+    "name-color": "اللون",
+    "name-decimals": "المنازل العشرية",
+    "name-end-color-at-value": "إنهاء مقياس الألوان عند القيمة",
+    "name-exponent": "الأس",
+    "name-hide-cells-gt": "إخفاء الخلايا بقيم >=",
+    "name-hide-cells-lt": "إخفاء الخلايا بقيم <=",
+    "name-max-height": "الحد الأقصى للارتفاع",
+    "name-max-value": "القيمة القصوى",
+    "name-max-width": "الحد الأقصى للعرض",
+    "name-min-value": "القيمة الدنيا",
+    "name-mode": "الوضع",
+    "name-placement": "الموضع",
+    "name-reverse": "عكس",
+    "name-scale": "المقياس",
+    "name-scheme": "المخطط اللوني",
+    "name-show-color-scale": "إظهار مقياس الألوان",
+    "name-show-histogram": "إظهار المدرّج التكراري (المحور Y)",
+    "name-show-legend": "إظهار وسيلة الإيضاح",
+    "name-start-color-from-value": "بدء مقياس الألوان من القيمة",
+    "name-steps": "الخطوات",
+    "name-tick-alignment": "محاذاة علامات التدرّج",
+    "name-tooltip-mode": "وضع التلميح",
+    "name-unit": "الوحدة",
+    "name-value-name": "اسم القيمة",
+    "name-y-axis-scale": "مقياس المحور Y",
+    "name-y-bucket-scale": "مقياس مجموعة Y",
+    "placeholder-axis-label": "تلقائي",
+    "placeholder-axis-width": "تلقائي",
+    "placeholder-decimals": "تلقائي",
+    "placeholder-end-color-at-value": "تلقائي (الأقصى)",
+    "placeholder-hide-cells-gt": "بلا",
+    "placeholder-hide-cells-lt": "بلا",
+    "placeholder-max-value": "تلقائي",
+    "placeholder-min-value": "تلقائي",
+    "placeholder-start-color-from-value": "تلقائي (الأدنى)",
+    "placeholder-value-name": "القيمة",
+    "placement-options": {
+      "label-hidden": "مخفي",
+      "label-left": "يسار",
+      "label-right": "يمين"
+    },
+    "scale-options": {
+      "label-exponential": "أسّي",
+      "label-linear": "خطي"
+    },
+    "tick-alignment-options": {
+      "label-auto": "تلقائي",
+      "label-bottom": "أسفل (GE)",
+      "label-middle": "وسط",
+      "label-top": "أعلى (LE)"
+    },
+    "tooltip-mode-options": {
+      "label-all": "الكل",
+      "label-hidden": "مخفي",
+      "label-single": "مفرد"
+    },
+    "y-bucket-scale-editor": {
+      "linear-threshold-description": "النطاق الذي يكون المقياس ضمنه خطيًا",
+      "linear-threshold-label": "العتبة الخطية",
+      "linear-threshold-placeholder": "1",
+      "log-base-label": "أساس اللوغاريتم",
+      "scale-options": {
+        "label-auto": "تلقائي",
+        "label-linear": "خطي",
+        "label-log": "لوغاريتمي",
+        "label-symlog": "لوغاريتمي متماثل"
+      }
+    }
+  },
   "help-modal": {
     "column-headers": {
       "description": "الوصف",
@@ -3048,6 +3140,96 @@
       "cancel-button": "إلغاء"
     }
   },
+  "share-modal": {
+    "dashboard": {
+      "title": "مشاركة"
+    },
+    "embed": {
+      "copy": "نسخ إلى الحافظة",
+      "html": "تضمين HTML",
+      "html-description": "يمكن لصق شفرة HTML أدناه وتضمينها في صفحة ويب أخرى. ما لم يكن الوصول المجهول مُفعّلًا، يحتاج المستخدمون الذين يشاهدون تلك الصفحة إلى تسجيل الدخول إلى Grafana ليُحمّل الرسم البياني.",
+      "info": "توليد HTML لتضمين إطار iframe يحتوي على هذه اللوحة",
+      "time-range": "تثبيت النطاق الزمني"
+    },
+    "export": {
+      "back-button": "العودة إلى إعداد التصدير",
+      "cancel-button": "إلغاء",
+      "info-text": "صدّر لوحة المعلومات هذه.",
+      "loading": "جارٍ التحميل...",
+      "save-button": "الحفظ في ملف",
+      "share-externally-label": "التصدير للمشاركة خارجيًا",
+      "view-button": "عرض JSON",
+      "view-button-yaml": "عرض YAML"
+    },
+    "image": {
+      "actions": "إجراءات تصدير الصورة",
+      "cancel-button": "إلغاء",
+      "download-button": "تنزيل الصورة",
+      "error-title": "فشل توليد الصورة",
+      "generate-button": "توليد صورة",
+      "generating": "جارٍ توليد الصورة...",
+      "info-text": "احفظ لوحة المعلومات هذه كصورة",
+      "preview": "معاينة",
+      "preview-aria": "معاينة الصورة المُولّدة",
+      "preview-region": "معاينة الصورة",
+      "title": "التصدير كصورة"
+    },
+    "library": {
+      "info": "إنشاء لوحة مكتبة."
+    },
+    "link": {
+      "copy-link-button": "نسخ",
+      "info-text": "أنشئ رابطًا مباشرًا إلى لوحة المعلومات أو اللوحة هذه، مخصّصًا بالخيارات أدناه.",
+      "link-url": "رابط URL",
+      "render-alert": "إضافة عارض الصور غير مُثبّتة",
+      "render-instructions": "لعرض صورة، يجب تثبيت <2>إضافة عارض صور Grafana</2>. يُرجى التواصل مع مسؤول Grafana لتثبيت الإضافة.",
+      "rendered-image": "صورة الرابط المباشر المعروضة",
+      "save-alert": "لوحة المعلومات غير محفوظة",
+      "save-dashboard": "لعرض صورة لوحة، يجب حفظ لوحة المعلومات أولًا.",
+      "shorten-url": "اختصار عنوان URL",
+      "time-range-description": "يحوّل النطاق الزمني النسبي الحالي إلى نطاق زمني مطلق",
+      "time-range-label": "تثبيت النطاق الزمني"
+    },
+    "panel": {
+      "title": "مشاركة اللوحة"
+    },
+    "snapshot": {
+      "cancel-button": "إلغاء",
+      "copy-link-button": "نسخ",
+      "delete-button": "حذف اللقطة.",
+      "deleted-message": "تم حذف اللقطة. إذا سبق أن وصلت إليها مرة، فقد يستغرق الأمر حتى ساعة قبل إزالتها من ذاكرات المتصفح المؤقتة أو ذاكرات CDN المؤقتة.",
+      "expire": "انتهاء الصلاحية",
+      "expire-day": "يوم واحد",
+      "expire-hour": "ساعة واحدة",
+      "expire-never": "أبدًا",
+      "expire-week": "أسبوع واحد",
+      "info-text-1": "اللقطة طريقة فورية لمشاركة لوحة معلومات تفاعلية علنًا. عند إنشائها، نزيل البيانات الحساسة مثل الاستعلامات (المقياس والقالب والتعليق الزمني) وروابط اللوحات، ونُبقي فقط بيانات المقاييس المرئية وأسماء السلاسل المضمّنة في لوحة معلوماتك.",
+      "info-text-2": "ضع في اعتبارك أن لقطتك <1>يمكن لأي شخص مشاهدتها</1> إذا كان لديه الرابط ويمكنه الوصول إلى عنوان URL. شارك بحكمة.",
+      "local-button": "نشر اللقطة",
+      "mistake-message": "هل ارتكبت خطأً؟ ",
+      "name": "اسم اللقطة",
+      "timeout": "المهلة (بالثواني)",
+      "timeout-description": "قد تحتاج إلى ضبط قيمة المهلة إذا استغرق جمع مقاييس لوحة معلوماتك وقتًا طويلًا.",
+      "url-label": "عنوان URL للقطة"
+    },
+    "tab-title": {
+      "embed": "تضمين",
+      "export": "تصدير",
+      "library-panel": "لوحة مكتبة",
+      "link": "رابط",
+      "public-dashboard-title": "لوحة معلومات عامة",
+      "snapshot": "لقطة"
+    },
+    "theme-picker": {
+      "current": "الحالية",
+      "dark": "داكن",
+      "field-name": "السمة",
+      "light": "فاتح"
+    },
+    "view-json": {
+      "copy-button": "نسخ إلى الحافظة"
+    }
+  },
   "share-panel": {
     "drawer": {
       "new-library-panel-title": "لوحة مكتبة جديدة",
@@ -3785,6 +3967,128 @@
     "missing-field": {
       "all": "لا توجد حقول قابلة للرسم",
       "time": "لا تحتوي البيانات على حقل زمني"
+    }
+  },
+  "timeseries": {
+    "annotation-editor2": {
+      "add-annotation": "إضافة تعليق زمني",
+      "cancel": "إلغاء",
+      "edit-annotation": "تعديل التعليق الزمني",
+      "label-description": "الوصف",
+      "label-tags": "الوسوم",
+      "placeholder-add-tags": "إضافة وسوم",
+      "save": "حفظ",
+      "saving": "جارٍ الحفظ",
+      "tooltip-close": "إغلاق"
+    },
+    "annotation-marker": {
+      "annotation-label": "تعليق زمني",
+      "annotation-region-label": "منطقة التعليق الزمني"
+    },
+    "annotation-tooltip2": {
+      "cluster-header": "التعليقات الزمنية",
+      "tooltip-delete": "حذف",
+      "tooltip-edit": "تعديل"
+    },
+    "category-axis": "المحور",
+    "config": {
+      "get-graph-field-config": {
+        "aria-label-bar-width-factor": "معامل عرض الشريط",
+        "aria-label-fill-opacity": "عتامة التعبئة",
+        "aria-label-line-width": "عرض الخط",
+        "aria-label-point-size": "حجم النقطة",
+        "category-graph-styles": "أنماط الرسم البياني",
+        "category-thresholds": "العتبات",
+        "name-bar-alignment": "محاذاة الشريط",
+        "name-bar-width-factor": "معامل عرض الشريط",
+        "name-connect-nulls": "وصل القيم الفارغة (null)",
+        "name-disconnect-values": "فصل القيم",
+        "name-fill-below-to": "التعبئة أسفل إلى",
+        "name-fill-opacity": "عتامة التعبئة",
+        "name-gradient-mode": "وضع التدرّج",
+        "name-line-interpolation": "استيفاء الخط",
+        "name-line-style": "نمط الخط",
+        "name-line-width": "عرض الخط",
+        "name-point-size": "حجم النقطة",
+        "name-show-points": "إظهار النقاط",
+        "name-show-thresholds": "إظهار العتبات",
+        "name-show-values": "إظهار القيم",
+        "name-style": "النمط",
+        "name-transform": "التحويل",
+        "transform-options": {
+          "description-constant": "ستُعرض القيمة الأولى كخط ثابت",
+          "description-style": "اقلب النتائج إلى قيم سالبة على المحور Y",
+          "label-constant": "ثابت",
+          "label-style": "Y السالب"
+        }
+      }
+    },
+    "insert-nulls-editor": {
+      "disconnect-options": {
+        "label-never": "أبدًا",
+        "label-threshold": "عتبة"
+      }
+    },
+    "legend": {
+      "category": "وسيلة الإيضاح",
+      "description-faceted-filter": "فعّل المرشّح لعرض السلاسل بناءً على التسميات أو الأسماء",
+      "name-faceted-filter": "ظهور السلاسل"
+    },
+    "line-style-editor": {
+      "line-fill-options": {
+        "label-accessible": "ميسّر",
+        "label-dash": "شرطات",
+        "label-dots": "نقاط",
+        "label-solid": "صلب"
+      },
+      "title-the-input-expects-a-segment-list": "يتوقّع الإدخال قائمة مقاطع",
+      "tooltip-help": "مساعدة"
+    },
+    "name-time-zone": "المنطقة الزمنية",
+    "nulls-threshold-input": {
+      "placeholder-never": "أبدًا"
+    },
+    "outside-range-plugin": {
+      "data-outside-time-range": "بيانات خارج النطاق الزمني",
+      "zoom-to-data": "التكبير إلى البيانات"
+    },
+    "presets": {
+      "multi-many-points": "خطوط مع نقاط",
+      "multi-many-points-stacked": "خطوط مكدّسة",
+      "multi-many-points-stacked-pct": "مكدّس 100%",
+      "multi-points": "خطوط مع نقاط",
+      "multi-stacked-bars": "أشرطة مكدّسة",
+      "multi-stacked-points": "خطوط مكدّسة",
+      "single-bars": "أشرطة",
+      "single-bars-scheme": "مخطط لوني للأشرطة",
+      "single-dashed-threshold": "عتبة متقطّعة",
+      "single-few-points": "تعبئة مفردة",
+      "single-many-points-fill": "تعبئة الخط",
+      "single-many-points-hue": "درجة لون الخط",
+      "single-many-points-scheme": "مخطط لوني للخط",
+      "single-many-points-threshold-scheme": "مخطط لوني للعتبة",
+      "single-smooth-scheme": "مخطط لوني ناعم",
+      "single-step-fill": "تعبئة متدرّجة"
+    },
+    "span-nulls-editor": {
+      "gaps-options": {
+        "label-always": "دائمًا",
+        "label-never": "أبدًا",
+        "label-threshold": "عتبة"
+      }
+    },
+    "suggestions": {
+      "area": "مخطط مساحي",
+      "area-stacked": "مخطط مساحي - مكدّس",
+      "area-stacked-percentage": "مخطط مساحي - مكدّس بالنسبة المئوية",
+      "bar": "مخطط شريطي",
+      "bar-stacked": "مخطط شريطي - مكدّس",
+      "bar-stacked-percent": "مخطط شريطي - مكدّس بالنسبة المئوية",
+      "line": "مخطط خطي"
+    },
+    "timezones-editor": {
+      "tooltip-add-timezone": "إضافة منطقة زمنية",
+      "tooltip-remove-timezone": "إزالة المنطقة الزمنية"
     }
   },
   "traces": {

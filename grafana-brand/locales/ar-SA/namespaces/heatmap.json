@@ -1,0 +1,92 @@
+{
+  "calculate-from-data-options": {
+    "label-no": "لا",
+    "label-yes": "نعم"
+  },
+  "category-cell-display": "عرض الخلية",
+  "category-colors": "الألوان",
+  "category-exemplars": "الأمثلة التوضيحية",
+  "category-heatmap": "خريطة حرارية",
+  "category-legend": "وسيلة الإيضاح",
+  "category-tooltip": "التلميح",
+  "category-y-axis": "المحور Y",
+  "error": {
+    "no-y-fields": "لم يُعثر على حقول رقمية للخريطة الحرارية"
+  },
+  "mode-options": {
+    "label-opacity": "العتامة",
+    "label-scheme": "المخطط اللوني"
+  },
+  "name-axis-label": "تسمية المحور",
+  "name-axis-width": "عرض المحور",
+  "name-calculate-from-data": "الحساب من البيانات",
+  "name-cell-gap": "فجوة الخلية",
+  "name-color": "اللون",
+  "name-decimals": "المنازل العشرية",
+  "name-end-color-at-value": "إنهاء مقياس الألوان عند القيمة",
+  "name-exponent": "الأس",
+  "name-hide-cells-gt": "إخفاء الخلايا بقيم >=",
+  "name-hide-cells-lt": "إخفاء الخلايا بقيم <=",
+  "name-max-height": "الحد الأقصى للارتفاع",
+  "name-max-value": "القيمة القصوى",
+  "name-max-width": "الحد الأقصى للعرض",
+  "name-min-value": "القيمة الدنيا",
+  "name-mode": "الوضع",
+  "name-placement": "الموضع",
+  "name-reverse": "عكس",
+  "name-scale": "المقياس",
+  "name-scheme": "المخطط اللوني",
+  "name-show-color-scale": "إظهار مقياس الألوان",
+  "name-show-histogram": "إظهار المدرّج التكراري (المحور Y)",
+  "name-show-legend": "إظهار وسيلة الإيضاح",
+  "name-start-color-from-value": "بدء مقياس الألوان من القيمة",
+  "name-steps": "الخطوات",
+  "name-tick-alignment": "محاذاة علامات التدرّج",
+  "name-tooltip-mode": "وضع التلميح",
+  "name-unit": "الوحدة",
+  "name-value-name": "اسم القيمة",
+  "name-y-axis-scale": "مقياس المحور Y",
+  "name-y-bucket-scale": "مقياس مجموعة Y",
+  "placeholder-axis-label": "تلقائي",
+  "placeholder-axis-width": "تلقائي",
+  "placeholder-decimals": "تلقائي",
+  "placeholder-end-color-at-value": "تلقائي (الأقصى)",
+  "placeholder-hide-cells-gt": "بلا",
+  "placeholder-hide-cells-lt": "بلا",
+  "placeholder-max-value": "تلقائي",
+  "placeholder-min-value": "تلقائي",
+  "placeholder-start-color-from-value": "تلقائي (الأدنى)",
+  "placeholder-value-name": "القيمة",
+  "placement-options": {
+    "label-hidden": "مخفي",
+    "label-left": "يسار",
+    "label-right": "يمين"
+  },
+  "scale-options": {
+    "label-exponential": "أسّي",
+    "label-linear": "خطي"
+  },
+  "tick-alignment-options": {
+    "label-auto": "تلقائي",
+    "label-bottom": "أسفل (GE)",
+    "label-middle": "وسط",
+    "label-top": "أعلى (LE)"
+  },
+  "tooltip-mode-options": {
+    "label-all": "الكل",
+    "label-hidden": "مخفي",
+    "label-single": "مفرد"
+  },
+  "y-bucket-scale-editor": {
+    "linear-threshold-description": "النطاق الذي يكون المقياس ضمنه خطيًا",
+    "linear-threshold-label": "العتبة الخطية",
+    "linear-threshold-placeholder": "1",
+    "log-base-label": "أساس اللوغاريتم",
+    "scale-options": {
+      "label-auto": "تلقائي",
+      "label-linear": "خطي",
+      "label-log": "لوغاريتمي",
+      "label-symlog": "لوغاريتمي متماثل"
+    }
+  }
+}
