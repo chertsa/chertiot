@@ -1,0 +1,20 @@
+{
+  "empty-state": {
+    "message": "لا يوجد مستخدمون"
+  },
+  "token-revoked-modal": {
+    "auto-revoked": "أُلغي رمز جلستك تلقائيًا لأنك بلغت <strong>الحد الأقصى وهو {{numSessions}} جلسات متزامنة</strong> لحسابك.",
+    "resume-message": "<strong>لاستئناف جلستك، سجّل الدخول مجددًا.</strong>تواصل مع المسؤول أو تفضّل بزيارة صفحة الترخيص لمراجعة حصتك إذا كنت تُسجَّل خروجك تلقائيًا بشكل متكرر.",
+    "sign-in": "تسجيل الدخول",
+    "title-you-have-been-automatically-signed-out": "تم تسجيل خروجك تلقائيًا"
+  },
+  "users-action-bar-unconnected": {
+    "invite": "دعوة",
+    "options": {
+      "label": {
+        "users": "المستخدمون"
+      }
+    },
+    "placeholder-search-login-email": "ابحث عن مستخدم بالاسم أو البريد الإلكتروني أو اسم الدخول"
+  }
+}

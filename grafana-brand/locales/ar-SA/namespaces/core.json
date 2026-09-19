@@ -1,0 +1,20 @@
+{
+  "versionHistory": {
+    "comparison": {
+      "header": {
+        "hide-json-diff": "إخفاء فرق JSON ",
+        "show-json-diff": "عرض فرق JSON ",
+        "text": "الإصدار {{version}} حُدِّث بواسطة {{createdBy}} ({{ageString}}) {{message}}"
+      },
+      "select": "اختر إصدارين لبدء المقارنة"
+    },
+    "no-properties-changed": "لم تتغيّر أي خصائص ذات صلة",
+    "table": {
+      "notes": "ملاحظات",
+      "updated": "التاريخ",
+      "updatedBy": "حُدِّث بواسطة",
+      "version": "الإصدار"
+    },
+    "view-json-diff": "اعرض فرق JSON لرؤية جميع التغييرات"
+  }
+}

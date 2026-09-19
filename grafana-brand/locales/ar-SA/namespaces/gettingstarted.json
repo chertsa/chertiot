@@ -1,0 +1,15 @@
+{
+  "docs-card": {
+    "complete": "مكتمل",
+    "learn-how": "تعلّم كيف في الوثائق"
+  },
+  "getting-started": {
+    "aria-label-to-advanced-tutorials": "إلى الدروس المتقدمة",
+    "aria-label-to-basic-tutorials": "إلى الدروس الأساسية",
+    "checking-completed-setup-steps": "جارٍ التحقق من خطوات الإعداد المكتملة",
+    "remove-this-panel": "إزالة هذه اللوحة"
+  },
+  "tutorial-card": {
+    "complete": "مكتمل"
+  }
+}

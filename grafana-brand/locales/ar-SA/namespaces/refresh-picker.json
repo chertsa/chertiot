@@ -1,0 +1,19 @@
+{
+  "aria-label": {
+    "choose-interval": "التحديث التلقائي متوقّف. اختر فاصل وقت التحديث",
+    "duration-selected": "اختر فاصل وقت التحديث مع تحديد الفاصل الحالي {{durationAriaLabel}}"
+  },
+  "auto-option": {
+    "label": "تلقائي"
+  },
+  "live-option": {
+    "label": "مباشر"
+  },
+  "off-option": {
+    "label": "إيقاف"
+  },
+  "tooltip": {
+    "interval-selected": "تعيين فاصل التحديث التلقائي",
+    "turned-off": "التحديث التلقائي متوقّف"
+  }
+}

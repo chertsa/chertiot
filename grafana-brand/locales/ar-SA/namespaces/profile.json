@@ -1,0 +1,44 @@
+{
+  "change-password": {
+    "cancel-button": "إلغاء",
+    "cannot-change-password-message": "لا يمكن تغيير كلمة المرور هنا.",
+    "change-password-button": "تغيير كلمة المرور",
+    "confirm-password-label": "تأكيد كلمة المرور",
+    "confirm-password-required": "تأكيد كلمة المرور الجديدة مطلوب",
+    "ldap-auth-proxy-message": "لا يمكنك تغيير كلمة المرور عند تسجيل الدخول باستخدام LDAP أو وكيل المصادقة.",
+    "new-password-label": "كلمة المرور الجديدة",
+    "new-password-required": "كلمة المرور الجديدة مطلوبة",
+    "new-password-same-as-old": "لا يمكن أن تكون كلمة المرور الجديدة مطابقة للقديمة.",
+    "old-password-label": "كلمة المرور القديمة",
+    "old-password-required": "كلمة المرور القديمة مطلوبة",
+    "passwords-must-match": "يجب أن تتطابق كلمتا المرور",
+    "strong-password-validation-register": "كلمة المرور لا تتوافق مع سياسة كلمات المرور القوية"
+  },
+  "change-theme": "تغيير السمة",
+  "enable-kiosk-mode": "تفعيل وضع الكشك",
+  "feature-toggle-page": {
+    "profile-not-enabled": "الملف الشخصي غير مُفعّل."
+  },
+  "feature-toggles-age": {
+    "enable-in-config": "فعّل الملف الشخصي في ملف إعداد Grafana."
+  },
+  "input-suffix": {
+    "content-login-details-locked-because-managed-another": "بيانات تسجيل الدخول مقفلة لأنها تُدار في نظام آخر."
+  },
+  "user-organizations": {
+    "text-loading-organizations": "جارٍ تحميل المنظمات..."
+  },
+  "user-sessions": {
+    "browser-details": "{{browser}} على {{os}} {{osVersion}}",
+    "now": "الآن",
+    "sessions": "الجلسات"
+  },
+  "user-teams": {
+    "aria-label-user-teams-table": "جدول فرق المستخدم",
+    "email": "البريد الإلكتروني",
+    "members": "الأعضاء",
+    "name": "الاسم",
+    "teams": "الفرق",
+    "text-loading-teams": "جارٍ تحميل الفرق..."
+  }
+}

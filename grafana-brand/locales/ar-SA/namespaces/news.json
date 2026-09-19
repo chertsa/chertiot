@@ -1,0 +1,14 @@
+{
+  "category-news": "الأخبار",
+  "description-show-image": "يتحكّم في ما إذا كانت صورة (og:image) الاجتماعية لعنصر الخبر تُعرض فوق المحتوى النصي",
+  "description-url": "يدعم موجزات RSS وAtom",
+  "link-title": "الانتقال إلى مدونة Grafana Labs",
+  "name-show-image": "إظهار الصورة",
+  "name-url": "URL",
+  "news-panel": {
+    "body-error-loading-rss-feed": "تأكّد من صحة رابط الموجز (URL) ومن ضبط CORS بشكل صحيح على الخادم. راجع <2>وثائق لوحة الأخبار.</2>",
+    "loading": "جارٍ التحميل...",
+    "title-error-loading-rss-feed": "خطأ في تحميل موجز RSS"
+  },
+  "title": "أحدث المقالات من المدونة"
+}

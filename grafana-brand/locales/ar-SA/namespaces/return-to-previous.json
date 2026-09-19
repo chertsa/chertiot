@@ -1,0 +1,6 @@
+{
+  "button": {
+    "label": "العودة إلى {{title}}"
+  },
+  "dismissable-button": "إغلاق"
+}

@@ -1,0 +1,11 @@
+{
+  "editable-title": {
+    "cancel-tooltip": "إلغاء",
+    "edit-tooltip": "تعديل العنوان",
+    "error": "حدث خطأ غير معروف",
+    "label": "الاسم",
+    "placeholder": "الاسم",
+    "required": "الرجاء إدخال عنوان",
+    "save-tooltip": "حفظ"
+  }
+}

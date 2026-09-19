@@ -1,0 +1,32 @@
+{
+  "divider": {
+    "connecting-text": "أو"
+  },
+  "error": {
+    "blocked": "لقد تجاوزت عدد محاولات تسجيل الدخول لهذا المستخدم. الرجاء المحاولة لاحقًا.",
+    "invalid-user-or-password": "اسم مستخدم أو كلمة مرور غير صحيحة",
+    "title": "فشل تسجيل الدخول",
+    "unknown": "حدث خطأ غير معروف"
+  },
+  "forgot-password": "هل نسيت كلمة المرور؟",
+  "form": {
+    "password-label": "كلمة المرور",
+    "password-placeholder": "كلمة المرور",
+    "password-required": "كلمة المرور مطلوبة",
+    "submit-label": "تسجيل الدخول",
+    "submit-loading-label": "جارٍ تسجيل الدخول...",
+    "username-label": "البريد الإلكتروني أو اسم المستخدم",
+    "username-placeholder": "البريد الإلكتروني أو اسم المستخدم",
+    "username-required": "البريد الإلكتروني أو اسم المستخدم مطلوب"
+  },
+  "layout": {
+    "update-password": "حدّث كلمة المرور"
+  },
+  "services": {
+    "sing-in-with-prefix": "تسجيل الدخول باستخدام {{serviceName}}"
+  },
+  "signup": {
+    "button-label": "إنشاء حساب",
+    "new-to-question": "جديد على Grafana؟"
+  }
+}

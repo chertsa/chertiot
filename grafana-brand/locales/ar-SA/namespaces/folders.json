@@ -1,0 +1,9 @@
+{
+  "api": {
+    "anonymous-user": "مجهول",
+    "folder-delete-error-provisioned": "تعذّر حذف مجلد مُهيّأ تلقائيًا. لإزالته، احذفه من المستودع وزامِن لتطبيق التغييرات.",
+    "folder-deleted-success": "تم حذف المجلد",
+    "folder-move-error-provisioned": "تعذّر نقل مجلد مُهيّأ تلقائيًا. لنقله، انقله في المستودع وزامِن لتطبيق التغييرات.",
+    "folder-moved-success": "تم نقل المجلد"
+  }
+}

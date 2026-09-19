@@ -33,6 +33,9 @@ echo "commit verified: $HEAD"
 step "register ar-SA (constants + languages + tests)"
 python3 apply-registration.py "$SRC"
 
+step "regenerate ar-SA catalog from committed per-namespace source of truth"
+python3 tools/assemble-ar.py "$SRC/public/locales/en-US/grafana.json"
+
 step "install CHERT-maintained locale files into the source tree"
 install -D -m 0644 locales/ar-SA/grafana.json \
   "$SRC/public/locales/ar-SA/grafana.json"
