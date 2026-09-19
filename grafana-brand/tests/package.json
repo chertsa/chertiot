@@ -1,0 +1,8 @@
+{
+  "name": "chert-grafana-i18n-fallback-test",
+  "private": true,
+  "type": "module",
+  "description": "Proves i18next behaves as Grafana configures it for ar-SA: present→Arabic, missing/empty→English fallback, interpolation survives, 6 Arabic CLDR plural forms resolve, absent plural group→English. Run: npm i && node i18n-fallback.test.mjs",
+  "scripts": { "test": "node i18n-fallback.test.mjs" },
+  "dependencies": { "i18next": "25.10.10" }
+}
