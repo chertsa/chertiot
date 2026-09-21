@@ -38,6 +38,9 @@ class Settings(BaseSettings):
     lora_enabled: bool = False
     chirpstack_grpc: str = "chirpstack:8080"
 
+    # v2 feature flags (off by default; enabled staging-first per capability). See app/features.py.
+    monitoring_enabled: bool = False
+
     # M3.2: shared secret for the in-network lab-token endpoint (JupyterHub → portal)
     lab_internal_secret: str = ""
 

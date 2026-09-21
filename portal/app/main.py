@@ -1,4 +1,5 @@
 import logging
+from collections.abc import Awaitable, Callable
 from pathlib import Path
 
 import httpx
@@ -75,6 +76,36 @@ app.add_middleware(
     max_age=8 * 3600,
     domain=_session_domain,
 )
+# --- v2 Phase 0: security headers / Content-Security-Policy ------------------------------------
+# Zero external runtime assets: `default-src 'self'` blocks every cross-origin subresource. Inline
+# script/style are permitted for now (existing templates use them); a later phase externalises them
+# and drops 'unsafe-inline' from script-src. CSP does not gate top-level navigation, so links to the
+# CHERT subdomains (grafana./lab./status.) still work; /docs is served by Caddy, not the portal.
+_CSP = (
+    "default-src 'self'; "
+    "script-src 'self' 'unsafe-inline'; "
+    "style-src 'self' 'unsafe-inline'; "
+    "img-src 'self' data:; "
+    "font-src 'self'; "
+    "connect-src 'self'; "
+    "object-src 'none'; "
+    "base-uri 'self'; "
+    "frame-ancestors 'self'"
+)
+
+
+@app.middleware("http")
+async def _security_headers(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
+    response = await call_next(request)
+    response.headers.setdefault("Content-Security-Policy", _CSP)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "same-origin")
+    response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    return response
+
+
 app.mount(
     "/static", StaticFiles(directory=str(Path(__file__).resolve().parent / "static")), name="static"
 )
