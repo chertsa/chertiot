@@ -1,6 +1,7 @@
-"""M1.1 acceptance: signup → verification email (Mailpit) → verify → Keycloak login → portal
-home with own TB tenant, starter dashboard and device; one login reaches portal AND TB; drift
-repaired."""
+"""Acceptance (D13 project-centric): signup → verification email (Mailpit) → verify → Keycloak
+login → portal home is the projects portfolio → create a project (provisions its own TB tenant,
+owner as Tenant Admin, starter dashboard) → add a device; one login reaches portal AND TB;
+provisioning is idempotent."""
 
 import os
 import re
@@ -15,6 +16,7 @@ from tests.e2e.conftest import make_client
 
 MAILPIT = os.environ.get("MAILPIT_API", "http://127.0.0.1:18025")
 TB_ADMIN = os.environ.get("TB_ADMIN_URL", "http://127.0.0.1:18080")
+PORTAL = os.environ.get("PORTAL_PUBLIC_URL", "http://localhost")
 
 
 def mailpit_link(email: str, pattern: str, timeout: float = 20) -> str:
@@ -62,6 +64,60 @@ def keycloak_login(s: httpx.Client, start_url: str, email: str, password: str) -
     return s.get(_abs(r))  # portal /auth/callback
 
 
+def signup(s: httpx.Client, email: str, password: str, first_name: str = "E2E") -> None:
+    r = s.post(
+        f"{PORTAL}/signup",
+        data={
+            "email": email,
+            "password": password,
+            "password_confirm": password,
+            "age_attested": "yes",
+            "first_name": first_name,
+        },
+    )
+    assert r.status_code == 303 and "/signup/check-email" in r.headers["location"], r.text[:500]
+
+
+def verify_email(s: httpx.Client, email: str) -> None:
+    link = mailpit_link(
+        email, r"https?://auth\.localhost/realms/chertiot/login-actions/action-token[^\s\"<]+"
+    )
+    r = follow(s, s.get(link))
+    if (
+        "Click here to proceed" in r.text
+    ):  # interstitial when opened outside the originating session
+        proceed = re.findall(r'href="(http[^"]*action-token[^"]*)"', r.text)[-1]
+        r = follow(s, s.get(proceed.replace("&amp;", "&")))
+    if "Back to Application" in r.text:  # "account updated" page links back to redirect_uri
+        back = re.findall(r'href="(http[^"]+/auth/verified[^"]*)"', r.text)[-1]
+        r = follow(s, s.get(back.replace("&amp;", "&")))
+    assert r.status_code == 200 and "Email verified" in r.text, (r.status_code, r.text[:300])
+
+
+def signup_verify_login(s: httpx.Client, email: str, password: str) -> None:
+    """Full onboarding to a landed session on the portal home (the projects portfolio)."""
+    signup(s, email, password)
+    verify_email(s, email)
+    r = keycloak_login(s, f"{PORTAL}/login", email, password)
+    assert r.status_code == 303 and r.headers["location"] == "/home", (r.status_code, r.text[:300])
+
+
+def create_project(s: httpx.Client, name: str, description: str = "") -> str:
+    """Create a project via the portal; returns its id. Provisioning is synchronous (D13)."""
+    r = s.post(f"{PORTAL}/projects", data={"name": name, "description": description})
+    assert r.status_code == 303 and r.headers["location"].startswith("/projects/"), r.text[:300]
+    return r.headers["location"].split("/projects/", 1)[1]
+
+
+def first_tenant_admin(sysadmin: TbClient, tenant_id: str) -> str:
+    """The id of the first TENANT_ADMIN user in a tenant (via the sysadmin tenant-users list)."""
+    data = sysadmin._get(f"/tenant/{tenant_id}/users", pageSize=50, page=0)  # noqa: SLF001
+    for u in data.get("data", []) if isinstance(data, dict) else []:
+        if u.get("authority") == "TENANT_ADMIN":
+            return u["id"]["id"]
+    raise AssertionError(f"no TENANT_ADMIN user in tenant {tenant_id}")
+
+
 @pytest.fixture
 def sysadmin() -> TbClient:
     return TbClient(
@@ -71,60 +127,52 @@ def sysadmin() -> TbClient:
     )
 
 
-def test_signup_to_live_lab(kc_url: str, tb_url: str, sysadmin: TbClient) -> None:
-    portal = os.environ.get("PORTAL_PUBLIC_URL", "http://localhost")
+def test_signup_to_project_workspace(kc_url: str, tb_url: str, sysadmin: TbClient) -> None:
     email = f"e2e-{uuid.uuid4().hex[:8]}@test.chertiot.local"
     password = "correct-horse-battery-staple"  # noqa: S105
+    pname = f"E2E Greenhouse {uuid.uuid4().hex[:6]}"
 
     with make_client(follow_redirects=False) as s:
-        # 1. Sign up.
-        r = s.post(
-            f"{portal}/signup",
-            data={
-                "email": email,
-                "password": password,
-                "password_confirm": password,
-                "age_attested": "yes",
-                "first_name": "E2E",
-            },
+        # 1. Signup → verify → login lands on the projects portfolio (no per-user tenant, D13).
+        signup_verify_login(s, email, password)
+        r = s.get(f"{PORTAL}/home")
+        assert (
+            r.status_code == 200
+            and "My projects" in r.text
+            and "Start your first project" in r.text
         )
-        assert r.status_code == 303, r.text[:500]
-        assert "/signup/check-email" in r.headers["location"]
 
-        # 2. Verification email → click link (Keycloak action token) → lands on /auth/verified.
-        link = mailpit_link(
-            email, r"https?://auth\.localhost/realms/chertiot/login-actions/action-token[^\s\"<]+"
-        )
-        r = follow(s, s.get(link))
-        if "Click here to proceed" in r.text:
-            # Keycloak's interstitial when the link is opened outside the originating browser
-            # session (mail clients do this) — the user clicks "proceed", so do we.
-            proceed = re.findall(r'href="(http[^"]*action-token[^"]*)"', r.text)[-1]
-            r = follow(s, s.get(proceed.replace("&amp;", "&")))
-        if "Back to Application" in r.text:
-            # Keycloak's "Your account has been updated" page links back to redirect_uri.
-            back = re.findall(r'href="(http[^"]+/auth/verified[^"]*)"', r.text)[-1]
-            r = follow(s, s.get(back.replace("&amp;", "&")))
-        assert r.status_code == 200 and "Email verified" in r.text, (r.status_code, r.text[:300])
+        # 2. Create a project → its workspace is provisioned (own TB tenant + starter dashboard).
+        pid = create_project(s, pname, "greenhouse")
+        r = s.get(f"{PORTAL}/projects/{pid}")
+        assert r.status_code == 200 and pname in r.text and "Setup failed" not in r.text
 
-        # 3. Sign in once via Keycloak → portal callback provisions → /home.
-        r = keycloak_login(s, f"{portal}/login", email, password)
-        assert r.status_code == 303 and r.headers["location"] == "/home", (
-            r.status_code,
-            r.text[:300],
-        )
-        r = s.get(f"{portal}/home")
-        assert r.status_code == 200 and "/dashboards/" in r.text and "1 device" in r.text
-        r = s.get(f"{portal}/devices")
+        # 3. Add a device inside the project (project-scoped route).
+        r = s.post(f"{PORTAL}/projects/{pid}/devices", data={"name": "my-first-device"})
+        assert r.status_code == 303 and r.headers["location"].startswith(
+            f"/projects/{pid}/devices/"
+        ), r.text[:300]
+        device_url = f"{PORTAL}{r.headers['location']}"
+        r = s.get(device_url)
         assert r.status_code == 200 and "my-first-device" in r.text
-        device_path = re.search(r'href="(/devices/[0-9a-f-]+)"', r.text)
-        assert device_path
-        r = s.get(f"{portal}{device_path.group(1)}")
-        token = re.search(r"data-device-token>([^<]+)<", r.text)
-        assert token, "device token missing on device page"
+        assert re.search(r"data-device-token>([^<]+)<", r.text), "device token missing"
+        r = s.get(f"{PORTAL}/projects/{pid}/devices")
+        assert r.status_code == 200 and "my-first-device" in r.text and "devices used" in r.text
 
-        # 4. The same login reaches ThingsBoard (no second credential prompt): TB's OAuth2 flow
-        #    to the already-authenticated Keycloak session yields a TB token immediately.
+        # 4. TB state: the project has its own tenant on the student profile, owner is TENANT_ADMIN,
+        #    starter dashboard present, and the device landed in that tenant.
+        tenant = sysadmin.find_tenant(pname)
+        assert tenant and tenant.id
+        profile = sysadmin.find_tenant_profile("chertiot-student")
+        assert profile and tenant.tenant_profile_id == profile.id
+        owner = sysadmin.impersonate(first_tenant_admin(sysadmin, tenant.id.id))
+        try:
+            assert owner.find_dashboard("My devices") is not None
+            assert [d.name for d in owner.list_devices()] == ["my-first-device"]
+        finally:
+            owner.close()
+
+        # 5. The same login reaches ThingsBoard (no second credential prompt).
         clients = s.post(f"{tb_url}/api/noauth/oauth2Clients", params={"platform": "WEB"}).json()
         r = s.get(f"{tb_url}{clients[0]['url']}")
         hops = 0
@@ -137,23 +185,12 @@ def test_signup_to_live_lab(kc_url: str, tb_url: str, sysadmin: TbClient) -> Non
             hops += 1
         assert "accessToken=" in r.headers.get("location", ""), (r.status_code, r.text[:300])
 
-        # 5. TB state: own tenant, starter dashboard + device, quotas profile.
-        tenant = sysadmin.find_tenant(email)
-        assert tenant and tenant.id
-        profile = sysadmin.find_tenant_profile("chertiot-student")
-        assert profile and tenant.tenant_profile_id == profile.id
-        user = sysadmin.find_tenant_user(tenant.id.id, email)
-        assert user and user.id and user.authority == "TENANT_ADMIN"
-        as_student = sysadmin.impersonate(user.id.id)
-        devices = as_student.list_devices()
-        assert [d.name for d in devices] == ["my-first-device"]
-        assert as_student.find_dashboard("My devices") is not None
-
-        # 6. Drift repair: device deleted behind our back → next portal visit recreates it.
-        as_student.delete_device(devices[0].id.id)  # type: ignore[union-attr]
-        r = keycloak_login(s, f"{portal}/login", email, password)  # SSO: no form → fine either way
+        # 6. Provisioning is idempotent: re-provision keeps the project provisioned and the device.
+        r = s.post(f"{PORTAL}/projects/{pid}/provision")
         assert r.status_code == 303
-        assert any(d.name == "my-first-device" for d in as_student.list_devices())
+        r = s.get(f"{PORTAL}/projects/{pid}")
+        assert r.status_code == 200 and "Setup failed" not in r.text
+        r = s.get(f"{PORTAL}/projects/{pid}/devices")
+        assert "my-first-device" in r.text
 
-    # cleanup
-    sysadmin.delete_tenant(tenant.id.id)
+    sysadmin.delete_tenant(tenant.id.id)  # cleanup

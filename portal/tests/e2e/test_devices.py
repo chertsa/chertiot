@@ -1,6 +1,6 @@
-"""M1.2 acceptance: a student adds a second device from the portal, downloads the rendered
-starter snippet, runs it (Raspberry Pi track, real Python) and sees telemetry on that device —
-no ThingsBoard admin screens involved. Then rename, token revoke, delete."""
+"""Acceptance (D13 project-centric): inside a project a student adds a device from the portal,
+downloads the rendered starter snippet, runs it (Raspberry Pi track, real Python) and sees
+telemetry on that device — no ThingsBoard admin screens. Then rename, token revoke, delete."""
 
 import os
 import re
@@ -14,38 +14,17 @@ import paho.mqtt.client as mqtt
 
 from app.tb_client import TbClient
 from tests.e2e.conftest import make_client
-from tests.e2e.test_signup_flow import follow, keycloak_login, mailpit_link
+from tests.e2e.test_signup_flow import (
+    PORTAL,
+    create_project,
+    first_tenant_admin,
+    signup_verify_login,
+)
 
 TB_ADMIN = os.environ.get("TB_ADMIN_URL", "http://127.0.0.1:18080")
-PORTAL = os.environ.get("PORTAL_PUBLIC_URL", "http://localhost")
 
 
-def _signup_and_login(s, email: str, password: str) -> None:  # type: ignore[no-untyped-def]
-    r = s.post(
-        f"{PORTAL}/signup",
-        data={
-            "email": email,
-            "password": password,
-            "password_confirm": password,
-            "age_attested": "yes",
-        },
-    )
-    assert r.status_code == 303
-    link = mailpit_link(
-        email, r"https?://auth\.localhost/realms/chertiot/login-actions/action-token[^\s\"<]+"
-    )
-    r = follow(s, s.get(link))
-    if "Click here to proceed" in r.text:
-        proceed = re.findall(r'href="(http[^"]*action-token[^"]*)"', r.text)[-1]
-        r = follow(s, s.get(proceed.replace("&amp;", "&")))
-    if "Back to Application" in r.text:
-        back = re.findall(r'href="(http[^"]+/auth/verified[^"]*)"', r.text)[-1]
-        follow(s, s.get(back.replace("&amp;", "&")))
-    r = keycloak_login(s, f"{PORTAL}/login", email, password)
-    assert r.status_code == 303 and r.headers["location"] == "/home"
-
-
-def test_second_device_from_snippet_to_telemetry(kc_url: str, tb_url: str) -> None:
+def test_device_from_snippet_to_telemetry(kc_url: str, tb_url: str) -> None:
     sysadmin = TbClient(
         TB_ADMIN,
         username=os.environ["TB_SYSADMIN_EMAIL"],
@@ -53,25 +32,24 @@ def test_second_device_from_snippet_to_telemetry(kc_url: str, tb_url: str) -> No
     )
     email = f"e2e-dev-{uuid.uuid4().hex[:8]}@test.chertiot.local"
     password = "correct-horse-battery-staple"  # noqa: S105
+    pname = f"E2E Devices {uuid.uuid4().hex[:6]}"
     with make_client(follow_redirects=False) as s:
-        _signup_and_login(s, email, password)
+        signup_verify_login(s, email, password)
+        pid = create_project(s, pname, "device flow")
 
-        # Add a second device.
-        r = s.post(f"{PORTAL}/devices", data={"name": "kitchen-sensor"})
-        assert r.status_code == 303 and r.headers["location"].startswith("/devices/"), r.text[:300]
+        # Add a device inside the project.
+        r = s.post(f"{PORTAL}/projects/{pid}/devices", data={"name": "kitchen-sensor"})
+        assert r.status_code == 303 and r.headers["location"].startswith(
+            f"/projects/{pid}/devices/"
+        ), r.text[:300]
         device_url = f"{PORTAL}{r.headers['location']}"
         r = s.get(device_url)
         assert r.status_code == 200 and "kitchen-sensor" in r.text
         token = re.search(r"data-device-token>([^<]+)<", r.text)
         assert token
         token = token.group(1)
-        r = s.get(f"{PORTAL}/devices")
-        assert (
-            "kitchen-sensor" in r.text
-            and "my-first-device" in r.text
-            and "2 / 10" in r.text
-            and "devices used" in r.text
-        )
+        r = s.get(f"{PORTAL}/projects/{pid}/devices")
+        assert "kitchen-sensor" in r.text and "devices used" in r.text
 
         # Download the Raspberry Pi snippet and run it for real against the local broker.
         r = s.get(f"{device_url}/snippet/rpi-python")
@@ -88,12 +66,10 @@ def test_second_device_from_snippet_to_telemetry(kc_url: str, tb_url: str) -> No
         out = proc.communicate(timeout=10)[0].decode()
         assert "temperature" in out, out[-400:]
 
-        # Telemetry landed on *that* device.
-        tenant = sysadmin.find_tenant(email)
+        # Telemetry landed on *that* device (read via the project tenant's owner session).
+        tenant = sysadmin.find_tenant(pname)
         assert tenant and tenant.id
-        user = sysadmin.find_tenant_user(tenant.id.id, email)
-        assert user and user.id
-        student = sysadmin.impersonate(user.id.id)
+        student = sysadmin.impersonate(first_tenant_admin(sysadmin, tenant.id.id))
         device = student.find_device("kitchen-sensor")
         assert device and device.id
         latest = {}
