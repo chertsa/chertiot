@@ -1,0 +1,18 @@
+Chart.js — vendored runtime asset (CHERT IoT v1 pre-freeze compliance)
+
+Upstream project : Chart.js  (https://www.chartjs.org, https://github.com/chartjs/Chart.js)
+Version          : 4.4.1
+License          : MIT (see LICENSE.md)
+Artifact source  : npm registry tarball
+                   https://registry.npmjs.org/chart.js/-/chart.js-4.4.1.tgz
+File taken        : package/dist/chart.umd.js   (the official 4.4.1 UMD build)
+Vendored as       : chart.umd.min.js  (byte-identical to package/dist/chart.umd.js; unmodified)
+SHA-256           : 74401d738dd3e03ee5dfb3b6841210fe2c4ead8a960c4011ca4ba0b78a9fd8f3
+Served from        : /static/vendor/chartjs/4.4.1/chart.umd.min.js  (CHERT-controlled origin only)
+
+Notes:
+- The upstream UMD carries a trailing sourceMappingURL comment (chart.umd.js.map).
+  The map is NOT vendored; the reference resolves same-origin and is dev-tools only
+  (never fetched by normal page loads, never an external request).
+- Update procedure: download the pinned npm tarball, extract package/dist/chart.umd.js,
+  re-verify SHA-256 against CHECKSUM.txt, replace the file, bump the version path.
