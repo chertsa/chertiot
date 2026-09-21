@@ -1,0 +1,20 @@
+{
+  "cursor-view": {
+    "no-events-yet": "لا أحداث بعد"
+  },
+  "render-info-viewer": {
+    "data-counter": "البيانات: {{numDataChanges}}",
+    "elapsed-time": "الوقت: {{elapsed}} مللي ثانية",
+    "field": "الحقل",
+    "last": "الأخير",
+    "render-counter": "العرض: {{numRenders}}",
+    "schema-counter": "المخطط: {{numSchemaChanges}}",
+    "title-reset-counters": "إعادة تعيين العدّادات",
+    "tooltip-step-back": "خطوة للخلف",
+    "type": "النوع"
+  },
+  "state-view": {
+    "current-value": "القيمة الحالية: {{currentValue}} ",
+    "label-state-name": "اسم الحالة"
+  }
+}

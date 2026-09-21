@@ -1,0 +1,27 @@
+{
+  "invitee-row": {
+    "aria-label-revoke-invite": "إلغاء الدعوة"
+  },
+  "invitees-table": {
+    "email": "البريد الإلكتروني",
+    "name": "الاسم"
+  },
+  "signup-invited-page": {
+    "complete-following": "يُرجى إكمال ما يلي واختيار كلمة مرور لقبول دعوتك والمتابعة:",
+    "custom-has-invited-you": "<0>{{invitedBy}}</0> دعاك للانضمام إلى Grafana والمنظمة <3>{{orgName}}</3>",
+    "default-has-invited-you": "<0>شخص ما</0> دعاك للانضمام إلى Grafana والمنظمة <3>{{orgName}}</3>",
+    "greeting-custom": "مرحبًا {{greeting}}.",
+    "greeting-default": "مرحبًا بك.",
+    "label-email": "البريد الإلكتروني",
+    "label-name": "الاسم",
+    "label-password": "كلمة المرور",
+    "label-username": "اسم المستخدم",
+    "message": {
+      "email-is-invalid": "البريد الإلكتروني غير صالح"
+    },
+    "placeholder-name-optional": "الاسم (اختياري)",
+    "placeholder-password": "كلمة المرور",
+    "placeholder-username": "اسم المستخدم",
+    "sign-up": "إنشاء حساب"
+  }
+}

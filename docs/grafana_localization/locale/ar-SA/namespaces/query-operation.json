@@ -1,0 +1,13 @@
+{
+  "header": {
+    "collapse-row": "طيّ صف الاستعلام",
+    "datasource-help": "إظهار مساعدة مصدر البيانات",
+    "drag-and-drop": "اسحب وأفلت لإعادة الترتيب",
+    "duplicate-query": "تكرار الاستعلام",
+    "expand-row": "توسيع صف الاستعلام",
+    "hide-response": "إخفاء الاستجابة",
+    "remove-query": "إزالة الاستعلام",
+    "show-response": "إظهار الاستجابة"
+  },
+  "query-editor-not-exported": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
+}

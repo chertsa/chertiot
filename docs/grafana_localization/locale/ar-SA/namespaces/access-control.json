@@ -1,0 +1,36 @@
+{
+  "add-permission": {
+    "built-in-aria-label": "منتقي الأدوار المدمجة",
+    "level-aria-label": "مستوى الإذن",
+    "permissions-aria-label": "شريط تمرير الأذونات",
+    "role-label": "الدور",
+    "role-select-aria-label": "الدور المراد إضافة إذن جديد له",
+    "serviceaccount-label": "حساب خدمة",
+    "team-label": "فريق",
+    "title": "إضافة إذن لـ",
+    "user-label": "مستخدم"
+  },
+  "add-permissions": {
+    "save": "حفظ"
+  },
+  "permission-list": {
+    "permission": "إذن"
+  },
+  "permission-list-item": {
+    "inherited": "موروث من المجلد",
+    "locked-aria-label": "مؤشر إذن مقفل",
+    "remove-aria-label": "إزالة الإذن لـ {{identifier}}",
+    "tooltip-inherited-permission": "إذن موروث",
+    "tooltip-provisioned-permission": "إذن مُهيّأ تلقائيًا"
+  },
+  "permissions": {
+    "add-label": "إضافة إذن",
+    "loading": "جارٍ تحميل الأذونات...",
+    "no-permissions": "لا توجد أذونات",
+    "permissions-change-warning": "سيغيّر هذا أذونات هذا المجلد وجميع فروعه.",
+    "role": "الدور",
+    "serviceaccount": "حساب خدمة",
+    "team": "فريق",
+    "user": "مستخدم"
+  }
+}

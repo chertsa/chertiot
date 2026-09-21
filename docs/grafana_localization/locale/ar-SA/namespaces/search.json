@@ -1,0 +1,55 @@
+{
+  "action-row": {
+    "panel-type": "اللوحة: {{panel}}"
+  },
+  "actions": {
+    "created-by-me": "أنشأتُها",
+    "include-panels": "تضمين اللوحات",
+    "remove-datasource-filter": "مصدر البيانات: {{datasource}}",
+    "sort-placeholder": "فرز",
+    "starred": "المميّزة بنجمة",
+    "view-as-folders": "عرض حسب المجلدات",
+    "view-as-list": "عرض كقائمة"
+  },
+  "dashboard-actions": {
+    "import": "استيراد لوحة معلومات",
+    "new": "جديد",
+    "new-dashboard": "لوحة معلومات جديدة",
+    "new-folder": "مجلد جديد",
+    "new-template-dashboard": "استخدام قالب"
+  },
+  "generate-columns": {
+    "score": "النتيجة"
+  },
+  "results-table": {
+    "datasource-header": "مصدر البيانات",
+    "deleted-by-header": "حُذفت بواسطة",
+    "deleted-by-removed": "حساب محذوف",
+    "deleted-by-unknown-short": "<0></0> غير معروف",
+    "deleted-by-unknown-tooltip": "تعذّر العثور على الحساب الذي حذف لوحة المعلومات هذه",
+    "deleted-less-than-1-min": "< دقيقة واحدة",
+    "deleted-remaining-header": "الوقت المتبقّي",
+    "location-header": "الموقع",
+    "name-header": "الاسم",
+    "tags-header": "الوسوم",
+    "type-dashboard": "لوحة المعلومات",
+    "type-folder": "مجلد",
+    "type-header": "النوع"
+  },
+  "search-input": {
+    "include-panels-placeholder": "ابحث عن لوحات المعلومات والمجلدات واللوحات",
+    "placeholder": "ابحث عن لوحات المعلومات والمجلدات"
+  },
+  "search-results-table": {
+    "aria-label-search-results-table": "جدول نتائج البحث",
+    "no-data": "لا توجد قيم"
+  },
+  "unified-searcher": {
+    "opts": {
+      "label": {
+        "alphabetically-az": "أبجديًا (أ-ي)",
+        "alphabetically-za": "أبجديًا (ي-أ)"
+      }
+    }
+  }
+}

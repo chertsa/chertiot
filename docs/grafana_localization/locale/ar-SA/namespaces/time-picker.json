@@ -1,0 +1,65 @@
+{
+  "absolute": {
+    "recent-title": "النطاقات المطلقة المستخدمة مؤخرًا",
+    "title": "نطاق زمني مطلق"
+  },
+  "calendar": {
+    "apply-button": "تطبيق النطاق الزمني",
+    "cancel-button": "إلغاء",
+    "close": "إغلاق التقويم",
+    "next-month": "الشهر التالي",
+    "previous-month": "الشهر السابق",
+    "select-time": "اختر نطاقًا زمنيًا"
+  },
+  "content": {
+    "empty-recent-list-docs": "<0><0>اقرأ الوثائق</0><1> لمعرفة المزيد حول كيفية إدخال نطاقات زمنية مخصصة.</1></0>",
+    "empty-recent-list-info": "يبدو أنك لم تستخدم منتقي الوقت هذا من قبل. بمجرد إدخال بعض الفواصل الزمنية، ستظهر هنا الفواصل المستخدمة مؤخرًا.",
+    "filter-placeholder": "ابحث في النطاقات السريعة"
+  },
+  "copy-paste": {
+    "copy-success-message": "تم نسخ النطاق الزمني إلى الحافظة",
+    "default-error-message": "{{error}} ليس نطاقًا زمنيًا صالحًا",
+    "default-error-title": "نطاق زمني غير صالح",
+    "tooltip-copy": "نسخ النطاق الزمني إلى الحافظة",
+    "tooltip-paste": "لصق النطاق الزمني"
+  },
+  "footer": {
+    "change-settings-button": "تغيير إعدادات الوقت",
+    "fiscal-year-option": "السنة المالية",
+    "fiscal-year-start": "شهر بداية السنة المالية",
+    "time-zone-option": "المنطقة الزمنية",
+    "time-zone-selection": "اختيار المنطقة الزمنية"
+  },
+  "range-content": {
+    "apply-button": "تطبيق النطاق الزمني",
+    "default-error": "أدخل تاريخًا ({{dateExample}}) أو وقتًا نسبيًا ({{relativeTimeExample1}}، {{relativeTimeExample2}})",
+    "fiscal-year": "السنة المالية: {{from}} - {{to}}",
+    "from-input": "من",
+    "open-input-calendar": "فتح التقويم",
+    "range-error": "يجب أن يكون تاريخ «من» قبل تاريخ «إلى»",
+    "to-input": "إلى"
+  },
+  "range-picker": {
+    "backwards-time-aria-label": "تحريك النطاق الزمني للخلف",
+    "current-time-selected": "النطاق الزمني المحدد: {{currentTimeRange}}",
+    "forwards-time-aria-label": "تحريك النطاق الزمني للأمام",
+    "to": "إلى",
+    "zoom-out-button": "تصغير النطاق الزمني",
+    "zoom-out-tooltip-new": "تصغير النطاق الزمني <br/> t -"
+  },
+  "time-range": {
+    "apply": "تطبيق النطاق الزمني",
+    "aria-role": "اختيار النطاق الزمني",
+    "default-title": "النطاقات الزمنية",
+    "example-title": "أمثلة على النطاقات الزمنية",
+    "from-label": "من",
+    "from-to": "{{timeOptionFrom}} إلى {{timeOptionTo}}",
+    "specify": "حدّد النطاق الزمني",
+    "submit-button-label": "زر إرسال منتقي الوقت",
+    "to-label": "إلى"
+  },
+  "zone": {
+    "select-aria-label": "منتقي المنطقة الزمنية",
+    "select-search-input": "اكتب للبحث (الدولة، المدينة، الاختصار)"
+  }
+}

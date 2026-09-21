@@ -1,0 +1,17 @@
+{
+  "all": "الكل",
+  "apply": "تطبيق",
+  "cancel": "إلغاء",
+  "collapse": "طيّ",
+  "disabled": "مُعطّل",
+  "discard": "تجاهل",
+  "edit": "تعديل",
+  "help": "مساعدة",
+  "loading": "جارٍ التحميل...",
+  "locale": {
+    "default": "افتراضي"
+  },
+  "save": "حفظ",
+  "search": "بحث",
+  "view": "عرض"
+}

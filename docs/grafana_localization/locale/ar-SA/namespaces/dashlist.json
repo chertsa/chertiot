@@ -1,0 +1,14 @@
+{
+  "category-dashboard-list": "قائمة لوحات المعلومات",
+  "name-folder": "مجلد",
+  "name-include-current-template-variables": "تضمين قيم متغيرات القالب الحالية",
+  "name-include-current-time-range": "تضمين النطاق الزمني الحالي",
+  "name-max-items": "الحد الأقصى للعناصر",
+  "name-query": "استعلام",
+  "name-recently-viewed": "المشاهَدة مؤخرًا",
+  "name-search": "بحث",
+  "name-show-folder-names": "إظهار أسماء المجلدات",
+  "name-show-headings": "إظهار العناوين",
+  "name-starred": "المميّزة بنجمة",
+  "name-tags": "الوسوم"
+}

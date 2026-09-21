@@ -1,0 +1,11 @@
+{
+  "all": {
+    "title-deselect": "إلغاء تحديد الكل",
+    "title-deselect-filtered": "إلغاء تحديد الكل (مُرشَّح)",
+    "title-select": "تحديد الكل",
+    "title-select-filtered": "تحديد الكل (مُرشَّح)"
+  },
+  "clear": {
+    "title": "مسح الكل"
+  }
+}

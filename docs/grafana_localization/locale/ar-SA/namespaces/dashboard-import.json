@@ -1,0 +1,20 @@
+{
+  "file-dropzone": {
+    "primary-text": "رفع ملف JSON للوحة المعلومات",
+    "secondary-text": "اسحب وأفلت هنا أو انقر للتصفح"
+  },
+  "form-actions": {
+    "cancel": "إلغاء",
+    "load": "تحميل"
+  },
+  "gcom-field": {
+    "label": "ابحث عن لوحات معلومات للتطبيقات الشائعة واستوردها من <link />",
+    "load-button": "تحميل",
+    "placeholder": "عنوان URL للوحة معلومات Grafana.com أو المعرّف",
+    "validation-required": "يلزم عنوان URL أو معرّف للوحة معلومات Grafana"
+  },
+  "json-field": {
+    "label": "الاستيراد عبر نموذج JSON للوحة المعلومات",
+    "validation-required": "يلزم نموذج JSON للوحة المعلومات"
+  }
+}

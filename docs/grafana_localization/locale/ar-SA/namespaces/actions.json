@@ -1,0 +1,22 @@
+{
+  "action-editor": {
+    "button": {
+      "style": {
+        "background-color": "اللون"
+      }
+    },
+    "label-headers": "الترويسات",
+    "label-url": "URL",
+    "placeholder-url": "URL"
+  },
+  "params-editor": {
+    "aria-label-add": "إضافة",
+    "aria-label-delete": "حذف",
+    "placeholder-key": "المفتاح",
+    "placeholder-name": "الاسم",
+    "placeholder-value": "القيمة"
+  },
+  "variables-editor": {
+    "placeholder-type": "النوع"
+  }
+}

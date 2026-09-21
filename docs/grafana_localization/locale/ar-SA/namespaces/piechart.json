@@ -1,0 +1,26 @@
+{
+  "category-legend": "وسيلة الإيضاح",
+  "category-pie-chart": "مخطط دائري",
+  "description-labels": "اختر التسميات المراد عرضها في المخطط الدائري",
+  "description-pie-chart-type": "كيف ينبغي عرض المخطط الدائري",
+  "labels-options": {
+    "label-name": "الاسم",
+    "label-percent": "النسبة المئوية",
+    "label-value": "القيمة"
+  },
+  "legend-values-options": {
+    "label-percent": "النسبة المئوية",
+    "label-value": "القيمة"
+  },
+  "name-labels": "التسميات",
+  "name-legend-values": "قيم وسيلة الإيضاح",
+  "name-pie-chart-type": "نوع المخطط الدائري",
+  "pie-chart-type-options": {
+    "label-donut": "حلقي",
+    "label-pie": "دائري"
+  },
+  "suggestions": {
+    "donut": "مخطط حلقي",
+    "pie": "مخطط دائري"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "annotation-editor2": {
+    "add-annotation": "إضافة تعليق زمني",
+    "cancel": "إلغاء",
+    "edit-annotation": "تعديل التعليق الزمني",
+    "label-description": "الوصف",
+    "label-tags": "الوسوم",
+    "placeholder-add-tags": "إضافة وسوم",
+    "save": "حفظ",
+    "saving": "جارٍ الحفظ",
+    "tooltip-close": "إغلاق"
+  },
+  "annotation-marker": {
+    "annotation-label": "تعليق زمني",
+    "annotation-region-label": "منطقة التعليق الزمني"
+  },
+  "annotation-tooltip2": {
+    "cluster-header": "التعليقات الزمنية",
+    "tooltip-delete": "حذف",
+    "tooltip-edit": "تعديل"
+  },
+  "category-axis": "المحور",
+  "config": {
+    "get-graph-field-config": {
+      "aria-label-bar-width-factor": "معامل عرض الشريط",
+      "aria-label-fill-opacity": "عتامة التعبئة",
+      "aria-label-line-width": "عرض الخط",
+      "aria-label-point-size": "حجم النقطة",
+      "category-graph-styles": "أنماط الرسم البياني",
+      "category-thresholds": "العتبات",
+      "name-bar-alignment": "محاذاة الشريط",
+      "name-bar-width-factor": "معامل عرض الشريط",
+      "name-connect-nulls": "وصل القيم الفارغة (null)",
+      "name-disconnect-values": "فصل القيم",
+      "name-fill-below-to": "التعبئة أسفل إلى",
+      "name-fill-opacity": "عتامة التعبئة",
+      "name-gradient-mode": "وضع التدرّج",
+      "name-line-interpolation": "استيفاء الخط",
+      "name-line-style": "نمط الخط",
+      "name-line-width": "عرض الخط",
+      "name-point-size": "حجم النقطة",
+      "name-show-points": "إظهار النقاط",
+      "name-show-thresholds": "إظهار العتبات",
+      "name-show-values": "إظهار القيم",
+      "name-style": "النمط",
+      "name-transform": "التحويل",
+      "transform-options": {
+        "description-constant": "ستُعرض القيمة الأولى كخط ثابت",
+        "description-style": "اقلب النتائج إلى قيم سالبة على المحور Y",
+        "label-constant": "ثابت",
+        "label-style": "Y السالب"
+      }
+    }
+  },
+  "insert-nulls-editor": {
+    "disconnect-options": {
+      "label-never": "أبدًا",
+      "label-threshold": "عتبة"
+    }
+  },
+  "legend": {
+    "category": "وسيلة الإيضاح",
+    "description-faceted-filter": "فعّل المرشّح لعرض السلاسل بناءً على التسميات أو الأسماء",
+    "name-faceted-filter": "ظهور السلاسل"
+  },
+  "line-style-editor": {
+    "line-fill-options": {
+      "label-accessible": "ميسّر",
+      "label-dash": "شرطات",
+      "label-dots": "نقاط",
+      "label-solid": "صلب"
+    },
+    "title-the-input-expects-a-segment-list": "يتوقّع الإدخال قائمة مقاطع",
+    "tooltip-help": "مساعدة"
+  },
+  "name-time-zone": "المنطقة الزمنية",
+  "nulls-threshold-input": {
+    "placeholder-never": "أبدًا"
+  },
+  "outside-range-plugin": {
+    "data-outside-time-range": "بيانات خارج النطاق الزمني",
+    "zoom-to-data": "التكبير إلى البيانات"
+  },
+  "presets": {
+    "multi-many-points": "خطوط مع نقاط",
+    "multi-many-points-stacked": "خطوط مكدّسة",
+    "multi-many-points-stacked-pct": "مكدّس 100%",
+    "multi-points": "خطوط مع نقاط",
+    "multi-stacked-bars": "أشرطة مكدّسة",
+    "multi-stacked-points": "خطوط مكدّسة",
+    "single-bars": "أشرطة",
+    "single-bars-scheme": "مخطط لوني للأشرطة",
+    "single-dashed-threshold": "عتبة متقطّعة",
+    "single-few-points": "تعبئة مفردة",
+    "single-many-points-fill": "تعبئة الخط",
+    "single-many-points-hue": "درجة لون الخط",
+    "single-many-points-scheme": "مخطط لوني للخط",
+    "single-many-points-threshold-scheme": "مخطط لوني للعتبة",
+    "single-smooth-scheme": "مخطط لوني ناعم",
+    "single-step-fill": "تعبئة متدرّجة"
+  },
+  "span-nulls-editor": {
+    "gaps-options": {
+      "label-always": "دائمًا",
+      "label-never": "أبدًا",
+      "label-threshold": "عتبة"
+    }
+  },
+  "suggestions": {
+    "area": "مخطط مساحي",
+    "area-stacked": "مخطط مساحي - مكدّس",
+    "area-stacked-percentage": "مخطط مساحي - مكدّس بالنسبة المئوية",
+    "bar": "مخطط شريطي",
+    "bar-stacked": "مخطط شريطي - مكدّس",
+    "bar-stacked-percent": "مخطط شريطي - مكدّس بالنسبة المئوية",
+    "line": "مخطط خطي"
+  },
+  "timezones-editor": {
+    "tooltip-add-timezone": "إضافة منطقة زمنية",
+    "tooltip-remove-timezone": "إزالة المنطقة الزمنية"
+  }
+}

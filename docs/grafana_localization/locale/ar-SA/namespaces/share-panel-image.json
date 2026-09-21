@@ -1,0 +1,27 @@
+{
+  "disabled-help": "احفظ لوحة المعلومات لتفعيل توليد الصورة",
+  "download-disabled-help": "ولّد صورة أولًا لتفعيل التنزيل",
+  "error-title": "فشل توليد الصورة",
+  "form": {
+    "label": "إعدادات صورة اللوحة"
+  },
+  "preview": {
+    "title": "معاينة اللوحة"
+  },
+  "settings": {
+    "height-label": "الارتفاع",
+    "height-min": "يجب أن يكون الارتفاع مساويًا لـ 1 أو أكبر",
+    "height-placeholder": "500",
+    "height-required": "الارتفاع مطلوب",
+    "max-warning": "القيم القصوى للإعدادات محدودة بخدمة عارض الصور",
+    "scale-factor-label": "معامل التحجيم",
+    "scale-factor-min": "يجب أن يكون معامل التحجيم مساويًا لـ 1 أو أكبر",
+    "scale-factor-placeholder": "1",
+    "scale-factor-required": "معامل التحجيم مطلوب",
+    "title": "إعدادات الصورة",
+    "width-label": "العرض",
+    "width-min": "يجب أن يكون العرض مساويًا لـ 1 أو أكبر",
+    "width-placeholder": "1000",
+    "width-required": "العرض مطلوب"
+  }
+}

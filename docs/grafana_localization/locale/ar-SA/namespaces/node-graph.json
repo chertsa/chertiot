@@ -1,0 +1,24 @@
+{
+  "category-edges": "الحواف",
+  "category-node-graph": "رسم العُقد البياني",
+  "category-nodes": "العُقد",
+  "layout-algorithm-options": {
+    "description-force": "استخدام تخطيط موجّه بالقوة",
+    "description-grid": "استخدام تخطيط شبكي",
+    "description-layered": "استخدام تخطيط طبقي",
+    "label-force": "موجّه بالقوة",
+    "label-grid": "شبكي",
+    "label-layered": "طبقي"
+  },
+  "name-arc-sections": "أقسام القوس",
+  "name-layout-algorithm": "خوارزمية التخطيط",
+  "name-main-stat-unit": "وحدة الإحصاء الرئيسية",
+  "name-secondary-stat-unit": "وحدة الإحصاء الثانوية",
+  "name-zoom-mode": "وضع التكبير",
+  "zoom-mode-options": {
+    "description-cooperative": "يتيح لك تمرير الصفحة بشكل طبيعي",
+    "description-greedy": "يتفاعل مع جميع إيماءات التكبير",
+    "label-cooperative": "تعاوني",
+    "label-greedy": "جشِع"
+  }
+}

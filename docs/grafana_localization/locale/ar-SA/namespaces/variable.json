@@ -1,0 +1,17 @@
+{
+  "adhoc": {
+    "placeholder": "اختر قيمة"
+  },
+  "dropdown": {
+    "placeholder": "أدخل قيمة المتغير"
+  },
+  "picker": {
+    "link-all": "الكل",
+    "option-all": "الكل",
+    "option-selected-values": "محدد ({{numSelected}})",
+    "option-tooltip": "مسح التحديدات"
+  },
+  "textbox": {
+    "placeholder": "أدخل قيمة المتغير"
+  }
+}

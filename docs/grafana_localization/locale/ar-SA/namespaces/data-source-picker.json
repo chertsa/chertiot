@@ -1,0 +1,17 @@
+{
+  "add-new-data-source": "إعداد مصدر بيانات جديد",
+  "built-in-list": {
+    "description-dashboard": "إعادة استخدام نتائج الاستعلام من تصورات أخرى",
+    "description-grafana": "اكتشف التصورات باستخدام بيانات وهمية",
+    "description-mixed": "استخدام مصادر بيانات متعددة"
+  },
+  "list": {
+    "no-data-source-message": "لا توجد مصادر بيانات"
+  },
+  "modal": {
+    "configure-new-data-source": "افتح علامة تبويب جديدة وأعدّ مصدر بيانات",
+    "input-placeholder": "اختر مصدر بيانات",
+    "title": "اختر مصدر بيانات"
+  },
+  "open-advanced-button": "فتح منتقي مصدر البيانات المتقدم"
+}

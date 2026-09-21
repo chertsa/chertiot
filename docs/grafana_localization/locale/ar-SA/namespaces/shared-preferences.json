@@ -1,0 +1,21 @@
+{
+  "error": {
+    "get-preferences": "خطأ في تحميل التفضيلات",
+    "update-preferences": "خطأ في تحديث التفضيلات"
+  },
+  "fields": {
+    "home-dashboard-label": "لوحة المعلومات الرئيسية",
+    "home-dashboard-placeholder": "لوحة المعلومات الافتراضية",
+    "language-preference-label": "اللغة",
+    "language-preference-placeholder": "اختر اللغة",
+    "theme-description": "هل تستمتع بالسمات التجريبية؟ أخبرنا بما تودّ رؤيته <2>هنا.</2>",
+    "theme-label": "سمة الواجهة",
+    "week-start-label": "بداية الأسبوع"
+  },
+  "save": "حفظ التفضيلات",
+  "theme": {
+    "default-label": "افتراضي",
+    "experimental": "تجريبي"
+  },
+  "title": "التفضيلات"
+}

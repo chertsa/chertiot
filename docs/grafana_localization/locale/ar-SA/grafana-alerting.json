@@ -1,0 +1,30 @@
+{
+  "alert-labels": {
+    "button": {
+      "hide": "إخفاء التسميات الشائعة",
+      "show": {
+        "tooltip": "إظهار التسميات الشائعة"
+      }
+    }
+  },
+  "alerting": {
+    "alert-labels": {
+      "aria-label-labels": "التسميات",
+      "common-labels-count_zero": "+{{count}} تسميات شائعة",
+      "common-labels-count_one": "تسمية شائعة واحدة",
+      "common-labels-count_two": "تسميتان شائعتان",
+      "common-labels-count_few": "+{{count}} تسميات شائعة",
+      "common-labels-count_many": "+{{count}} تسمية شائعة",
+      "common-labels-count_other": "+{{count}} تسمية شائعة"
+    },
+    "paused-badge": {
+      "paused": "متوقّف"
+    },
+    "routing-tree-selector": {
+      "custom-policy-desc": "وجّه التنبيهات عبر شجرة سياسات {{name}}",
+      "default-policy": "السياسة الافتراضية",
+      "default-policy-desc": "يوجّه التنبيهات باستخدام شجرة سياسات الإشعارات الافتراضية",
+      "error": "فشل تحميل سياسات الإشعارات"
+    }
+  }
+}

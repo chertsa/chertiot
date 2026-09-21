@@ -1,0 +1,16 @@
+{
+  "empty-state": {
+    "button-title": "إنشاء إسكات",
+    "title": "لم تنشئ أي حالات إسكات بعد"
+  },
+  "table": {
+    "add-silence-button": "إضافة إسكات",
+    "edit-button": "تعديل",
+    "expired-silences": "تُحذف حالات الإسكات المنتهية تلقائيًا بعد 5 أيام.",
+    "no-matching-silences": "لم يُعثر على حالات إسكات مطابقة؛",
+    "noConfig": "أنشئ نقطة اتصال جديدة لإنشاء إعداد باستخدام القيم الافتراضية أو تواصل مع مسؤولك لإعداد Alertmanager.",
+    "recreate-button": "إعادة الإنشاء",
+    "unsilence-button": "إلغاء الإسكات",
+    "view-button": "عرض"
+  }
+}

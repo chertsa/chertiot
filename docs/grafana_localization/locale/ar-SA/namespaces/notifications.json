@@ -1,0 +1,12 @@
+{
+  "empty-state": {
+    "description": "ستظهر هنا الإشعارات التي تلقّيتها",
+    "title": "لقد اطّلعت على كل شيء!"
+  },
+  "select-all": "تحديد كل الإشعارات",
+  "select-notification": "تحديد {{title}}",
+  "stored-notifications": {
+    "dismiss-notifications": "تجاهل الإشعارات",
+    "title-alert": "تعرض هذه الصفحة الأخطاء والتحذيرات السابقة. بعد تجاهلها، لا يمكن استرجاعها."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "filters-overview": {
+    "all-filters": "جميع المرشّحات",
+    "open": "نظرة عامة على المرشّحات"
+  },
+  "panel-queries": {
+    "add-from-saved-queries": "إضافة من الاستعلامات المحفوظة"
+  },
+  "settings": {
+    "variables": {
+      "dependencies": {
+        "button": "إظهار التبعيات",
+        "title": "التبعيات"
+      }
+    }
+  }
+}

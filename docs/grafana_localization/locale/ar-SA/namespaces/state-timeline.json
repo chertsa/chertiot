@@ -1,0 +1,22 @@
+{
+  "align-values-options": {
+    "label-center": "توسيط",
+    "label-left": "يسار",
+    "label-right": "يمين"
+  },
+  "category-state-timeline": "الجدول الزمني للحالة",
+  "name-align-values": "محاذاة القيم",
+  "name-connect-null-values": "وصل القيم الفارغة (null)",
+  "name-disconnect-values": "فصل القيم",
+  "name-fill-opacity": "عتامة التعبئة",
+  "name-line-width": "عرض الخط",
+  "name-merge-equal-consecutive-values": "دمج القيم المتساوية المتتالية",
+  "name-page-size": "حجم الصفحة (تفعيل الترقيم)",
+  "name-row-height": "ارتفاع الصف",
+  "name-show-values": "إظهار القيم",
+  "show-values-options": {
+    "label-always": "دائمًا",
+    "label-auto": "تلقائي",
+    "label-never": "أبدًا"
+  }
+}

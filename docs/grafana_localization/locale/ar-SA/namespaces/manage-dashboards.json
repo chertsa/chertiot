@@ -1,0 +1,44 @@
+{
+  "import-dashboard-form": {
+    "cancel": "إلغاء",
+    "change-uid": "تغيير uid",
+    "description-library-panels-imported": "قائمة لوحات المكتبة الجديدة التي ستُستورد.",
+    "description-unique-identifier-uid": "يمكن استخدام المعرّف الفريد (UID) للوحة المعلومات لتمييزها بشكل فريد بين عدة عمليات تثبيت لـ Grafana. يتيح UID الحصول على عناوين URL ثابتة للوصول إلى لوحات المعلومات، لذا فإن تغيير عنوان لوحة المعلومات لن يكسر أي روابط محفوظة لتلك اللوحة.",
+    "label-existing-library-panels": "لوحات المكتبة الحالية",
+    "label-folder": "مجلد",
+    "label-name": "الاسم",
+    "label-new-library-panels": "لوحات المكتبة الجديدة",
+    "label-unique-identifier-uid": "المعرّف الفريد (UID)",
+    "options": "الخيارات"
+  },
+  "import-dashboard-overview-un-connected": {
+    "importing-from": "استيراد لوحة المعلومات من <1>Grafana.com</1>",
+    "published-by": "نشرها",
+    "updated-on": "حُدِّثت في"
+  },
+  "import-overview": {
+    "invalid-schema-action": "جرّب لوحة معلومات أخرى",
+    "invalid-schema-body": "تعذّر استيراد لوحة المعلومات لأن مخططها ليس بإصدار معروف.",
+    "invalid-schema-title": "مخطط لوحة معلومات غير صالح أو غير معروف"
+  },
+  "snapshot-list-table": {
+    "body-delete": "هل أنت متأكد أنك تريد حذف '{{snapshotToRemove}}'؟",
+    "confirmText-delete": "حذف",
+    "title-delete": "حذف"
+  },
+  "unthemed-dashboard-import": {
+    "subTitle": {
+      "import-dashboard-from-file-or-grafanacom": "استيراد لوحة معلومات من ملف أو من Grafana.com"
+    },
+    "text": {
+      "import-dashboard": "استيراد لوحة معلومات"
+    }
+  },
+  "validation-srv": {
+    "message-name-required": "الاسم مطلوب",
+    "message-reserved-name": "هذا اسم محجوز ولا يمكن استخدامه لمجلد.",
+    "message-same-name": "توجد بالفعل لوحة معلومات أو مجلد بالاسم نفسه",
+    "message-same-name-current-folder": "توجد بالفعل لوحة معلومات أو مجلد بالاسم نفسه في المجلد الحالي",
+    "message-same-name-general": "يوجد بالفعل مجلد أو لوحة معلومات بالاسم نفسه في المجلد الجذري"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "drawer": {
+    "new-library-panel-title": "لوحة مكتبة جديدة",
+    "share-embed-title": "مشاركة التضمين",
+    "share-link-title": "إعدادات الرابط"
+  },
+  "menu": {
+    "new-library-panel-title": "لوحة مكتبة جديدة",
+    "share-embed-title": "مشاركة التضمين",
+    "share-link-title": "مشاركة الرابط",
+    "share-snapshot-title": "مشاركة لقطة"
+  },
+  "new-library-panel": {
+    "cancel-button": "إلغاء",
+    "create-button": "إنشاء لوحة مكتبة"
+  }
+}

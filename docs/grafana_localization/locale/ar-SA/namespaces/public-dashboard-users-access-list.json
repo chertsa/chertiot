@@ -1,0 +1,37 @@
+{
+  "dashboard-modal": {
+    "external-link": "رابط خارجي",
+    "loading-text": "جارٍ التحميل...",
+    "open-dashboard-list-text": "فتح قائمة لوحات المعلومات",
+    "sharing-setting": "إعدادات المشاركة"
+  },
+  "delete-user-modal": {
+    "delete-user-button-text": "حذف المستخدم",
+    "delete-user-cancel-button": "إلغاء",
+    "delete-user-revoke-access-button": "إبطال الوصول",
+    "revoke-access-title": "إبطال الوصول",
+    "revoke-user-access-modal-desc-line1": "هل أنت متأكد أنك تريد إبطال الوصول لـ {{email}}؟"
+  },
+  "delete-user-shared-dashboards-modal": {
+    "revoke-user-access-modal-desc-line2": "سيؤدي هذا الإجراء إلى إبطال وصول {{email}} فورًا إلى جميع لوحات المعلومات المشتركة."
+  },
+  "modal": {
+    "shared-dashboard-modal-title": "لوحات المعلومات المشتركة"
+  },
+  "table-body": {
+    "dashboard-count_zero": "لا لوحات معلومات",
+    "dashboard-count_one": "لوحة معلومات واحدة",
+    "dashboard-count_two": "لوحتا معلومات",
+    "dashboard-count_few": "{{count}} لوحات معلومات",
+    "dashboard-count_many": "{{count}} لوحة معلومات",
+    "dashboard-count_other": "{{count}} لوحة معلومات"
+  },
+  "table-header": {
+    "activated-label": "مُفعّل",
+    "activated-tooltip": "أبكر وقت كان فيه المستخدم نشطًا في لوحة معلومات",
+    "email-label": "البريد الإلكتروني",
+    "last-active-label": "آخر نشاط",
+    "origin-label": "المصدر",
+    "role-label": "الدور"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "form": {
+    "server-discovery-action-button": "أدخل عنوان URL لاكتشاف OpenID Connect",
+    "server-discovery-modal-close": "إغلاق",
+    "server-discovery-modal-loading": "جارٍ التحميل...",
+    "server-discovery-modal-submit": "إرسال"
+  },
+  "login": {
+    "error": "رفض موفّر تسجيل الدخول طلب تسجيل الدخول"
+  }
+}

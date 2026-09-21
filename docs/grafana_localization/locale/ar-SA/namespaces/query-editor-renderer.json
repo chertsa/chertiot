@@ -1,0 +1,6 @@
+{
+  "datasource-load-error-body": "اختر مصدر بيانات لهذا الاستعلام للمتابعة.",
+  "datasource-load-error-title": "فشل تحميل مصدر البيانات لهذا الاستعلام",
+  "loading-datasource": "جارٍ تحميل مصدر البيانات",
+  "no-query-editor-component": "إضافة مصدر البيانات لا تصدّر أي مكوّن محرّر استعلامات"
+}

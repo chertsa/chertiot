@@ -1,0 +1,39 @@
+{
+  "inspect-data-tab": {
+    "loading": "جارٍ التحميل",
+    "no-data": "لا توجد بيانات"
+  },
+  "inspect-error-tab": {
+    "error-status-message": "الحالة: {{errorStatus}}. الرسالة:",
+    "error-status-no-message": "الحالة: {{errorStatus}}",
+    "error-trace-message": "(معرّف التتبّع: {{errorTrace}})"
+  },
+  "inspect-jsontab": {
+    "apply": "تطبيق",
+    "support": "الدعم"
+  },
+  "query": {
+    "collapse-all": "طيّ الكل",
+    "copy-to-clipboard": "نسخ إلى الحافظة",
+    "description": "يتيح لك فاحص الاستعلامات عرض الطلب والاستجابة الخام. لجمع هذه البيانات يحتاج Grafana إلى إصدار استعلام جديد. انقر على زر التحديث أدناه لتشغيل استعلام جديد.",
+    "expand-all": "توسيع الكل",
+    "no-data": "لم يُجمع أي طلب أو استجابة بعد. اضغط زر التحديث",
+    "refresh": "تحديث"
+  },
+  "query-inspector": {
+    "count-frames_zero": "لا إطارات، ",
+    "count-frames_one": "إطار واحد، ",
+    "count-frames_two": "إطاران، ",
+    "count-frames_few": "{{count}} إطارات، ",
+    "count-frames_many": "{{count}} إطارًا، ",
+    "count-frames_other": "{{count}} إطار، ",
+    "count-rows_zero": "لا صفوف",
+    "count-rows_one": "صف واحد",
+    "count-rows_two": "صفّان",
+    "count-rows_few": "{{count}} صفوف",
+    "count-rows_many": "{{count}} صفًّا",
+    "count-rows_other": "{{count}} صف",
+    "query-inspector": "فاحص الاستعلامات",
+    "text-loading-query-inspector": "جارٍ تحميل فاحص الاستعلامات..."
+  }
+}

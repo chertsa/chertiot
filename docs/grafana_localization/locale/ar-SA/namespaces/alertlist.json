@@ -1,0 +1,78 @@
+{
+  "category-alert-state-filter": "مرشّح حالة التنبيه",
+  "category-filter": "المرشّح",
+  "category-options": "الخيارات",
+  "category-stat-styles": "أنماط الإحصاء",
+  "descriptino-alerts-linked-to-dashboard": "إظهار التنبيهات المرتبطة بلوحة المعلومات هذه فقط",
+  "description-alert-instance-label": "تصفية مثيلات التنبيه باستخدام استعلام التسميات، مثال: {severity=\"critical\", instance=~\"cluster-us-.+\"}",
+  "description-alert-name": "التصفية بحثًا عن التنبيهات المحتوية على هذا النص",
+  "description-datasource": "التصفية من مصدر التنبيه",
+  "description-folder": "التصفية بحثًا عن التنبيهات في المجلد المحدد (لقواعد التنبيه المُدارة من Grafana فقط)",
+  "description-group-by": "تصفية التنبيهات باستخدام استعلام التسميات",
+  "description-group-mode": "كيفية تجميع مثيلات التنبيه",
+  "description-max-items": "الحد الأقصى للتنبيهات المعروضة",
+  "description-show-inactive-alerts": "تضمين قواعد التنبيه التي لها 0 (صفر) مثيل. لأن هذه القواعد ليس لها مثيلات، تبقى مخفية إذا كان مرشّح تسمية مثيل التنبيه مُهيّأً.",
+  "description-sort-order": "ترتيب فرز التنبيهات ومثيلات التنبيه",
+  "description-stat-color-mode": "التحكّم في كيفية تلوين قيمة الإحصاء أو الخلفية",
+  "description-stat-thresholds": "حدّد العتبات لتلوين قيمة الإحصاء بناءً على عدد التنبيهات",
+  "description-stat-value-mappings": "تعديل نص العرض بناءً على عدد التنبيهات",
+  "description-view-mode": "التبديل بين عرض القائمة وعرض الإحصاء",
+  "group-by": {
+    "aria-label-group-by-label-keys": "التجميع حسب مفاتيح التسمية",
+    "placeholder-group-by": "التجميع حسب"
+  },
+  "group-mode-options": {
+    "label-custom-grouping": "تجميع مخصص",
+    "label-default-grouping": "تجميع افتراضي"
+  },
+  "name-alert-instance-label": "تسمية مثيل التنبيه",
+  "name-alert-name": "اسم التنبيه",
+  "name-alerts-linked-to-dashboard": "التنبيهات المرتبطة بلوحة المعلومات هذه",
+  "name-datasource": "مصدر البيانات",
+  "name-error": "خطأ",
+  "name-firing": "التنبيه / نشط",
+  "name-folder": "مجلد",
+  "name-group-by": "التجميع حسب",
+  "name-group-mode": "وضع التجميع",
+  "name-max-items": "الحد الأقصى للعناصر",
+  "name-no-data": "لا توجد بيانات",
+  "name-normal": "عادي",
+  "name-pending": "قيد الانتظار",
+  "name-recovering": "قيد التعافي",
+  "name-show-inactive-alerts": "إظهار التنبيهات التي لها 0 مثيل",
+  "name-sort-order": "ترتيب الفرز",
+  "name-stat-color-mode": "وضع اللون",
+  "name-stat-thresholds": "العتبات",
+  "name-stat-value-mappings": "تعيينات القيم",
+  "name-view-mode": "وضع العرض",
+  "sort-order-options": {
+    "label-alphabetical-asc": "أبجدي (تصاعدي)",
+    "label-alphabetical-desc": "أبجدي (تنازلي)",
+    "label-importance": "الأهمية",
+    "label-time-asc": "الوقت (تصاعدي)",
+    "label-time-desc": "الوقت (تنازلي)"
+  },
+  "stat-color-mode": {
+    "label-background-gradient": "خلفية متدرّجة",
+    "label-background-solid": "خلفية صلبة",
+    "label-none": "بلا",
+    "label-value": "القيمة"
+  },
+  "ungrouped-mode-view": {
+    "active-for": "لمدة <1>{{duration}}</1>",
+    "aria-label-view-alert-rule": "عرض قاعدة التنبيه",
+    "view-alert-rule": "عرض قاعدة التنبيه"
+  },
+  "unified-alert-list": {
+    "clear": "مسح",
+    "text-loading": "جارٍ التحميل..."
+  },
+  "unified-alert-list-panel": {
+    "body-permission-required": "عذرًا، ليس لديك الأذونات المطلوبة لقراءة قواعد التنبيه.",
+    "title-permission-required": "إذن مطلوب"
+  },
+  "view-mode-options": {
+    "label-list": "قائمة",
+    "label-stat": "إحصاء"
+  }
+}

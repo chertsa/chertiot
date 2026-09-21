@@ -1,0 +1,38 @@
+{
+  "dashboards": {
+    "collapse": "طيّ",
+    "exchange": "تغيير النطاق الجذري إلى {{scope}}",
+    "expand": "توسيع",
+    "loading": "جارٍ تحميل لوحات المعلومات",
+    "noResultsForFilter": "لم يُعثر على نتائج لاستعلامك",
+    "noResultsForFilterClear": "مسح البحث",
+    "noResultsForScopes": "لم يُعثر على لوحات معلومات أو روابط للنطاقات المحددة",
+    "noResultsNoScopes": "لم تُحدَّد أي نطاقات",
+    "search": "بحث",
+    "toggle": {
+      "collapse": "طيّ قائمة لوحات المعلومات المقترحة",
+      "disabled": "قائمة لوحات المعلومات المقترحة مُعطّلة بسبب وضع القراءة فقط",
+      "expand": "توسيع قائمة لوحات المعلومات المقترحة"
+    }
+  },
+  "selector": {
+    "apply": "تطبيق",
+    "cancel": "إلغاء",
+    "error-title": "حدث خطأ غير متوقّع",
+    "input": {
+      "placeholder": "لا نطاقات",
+      "remove-all": "إزالة الكل",
+      "removeAll": "إزالة جميع النطاقات",
+      "tooltip": "اختر نطاقًا"
+    },
+    "title": "اختر النطاقات"
+  },
+  "tree": {
+    "headline": {
+      "noResults": "لم يُعثر على نتائج لاستعلامك",
+      "recommended": "موصى به",
+      "results": "النتائج"
+    },
+    "search": "بحث {{parentTitle}}"
+  }
+}

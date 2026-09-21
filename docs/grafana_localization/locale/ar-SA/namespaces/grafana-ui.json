@@ -1,0 +1,699 @@
+{
+  "action-editor": {
+    "button": {
+      "action-variables-title": "متغيرات الإجراء",
+      "confirm": "تأكيد",
+      "confirm-action": "تأكيد الإجراء",
+      "style": "نمط الزر",
+      "variable-value-placeholder": "القيمة"
+    },
+    "close": "إغلاق",
+    "continue": "متابعة",
+    "inline": {
+      "add-action": "إضافة إجراء",
+      "edit-action": "تعديل الإجراء"
+    },
+    "modal": {
+      "action-body": "المحتوى",
+      "action-method": "الطريقة",
+      "action-query-params": "معاملات الاستعلام",
+      "action-title": "العنوان",
+      "action-title-placeholder": "عنوان الإجراء",
+      "action-variables": "المتغيرات",
+      "connection": "الاتصال",
+      "connection-direct-description": "إجراء الطلب مباشرةً من المتصفح",
+      "connection-direct-label": "مباشرةً من المتصفح",
+      "connection-placeholder": "اختر الاتصال",
+      "one-click-description": "يمكن تفعيل النقرة الواحدة لرابط أو إجراء واحد فقط في المرة"
+    }
+  },
+  "alert": {
+    "close-button": "إغلاق التنبيه"
+  },
+  "auto-save-field": {
+    "saved": "تم الحفظ!",
+    "saving": "جارٍ الحفظ <1></1>"
+  },
+  "axis-builder": {
+    "linear-threshold": {
+      "label": "العتبة الخطية",
+      "warning": {
+        "nan": "يجب أن تكون العتبة الخطية رقمًا",
+        "zero": "لا يمكن أن تكون العتبة الخطية صفرًا"
+      }
+    },
+    "log-base": "أساس اللوغاريتم"
+  },
+  "builder": {
+    "annotations": "التعليقات الزمنية",
+    "axis": {
+      "category-axis": "المحور",
+      "color-label": "اللون",
+      "color-options": {
+        "label-series": "السلسلة",
+        "label-text": "النص"
+      },
+      "grid-line-options": {
+        "label-auto": "تلقائي",
+        "label-off": "إيقاف",
+        "label-on": "تشغيل"
+      },
+      "name-centered-zero": "صفر مركزي",
+      "name-grid-lines": "إظهار خطوط الشبكة",
+      "name-label": "التسمية",
+      "name-placement": "الموضع",
+      "name-scale": "المقياس",
+      "name-show-border": "إظهار الحدود",
+      "name-soft-max": "الحد الأقصى المرن",
+      "name-soft-min": "الحد الأدنى المرن",
+      "name-width": "العرض",
+      "placeholder-label": "نص اختياري",
+      "placeholder-soft-max": "انظر: الخيارات القياسية > الأقصى",
+      "placeholder-soft-min": "انظر: الخيارات القياسية > الأدنى",
+      "placeholder-width": "تلقائي",
+      "scale-distribution-editor": {
+        "distribution-options": {
+          "label-linear": "خطي",
+          "label-log": "لوغاريتمي",
+          "label-symlog": "لوغاريتمي متماثل"
+        }
+      }
+    },
+    "legend": {
+      "category": "وسيلة الإيضاح",
+      "description-limit": "يحدّد عدد العناصر المعروضة افتراضيًا",
+      "description-values": "اختر القيم أو الحسابات لعرضها في وسيلة الإيضاح",
+      "mode-options": {
+        "label-list": "قائمة",
+        "label-table": "جدول"
+      },
+      "name-limit": "الحد",
+      "name-mode": "الوضع",
+      "name-overflow": "الفائض",
+      "name-placement": "الموضع",
+      "name-values": "القيم",
+      "name-visibility": "الظهور",
+      "name-width": "العرض",
+      "overflow-options": {
+        "label-ellipsis": "حذف (…)",
+        "label-wrap": "لفّ"
+      },
+      "placeholder-width": "تلقائي، px، أو % (مثال: 220 أو 35%)",
+      "placement-options": {
+        "label-bottom": "أسفل",
+        "label-right": "يمين"
+      }
+    },
+    "stacking": {
+      "name-stack-series": "تكديس السلاسل"
+    },
+    "text": {
+      "category-text-size": "حجم النص",
+      "name-percent-change": "نسبة التغيّر المئوية",
+      "name-title": "العنوان",
+      "name-value": "القيمة",
+      "placeholder-percent-change": "تلقائي",
+      "placeholder-title": "تلقائي",
+      "placeholder-value": "تلقائي"
+    },
+    "tooltip": {
+      "category": "التلميح",
+      "description-hover-proximity": "مدى قرب المؤشر من نقطة لتفعيل التلميح، بالبكسل",
+      "modeOptions": {
+        "label-all": "الكل",
+        "label-hidden": "مخفي",
+        "label-single": "مفرد"
+      },
+      "name-hide-zeros": "إخفاء الأصفار",
+      "name-hover-proximity": "قرب التمرير",
+      "name-max-height": "الحد الأقصى للارتفاع",
+      "name-max-width": "الحد الأقصى للعرض",
+      "name-tooltip-mode": "وضع التلميح",
+      "name-values-sort-order": "ترتيب فرز القيم",
+      "sortOptions": {
+        "label-ascending": "تصاعدي",
+        "label-descending": "تنازلي",
+        "label-none": "بلا"
+      }
+    }
+  },
+  "card": {
+    "option": "خيار"
+  },
+  "carousel": {
+    "aria-label-open-image": "فتح معاينة الصورة"
+  },
+  "cascader": {
+    "clear-button": "مسح التحديد"
+  },
+  "code-mirror": {
+    "error-label": "فشل تحميل محرّر CodeMirror",
+    "language-load-failed": "فشل تحميل إبراز الصياغة",
+    "language-load-failed-description": "سيستمر المحرّر دون ميزات خاصة باللغة.",
+    "loading-placeholder": "جارٍ تحميل المحرّر"
+  },
+  "color-picker": {
+    "input-label": "قيمة RGBA"
+  },
+  "color-picker-popover": {
+    "palette-tab": "الألوان",
+    "spectrum-tab": "مخصص"
+  },
+  "color-swatch": {
+    "aria-label-default": "اختر لونًا",
+    "aria-label-selected-color": "لون {{colorLabel}}"
+  },
+  "components": {
+    "sparkline": {
+      "warning": {
+        "too-few-values": "يتطلب المخطط المصغّر قيمتين على الأقل للعرض."
+      }
+    }
+  },
+  "confirm-button": {
+    "aria-label-delete": "حذف",
+    "cancel": "إلغاء",
+    "confirmText-delete": "حذف"
+  },
+  "confirm-content": {
+    "placeholder": "اكتب \"{{confirmPromptText}}\" للتأكيد"
+  },
+  "data-link-editor": {
+    "info": "باستخدام روابط البيانات يمكنك الإشارة إلى متغيرات البيانات مثل اسم السلسلة والتسميات والقيم. اكتب CMD+Space أو CTRL+Space أو $ لفتح اقتراحات المتغيرات.",
+    "new-tab-label": "فتح في علامة تبويب جديدة",
+    "title-label": "العنوان",
+    "title-placeholder": "إظهار التفاصيل",
+    "url-label": "URL"
+  },
+  "data-link-editor-modal": {
+    "cancel": "إلغاء",
+    "one-click-description": "يمكن تفعيل النقرة الواحدة لرابط واحد فقط في المرة",
+    "save": "حفظ"
+  },
+  "data-link-inline-editor": {
+    "one-click": "نقرة واحدة"
+  },
+  "data-links-inline-editor": {
+    "add-link": "إضافة رابط",
+    "drag-handle-label": "إعادة ترتيب رابط البيانات {{title}}",
+    "edit-link": "تعديل الرابط",
+    "one-click": "نقرة واحدة",
+    "one-click-enabled": "النقرة الواحدة مُفعّلة",
+    "title-not-provided": "لم يُقدَّم عنوان",
+    "tooltip-edit": "تعديل",
+    "tooltip-remove": "إزالة",
+    "url-not-provided": "لم يُقدَّم رابط بيانات"
+  },
+  "data-source-basic-auth-settings": {
+    "user-label": "مستخدم",
+    "user-placeholder": "مستخدم"
+  },
+  "data-source-http-proxy-settings": {
+    "oauth-identity-label": "إعادة توجيه هوية OAuth",
+    "oauth-identity-tooltip": "إعادة توجيه هوية OAuth العليا للمستخدم إلى مصدر البيانات (يُمرَّر رمز الوصول الخاص به).",
+    "skip-tls-verify-label": "تخطّي التحقق من TLS",
+    "ts-client-auth-label": "مصادقة عميل TLS",
+    "with-ca-cert-label": "مع شهادة CA",
+    "with-ca-cert-tooltip": "مطلوبة للتحقق من شهادات TLS الموقّعة ذاتيًا"
+  },
+  "data-source-http-settings": {
+    "access-help": "مساعدة <1></1>",
+    "access-help-details": "يتحكّم وضع الوصول في كيفية معالجة الطلبات إلى مصدر البيانات.<strong><i>الخادم</i></strong> هو الطريقة المفضّلة إذا لم يُذكر خلاف ذلك.",
+    "access-help-title": "مساعدة الوصول",
+    "access-label": "الوصول",
+    "allowed-cookies": "ملفات تعريف الارتباط المسموح بها",
+    "allowed-cookies-description": "يحذف وكيل Grafana ملفات تعريف الارتباط المُعاد توجيهها افتراضيًا. حدّد ملفات تعريف الارتباط بالاسم التي ينبغي إعادة توجيهها إلى مصدر البيانات.",
+    "auth": "المصادقة",
+    "azure-auth-label": "مصادقة Azure",
+    "azure-auth-tooltip": "استخدم مصادقة Azure لنقطة نهاية Azure.",
+    "basic-auth": "تفاصيل المصادقة الأساسية",
+    "basic-auth-label": "مصادقة أساسية",
+    "browser-mode-description": "ستُجرى جميع الطلبات من المتصفح مباشرةً إلى مصدر البيانات وقد تخضع لمتطلبات مشاركة الموارد عبر الأصول (CORS). يجب أن يكون عنوان URL قابلًا للوصول من المتصفح إذا اخترت وضع الوصول هذا.",
+    "browser-mode-label": "المتصفح",
+    "browser-mode-title": "<0>وضع وصول المتصفح:</0>",
+    "default-url-tooltip": "حدّد عنوان HTTP URL كاملًا (على سبيل المثال http://your_server:8080)",
+    "direct-url-tooltip": "طريقة وصولك هي <1>المتصفح</1>، مما يعني أن عنوان URL يجب أن يكون قابلًا للوصول من المتصفح.",
+    "heading": "HTTP",
+    "invalid-url-error": "عنوان URL غير صالح",
+    "proxy-url-tooltip": "طريقة وصولك هي <1>الخادم</1>، مما يعني أن عنوان URL يجب أن يكون قابلًا للوصول من خلفية/خادم Grafana.",
+    "server-mode-description": "ستُجرى جميع الطلبات من المتصفح إلى خلفية/خادم Grafana الذي سيعيد بدوره توجيه الطلبات إلى مصدر البيانات وبذلك يتجاوز متطلبات مشاركة الموارد عبر الأصول (CORS) المحتملة. يجب أن يكون عنوان URL قابلًا للوصول من خلفية/خادم Grafana إذا اخترت وضع الوصول هذا.",
+    "server-mode-label": "الخادم (الافتراضي)",
+    "server-mode-title": "<0>وضع وصول الخادم (الافتراضي):</0>",
+    "sigv4-auth-label": "مصادقة SigV4",
+    "timeout-description": "مهلة طلب HTTP بالثواني",
+    "timeout-label": "المهلة",
+    "timeout-placeholder": "المهلة بالثواني",
+    "with-credentials-label": "مع بيانات الاعتماد",
+    "with-credentials-tooltip": "ما إذا كان ينبغي إرسال بيانات اعتماد مثل ملفات تعريف الارتباط أو ترويسات المصادقة مع الطلبات عبر المواقع."
+  },
+  "data-source-settings": {
+    "alerting-settings-heading": "التنبيهات",
+    "alerting-settings-label": "إدارة قواعد التنبيه في واجهة التنبيهات",
+    "alerting-settings-tooltip": "إدارة قواعد التنبيه لمصدر البيانات هذا. لإدارة موارد تنبيه أخرى، أضف مصدر بيانات Alertmanager.",
+    "cert-key-reset": "إعادة تعيين",
+    "custom-headers-add": "إضافة ترويسة",
+    "custom-headers-header": "الترويسة",
+    "custom-headers-header-placeholder": "قيمة الترويسة",
+    "custom-headers-header-remove": "إزالة الترويسة",
+    "custom-headers-header-value": "القيمة",
+    "custom-headers-title": "ترويسات HTTP مخصصة",
+    "secure-socks-heading": "وكيل Secure Socks",
+    "secure-socks-label": "مُفعّل",
+    "secure-socks-tooltip": "الاتصال بمصدر البيانات هذا عبر وكيل secure socks.",
+    "tls-certification-label": "شهادة CA",
+    "tls-certification-placeholder": "تبدأ بـ {{certificateBeginsWith}}",
+    "tls-client-certification-label": "شهادة العميل",
+    "tls-client-key-label": "مفتاح العميل",
+    "tls-client-key-placeholder": "يبدأ بـ {{privateKeyBeginsWith}}",
+    "tls-heading": "تفاصيل مصادقة TLS/SSL",
+    "tls-server-name-label": "اسم الخادم",
+    "tls-tooltip": "شهادات TLS/SSL مشفّرة ومخزّنة في قاعدة بيانات Grafana."
+  },
+  "date-time-picker": {
+    "apply": "تطبيق",
+    "calendar-icon-label": "منتقي الوقت",
+    "cancel": "إلغاء",
+    "next-label": "الشهر التالي",
+    "previous-label": "الشهر السابق",
+    "select-placeholder": "اختر التاريخ/الوقت"
+  },
+  "date-time-pickers": {
+    "month-options": {
+      "label-april": "أبريل",
+      "label-august": "أغسطس",
+      "label-december": "ديسمبر",
+      "label-february": "فبراير",
+      "label-january": "يناير",
+      "label-july": "يوليو",
+      "label-june": "يونيو",
+      "label-march": "مارس",
+      "label-may": "مايو",
+      "label-november": "نوفمبر",
+      "label-october": "أكتوبر",
+      "label-september": "سبتمبر"
+    },
+    "quick-options": {
+      "day-before-yesterday": "أول أمس",
+      "last-1-hour": "آخر ساعة",
+      "last-1-year": "آخر سنة",
+      "last-12-hours": "آخر 12 ساعة",
+      "last-15-mins": "آخر 15 دقيقة",
+      "last-2-days": "آخر يومين",
+      "last-2-years": "آخر سنتين",
+      "last-24-hours": "آخر 24 ساعة",
+      "last-3-hours": "آخر 3 ساعات",
+      "last-30-days": "آخر 30 يومًا",
+      "last-30-mins": "آخر 30 دقيقة",
+      "last-5-mins": "آخر 5 دقائق",
+      "last-5-years": "آخر 5 سنوات",
+      "last-6-hours": "آخر 6 ساعات",
+      "last-6-months": "آخر 6 أشهر",
+      "last-7-days": "آخر 7 أيام",
+      "last-90-days": "آخر 90 يومًا",
+      "previous-fiscal-quarter": "الربع المالي السابق",
+      "previous-fiscal-year": "السنة المالية السابقة",
+      "previous-month": "الشهر السابق",
+      "previous-week": "الأسبوع السابق",
+      "previous-year": "السنة السابقة",
+      "this-day-last-week": "هذا اليوم الأسبوع الماضي",
+      "this-fiscal-quarter": "هذا الربع المالي",
+      "this-fiscal-quarter-so-far": "هذا الربع المالي حتى الآن",
+      "this-fiscal-year": "هذه السنة المالية",
+      "this-fiscal-year-so-far": "هذه السنة المالية حتى الآن",
+      "this-month": "هذا الشهر",
+      "this-month-so-far": "هذا الشهر حتى الآن",
+      "this-week": "هذا الأسبوع",
+      "this-week-so-far": "هذا الأسبوع حتى الآن",
+      "this-year": "هذه السنة",
+      "this-year-so-far": "هذه السنة حتى الآن",
+      "today": "اليوم",
+      "today-so-far": "اليوم حتى الآن",
+      "yesterday": "أمس"
+    }
+  },
+  "drawer": {
+    "close": "إغلاق"
+  },
+  "error-boundary": {
+    "title": "حدث خطأ غير متوقّع"
+  },
+  "feature-badge": {
+    "experimental": "تجريبي",
+    "new": "جديد!",
+    "preview": "معاينة",
+    "private-preview": "معاينة خاصة"
+  },
+  "field-link-list": {
+    "external-links-heading": "روابط خارجية"
+  },
+  "field-name-by-regex-matcher": {
+    "input-placeholder": "أدخل تعبيرًا نمطيًا",
+    "scope": "الحقول الهدف",
+    "scope-tooltip": "لتجنّب المشكلات عند تطبيق التجاوزات، لا يمكن تطبيق التجاوزات عبر نطاقات هدف متعددة. يُطبَّق النطاق الافتراضي \"dataframe\" إذا لم يُحدَّد نطاق."
+  },
+  "field-value-matcher": {
+    "operator-label": "عامل المقارنة",
+    "reducer-value-label": "قيمة المُختزِل",
+    "select-field-placeholder": "اختر مُختزِل الحقل"
+  },
+  "file-dropzone": {
+    "cancel-upload": "إلغاء الرفع",
+    "error-title": "فشل الرفع",
+    "file-too-large": "الملف أكبر من {{size}}",
+    "item-retry": "إعادة المحاولة"
+  },
+  "file-upload": {
+    "file-name": "اسم الملف"
+  },
+  "filter-input": {
+    "clear": "مسح"
+  },
+  "interactive-table": {
+    "aria-label-collapse-all": "طيّ جميع الصفوف",
+    "aria-label-expand-all": "توسيع جميع الصفوف",
+    "aria-label-sort-column": "فرز العمود {{columnName}}",
+    "expand-row-header": "موسّع الصف",
+    "expand-row-tooltip": "تبديل توسيع الصف",
+    "tooltip-collapse-all": "طيّ جميع الصفوف",
+    "tooltip-expand-all": "توسيع جميع الصفوف"
+  },
+  "matchers": {
+    "groups": {
+      "annotation": "التعليقات الزمنية",
+      "exemplar": "الأمثلة التوضيحية",
+      "nested": "متداخل",
+      "series": "إطار البيانات"
+    },
+    "labels": {
+      "base-field-name": "{{name}} (اسم الحقل الأساسي)",
+      "not-found": "{{name}} (غير موجود)"
+    }
+  },
+  "matchers-ui": {
+    "description-field-name-by-regex-matcher": "تعيين الخصائص للحقول بأسماء تطابق تعبيرًا نمطيًا",
+    "description-fields-by-query": "تعيين الخصائص للحقول من استعلام محدد",
+    "description-fields-with-name": "تعيين الخصائص لحقل محدد",
+    "description-fields-with-type": "تعيين الخصائص لحقول من نوع محدد (رقم، سلسلة، منطقي)",
+    "description-fields-with-value": "تعيين الخصائص للحقول بشرط مُختزِل",
+    "field-name-picker": {
+      "placeholder": "اختر حقلًا"
+    },
+    "get-all-field-type-icon-options": {
+      "label-boolean": "منطقي",
+      "label-enum": "تعداد",
+      "label-number": "رقم",
+      "label-other": "أخرى",
+      "label-string": "سلسلة",
+      "label-time": "وقت",
+      "label-traces": "تتبّعات"
+    },
+    "get-list-of-query-ref-ids": {
+      "description": "الإطارات ({{framesCount}}): {{framesNames}}",
+      "label": "استعلام: {{refId}}",
+      "label-missing-ref-id": "استعلام: (معرّف مرجعي مفقود)"
+    },
+    "name-field-name-by-regex-matcher": "الحقول باسم يطابق تعبيرًا نمطيًا",
+    "name-fields-by-query": "الحقول المُرجَعة من الاستعلام",
+    "name-fields-with-name": "الحقول بالاسم",
+    "name-fields-with-type": "الحقول بالنوع",
+    "name-fields-with-value": "الحقول بالقيم"
+  },
+  "menu-item": {
+    "keyboard-shortcut-label": "اختصار لوحة المفاتيح"
+  },
+  "modal": {
+    "close-tooltip": "إغلاق"
+  },
+  "monaco": {
+    "error-label": "فشل تحميل محرّر React Monaco",
+    "loading-placeholder": "جارٍ تحميل المحرّر"
+  },
+  "named-colors-palette": {
+    "text-color-swatch": "لون النص",
+    "transparent-swatch": "شفاف"
+  },
+  "page-toolbar": {
+    "go-back": "رجوع (Esc)",
+    "search-dashboard-name": "ابحث عن لوحة معلومات بالاسم",
+    "search-links": "ابحث في الروابط",
+    "search-parent-folder": "ابحث عن لوحة معلومات في المجلد {{parent}}"
+  },
+  "pagination": {
+    "next-page": "الصفحة التالية",
+    "previous-page": "الصفحة السابقة"
+  },
+  "panel-chrome": {
+    "aria-label-toggle-collapse": "تبديل طيّ اللوحة",
+    "ariaLabel-panel-loading": "شريط تحميل اللوحة",
+    "ariaLabel-panel-status": "حالة اللوحة",
+    "tooltip-cancel": "إلغاء الاستعلام",
+    "tooltip-cancel-loading": "إلغاء الاستعلام",
+    "tooltip-stop-streaming": "إيقاف البث",
+    "tooltip-streaming": "جارٍ البث"
+  },
+  "panel-menu": {
+    "label": "قائمة اللوحة {{ title }}",
+    "title": "القائمة"
+  },
+  "password-field": {
+    "tooltip-hide": "إخفاء كلمة المرور",
+    "tooltip-show": "إظهار كلمة المرور"
+  },
+  "range-slider": {
+    "drag-handle-aria-label": "استخدم مفاتيح الأسهم لتغيير القيمة"
+  },
+  "row-expander": {
+    "aria-label-expand": "توسيع الصف",
+    "collapse": "طيّ الصف",
+    "expand": "توسيع الصف"
+  },
+  "row-expander-ng": {
+    "aria-label-collapse": "طيّ الصف"
+  },
+  "secret-form-field": {
+    "reset": "إعادة تعيين"
+  },
+  "secret-text-area": {
+    "hide-content": "إخفاء المحتوى السري",
+    "show-content": "إظهار المحتوى السري"
+  },
+  "segment-async": {
+    "error": "فشل تحميل الخيارات",
+    "loading": "جارٍ تحميل الخيارات...",
+    "no-options": "لم يُعثر على خيارات"
+  },
+  "select": {
+    "clear-value": "مسح القيمة",
+    "default-create-label": "اضغط Enter للإضافة",
+    "empty-options": "لم تُقدَّم خيارات",
+    "menu-label": "قائمة اختيار الخيارات",
+    "multi-value-remove": "إزالة",
+    "no-options-label": "لم يُعثر على خيارات",
+    "placeholder": "اختر"
+  },
+  "series-color-picker-popover": {
+    "y-axis-usage": "استخدام المحور Y الأيمن"
+  },
+  "sidebar": {
+    "close": "إغلاق",
+    "dock": "تثبيت",
+    "go-back": "رجوع",
+    "hide": "إخفاء",
+    "show": "إظهار",
+    "undock": "إلغاء التثبيت"
+  },
+  "slider": {
+    "drag-handle-aria-label": "استخدم مفاتيح الأسهم لتغيير القيمة"
+  },
+  "spinner": {
+    "aria-label": "جارٍ التحميل"
+  },
+  "stacking-builder": {
+    "group": "المجموعة",
+    "group-tooltip": "اسم مجموعة التكديس"
+  },
+  "stats-picker": {
+    "placeholder": "اختر"
+  },
+  "table": {
+    "cell-filter-on": "التصفية على القيمة",
+    "cell-filter-out": "استبعاد القيمة",
+    "cell-inspect": "فحص القيمة",
+    "cell-inspect-tooltip": "فحص القيمة",
+    "copy": "نسخ إلى الحافظة",
+    "csv-counts": "الصفوف:{{rows}}، الأعمدة:{{columns}}",
+    "csv-placeholder": "أدخل CSV هنا...",
+    "filter": {
+      "add-all": "إضافة جميع القيم المعروضة إلى المرشّح",
+      "blanks": "(فارغة)",
+      "button": "تصفية {{name}}",
+      "operator": {
+        "contains": "يحتوي على",
+        "equals": "يساوي",
+        "expression": "تعبير",
+        "expression-description": "تعبير منطقي (الحرف $ يمثّل قيمة العمود في التعبير، مثال: \"$ >= 10 && $ <= 12\")",
+        "greater": "أكبر",
+        "greater-or-equal": "أكبر أو يساوي",
+        "less": "أصغر",
+        "less-or-equal": "أصغر أو يساوي",
+        "not-equals": "لا يساوي"
+      },
+      "remove-all": "إزالة جميع القيم المعروضة من المرشّح",
+      "select-all": "تحديد الكل",
+      "selected": "{{ numSelected }} محدد",
+      "selected-some-hidden": "{{ numSelected }} محدد ({{ numHidden }} مخفي)"
+    },
+    "filter-placeholder": "تصفية القيم",
+    "filter-popup-apply": "موافق",
+    "filter-popup-aria-label-match-case": "مطابقة حالة الأحرف",
+    "filter-popup-cancel": "إلغاء",
+    "filter-popup-clear": "مسح المرشّح",
+    "filter-popup-heading": "التصفية حسب القيم:",
+    "filter-popup-input-placeholder": "تصفية القيم",
+    "filter-popup-match-case": "مطابقة حالة الأحرف",
+    "footer": {
+      "reducer": {
+        "count": "العدد"
+      }
+    },
+    "inspect-drawer-title": "فحص القيمة",
+    "nested-table": {
+      "expander-column-name": "توسيع الصفوف المتداخلة",
+      "no-data": "لا توجد بيانات"
+    },
+    "no-rows": "لا توجد صفوف",
+    "no-values-label": "لا توجد قيم",
+    "pagination-summary": "{{itemsRangeStart}} - {{displayedEnd}} من {{numRows}} صف",
+    "sort-by-column": "فرز حسب العمود {{column}}",
+    "sort-by-column-ascending": "فرز حسب العمود {{column}}، تصاعدي",
+    "sort-by-column-descending": "فرز حسب العمود {{column}}، تنازلي",
+    "sort-column": "فرز العمود",
+    "sparkline": {
+      "no-data": "لا توجد بيانات"
+    },
+    "tooltip": {
+      "trigger": "تبديل التلميح"
+    }
+  },
+  "tags": {
+    "list-label": "الوسوم"
+  },
+  "tags-input": {
+    "add": "إضافة",
+    "placeholder-new-tag": "وسم جديد (مفتاح الإدخال للإضافة)",
+    "remove": "إزالة الوسم: {{name}}",
+    "tag-too-long": "الوسم طويل جدًا، 50 حرفًا كحد أقصى"
+  },
+  "time-sync-button": {
+    "aria-label-sync": "مزامنة الأوقات",
+    "aria-label-unsync": "إلغاء مزامنة الأوقات"
+  },
+  "toggletip": {
+    "close": "إغلاق"
+  },
+  "toolbar-button-row": {
+    "show-more": "إظهار مزيد من العناصر"
+  },
+  "u-plot": {
+    "config": {
+      "get-graph-field-options": {
+        "axis-placement": {
+          "description-auto": "الحقل الأول على اليسار، وكل شيء آخر على اليمين",
+          "label-auto": "تلقائي",
+          "label-hidden": "مخفي",
+          "label-left": "يسار",
+          "label-right": "يمين"
+        },
+        "bar-alignment": {
+          "description-after": "بعد",
+          "description-before": "قبل",
+          "description-center": "توسيط"
+        },
+        "draw-style": {
+          "label-bars": "أشرطة",
+          "label-lines": "خطوط",
+          "label-points": "نقاط"
+        },
+        "fill-gradient": {
+          "description-hue": "تدرّج درجة لون صغير",
+          "description-opacity": "تفعيل تدرّج عتامة التعبئة",
+          "description-scheme": "استخدام نظام الألوان لتعريف التدرّج",
+          "label-hue": "درجة اللون",
+          "label-none": "بلا",
+          "label-opacity": "العتامة",
+          "label-scheme": "المخطط اللوني"
+        },
+        "line-interpolation": {
+          "description-linear": "خطي",
+          "description-smooth": "ناعم",
+          "description-step-after": "خطوة بعد",
+          "description-step-before": "خطوة قبل"
+        },
+        "show-points": {
+          "description-auto": "إظهار النقاط عندما تكون الكثافة منخفضة",
+          "label-always": "دائمًا",
+          "label-auto": "تلقائي",
+          "label-never": "أبدًا"
+        },
+        "stacking": {
+          "label-100": "100%",
+          "label-normal": "عادي",
+          "label-off": "إيقاف"
+        },
+        "thresholds-display-mode": {
+          "label-dashed-lines": "كخطوط (متقطّعة)",
+          "label-filled-regions": "كمناطق مملوءة",
+          "label-filled-regions-and-dashed-lines": "كمناطق مملوءة وخطوط (متقطّعة)",
+          "label-filled-regions-and-lines": "كمناطق مملوءة وخطوط",
+          "label-lines": "كخطوط",
+          "label-off": "إيقاف"
+        }
+      }
+    }
+  },
+  "unit-picker": {
+    "placeholder": "اختر"
+  },
+  "user-icon": {
+    "active-text": "نشط آخر 15 دقيقة",
+    "label": "أيقونة {{name}}"
+  },
+  "users-indicator": {
+    "container-label": "حاوية مؤشر المستخدمين"
+  },
+  "value-pill": {
+    "remove-button": "إزالة {{children}}"
+  },
+  "viz-legend": {
+    "all-series-selected": "جميع السلاسل محددة",
+    "clear-filters": "مسح الكل",
+    "color-picker": "تعديل لون {{seriesName}}",
+    "faceted-by-labels": "حسب التسميات",
+    "faceted-by-name": "حسب الاسم",
+    "faceted-deselect-all": "إلغاء تحديد الكل",
+    "faceted-select-all": "تحديد الكل",
+    "only-this-series-selected": "{{label}} فقط محددة",
+    "pin-filter": "تثبيت إلى الشريط الجانبي",
+    "right-axis-indicator": "(المحور Y الأيمن)",
+    "series-visibility": "ظهور السلاسل",
+    "unpin-sidebar": "إلغاء التثبيت"
+  },
+  "viz-tooltip": {
+    "actions-confirmation-input-placeholder": "هل أنت متأكد أنك تريد {{ actionTitle }}؟",
+    "actions-confirmation-label": "رسالة التأكيد",
+    "actions-confirmation-message": "قدّم مطالبة وصفية لتأكيد الإجراء أو إلغائه.",
+    "footer-add-annotation": "إضافة تعليق زمني",
+    "footer-apply-series-as-filter": "التصفية على هذه القيمة",
+    "footer-apply-series-as-inverse-filter": "استبعاد هذه القيمة",
+    "footer-click-to-action": "انقر لـ {{actionTitle}}",
+    "footer-click-to-navigate": "انقر لفتح {{linkTitle}}",
+    "footer-filter-for-value": "التصفية على '{{value}}'",
+    "timestamp": "الطابع الزمني"
+  },
+  "week-start-picker": {
+    "weekStarts-label-default": "افتراضي",
+    "weekStarts-label-monday": "الإثنين",
+    "weekStarts-label-saturday": "السبت",
+    "weekStarts-label-sunday": "الأحد"
+  }
+}

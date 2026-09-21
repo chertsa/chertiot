@@ -1,0 +1,13 @@
+{
+  "category-text": "نص",
+  "mode-options": {
+    "label-code": "شفرة",
+    "label-html": "HTML",
+    "label-markdown": "Markdown"
+  },
+  "name-content": "المحتوى",
+  "name-language": "اللغة",
+  "name-mode": "الوضع",
+  "name-show-line-numbers": "إظهار أرقام الأسطر",
+  "name-show-mini-map": "إظهار الخريطة المصغّرة"
+}

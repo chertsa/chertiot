@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "email-error": "البريد الإلكتروني مطلوب",
+    "email-label": "البريد الإلكتروني",
+    "name-error": "الاسم مطلوب",
+    "name-label": "الاسم",
+    "username-label": "اسم المستخدم"
+  },
+  "tabs": {
+    "general": "عام"
+  }
+}

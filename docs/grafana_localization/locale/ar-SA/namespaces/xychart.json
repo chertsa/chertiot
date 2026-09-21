@@ -1,0 +1,47 @@
+{
+  "category-xychart": "مخطط XY",
+  "errors": {
+    "nodata": "لا توجد بيانات",
+    "unknown": "خطأ غير معروف"
+  },
+  "name-fill-opacity": "عتامة التعبئة",
+  "name-line-style": "نمط الخط",
+  "name-line-width": "عرض الخط",
+  "name-max-point-size": "الحد الأقصى لحجم النقطة",
+  "name-min-point-size": "الحد الأدنى لحجم النقطة",
+  "name-point-shape": "شكل النقطة",
+  "name-point-size": "حجم النقطة",
+  "name-point-stroke-width": "عرض حدّ النقطة",
+  "name-series-mapping": "تعيين السلاسل",
+  "name-show": "إظهار",
+  "point-shape-options": {
+    "label-circle": "دائرة",
+    "label-square": "مربع"
+  },
+  "series-editor": {
+    "add-series": "إضافة سلسلة",
+    "aria-label-select-series": "اختر السلسلة {{seriesNum}}",
+    "label-color-field": "حقل اللون",
+    "label-frame": "الإطار",
+    "label-size-field": "حقل الحجم",
+    "label-x-field": "حقل X",
+    "label-y-field": "حقل Y",
+    "placeholder-all-frames": "جميع الإطارات",
+    "placeholder-select-frame": "اختر إطارًا",
+    "placeholder-x-field": "أول حقل رقمي أو زمني في كل إطار",
+    "placeholder-y-field": "حقول الأرقام المتبقية في كل إطار",
+    "tooltip-delete-series": "حذف السلسلة"
+  },
+  "series-mapping-options": {
+    "label-auto": "تلقائي",
+    "label-manual": "يدوي"
+  },
+  "show-options": {
+    "label-both": "كلاهما",
+    "label-lines": "خطوط",
+    "label-points": "نقاط"
+  },
+  "suggestions": {
+    "scatter-plot": "مخطط مبعثر"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "dashboard-tabs": {
+    "most-used": "الأكثر استخدامًا",
+    "most-used-active": "لوحات المعلومات الأكثر استخدامًا",
+    "recent": "الأخيرة",
+    "recent-active": "لوحات المعلومات الأخيرة",
+    "retry": "إعادة المحاولة",
+    "starred": "المميّزة بنجمة",
+    "starred-active": "لوحات المعلومات المميّزة بنجمة"
+  },
+  "firing-alerts-card": {
+    "critical-count_zero": "لا تنبيهات حرجة",
+    "critical-count_one": "تنبيه حرج واحد",
+    "critical-count_two": "تنبيهان حرجان",
+    "critical-count_few": "{{count}} تنبيهات حرجة",
+    "critical-count_many": "{{count}} تنبيهًا حرجًا",
+    "critical-count_other": "{{count}} تنبيه حرج",
+    "empty": "ليس لديك تنبيهات نشطة.",
+    "empty-teams": "لا توجد تنبيهات نشطة لفرقك.",
+    "error-title": "تعذّر تحميل التنبيهات النشطة",
+    "high-count_zero": "لا تنبيهات عالية",
+    "high-count_one": "تنبيه عالٍ واحد",
+    "high-count_two": "تنبيهان عاليان",
+    "high-count_few": "{{count}} تنبيهات عالية",
+    "high-count_many": "{{count}} تنبيهًا عاليًا",
+    "high-count_other": "{{count}} تنبيه عالٍ",
+    "retry": "إعادة المحاولة",
+    "severity-critical": "حرج",
+    "severity-high": "عالٍ",
+    "severity-low": "منخفض",
+    "severity-minor": "طفيف",
+    "severity-unknown": "خطورة غير معروفة",
+    "title": "التنبيهات النشطة",
+    "view-all": "عرض جميع التنبيهات النشطة",
+    "view-rules": "عرض جميع قواعد التنبيه"
+  },
+  "home-page": {
+    "edition": {
+      "cloud": "Grafana Cloud",
+      "enterprise": "Grafana Enterprise",
+      "open-source": "Grafana"
+    },
+    "greeting": {
+      "afternoon": "طابت ظهيرتك.",
+      "evening": "مساء الخير.",
+      "morning": "صباح الخير."
+    },
+    "placeholder": "مرحبًا بك في {{edition}}."
+  },
+  "most-used-dashboards-tab": {
+    "empty": "ستظهر هنا لوحات المعلومات الأكثر مشاهدةً في منظمتك بمجرد جمع بيانات الاستخدام.",
+    "error-title": "تعذّر تحميل لوحات المعلومات الأكثر مشاهدةً",
+    "loading": "جارٍ تحميل لوحات المعلومات الأكثر مشاهدةً..."
+  },
+  "recent-dashboards-tab": {
+    "browse": "تصفّح لوحات المعلومات",
+    "clear": "مسح السجلّ",
+    "create": "أنشئ أول لوحة معلومات لك",
+    "empty": "ستظهر هنا لوحات المعلومات التي شاهدتها مؤخرًا.",
+    "empty-description": "بعد ربط بياناتك، يمكنك استخدام لوحات المعلومات للاستعلام عن بياناتك وتصوّرها باستخدام الرسوم البيانية والإحصاءات والجداول، أو إنشاء القوائم ونصوص Markdown وعناصر واجهة أخرى.",
+    "error-title": "تعذّر تحميل لوحات المعلومات المشاهَدة مؤخرًا",
+    "loading": "جارٍ تحميل لوحات المعلومات المشاهَدة مؤخرًا..."
+  },
+  "starred-dashboards-tab": {
+    "empty": "ستظهر هنا لوحات المعلومات المميّزة بنجمة.",
+    "empty-description": "يمكنك تمييز لوحات المعلومات المفضّلة لديك بالنقر على <1></1> من صفحة لوحة المعلومات.",
+    "error-title": "تعذّر تحميل لوحات المعلومات المميّزة بنجمة",
+    "loading": "جارٍ تحميل لوحات المعلومات المميّزة بنجمة..."
+  }
+}

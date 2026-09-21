@@ -1,0 +1,123 @@
+{
+  "acknowledgment-checkboxes": {
+    "ack-title": "قبل أن تجعل لوحة المعلومات عامة، أقرّ بما يلي:",
+    "data-src-ack-desc": "يعمل النشر حاليًا مع مجموعة فرعية من مصادر البيانات فقط*",
+    "data-src-ack-tooltip": "تعرّف على المزيد عن مصادر البيانات العامة",
+    "public-ack-desc": "ستكون لوحة معلوماتك بأكملها عامة*",
+    "public-ack-tooltip": "تعرّف على المزيد عن لوحات المعلومات العامة",
+    "usage-ack-desc": "سيؤدي جعل لوحة المعلومات عامة إلى تشغيل الاستعلامات في كل مرة تُشاهَد فيها، مما قد يزيد التكاليف*",
+    "usage-ack-desc-tooltip": "تعرّف على المزيد عن التخزين المؤقت للاستعلامات"
+  },
+  "config": {
+    "can-view-dashboard-radio-button-label": "يمكنه عرض لوحة المعلومات",
+    "copy-button": "نسخ",
+    "dashboard-url-field-label": "عنوان URL للوحة المعلومات",
+    "email-share-type-option-label": "أشخاص محددون فقط",
+    "pause-sharing-dashboard-label": "إيقاف مشاركة لوحة المعلومات مؤقتًا",
+    "public-share-type-option-label": "أي شخص لديه رابط",
+    "revoke-public-URL-button": "إبطال عنوان URL العام",
+    "revoke-public-URL-button-title": "إبطال عنوان URL العام",
+    "settings-title": "الإعدادات"
+  },
+  "configuration": {
+    "display-annotations-description": "عرض التعليقات الزمنية على لوحة المعلومات هذه",
+    "display-annotations-label": "عرض التعليقات الزمنية",
+    "enable-time-range-description": "السماح للأشخاص بتغيير النطاق الزمني",
+    "enable-time-range-label": "تفعيل النطاق الزمني",
+    "settings-label": "الإعدادات",
+    "success-pause": "تم إيقاف الوصول إلى لوحة معلوماتك مؤقتًا",
+    "success-resume": "تم استئناف الوصول إلى لوحة معلوماتك",
+    "success-update": "تم تحديث الإعدادات بنجاح",
+    "time-range-label": "النطاق الزمني",
+    "time-range-tooltip": "تستخدم لوحة المعلومات المشتركة إعدادات النطاق الزمني الافتراضية للوحة المعلومات"
+  },
+  "create-page": {
+    "generate-public-url-button": "توليد عنوان URL عام",
+    "unsupported-features-desc": "حاليًا، لا ندعم متغيرات القالب أو مصادر البيانات في الواجهة الأمامية",
+    "welcome-title": "مرحبًا بك في لوحات المعلومات العامة!"
+  },
+  "email-sharing": {
+    "accept-button": "قبول",
+    "alert-text": "تُحتسب مشاركة لوحات المعلومات بالبريد الإلكتروني لكل مستخدم طوال مدة الرمز البالغة 30 يومًا، بغضّ النظر عن عدد لوحات المعلومات المشتركة. تتوقّف الفوترة بعد 30 يومًا ما لم تُجدّد الرمز.",
+    "bill-ack": "أفهم أن إضافة مستخدمين تتطلب دفعًا.*",
+    "cancel-button": "إلغاء",
+    "input-invalid-email-text": "بريد إلكتروني غير صالح",
+    "input-required-email-text": "البريد الإلكتروني مطلوب",
+    "invite-button": "دعوة",
+    "invite-field-desc": "ادعُ الأشخاص بالبريد الإلكتروني",
+    "invite-field-label": "دعوة",
+    "learn-more-button": "معرفة المزيد",
+    "recipient-email-placeholder": "البريد الإلكتروني",
+    "recipient-invalid-email-text": "بريد إلكتروني غير صالح",
+    "recipient-invitation-button": "دعوة",
+    "recipient-invitation-description": "ادعُ شخصًا بالبريد الإلكتروني",
+    "recipient-invitation-tooltip": "تحتوي لوحة المعلومات هذه على بيانات حساسة. باستخدام هذه الميزة ستشارك مع أشخاص خارجيين.",
+    "recipient-list-description": "يمكن فقط للأشخاص الذين دعوتهم مباشرةً الوصول إلى لوحة المعلومات هذه",
+    "recipient-list-title": "الأشخاص الذين لديهم وصول",
+    "recipient-required-email-text": "البريد الإلكتروني مطلوب",
+    "resend-button": "إعادة الإرسال",
+    "resend-button-title": "إعادة الإرسال",
+    "resend-invite-label": "إعادة إرسال الدعوة",
+    "revoke-access-label": "إبطال الوصول",
+    "revoke-button": "إبطال",
+    "revoke-button-title": "إبطال",
+    "success-creation": "لوحة معلوماتك جاهزة للمشاركة الخارجية",
+    "success-share-type-change": "تم تحديث الوصول إلى لوحة المعلومات: يمكن الآن لأشخاص محددين فقط الوصول عبر الرابط"
+  },
+  "modal-alerts": {
+    "save-dashboard-changes-alert-title": "يُرجى حفظ تغييرات لوحة المعلومات قبل تحديث الإعداد العام",
+    "unsupport-data-source-alert-readmore-link": "اقرأ المزيد عن مصادر البيانات المدعومة",
+    "unsupported-data-source-alert-title": "مصادر بيانات غير مدعومة",
+    "unsupported-template-variable-alert-desc": "قد لا تعمل لوحة المعلومات العامة هذه لأنها تستخدم متغيرات القالب",
+    "unsupported-template-variable-alert-title": "متغيرات القالب غير مدعومة"
+  },
+  "public-sharing": {
+    "accept-button": "قبول",
+    "alert-text": "مشاركة لوحة المعلومات هذه خارجيًا تجعلها متاحة بالكامل لأي شخص لديه الرابط.",
+    "cancel-button": "إلغاء",
+    "learn-more-button": "معرفة المزيد",
+    "public-ack": "أفهم أن لوحة المعلومات هذه بأكملها ستكون عامة.*",
+    "success-creation": "لوحة معلوماتك متاحة الآن للعموم",
+    "success-share-type-change": "تم تحديث الوصول إلى لوحة المعلومات: يمكن الآن لأي شخص لديه الرابط الوصول"
+  },
+  "settings-bar-header": {
+    "collapse-settings-tooltip": "طيّ الإعدادات",
+    "expand-settings-tooltip": "توسيع الإعدادات"
+  },
+  "settings-configuration": {
+    "default-time-range-label": "النطاق الزمني الافتراضي",
+    "default-time-range-label-desc": "تستخدم لوحة المعلومات العامة إعدادات النطاق الزمني الافتراضية للوحة المعلومات",
+    "show-annotations-label": "إظهار التعليقات الزمنية",
+    "show-annotations-label-desc": "إظهار التعليقات الزمنية على لوحة المعلومات العامة",
+    "time-range-picker-label": "منتقي النطاق الزمني مُفعّل",
+    "time-range-picker-label-desc": "السماح للمشاهدين بتغيير النطاق الزمني"
+  },
+  "settings-summary": {
+    "annotations-hide-text": "التعليقات الزمنية = إخفاء",
+    "annotations-show-text": "التعليقات الزمنية = إظهار",
+    "time-range-picker-disabled-text": "منتقي النطاق الزمني = مُعطّل",
+    "time-range-picker-enabled-text": "منتقي النطاق الزمني = مُفعّل",
+    "time-range-text": "النطاق الزمني = "
+  },
+  "share": {
+    "success-delete": "لم تعد لوحة معلوماتك قابلة للمشاركة"
+  },
+  "share-configuration": {
+    "share-type-label": "وصول الرابط"
+  },
+  "share-externally": {
+    "copy-link-button": "نسخ الرابط الخارجي",
+    "email-share-type-option-description": "يمكن فقط للأشخاص الذين لديهم الرابط الوصول إلى لوحة المعلومات",
+    "email-share-type-option-label": "أشخاص محددون فقط",
+    "no-upsert-perm-alert-desc": "تواصل مع مسؤولك للحصول على إذن بـ {{action}} لوحات المعلومات المشتركة",
+    "no-upsert-perm-alert-title": "ليس لديك إذن بـ {{ action }} لوحة معلومات مشتركة",
+    "pause-access-button": "إيقاف الوصول مؤقتًا",
+    "pause-access-tooltip": "سيؤدي الإيقاف المؤقت إلى تعطيل الوصول إلى لوحة المعلومات هذه لجميع المستخدمين مؤقتًا",
+    "public-share-type-option-description": "يمكن لأي شخص لديه الرابط الوصول إلى لوحة المعلومات",
+    "public-share-type-option-label": "أي شخص لديه الرابط",
+    "resume-access-button": "استئناف الوصول",
+    "revoke-access-button": "إبطال الوصول",
+    "revoke-access-description": "هل أنت متأكد أنك تريد إبطال هذا الوصول؟ لن يعود بالإمكان مشاركة لوحة المعلومات.",
+    "unsupported-data-source-alert-desc": "توجد مصادر بيانات في لوحة المعلومات هذه غير مدعومة للوحات المعلومات المشتركة. قد لا تعمل اللوحات التي تستخدم مصادر البيانات هذه بشكل صحيح: {{unsupportedDataSources}}."
+  }
+}

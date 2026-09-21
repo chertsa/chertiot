@@ -1,0 +1,99 @@
+{
+  "add-orientation-option": {
+    "description-orientation": "اتجاه التخطيط",
+    "name-orientation": "الاتجاه",
+    "orientation-options": {
+      "label-auto": "تلقائي",
+      "label-horizontal": "أفقي",
+      "label-vertical": "رأسي"
+    }
+  },
+  "add-standard-data-reduce-options": {
+    "category-value-options": "خيارات القيمة",
+    "description-calculation": "اختر دالة اختزال / حسابًا",
+    "description-fields": "اختر الحقول التي ينبغي تضمينها في اللوحة",
+    "description-limit": "الحد الأقصى لعدد الصفوف المعروضة",
+    "description-show": "احسب قيمة واحدة لكل عمود أو سلسلة أو اعرض كل صف",
+    "fields-options": {
+      "label-all-fields": "جميع الحقول",
+      "label-numeric-fields": "الحقول الرقمية"
+    },
+    "name-calculation": "الحساب",
+    "name-fields": "الحقول",
+    "name-limit": "الحد",
+    "name-show": "إظهار",
+    "show-options": {
+      "label-all-values": "جميع القيم",
+      "label-calculate": "حساب"
+    }
+  },
+  "category-stat-styles": "أنماط الإحصاء",
+  "color-mode-options": {
+    "label-background-gradient": "خلفية متدرّجة",
+    "label-background-solid": "خلفية صلبة",
+    "label-none": "بلا",
+    "label-value": "القيمة"
+  },
+  "description-graph-mode": "وضع الرسم البياني / المخطط المصغّر للوحة الإحصاء",
+  "description-text-mode": "التحكّم فيما إذا كان يُعرض الاسم والقيمة أم الاسم فقط",
+  "graph-mode": {
+    "options": {
+      "label-area": "منطقة",
+      "label-none": "بلا"
+    }
+  },
+  "name-color-modcolor-mode-options": {
+    "label": "وضع اللون"
+  },
+  "name-graph-mode": "وضع الرسم البياني",
+  "name-show-percent-change": "إظهار نسبة التغيّر المئوية",
+  "name-text-alignment": "محاذاة النص",
+  "name-text-mode": "وضع النص",
+  "name-wide-layout": "تخطيط عريض",
+  "percent-change-color-mode": "وضع لون نسبة التغيّر المئوية",
+  "percent-change-color-mode-options": {
+    "label-inverted": "معكوس",
+    "label-same-as-value": "مطابق للقيمة",
+    "label-standard": "قياسي"
+  },
+  "presets": {
+    "horizontal-threshold-value": "قيمة عتبة أفقية",
+    "horizontal-threshold-value-desc": "أفقي، لون القيمة من العتبات، بدون مخطط مصغّر",
+    "horizontal-threshold-value-sparkline": "قيمة عتبة أفقية مع مخطط مصغّر",
+    "horizontal-threshold-value-sparkline-desc": "أفقي، لون القيمة من العتبات، مخطط مصغّر بمنطقة",
+    "list": "قائمة",
+    "list_desc": "قائمة أفقية مدمجة، متوسّطة، الاسم والقيمة، مخطط مصغّر",
+    "threshold-background": "خلفية العتبة",
+    "threshold-background-desc": "لون الخلفية من العتبات، بدون مخطط مصغّر",
+    "threshold-background-sparkline": "خلفية العتبة مع مخطط مصغّر",
+    "threshold-background-sparkline-desc": "لون الخلفية من العتبات، مخطط مصغّر بمنطقة",
+    "threshold-value": "قيمة العتبة",
+    "threshold-value-desc": "لون القيمة من العتبات، بدون مخطط مصغّر",
+    "threshold-value-sparkline": "قيمة العتبة مع مخطط مصغّر",
+    "threshold-value-sparkline-desc": "لون القيمة من العتبات، مخطط مصغّر بمنطقة",
+    "wide-list": "قائمة عريضة",
+    "wide-list-desc": "أفقي، الاسم والقيمة، مخطط مصغّر بمنطقة، لون واحد"
+  },
+  "suggestions": {
+    "stat": "إحصاء",
+    "stat-color-background": "إحصاء - خلفية ملوّنة",
+    "stat-discrete-values": "إحصاء - قيم منفصلة",
+    "stat-discrete-values-color-background": "إحصاء - قيم منفصلة - خلفية ملوّنة",
+    "stat-single-string": "إحصاء - سلسلة نصية واحدة"
+  },
+  "text-alignment-options": {
+    "label-auto": "تلقائي",
+    "label-center": "توسيط"
+  },
+  "text-mode-options": {
+    "label-auto": "تلقائي",
+    "label-name": "الاسم",
+    "label-none": "بلا",
+    "label-value": "القيمة",
+    "label-value-and-name": "القيمة والاسم"
+  },
+  "wide-layout-options": {
+    "label-off": "إيقاف",
+    "label-on": "تشغيل"
+  }
+}

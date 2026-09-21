@@ -1,0 +1,1169 @@
+{
+  "ad-hoc-filters-variable-editor": {
+    "message-not-supported": "مصدر البيانات هذا لا يدعم المرشّحات.",
+    "message-supported": "تُطبَّق المرشّحات تلقائيًا على جميع الاستعلامات التي تستهدف مصدر البيانات هذا"
+  },
+  "ad-hoc-variable-form": {
+    "adhoc-options": "خيارات المرشّح",
+    "alert-not-supported": "مصدر البيانات هذا لا يدعم المرشّحات",
+    "description-enable-group-by": "يُفعّل عامل التجميع في مربّع المرشّح",
+    "description-enables-users-custom-values": "يُمكّن المستخدمين من إضافة قيم مخصصة إلى القائمة",
+    "description-provide-dimensions-as-csv-dimension-name-dimension-id": "قدّم الأبعاد كـ CSV: {{name}}، {{value}}",
+    "label-data-source": "مصدر البيانات",
+    "label-use-static-key-dimensions": "استخدام أبعاد مفاتيح ثابتة",
+    "name-allow-custom-values": "السماح بقيم مخصصة",
+    "name-enable-group-by": "تفعيل التجميع حسب"
+  },
+  "add-filters": {
+    "label": "التصفية والتجميع حسب"
+  },
+  "add-link": {
+    "inline-instance-name": "رابط جديد",
+    "label-link": "رابط",
+    "tooltip": "إضافة رابط إلى لوحة معلومات أخرى أو موقع خارجي"
+  },
+  "add-new-edit-pane": {
+    "group-layouts": "تخطيطات المجموعة"
+  },
+  "add-row": {
+    "add-label": "إضافة صف",
+    "group-label": "التجميع في صفوف"
+  },
+  "add-tab": {
+    "add-label": "إضافة علامة تبويب",
+    "group-label": "التجميع في علامات تبويب"
+  },
+  "add-to-dashboard": {
+    "message": {
+      "could-navigate-selected-dashboard-please-again": "تعذّر الانتقال إلى لوحة المعلومات المحددة. يُرجى المحاولة مجددًا.",
+      "could-panel-dashboard-please-again": "تعذّر إضافة اللوحة إلى لوحة المعلومات. يُرجى المحاولة مجددًا."
+    }
+  },
+  "add-to-dashboard-form": {
+    "cancel": "إلغاء",
+    "description-choose-where-to-add-the-panel": "اختر مكان إضافة اللوحة.",
+    "description-select-which-dashboard-panel-created": "اختر لوحة المعلومات التي ستُنشأ فيها اللوحة.",
+    "label": {
+      "existing-dashboard": "لوحة معلومات موجودة",
+      "new-dashboard": "لوحة معلومات جديدة"
+    },
+    "label-dashboard": "لوحة المعلومات",
+    "label-target-dashboard": "لوحة المعلومات الهدف",
+    "message": {
+      "this-field-is-required": "هذا الحقل مطلوب."
+    },
+    "open-dashboard": "فتح لوحة المعلومات",
+    "open-in-new-tab": "فتح في علامة تبويب جديدة",
+    "title-error-adding-the-panel": "خطأ في إضافة اللوحة"
+  },
+  "add-to-dashboard-form-exposed": {
+    "title": {
+      "new-panel": "لوحة جديدة"
+    }
+  },
+  "add-variable": {
+    "label-variable": "متغير"
+  },
+  "adhoc-origin-filters-controller": {
+    "input-placeholder": "إضافة مرشّح افتراضي..."
+  },
+  "adhoc-origin-filters-editor": {
+    "description": "المرشّحات المُحدَّدة مسبقًا افتراضيًا.",
+    "label": "المرشّحات الافتراضية"
+  },
+  "annotation-control": {
+    "description-add-event-data-to-graphs": "إضافة بيانات الأحداث إلى الرسوم البيانية",
+    "label-annotation-query": "استعلام التعليق الزمني"
+  },
+  "annotation-edit-actions": {
+    "description": {
+      "change-annotation-color": "تغيير لون التعليق الزمني",
+      "change-annotation-controls-display": "تغيير عرض عناصر تحكّم التعليق الزمني",
+      "change-annotation-enabled-state": "تغيير حالة تفعيل التعليق الزمني",
+      "change-annotation-name": "تغيير اسم التعليق الزمني",
+      "change-annotation-panel-filter": "تغيير مرشّح لوحة التعليق الزمني"
+    }
+  },
+  "annotation-editable-element": {
+    "delete-confirm": "حذف استعلام التعليق الزمني",
+    "delete-text": "هل أنت متأكد أنك تريد حذف: {{name}}؟",
+    "delete-title": "حذف استعلام التعليق الزمني"
+  },
+  "annotation-list": {
+    "create-drag-end-handler": {
+      "description": {
+        "reorder-annotations-list": "إعادة ترتيب قائمة التعليقات الزمنية"
+      }
+    },
+    "render-list": {
+      "aria-label-annotation": "تعليق زمني"
+    }
+  },
+  "annotation-query-library-dropdown": {
+    "use-saved-query": "استخدام استعلام محفوظ"
+  },
+  "annotation-settings-edit": {
+    "back-to-list": "العودة إلى القائمة",
+    "control-display-options": {
+      "above-dashboard": {
+        "label": "فوق لوحة المعلومات"
+      },
+      "controls-menu": {
+        "description": "يمكن الوصول إليه عند فتح قائمة عناصر التحكّم",
+        "label": "قائمة عناصر التحكّم"
+      },
+      "hidden": {
+        "description": "يُخفي مفتاح تشغيل/إيقاف هذا التعليق الزمني",
+        "label": "مخفي"
+      }
+    },
+    "delete": "حذف",
+    "description-color-annotation-event-markers": "اللون المستخدم لعلامات أحداث التعليق الزمني",
+    "description-enabled-annotation-query-issued-every-dashboard": "عند التفعيل يُصدَر استعلام التعليق الزمني عند كل تحديث للوحة المعلومات",
+    "error-loading-panels": "فشل تحميل إضافات اللوحات",
+    "label-annotation-controls-display": "إظهار عناصر تحكّم التعليق الزمني في",
+    "label-color": "اللون",
+    "label-data-source": "مصدر البيانات",
+    "label-enabled": "مُفعّل",
+    "label-name": "الاسم",
+    "label-show-in": "إظهار في",
+    "placeholder-choose-panels": "اختر اللوحات",
+    "query": "استعلام",
+    "title-annotation-support-source": "لا يوجد دعم للتعليقات الزمنية لمصدر البيانات هذا"
+  },
+  "annotation-settings-list": {
+    "built-in": "{{annoName}} (مدمج)",
+    "data-source": "مصدر البيانات",
+    "delete-aria-label": "حذف الاستعلام بالعنوان \"{{title}}\"",
+    "disabled": "(مُعطّل) {{annoName}}",
+    "new-query": "استعلام جديد",
+    "query-name": "اسم الاستعلام",
+    "tooltip-move-down": "تحريك لأسفل",
+    "tooltip-move-up": "تحريك لأعلى"
+  },
+  "annotations-list": {
+    "drag-end": {
+      "description": "إعادة ترتيب قائمة التعليقات الزمنية"
+    }
+  },
+  "annotations-section": {
+    "name-builtin": "{{annoName}} (مدمج)",
+    "name-disabled": "(مُعطّل) {{annoName}}"
+  },
+  "branch-validation-error": {
+    "cannot-contain-invalid-characters": "لا يمكن أن يحتوي على أحرف غير صالحة: '~'، '^'، ':'، '?'، '*'، '['، '\\\\'، أو ']'.",
+    "cannot-start-with": "لا يمكن أن يبدأ بـ '/' أو ينتهي بـ '/'، '.'، أو مسافة.",
+    "invalid-branch-name": "اسم فرع غير صالح.",
+    "it-cannot-contain-or": "لا يمكن أن يحتوي على '//' أو '..'.",
+    "least-valid-character": "يجب أن يحتوي على حرف صالح واحد على الأقل."
+  },
+  "build-new-dashboard-save-model": {
+    "data": {
+      "title": {
+        "new-dashboard": "لوحة معلومات جديدة"
+      }
+    }
+  },
+  "build-new-dashboard-save-model-v2": {
+    "data": {
+      "title": {
+        "new-dashboard": "لوحة معلومات جديدة"
+      }
+    }
+  },
+  "constant-variable-form": {
+    "constant-options": "خيارات الثابت",
+    "label-value": "القيمة",
+    "placeholder-your-metric-prefix": "بادئة مقياسك"
+  },
+  "control-edit-actions": {
+    "aria-label-delete": "حذف",
+    "aria-label-edit": "تعديل",
+    "delete": {
+      "confirm": "هل أنت متأكد أنك تريد حذف: {{name}}؟",
+      "text": "حذف {{type}}",
+      "title": "حذف {{type}}"
+    }
+  },
+  "conversion-warning-banner": {
+    "detail-conditional": "لن تعمل قواعد الإظهار/الإخفاء",
+    "detail-grids": "ستُعرض جميع الشبكات التلقائية كشبكات مخصصة",
+    "detail-tabs": "ستظهر جميع علامات التبويب والصفوف كصفوف كلاسيكية",
+    "details": "خلال هذه الفترة، يُرجى الانتباه لما يلي:",
+    "message": "ميزة لوحة المعلومات الديناميكية مُعطّلة مؤقتًا",
+    "read-less": "عرض أقل",
+    "read-more": "عرض المزيد",
+    "recommendation": "بمجرد تفعيل الميزة مجددًا، ستُعرض لوحات معلوماتك بشكل طبيعي بتنسيق لوحة المعلومات الديناميكية. لهذا السبب، نوصي بشدة بعدم إجراء تغييرات على هذه اللوحات حتى تُعاد الميزة، لأن التعديلات في الوضع الكلاسيكي قد تؤدي إلى نتائج غير متوقّعة. بدلًا من ذلك، يمكنك حفظ نسخة من لوحة المعلومات باستخدام خيار \"حفظ كنسخة\" في قائمة حفظ لوحة المعلومات.",
+    "save-warning": "أي لوحة معلومات أُنشئت كلوحة معلومات ديناميكية أو حُوّلت إليها ستُفتح كلوحة معلومات كلاسيكية. قد يؤدي حفظ لوحة المعلومات إلى فقدان ميزات لوحة المعلومات الديناميكية المُعدّة بالفعل."
+  },
+  "custom-variable-form": {
+    "custom-options": "خيارات مخصصة",
+    "json-values-tooltip": "قدّم JSON يمثّل مصفوفة من الكائنات، حيث يمكن أن يحتوي كل كائن على أي عدد من الخصائص.<br/>راجع <4>وثائقنا</4> لمزيد من المعلومات.",
+    "name-csv-values": "CSV",
+    "name-json-values": "JSON",
+    "selection-options": "خيارات التحديد"
+  },
+  "dashboard-annotations-list": {
+    "add-annotation-query": "إضافة استعلام تعليق زمني",
+    "title-above-dashboard-count_zero": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard-count_one": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard-count_two": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard-count_few": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard-count_many": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard-count_other": "فوق لوحة المعلومات ({{count}})",
+    "title-controls-menu-count_zero": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu-count_one": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu-count_two": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu-count_few": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu-count_many": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu-count_other": "قائمة عناصر التحكّم ({{count}})",
+    "title-hidden-count_zero": "مخفي ({{count}})",
+    "title-hidden-count_one": "مخفي ({{count}})",
+    "title-hidden-count_two": "مخفي ({{count}})",
+    "title-hidden-count_few": "مخفي ({{count}})",
+    "title-hidden-count_many": "مخفي ({{count}})",
+    "title-hidden-count_other": "مخفي ({{count}})"
+  },
+  "dashboard-edit-pane-renderer": {
+    "title-feedback-dashboard-editing-experience": "أرسل ملاحظات حول تجربة تحرير لوحة المعلومات الجديدة"
+  },
+  "dashboard-link-form": {
+    "back-to-list": "العودة إلى القائمة",
+    "label-icon": "الأيقونة",
+    "label-include-current-template-variable-values": "تضمين قيم متغيرات القالب الحالية",
+    "label-include-current-time-range": "تضمين النطاق الزمني الحالي",
+    "label-open-link-in-new-tab": "فتح الرابط في علامة تبويب جديدة",
+    "label-options": "الخيارات",
+    "label-show-as-dropdown": "عرض كقائمة منسدلة",
+    "label-show-in-controls-menu": "إظهار في قائمة عناصر التحكّم",
+    "label-title": "العنوان",
+    "label-tooltip": "التلميح",
+    "label-type": "النوع",
+    "label-url": "URL",
+    "label-with-tags": "مع الوسوم",
+    "link-type-options": {
+      "label": {
+        "dashboards": "لوحات المعلومات",
+        "link": "رابط"
+      }
+    },
+    "placeholder-open-dashboard": "فتح لوحة المعلومات"
+  },
+  "dashboard-link-list": {
+    "delete-aria-label": "حذف الرابط بالعنوان \"{{title}}\"",
+    "info": "معلومات",
+    "new-link": "رابط جديد",
+    "tooltip-copy-link": "نسخ الرابط",
+    "tooltip-move-link-down": "تحريك الرابط لأسفل",
+    "tooltip-move-link-up": "تحريك الرابط لأعلى",
+    "type": "النوع"
+  },
+  "dashboard-links-list": {
+    "add-link": "إضافة رابط"
+  },
+  "dashboard-preview-banner": {
+    "title-error-loading-dashboard": "خطأ في تحميل لوحة المعلومات"
+  },
+  "dashboard-scene": {
+    "modal": {
+      "cancel": "إلغاء",
+      "discard": "تجاهل",
+      "save": "حفظ",
+      "text": {
+        "save-changes-question": "هل تريد حفظ تغييراتك؟"
+      },
+      "title": {
+        "unsaved-changes": "تغييرات غير محفوظة"
+      }
+    },
+    "text": {
+      "edit-panel": "تعديل اللوحة",
+      "view-panel": "عرض اللوحة"
+    },
+    "title": {
+      "dashboard": "لوحة المعلومات",
+      "discard-changes-to-dashboard": "تجاهل التغييرات على لوحة المعلومات؟",
+      "unsaved-changes-question": "لديك تغييرات غير محفوظة على لوحة المعلومات هذه. هل أنت متأكد أنك تريد تجاهلها؟"
+    }
+  },
+  "dashboard-scene-page-state-manager": {
+    "message": {
+      "dashboard-not-found": "لم يُعثر على لوحة المعلومات"
+    }
+  },
+  "dashboard-scene-page-state-manager-v2": {
+    "message": {
+      "dashboard-not-found": "لم يُعثر على لوحة المعلومات"
+    }
+  },
+  "dashboard-side-pane-new": {
+    "dashboard-controls": "عناصر تحكّم لوحة المعلومات"
+  },
+  "data-source-variable-form": {
+    "data-source-options": "خيارات مصدر البيانات",
+    "description-instance-name-filter": "مرشّح تعبير نمطي لاختيار مثيلات مصدر البيانات من قائمة قيمة المتغير. اتركه فارغًا للكل.",
+    "example-instance-name-filter": "مثال: <codeExample />",
+    "name-instance-name-filter": "مرشّح اسم المثيل",
+    "name-type": "النوع",
+    "selection-options": "خيارات التحديد"
+  },
+  "default-grid-layout-manager": {
+    "row": {
+      "title": {
+        "row-title": "عنوان الصف"
+      }
+    }
+  },
+  "default-value-editor": {
+    "aria-label": "القيمة الافتراضية",
+    "description": "التجميع حسب الأبعاد المُحدَّدة مسبقًا افتراضيًا.",
+    "label": "التجميع الافتراضي حسب",
+    "placeholder": "اختر القيم الافتراضية"
+  },
+  "delete-provisioned-dashboard-form": {
+    "cancel-action": "إلغاء",
+    "delete-action": "حذف لوحة المعلومات",
+    "delete-error": "فشل حذف لوحة المعلومات",
+    "deleting": "جارٍ الحذف...",
+    "drawer-title": "حذف لوحة معلومات مُهيّأة",
+    "no-repository-selected": "المستودع المطلوب للحذف مفقود",
+    "success-message": "تم حذف لوحة المعلومات بنجاح"
+  },
+  "description-label": {
+    "description": "الوصف"
+  },
+  "draggable-item": {
+    "drag-to-reorder": "اسحب لإعادة الترتيب"
+  },
+  "draggable-items-list": {
+    "select": "اختيار"
+  },
+  "edit-link-view": {
+    "edit-link-page-nav": {
+      "text": {
+        "edit-link": "تعديل الرابط"
+      }
+    }
+  },
+  "email-list": {
+    "aria-label-emailmenu": "تبديل قائمة البريد الإلكتروني"
+  },
+  "embedded-dashboard-test-page": {
+    "subTitle": {
+      "showing-dashboard-panel-tests-pie-chart": "عرض لوحة المعلومات: اختبارات اللوحة - مخطط دائري"
+    },
+    "text": {
+      "embedding-dashboard": "تضمين لوحة المعلومات"
+    }
+  },
+  "empty-transformations-message": {
+    "show-more": "عرض المزيد",
+    "sql-name": "التحويل باستخدام SQL",
+    "sql-transformation-description": "عالج بياناتك باستخدام صياغة شبيهة بـ MySQL"
+  },
+  "filters-list": {
+    "add-filter": "إضافة مرشّح",
+    "reorder-description": "إعادة ترتيب قائمة المرشّحات",
+    "title-above-dashboard_zero": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_one": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_two": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_few": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_many": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_other": "فوق لوحة المعلومات ({{count}})",
+    "title-controls-menu_zero": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_one": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_two": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_few": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_many": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_other": "قائمة عناصر التحكّم ({{count}})",
+    "title-hidden_zero": "مخفي ({{count}})",
+    "title-hidden_one": "مخفي ({{count}})",
+    "title-hidden_two": "مخفي ({{count}})",
+    "title-hidden_few": "مخفي ({{count}})",
+    "title-hidden_many": "مخفي ({{count}})",
+    "title-hidden_other": "مخفي ({{count}})"
+  },
+  "general-settings-edit-view": {
+    "default_grid_options": {
+      "label": {
+        "auto": "شبكة تلقائية",
+        "custom": "شبكة مخصصة"
+      }
+    },
+    "editable_options": {
+      "label": {
+        "editable": "قابلة للتعديل",
+        "readonly": "للقراءة فقط"
+      }
+    },
+    "graph_tooltip_options": {
+      "label": {
+        "default": "افتراضي",
+        "shared-crosshair": "خط توجيه مشترك",
+        "shared-tooltip": "تلميح مشترك"
+      }
+    }
+  },
+  "get-edit-options": {
+    "title": {
+      "column-options": "خيارات العمود",
+      "row-height-options": "خيارات ارتفاع الصف"
+    }
+  },
+  "get-editable-variables": {
+    "description": {
+      "add-keyvalue-filters-on-the-fly": "أضف مرشّحات مفتاح/قيمة أثناء العمل",
+      "dynamically-switch-source-multiple-panels": "التبديل الديناميكي لمصدر البيانات لعدة لوحات",
+      "group": "أضف مفاتيح للتجميع أثناء العمل",
+      "hidden-constant-variable": "متغير ثابت مخفي، مفيد لبادئات المقاييس في لوحات المعلومات التي تريد مشاركتها",
+      "users-enter-arbitrary-strings-switch": "متغير يمكن تبديله بين التشغيل والإيقاف",
+      "users-enter-arbitrary-strings-textbox": "يمكن للمستخدمين إدخال أي سلاسل عشوائية في مربّع نص",
+      "values-are-static-and-defined-manually": "القيم ثابتة ومُعرّفة يدويًا",
+      "values-fetched-source-query": "تُجلب القيم من استعلام مصدر بيانات",
+      "values-timespans": "القيم فترات زمنية، مثل 1m، 1h، 1d"
+    },
+    "name": {
+      "ad-hoc-filters": "مرشّح",
+      "constant": "ثابت",
+      "custom": "مخصص",
+      "data-source": "مصدر البيانات",
+      "group-by": "التجميع حسب",
+      "interval": "الفاصل",
+      "query": "استعلام",
+      "switch": "مفتاح",
+      "textbox": "مربّع نص"
+    }
+  },
+  "get-panel-filters": {
+    "description": {
+      "annotation-following-panels": "لا ترسل بيانات التعليق الزمني إلى اللوحات التالية",
+      "annotation-panels-support-annotations": "أرسل بيانات التعليق الزمني إلى جميع اللوحات التي تدعم التعليقات الزمنية",
+      "annotations-explicitly-listed-panels": "أرسل التعليقات الزمنية إلى اللوحات المدرجة صراحةً"
+    },
+    "label": {
+      "all-panels": "جميع اللوحات",
+      "all-panels-except": "جميع اللوحات باستثناء",
+      "selected-panels": "اللوحات المحددة"
+    }
+  },
+  "get-panel-frame-options": {
+    "descriptor": {
+      "title": {
+        "panel-options": "خيارات اللوحة"
+      }
+    },
+    "title": {
+      "description": "الوصف",
+      "panel-links": "روابط اللوحة",
+      "panel-styles": "أنماط اللوحة",
+      "title": "العنوان",
+      "transparent-background": "خلفية شفافة"
+    }
+  },
+  "group-by-variable-form": {
+    "alert-not-supported": "مصدر البيانات هذا لا يدعم متغيرات التجميع حسب",
+    "description-enables-users-custom-values": "يُمكّن المستخدمين من إضافة قيم مخصصة إلى القائمة",
+    "description-provide-dimensions-as-csv-dimension-name-dimension-id": "قدّم الأبعاد كـ CSV: {{name}}، {{value}}",
+    "group-by-options": "خيارات التجميع حسب",
+    "label-data-source": "مصدر البيانات",
+    "label-use-static-group-by-dimensions": "استخدام أبعاد تجميع ثابتة",
+    "name-allow-custom-values": "السماح بقيم مخصصة"
+  },
+  "help-wizard": {
+    "copy-to-clipboard": "نسخ إلى الحافظة",
+    "description-randomize-data": "عدّل البيانات الأصلية لإخفاء المعلومات الحساسة. لاحظ أن الأطوال ستبقى كما هي، والقيم المكرّرة ستكون متساوية.",
+    "description-support-snapshot": "اللوحة: {{panelTitle}}",
+    "download-dashboard": "لوحة المعلومات ({{snapshotSize}})",
+    "download-snapshot": "تنزيل ({{snapshotSize}})",
+    "label-randomize-data": "عشوَنة البيانات",
+    "label-support-snapshot": "لقطة الدعم",
+    "label-template": "قالب",
+    "randomize-field-names-label-field-names": "أسماء الحقول",
+    "randomize-labels-label-labels": "التسميات",
+    "randomize-string-values-label-string-values": "القيم النصية",
+    "tabs": {
+      "label": {
+        "data": "البيانات",
+        "snapshot": "لقطة"
+      }
+    },
+    "title-complete-git-hub-comment-clipboard": "نسخ تعليق GitHub كامل إلى الحافظة",
+    "title-get-help-with-this-panel": "احصل على مساعدة بشأن هذه اللوحة",
+    "troubleshooting-docs": "وثائق استكشاف الأخطاء",
+    "troubleshooting-request-help": "لطلب مساعدة في استكشاف الأخطاء، أرسل لقطة لهذه اللوحة إلى الدعم الفني لدى Grafana Labs. تحتوي اللقطة على بيانات استجابة الاستعلام وإعدادات اللوحة."
+  },
+  "import-dashboard-form-v2": {
+    "cancel": "إلغاء",
+    "float-grid-items-warning-body": "تحتوي لوحة المعلومات على عناصر شبكة بمواضع عائمة. هذا غير مدعوم من Grafana وستُقتطع الأرقام إلى أعداد صحيحة.",
+    "float-grid-items-warning-title": "عناصر شبكة عائمة",
+    "label-folder": "مجلد"
+  },
+  "inspect-data-tab": {
+    "no-data-found": "لم يُعثر على بيانات"
+  },
+  "inspect-json-tab": {
+    "apply": "تطبيق",
+    "error-element-changed": "لا يمكن تغيير مرجع العنصر. يمكن فقط تعديل خصائص التخطيط (x، y، العرض، الارتفاع).",
+    "error-invalid-json": "JSON غير صالح",
+    "error-invalid-layout": "لم يجتز JSON التخطيط التحقق. يُرجى التحقق من JSON والمحاولة مجددًا.",
+    "error-invalid-v2-panel": "لم يجتز JSON اللوحة التحقق. يُرجى التحقق من JSON والمحاولة مجددًا.",
+    "validation-error": "خطأ في التحقق"
+  },
+  "interval-variable-form": {
+    "description-auto-option": "يحسب الفاصل ديناميكيًا بقسمة النطاق الزمني على العدد المحدد",
+    "description-calculated-value-below-threshold": "لن تنخفض القيمة المحسوبة عن هذه العتبة",
+    "description-step-count": "كم مرة ينبغي قسمة النطاق الزمني الحالي لحساب القيمة",
+    "interval-options": "خيارات الفاصل",
+    "name-auto-option": "خيار تلقائي",
+    "name-min-interval": "الحد الأدنى للفاصل",
+    "name-step-count": "عدد الخطوات",
+    "name-values": "القيم"
+  },
+  "json-model-edit-view": {
+    "cancel-button": {
+      "cancel": "إلغاء"
+    },
+    "render-save-button-and-error": {
+      "body-plugin-dashboard": "ستُفقد تغييراتك عند تحديث الإضافة. استخدم <strong>حفظ كـ</strong> لإنشاء نسخة مخصصة.",
+      "title-failed-to-save-dashboard": "فشل حفظ لوحة المعلومات",
+      "title-plugin-dashboard": "لوحة معلومات الإضافة",
+      "title-someone-else-has-updated-this-dashboard": "قام شخص آخر بتحديث لوحة المعلومات هذه",
+      "would-still-dashboard": "هل ما زلت تريد حفظ لوحة المعلومات هذه؟"
+    },
+    "save-and-overwrite": "حفظ واستبدال"
+  },
+  "legacy": {
+    "empty-transformations-message": {
+      "add-transformation": "إضافة تحويل"
+    }
+  },
+  "library-viz-panel-info": {
+    "last-edited": "{{timeAgo}} بواسطة<person />",
+    "usage-count_zero": "غير مستخدمة في أي لوحة معلومات",
+    "usage-count_one": "مستخدمة في لوحة معلومات واحدة",
+    "usage-count_two": "مستخدمة في لوحتي معلومات",
+    "usage-count_few": "مستخدمة في {{count}} لوحات معلومات",
+    "usage-count_many": "مستخدمة في {{count}} لوحة معلومات",
+    "usage-count_other": "مستخدمة في {{count}} لوحة معلومات"
+  },
+  "link-edit-actions": {
+    "add-link": "إضافة رابط",
+    "remove-link": "إزالة الرابط",
+    "update-link": "تحديث الرابط"
+  },
+  "link-editable-element": {
+    "delete-confirm": "حذف الرابط",
+    "delete-text": "هل أنت متأكد أنك تريد حذف: {{name}}؟",
+    "delete-title": "حذف الرابط",
+    "unnamed": "رابط بلا اسم"
+  },
+  "link-list": {
+    "create-drag-end-handler": {
+      "description": {
+        "reorder-links-list": "إعادة ترتيب قائمة الروابط"
+      }
+    },
+    "render-list": {
+      "aria-label-link": "رابط"
+    }
+  },
+  "link-options": {
+    "icon": "الأيقونة",
+    "include-time-range": "تضمين النطاق الزمني الحالي",
+    "include-variables": "تضمين قيم متغيرات القالب الحالية",
+    "open-in-new-tab": "فتح الرابط في علامة تبويب جديدة",
+    "options-category": "الخيارات",
+    "show-as-dropdown": "عرض كقائمة منسدلة",
+    "show-in-controls-menu": "إظهار في قائمة عناصر التحكّم",
+    "type": "النوع",
+    "type-dashboards": "لوحات المعلومات",
+    "type-link": "رابط",
+    "with-tags": "مع الوسوم"
+  },
+  "links-list": {
+    "drag-end-description": "إعادة ترتيب قائمة الروابط",
+    "title-above-dashboard_zero": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_one": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_two": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_few": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_many": "فوق لوحة المعلومات ({{count}})",
+    "title-above-dashboard_other": "فوق لوحة المعلومات ({{count}})",
+    "title-controls-menu_zero": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_one": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_two": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_few": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_many": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_other": "قائمة عناصر التحكّم ({{count}})"
+  },
+  "move-provisioned-dashboard-form": {
+    "already-in-folder": "لوحة المعلومات موجودة بالفعل في المجلد المحدد.",
+    "api-error": "فشل نقل لوحة المعلومات",
+    "cancel-action": "إلغاء",
+    "current-file-not-found": "تعذّر العثور على ملف لوحة المعلومات الحالي",
+    "drawer-title": "نقل لوحة معلومات مُهيّأة",
+    "file-load-error": "خطأ في تحميل لوحة المعلومات",
+    "loading-dashboard-data": "جارٍ تحميل بيانات لوحة المعلومات",
+    "move-action": "نقل لوحة المعلومات",
+    "move-read-only-message": "لا يمكن نقل لوحة المعلومات هذه مباشرةً من Grafana لأن المستودع للقراءة فقط. لنقل لوحة المعلومات هذه، يُرجى نقل الملف في مستودع Git الخاص بك.",
+    "moving": "جارٍ النقل...",
+    "success-message": "تم نقل لوحة المعلومات بنجاح",
+    "target-path-label": "المسار الهدف",
+    "title-this-repository-is-read-only": "هذا المستودع للقراءة فقط"
+  },
+  "on-open-snapshot-original-dashboard": {
+    "confirmText": {
+      "proceed": "متابعة"
+    },
+    "title": {
+      "proceed-to-external-site": "المتابعة إلى موقع خارجي؟"
+    }
+  },
+  "on-remove-panel": {
+    "text": {
+      "remove-panel": "هل أنت متأكد أنك تريد إزالة هذه اللوحة؟"
+    },
+    "title": {
+      "remove-panel": "إزالة اللوحة"
+    }
+  },
+  "option-row": {
+    "aria-label-remove-option": "إزالة الخيار",
+    "title-drag-and-drop-to-reorder": "اسحب وأفلت لإعادة الترتيب",
+    "tooltip-remove-option": "إزالة الخيار"
+  },
+  "panel-data-alerting-tab": {
+    "tab-label": "تنبيه"
+  },
+  "panel-data-alerting-tab-rendered": {
+    "alert": {
+      "title-errors-loading-rules": "أخطاء في تحميل القواعد"
+    },
+    "error-failed-to-load": "فشل تحميل حالة قواعد Grafana: {{errorToDisplay}}",
+    "text-loading-rules": "جارٍ تحميل القواعد...",
+    "title-dashboard-not-saved": "لوحة المعلومات غير محفوظة"
+  },
+  "panel-data-queries-tab": {
+    "tab-label": "الاستعلامات"
+  },
+  "panel-data-queries-tab-rendered": {
+    "add-query": "إضافة استعلام",
+    "expression": "تعبير "
+  },
+  "panel-data-transformations-tab": {
+    "tab-label": "التحويلات"
+  },
+  "panel-data-transformations-tab-rendered": {
+    "add-another-transformation": "إضافة تحويل آخر",
+    "body-delete-all-transformations": "بحذف جميع التحويلات، ستعود إلى شاشة التحديد الرئيسية.",
+    "confirmText-delete-all": "حذف الكل",
+    "delete-all-transformations": "حذف جميع التحويلات",
+    "title-delete-all-transformations": "حذف جميع التحويلات؟"
+  },
+  "panel-edit-controls": {
+    "table-view-aria-label-toggletableview": "تبديل عرض الجدول",
+    "table-view-label-table-view": "عرض الجدول"
+  },
+  "panel-editor": {
+    "text": {
+      "edit-panel": "تعديل اللوحة"
+    }
+  },
+  "panel-editor-renderer": {
+    "aria-label-open-options-pane": "فتح لوحة الخيارات",
+    "tooltip-open-options-pane": "فتح لوحة الخيارات"
+  },
+  "panel-inspect-renderer": {
+    "body-panel-plugin-not-loaded": "تأكّد من أن اللوحة التي تريد فحصها مرئية وقد عُرضت قبل فتح الفحص.",
+    "title-panel-plugin-not-loaded": "لم تُحمّل إضافة اللوحة"
+  },
+  "panel-menu-behavior": {
+    "async-func": {
+      "text": {
+        "extensions": "الامتدادات",
+        "metrics-drilldown": "التعمّق في المقاييس"
+      }
+    }
+  },
+  "panel-non-applicable-drilldowns-sub-header": {
+    "default-reason": "المرشّح غير قابل للتطبيق"
+  },
+  "panel-styles": {
+    "threshold-badge-tooltip": "سيعدّل هذا الإعداد المسبق العتبات",
+    "title": "أنماط اللوحة"
+  },
+  "panel-viz-type-picker": {
+    "button": {
+      "close": "رجوع"
+    },
+    "placeholder-search-for": "البحث عن...",
+    "radio-options": {
+      "label": {
+        "all-visualizations": "جميع التصورات",
+        "suggestions": "الاقتراحات"
+      }
+    },
+    "title-close": "إغلاق"
+  },
+  "provisioned-controls-section": {
+    "label": "مُهيّأ بواسطة مصدر البيانات",
+    "tooltip": "أُضيف بواسطة إضافة {{pluginName}}",
+    "tooltip-unknown": "أُضيف بواسطة إضافة مصدر بيانات"
+  },
+  "provisioned-delete-modal": {
+    "cannot-be-deleted": "هذه لوحة المعلومات مُدارة بواسطة تهيئة Grafana ولا يمكن حذفها. أزل لوحة المعلومات من ملف الإعداد لحذفها.",
+    "file-path": "مسار الملف: {{dashboardId}}",
+    "ok": "حسنًا",
+    "see-docs": "راجع <2>الوثائق</2> لمزيد من المعلومات عن التهيئة التلقائية.",
+    "title-cannot-delete-provisioned-dashboard": "تعذّر حذف لوحة المعلومات المُهيّأة"
+  },
+  "query-editor": {
+    "query": "استعلام"
+  },
+  "query-editor-banner": {
+    "description-classic": "جرّب تجربة تحرير الاستعلامات المُحسّنة.",
+    "description-new": "مرحبًا بك في تجربة تحرير الاستعلامات المُحسّنة.",
+    "dismiss": "تجاهل",
+    "downgrade-title": "محرّر استعلامات جديد",
+    "give-feedback": "إرسال ملاحظات",
+    "go-back": "العودة إلى الكلاسيكي",
+    "try-it": "جرّبه",
+    "upgrade-title": "محرّر جديد متاح"
+  },
+  "query-variable-editor-form": {
+    "description-examples": "يمكن استخدام مجموعات الالتقاط المسمّاة لفصل نص العرض والقيمة (<1>انظر الأمثلة</1>).",
+    "description-optional": "اختياري، إذا كنت تريد استخراج جزء من اسم سلسلة أو مقطع عقدة مقياس.",
+    "description-regex-apply-to": "اختر ما إذا كان سيُطبَّق نمط التعبير النمطي على قيمة المتغير أو نص العرض",
+    "label-data-source": "مصدر البيانات",
+    "label-regex-apply-to": "تطبيق التعبير النمطي على",
+    "label-static-options-sort": "فرز الخيارات الثابتة",
+    "label-target-data-source": "مصدر البيانات الهدف",
+    "label-use-static-options": "استخدام خيارات ثابتة",
+    "name-regex": "تعبير نمطي",
+    "query-options": "خيارات الاستعلام",
+    "regex-apply-to-options": {
+      "label": {
+        "text": "نص العرض",
+        "value": "قيمة المتغير"
+      }
+    },
+    "selection-options": "خيارات التحديد",
+    "static-options-legend": "خيارات ثابتة"
+  },
+  "resource-export": {
+    "classic-v2-warning": "تستخدم لوحة المعلومات هذه مخطط V2. لا يمكن تمثيل ميزات مثل علامات التبويب والعرض الشرطي في التنسيق الكلاسيكي وقد تُفقد.",
+    "label": {
+      "advanced-options": "خيارات متقدمة",
+      "classic": "كلاسيكي",
+      "json": "JSON",
+      "v2-resource": "مورد V2",
+      "yaml": "YAML"
+    },
+    "share-externally": "مشاركة لوحة المعلومات مع مثيل آخر",
+    "share-externally-tooltip": "يزيل جميع البيانات الوصفية الخاصة بالمثيل ومراجع مصادر البيانات من المورد قبل التصدير."
+  },
+  "revert-dashboard-modal": {
+    "body-restore-version": "هل أنت متأكد أنك تريد استعادة لوحة المعلومات إلى الإصدار {{version}}؟ ستُفقد جميع التغييرات غير المحفوظة.",
+    "confirmText-restore-version": "نعم، استعادة إلى الإصدار {{version}}",
+    "title-restore-version": "استعادة الإصدار"
+  },
+  "save-button": {
+    "save": "حفظ",
+    "save-and-overwrite": "حفظ واستبدال",
+    "saving": "جارٍ الحفظ..."
+  },
+  "save-dashboard-as-form": {
+    "aria-label-save-dashboard-description-field": "حقل وصف حفظ لوحة المعلومات",
+    "aria-label-save-dashboard-title-field": "حقل عنوان حفظ لوحة المعلومات",
+    "cancel-button": {
+      "cancel": "إلغاء"
+    },
+    "label-copy-tags": "نسخ الوسوم",
+    "label-folder": "مجلد",
+    "render-footer": {
+      "title-failed-to-save-dashboard": "فشل حفظ لوحة المعلومات"
+    },
+    "required": "مطلوب"
+  },
+  "save-dashboard-drawer": {
+    "tabs": {
+      "label-changes": "التغييرات",
+      "label-details": "التفاصيل",
+      "title": "حفظ لوحة المعلومات",
+      "title-copy": "حفظ نسخة من لوحة المعلومات",
+      "title-provisioned": "لوحة معلومات مُهيّأة",
+      "title-template": "حفظ كقالب",
+      "title-update-template": "حفظ القالب"
+    }
+  },
+  "save-dashboard-form": {
+    "aria-label-message": "رسالة",
+    "body-dashboard-drastically-changed": "ستُحفظ لوحة المعلومات باستخدام مخطط لوحة معلومات Grafana التجريبي الجديد. لا يمكن التراجع عن هذا الإجراء وقد يؤدي إلى فقدان لا رجعة فيه للبيانات. نوصي بحفظ لوحة المعلومات هذه كنسخة بدلًا من ذلك. إذا كنت ترى هذه الرسالة في بيئة إنتاج، فتواصل مع الدعم لتعطيل الميزة.",
+    "cancel-button": {
+      "cancel": "إلغاء"
+    },
+    "label-message": "الرسالة",
+    "placeholder-describe-changes-optional": "أضف ملاحظة لوصف تغييراتك (اختياري).",
+    "render-footer": {
+      "body-plugin-dashboard": "ستُفقد تغييراتك عند تحديث الإضافة. استخدم <strong>حفظ كـ</strong> لإنشاء نسخة مخصصة.",
+      "no-changes-to-save": "لا توجد تغييرات لحفظها",
+      "title-failed-to-save-dashboard": "فشل حفظ لوحة المعلومات",
+      "title-plugin-dashboard": "لوحة معلومات الإضافة",
+      "title-someone-else-has-updated-this-dashboard": "قام شخص آخر بتحديث لوحة المعلومات هذه",
+      "would-still-dashboard": "هل ما زلت تريد حفظ لوحة المعلومات هذه؟"
+    },
+    "schema-v2-library-panels-export": "بسبب قيود مخطط لوحة المعلومات الجديد (V2)، ستُحوَّل لوحات المكتبة إلى لوحات عادية بمحتوى مضمّن أثناء التصدير الخارجي.",
+    "schema-v2-library-panels-export-title": "ستُحوَّل لوحات المكتبة إلى لوحات عادية",
+    "title-dashboard-drastically-changed": "تغيّرت لوحة المعلومات بشكل لا رجعة فيه"
+  },
+  "save-dashboard-form-common-options": {
+    "save-refresh-description-current-refresh-default": "سيجعل التحديث الحالي هو الافتراضي الجديد",
+    "save-refresh-label-update-default-refresh-value": "تحديث قيمة التحديث الافتراضية",
+    "save-timerange-description-current-range-default": "سيجعل النطاق الزمني الحالي هو الافتراضي الجديد",
+    "save-timerange-label-update-default-time-range": "تحديث النطاق الزمني الافتراضي",
+    "save-variables-description-current-values-default": "سيجعل القيم الحالية هي الافتراضية الجديدة",
+    "save-variables-label-update-default-variable-values": "تحديث قيم المتغيرات الافتراضية",
+    "show-variables-warning-alert-body": "فشل تحميل بعض المتغيرات. إذا أبقيت على تحديد \"تحديث قيم المتغيرات الافتراضية\"، ستصبح القيم (الفاشلة) الحالية هي الافتراضيات للوحة المعلومات. يمكنك الحفظ على أي حال أو إلغاء تحديد الخيار لتجنّب تخزين تلك القيم (الفاشلة).",
+    "show-variables-warning-alert-title": "فشلت استعلامات المتغيرات"
+  },
+  "save-library-viz-panel-modal": {
+    "affected-dashboards_zero": "لن يؤثّر هذا التحديث في أي لوحة معلومات. لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "affected-dashboards_one": "سيؤثّر هذا التحديث في <1>لوحة معلومات واحدة.</1> لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "affected-dashboards_two": "سيؤثّر هذا التحديث في <1>لوحتي معلومات.</1> لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "affected-dashboards_few": "سيؤثّر هذا التحديث في <1>{{count}} لوحات معلومات.</1> لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "affected-dashboards_many": "سيؤثّر هذا التحديث في <1>{{count}} لوحة معلومات.</1> لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "affected-dashboards_other": "سيؤثّر هذا التحديث في <1>{{count}} لوحة معلومات.</1> لوحات المعلومات التالية التي تستخدم اللوحة ستتأثّر:",
+    "cancel": "إلغاء",
+    "dashboard-name": "اسم لوحة المعلومات",
+    "discard": "تجاهل",
+    "loading-connected-dashboards": "جارٍ تحميل لوحات المعلومات المتصلة...",
+    "placeholder-search-affected-dashboards": "ابحث في لوحات المعلومات المتأثّرة",
+    "update-all": "تحديث الكل"
+  },
+  "save-provisioned-dashboard-form": {
+    "advanced-options": "خيارات متقدمة",
+    "cancel": "إلغاء",
+    "cannot-be-saved": "لا يمكن حفظ لوحة المعلومات هذه من واجهة Grafana لأنها هُيّئت من مصدر آخر. انسخ JSON أو احفظه في ملف أدناه، ثم يمكنك تحديث لوحة معلوماتك في مصدر التهيئة.",
+    "copy-json-to-clipboard": "نسخ JSON إلى الحافظة",
+    "error-saving": "حدث خطأ أثناء الحفظ.",
+    "file-path": "<strong>مسار الملف:</strong> {{filePath}}",
+    "form-loading-error": "خطأ في تحميل النموذج",
+    "form-loading-error-unknown": "حدث خطأ غير متوقّع أثناء تحميل النموذج.",
+    "format": {
+      "classic": "كلاسيكي",
+      "model-label": "النموذج",
+      "v2-resource": "مورد V2"
+    },
+    "label-description": "الوصف",
+    "label-target-folder": "المجلد الهدف",
+    "label-title": "العنوان",
+    "repo-path-required": "حقول مطلوبة مفقودة للحفظ",
+    "save": "حفظ",
+    "save-json-to-file": "حفظ JSON في ملف",
+    "saving": "جارٍ الحفظ...",
+    "see-docs": "راجع <2>الوثائق</2> لمزيد من المعلومات عن التهيئة التلقائية.",
+    "title-required": "عنوان لوحة المعلومات مطلوب",
+    "title-same-as-folder": "لا يمكن أن يكون اسم لوحة المعلومات مطابقًا لاسم المجلد",
+    "title-validation-failed": "فشل التحقق من عنوان لوحة المعلومات."
+  },
+  "scenes-new-rule-from-panel-button": {
+    "body-no-alerting-capable-query-found": "لا يمكن إنشاء تنبيهات من هذه اللوحة لأنه لم يُعثر على استعلام لمصدر بيانات قادر على التنبيه.",
+    "disabled-tooltip": "احفظ لوحة المعلومات قبل إنشاء قواعد التنبيه",
+    "new-alert-rule": "قاعدة تنبيه جديدة",
+    "title-no-alerting-capable-query-found": "لم يُعثر على استعلام قادر على التنبيه"
+  },
+  "section-filters-list": {
+    "add-filter": "إضافة مرشّح"
+  },
+  "section-placement": {
+    "top-row": "أعلى الصف",
+    "top-tab": "أعلى علامة التبويب"
+  },
+  "selection-options-form": {
+    "description-enables-multiple-values-selected": "يُمكّن من تحديد قيم متعددة في الوقت نفسه",
+    "description-enables-option-include-variables": "يُمكّن خيارًا لتضمين جميع القيم",
+    "description-enables-users-custom-values": "يُمكّن المستخدمين من إضافة قيم مخصصة إلى القائمة",
+    "name-allow-custom-values": "السماح بقيم مخصصة",
+    "name-custom-all-value": "قيمة \"الكل\" المخصصة",
+    "name-include-all-option": "تضمين خيار \"الكل\"",
+    "name-multi-value": "متعدد القيم"
+  },
+  "share-button": {
+    "aria-label-sharedropdownmenu": "تبديل قائمة المشاركة"
+  },
+  "sharing": {
+    "save-before-share": {
+      "text": "لديك تغييرات غير محفوظة على لوحة المعلومات هذه. تحتاج إلى حفظها قبل أن تتمكّن من مشاركتها.",
+      "text-no-save": "لديك تغييرات غير محفوظة. ليس لديك إذن بالحفظ. هل تريد تجاهل التغييرات ومشاركة الأصل؟",
+      "title": "تغييرات غير محفوظة"
+    }
+  },
+  "suggested-dashboard-banner": {
+    "body": "ليس ما تبحث عنه؟ اعرض <2>لوحات معلومات مقترحة أخرى</2> أو <6>أنشئ واحدة من الصفر</6>.",
+    "title": "أنت تعرض {{title}}"
+  },
+  "support-snapshot-service": {
+    "description": {
+      "dashboard-troubleshoot-visualization-issues": "JSON لوحة المعلومات المستخدم للمساعدة في استكشاف مشكلات التصوّر"
+    },
+    "label": {
+      "git-hub-comment": "تعليق GitHub",
+      "panel-support-snapshot": "لقطة دعم اللوحة"
+    },
+    "title": {
+      "copy-to-clipboard-failed": "فشل النسخ إلى الحافظة"
+    }
+  },
+  "switch-variable-form": {
+    "disabled-value": "قيمة التعطيل",
+    "disabled-value-description": "القيمة عند تعطيل المفتاح",
+    "disabled-value-placeholder": "مثال: إيقاف، مُعطّل، غير نشط",
+    "enabled-value": "قيمة التفعيل",
+    "enabled-value-description": "القيمة عند تفعيل المفتاح",
+    "enabled-value-placeholder": "مثال: تشغيل، مُفعّل، نشط",
+    "same-values-error": "لا يمكن أن تكون قيمتا التفعيل والتعطيل متطابقتين",
+    "switch-options": "خيارات المفتاح",
+    "value-pair-type": "نوع زوج القيم",
+    "value-pair-type-description": "اختر نوع القيم لحالات المفتاح"
+  },
+  "text-box-variable": {
+    "name-default-value": "القيمة الافتراضية"
+  },
+  "text-box-variable-form": {
+    "placeholder-default-value-if-any": "(اختياري)",
+    "text-options": "خيارات النص"
+  },
+  "textbox-variable-form": {
+    "label-value": "القيمة"
+  },
+  "title-field-label": {
+    "title": "العنوان"
+  },
+  "transform-usages-to-network": {
+    "result": {
+      "label": {
+        "dashboard": "لوحة المعلومات"
+      }
+    }
+  },
+  "transformations-drawer": {
+    "search-box-suffix": {
+      "tooltip-clear-search": "مسح البحث"
+    }
+  },
+  "unlink-modal": {
+    "body-unlink-panel": "إذا ألغيت ربط هذه اللوحة، فستتمكّن من تعديلها دون التأثير في أي لوحات معلومات أخرى. لكن بمجرد إجراء تغيير لن تتمكّن من العودة إلى لوحتها الأصلية القابلة لإعادة الاستخدام.",
+    "confirmText-yes-unlink": "نعم، إلغاء الربط",
+    "title-really-unlink-panel": "هل تريد حقًا إلغاء ربط هذه اللوحة؟"
+  },
+  "unsaved-changes-modal": {
+    "cancel": "إلغاء",
+    "changes": "هل تريد حفظ تغييراتك؟",
+    "discard": "تجاهل",
+    "save-dashboard": "حفظ لوحة المعلومات",
+    "title-unsaved-changes": "تغييرات غير محفوظة"
+  },
+  "use-annotations-category": {
+    "category": {
+      "title": {
+        "annotations": "التعليقات الزمنية"
+      }
+    }
+  },
+  "use-dashboard-edit-page-nav": {
+    "page-nav": {
+      "text": {
+        "settings": "الإعدادات"
+      }
+    }
+  },
+  "use-filters-category": {
+    "category": {
+      "title": {
+        "filters": "المرشّحات"
+      }
+    }
+  },
+  "use-links-category": {
+    "category": {
+      "title": {
+        "links": "الروابط"
+      }
+    }
+  },
+  "use-modal-editor": {
+    "description": {
+      "change-variable-query": "تغيير استعلام المتغير"
+    }
+  },
+  "use-save-dashboard": {
+    "message-dashboard-saved": "تم حفظ لوحة المعلومات"
+  },
+  "use-variables-category": {
+    "category": {
+      "title": {
+        "variables": "المتغيرات"
+      }
+    }
+  },
+  "variable-check-indicator": {
+    "aria-label-variable-referenced-dashboard": "هذا المتغير غير مُشار إليه من أي متغير أو لوحة معلومات.",
+    "aria-label-variable-referenced-other-variables-dashboard": "هذا المتغير مُشار إليه من متغيرات أخرى أو لوحة معلومات.",
+    "content-variable-not-referenced-other-variables-dashboard": "هذا المتغير غير مُشار إليه من متغيرات أخرى أو لوحة معلومات.",
+    "content-variable-referenced-other-variables-dashboard": "هذا المتغير مُشار إليه من متغيرات أخرى أو لوحة معلومات."
+  },
+  "variable-controls": {
+    "add-variable": "إضافة متغير"
+  },
+  "variable-display-select": {
+    "label": "العرض",
+    "options": {
+      "controls-menu": {
+        "description": "مرئي عند فتح قائمة عناصر التحكّم",
+        "label": "قائمة عناصر التحكّم"
+      },
+      "hidden": {
+        "description": "مرئي فقط في وضع التعديل",
+        "label": "مخفي"
+      },
+      "top-placement-hidden-label": {
+        "description": "{{placement}}، لكن دون إظهار اسم المتغير",
+        "label": "{{placement}}، التسمية مخفية"
+      }
+    }
+  },
+  "variable-editable-element": {
+    "delete-confirm": "حذف المتغير",
+    "delete-text": "هل أنت متأكد أنك تريد حذف: {{name}}؟",
+    "delete-title": "حذف المتغير"
+  },
+  "variable-editor-form": {
+    "aria-label-variable-editor-form": "نموذج محرّر المتغير",
+    "back-to-list": "العودة إلى القائمة",
+    "confirmText": {
+      "delete-variable": "حذف المتغير"
+    },
+    "delete": "حذف",
+    "description-optional-display-name": "اسم عرض اختياري",
+    "description-template-variable-characters": "اسم متغير القالب. (حد أقصى 50 حرفًا)",
+    "general": "عام",
+    "name-description": "الوصف",
+    "name-label": "التسمية",
+    "name-name": "الاسم",
+    "placeholder-descriptive-text": "نص وصفي",
+    "placeholder-label-name": "اسم التسمية",
+    "placeholder-variable-name": "اسم المتغير",
+    "run-query": "تشغيل الاستعلام",
+    "text-running-query": "جارٍ تشغيل الاستعلام...",
+    "title": {
+      "delete-variable": "حذف المتغير"
+    }
+  },
+  "variable-editor-list": {
+    "definition": "التعريف",
+    "new-variable": "متغير جديد",
+    "variable": "متغير"
+  },
+  "variable-editor-list-row": {
+    "body-delete-variable": "هل أنت متأكد أنك تريد حذف: {{variable}}؟",
+    "confirmText-delete-variable": "حذف المتغير",
+    "drag-handle-label": "إعادة ترتيب المتغير {{variableName}}",
+    "title-delete-variable": "حذف المتغير",
+    "tooltip-duplicate-variable": "تكرار المتغير",
+    "tooltip-remove-variable": "إزالة المتغير"
+  },
+  "variable-list": {
+    "create-drag-end-handler": {
+      "description": {
+        "reorder-variables-list": "إعادة ترتيب قائمة المتغيرات"
+      }
+    }
+  },
+  "variable-multi-prop-static-options-form": {
+    "aria-label-static-options": "خيارات ثابتة"
+  },
+  "variable-type-select": {
+    "name-variable-type": "نوع المتغير"
+  },
+  "variable-usages-button": {
+    "title-show-usages": "عرض الاستخدامات لـ: {{variableId}}",
+    "tooltip-show-usages": "عرض الاستخدامات"
+  },
+  "variable-values-preview": {
+    "preview-of-values_zero": "معاينة القيم ({{count}})",
+    "preview-of-values_one": "معاينة القيم ({{count}})",
+    "preview-of-values_two": "معاينة القيم ({{count}})",
+    "preview-of-values_few": "معاينة القيم ({{count}})",
+    "preview-of-values_many": "معاينة القيم ({{count}})",
+    "preview-of-values_other": "معاينة القيم ({{count}})",
+    "show-more": "عرض المزيد"
+  },
+  "variables-list": {
+    "add-variable": "إضافة متغير",
+    "create-drag-end-handler": {
+      "description": {
+        "reorder-variables-list": "إعادة ترتيب قائمة المتغيرات"
+      }
+    },
+    "top-placement": {
+      "default": "فوق لوحة المعلومات"
+    },
+    "title-controls-menu_zero": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_one": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_two": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_few": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_many": "قائمة عناصر التحكّم ({{count}})",
+    "title-controls-menu_other": "قائمة عناصر التحكّم ({{count}})",
+    "title-hidden_zero": "مخفي ({{count}})",
+    "title-hidden_one": "مخفي ({{count}})",
+    "title-hidden_two": "مخفي ({{count}})",
+    "title-hidden_few": "مخفي ({{count}})",
+    "title-hidden_many": "مخفي ({{count}})",
+    "title-hidden_other": "مخفي ({{count}})",
+    "title-top-placement_zero": "{{placement}} ({{count}})",
+    "title-top-placement_one": "{{placement}} ({{count}})",
+    "title-top-placement_two": "{{placement}} ({{count}})",
+    "title-top-placement_few": "{{placement}} ({{count}})",
+    "title-top-placement_many": "{{placement}} ({{count}})",
+    "title-top-placement_other": "{{placement}} ({{count}})"
+  },
+  "version-history": {
+    "comparison": {
+      "button-restore": "استعادة إلى الإصدار {{version}}"
+    }
+  },
+  "version-history-comparison": {
+    "label-view-json-diff": "عرض فرق JSON",
+    "new-version-updated": "<strong>الإصدار {{version}}</strong> حُدِّث بواسطة {{editor}} {{timeAgo}}",
+    "old-version-updated": "<strong>الإصدار {{version}}</strong> حُدِّث بواسطة {{editor}} {{timeAgo}}"
+  },
+  "version-history-header": {
+    "compare-versions": "مقارنة {{baseVersion}} <3></3> {{newVersion}}",
+    "latest": "(الأحدث)",
+    "tooltip-reset-version": "إعادة تعيين الإصدار"
+  },
+  "version-history-table": {
+    "aria-label-toggle-selection": "تبديل تحديد الإصدار {{version}}",
+    "date": "التاريخ",
+    "name-latest": "الأحدث",
+    "notes": "ملاحظات",
+    "restore": "استعادة",
+    "updated-by": "حُدِّث بواسطة",
+    "version": "الإصدار"
+  },
+  "versions-history-buttons": {
+    "compare-versions": "مقارنة الإصدارات",
+    "content-select-two-versions-to-start-comparing": "اختر إصدارين لبدء المقارنة",
+    "show-more-versions": "عرض مزيد من الإصدارات"
+  },
+  "visualization-button": {
+    "aria-label-change-visualization": "تغيير التصوّر",
+    "text": "تغيير"
+  },
+  "viz-and-data-pane": {
+    "aria-label-open-query-pane": "فتح لوحة الاستعلام",
+    "tooltip-open-query-pane": "فتح لوحة الاستعلام"
+  },
+  "viz-panel-links-renderer": {
+    "aria-label-panel-links": "روابط اللوحة"
+  }
+}

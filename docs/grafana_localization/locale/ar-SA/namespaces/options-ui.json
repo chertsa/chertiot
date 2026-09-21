@@ -1,0 +1,49 @@
+{
+  "color": {
+    "clear-tooltip": "مسح الإعدادات"
+  },
+  "field-color": {
+    "color-by-label": "تلوين السلاسل حسب"
+  },
+  "registry": {
+    "get-all-option-editors": {
+      "description-time-zone": "اختيار المنطقة الزمنية",
+      "name-time-zone": "المنطقة الزمنية"
+    },
+    "standard-field-condigs": {
+      "category-data-links": "روابط البيانات والإجراءات"
+    },
+    "standard-field-configs": {
+      "category": "الخيارات القياسية",
+      "category-thresholds": "العتبات",
+      "category-value-mappings": "تعيينات القيم",
+      "description-display-name": "تغيير اسم الحقل أو السلسلة",
+      "description-field-min-max": "حساب الحد الأدنى والأقصى لكل حقل",
+      "description-max": "اتركه فارغًا للحساب بناءً على جميع القيم",
+      "description-min": "اتركه فارغًا للحساب بناءً على جميع القيم",
+      "description-no-value": "ما يُعرض عند عدم وجود قيمة",
+      "description-value-mappings": "تعديل نص العرض بناءً على قيمة الإدخال",
+      "name-actions": "الإجراءات",
+      "name-ad-hoc": "قابل للتصفية",
+      "name-color-scheme": "نظام الألوان",
+      "name-data-links": "روابط البيانات",
+      "name-decimals": "المنازل العشرية",
+      "name-display-name": "الاسم المعروض",
+      "name-field-min-max": "الحد الأدنى/الأقصى للحقل",
+      "name-max": "الأقصى",
+      "name-min": "الأدنى",
+      "name-no-value": "لا قيمة",
+      "name-thresholds": "العتبات",
+      "name-unit": "الوحدة",
+      "name-value-mappings": "تعيينات القيم",
+      "placeholder-decimals": "تلقائي",
+      "placeholder-display-name": "بلا",
+      "placeholder-max": "تلقائي",
+      "placeholder-min": "تلقائي",
+      "placeholder-unit": "بلا"
+    }
+  },
+  "units": {
+    "clear-tooltip": "مسح اختيار الوحدة"
+  }
+}

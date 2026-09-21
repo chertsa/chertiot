@@ -1,0 +1,10 @@
+{
+  "menu": {
+    "export-image-title": "تصدير كصورة",
+    "share-externally-title": "المشاركة خارجيًا",
+    "share-internally-title": "المشاركة داخليًا",
+    "share-snapshot-title": "مشاركة لقطة"
+  },
+  "share-button": "مشاركة",
+  "share-button-tooltip": "نسخ الرابط"
+}

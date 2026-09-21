@@ -1,0 +1,60 @@
+{
+  "breadcrumbs": {
+    "aria-label": "مسار التنقل"
+  },
+  "extension-sidebar": {
+    "button-tooltip": {
+      "close": "إغلاق {{title}}",
+      "open": "فتح {{title}}",
+      "open-all": "فتح مساعدي الذكاء الاصطناعي وتطبيقات الشريط الجانبي"
+    }
+  },
+  "help": {
+    "aria-label": "مساعدة",
+    "interactive-learning": {
+      "close-tooltip": "إغلاق التعلّم التفاعلي والمساعدة والوثائق",
+      "open-tooltip": "فتح التعلّم التفاعلي والمساعدة والوثائق"
+    },
+    "tooltip": "احصل على المساعدة وروابط مفيدة"
+  },
+  "invite-user": {
+    "invite-button": "دعوة",
+    "invite-new-user-button": "دعوة مستخدم جديد",
+    "invite-tooltip": "دعوة مستخدم",
+    "upgrade-button": "ترقية",
+    "upgrade-tooltip": "الترقية لإضافة مزيد من المستخدمين"
+  },
+  "item": {
+    "bookmark": {
+      "tooltip": "إضافة {{itemName}} إلى المفضلة"
+    }
+  },
+  "kiosk": {
+    "tv-alert": "اضغط ESC للخروج من وضع الكشك"
+  },
+  "megamenu": {
+    "close": "إغلاق القائمة",
+    "dialog-label": "التنقل",
+    "dock": "تثبيت القائمة",
+    "list-label": "التنقل",
+    "open": "القائمة الرئيسية",
+    "undock": "إلغاء تثبيت القائمة"
+  },
+  "megamenu-item": {
+    "children-error": "فشل تحميل العناصر",
+    "collapse-aria-label": "طيّ القسم: {{sectionName}}",
+    "expand-aria-label": "توسيع القسم: {{sectionName}}",
+    "loading-aria-label": "جارٍ تحميل {{sectionName}}"
+  },
+  "org-switcher": {
+    "aria-label": "تغيير المنظمة"
+  },
+  "profile": {
+    "aria-label": "الملف الشخصي"
+  },
+  "quick-add": {
+    "aria-label": "جديد",
+    "new-template-dashboard-button": "استخدام قالب"
+  },
+  "rss-button": "أحدث المقالات من المدونة"
+}

@@ -1,0 +1,56 @@
+{
+  "arc-options-editor": {
+    "add-arc": "إضافة قوس",
+    "title-remove-arc": "إزالة القوس"
+  },
+  "edge": {
+    "aria-label-from-to": "حافة من: {{from}} إلى: {{to}}"
+  },
+  "edge-header": {
+    "label-source-target": "المصدر → الهدف"
+  },
+  "marker": {
+    "100-node-count": "أكثر من 100 عقدة",
+    "aria-label-hidden-marker": "علامة العُقد المخفية: {{marker}}",
+    "node-count_zero": "لا عُقد",
+    "node-count_one": "عقدة واحدة",
+    "node-count_two": "عقدتان",
+    "node-count_few": "{{count}} عُقد",
+    "node-count_many": "{{count}} عقدة",
+    "node-count_other": "{{count}} عقدة"
+  },
+  "node": {
+    "aria-label-node-title": "عقدة: {{nodeName}}"
+  },
+  "node-graph": {
+    "aria-label-layered-layout-performance-warning": "تحذير أداء التخطيط الطبقي",
+    "aria-label-nodes-hidden-warning": "تحذير إخفاء العُقد",
+    "computing-layout": "جارٍ حساب التخطيط",
+    "hidden-nodes_zero": "<0></0> لا توجد عُقد مخفية لأسباب تتعلق بالأداء.",
+    "hidden-nodes_one": "<0></0> عقدة واحدة مخفية لأسباب تتعلق بالأداء.",
+    "hidden-nodes_two": "<0></0> عقدتان مخفيتان لأسباب تتعلق بالأداء.",
+    "hidden-nodes_few": "<0></0> {{count}} عُقد مخفية لأسباب تتعلق بالأداء.",
+    "hidden-nodes_many": "<0></0> {{count}} عقدة مخفية لأسباب تتعلق بالأداء.",
+    "hidden-nodes_other": "<0></0> {{count}} عقدة مخفية لأسباب تتعلق بالأداء.",
+    "no-data": "لا توجد بيانات",
+    "processed-nodes_zero": "<0></0> قد يكون التخطيط الطبقي بطيئًا.",
+    "processed-nodes_one": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع عقدة واحدة.",
+    "processed-nodes_two": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع عقدتين.",
+    "processed-nodes_few": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عُقد.",
+    "processed-nodes_many": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عقدة.",
+    "processed-nodes_other": "<0></0> قد يكون التخطيط الطبقي بطيئًا مع {{count}} عقدة."
+  },
+  "node-graph-panel": {
+    "no-data-found-in-response": "لم يُعثر على بيانات في الاستجابة"
+  },
+  "node-header": {
+    "label-subtitle": "عنوان فرعي",
+    "label-title": "العنوان"
+  },
+  "view-controls": {
+    "hide-config": "إخفاء الإعداد",
+    "show-config": "إظهار الإعداد",
+    "title-zoom-in": "تكبير",
+    "title-zoom-out": "تصغير"
+  }
+}

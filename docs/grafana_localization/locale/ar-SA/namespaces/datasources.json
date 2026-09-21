@@ -1,0 +1,198 @@
+{
+  "add-new-data-source-button": {
+    "tooltip-no-permission": "ليس لديك إذن لتهيئة مصادر بيانات جديدة"
+  },
+  "alert-success-message": {
+    "aria-label-create-a-dashboard": "إنشاء لوحة معلومات",
+    "aria-label-explore-data": "استكشاف البيانات",
+    "aria-label-suggested-dashboards": "لوحات المعلومات المقترحة"
+  },
+  "build-a-dashboard-button": {
+    "blank": "فارغة",
+    "build-a-dashboard": "إنشاء لوحة معلومات",
+    "from-suggestions": "من الاقتراحات"
+  },
+  "build-categories": {
+    "categories": {
+      "title": {
+        "cloud": "Cloud",
+        "distributed-tracing": "التتبّع الموزّع",
+        "enterprise-plugins": "إضافات Enterprise",
+        "industrial-io-t": "الصناعة وإنترنت الأشياء",
+        "logging-document-databases": "التسجيل وقواعد البيانات المستندية",
+        "others": "أخرى",
+        "profiling": "التوصيف",
+        "sql": "SQL",
+        "time-series-databases": "قواعد بيانات السلاسل الزمنية"
+      }
+    }
+  },
+  "build-nav-model": {
+    "analytics": {
+      "text": {
+        "insights": "الرؤى"
+      }
+    },
+    "caching": {
+      "text": {
+        "cache": "التخزين المؤقت"
+      }
+    },
+    "ds-permissions": {
+      "text": {
+        "permissions": "الأذونات"
+      }
+    },
+    "nav-model": {
+      "text": {
+        "settings": "الإعدادات"
+      }
+    },
+    "text": {
+      "dashboards": "لوحات المعلومات"
+    }
+  },
+  "button-row": {
+    "delete": "حذف",
+    "save-and-test": "حفظ واختبار",
+    "test": "اختبار"
+  },
+  "cloud-info-box": {
+    "body-alert": "أو تجنّب العناء واحصل على {{dsName}} كمصدر بيانات مُدار بالكامل وقابل للتوسّع ومُستضاف من Grafana Labs مع <4>خطة Grafana Cloud المجانية للأبد</4>.",
+    "title-alert": "هيّئ مصدر بيانات {{dsName}} أدناه"
+  },
+  "dashboards-table": {
+    "aria-label-delete-dashboard": "حذف لوحة المعلومات",
+    "import": "استيراد"
+  },
+  "data-source-categories": {
+    "find-more-data-source-plugins": "العثور على مزيد من إضافات مصادر البيانات"
+  },
+  "data-source-load-error": {
+    "back": "رجوع",
+    "check-updates": "حدث خطأ غير معروف أثناء تحميل الإضافة. يُرجى التحقق من وجود تحديثات.",
+    "delete": "حذف",
+    "load-error-title": "خطأ في تحميل الإضافة",
+    "not-found": "لم يُعثر على مصدر البيانات"
+  },
+  "data-source-missing-rights-message": {
+    "title-missing-rights": "صلاحيات مفقودة"
+  },
+  "data-source-picker": {
+    "aria-label-select-a-data-source": "اختر مصدر بيانات"
+  },
+  "data-source-plugin-config-page": {
+    "page-not-found": "لم يُعثر على الصفحة: {{page}}"
+  },
+  "data-source-plugin-state": {
+    "plugin-state": "حالة الإضافة"
+  },
+  "data-source-read-only-message": {
+    "title-provisioned-data-source": "مصدر بيانات مُهيّأ تلقائيًا"
+  },
+  "data-source-settings-reducer": {
+    "message": {
+      "testing-could-couple-minutes": "جارٍ الاختبار... قد يستغرق هذا بضع دقائق"
+    }
+  },
+  "data-source-type-card": {
+    "aria-label-learn-more": "{{dataSourcePluginName}}، تعرّف على المزيد."
+  },
+  "data-sources-list-card": {
+    "explore": "استكشاف"
+  },
+  "default-button": {
+    "active": "مصدر البيانات هذا مضبوط حاليًا كالافتراضي.",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "error": "فشل تحديث مصدر البيانات الافتراضي",
+    "make": "جعله افتراضيًا",
+    "make-confirm": "هل أنت متأكد أنك تريد ضبط مصدر البيانات هذا كافتراضي لجميع المستخدمين؟",
+    "remove": "إزالة الافتراضي",
+    "remove-confirm": "هل أنت متأكد أنك تريد إزالة الحالة الافتراضية من مصدر البيانات هذا لجميع المستخدمين؟",
+    "tooltip": "مصدر البيانات الافتراضي مُحدَّد مسبقًا في اللوحات الجديدة."
+  },
+  "edit-data-source-actions": {
+    "add-favorite": "إضافة إلى المفضلة",
+    "explore-data": "استكشاف البيانات",
+    "open-in-explore": "فتح في عرض الاستكشاف",
+    "remove-favorite": "إزالة من المفضلة"
+  },
+  "error-details-link": {
+    "aria-label-more-details-about-the-error": "مزيد من التفاصيل حول الخطأ"
+  },
+  "get-enterprise-phantom-plugins": {
+    "description": {
+      "adobe-analytics-datasource": "مصدر بيانات Adobe Analytics",
+      "app-dynamics-integration-and-data-source": "تكامل ومصدر بيانات AppDynamics",
+      "atlassian-statuspage-datasource": "مصدر بيانات Atlassian Statuspage",
+      "aurora-data-source": "مصدر بيانات Aurora",
+      "azure-cosmos-db-datasource": "مصدر بيانات Azure CosmosDB",
+      "azure-devops-datasource": "مصدر بيانات Azure Devops",
+      "catchpoint-datasource": "مصدر بيانات Catchpoint",
+      "cloudflare-datasource": "مصدر بيانات Cloudflare",
+      "cockroach-db-datasource": "مصدر بيانات CockroachDB",
+      "data-dog-integration-and-data-source": "تكامل ومصدر بيانات DataDog",
+      "drone-datasource": "مصدر بيانات Drone",
+      "git-lab-integration-and-datasource": "تكامل ومصدر بيانات GitLab",
+      "honeycomb-integration-and-datasource": "تكامل ومصدر بيانات Honeycomb",
+      "ibmdb2-datasource": "مصدر بيانات IBM Db2",
+      "jira-integration-and-datasource": "تكامل ومصدر بيانات Jira",
+      "logic-monitor-devices-datasource": "مصدر بيانات LogicMonitor Devices",
+      "mongo-db-integration-and-data-source": "تكامل ومصدر بيانات MongoDB",
+      "netlify-datasource": "مصدر بيانات Netlify",
+      "new-relic-integration-and-data-source": "تكامل ومصدر بيانات New Relic",
+      "pager-duty-datasource": "مصدر بيانات PagerDuty",
+      "salesforce-integration-and-datasource": "تكامل ومصدر بيانات Salesforce",
+      "sap-hana-integration-and-data-source": "تكامل ومصدر بيانات SAP HANA®",
+      "service-now-integration-and-data-source": "تكامل ومصدر بيانات ServiceNow",
+      "signal-fx-integration-and-datasource": "تكامل ومصدر بيانات SignalFx",
+      "snowflake-integration-and-data-source": "تكامل ومصدر بيانات Snowflake",
+      "solarwinds-datasource": "مصدر بيانات SolarWinds",
+      "sumo-logic-integration-and-datasource": "تكامل ومصدر بيانات SumoLogic",
+      "visualize-and-explore-dynatrace-data": "تصوّر واستكشف بيانات Dynatrace",
+      "visualize-and-explore-oracle-sql": "تصوّر واستكشف Oracle SQL",
+      "visualize-and-explore-splunk-logs": "تصوّر واستكشف سجلّات Splunk",
+      "wavefront-integration-and-data-source": "تكامل ومصدر بيانات Wavefront",
+      "zendesk-datasource": "مصدر بيانات Zendesk"
+    }
+  },
+  "get-grafana-cloud-phantom-plugin": {
+    "description": {
+      "hosted-graphite-prometheus-and-loki": "Graphite وPrometheus وLoki المُستضافة"
+    }
+  },
+  "list": {
+    "failed-high": "فشل",
+    "failed-high-tooltip": "مصدر البيانات هذا لديه إخفاقات حرجة أبلغ عنها مستشار Grafana.",
+    "failed-low": "تحذير",
+    "failed-low-tooltip": "مصدر البيانات هذا لديه مشكلات غير حرجة أبلغ عنها مستشار Grafana.",
+    "starred": "المميّزة بنجمة"
+  },
+  "new-data-source-view": {
+    "cancel": "إلغاء",
+    "placeholder-filter-by-name-or-type": "التصفية حسب الاسم أو النوع"
+  },
+  "update-data-source": {
+    "error-info": {
+      "message": {
+        "an-unexpected-error-occurred": "حدث خطأ غير متوقّع."
+      }
+    }
+  },
+  "use-data-source-info": {
+    "badge-text-not-supported": "غير مدعوم",
+    "badge-text-success": "نجاح",
+    "badge-text-supported": "مدعوم",
+    "label": {
+      "advisor": "المستشار",
+      "alerting": "التنبيهات",
+      "type": "النوع"
+    }
+  },
+  "use-delete-loaded-data-source": {
+    "title": {
+      "delete": "حذف"
+    }
+  }
+}

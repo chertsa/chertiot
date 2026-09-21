@@ -1,0 +1,29 @@
+{
+  "action": {
+    "change-theme": "تغيير السمة",
+    "dark-theme": "داكن",
+    "dashboard-from-template": "لوحة معلومات من قالب",
+    "light-theme": "فاتح",
+    "scopes": "النطاقات"
+  },
+  "empty-state": {
+    "button-title": "البحث باستخدام Grafana Assistant",
+    "message": "لا توجد نتائج"
+  },
+  "scopes": {
+    "apply-selected-scopes": "تطبيق",
+    "selected-scopes-label": "النطاقات: "
+  },
+  "search-box": {
+    "placeholder": "ابحث أو انتقل إلى..."
+  },
+  "section": {
+    "actions": "الإجراءات",
+    "dashboard-search-results": "لوحات المعلومات",
+    "folder-search-results": "المجلدات",
+    "pages": "الصفحات",
+    "preferences": "التفضيلات",
+    "recent-dashboards": "لوحات المعلومات الأخيرة",
+    "recent-scopes": "النطاقات الأخيرة"
+  }
+}

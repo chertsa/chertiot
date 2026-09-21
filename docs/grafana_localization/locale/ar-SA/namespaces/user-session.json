@@ -1,0 +1,9 @@
+{
+  "auth-module-column": "موفّر الهوية",
+  "browser-column": "المتصفح ونظام التشغيل",
+  "created-at-column": "تاريخ الدخول",
+  "identity-provider-column": "موفّر الهوية",
+  "ip-column": "عنوان IP",
+  "revoke": "إلغاء جلسة المستخدم",
+  "seen-at-column": "آخر ظهور"
+}
