@@ -21,6 +21,7 @@ from app.routers import (
     instructor,
     internal,
     lora,
+    monitoring,
     projects,
     signup,
 )
@@ -119,6 +120,7 @@ app.include_router(internal.router)
 app.include_router(instructor.router)
 app.include_router(alerts.router)
 app.include_router(lora.router)
+app.include_router(monitoring.router)
 
 
 @app.exception_handler(httpx.TransportError)

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Monitoring") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+{% include "_project_nav.html" %}
+{% set s = snapshot %}
+<h1 class="section-h">{{ _("Monitoring") }}</h1>
+
+{% if project.provisioning_state != 'provisioned' %}
+  <div class="callout callout--info"><p>{{ _("Setting up this project…") }}</p></div>
+{% else %}
+
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi__value" id="kpi-devices">{{ s.device_count }}{% if s.max_devices %}<span class="kpi__sub">/{{ s.max_devices }}</span>{% endif %}</div><div class="kpi__label">{{ _("Devices") }}</div></div>
+  <div class="kpi"><div class="kpi__value" id="kpi-online">{{ s.online_count }}<span class="kpi__sub">/{{ s.device_count }}</span></div><div class="kpi__label">{{ _("Online") }}</div></div>
+  <div class="kpi"><div class="kpi__value" id="kpi-alarms">{{ s.alarm_active_count }}</div><div class="kpi__label">{{ _("Active alarms") }}</div></div>
+  <div class="kpi"><div class="kpi__value">
+    <span class="dot {{ 'dot--on' if s.services.thingsboard_connectivity == 'ok' else 'dot--off' }}"></span>TB
+    <span class="dot {{ 'dot--on' if s.services.node_red == 'ok' else ('dot--off' if s.services.node_red == 'stopped' else 'dot--muted') }}"></span>Node-RED
+  </div><div class="kpi__label">{{ _("Services") }}</div></div>
+</div>
+
+{% if s.degraded %}<div class="callout callout--warning"><p>{{ _("Some sections could not load and are shown degraded.") }} ({{ s.degraded | join(', ') }})</p></div>{% endif %}
+
+<div class="panel" style="margin-top:1rem">
+  <form method="get" class="mon-controls" id="mon-controls">
+    <label>{{ _("Device") }}
+      <select name="device" id="mon-device">
+        {% for d in s.available_devices %}<option value="{{ d.id }}" {{ 'selected' if d.id == s.selected_device else '' }}>{{ d.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>{{ _("Metric") }}
+      <select name="key" id="mon-key">
+        {% for k in s.numeric_keys %}<option value="{{ k }}" {{ 'selected' if k == s.selected_key else '' }}>{{ k }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>{{ _("Range") }}
+      <select name="range" id="mon-range">
+        {% for r in ranges %}<option value="{{ r }}" {{ 'selected' if r == s.range else '' }}>{{ r }}</option>{% endfor %}
+      </select>
+    </label>
+  </form>
+  {% if s.selected_key and s.series.get(s.selected_key) %}
+    <div class="chart-box"><canvas id="monChart"></canvas></div>
+  {% elif not s.available_devices %}
+    <p class="helper">{{ _("No devices yet.") }} <a href="/projects/{{ project.id }}/devices">{{ _("Add a device") }}</a></p>
+  {% elif not s.numeric_keys %}
+    <p class="helper">{{ _("This device has no numeric telemetry to chart yet.") }}</p>
+  {% else %}
+    <p class="helper">{{ _("No data for this metric in the selected range.") }}</p>
+  {% endif %}
+</div>
+
+<div class="grid-2" style="margin-top:1rem">
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Devices") }}</h2>
+    {% if s.devices %}
+    <table class="dtable"><thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Latest") }}</th><th>{{ _("Last seen") }}</th></tr></thead><tbody>
+      {% for d in s.devices %}<tr><td><strong>{{ d.name }}</strong></td><td><span class="dot {{ 'dot--on' if d.active else 'dot--off' }}"></span>{{ _("Online") if d.active else _("Offline") }}</td><td>{{ d.reading }}</td><td class="muted">{{ d.last_seen or '—' }}</td></tr>{% endfor %}
+    </tbody></table>
+    {% else %}<p class="helper">{{ _("No devices yet.") }}</p>{% endif %}
+  </div>
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Active alarms") }}</h2>
+    {% if s.active_alarms %}
+    <table class="dtable"><thead><tr><th>{{ _("Severity") }}</th><th>{{ _("Device") }}</th><th>{{ _("Type") }}</th><th></th></tr></thead><tbody>
+      {% for a in s.active_alarms %}<tr>
+        <td><span class="sev sev--{{ a.severity|lower }}">{{ a.severity }}</span></td><td>{{ a.device }}</td><td>{{ a.type }}</td>
+        <td>{% if a.id and (a.severity != 'CRITICAL' or is_owner) %}
+          <form method="post" action="/projects/{{ project.id }}/monitoring/alarms/{{ a.id }}/ack" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Acknowledge") }}</button></form>
+        {% endif %}</td>
+      </tr>{% endfor %}
+    </tbody></table>
+    {% else %}<p class="helper">{{ _("No active alarms. All readings within range.") }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="panel" style="margin-top:1rem">
+  <h2 class="panel__title">{{ _("Alarm history") }}</h2>
+  {% if s.alarm_history %}
+  <table class="dtable"><thead><tr><th>{{ _("Time") }}</th><th>{{ _("Severity") }}</th><th>{{ _("Status") }}</th><th>{{ _("Device") }}</th><th>{{ _("Type") }}</th></tr></thead><tbody>
+    {% for a in s.alarm_history %}<tr><td class="muted">{{ a.time }}</td><td><span class="sev sev--{{ a.severity|lower }}">{{ a.severity }}</span></td><td>{{ a.status }}</td><td>{{ a.device }}</td><td>{{ a.type }}</td></tr>{% endfor %}
+  </tbody></table>
+  {% else %}<p class="helper">{{ _("No alarms recorded.") }}</p>{% endif %}
+</div>
+
+<p class="helper" style="margin-top:.5rem">{{ _("Updated") }} <span id="mon-updated">{{ s.generated_at }}</span></p>
+
+<script type="application/json" id="mon-data">{{ s | tojson }}</script>
+<script src="/static/vendor/chartjs/4.4.1/chart.umd.min.js"></script>
+<script src="/static/js/monitoring.js"></script>
+{% endif %}
+{% endblock %}

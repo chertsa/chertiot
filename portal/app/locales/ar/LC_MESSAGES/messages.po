@@ -824,3 +824,59 @@ msgstr "جارٍ الإعداد…"
 #: app/templates/_project_nav.html
 msgid "Projects"
 msgstr "المشاريع"
+
+#: app/templates/monitoring.html
+msgid "Services"
+msgstr "الخدمات"
+
+#: app/templates/monitoring.html
+msgid "Metric"
+msgstr "المقياس"
+
+#: app/templates/monitoring.html
+msgid "Range"
+msgstr "المدى"
+
+#: app/templates/monitoring.html
+msgid "Add a device"
+msgstr "أضف جهازًا"
+
+#: app/templates/monitoring.html
+msgid "This device has no numeric telemetry to chart yet."
+msgstr "لا توجد قياسات رقمية لهذا الجهاز لعرضها بعد."
+
+#: app/templates/monitoring.html
+msgid "No data for this metric in the selected range."
+msgstr "لا توجد بيانات لهذا المقياس في المدى المحدد."
+
+#: app/templates/monitoring.html
+msgid "Some sections could not load and are shown degraded."
+msgstr "تعذّر تحميل بعض الأقسام وتُعرض منقوصة."
+
+#: app/templates/monitoring.html
+msgid "Severity"
+msgstr "الخطورة"
+
+#: app/templates/monitoring.html
+msgid "Type"
+msgstr "النوع"
+
+#: app/templates/monitoring.html
+msgid "Acknowledge"
+msgstr "إقرار"
+
+#: app/templates/monitoring.html
+msgid "Alarm history"
+msgstr "سجل التنبيهات"
+
+#: app/templates/monitoring.html
+msgid "Time"
+msgstr "الوقت"
+
+#: app/templates/monitoring.html
+msgid "No alarms recorded."
+msgstr "لا توجد تنبيهات مسجّلة."
+
+#: app/templates/monitoring.html
+msgid "Updated"
+msgstr "آخر تحديث"
