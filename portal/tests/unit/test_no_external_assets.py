@@ -27,7 +27,7 @@ EXCLUDE_PARTS = {"vendor"}  # static/vendor/** : pinned third-party, verified se
 TEXT_SUFFIXES = {".html", ".htm", ".css", ".js", ".mjs", ".svg", ".json", ".webmanifest", ".xml"}
 
 # The ONLY approved external-looking hosts: CHERT-controlled top-level navigation subdomains,
-# always written against the portal's own hostname (e.g. https://grafana.{{ request.url.hostname }}).
+# always written against the portal's own hostname (e.g. grafana.<portal-host>).
 ALLOWED_HOST_PREFIXES = ("grafana.", "status.", "lab.")
 
 # (context name, compiled regex with the URL in group 1)
@@ -76,7 +76,8 @@ def _is_external(url: str) -> bool:
     if url.startswith("data:"):
         return False
     if not _ABSOLUTE.match(url):
-        return False  # relative, root-relative (/static/...), fragment, mailto:, tel:, or templated path
+        # relative, root-relative (/static/...), fragment, mailto:, tel:, or templated path
+        return False
     host = re.sub(r"^\s*(?:https?:)?//", "", url, flags=re.IGNORECASE).split("/")[0].lower()
     return not host.startswith(ALLOWED_HOST_PREFIXES)
 
