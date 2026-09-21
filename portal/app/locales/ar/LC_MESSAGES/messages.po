@@ -788,3 +788,39 @@ msgstr "لا طلاب في هذه الدفعة بعد."
 #~ msgid "Dashboard"
 #~ msgstr "لوحة التحكم"
 
+
+#: app/templates/_project_nav.html
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#: app/templates/_project_nav.html
+msgid "Monitoring"
+msgstr "المراقبة"
+
+#: app/templates/_project_nav.html
+msgid "Notebooks"
+msgstr "الدفاتر"
+
+#: app/templates/_project_nav.html
+msgid "Project sections"
+msgstr "أقسام المشروع"
+
+#: app/templates/_project_nav.html
+msgid "Project reference"
+msgstr "مرجع المشروع"
+
+#: app/templates/_project_nav.html
+msgid "Ready"
+msgstr "جاهز"
+
+#: app/templates/_project_nav.html
+msgid "Setup failed"
+msgstr "فشل الإعداد"
+
+#: app/templates/_project_nav.html
+msgid "Setting up…"
+msgstr "جارٍ الإعداد…"
+
+#: app/templates/_project_nav.html
+msgid "Projects"
+msgstr "المشاريع"

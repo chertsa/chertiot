@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Alerts") }} — CHERT IoT{% endblock %}
 {% block content %}
-<p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
-<h1>{{ _("Alerts") }}</h1>
+{% include "_project_nav.html" %}
+<h1 class="section-h">{{ _("Alerts") }}</h1>
 <p class="helper">{{ _("When a reading crosses your threshold, an alarm appears on your dashboard — and optionally an email or webhook fires.") }}</p>
 <table class="table">
   <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Condition") }}</th><th>{{ _("Action") }}</th><th></th></tr></thead>

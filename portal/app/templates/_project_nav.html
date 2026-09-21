@@ -1,0 +1,25 @@
+{#
+  Shared project header + capability sub-nav (v2 Phase 1).
+  Requires in context: project, request, features, user. Active tab inferred from request.url.path.
+  User-facing reference is the project slug only — never tb_tenant_id. Monitoring is flag-gated.
+#}
+{% set _p = '/projects/' ~ project.id %}
+{% set _path = request.url.path %}
+{% set _st = project.provisioning_state %}
+<div class="proj-head">
+  <p class="overline"><a href="/home">{{ _("Projects") }}</a> / {{ project.name }}</p>
+  <div class="proj-head__row">
+    <h1>{{ project.name }}</h1>
+    <span class="chip chip--{{ 'ok' if _st == 'provisioned' else ('crit' if _st == 'failed' else 'warn') }}">{{ _("Ready") if _st == 'provisioned' else (_("Setup failed") if _st == 'failed' else _("Setting up…")) }}</span>
+    <span class="proj-ref" title="{{ _('Project reference') }}">{{ project.slug }}</span>
+  </div>
+  <nav class="subnav" aria-label="{{ _('Project sections') }}">
+    <a href="{{ _p }}" class="subnav__tab{{ ' is-active' if _path == _p else '' }}">{{ _("Overview") }}</a>
+    <a href="{{ _p }}/devices" class="subnav__tab{{ ' is-active' if '/devices' in _path else '' }}">{{ _("Devices") }}</a>
+    {% if features.monitoring %}<a href="{{ _p }}/monitoring" class="subnav__tab{{ ' is-active' if '/monitoring' in _path else '' }}">{{ _("Monitoring") }}</a>{% endif %}
+    <a href="{{ _p }}/alerts" class="subnav__tab{{ ' is-active' if '/alerts' in _path else '' }}">{{ _("Alerts") }}</a>
+    <a href="{{ _p }}/flows" class="subnav__tab{{ ' is-active' if '/flows' in _path else '' }}">{{ _("Flows") }}</a>
+    <a href="{{ _p }}/lora" class="subnav__tab{{ ' is-active' if '/lora' in _path else '' }}">{{ _("LoRaWAN") }}</a>
+    <a href="https://lab.{{ request.url.hostname }}/hub/spawn/{{ user.email | urlencode }}/{{ project.id }}" class="subnav__tab" target="_blank" rel="noopener">{{ _("Notebooks") }} ↗</a>
+  </nav>
+</div>

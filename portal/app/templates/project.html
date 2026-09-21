@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
-<div class="dash-head">
-  <div>
-    <p class="overline"><a href="/home">{{ _("Projects") }}</a> / {{ project.slug }}</p>
-    <h1>{{ project.name }}</h1>
-  </div>
-</div>
+{% include "_project_nav.html" %}
 
 {% if project.provisioning_state == 'failed' %}
   <div class="callout callout--error"><p>{{ _("We could not set up this project:") }} {{ project.provisioning_error }}</p></div>

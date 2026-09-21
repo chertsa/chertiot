@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ _("My devices") }} — CHERT IoT{% endblock %}
 {% block content %}
-<p class="overline"><a href="/home">My lab</a></p>
-<h1>{{ _("My devices") }}</h1>
+{% include "_project_nav.html" %}
+<h1 class="section-h">{{ _("My devices") }}</h1>
 <p class="helper">{{ used }} / {{ limit if limit else "∞" }} {{ _("devices used.") }}</p>
 {% if error %}<div class="callout callout--error"><p>{{ error }}</p></div>{% endif %}
 <table class="table">

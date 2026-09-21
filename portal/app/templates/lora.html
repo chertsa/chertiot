@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ _("LoRaWAN") }} — CHERT IoT{% endblock %}
 {% block content %}
-<p class="overline"><a href="/home">{{ _("My lab") }}</a></p>
-<h1>{{ _("LoRaWAN") }}</h1>
+{% include "_project_nav.html" %}
+<h1 class="section-h">{{ _("LoRaWAN") }}</h1>
 {% if not enabled %}
   <div class="callout callout--info"><p>{{ _("The LoRaWAN track is not enabled on this environment yet.") }}</p></div>
 {% else %}
