@@ -93,6 +93,23 @@ def require_membership(
     return user, project, member
 
 
+def require_api_membership(
+    request: Request, db: Session, project_id: str
+) -> tuple[PortalUser, Project, ProjectMember]:
+    """API variant of require_membership: returns HTTP codes (401/403/409) instead of browser
+    redirects, so JSON/mutation endpoints signal 'not your project' as 403, not a 303 to /home."""
+    user = load_user(request, db)
+    if user is None:
+        raise HTTPException(status_code=401)
+    project = db.get(Project, project_id)
+    member = membership(db, project_id, user.id) if project else None
+    if project is None or member is None or member.status != "active":
+        raise HTTPException(status_code=403)
+    if project.provisioning_state != "provisioned" or not member.tb_user_id:
+        raise HTTPException(status_code=409, detail="project not provisioned")
+    return user, project, member
+
+
 # ---------------------------------------------------------------- provisioning (via sysadmin) ----
 def _provision(sysadmin: TbClient, project: Project, owner: PortalUser) -> str:
     """Create the project's TB tenant + the owner's Tenant-Admin user + starter dashboard.

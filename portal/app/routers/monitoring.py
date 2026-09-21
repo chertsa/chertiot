@@ -18,7 +18,7 @@ from app import flows, monitoring
 from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
-from app.project import as_project, require_membership
+from app.project import as_project, require_api_membership, require_membership
 from app.ratelimit import rate_limited
 from app.tb_client import TbError
 from app.templating import templates
@@ -50,10 +50,8 @@ def _origin_ok(request: Request) -> None:
         raise HTTPException(status_code=403, detail="cross-origin request rejected")
 
 
-def _snapshot(
-    request: Request, db: Session, project_id: str, rng: str, device: str | None, key: str | None
-) -> tuple[Any, Any, Any, monitoring.MonitoringSnapshot]:
-    user, project, member = require_membership(request, db, project_id)  # 403 for non-members
+def _build(project: Any, member: Any, rng: str, device: str | None, key: str | None) -> Any:
+    """Build (or return cached) snapshot. Caller MUST have authorised membership first."""
     nr = _node_red_state(project.id)
     ttl = get_settings().monitoring_cache_ttl
     cache_key = (project.id, rng, device or "", key or "")
@@ -64,16 +62,14 @@ def _snapshot(
                 sysadmin, session, project.tb_tenant_id, rng, device, key, nr
             )
 
-    snap = monitoring.cached_snapshot(ttl, cache_key, builder)  # only reached after authorisation
-    return user, project, member, snap
+    return monitoring.cached_snapshot(ttl, cache_key, builder)  # only reached after authorisation
 
 
 @router.get("/projects/{project_id}/monitoring")
 def monitoring_page(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
     _require_flag()
-    user, project, member, snap = _snapshot(
-        request, db, project_id, monitoring.DEFAULT_RANGE, None, None
-    )
+    user, project, member = require_membership(request, db, project_id)  # non-member → 303 /home
+    snap = _build(project, member, monitoring.DEFAULT_RANGE, None, None)
     audit(db, user.email, "monitoring.view", project.slug)
     db.commit()
     return templates.TemplateResponse(
@@ -105,7 +101,8 @@ def monitoring_data(
     _require_flag()
     if range not in monitoring.RANGES:
         raise HTTPException(status_code=400, detail="invalid range")
-    _u, _p, _m, snap = _snapshot(request, db, project_id, range, device, key)
+    _u, project, member = require_api_membership(request, db, project_id)  # non-member → 403
+    snap = _build(project, member, range, device, key)
     return JSONResponse(snap.model_dump())
 
 
@@ -118,7 +115,7 @@ def ack_alarm(
 ) -> Any:
     _require_flag()
     _origin_ok(request)
-    user, project, member = require_membership(request, db, project_id)  # 403 non-member
+    user, project, member = require_api_membership(request, db, project_id)  # non-member → 403
     with as_project(member) as (_sysadmin, session):
         try:
             alarm = session._get(f"/alarm/info/{alarm_id}")  # noqa: SLF001 — 404/403 out-of-tenant
