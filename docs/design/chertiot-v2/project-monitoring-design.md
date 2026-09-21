@@ -60,9 +60,10 @@ Query params are validated (§6): `range ∈ {1h,6h,24h,7d}` (default **24h**); 
 - `portal/app/templates/monitoring.html` — page (no inline executable script; see §11).
 - `portal/app/static/js/monitoring.js` — chart init + polling (served from `/static/`).
 - `portal/app/static/vendor/chartjs/4.4.1/chart.umd.min.js` — **vendored Chart.js** (see §10).
+- `portal/app/static/vendor/chartjs/4.4.1/SOURCE.txt` — upstream release source/URL of the pinned artifact.
 - `portal/app/static/vendor/chartjs/4.4.1/LICENSE.md`, `.../CHECKSUM.txt` — license + SHA-256.
-- `portal/tests/unit/test_monitoring.py` — positive + negative isolation matrix (§15).
-- `portal/tests/unit/test_no_external_assets.py` — fails if rendered HTML references any external asset URL (§10).
+- `portal/tests/unit/test_monitoring.py` — positive tests + the negative cross-project isolation matrix (§20).
+- `portal/tests/unit/test_no_external_assets.py` — static external-asset guard over `templates/` + `static/` (§10.4).
 
 **Edited**
 - `portal/app/main.py` — include monitoring router; add **security-headers/CSP middleware** (§10).
@@ -188,26 +189,34 @@ No `tb_tenant_id`, TB JWTs/tokens, user ids, or raw stack traces are ever serial
 
 ## 10. Zero external runtime assets — Chart.js vendoring + CSP (mandatory)
 
-**Principle (documented and enforced):** *CHERT production UI has zero external runtime asset dependencies. All browser-delivered assets are version-pinned, stored in the repository or approved CHERT artifact storage, included in the deployed image, and served from CHERT-controlled origins.*
+**Principle (target end-state):** *CHERT production UI has zero external runtime asset dependencies. All browser-delivered assets are version-pinned, stored in the repository or approved CHERT artifact storage, included in the deployed image, and served from CHERT-controlled origins.*
 
-### 10.1 Chart.js vendoring
+**Status of this section — approved requirements, NOT completed work.** As of this design:
+- Chart.js has **not** yet been vendored.
+- The existing CDN references have **not** been removed.
+- The CSP has **not** been deployed.
+- The external-asset test has **not** been implemented.
 
-- **Version:** Chart.js **4.4.1** (UMD build `chart.umd.min.js`) — matching the version currently referenced, pending owner sign-off on the exact pin.
+**⚠ Current-state warning:** *Current v1 still loads Chart.js from cdnjs in two templates. Therefore zero-external-runtime compliance is not yet achieved. This must be remediated and verified on staging before the final compliant v1 freeze, or explicitly recorded as a freeze blocker.*
+
+### 10.1 Chart.js vendoring (to be implemented)
+
+- **Version:** Chart.js **4.4.1** (UMD build `chart.umd.min.js`) — the approved initial local version, because it matches the version currently referenced in the templates. Its upstream source, license and SHA-256 must still be verified during implementation.
 - **Upstream source:** the official Chart.js 4.4.1 release artifact (recorded in `vendor/chartjs/4.4.1/SOURCE.txt`).
 - **License:** MIT (`vendor/chartjs/4.4.1/LICENSE.md`, committed).
 - **Integrity:** SHA-256 of the committed file recorded in `vendor/chartjs/4.4.1/CHECKSUM.txt`; an update procedure re-verifies the checksum before replacing the file.
 - **Serving:** exclusively from the portal's own `/static/vendor/chartjs/4.4.1/chart.umd.min.js`. No CDN, no alternative public CDN.
 - **Build/update process:** the file lives in the repo and ships in the normal portal image build (already copied via the static dir); updating = download the pinned release, verify checksum, replace, bump the path, update `CHECKSUM.txt`, re-run tests.
-- **Offline:** Monitoring (and the report page, once migrated) render fully with **outbound internet disabled**.
+- **Offline requirement:** once implemented, Monitoring (and the report page, once migrated) **must render fully with outbound internet disabled**.
 - **CSP implication:** because Chart.js is same-origin, `script-src 'self'` suffices; no CDN host is allowed.
 
-### 10.2 Remove existing CDN usage (reported, not silent)
+### 10.2 Remove existing CDN usage (reported; to be remediated, not silent)
 
-The two existing external references — `templates/project.html` and `templates/project_report.html` (Chart.js via cdnjs) — are **reported** in `engineering-review.md §6` and **replaced** with the vendored asset as part of this work package. No other behavior is changed silently.
+The two existing external references — `templates/project.html` and `templates/project_report.html` (Chart.js via cdnjs) — are **reported** in `engineering-review.md §6`. They are **currently still present** and are **to be replaced** with the vendored asset as part of this work package. No other behavior will be changed silently.
 
-### 10.3 Content Security Policy (added via middleware in `main.py`)
+### 10.3 Content Security Policy (to be added via middleware in `main.py`)
 
-Applied portal-wide (introduced together with vendoring so no page breaks):
+No CSP middleware exists today. The following CSP **will be added** portal-wide (introduced together with vendoring so no page breaks):
 
 ```
 default-src 'self';
@@ -225,9 +234,25 @@ frame-ancestors 'self';
 - `style-src` keeps `'unsafe-inline'` as the **documented minimum** because existing templates use inline `style="…"` attributes; a follow-up removes inline styles to drop the exception (tracked, not required for this package).
 - No external hosts appear in any directive.
 
-### 10.4 Automated external-asset test
+### 10.4 Automated external-asset test (approved requirement — not yet implemented)
 
-`test_no_external_assets.py` renders the monitoring page (and the report/project pages it touches) and **fails** if any asset-loading attribute — `<script src>`, `<link rel=stylesheet href>`, `<img src>`, `@font-face`/`font src`, or `import ... from` module URL — points to a non-`/static`/non-relative origin. Anchor navigation to CHERT-controlled subdomains (target=_blank links) is excluded (navigation, not asset load).
+`test_no_external_assets.py` (to be added) **statically inspects every relevant file** under `portal/app/templates/` and `portal/app/static/` and **fails** if it finds an external runtime destination in any of:
+
+- script `src`;
+- stylesheet `href` (`<link rel="stylesheet">`);
+- image/media `src` and `srcset`;
+- iframe / embed / object sources;
+- CSS `@import`;
+- CSS `url(...)`;
+- JavaScript static and dynamic `import(...)`;
+- `Worker` and `SharedWorker` constructors;
+- service-worker registration (`navigator.serviceWorker.register`);
+- `WebSocket`;
+- `EventSource`;
+- `fetch` / `XMLHttpRequest`;
+- web app manifests (`<link rel="manifest">` and the manifest's own asset URLs).
+
+A destination is **external** when it resolves to any origin other than the portal's own (i.e. anything not `/static/…`, relative, or same-origin). Only **explicitly approved CHERT-controlled top-level navigation** — the `grafana.`, `status.`, and `lab.` anchor links — may be **allow-listed by exact host**. The test does **not** exempt all anchors, and does **not** exempt all HTTPS URLs; anything outside the exact allow-list fails the test. It inspects file contents statically (not only rendered HTML), so a new external reference in any template or static asset is caught.
 
 ### 10.5 Portal-wide external-dependency audit (reported before change)
 
@@ -290,7 +315,7 @@ POST /projects/{project_id}/monitoring/alarms/{alarm_id}/ack
  1. require_membership(...)                          # 403 if not an active member
  2. CSRF check (session-bound token)                # 403 on failure
  3. with as_project(member) as (_, session):
- 4.     alarm = session._get(f"/alarm/info/{alarm_id}")   # load via tenant session
+ 4.     alarm = <tenant-scoped alarm-read endpoint>       # UNVERIFIED — see spike §15.1; must 404/403 out-of-tenant
  5.     if not found / out-of-tenant → 404
  6.     severity = alarm.severity                    # determined SERVER-SIDE
  7.     if severity == CRITICAL and member.role != owner → 403 (per §7)
@@ -301,12 +326,18 @@ POST /projects/{project_id}/monitoring/alarms/{alarm_id}/ack
 
 Severity is never taken from the client. Ordinary-vs-critical policy is enforced server-side. Audit is written only on success.
 
+### 15.1 Required implementation-start spike (blocking)
+
+The exact tenant-scoped alarm-read endpoint (step 4) is **not yet verified**. `/alarm/info/{alarm_id}` is a candidate only and is **not presented as proven**.
+
+**Required implementation-start spike: verify the tenant-scoped alarm-read endpoint before implementing acknowledgement. No acknowledgement feature may be built until the endpoint and its cross-tenant 404/403 behavior are proven against the installed ThingsBoard CE version (or the authoritative API for that exact version).** The `POST /alarm/{id}/ack` acknowledgement path is likewise verified in the same spike.
+
 ---
 
 ## 16. Feature flag, staging acceptance, rollback
 
 - **Flag:** `settings.monitoring_enabled` (`MONITORING_ENABLED`). Staging = true; production = false until accepted. Route + nav both guard on it.
-- **Staging acceptance:** all §15/§ negative isolation tests pass; KPIs/roster/alarms match the TB console for a seeded project; charts render real seeded telemetry across ranges; device/key selectors work incl. all empty states; EN + Arabic-LTR render (LTR preserved, long AR labels don't clip); loading/stale/denied/unavailable/partial states reproduce; 429 under abusive polling, never under normal 30 s; tablet/mobile usable; keyboard focus + non-color status; **external-asset test passes and Monitoring works with outbound internet disabled**; no secrets/tokens/tenant ids in any response; audit rows for view/ack.
+- **Staging acceptance:** all §20 negative cross-project isolation tests pass; KPIs/roster/alarms match the TB console for a seeded project; charts render real seeded telemetry across ranges; device/key selectors work incl. all empty states; EN + Arabic-LTR render (LTR preserved, long AR labels don't clip); loading/stale/denied/unavailable/partial states reproduce; 429 under abusive polling, never under normal 30 s; tablet/mobile usable; keyboard focus + non-color status; **external-asset test passes and Monitoring works with outbound internet disabled**; no secrets/tokens/tenant ids in any response; audit rows for view/ack.
 - **Rollback:** additive, **no schema migration** → rollback = redeploy the previous portal image by digest. First-line mitigation = `MONITORING_ENABLED=false` + recreate portal. Grafana/TB untouched.
 
 ---
@@ -331,6 +362,29 @@ Severity is never taken from the client. Ordinary-vs-critical policy is enforced
 - **Shared partial `_project_nav.html`:** project header (name · lifecycle chip · **slug/reference only** · breadcrumb) + sub-nav: Overview · Devices · Telemetry · **Monitoring** · Alerts · Flows · LoRaWAN · Notebooks · Settings. Engine names stay out of student nav; "Open in ThingsBoard" is a protected action for owners.
 - **Overview (`GET /projects/{id}`)** redesigned to: identity + lifecycle + provisioning status; an **at-a-glance mini monitoring panel** (counts only, reusing `monitoring.snapshot`); totals; recent activity (from `audit`); capability cards as secondary nav.
 - **Integration:** Monitoring is a sub-nav tab; Overview deep-links to it; the platform-Grafana link appears **only for platform admins**.
+
+---
+
+## 20. Negative cross-project test matrix (release-blocking)
+
+Scope = active `ProjectMember`s only (instructor/admin deferred, §17). Fixtures: Alice is an active member of projects A1 and A2; Bob is a member of B1; Alice is *not* a member of B1. Every row must pass on staging before release; any cross-project disclosure is a release blocker.
+
+| # | Attempt | Expected |
+|---|---|---|
+| 1 | Alice `GET /projects/{B1}/monitoring` | 403 (not a member) — before any TB call |
+| 2 | Alice `GET /projects/{B1}/monitoring/data` | 403 |
+| 3 | Alice `POST /projects/{A1}/monitoring/alarms/{B1_alarm_id}/ack` | 404 (alarm id outside A1's tenant, resolved via A1 session) |
+| 4 | Alice `GET /projects/{A1}/monitoring/data?device={B1_device_id}` | 400/ignored — device not in A1's tenant device list; no B1 data returned |
+| 5 | Alice edits the URL `project_id` A1→B1 | 403 before any TB call (membership re-checked on the new id) |
+| 6 | Disabled member of A1 opens Monitoring | 403 |
+| 7 | Non-member (no membership row) opens Monitoring | 403 |
+| 8 | Feature flag off → `GET /projects/{A1}/monitoring` | 404 (route/nav guarded) |
+| 9 | `range`/`device`/`key` set to an invalid or injection value | 400 (server-side allow-list; never trusted) |
+| 10 | Non-owner member acks a **critical** alarm in A1 | 403 (per §7 policy) |
+| 11 | Ack request without a valid CSRF token | 403 |
+| 12 | Inspect any response body for `tb_tenant_id`, TB JWT, or token | none present |
+
+These rows are the source for `test_monitoring.py`'s negative suite (referenced from §3.2 and §16).
 
 ---
 
