@@ -16,6 +16,7 @@
   <nav class="subnav" aria-label="{{ _('Project sections') }}">
     <a href="{{ _p }}" class="subnav__tab{{ ' is-active' if _path == _p else '' }}">{{ _("Overview") }}</a>
     <a href="{{ _p }}/devices" class="subnav__tab{{ ' is-active' if '/devices' in _path else '' }}">{{ _("Devices") }}</a>
+    {% if features.telemetry %}<a href="{{ _p }}/telemetry" class="subnav__tab{{ ' is-active' if '/telemetry' in _path else '' }}">{{ _("Telemetry") }}</a>{% endif %}
     {% if features.monitoring %}<a href="{{ _p }}/monitoring" class="subnav__tab{{ ' is-active' if '/monitoring' in _path else '' }}">{{ _("Monitoring") }}</a>{% endif %}
     <a href="{{ _p }}/alerts" class="subnav__tab{{ ' is-active' if '/alerts' in _path else '' }}">{{ _("Alerts") }}</a>
     <a href="{{ _p }}/flows" class="subnav__tab{{ ' is-active' if '/flows' in _path else '' }}">{{ _("Flows") }}</a>

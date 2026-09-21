@@ -19,6 +19,7 @@ def flags() -> dict[str, bool]:
     s = get_settings()
     return {
         "monitoring": s.monitoring_enabled,  # v2 Project Monitoring (Phase 2)
+        "telemetry": s.telemetry_enabled,  # v2 Telemetry tab (Phase 3)
     }
 
 

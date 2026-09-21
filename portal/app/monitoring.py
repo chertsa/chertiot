@@ -71,6 +71,7 @@ class MonitoringSnapshot(BaseModel):
     selected_key: str | None = None
     available_devices: list[dict[str, str]] = []
     numeric_keys: list[str] = []
+    latest_values: list[dict[str, str]] = []
     device_count: int = 0
     online_count: int = 0
     offline_count: int = 0
@@ -168,22 +169,28 @@ def _alarms(session: TbClient, status: str | None, limit: int) -> list[AlarmRow]
     ]
 
 
-def _numeric_keys(session: TbClient, device_id: str) -> list[str]:
+def _numeric_keys_and_latest(
+    session: TbClient, device_id: str
+) -> tuple[list[str], list[dict[str, str]]]:
+    """Discover the device's numeric time-series keys and their latest values (one TB call)."""
     keys = session._get(f"/plugins/telemetry/DEVICE/{device_id}/keys/timeseries")  # noqa: SLF001
     if not isinstance(keys, list) or not keys:
-        return []
+        return [], []
     latest = session.latest_timeseries(device_id, list(keys))
-    out: list[str] = []
+    numeric: list[str] = []
+    values: list[dict[str, str]] = []
     for k in keys:
         v = latest.get(k)
         if not v:
             continue
+        val = v[0].get("value")
         try:
-            float(v[0]["value"])
-            out.append(k)
+            float(val)  # type: ignore[arg-type]  # non-numeric/None → excluded below
+            numeric.append(k)
+            values.append({"key": k, "value": str(val), "t": _fmt(v[0].get("ts")) or ""})
         except (ValueError, TypeError, KeyError):
             pass
-    return out
+    return numeric, values
 
 
 def _series(session: TbClient, device_id: str, key: str, rng: str) -> list[SeriesPoint]:
@@ -245,7 +252,7 @@ def snapshot(
     snap.selected_device = sel
     if sel:
         try:
-            snap.numeric_keys = _numeric_keys(session, sel)
+            snap.numeric_keys, snap.latest_values = _numeric_keys_and_latest(session, sel)
         except Exception:  # noqa: BLE001
             snap.degraded.append("keys")
         selkey = (

@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     # v2 feature flags (off by default; enabled staging-first per capability). See app/features.py.
     monitoring_enabled: bool = False
     monitoring_cache_ttl: int = 15  # seconds; 0 disables the monitoring snapshot cache
+    telemetry_enabled: bool = False
 
     # M3.2: shared secret for the in-network lab-token endpoint (JupyterHub → portal)
     lab_internal_secret: str = ""

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Telemetry") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+{% include "_project_nav.html" %}
+{% set s = snapshot %}
+<h1 class="section-h">{{ _("Telemetry") }}</h1>
+
+{% if project.provisioning_state != 'provisioned' %}
+  <div class="callout callout--info"><p>{{ _("Setting up this project…") }}</p></div>
+{% else %}
+
+{% if s.degraded %}<div class="callout callout--warning"><p>{{ _("Some sections could not load and are shown degraded.") }} ({{ s.degraded | join(', ') }})</p></div>{% endif %}
+
+<div class="panel" style="margin-top:1rem">
+  <form method="get" class="mon-controls" id="tel-controls">
+    <label>{{ _("Device") }}
+      <select name="device" id="tel-device">
+        {% for d in s.available_devices %}<option value="{{ d.id }}" {{ 'selected' if d.id == s.selected_device else '' }}>{{ d.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>{{ _("Metric") }}
+      <select name="key" id="tel-key">
+        {% for k in s.numeric_keys %}<option value="{{ k }}" {{ 'selected' if k == s.selected_key else '' }}>{{ k }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>{{ _("Range") }}
+      <select name="range" id="tel-range">
+        {% for r in ranges %}<option value="{{ r }}" {{ 'selected' if r == s.range else '' }}>{{ r }}</option>{% endfor %}
+      </select>
+    </label>
+  </form>
+</div>
+
+<div class="grid-2" style="margin-top:1rem">
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Latest values") }}</h2>
+    {% if not s.available_devices %}
+      <p class="helper">{{ _("No devices yet.") }} <a href="/projects/{{ project.id }}/devices">{{ _("Add a device") }}</a></p>
+    {% elif s.latest_values %}
+    <table class="dtable"><thead><tr><th>{{ _("Key") }}</th><th>{{ _("Value") }}</th><th>{{ _("Last seen") }}</th></tr></thead><tbody>
+      {% for v in s.latest_values %}<tr><td><strong>{{ v.key }}</strong></td><td>{{ v.value }}</td><td class="muted">{{ v.t or '—' }}</td></tr>{% endfor %}
+    </tbody></table>
+    {% else %}<p class="helper">{{ _("This device has no numeric telemetry yet.") }}</p>{% endif %}
+  </div>
+  <div class="panel">
+    <h2 class="panel__title">{{ _("Trend") }}</h2>
+    {% if s.selected_key and s.series.get(s.selected_key) %}
+      <div class="chart-box"><canvas id="telChart"></canvas></div>
+    {% elif not s.numeric_keys %}
+      <p class="helper">{{ _("This device has no numeric telemetry to chart yet.") }}</p>
+    {% else %}
+      <p class="helper">{{ _("No data for this metric in the selected range.") }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<p class="helper" style="margin-top:.5rem">{{ _("Updated") }} <span id="tel-updated">{{ s.generated_at }}</span></p>
+
+<script type="application/json" id="tel-data">{{ s | tojson }}</script>
+<script src="/static/vendor/chartjs/4.4.1/chart.umd.min.js"></script>
+<script src="/static/js/telemetry.js"></script>
+{% endif %}
+{% endblock %}

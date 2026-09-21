@@ -880,3 +880,27 @@ msgstr "لا توجد تنبيهات مسجّلة."
 #: app/templates/monitoring.html
 msgid "Updated"
 msgstr "آخر تحديث"
+
+#: app/templates/_project_nav.html app/templates/telemetry.html
+msgid "Telemetry"
+msgstr "القياسات"
+
+#: app/templates/telemetry.html
+msgid "Latest values"
+msgstr "أحدث القيم"
+
+#: app/templates/telemetry.html
+msgid "Trend"
+msgstr "الاتجاه"
+
+#: app/templates/telemetry.html
+msgid "Value"
+msgstr "القيمة"
+
+#: app/templates/telemetry.html
+msgid "Key"
+msgstr "المفتاح"
+
+#: app/templates/telemetry.html
+msgid "This device has no numeric telemetry yet."
+msgstr "لا توجد قياسات رقمية لهذا الجهاز بعد."

@@ -5,11 +5,22 @@ boundary (spike-proven: cross-tenant read 404, ack 403) — exercised on staging
 
 from __future__ import annotations
 
+from types import SimpleNamespace
 from typing import Any
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app import monitoring
+from app.config import get_settings
+
+
+@pytest.fixture
+def flags_on(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Turn the v2 flags on for the duration of a test (settings is a cached singleton)."""
+    s = get_settings()
+    monkeypatch.setattr(s, "monitoring_enabled", True)
+    monkeypatch.setattr(s, "telemetry_enabled", True)
 
 
 class FakeSession:
@@ -83,6 +94,27 @@ def test_monitoring_flag_off_is_404(client: TestClient) -> None:
     assert client.post("/projects/x/monitoring/alarms/a/ack").status_code == 404
 
 
+def test_telemetry_flag_off_is_404(client: TestClient) -> None:
+    # ships dark: the telemetry tab is 404 until TELEMETRY_ENABLED is on
+    assert client.get("/projects/x/telemetry").status_code == 404
+
+
+def test_data_and_ack_require_authentication(client: TestClient, flags_on: None) -> None:
+    # flag on, but no session → API endpoints answer 401 (not a redirect to /login)
+    assert client.get("/projects/x/monitoring/data").status_code == 401
+    assert client.post("/projects/x/monitoring/alarms/a/ack").status_code == 401
+
+
+def test_non_member_is_forbidden(
+    client: TestClient, flags_on: None, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # a signed-in user who is not a member of the project gets 403, never someone else's data
+    user = SimpleNamespace(id="u1", email="stranger@chertiot.dev")
+    monkeypatch.setattr("app.project.load_user", lambda request, db: user)
+    assert client.get("/projects/x/monitoring/data").status_code == 403
+    assert client.post("/projects/x/monitoring/alarms/a/ack").status_code == 403
+
+
 def test_snapshot_composition_and_numeric_filter() -> None:
     fake = FakeSession()
     snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok")  # type: ignore[arg-type]
@@ -91,6 +123,8 @@ def test_snapshot_composition_and_numeric_filter() -> None:
     assert "temperature" in snap.numeric_keys and "humidity" in snap.numeric_keys
     assert "note" not in snap.numeric_keys  # non-numeric excluded from charts
     assert snap.selected_key == "temperature"  # preferred key present
+    latest = {v["key"]: v["value"] for v in snap.latest_values}
+    assert latest == {"temperature": "21", "humidity": "50"}  # numeric only; 'note' excluded
     assert snap.series["temperature"] and len(snap.series["temperature"]) == 2
     assert snap.alarm_active_count == 1 and snap.active_alarms[0].id == "al1"
     assert snap.services.thingsboard_connectivity == "ok"

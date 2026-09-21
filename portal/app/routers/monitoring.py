@@ -31,6 +31,11 @@ def _require_flag() -> None:
         raise HTTPException(status_code=404)
 
 
+def _require_telemetry_flag() -> None:
+    if not get_settings().telemetry_enabled:
+        raise HTTPException(status_code=404)
+
+
 def _node_red_state(project_id: str) -> str:
     try:
         if not flows.enabled():
@@ -104,6 +109,34 @@ def monitoring_data(
     _u, project, member = require_api_membership(request, db, project_id)  # non-member → 403
     snap = _build(project, member, range, device, key)
     return JSONResponse(snap.model_dump())
+
+
+@router.get("/projects/{project_id}/telemetry")
+def telemetry_page(
+    request: Request,
+    project_id: str,
+    range: str = monitoring.DEFAULT_RANGE,
+    device: str | None = None,
+    key: str | None = None,
+    db: Session = Depends(get_db),
+) -> Any:
+    _require_telemetry_flag()
+    user, project, member = require_membership(request, db, project_id)  # non-member → 303 /home
+    rng = range if range in monitoring.RANGES else monitoring.DEFAULT_RANGE
+    snap = _build(project, member, rng, device, key)
+    audit(db, user.email, "telemetry.view", project.slug)
+    db.commit()
+    return templates.TemplateResponse(
+        request,
+        "telemetry.html",
+        {
+            "user": user,
+            "project": project,
+            "member": member,
+            "snapshot": snap.model_dump(),
+            "ranges": list(monitoring.RANGES),
+        },
+    )
 
 
 @router.post(
