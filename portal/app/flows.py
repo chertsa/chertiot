@@ -9,6 +9,7 @@ CLAUDE.md)."""
 
 from __future__ import annotations
 
+import base64
 import json
 import logging
 import os
@@ -47,7 +48,7 @@ module.exports = {{
     // The editor is protected by the platform login at the proxy; no second password here.
     adminAuth: null,
     editorTheme: {{
-        page: {{ title: 'CHERT Node' }},
+        page: {{ title: 'CHERT Node', favicon: '/data/chert-favicon.png' }},
         header: {{ title: 'CHERT Node', url: 'https://chertiot.com', image: null }},
         palette: {{ }},
         menu: {{ 'menu-item-node-red-version': false }},
@@ -145,9 +146,24 @@ def ensure_flows_device(member: ProjectMember) -> str:
         return session.get_device_credentials(require_id(device, "device")).credentials_id
 
 
+_FAVICON_PATH = os.path.join(os.path.dirname(__file__), "static", "favicon.png")
+
+
+def _favicon_b64() -> str:
+    """The CHERT tab icon (shipped in the portal image) as base64, written into each flows volume so
+    editorTheme.page.favicon can serve it. Empty if unavailable → Node-RED keeps its default."""
+    try:
+        with open(_FAVICON_PATH, "rb") as f:
+            return base64.b64encode(f.read()).decode("ascii")
+    except OSError:
+        return ""
+
+
 def _write_settings(dc: docker.DockerClient, volume: str, project_id: str) -> None:
     # settings.js is regenerated every start; flows.json is seeded ONCE (only if absent) with a
     # starter flow so a new project's editor isn't blank — never overwrite the user's own flows.
+    fav = _favicon_b64()
+    fav_cmd = f"echo '{fav}' | base64 -d > /data/chert-favicon.png\n" if fav else ""
     dc.containers.run(
         "alpine:3.20",
         command=[
@@ -156,6 +172,7 @@ def _write_settings(dc: docker.DockerClient, volume: str, project_id: str) -> No
             "cat > /data/settings.js <<'EOS'\n"
             + SETTINGS_JS.format(project_id=project_id)
             + "\nEOS\n"
+            + fav_cmd
             + "[ -f /data/flows.json ] || cat > /data/flows.json <<'EOF'\n"
             + STARTER_FLOWS
             + "\nEOF\n"
