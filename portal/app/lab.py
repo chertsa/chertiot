@@ -65,3 +65,27 @@ def delete_project_notebooks(project_id: str, emails: list[str]) -> None:
                 log.info("hub server delete %s/%s → %s", email, project_id, r.status_code)
         except httpx.HTTPError:
             log.info("hub unreachable deleting notebook for %s/%s", email, project_id)
+    _remove_project_volumes(project_id)
+
+
+def _remove_project_volumes(project_id: str) -> None:
+    """Remove the per-(user, project) notebook volumes for a deleted project. DockerSpawner names
+    them `jupyter-<escaped-username>-<escaped-servername>` and escapes '-' as '-2d', so the project
+    id appears in escaped form. Runs via the least-privilege socket proxy; best-effort."""
+    try:
+        import docker  # local import: only needed on delete, and only where docker is wired
+    except ImportError:
+        return
+    escaped_pid = project_id.replace("-", "-2d")  # UUIDs only contain [0-9a-f-]
+    try:
+        client = docker.from_env()
+        for vol in client.volumes.list():
+            name = vol.name
+            if name.startswith("jupyter-") and name.endswith(escaped_pid):
+                try:
+                    vol.remove(force=True)
+                    log.info("removed orphaned notebook volume %s", name)
+                except Exception:  # noqa: BLE001,S110 - never block a project delete
+                    pass
+    except Exception:  # noqa: BLE001,S110 - docker unreachable → skip volume cleanup
+        pass
