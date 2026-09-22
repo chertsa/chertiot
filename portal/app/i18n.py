@@ -1,4 +1,6 @@
-"""Portal i18n (Design System §7): Babel catalogs, cookie-selected locale, RTL for Arabic.
+"""Portal i18n: Babel catalogs, cookie-selected locale. CHERT IoT is **translation-only** — Arabic
+uses `lang="ar"` for correct text shaping, but the application layout stays **LTR** (`dir="ltr"`) in
+every language; there is no page- or shell-level RTL (owner decision).
 
 Templates and routers call the request-scoped `_`. Catalogs live in app/locales/<lang>/LC_MESSAGES
 (messages.po in git, messages.mo compiled by `make i18n-compile` / the Docker build)."""
@@ -14,7 +16,6 @@ from fastapi import Request
 
 LOCALES_DIR = Path(__file__).resolve().parent / "locales"
 SUPPORTED = ("en", "ar")
-RTL = {"ar"}
 
 
 @lru_cache
@@ -41,7 +42,7 @@ def template_globals(request: Request) -> dict[str, object]:
     return {
         "_": catalog(locale).gettext,
         "locale": locale,
-        "text_dir": "rtl" if locale in RTL else "ltr",
+        "text_dir": "ltr",  # translation-only: layout is LTR in every language (Arabic included)
         "other_locale": "en" if locale == "ar" else "ar",
         "other_locale_label": "English" if locale == "ar" else "العربية",
     }
