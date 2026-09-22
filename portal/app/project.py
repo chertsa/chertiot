@@ -212,7 +212,16 @@ def retry_provision(
 
 
 def delete_project(db: Session, project: Project, actor_email: str) -> None:
-    """Irreversible: delete the TB tenant (devices, dashboards, telemetry) and portal rows."""
+    """Irreversible: delete each member's project notebook (named server + container/volume), the TB
+    tenant (devices, dashboards, telemetry), and portal rows."""
+    from app import lab
+
+    member_emails = [
+        u.email
+        for _m, u in members(db, project.id)  # every membership + its portal user
+    ]
+    if lab.enabled():
+        lab.delete_project_notebooks(project.id, member_emails)  # best-effort; never blocks
     if project.tb_tenant_id:
         sysadmin = sysadmin_client()
         try:

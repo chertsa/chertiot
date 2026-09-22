@@ -24,6 +24,35 @@ def set_language(code: str, request: Request) -> Any:
     return resp
 
 
+def _is_platform_staff(user: Any) -> bool:
+    """Platform Grafana is an instructor/admin capability — students use Project Monitoring."""
+    return getattr(user, "role", "student") in ("instructor", "admin")
+
+
+@router.get("/grafana")
+def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Server-side authorisation for platform Grafana: only instructors/admins may launch it (the
+    home card is also hidden for students, but this route is the enforced boundary). Grafana itself
+    is reached via CHERT SSO at grafana.<domain>."""
+    user = load_user(request, db)
+    if user is None:
+        return RedirectResponse("/login", status_code=303)
+    if not _is_platform_staff(user):
+        return templates.TemplateResponse(
+            request,
+            "error.html",
+            {
+                "user": user,
+                "title": "Platform monitoring is staff-only",
+                "message": "Grafana shows platform-wide infrastructure metrics and is available to "
+                "instructors and administrators. For your project's devices, telemetry and alarms, "
+                "open Monitoring inside your project.",
+            },
+            status_code=403,
+        )
+    return RedirectResponse(f"https://grafana.{get_settings().domain}", status_code=303)
+
+
 @router.get("/")
 def index(request: Request) -> Any:
     if optional_user(request):
@@ -265,16 +294,21 @@ def explore(request: Request, db: Session = Depends(get_db)) -> Any:
     if user is None:
         return RedirectResponse("/login", status_code=303)
     d = get_settings().domain
+    staff = _is_platform_staff(user)
     groups = []
     for g in _SYSTEMS:
-        items = [
-            {
-                **it,
-                "href": it["url"].format(d=d) if it["url"] else "",
-                "hint": it["desc"].format(d=d),
-            }
-            for it in g["items"]
-        ]
+        items = []
+        for it in g["items"]:
+            # Platform Grafana is staff-only: students see the card (for learning) but not a link.
+            staff_only = it["name"] == "Grafana" and not staff
+            items.append(
+                {
+                    **it,
+                    "href": "" if staff_only else (it["url"].format(d=d) if it["url"] else ""),
+                    "hint": it["desc"].format(d=d),
+                    "access": "admin" if staff_only else it["access"],
+                }
+            )
         groups.append({"group": g["group"], "items": items})
     total = sum(len(g["items"]) for g in _SYSTEMS)
     return templates.TemplateResponse(

@@ -1,7 +1,8 @@
 {#
-  Shared project header + capability sub-nav (v2 Phase 1).
+  Shared project header + capability sub-nav (v2). One normalized shell across every project page.
   Requires in context: project, request, features, user. Active tab inferred from request.url.path.
-  User-facing reference is the project slug only — never tb_tenant_id. Monitoring is flag-gated.
+  User-facing reference is the project slug only — never tb_tenant_id. Telemetry/Monitoring are
+  flag-gated (ship dark). Notebooks & Reports & ThingsBoard & Members/Settings are portal routes.
 #}
 {% set _p = '/projects/' ~ project.id %}
 {% set _path = request.url.path %}
@@ -21,6 +22,9 @@
     <a href="{{ _p }}/alerts" class="subnav__tab{{ ' is-active' if '/alerts' in _path else '' }}">{{ _("Alerts") }}</a>
     <a href="{{ _p }}/flows" class="subnav__tab{{ ' is-active' if '/flows' in _path else '' }}">{{ _("Flows") }}</a>
     <a href="{{ _p }}/lora" class="subnav__tab{{ ' is-active' if '/lora' in _path else '' }}">{{ _("LoRaWAN") }}</a>
-    <a href="https://lab.{{ request.url.hostname }}/hub/spawn/{{ user.email | urlencode }}/{{ project.id }}" class="subnav__tab" target="_blank" rel="noopener">{{ _("Notebooks") }} ↗</a>
+    <a href="{{ _p }}/notebooks" class="subnav__tab{{ ' is-active' if '/notebooks' in _path else '' }}">{{ _("Notebooks") }}</a>
+    <a href="{{ _p }}/report" class="subnav__tab{{ ' is-active' if '/report' in _path else '' }}">{{ _("Reports") }}</a>
+    <a href="{{ _p }}/thingsboard" class="subnav__tab" target="_blank" rel="noopener">{{ _("ThingsBoard") }} ↗</a>
+    <a href="{{ _p }}/settings" class="subnav__tab{{ ' is-active' if '/settings' in _path else '' }}">{{ _("Members & Settings") }}</a>
   </nav>
 </div>

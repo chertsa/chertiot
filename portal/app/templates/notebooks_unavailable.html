@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Notebooks") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+{% include "_project_nav.html" %}
+<h1 class="section-h">{{ _("Notebooks") }}</h1>
+<div class="callout callout--warning">
+  <p>{{ _("The notebook service is temporarily unavailable. Your notebook and its data are safe — please try again in a few minutes.") }}</p>
+</div>
+<p style="margin-top:1rem"><a class="btn btn--secondary" href="/projects/{{ project.id }}/notebooks">{{ _("Try again") }}</a>
+   <a class="btn btn--secondary" href="/projects/{{ project.id }}">{{ _("Back to project") }}</a></p>
+{% endblock %}

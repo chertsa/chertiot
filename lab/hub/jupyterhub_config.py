@@ -11,6 +11,8 @@ c = get_config()  # noqa: F821 - provided by JupyterHub
 
 DOMAIN = os.environ["DOMAIN"]
 NOTEBOOK_IMAGE = os.environ["LAB_NOTEBOOK_IMAGE"]
+# Per-user cap on named servers (one per project). Bounds resource use and volume sprawl.
+NAMED_SERVER_LIMIT = int(os.environ.get("LAB_NAMED_SERVER_LIMIT", "10"))
 
 # Persist hub state in /data (a mounted volume); the config itself stays in the image at
 # /srv/jupyterhub so config changes actually take effect (the volume must NOT mask the config file).
@@ -47,7 +49,14 @@ c.DockerSpawner.mem_limit = "512M"
 c.DockerSpawner.cpu_limit = 1.0
 c.DockerSpawner.notebook_dir = "/home/jovyan/work"
 # One notebook workspace PER PROJECT (M5.3): named servers, volume keyed by user + server (project).
+# The server name is always the immutable CHERT project id (see pre_spawn_hook). The storage
+# boundary is therefore per (user, project): volume `jupyter-<username>-<project_id>` mounted at the
+# notebook's only writable path. A different project (different servername) mounts a different
+# volume, and a different user (different username) a different volume again — no shared writable
+# path exists across projects or users. The default (unnamed) server is never used: its name is ""
+# → the portal membership check below rejects it, so no `jupyter-<username>-` volume is ever created.
 c.JupyterHub.allow_named_servers = True
+c.JupyterHub.named_server_limit_per_user = NAMED_SERVER_LIMIT
 c.DockerSpawner.volumes = {"jupyter-{username}-{servername}": "/home/jovyan/work"}
 c.JupyterHub.default_url = "/hub/home"
 c.JupyterHub.hub_ip = "0.0.0.0"
@@ -58,16 +67,31 @@ LAB_SECRET = os.environ["LAB_INTERNAL_SECRET"]
 
 
 async def pre_spawn_hook(spawner):
-    # The named server is the CHERT project id; mint that project's TB session for the notebook.
-    # The portal rejects the spawn (403) unless this user is an active member of that project.
+    # The named server IS the CHERT project id; mint that project's TB session for the notebook.
+    # This hook is the authoritative membership gate for EVERY spawn — including one triggered by a
+    # hand-edited /hub/spawn/<email>/<project_id> URL — because the portal returns 403 unless this
+    # authenticated user is an active member of exactly that project. A missing/empty server name
+    # (the default server) has no project and is rejected the same way. A denied spawn raises a clean
+    # 403 instead of a 500, and no notebook container/volume is created.
+    from tornado import web  # local import: tornado is provided by the hub runtime
+
     email = spawner.user.name
     project_id = spawner.name  # named-server name = project id ("" for the default server)
-    r = requests.post(
-        f"{PORTAL_INTERNAL}/internal/lab-token",
-        json={"email": email, "project_id": project_id},
-        headers={"X-Lab-Secret": LAB_SECRET},
-        timeout=30,
-    )
+    if not project_id:
+        raise web.HTTPError(403, "Notebooks are opened per project from the CHERT IoT portal.")
+    try:
+        r = requests.post(
+            f"{PORTAL_INTERNAL}/internal/lab-token",
+            json={"email": email, "project_id": project_id},
+            headers={"X-Lab-Secret": LAB_SECRET},
+            timeout=30,
+        )
+    except requests.RequestException as e:
+        raise web.HTTPError(503, "The CHERT IoT portal is unavailable; try again shortly.") from e
+    if r.status_code == 403:
+        raise web.HTTPError(403, "You are not a member of this project.")
+    if r.status_code == 404:
+        raise web.HTTPError(403, "Unknown account for this project.")
     r.raise_for_status()
     body = r.json()
     spawner.environment.update(
@@ -82,17 +106,26 @@ async def pre_spawn_hook(spawner):
 
 c.Spawner.pre_spawn_hook = pre_spawn_hook
 
-# --- idle culling (30 min, like flows)
+# --- services: idle culling (30 min) + a least-privilege token for the portal so it can delete a
+# project's named server when the project is archived/deleted (see portal app/lab.py).
 c.JupyterHub.services = [
     {
         "name": "idle-culler",
         "command": ["python", "-m", "jupyterhub_idle_culler", "--timeout=1800"],
-    }
+    },
+    {"name": "portal", "api_token": LAB_SECRET},
 ]
 c.JupyterHub.load_roles = [
     {
         "name": "idle-culler",
         "scopes": ["list:users", "read:users:activity", "read:servers", "delete:servers"],
         "services": ["idle-culler"],
-    }
+    },
+    {
+        # The portal may stop/delete named servers (project delete) and read server state, nothing
+        # more — it never gains notebook access or user administration.
+        "name": "portal-servers",
+        "scopes": ["admin:servers", "read:users:name", "list:users"],
+        "services": ["portal"],
+    },
 ]

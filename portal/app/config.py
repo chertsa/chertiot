@@ -43,8 +43,14 @@ class Settings(BaseSettings):
     monitoring_cache_ttl: int = 15  # seconds; 0 disables the monitoring snapshot cache
     telemetry_enabled: bool = False
 
-    # M3.2: shared secret for the in-network lab-token endpoint (JupyterHub → portal)
+    # M3.2/M5.3: JupyterHub notebooks. lab_enabled offers the feature; the portal brokers the
+    # per-project named-server launch and the shared secret doubles as the hub `portal` service
+    # token (deleting a project's named server on project delete). lab_public_url defaults to the
+    # lab.<domain> vhost; lab_internal_url is the in-network hub API.
+    lab_enabled: bool = False
     lab_internal_secret: str = ""
+    lab_public_url: str = ""  # default: https://lab.<domain>
+    lab_internal_url: str = "http://jupyterhub:8000"
 
     # D4 quota overrides applied on top of templates-tb/tenant-profile-student.json
     tb_quota_max_devices: int | None = None
@@ -61,6 +67,10 @@ class Settings(BaseSettings):
     @property
     def device_mqtt_host(self) -> str:
         return self.mqtt_host or self.domain
+
+    @property
+    def lab_url(self) -> str:
+        return (self.lab_public_url or f"https://lab.{self.domain}").rstrip("/")
 
     @property
     def kc_issuer(self) -> str:

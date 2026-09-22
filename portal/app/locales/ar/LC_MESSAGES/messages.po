@@ -904,3 +904,55 @@ msgstr "المفتاح"
 #: app/templates/telemetry.html
 msgid "This device has no numeric telemetry yet."
 msgstr "لا توجد قياسات رقمية لهذا الجهاز بعد."
+
+#: app/templates/_project_nav.html app/templates/project.html
+msgid "Reports"
+msgstr "التقارير"
+
+#: app/templates/_project_nav.html
+msgid "ThingsBoard"
+msgstr "ThingsBoard"
+
+#: app/templates/_project_nav.html app/templates/project_settings.html
+msgid "Members & Settings"
+msgstr "الأعضاء والإعدادات"
+
+#: app/templates/project_settings.html
+msgid "Members"
+msgstr "الأعضاء"
+
+#: app/templates/project_settings.html
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: app/templates/project_settings.html
+msgid "Danger zone"
+msgstr "منطقة الخطر"
+
+#: app/templates/project_settings.html
+msgid "Deleting a project permanently removes its devices, data, flows, notebooks and dashboards."
+msgstr "حذف المشروع يزيل نهائيًا أجهزته وبياناته وتدفقاته ودفاتره ولوحاته."
+
+#: app/templates/project.html
+msgid "Manage members, reset the starter dashboard or delete this project in"
+msgstr "أدر الأعضاء أو أعد ضبط اللوحة الابتدائية أو احذف هذا المشروع من"
+
+#: app/templates/home.html
+msgid "Platform Grafana"
+msgstr "غرافانا المنصة"
+
+#: app/templates/home.html
+msgid "Platform-wide infrastructure metrics over Prometheus (instructors & admins). For your project's data, use Monitoring inside a project."
+msgstr "مقاييس البنية التحتية للمنصة عبر بروميثيوس (للمعلّمين والمشرفين). لبيانات مشروعك استخدم المراقبة داخل المشروع."
+
+#: app/routers/home.py
+msgid "Platform monitoring is staff-only"
+msgstr "مراقبة المنصة للطاقم فقط"
+
+#: app/templates/notebooks_unavailable.html
+msgid "The notebook service is temporarily unavailable. Your notebook and its data are safe — please try again in a few minutes."
+msgstr "خدمة الدفاتر غير متاحة مؤقتًا. دفترك وبياناته بأمان — يرجى المحاولة مرة أخرى بعد دقائق."
+
+#: app/templates/notebooks_unavailable.html
+msgid "Back to project"
+msgstr "العودة إلى المشروع"
