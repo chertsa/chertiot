@@ -63,11 +63,13 @@ class SeriesPoint(BaseModel):
 
 
 class ActivityRow(BaseModel):
-    """Per-device Telemetry activity. `values` = telemetry values (stored data points) received in
-    the range — an ACTIVITY proxy, not message/transport throughput (see snapshot() docstring)."""
+    """Per-device Telemetry activity. `data_points` = telemetry values (stored data points) received
+    in the range — an ACTIVITY proxy, not message/transport throughput (see snapshot() docstring).
+    NB: field is `data_points`, not `values` — after model_dump() the row is a dict, and Jinja would
+    resolve `.values` to the built-in dict.values() method rather than the field."""
 
     name: str
-    values: int = 0
+    data_points: int = 0
     online: bool = False
     last_seen: str | None = None
 
@@ -343,7 +345,7 @@ def snapshot(
                 act.append(
                     ActivityRow(
                         name=d["name"],
-                        values=_activity_total(dseries),
+                        data_points=_activity_total(dseries),
                         online=bool(row and row.active),
                         last_seen=(row.last_seen if row else None),
                     )

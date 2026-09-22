@@ -139,12 +139,14 @@ def test_snapshot_activity_per_device() -> None:
     fake = FakeSession()
     snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok", with_activity=True)  # type: ignore[arg-type]
     # total = sum of per-interval buckets: (temp3+hum3)=6 at ts1 + (temp4+hum4)=8 at ts2 = 14
-    totals = {a.name: a.values for a in snap.activity}
+    totals = {a.name: a.data_points for a in snap.activity}
     assert totals == {"d1": 14, "d2": 14}
     # types: integer count + boolean online, in the model AND its JSON dump (not diagnostic strings)
-    assert isinstance(snap.activity[0].values, int) and snap.activity[0].online is True
+    assert isinstance(snap.activity[0].data_points, int) and snap.activity[0].online is True
     dumped = snap.model_dump()["activity"][0]
-    assert dumped["values"] == 14 and dumped["online"] is True
+    assert dumped["data_points"] == 14 and dumped["online"] is True
+    # field is data_points, NOT values (avoids Jinja resolving .values to dict.values())
+    assert "values" not in dumped and "data_points" in dumped
     # selected device's per-interval data-point rate (ts1=6, ts2=8)
     assert [p.v for p in snap.activity_series] == [6.0, 8.0]
 
@@ -275,6 +277,8 @@ def test_activity_cache_separation(
     assert r_mon.status_code == 200 and r_mon.json()["activity"] == []
     r_tel = client.get("/projects/pc/telemetry")
     assert r_tel.status_code == 200 and "Telemetry activity" in r_tel.text and "d1" in r_tel.text
+    # rendered count is the number, not Jinja resolving .values to a dict method
+    assert "14" in r_tel.text and "built-in method" not in r_tel.text
     # and the reverse order still keeps them separate (monitoring stays activity-free)
     assert client.get("/projects/pc/monitoring/data").json()["activity"] == []
 

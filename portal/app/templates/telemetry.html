@@ -62,7 +62,7 @@
       {% for a in s.activity %}<tr>
         <td><strong>{{ a.name }}</strong></td>
         <td><span class="dot {{ 'dot--on' if a.online else 'dot--off' }}"></span>{{ _("Online") if a.online else _("Offline") }}</td>
-        <td>{{ a.values }}</td>
+        <td>{{ a.data_points }}</td>
         <td class="muted">{{ a.last_seen or '—' }}</td>
       </tr>{% endfor %}
     </tbody></table>
