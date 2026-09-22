@@ -72,6 +72,8 @@ class MonitoringSnapshot(BaseModel):
     available_devices: list[dict[str, str]] = []
     numeric_keys: list[str] = []
     latest_values: list[dict[str, str]] = []
+    activity: list[dict[str, str]] = []  # per-device data-point counts over the range (Telemetry)
+    activity_series: list[SeriesPoint] = []  # selected device's data-points per interval
     device_count: int = 0
     online_count: int = 0
     offline_count: int = 0
@@ -217,6 +219,59 @@ def _series(session: TbClient, device_id: str, key: str, rng: str) -> list[Serie
     return out
 
 
+def _activity_total(session: TbClient, device_id: str, rng: str) -> int:
+    """Total telemetry data points a device produced over the range (one COUNT-aggregated TB call
+    across the known keys) — a per-device traffic proxy. ThingsBoard has no per-device Prometheus
+    metric, so this is derived from the device's own telemetry, tenant-scoped."""
+    back, _interval, _agg = RANGES[rng]
+    end = int(time.time() * 1000)
+    data = session._get(  # noqa: SLF001
+        f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries",
+        keys=",".join(_TS_KEYS),
+        startTs=end - back * 1000,
+        endTs=end,
+        interval=back * 1000,  # one bucket over the whole range
+        agg="COUNT",
+        limit=1,
+    )
+    if not isinstance(data, dict):
+        return 0
+    total = 0
+    for pts in data.values():
+        if pts:
+            try:
+                total += int(float(pts[0].get("value") or 0))
+            except (ValueError, TypeError):
+                pass
+    return total
+
+
+def _activity_series(session: TbClient, device_id: str, rng: str) -> list[SeriesPoint]:
+    """Per-interval data-point count for one device (COUNT aggregation) — a throughput trend."""
+    back, interval, _agg = RANGES[rng]
+    end = int(time.time() * 1000)
+    data = session._get(  # noqa: SLF001
+        f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries",
+        keys=",".join(_TS_KEYS),
+        startTs=end - back * 1000,
+        endTs=end,
+        interval=interval,
+        agg="COUNT",
+        limit=1000,
+    )
+    if not isinstance(data, dict):
+        return []
+    buckets: dict[int, float] = {}
+    for pts in data.values():
+        for p in pts:
+            try:
+                ts = int(p["ts"])
+                buckets[ts] = buckets.get(ts, 0.0) + float(p.get("value") or 0)
+            except (ValueError, TypeError, KeyError):
+                pass
+    return [SeriesPoint(t=_fmt(ts, "%m-%d %H:%M") or "", v=buckets[ts]) for ts in sorted(buckets)]
+
+
 def snapshot(
     sysadmin: TbClient,
     session: TbClient,
@@ -225,6 +280,7 @@ def snapshot(
     device: str | None,
     key: str | None,
     node_red: str,
+    with_activity: bool = False,
 ) -> MonitoringSnapshot:
     """Compose one tenant-scoped snapshot. Partial failures degrade a section, never raise."""
     rng = rng if rng in RANGES else DEFAULT_RANGE
@@ -269,6 +325,30 @@ def snapshot(
                 snap.series = {selkey: _series(session, sel, selkey, rng)}
             except Exception:  # noqa: BLE001
                 snap.degraded.append("series")
+
+    if with_activity and snap.available_devices:
+        try:
+            by_name = {r.name: r for r in snap.devices}
+            act: list[dict[str, str]] = []
+            for d in snap.available_devices:
+                try:
+                    pts = _activity_total(session, d["id"], rng)
+                except Exception:  # noqa: BLE001
+                    pts = 0
+                row = by_name.get(d["name"])
+                act.append(
+                    {
+                        "name": d["name"],
+                        "points": str(pts),
+                        "online": "true" if (row and row.active) else "false",
+                        "last_seen": (row.last_seen if row and row.last_seen else "") or "",
+                    }
+                )
+            snap.activity = act
+            if sel:
+                snap.activity_series = _activity_series(session, sel, rng)
+        except Exception:  # noqa: BLE001
+            snap.degraded.append("activity")
 
     try:
         snap.active_alarms = _alarms(session, "ACTIVE", 10)

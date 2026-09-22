@@ -31,6 +31,29 @@
     });
   }
 
+  // per-device throughput trend (data-points per interval, COUNT aggregation)
+  var acv = document.getElementById('telActivityChart');
+  if (acv && window.Chart && snap.activity_series && snap.activity_series.length) {
+    new Chart(acv, {
+      type: 'bar',
+      data: {
+        labels: snap.activity_series.map(function (p) { return p.t; }),
+        datasets: [{
+          label: 'data points', data: snap.activity_series.map(function (p) { return p.v; }),
+          backgroundColor: 'rgba(242,107,51,.55)', borderColor: '#F26B33', borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { maxTicksLimit: 8, autoSkip: true }, grid: { display: false } },
+          y: { beginAtZero: true, ticks: { precision: 0 } }
+        }
+      }
+    });
+  }
+
   // selectors: submit the GET form on change (server re-renders the full view)
   ['tel-device', 'tel-key', 'tel-range'].forEach(function (id) {
     var sel = document.getElementById(id);

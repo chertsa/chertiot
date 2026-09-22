@@ -55,16 +55,31 @@ def _origin_ok(request: Request) -> None:
         raise HTTPException(status_code=403, detail="cross-origin request rejected")
 
 
-def _build(project: Any, member: Any, rng: str, device: str | None, key: str | None) -> Any:
-    """Build (or return cached) snapshot. Caller MUST have authorised membership first."""
+def _build(
+    project: Any,
+    member: Any,
+    rng: str,
+    device: str | None,
+    key: str | None,
+    with_activity: bool = False,
+) -> Any:
+    """Build (or return cached) snapshot. Caller MUST have authorised membership first.
+    `with_activity` adds per-device throughput (Telemetry only) and caches separately."""
     nr = _node_red_state(project.id)
     ttl = get_settings().monitoring_cache_ttl
-    cache_key = (project.id, rng, device or "", key or "")
+    cache_key = (project.id, rng, device or "", (key or "") + ("|act" if with_activity else ""))
 
     def builder() -> monitoring.MonitoringSnapshot:
         with as_project(member) as (sysadmin, session):
             return monitoring.snapshot(
-                sysadmin, session, project.tb_tenant_id, rng, device, key, nr
+                sysadmin,
+                session,
+                project.tb_tenant_id,
+                rng,
+                device,
+                key,
+                nr,
+                with_activity=with_activity,
             )
 
     return monitoring.cached_snapshot(ttl, cache_key, builder)  # only reached after authorisation
@@ -123,7 +138,7 @@ def telemetry_page(
     _require_telemetry_flag()
     user, project, member = require_membership(request, db, project_id)  # non-member → 303 /home
     rng = range if range in monitoring.RANGES else monitoring.DEFAULT_RANGE
-    snap = _build(project, member, rng, device, key)
+    snap = _build(project, member, rng, device, key, with_activity=True)
     audit(db, user.email, "telemetry.view", project.slug)
     db.commit()
     return templates.TemplateResponse(

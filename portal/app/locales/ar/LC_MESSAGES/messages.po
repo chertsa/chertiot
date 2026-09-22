@@ -956,3 +956,27 @@ msgstr "خدمة الدفاتر غير متاحة مؤقتًا. دفترك وب�
 #: app/templates/notebooks_unavailable.html
 msgid "Back to project"
 msgstr "العودة إلى المشروع"
+
+#: app/templates/telemetry.html
+msgid "Device activity"
+msgstr "نشاط الأجهزة"
+
+#: app/templates/telemetry.html
+msgid "Data points"
+msgstr "نقاط البيانات"
+
+#: app/templates/telemetry.html
+msgid "Throughput"
+msgstr "معدل التدفق"
+
+#: app/templates/telemetry.html
+msgid "No device activity in the selected range."
+msgstr "لا يوجد نشاط للأجهزة في النطاق المحدد."
+
+#: app/templates/telemetry.html
+msgid "No activity to chart for this device in the selected range."
+msgstr "لا يوجد نشاط لعرضه لهذا الجهاز في النطاق المحدد."
+
+#: app/templates/telemetry.html
+msgid "Data points = telemetry values received (a per-device traffic proxy)."
+msgstr "نقاط البيانات = قيم القياس المستلمة (مؤشر تقريبي لحركة كل جهاز)."

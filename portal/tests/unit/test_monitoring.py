@@ -71,6 +71,11 @@ class FakeSession:
         if "keys/timeseries" in path:
             return ["temperature", "humidity", "note"]
         if "values/timeseries" in path:
+            if kw.get("agg") == "COUNT":  # per-device activity (data-point counts)
+                return {
+                    "temperature": [{"ts": 1, "value": "3"}, {"ts": 2, "value": "4"}],
+                    "humidity": [{"ts": 1, "value": "3"}, {"ts": 2, "value": "4"}],
+                }
             return {
                 "temperature": [
                     {"ts": 1690000000000, "value": "21.5"},
@@ -128,6 +133,23 @@ def test_snapshot_composition_and_numeric_filter() -> None:
     assert snap.series["temperature"] and len(snap.series["temperature"]) == 2
     assert snap.alarm_active_count == 1 and snap.active_alarms[0].id == "al1"
     assert snap.services.thingsboard_connectivity == "ok"
+
+
+def test_snapshot_activity_per_device() -> None:
+    fake = FakeSession()
+    snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok", with_activity=True)  # type: ignore[arg-type]
+    # per-device data-point totals (COUNT across keys): temperature 3 + humidity 3 = 6
+    totals = {a["name"]: a["points"] for a in snap.activity}
+    assert totals == {"d1": "6", "d2": "6"}
+    assert snap.activity[0]["online"] == "true"  # d1 active
+    # selected device's throughput trend has per-interval buckets (ts1=6, ts2=8)
+    assert [p.v for p in snap.activity_series] == [6.0, 8.0]
+
+
+def test_snapshot_activity_off_by_default() -> None:
+    fake = FakeSession()
+    snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok")  # type: ignore[arg-type]
+    assert snap.activity == [] and snap.activity_series == []  # Monitoring path unaffected
 
 
 def test_snapshot_bad_range_clamps() -> None:
