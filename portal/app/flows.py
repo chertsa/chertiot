@@ -48,7 +48,7 @@ module.exports = {{
     // The editor is protected by the platform login at the proxy; no second password here.
     adminAuth: null,
     editorTheme: {{
-        page: {{ title: 'CHERT Node', favicon: '/data/chert-favicon.png' }},
+        page: {{ title: 'CHERT Node', favicon: '/data/chert-favicon.ico' }},
         header: {{ title: 'CHERT Node', url: 'https://chertiot.com', image: null }},
         palette: {{ }},
         menu: {{ 'menu-item-node-red-version': false }},
@@ -146,7 +146,7 @@ def ensure_flows_device(member: ProjectMember) -> str:
         return session.get_device_credentials(require_id(device, "device")).credentials_id
 
 
-_FAVICON_PATH = os.path.join(os.path.dirname(__file__), "static", "favicon.png")
+_FAVICON_PATH = os.path.join(os.path.dirname(__file__), "static", "favicon.ico")
 
 
 def _favicon_b64() -> str:
@@ -163,7 +163,7 @@ def _write_settings(dc: docker.DockerClient, volume: str, project_id: str) -> No
     # settings.js is regenerated every start; flows.json is seeded ONCE (only if absent) with a
     # starter flow so a new project's editor isn't blank — never overwrite the user's own flows.
     fav = _favicon_b64()
-    fav_cmd = f"echo '{fav}' | base64 -d > /data/chert-favicon.png\n" if fav else ""
+    fav_cmd = f"echo '{fav}' | base64 -d > /data/chert-favicon.ico\n" if fav else ""
     dc.containers.run(
         "alpine:3.20",
         command=[
