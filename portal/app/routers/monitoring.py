@@ -14,7 +14,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 from sqlalchemy.orm import Session
 
-from app import flows, monitoring
+from app import flows, monitoring, permissions
 from app.audit import audit
 from app.config import get_settings
 from app.db import get_db
@@ -170,7 +170,7 @@ def ack_alarm(
         except TbError as e:
             raise HTTPException(status_code=404) from e  # out-of-tenant / missing
         severity = (alarm or {}).get("severity", "") if isinstance(alarm, dict) else ""
-        if severity == "CRITICAL" and member.role != "owner":
+        if not permissions.project_can(member, permissions.ack_cap(severity)):
             raise HTTPException(
                 status_code=403, detail="only the owner can acknowledge critical alarms"
             )

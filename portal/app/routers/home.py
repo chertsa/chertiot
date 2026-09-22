@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
+from app import permissions
 from app.auth import optional_user
 from app.config import get_settings
 from app.db import get_db
@@ -24,11 +25,6 @@ def set_language(code: str, request: Request) -> Any:
     return resp
 
 
-def _is_platform_staff(user: Any) -> bool:
-    """Platform Grafana is an instructor/admin capability — students use Project Monitoring."""
-    return getattr(user, "role", "student") in ("instructor", "admin")
-
-
 @router.get("/grafana")
 def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
     """Server-side authorisation for platform Grafana: only instructors/admins may launch it (the
@@ -37,7 +33,7 @@ def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
     user = load_user(request, db)
     if user is None:
         return RedirectResponse("/login", status_code=303)
-    if not _is_platform_staff(user):
+    if not permissions.platform_can(user, permissions.Cap.PLATFORM_MONITORING):
         return templates.TemplateResponse(
             request,
             "error.html",
@@ -73,7 +69,14 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
         "member": sum(1 for p in projects if p["role"] != "owner"),
     }
     return templates.TemplateResponse(
-        request, "home.html", {"user": user, "projects": projects, "summary": summary}
+        request,
+        "home.html",
+        {
+            "user": user,
+            "projects": projects,
+            "summary": summary,
+            "is_staff": permissions.is_staff(user),  # platform Grafana card is staff-only
+        },
     )
 
 
@@ -294,7 +297,7 @@ def explore(request: Request, db: Session = Depends(get_db)) -> Any:
     if user is None:
         return RedirectResponse("/login", status_code=303)
     d = get_settings().domain
-    staff = _is_platform_staff(user)
+    staff = permissions.is_staff(user)
     groups = []
     for g in _SYSTEMS:
         items = []

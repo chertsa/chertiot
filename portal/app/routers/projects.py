@@ -8,6 +8,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app import permissions
 from app.config import get_settings
 from app.dashboard import alarm_history, dashboard_data
 from app.db import get_db
@@ -40,7 +41,7 @@ _TB_LOCALE = {"ar": "ar_AR", "en": "en_US"}
 
 def _require_owner(request: Request, db: Session, project_id: str) -> tuple[Project, ProjectMember]:
     user, project, member = require_membership(request, db, project_id)
-    if member.role != "owner":
+    if not permissions.project_can(member, permissions.Cap.MEMBER_MANAGE):  # owner-only
         raise HTTPException(status_code=403, detail="owner only")
     return project, member
 
@@ -230,7 +231,7 @@ def open_thingsboard(request: Request, project_id: str, db: Session = Depends(ge
 @router.post("/projects/{project_id}/delete")
 def delete(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
     user, project, member = require_membership(request, db, project_id)
-    if member.role != "owner":
+    if not permissions.project_can(member, permissions.Cap.PROJECT_DELETE):
         raise HTTPException(status_code=403, detail="only the owner can delete a project")
     delete_project(db, project, user.email)
     return RedirectResponse("/home", status_code=303)
