@@ -37,7 +37,7 @@ def _member(db: Session, p: Project, u: PortalUser, role: str = "owner") -> Proj
     return m
 
 
-# ---- platform Grafana is instructor/admin-only, enforced at the launch route (not just hidden) ----
+# ---- platform Grafana is instructor/admin-only, enforced at the launch route (not just hidden) --
 def test_grafana_launch_forbidden_for_student(
     client: TestClient, db: Session, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -129,15 +129,19 @@ def test_overview_defers_admin_to_settings(
 
 # ---- storage boundary + launch URL are per (user, project) ----
 def test_notebook_storage_boundary_is_per_user_and_project() -> None:
-    cfg = open("../lab/hub/jupyterhub_config.py").read()
-    assert 'c.DockerSpawner.volumes = {"jupyter-{username}-{servername}": "/home/jovyan/work"}' in cfg
+    from pathlib import Path
+
+    cfg = (Path(__file__).resolve().parents[3] / "lab/hub/jupyterhub_config.py").read_text()
+    vol = 'c.DockerSpawner.volumes = {"jupyter-{username}-{servername}": "/home/jovyan/work"}'
+    assert vol in cfg
     assert "c.JupyterHub.named_server_limit_per_user" in cfg
     from app import lab
 
     a = lab.spawn_url("alice@x.io", "proj-A")
     b = lab.spawn_url("alice@x.io", "proj-B")
     c = lab.spawn_url("bob@x.io", "proj-A")
-    assert a != b and a != c  # different project or user ⇒ different named server ⇒ different volume
+    # different project or user ⇒ different named server ⇒ different volume
+    assert a != b and a != c
 
 
 def test_delete_project_notebooks_calls_hub_admin_api(monkeypatch: pytest.MonkeyPatch) -> None:
