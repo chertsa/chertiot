@@ -138,9 +138,9 @@ def test_snapshot_composition_and_numeric_filter() -> None:
 def test_snapshot_activity_per_device() -> None:
     fake = FakeSession()
     snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok", with_activity=True)  # type: ignore[arg-type]
-    # per-device data-point totals (COUNT across keys): temperature 3 + humidity 3 = 6
+    # total = sum of per-interval buckets: (temp3+hum3)=6 at ts1 + (temp4+hum4)=8 at ts2 = 14
     totals = {a["name"]: a["points"] for a in snap.activity}
-    assert totals == {"d1": "6", "d2": "6"}
+    assert totals == {"d1": "14", "d2": "14"}
     assert snap.activity[0]["online"] == "true"  # d1 active
     # selected device's throughput trend has per-interval buckets (ts1=6, ts2=8)
     assert [p.v for p in snap.activity_series] == [6.0, 8.0]

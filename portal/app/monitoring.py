@@ -219,35 +219,10 @@ def _series(session: TbClient, device_id: str, key: str, rng: str) -> list[Serie
     return out
 
 
-def _activity_total(session: TbClient, device_id: str, rng: str) -> int:
-    """Total telemetry data points a device produced over the range (one COUNT-aggregated TB call
-    across the known keys) — a per-device traffic proxy. ThingsBoard has no per-device Prometheus
-    metric, so this is derived from the device's own telemetry, tenant-scoped."""
-    back, _interval, _agg = RANGES[rng]
-    end = int(time.time() * 1000)
-    data = session._get(  # noqa: SLF001
-        f"/plugins/telemetry/DEVICE/{device_id}/values/timeseries",
-        keys=",".join(_TS_KEYS),
-        startTs=end - back * 1000,
-        endTs=end,
-        interval=back * 1000,  # one bucket over the whole range
-        agg="COUNT",
-        limit=1,
-    )
-    if not isinstance(data, dict):
-        return 0
-    total = 0
-    for pts in data.values():
-        if pts:
-            try:
-                total += int(float(pts[0].get("value") or 0))
-            except (ValueError, TypeError):
-                pass
-    return total
-
-
 def _activity_series(session: TbClient, device_id: str, rng: str) -> list[SeriesPoint]:
-    """Per-interval data-point count for one device (COUNT aggregation) — a throughput trend."""
+    """Per-interval data-point count for one device (COUNT aggregation) — a throughput trend.
+    ThingsBoard has no per-device Prometheus metric, so this is derived from the device's own
+    telemetry (tenant-scoped). Bucketed COUNT is summed across the device's known keys."""
     back, interval, _agg = RANGES[rng]
     end = int(time.time() * 1000)
     data = session._get(  # noqa: SLF001
@@ -270,6 +245,12 @@ def _activity_series(session: TbClient, device_id: str, rng: str) -> list[Series
             except (ValueError, TypeError, KeyError):
                 pass
     return [SeriesPoint(t=_fmt(ts, "%m-%d %H:%M") or "", v=buckets[ts]) for ts in sorted(buckets)]
+
+
+def _activity_total(series: list[SeriesPoint]) -> int:
+    """Total data points over the range = sum of the per-interval buckets (consistent with the
+    trend, unlike a single giant COUNT interval which ThingsBoard aggregates unreliably)."""
+    return int(sum(p.v for p in series))
 
 
 def snapshot(
@@ -332,21 +313,21 @@ def snapshot(
             act: list[dict[str, str]] = []
             for d in snap.available_devices:
                 try:
-                    pts = _activity_total(session, d["id"], rng)
+                    dseries = _activity_series(session, d["id"], rng)
                 except Exception:  # noqa: BLE001
-                    pts = 0
+                    dseries = []
+                if d["id"] == sel:
+                    snap.activity_series = dseries  # selected device's throughput trend
                 row = by_name.get(d["name"])
                 act.append(
                     {
                         "name": d["name"],
-                        "points": str(pts),
+                        "points": str(_activity_total(dseries)),
                         "online": "true" if (row and row.active) else "false",
                         "last_seen": (row.last_seen if row and row.last_seen else "") or "",
                     }
                 )
             snap.activity = act
-            if sel:
-                snap.activity_series = _activity_series(session, sel, rng)
         except Exception:  # noqa: BLE001
             snap.degraded.append("activity")
 
