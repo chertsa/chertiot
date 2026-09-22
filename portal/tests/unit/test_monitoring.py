@@ -139,10 +139,13 @@ def test_snapshot_activity_per_device() -> None:
     fake = FakeSession()
     snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok", with_activity=True)  # type: ignore[arg-type]
     # total = sum of per-interval buckets: (temp3+hum3)=6 at ts1 + (temp4+hum4)=8 at ts2 = 14
-    totals = {a["name"]: a["points"] for a in snap.activity}
-    assert totals == {"d1": "14", "d2": "14"}
-    assert snap.activity[0]["online"] == "true"  # d1 active
-    # selected device's throughput trend has per-interval buckets (ts1=6, ts2=8)
+    totals = {a.name: a.values for a in snap.activity}
+    assert totals == {"d1": 14, "d2": 14}
+    # types: integer count + boolean online, in the model AND its JSON dump (not diagnostic strings)
+    assert isinstance(snap.activity[0].values, int) and snap.activity[0].online is True
+    dumped = snap.model_dump()["activity"][0]
+    assert dumped["values"] == 14 and dumped["online"] is True
+    # selected device's per-interval data-point rate (ts1=6, ts2=8)
     assert [p.v for p in snap.activity_series] == [6.0, 8.0]
 
 
@@ -150,6 +153,130 @@ def test_snapshot_activity_off_by_default() -> None:
     fake = FakeSession()
     snap = monitoring.snapshot(fake, fake, "tid", "24h", None, None, "ok")  # type: ignore[arg-type]
     assert snap.activity == [] and snap.activity_series == []  # Monitoring path unaffected
+
+
+class _CountFake:
+    """A TB session stub that returns a fixed COUNT payload for values/timeseries."""
+
+    def __init__(self, data: Any) -> None:
+        self._data = data
+        self.calls = 0
+
+    def _get(self, path: str, **kw: Any) -> Any:
+        if "values/timeseries" in path and kw.get("agg") == "COUNT":
+            self.calls += 1
+            return self._data
+        return {}
+
+
+def test_activity_one_key() -> None:
+    f = _CountFake({"temperature": [{"ts": 1, "value": "5"}]})
+    series = monitoring._activity_series(f, "d", "24h")  # type: ignore[arg-type]
+    assert [p.v for p in series] == [5.0]
+    assert monitoring._activity_total(series) == 5
+
+
+def test_activity_multiple_keys_summed_per_bucket() -> None:
+    f = _CountFake(
+        {
+            "temperature": [{"ts": 1, "value": "3"}, {"ts": 2, "value": "4"}],
+            "humidity": [{"ts": 1, "value": "3"}, {"ts": 2, "value": "4"}],
+        }
+    )
+    series = monitoring._activity_series(f, "d", "24h")  # type: ignore[arg-type]
+    assert [(p.v) for p in series] == [6.0, 8.0]
+    assert monitoring._activity_total(series) == 14
+
+
+def test_activity_keys_with_different_sample_counts() -> None:
+    # a key missing from a bucket contributes 0 to that bucket (only present points are summed)
+    f = _CountFake(
+        {
+            "temperature": [
+                {"ts": 1, "value": "2"},
+                {"ts": 2, "value": "2"},
+                {"ts": 3, "value": "2"},
+            ],
+            "humidity": [{"ts": 1, "value": "5"}],
+        }
+    )
+    series = monitoring._activity_series(f, "d", "24h")  # type: ignore[arg-type]
+    assert [p.v for p in series] == [7.0, 2.0, 2.0]  # ts1=2+5, ts2=2, ts3=2
+    assert monitoring._activity_total(series) == 11
+
+
+def test_activity_empty_and_no_keys() -> None:
+    # empty device (no COUNT data) and a device with no telemetry keys both yield 0
+    empty = _CountFake({})
+    assert monitoring._activity_series(empty, "d", "24h") == []  # type: ignore[arg-type]
+    assert monitoring._activity_total([]) == 0
+    not_dict = _CountFake([])  # TB returned a non-dict → defensive empty
+    assert monitoring._activity_series(not_dict, "d", "24h") == []  # type: ignore[arg-type]
+
+
+def test_activity_boundary_timestamps_included() -> None:
+    back, _interval, _agg = monitoring.RANGES["24h"]
+    end = 1_000_000_000_000
+    start = end - back * 1000
+    f = _CountFake({"temperature": [{"ts": start, "value": "1"}, {"ts": end, "value": "1"}]})
+    series = monitoring._activity_series(f, "d", "24h")  # type: ignore[arg-type]
+    assert monitoring._activity_total(series) == 2  # both boundary points counted
+
+
+def test_activity_all_ranges_run() -> None:
+    for rng in monitoring.RANGES:
+        f = _CountFake({"temperature": [{"ts": 1, "value": "2"}]})
+        series = monitoring._activity_series(f, "d", rng)  # type: ignore[arg-type]
+        assert monitoring._activity_total(series) == 2 and f.calls == 1
+
+
+def test_activity_cache_separation(
+    client: TestClient, flags_on: None, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Telemetry (with_activity) and ordinary monitoring/data must NOT share a cache entry, even for
+    identical (project, range, device, key) — else one would serve the other's payload."""
+    from contextlib import contextmanager
+
+    from sqlalchemy.orm import Session
+
+    from app.db import get_engine
+    from app.models import Project, ProjectMember
+
+    monitoring._CACHE.clear()
+    with Session(get_engine()) as db:
+        db.add_all(
+            [
+                Project(
+                    id="pc",
+                    slug="pc",
+                    name="PC",
+                    provisioning_state="provisioned",
+                    tb_tenant_id="t",
+                ),
+                ProjectMember(
+                    project_id="pc", user_id="cu", role="owner", tb_user_id="tb", status="active"
+                ),
+            ]
+        )
+        db.commit()
+
+    user = SimpleNamespace(id="cu", email="c@x.io", role="student")
+    monkeypatch.setattr("app.project.load_user", lambda request, db: user)
+    fake = FakeSession()
+
+    @contextmanager
+    def fake_as_project(member: Any) -> Any:
+        yield fake, fake
+
+    monkeypatch.setattr("app.routers.monitoring.as_project", fake_as_project)
+
+    # ordinary monitoring JSON first (no activity), then telemetry (with activity) — same base key
+    r_mon = client.get("/projects/pc/monitoring/data")
+    assert r_mon.status_code == 200 and r_mon.json()["activity"] == []
+    r_tel = client.get("/projects/pc/telemetry")
+    assert r_tel.status_code == 200 and "Telemetry activity" in r_tel.text and "d1" in r_tel.text
+    # and the reverse order still keeps them separate (monitoring stays activity-free)
+    assert client.get("/projects/pc/monitoring/data").json()["activity"] == []
 
 
 def test_snapshot_bad_range_clamps() -> None:

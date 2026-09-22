@@ -56,29 +56,29 @@
 
 <div class="grid-2" style="margin-top:1rem">
   <div class="panel">
-    <h2 class="panel__title">{{ _("Device activity") }} <span class="muted">({{ s.range }})</span></h2>
+    <h2 class="panel__title">{{ _("Telemetry activity") }} <span class="muted">({{ s.range }})</span></h2>
     {% if s.activity %}
-    <table class="dtable"><thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Data points") }}</th><th>{{ _("Last seen") }}</th></tr></thead><tbody>
+    <table class="dtable"><thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Telemetry values received") }}</th><th>{{ _("Last seen") }}</th></tr></thead><tbody>
       {% for a in s.activity %}<tr>
         <td><strong>{{ a.name }}</strong></td>
-        <td><span class="dot {{ 'dot--on' if a.online == 'true' else 'dot--off' }}"></span>{{ _("Online") if a.online == 'true' else _("Offline") }}</td>
-        <td>{{ a.points }}</td>
+        <td><span class="dot {{ 'dot--on' if a.online else 'dot--off' }}"></span>{{ _("Online") if a.online else _("Offline") }}</td>
+        <td>{{ a.values }}</td>
         <td class="muted">{{ a.last_seen or '—' }}</td>
       </tr>{% endfor %}
     </tbody></table>
-    {% else %}<p class="helper">{{ _("No device activity in the selected range.") }}</p>{% endif %}
+    {% else %}<p class="helper">{{ _("No telemetry activity in the selected range.") }}</p>{% endif %}
   </div>
   <div class="panel">
-    <h2 class="panel__title">{{ _("Throughput") }} <span class="muted">{{ s.selected_device and (s.available_devices | selectattr('id','equalto',s.selected_device) | map(attribute='name') | first) or '' }}</span></h2>
+    <h2 class="panel__title">{{ _("Data-point rate") }} <span class="muted">{{ s.selected_device and (s.available_devices | selectattr('id','equalto',s.selected_device) | map(attribute='name') | first) or '' }}</span></h2>
     {% if s.activity_series %}
       <div class="chart-box"><canvas id="telActivityChart"></canvas></div>
     {% else %}
-      <p class="helper">{{ _("No activity to chart for this device in the selected range.") }}</p>
+      <p class="helper">{{ _("No telemetry activity to chart for this device in the selected range.") }}</p>
     {% endif %}
   </div>
 </div>
 
-<p class="helper" style="margin-top:.5rem">{{ _("Data points = telemetry values received (a per-device traffic proxy).") }}</p>
+<p class="helper" style="margin-top:.5rem">{{ _("Telemetry activity counts telemetry values received (stored data points) — one per key per submission, so a device sending more keys reads higher. It is an activity indicator, not message/transport throughput, delivery success, packets, uplinks or bytes.") }}</p>
 <p class="helper" style="margin-top:.25rem">{{ _("Updated") }} <span id="tel-updated">{{ s.generated_at }}</span></p>
 
 <script type="application/json" id="tel-data">{{ s | tojson }}</script>

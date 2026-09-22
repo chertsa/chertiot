@@ -26,6 +26,9 @@ RANGES: dict[str, tuple[int, int, str]] = {
 }
 DEFAULT_RANGE = "24h"
 PREFERRED_KEYS = ("temperature", "humidity")  # highlighted only when actually present
+# Telemetry activity fans out one TB request per device; bound it so a large fleet can't issue an
+# unbounded burst. Devices beyond this drop out of the activity table (charts/latest unaffected).
+ACTIVITY_MAX_DEVICES = 60
 _TS_KEYS = [
     "temperature",
     "humidity",
@@ -59,6 +62,16 @@ class SeriesPoint(BaseModel):
     v: float
 
 
+class ActivityRow(BaseModel):
+    """Per-device Telemetry activity. `values` = telemetry values (stored data points) received in
+    the range — an ACTIVITY proxy, not message/transport throughput (see snapshot() docstring)."""
+
+    name: str
+    values: int = 0
+    online: bool = False
+    last_seen: str | None = None
+
+
 class ServiceHealth(BaseModel):
     thingsboard_connectivity: Literal["ok", "degraded", "unknown"] = "unknown"
     node_red: Literal["ok", "stopped", "unknown"] = "unknown"
@@ -72,8 +85,8 @@ class MonitoringSnapshot(BaseModel):
     available_devices: list[dict[str, str]] = []
     numeric_keys: list[str] = []
     latest_values: list[dict[str, str]] = []
-    activity: list[dict[str, str]] = []  # per-device data-point counts over the range (Telemetry)
-    activity_series: list[SeriesPoint] = []  # selected device's data-points per interval
+    activity: list[ActivityRow] = []  # per-device telemetry-value counts over the range (Telemetry)
+    activity_series: list[SeriesPoint] = []  # selected device's per-interval data-point rate
     device_count: int = 0
     online_count: int = 0
     offline_count: int = 0
@@ -220,9 +233,14 @@ def _series(session: TbClient, device_id: str, key: str, rng: str) -> list[Serie
 
 
 def _activity_series(session: TbClient, device_id: str, rng: str) -> list[SeriesPoint]:
-    """Per-interval data-point count for one device (COUNT aggregation) — a throughput trend.
-    ThingsBoard has no per-device Prometheus metric, so this is derived from the device's own
-    telemetry (tenant-scoped). Bucketed COUNT is summed across the device's known keys."""
+    """Per-interval **data-point rate** for one device: ThingsBoard COUNT aggregation over the
+    device's known keys, bucketed by the range's interval, summed across keys per bucket.
+
+    One counted unit = one telemetry VALUE stored by ThingsBoard (one key's value in one interval
+    bucket). A single telemetry submission carrying N keys therefore contributes N values, so this
+    counts *stored data points*, NOT messages/packets/uplinks/bytes and NOT delivery success/failure
+    — an activity proxy, not transport throughput. One TB request per device (all keys + all buckets
+    in that single response), so cost is O(devices), not devices×keys×buckets."""
     back, interval, _agg = RANGES[rng]
     end = int(time.time() * 1000)
     data = session._get(  # noqa: SLF001
@@ -248,8 +266,9 @@ def _activity_series(session: TbClient, device_id: str, rng: str) -> list[Series
 
 
 def _activity_total(series: list[SeriesPoint]) -> int:
-    """Total data points over the range = sum of the per-interval buckets (consistent with the
-    trend, unlike a single giant COUNT interval which ThingsBoard aggregates unreliably)."""
+    """Total telemetry values received over the range = sum of the per-interval bucket counts
+    (consistent with the rate series; a single giant COUNT interval is aggregated unreliably by TB).
+    Integer by construction — TB COUNT values are whole counts."""
     return int(sum(p.v for p in series))
 
 
@@ -310,22 +329,24 @@ def snapshot(
     if with_activity and snap.available_devices:
         try:
             by_name = {r.name: r for r in snap.devices}
-            act: list[dict[str, str]] = []
-            for d in snap.available_devices:
+            act: list[ActivityRow] = []
+            # One TB request per device (bounded by ACTIVITY_MAX_DEVICES) — O(devices), never
+            # devices×keys×buckets. A per-device failure degrades that row to 0, not the whole page.
+            for d in snap.available_devices[:ACTIVITY_MAX_DEVICES]:
                 try:
                     dseries = _activity_series(session, d["id"], rng)
                 except Exception:  # noqa: BLE001
                     dseries = []
                 if d["id"] == sel:
-                    snap.activity_series = dseries  # selected device's throughput trend
+                    snap.activity_series = dseries  # selected device's per-interval rate
                 row = by_name.get(d["name"])
                 act.append(
-                    {
-                        "name": d["name"],
-                        "points": str(_activity_total(dseries)),
-                        "online": "true" if (row and row.active) else "false",
-                        "last_seen": (row.last_seen if row and row.last_seen else "") or "",
-                    }
+                    ActivityRow(
+                        name=d["name"],
+                        values=_activity_total(dseries),
+                        online=bool(row and row.active),
+                        last_seen=(row.last_seen if row else None),
+                    )
                 )
             snap.activity = act
         except Exception:  # noqa: BLE001

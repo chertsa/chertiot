@@ -980,3 +980,27 @@ msgstr "لا يوجد نشاط لعرضه لهذا الجهاز في النطا�
 #: app/templates/telemetry.html
 msgid "Data points = telemetry values received (a per-device traffic proxy)."
 msgstr "نقاط البيانات = قيم القياس المستلمة (مؤشر تقريبي لحركة كل جهاز)."
+
+#: app/templates/telemetry.html
+msgid "Telemetry activity"
+msgstr "نشاط القياس"
+
+#: app/templates/telemetry.html
+msgid "Telemetry values received"
+msgstr "قيم القياس المستلمة"
+
+#: app/templates/telemetry.html
+msgid "Data-point rate"
+msgstr "معدل نقاط البيانات"
+
+#: app/templates/telemetry.html
+msgid "No telemetry activity in the selected range."
+msgstr "لا يوجد نشاط قياس في النطاق المحدد."
+
+#: app/templates/telemetry.html
+msgid "No telemetry activity to chart for this device in the selected range."
+msgstr "لا يوجد نشاط قياس لعرضه لهذا الجهاز في النطاق المحدد."
+
+#: app/templates/telemetry.html
+msgid "Telemetry activity counts telemetry values received (stored data points) — one per key per submission, so a device sending more keys reads higher. It is an activity indicator, not message/transport throughput, delivery success, packets, uplinks or bytes."
+msgstr "يحسب نشاط القياس قيم القياس المستلمة (نقاط البيانات المخزَّنة) — قيمة لكل مفتاح في كل إرسال، لذا يظهر الجهاز الذي يرسل مفاتيح أكثر برقم أعلى. وهو مؤشر نشاط وليس معدل نقل الرسائل أو نجاح التسليم أو الحزم أو الوصلات أو البايتات."

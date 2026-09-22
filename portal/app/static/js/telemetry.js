@@ -39,7 +39,7 @@
       data: {
         labels: snap.activity_series.map(function (p) { return p.t; }),
         datasets: [{
-          label: 'data points', data: snap.activity_series.map(function (p) { return p.v; }),
+          label: 'telemetry values', data: snap.activity_series.map(function (p) { return p.v; }),
           backgroundColor: 'rgba(242,107,51,.55)', borderColor: '#F26B33', borderWidth: 1
         }]
       },
