@@ -16,9 +16,9 @@ Permission matrix (allowed = ✓):
   view / telemetry / monitoring |   ✓    |  ✓    | any active member (membership gate)
   device manage, alert rules    |   ✓    |  ✓    | any active member
   flows edit, notebook launch   |   ✓    |  ✓    | any active member
-  dashboard reset               |   ✓    |  ✓    | any active member
   open ThingsBoard console      |   ✓    |  ✓    | any active member
   alert ack (non-critical)      |   ✓    |  ✓    | any active member
+  dashboard reset               |   ✗    |  ✓    | owner only (D5; corrected 2026-09-23)
   alert ack (CRITICAL)          |   ✗    |  ✓    | owner only
   member invite                 |   ✗    |  ✓    | owner only
   member manage (en/disable/rm) |   ✗    |  ✓    | owner only
@@ -41,15 +41,26 @@ from typing import Any
 
 
 class Cap(StrEnum):
-    # --- project capabilities (require an active membership) ---
+    # --- project capabilities: any ACTIVE member (enforced by the membership gate) ---
+    OVERVIEW_VIEW = "overview.view"
+    DEVICE_VIEW = "device.view"  # list + details
+    DEVICE_CREATE = "device.create"
+    DEVICE_CREDENTIALS = "device.credentials"  # view/rotate access token
+    DEVICE_DELETE = "device.delete"  # a device (not the project)
+    DEVICE_MANAGE = "device.manage"  # rename/other metadata
+    TELEMETRY_VIEW = "telemetry.view"
+    MONITORING_VIEW = "monitoring.view"
+    REPORTS_VIEW = "reports.view"
     ALERT_ACK = "alert.ack"  # non-critical severities
-    ALERT_ACK_CRITICAL = "alert.ack.critical"
-    ALERT_MANAGE = "alert.manage"
-    DEVICE_MANAGE = "device.manage"
-    DASHBOARD_RESET = "dashboard.reset"
-    FLOWS_EDIT = "flows.edit"
-    NOTEBOOK_LAUNCH = "notebook.launch"
+    ALERT_MANAGE = "alert.manage"  # alert-rule create/delete
+    FLOWS_EDIT = "flows.edit"  # Node-RED view/start/runtime
+    NOTEBOOK_LAUNCH = "notebook.launch"  # Jupyter named server
+    LORA_VIEW = "lora.view"
+    LORA_REGISTER = "lora.register"  # register device + its LoRa credentials
     THINGSBOARD_OPEN = "thingsboard.open"
+    # --- project capabilities: OWNER only ---
+    DASHBOARD_RESET = "dashboard.reset"
+    ALERT_ACK_CRITICAL = "alert.ack.critical"
     MEMBER_INVITE = "member.invite"
     MEMBER_MANAGE = "member.manage"
     JOIN_RESOLVE = "join.resolve"
@@ -63,6 +74,7 @@ class Cap(StrEnum):
 # any active member.
 _OWNER_ONLY: frozenset[Cap] = frozenset(
     {
+        Cap.DASHBOARD_RESET,
         Cap.ALERT_ACK_CRITICAL,
         Cap.MEMBER_INVITE,
         Cap.MEMBER_MANAGE,

@@ -62,11 +62,13 @@
   {% endif %}
 </div>
 
+{% if is_owner %}
 <h2 class="section-h" style="margin-top:2rem">{{ _("Settings") }}</h2>
 <div class="panel">
   <p class="helper">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}</p>
   <form method="post" action="/projects/{{ project.id }}/dashboard/reset" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
 </div>
+{% endif %}
 
 {% if is_owner %}
 <div class="panel" style="margin-top:1rem;border-color:var(--chert-crit)">

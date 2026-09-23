@@ -240,7 +240,10 @@ services:
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
       GF_USERS_ALLOW_SIGN_UP: "false"
-      # Single sign-on via the existing Keycloak `grafana` client (students → read-only Viewer).
+      # SSO via the Keycloak `grafana` client. Platform monitoring is STAFF-ONLY: the OAuth login is
+      # gated by the user's Keycloak realm role (emitted as the `roles` claim), NOT just the portal
+      # link. role_attribute_strict denies any user whose role resolves to an invalid value (i.e. a
+      # student with no platform role) — they cannot obtain a Grafana session even direct.
       GF_SERVER_ROOT_URL: https://grafana.${DOMAIN}
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: CHERT IoT
@@ -252,7 +255,9 @@ services:
       GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.${DOMAIN}/realms/chertiot/protocol/openid-connect/userinfo
       GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: "true"
       GF_AUTH_GENERIC_OAUTH_USE_PKCE: "true"
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "'Viewer'"
+      # platform-admin -> Admin, platform-instructor -> Viewer, anyone else -> invalid -> denied.
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(roles[*], 'platform-admin') && 'Admin' || contains(roles[*], 'platform-instructor') && 'Viewer' || 'None'"
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: "true"
       # Single identity: land straight in Keycloak SSO instead of Grafana's local login form.
       # Users signed into the portal are already authenticated to Keycloak, so this is seamless.
       # Break-glass local admin login stays reachable at /login?disableAutoLogin.

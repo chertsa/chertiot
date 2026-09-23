@@ -45,8 +45,29 @@ CLIENTS: dict[str, dict[str, Any]] = {
         "secret": os.environ["KC_SECRET_GRAFANA"],
         "redirectUris": [f"{SCHEME}://grafana.{DOMAIN}/login/generic_oauth"],
         "webOrigins": [f"{SCHEME}://grafana.{DOMAIN}"],
+        # Emit the user's realm roles as a `roles` claim (userinfo + tokens) so Grafana's OAuth can
+        # gate access by role (platform-admin/platform-instructor) with role_attribute_strict — a
+        # student with no platform role is denied a Grafana session, not just the portal link.
+        "mappers": [
+            {
+                "name": "realm roles",
+                "protocol": "openid-connect",
+                "protocolMapper": "oidc-usermodel-realm-role-mapper",
+                "config": {
+                    "claim.name": "roles",
+                    "jsonType.label": "String",
+                    "multivalued": "true",
+                    "userinfo.token.claim": "true",
+                    "access.token.claim": "true",
+                    "id.token.claim": "false",
+                },
+            }
+        ],
     },
 }
+
+# Realm roles that mark platform staff (kept in sync from the portal role by scripts.grant_role).
+PLATFORM_ROLES = ["platform-admin", "platform-instructor"]
 
 
 def admin_client() -> httpx.Client:
@@ -145,6 +166,41 @@ def ensure_client(c: httpx.Client, client_id: str, spec: dict[str, Any]) -> None
         print(f"client {client_id}: created")
     if spec.get("realmManagementRoles"):
         ensure_service_account_roles(c, internal_id, client_id, spec["realmManagementRoles"])
+    if spec.get("mappers"):
+        ensure_client_mappers(c, internal_id, client_id, spec["mappers"])
+
+
+def ensure_client_mappers(
+    c: httpx.Client, internal_id: str, client_id: str, mappers: list[dict[str, Any]]
+) -> None:
+    existing = {
+        m["name"]: m
+        for m in c.get(f"/{REALM}/clients/{internal_id}/protocol-mappers/models").json()
+    }
+    for m in mappers:
+        if m["name"] in existing:
+            mid = existing[m["name"]]["id"]
+            c.put(
+                f"/{REALM}/clients/{internal_id}/protocol-mappers/models/{mid}",
+                json={**existing[m["name"]], **m},
+            ).raise_for_status()
+        else:
+            c.post(
+                f"/{REALM}/clients/{internal_id}/protocol-mappers/models", json=m
+            ).raise_for_status()
+    print(f"client {client_id}: protocol mappers {[m['name'] for m in mappers]}")
+
+
+def ensure_realm_roles(c: httpx.Client) -> None:
+    for name in PLATFORM_ROLES:
+        if c.get(f"/{REALM}/roles/{name}").status_code == 404:
+            c.post(
+                f"/{REALM}/roles",
+                json={"name": name, "description": f"CHERT platform role: {name}"},
+            ).raise_for_status()
+            print(f"realm role {name}: created")
+        else:
+            print(f"realm role {name}: exists")
 
 
 def ensure_service_account_roles(
@@ -204,6 +260,7 @@ def ensure_dev_user(c: httpx.Client) -> None:
 def main() -> int:
     c = admin_client()
     ensure_realm(c)
+    ensure_realm_roles(c)
     for client_id, spec in CLIENTS.items():
         ensure_client(c, client_id, spec)
     ensure_user_profile(c)

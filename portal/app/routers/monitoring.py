@@ -8,7 +8,6 @@ is ever serialised to the browser.
 """
 
 from typing import Any
-from urllib.parse import urlparse
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -17,6 +16,7 @@ from sqlalchemy.orm import Session
 from app import flows, monitoring, permissions
 from app.audit import audit
 from app.config import get_settings
+from app.csrf import require_same_origin
 from app.db import get_db
 from app.project import as_project, require_api_membership, require_membership
 from app.ratelimit import rate_limited
@@ -43,16 +43,6 @@ def _node_red_state(project_id: str) -> str:
         return "ok" if flows.ready(project_id) else "stopped"
     except Exception:  # noqa: BLE001
         return "unknown"
-
-
-def _origin_ok(request: Request) -> None:
-    """Lightweight same-origin (CSRF) guard for the ack mutation, on top of the SameSite=lax cookie:
-    if the browser sent an Origin/Referer, its host must match the request host."""
-    ref = request.headers.get("origin") or request.headers.get("referer") or ""
-    host = request.headers.get("host", "")
-    o = urlparse(ref).netloc
-    if o and host and o != host:
-        raise HTTPException(status_code=403, detail="cross-origin request rejected")
 
 
 def _build(
@@ -162,7 +152,7 @@ def ack_alarm(
     request: Request, project_id: str, alarm_id: str, db: Session = Depends(get_db)
 ) -> Any:
     _require_flag()
-    _origin_ok(request)
+    require_same_origin(request)
     user, project, member = require_api_membership(request, db, project_id)  # non-member → 403
     with as_project(member) as (_sysadmin, session):
         try:
