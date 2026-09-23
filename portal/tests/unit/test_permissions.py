@@ -155,6 +155,23 @@ def test_dashboard_reset_owner_only_and_csrf(monkeypatch: pytest.MonkeyPatch) ->
     assert r.status_code == 303 and r.headers["location"] == "/projects/pp"
 
 
+def test_destructive_routes_reject_cross_origin(monkeypatch: pytest.MonkeyPatch) -> None:
+    import app.main
+
+    client = TestClient(app.main.app, follow_redirects=False)
+    owner = _seed("owner")
+    monkeypatch.setattr("app.project.load_user", lambda request, db: owner)
+    xorigin = {"origin": "https://evil.example"}
+    # destructive owner routes are same-origin (CSRF) guarded → 403 cross-origin, before any action
+    assert client.post("/projects/pp/delete", headers=xorigin).status_code == 403
+    assert (
+        client.post("/projects/pp/invite", data={"email": "x@y.io"}, headers=xorigin).status_code
+        == 403
+    )
+    assert client.post("/projects/pp/members/m1/remove", headers=xorigin).status_code == 403
+    assert client.post("/projects/pp/requests/r1/approve", headers=xorigin).status_code == 403
+
+
 def test_ack_critical_owner_only_over_http(monkeypatch: pytest.MonkeyPatch) -> None:
     import app.main
 
