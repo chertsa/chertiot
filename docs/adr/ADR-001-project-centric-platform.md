@@ -143,3 +143,23 @@ no-workarounds policy. The only spike is the CE act-as-user token-consumption fl
 ## Next
 Start **M5.1 backbone** on the Project = Tenant model, beginning with the act-as-user token spike
 (prove the CE flow) before wiring provisioning + UX. Fresh rebuild throughout; no production gate.
+
+## Addendum (v2, 2026-09-23) — reconciliation with the v2 build
+
+This ADR remains authoritative and unchanged on tenancy: **Project = a ThingsBoard Tenant; no TB
+Customers, no customer-users** (verified in `app/project.py`). The following v2 clarifications resolve
+contradictions in the v2 master plan (`docs/owner_uat/4/CHERT_IoT_v2_Unified_Platform_Master_Plan.md`,
+now carrying an as-built §0 banner):
+
+- **Project monitoring is portal-native (ThingsBoard-backed), not Grafana.** The v2 Monitoring and
+  Telemetry tabs query the project's TB tenant directly (tenant-scoped, server-side isolated).
+  **Project-scoped Grafana is DEFERRED**; Grafana is platform (infra) monitoring only, **staff-only**
+  (enforced at the Grafana OAuth layer via a Keycloak realm role — not merely a portal link).
+- **Arabic is translation-only LTR** (`lang="ar"`, `dir="ltr"`, no RTL) — `app/i18n.py`.
+- **Authorization** is centralized in `app/permissions.py` (capability matrix). Project = TB Tenant
+  means the membership gate (`require_membership`/`require_api_membership`) is the primary boundary;
+  owner-only capabilities (invite, member-manage, join-resolve, delete, dashboard-reset, CRITICAL ack)
+  add the owner check via that module.
+- **Phase status:** v2 Phases 0–3 + LoRaWAN/Notebooks done and staged; Phase 4 (authorization) in owner
+  review; Visual/RC and production cutover pending. **Production remains frozen v1**
+  (`chertiot-v1-as-is-final` → `9a02579`).
