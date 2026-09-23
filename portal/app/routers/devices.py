@@ -11,7 +11,6 @@ from sqlalchemy.orm import Session
 from app import permissions
 from app.audit import audit
 from app.config import get_settings
-from app.csrf import require_same_origin
 from app.db import get_db
 from app.export import MAX_RANGE_MS, iter_rows, stream_csv, stream_json
 from app.project import as_project, require_membership
@@ -247,7 +246,6 @@ def delete_device(
 def reset_dashboard(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
     """Re-import the starter dashboard over the project's copy (D5). Owner-only (destructive to the
     shared project dashboard); same-origin guarded."""
-    require_same_origin(request)
     user, project, member = require_membership(request, db, project_id)
     if not permissions.project_can(member, permissions.Cap.DASHBOARD_RESET):
         raise HTTPException(status_code=403, detail="only the owner can reset the dashboard")

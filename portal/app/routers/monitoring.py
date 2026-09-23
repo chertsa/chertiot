@@ -16,7 +16,6 @@ from sqlalchemy.orm import Session
 from app import flows, monitoring, permissions
 from app.audit import audit
 from app.config import get_settings
-from app.csrf import require_same_origin
 from app.db import get_db
 from app.project import as_project, require_api_membership, require_membership
 from app.ratelimit import rate_limited
@@ -152,7 +151,6 @@ def ack_alarm(
     request: Request, project_id: str, alarm_id: str, db: Session = Depends(get_db)
 ) -> Any:
     _require_flag()
-    require_same_origin(request)
     user, project, member = require_api_membership(request, db, project_id)  # non-member → 403
     with as_project(member) as (_sysadmin, session):
         try:

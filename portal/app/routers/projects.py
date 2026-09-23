@@ -10,7 +10,6 @@ from sqlalchemy.orm import Session
 
 from app import permissions
 from app.config import get_settings
-from app.csrf import require_same_origin
 from app.dashboard import alarm_history, dashboard_data
 from app.db import get_db
 from app.models import Project, ProjectJoinRequest, ProjectMember
@@ -231,7 +230,6 @@ def open_thingsboard(request: Request, project_id: str, db: Session = Depends(ge
 
 @router.post("/projects/{project_id}/delete")
 def delete(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
-    require_same_origin(request)
     user, project, member = require_membership(request, db, project_id)
     if not permissions.project_can(member, permissions.Cap.PROJECT_DELETE):
         raise HTTPException(status_code=403, detail="only the owner can delete a project")
@@ -247,7 +245,6 @@ def invite(
     email: Annotated[str, Form()],
     db: Session = Depends(get_db),
 ) -> Any:
-    require_same_origin(request)
     project, _owner = _require_owner(request, db, project_id)
     if "@" in email and len(email) <= 320:
         create_invite(db, project, load_user(request, db), email)  # type: ignore[arg-type]
@@ -293,7 +290,6 @@ def join(request: Request, project_id: str, db: Session = Depends(get_db)) -> An
 def resolve_request(
     request: Request, project_id: str, req_id: str, decision: str, db: Session = Depends(get_db)
 ) -> Any:
-    require_same_origin(request)
     project, _owner = _require_owner(request, db, project_id)
     req = db.get(ProjectJoinRequest, req_id)
     if req and req.project_id == project_id and req.status == "pending":
@@ -305,7 +301,6 @@ def resolve_request(
 def manage_member(
     request: Request, project_id: str, member_id: str, action: str, db: Session = Depends(get_db)
 ) -> Any:
-    require_same_origin(request)
     project, owner_member = _require_owner(request, db, project_id)
     target = db.get(ProjectMember, member_id)
     if target is None or target.project_id != project_id or target.role == "owner":

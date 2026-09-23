@@ -103,7 +103,7 @@ def test_member_cannot_delete_or_invite(monkeypatch: pytest.MonkeyPatch) -> None
     assert client.post("/projects/pp/invite", data={"email": "x@y.io"}).status_code == 403
 
 
-def test_dashboard_reset_owner_only_and_csrf(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_dashboard_reset_owner_only(monkeypatch: pytest.MonkeyPatch) -> None:
     import app.main
 
     client = TestClient(app.main.app, follow_redirects=False)
@@ -115,17 +115,10 @@ def test_dashboard_reset_owner_only_and_csrf(monkeypatch: pytest.MonkeyPatch) ->
     monkeypatch.setattr("app.routers.devices.as_project", fake_as_project)
     monkeypatch.setattr("app.routers.devices.ensure_starter_dashboard", lambda *a, **k: None)
 
-    # active member (not owner) → 403 owner-only
+    # active member (not owner) → 403 owner-only (CSRF is covered centrally in test_csrf.py)
     member = _seed("member")
     monkeypatch.setattr("app.project.load_user", lambda request, db: member)
     assert client.post("/projects/pp/dashboard/reset").status_code == 403
-    # CSRF: cross-origin Origin header is rejected (before anything else)
-    assert (
-        client.post(
-            "/projects/pp/dashboard/reset", headers={"origin": "https://evil.example"}
-        ).status_code
-        == 403
-    )
     # project-UUID substitution: member of pp posts to a project they're not in → denied (303 /home)
     r = client.post("/projects/other/dashboard/reset")
     assert r.status_code == 303 and r.headers["location"] == "/home"
@@ -153,23 +146,6 @@ def test_dashboard_reset_owner_only_and_csrf(monkeypatch: pytest.MonkeyPatch) ->
         db.commit()
     r = client.post("/projects/pp/dashboard/reset")
     assert r.status_code == 303 and r.headers["location"] == "/projects/pp"
-
-
-def test_destructive_routes_reject_cross_origin(monkeypatch: pytest.MonkeyPatch) -> None:
-    import app.main
-
-    client = TestClient(app.main.app, follow_redirects=False)
-    owner = _seed("owner")
-    monkeypatch.setattr("app.project.load_user", lambda request, db: owner)
-    xorigin = {"origin": "https://evil.example"}
-    # destructive owner routes are same-origin (CSRF) guarded → 403 cross-origin, before any action
-    assert client.post("/projects/pp/delete", headers=xorigin).status_code == 403
-    assert (
-        client.post("/projects/pp/invite", data={"email": "x@y.io"}, headers=xorigin).status_code
-        == 403
-    )
-    assert client.post("/projects/pp/members/m1/remove", headers=xorigin).status_code == 403
-    assert client.post("/projects/pp/requests/r1/approve", headers=xorigin).status_code == 403
 
 
 def test_ack_critical_owner_only_over_http(monkeypatch: pytest.MonkeyPatch) -> None:

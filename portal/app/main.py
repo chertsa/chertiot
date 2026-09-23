@@ -3,7 +3,7 @@ from collections.abc import Awaitable, Callable
 from pathlib import Path
 
 import httpx
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -11,6 +11,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.auth import configure_oauth
 from app.config import get_settings
+from app.csrf import check_csrf, is_cookie_authenticated
 from app.i18n import translator
 from app.keycloak_admin import KeycloakError
 from app.routers import (
@@ -105,6 +106,25 @@ async def _security_headers(
     response.headers.setdefault("Referrer-Policy", "same-origin")
     response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     return response
+
+
+# --- CSRF: every cookie-authenticated browser mutation must originate from the portal itself.
+# Enforced centrally here (before any route runs), exact-origin only — SameSite=Lax + the parent-
+# domain cookie are NOT sufficient (a sibling subdomain could otherwise forge a mutation). Requests
+# without the session cookie (server-to-server / shared-secret APIs like /internal/*) are skipped.
+_CSRF_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+@app.middleware("http")
+async def _csrf_guard(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
+    if request.method in _CSRF_METHODS and is_cookie_authenticated(request):
+        try:
+            check_csrf(request)
+        except HTTPException as exc:
+            return Response(status_code=exc.status_code)
+    return await call_next(request)
 
 
 app.mount(
