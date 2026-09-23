@@ -13,8 +13,8 @@ from typing import Any
 
 import httpx
 
-KC = os.environ.get("KC_ADMIN_URL", os.environ.get("KC_INTERNAL_URL", "http://localhost:8080"))
-REALM = os.environ["KC_REALM"]
+from scripts.kc_roles import PLATFORM_ROLES, REALM, admin_client
+
 ENV = os.environ.get("ENV", "dev")
 TB_URL = os.environ["TB_PUBLIC_URL"].rstrip("/")
 PORTAL_URL = os.environ["PORTAL_PUBLIC_URL"].rstrip("/")
@@ -65,28 +65,6 @@ CLIENTS: dict[str, dict[str, Any]] = {
         ],
     },
 }
-
-# Realm roles that mark platform staff (kept in sync from the portal role by scripts.grant_role).
-PLATFORM_ROLES = ["platform-admin", "platform-instructor"]
-
-
-def admin_client() -> httpx.Client:
-    r = httpx.post(
-        f"{KC}/realms/master/protocol/openid-connect/token",
-        data={
-            "grant_type": "password",
-            "client_id": "admin-cli",
-            "username": os.environ["KEYCLOAK_ADMIN"],
-            "password": os.environ["KEYCLOAK_ADMIN_PASSWORD"],
-        },
-        timeout=30,
-    )
-    r.raise_for_status()
-    return httpx.Client(
-        base_url=f"{KC}/admin/realms",
-        headers={"Authorization": f"Bearer {r.json()['access_token']}"},
-        timeout=30,
-    )
 
 
 def realm_representation() -> dict[str, Any]:

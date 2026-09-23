@@ -24,7 +24,7 @@ _ROLE_TO_REALM = {"admin": "platform-admin", "instructor": "platform-instructor"
 def sync_keycloak_role(kc_user_id: str, portal_role: str) -> str:
     """Assign the matching platform realm role and remove the others. Returns a status string.
     Best-effort: never blocks the portal-DB change (returns an error string instead of raising)."""
-    from scripts.setup_keycloak import PLATFORM_ROLES, REALM, admin_client
+    from scripts.kc_roles import PLATFORM_ROLES, REALM, admin_client
 
     want = _ROLE_TO_REALM[portal_role]
     try:
