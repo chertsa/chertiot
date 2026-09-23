@@ -255,8 +255,10 @@ services:
       GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.${DOMAIN}/realms/chertiot/protocol/openid-connect/userinfo
       GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: "true"
       GF_AUTH_GENERIC_OAUTH_USE_PKCE: "true"
-      # platform-admin -> Admin, platform-instructor -> Viewer, anyone else -> invalid -> denied.
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(roles[*], 'platform-admin') && 'Admin' || contains(roles[*], 'platform-instructor') && 'Viewer' || 'None'"
+      # platform-admin -> Admin, platform-instructor -> Viewer, anyone else -> empty role.
+      # With role_attribute_strict, an EMPTY role denies login outright (note: 'None' would NOT deny
+      # — Grafana treats it as a valid no-access RBAC role and still creates a session).
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(roles[*], 'platform-admin') && 'Admin' || contains(roles[*], 'platform-instructor') && 'Viewer' || ''"
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: "true"
       # Single identity: land straight in Keycloak SSO instead of Grafana's local login form.
       # Users signed into the portal are already authenticated to Keycloak, so this is seamless.
