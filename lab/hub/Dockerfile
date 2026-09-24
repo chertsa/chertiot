@@ -4,6 +4,6 @@ COPY jupyterhub_config.py /srv/jupyterhub/jupyterhub_config.py
 # CHERT branding for the Hub pages (spawn-progress, home, token): navbar logo + browser-tab favicon.
 COPY chert-logo.png /srv/jupyterhub/chert-logo.png
 COPY chert-favicon.ico /tmp/chert-favicon.ico
-RUN F=$(python -c "import jupyterhub, os; print(os.path.join(os.path.dirname(jupyterhub.__file__), 'static'))") && \
-    install -m 0644 /tmp/chert-favicon.ico "$F/favicon.ico" && rm /tmp/chert-favicon.ico
+RUN F=$(find / -path '*/share/jupyterhub/static/favicon.ico' 2>/dev/null | head -1) && \
+    test -n "$F" && install -m 0644 /tmp/chert-favicon.ico "$F" && rm /tmp/chert-favicon.ico
 CMD ["jupyterhub", "-f", "/srv/jupyterhub/jupyterhub_config.py"]
