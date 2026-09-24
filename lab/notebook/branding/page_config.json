@@ -1,3 +1,7 @@
 {
-  "appName": "chertIoTlab"
+  "appName": "chertIoTlab",
+  "disabledExtensions": [
+    "@jupyterlab/help-extension:jupyter-forum",
+    "@jupyterlab/help-extension:resources"
+  ]
 }
