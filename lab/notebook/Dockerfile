@@ -20,6 +20,9 @@ COPY branding/jupyter_server_config.py /opt/conda/etc/jupyter/jupyter_server_con
 # custom.css is served from the runtime config_dir/custom (~/.jupyter/custom for the jovyan user).
 COPY branding/custom.css /home/jovyan/.jupyter/custom/custom.css
 COPY branding/chert-logo.png /home/jovyan/.jupyter/custom/chert-logo.png
+# Bake the language selection as a user setting (what the Settings ▸ Language switch writes) so the
+# chertIoTlab (en_GB) catalog is active at bootstrap and the Help labels are relabelled.
+COPY branding/translation.jupyterlab-settings /home/jovyan/.jupyter/lab/user-settings/@jupyterlab/translation-extension/plugin.jupyterlab-settings
 USER root
 RUN chown -R jovyan:users /home/jovyan/work /home/jovyan/.jupyter && \
     SP=$(python -c "import jupyter_server, os; print(os.path.dirname(jupyter_server.__file__))") && \
