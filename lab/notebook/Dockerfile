@@ -10,10 +10,11 @@ COPY overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
 # chertIoTlab rebrand: app name (About dialog/menu), custom logo CSS, and browser-tab title.
 COPY branding/page_config.json /opt/conda/etc/jupyter/labconfig/page_config.json
 COPY branding/jupyter_server_config.py /opt/conda/etc/jupyter/jupyter_server_config.py
-COPY branding/custom.css /opt/conda/etc/jupyter/custom/custom.css
-COPY branding/chert-logo.png /opt/conda/etc/jupyter/custom/chert-logo.png
+# custom.css is served from the runtime config_dir/custom (~/.jupyter/custom for the jovyan user).
+COPY branding/custom.css /home/jovyan/.jupyter/custom/custom.css
+COPY branding/chert-logo.png /home/jovyan/.jupyter/custom/chert-logo.png
 USER root
-RUN chown -R jovyan:users /home/jovyan/work && \
+RUN chown -R jovyan:users /home/jovyan/work /home/jovyan/.jupyter && \
     SP=$(python -c "import jupyter_server, os; print(os.path.dirname(jupyter_server.__file__))") && \
     install -m 0644 /usr/local/share/chert-favicon.ico "$SP/static/favicon.ico" && \
     for f in "$SP"/static/favicons/*.ico; do install -m 0644 /usr/local/share/chert-favicon.ico "$f"; done && \
