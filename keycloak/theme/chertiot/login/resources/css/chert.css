@@ -11,7 +11,11 @@
   --pf-v5-global--FontFamily--sans-serif: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
 }
 body, .login-pf body { background: var(--chert-cream); color: var(--chert-ink); font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif; }
-html[dir="rtl"] body { font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif; }
+/* Arabic is translation-only (CHERT rule): the login stays LTR for every locale — never RTL —
+   while Arabic gets its proper font. Keycloak marks `ar` as RTL and emits <html dir="rtl">, so we
+   force the direction back to LTR and keep text left-aligned. */
+html[dir="rtl"], html[lang="ar"] { direction: ltr !important; }
+html[dir="rtl"] body, html[lang="ar"] body { direction: ltr; text-align: left; font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif; }
 .login-pf-page .card-pf { background: var(--chert-surface); border: 1px solid var(--chert-border); border-radius: 12px; box-shadow: none; }
 #kc-header-wrapper { text-indent: -9999px; background: url("../img/logo.svg") no-repeat center; background-size: contain; height: 64px; margin-bottom: 8px; }
 #kc-page-title, h1 { color: var(--chert-ink); font-weight: 600; }
