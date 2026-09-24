@@ -11,7 +11,7 @@
 <div class="panel">
   <div class="panel__head">
     <h2 class="panel__title">{{ _("Registered devices") }}</h2>
-    <span class="badge badge--muted">{{ used }} / {{ limit if limit else "∞" }} {{ _("used") }}</span>
+    <span class="helper">{{ used }} / {{ limit if limit else "∞" }} {{ _("devices used") }}</span>
   </div>
   {% if devices %}
   <div class="table-scroll">

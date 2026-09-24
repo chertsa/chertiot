@@ -1346,3 +1346,6 @@ msgstr "بريدهم الإلكتروني"
 
 msgid "used"
 msgstr "مُستخدَم"
+
+msgid "devices used"
+msgstr "أجهزة مُستخدَمة"
