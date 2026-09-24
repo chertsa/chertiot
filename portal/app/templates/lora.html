@@ -41,7 +41,7 @@
       <span class="badge badge--muted">EU868</span>
     </div>
     <ol class="steps">
-      <li>{{ _("Configure your gateway as a Semtech UDP packet forwarder pointed at:") }} {{ cred(domain ~ ':1700/udp') }}</li>
+      <li><div>{{ _("Configure your gateway as a Semtech UDP packet forwarder pointed at:") }}<div style="margin-top:.5rem">{{ cred(domain ~ ':1700/udp') }}</div></div></li>
       <li>{{ _("Select the EU868 region and save.") }}</li>
       <li>{{ _("Power on a registered device — uplinks appear on this project's dashboard alongside your Wi-Fi devices.") }}</li>
     </ol>
