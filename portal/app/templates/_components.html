@@ -1,0 +1,29 @@
+{#
+  Reusable CHERT UI macros. Import WITH CONTEXT so gettext `_` and `request` resolve:
+    {% from "_components.html" import cred, empty with context %}
+#}
+{% from "_icons.html" import icon %}
+
+{# Copyable value; when secret=True it renders masked with a reveal control (client-side only). #}
+{% macro cred(value, secret=False) -%}
+<span class="cred{{ ' cred--secret' if secret else '' }}" data-value="{{ value }}">
+  <code class="cred__value">{{ '••••••••••••' if secret else value }}</code>
+  {%- if secret %}
+  <button type="button" class="cred__btn" data-reveal aria-pressed="false"
+          aria-label="{{ _('Show value') }}" title="{{ _('Show value') }}"
+          data-show-label="{{ _('Show value') }}" data-hide-label="{{ _('Hide value') }}">{{ icon('eye') }}</button>
+  {%- endif %}
+  <button type="button" class="cred__btn" data-copy
+          aria-label="{{ _('Copy to clipboard') }}" title="{{ _('Copy to clipboard') }}"
+          data-copied-label="{{ _('Copied') }}">{{ icon('copy') }}</button>
+</span>
+{%- endmacro %}
+
+{# Intentional empty state. #}
+{% macro empty(icon_name, title, hint='') -%}
+<div class="empty">
+  <div class="empty__icon">{{ icon(icon_name, 24) }}</div>
+  <p class="empty__title">{{ title }}</p>
+  {% if hint %}<p class="empty__hint">{{ hint }}</p>{% endif %}
+</div>
+{%- endmacro %}

@@ -131,13 +131,145 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 /* Wide tables scroll inside their own box on narrow viewports (no page-level horizontal scroll). */
 .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
 
+/* ============================================================================
+   v2 unified component system — CHERT visual language (tokens only).
+   Semantic, reusable classes so every Project tab shares one deliberate design
+   instead of raw HTML / default-browser styling.
+   ========================================================================== */
+
+/* --- Link normalization: content links follow the CHERT system, not the browser's
+   default blue+underline. Component anchors (.btn/.card/.subnav__tab/.header*) keep
+   their own styling; only unclassed content links are re-based here. --- */
+.main a:not([class]) { color:var(--chert-orange-deep); text-decoration:none; font-weight:600; }
+.main a:not([class]):hover, .main a:not([class]):focus-visible { text-decoration:underline; text-underline-offset:2px; }
+.btn { text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:.4rem; }
+a.card { color:var(--chert-ink); text-decoration:none; display:block; }
+a.card:focus-visible { outline:2px solid var(--chert-ink); outline-offset:2px; }
+
+/* --- Page intro / lead paragraph under a section heading --- */
+.page-intro { color:var(--chert-muted); font-size:var(--fs-base); max-width:70ch; margin:.25rem 0 1.25rem; }
+
+/* --- Panel header with an aligned action on the right --- */
+.panel__head { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin:0 0 1rem; flex-wrap:wrap; }
+.panel__head h2, .panel__head .panel__title { margin:0; }
+.panel--form { max-width:640px; }
+
+/* --- Badges: one pill vocabulary for status, action and role. --- */
+.badge { display:inline-flex; align-items:center; gap:.35em; font-size:.68rem; font-weight:700; line-height:1;
+         padding:.32em .7em; border-radius:var(--radius-pill); text-transform:uppercase; letter-spacing:.03em; white-space:nowrap; }
+.badge--ok      { background:var(--chert-success-tint); color:var(--chert-ok); }
+.badge--warn    { background:var(--chert-warning-tint); color:var(--chert-warn); }
+.badge--crit    { background:var(--chert-error-tint);   color:var(--chert-crit); }
+.badge--info    { background:var(--chert-info-tint);    color:var(--chert-info); }
+.badge--muted   { background:var(--chert-surface-alt);  color:var(--chert-muted); border:1px solid var(--chert-border); }
+.badge--accent  { background:var(--chert-orange-tint);  color:var(--chert-orange-deep); }
+.badge__dot { width:7px; height:7px; border-radius:50%; background:currentColor; }
+
+/* --- Status cell (online / offline) --- */
+.status { display:inline-flex; align-items:center; gap:.45em; font-size:var(--fs-sm); font-weight:600; }
+.status--on  { color:var(--chert-ok); }
+.status--off { color:var(--chert-muted); }
+.status .badge__dot { box-shadow:0 0 0 3px transparent; }
+.status--on .badge__dot { box-shadow:0 0 0 3px var(--chert-success-tint); }
+
+/* --- Empty state: intentional placeholder instead of a blank area --- */
+.empty { text-align:center; padding:2.5rem 1.5rem; color:var(--chert-muted); }
+.empty__icon { width:44px; height:44px; margin:0 auto .75rem; display:grid; place-items:center;
+               border-radius:var(--radius-md); background:var(--chert-surface-alt); color:var(--chert-muted); }
+.empty__icon svg { width:24px; height:24px; }
+.empty__title { font-weight:700; color:var(--chert-ink); font-size:var(--fs-base); margin:0 0 .25rem; }
+.empty__hint { font-size:var(--fs-sm); margin:0 auto; max-width:44ch; }
+.empty__hint .btn, .empty .btn { margin-top:1rem; }
+
+/* --- Form panel: labelled field groups inside a contained panel --- */
+.form-grid { display:grid; gap:1rem; grid-template-columns:1fr; }
+@media (min-width:640px){ .form-grid--2 { grid-template-columns:1fr 1fr; } }
+.form-grid .field { display:grid; gap:.35rem; align-content:start; }
+.form-grid .field--wide { grid-column:1 / -1; }
+.form-actions { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:1.1rem; }
+select.input { appearance:auto; height:44px; }
+textarea.input { height:auto; min-height:88px; padding:10px 14px; }
+
+/* --- Toolbar / filter bar --- */
+.toolbar { display:flex; gap:1rem; flex-wrap:wrap; align-items:flex-end; }
+.toolbar label { display:flex; flex-direction:column; gap:.3rem; font-size:.78rem; font-weight:600; color:var(--chert-muted); }
+
+/* --- Copyable / secret credential value --- */
+.cred { display:inline-flex; align-items:center; gap:.4rem; max-width:100%; }
+.cred__value { font-family:var(--font-mono); font-size:.82rem; background:var(--chert-surface-alt);
+               border:1px solid var(--chert-border); border-radius:var(--radius-sm); padding:.3rem .55rem;
+               overflow-wrap:anywhere; word-break:break-all; }
+.cred__btn { flex:0 0 auto; display:inline-grid; place-items:center; width:30px; height:30px; padding:0;
+             background:transparent; border:1px solid var(--chert-border); border-radius:var(--radius-sm);
+             color:var(--chert-muted); cursor:pointer; }
+.cred__btn:hover { color:var(--chert-ink); border-color:var(--chert-border-strong); background:var(--chert-surface-alt); }
+.cred__btn:focus-visible { outline:2px solid var(--chert-ink); outline-offset:1px; }
+.cred__btn svg { width:15px; height:15px; }
+.cred__btn.is-copied { color:var(--chert-ok); border-color:var(--chert-success); }
+
+/* --- Capability panel: how an engine (Node-RED / Notebooks / ThingsBoard) is presented --- */
+.capability { display:grid; gap:1.1rem; }
+.capability__top { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }
+.capability__meta { display:grid; gap:.75rem 1.5rem; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+                    padding:1rem 0; border-block:1px solid var(--chert-border); }
+.capability__meta dt { font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--chert-muted); margin:0 0 .2rem; }
+.capability__meta dd { margin:0; font-weight:600; font-size:var(--fs-sm); }
+.capability__actions { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
+
+/* --- Service-health indicator --- */
+.health { display:inline-flex; align-items:center; gap:.45em; font-size:var(--fs-sm); font-weight:600; }
+.health__dot { width:9px; height:9px; border-radius:50%; }
+.health--up   .health__dot { background:var(--chert-success); box-shadow:0 0 0 3px var(--chert-success-tint); }
+.health--down .health__dot { background:var(--chert-error);   box-shadow:0 0 0 3px var(--chert-error-tint); }
+.health--idle .health__dot { background:var(--chert-muted);   box-shadow:0 0 0 3px var(--chert-surface-alt); }
+
+/* --- Numbered connection steps --- */
+.steps { list-style:none; counter-reset:step; margin:0; padding:0; display:grid; gap:.7rem; }
+.steps li { counter-increment:step; display:grid; grid-template-columns:auto 1fr; gap:.7rem; align-items:start; font-size:var(--fs-sm); }
+.steps li::before { content:counter(step); display:grid; place-items:center; width:24px; height:24px; border-radius:50%;
+                    background:var(--chert-orange-tint); color:var(--chert-orange-deep); font-weight:700; font-size:.72rem; }
+
+/* --- Capability / tool card: title in ink, arrow affordance, lift on hover --- */
+.card--tool { position:relative; }
+.card--tool .card__title { color:var(--chert-ink); display:flex; align-items:center; gap:.4rem; }
+.card--tool .card__desc { color:var(--chert-muted); }
+.card--tool .card__go { margin-top:.9rem; font-size:var(--fs-sm); font-weight:700; color:var(--chert-orange-deep); }
+.card--tool.card--ext .card__title::after { content:"↗"; font-size:.85em; color:var(--chert-muted); }
+
+/* --- Portfolio project card --- */
+.pcard { display:grid; gap:.55rem; align-content:start; }
+.pcard__head { display:flex; align-items:flex-start; justify-content:space-between; gap:.6rem; }
+.pcard__name { font-size:var(--fs-h3); font-weight:700; color:var(--chert-ink); margin:0; line-height:var(--lh-snug); }
+.pcard__desc { color:var(--chert-muted); font-size:var(--fs-sm); margin:0; min-height:2.4em; }
+.pcard__stats { display:flex; gap:1rem; flex-wrap:wrap; font-size:var(--fs-sm); color:var(--chert-muted); margin-top:.2rem; }
+.pcard__stats b { color:var(--chert-ink); font-weight:700; }
+.pcard__foot { display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-top:.4rem; }
+.pcard__open { font-weight:700; color:var(--chert-orange-deep); font-size:var(--fs-sm); }
+
+/* Role tag variants (home + members) */
+.tag--role { background:var(--chert-surface-alt); color:var(--chert-muted); border:1px solid var(--chert-border); }
+
+/* --- Danger panel accent --- */
+.panel--danger { border-color:var(--chert-error); }
+.panel--danger .panel__title { color:var(--chert-crit); }
+
+/* --- Table action cells (right-aligned inline forms) --- */
+.dtable__actions { text-align:end; white-space:nowrap; }
+.dtable__actions form { display:inline; }
+.dtable__actions .btn + form .btn, .dtable__actions form + form { margin-inline-start:.4rem; }
+
+/* --- 3-up KPI row (portfolio summary) --- */
+@media (min-width:720px){ .kpi-row--3 { grid-template-columns:repeat(3,1fr); } }
+
 /* --- Print-friendly reports (§4 Reports): drop chrome, keep the content on paper. */
 @media print {
-  .header, .footer, .subnav, .header__account, #report-print { display:none !important; }
+  .header, .footer, .subnav, .header__account, #report-print, .report-noprint { display:none !important; }
   .proj-head { margin-bottom:.5rem; }
+  .proj-head__row .chip { display:none; }
   .main { padding:0; }
   .panel, .kpi { box-shadow:none; border-color:var(--chert-border); break-inside:avoid; }
-  .kpi-row { break-inside:avoid; }
+  .kpi-row, .dash-grid { break-inside:avoid; }
+  .panel { page-break-inside:avoid; }
   a[href] { color:var(--chert-ink); text-decoration:none; }
   body { background:#fff; }
 }

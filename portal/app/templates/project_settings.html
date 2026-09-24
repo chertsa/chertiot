@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% from "_components.html" import cred, empty with context %}
 {% block title %}{{ _("Members & Settings") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
 <h2 class="section-h">{{ _("Members & Settings") }}</h2>
+<p class="page-intro">{{ _("Manage who can access this project and control project-wide actions.") }}</p>
 
-<h2 class="section-h" style="margin-top:1rem">{{ _("Members") }}</h2>
+<h2 class="section-h">{{ _("Members") }}</h2>
 <div class="panel">
   <div class="table-scroll">
   <table class="dtable">
@@ -13,9 +15,12 @@
     {% for m, u in members %}
       <tr>
         <td><strong>{{ u.email }}</strong></td>
-        <td>{{ _("owner") if m.role == 'owner' else _("member") }}</td>
-        <td><span class="dot {{ 'dot--on' if m.status == 'active' else 'dot--off' }}"></span>{{ _("active") if m.status == 'active' else _("disabled") }}</td>
+        <td><span class="badge {{ 'badge--accent' if m.role == 'owner' else 'badge--muted' }}">{{ _("owner") if m.role == 'owner' else _("member") }}</span></td>
         <td>
+          {% if m.status == 'active' %}<span class="status status--on"><span class="badge__dot"></span>{{ _("active") }}</span>
+          {% else %}<span class="status status--off"><span class="badge__dot"></span>{{ _("disabled") }}</span>{% endif %}
+        </td>
+        <td class="dtable__actions">
           {% if is_owner and m.role != 'owner' %}
             {% if m.status == 'active' %}
             <form method="post" action="/projects/{{ project.id }}/members/{{ m.id }}/disable" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Disable") }}</button></form>
@@ -30,53 +35,76 @@
     </tbody>
   </table>
   </div>
+</div>
 
-  {% if is_owner %}
-    {% if requests %}
-    <h3 class="panel__title" style="margin-top:1rem">{{ _("Requests to join") }}</h3>
-    <ul class="alarm-list">
-      {% for r, u in requests %}
-      <li class="alarm">
-        <span class="alarm__type">{{ u.email }}</span>
-        <span class="alarm__meta">
-          <form method="post" action="/projects/{{ project.id }}/requests/{{ r.id }}/approve" style="display:inline"><button class="btn btn--primary btn--sm" type="submit">{{ _("Approve") }}</button></form>
-          <form method="post" action="/projects/{{ project.id }}/requests/{{ r.id }}/deny" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Deny") }}</button></form>
-        </span>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    <h3 class="panel__title" style="margin-top:1rem">{{ _("Invite a member") }}</h3>
-    <form method="post" action="/projects/{{ project.id }}/invite" style="display:flex;gap:.5rem;flex-wrap:wrap">
-      <input class="input" name="email" type="email" required aria-label="{{ _('Member email to invite') }}" placeholder="{{ _('their email') }}" style="max-width:280px">
-      <button class="btn btn--primary btn--sm" type="submit">{{ _("Create invite") }}</button>
-    </form>
-    {% if invites %}
-    <p class="helper" style="margin-top:.75rem">{{ _("Pending invites — share the link; it accepts on their sign-in.") }}</p>
-    <ul class="alarm-list">
-      {% for iv in invites %}
-      <li class="alarm"><span class="alarm__type">{{ iv.invited_email }}</span>
-        <span class="alarm__meta muted">{{ invite_base }}/invite/{{ iv.token }}</span></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+{% if is_owner %}
+<h2 class="section-h">{{ _("Join requests") }}</h2>
+<div class="panel">
+  {% if requests %}
+  <ul class="alarm-list">
+    {% for r, u in requests %}
+    <li class="alarm">
+      <span class="alarm__type">{{ u.email }}</span>
+      <span class="alarm__meta">
+        <form method="post" action="/projects/{{ project.id }}/requests/{{ r.id }}/approve" style="display:inline"><button class="btn btn--primary btn--sm" type="submit">{{ _("Approve") }}</button></form>
+        <form method="post" action="/projects/{{ project.id }}/requests/{{ r.id }}/deny" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Deny") }}</button></form>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  {{ empty("inbox", _("No pending requests"), _("When someone asks to join this project, their request appears here.")) }}
   {% endif %}
 </div>
 
-{% if is_owner %}
-<h2 class="section-h" style="margin-top:2rem">{{ _("Settings") }}</h2>
+<h2 class="section-h">{{ _("Invitations") }}</h2>
 <div class="panel">
-  <p class="helper">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}</p>
-  <form method="post" action="/projects/{{ project.id }}/dashboard/reset" style="display:inline"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Reset starter dashboard") }}</button></form>
+  <form method="post" action="/projects/{{ project.id }}/invite" class="toolbar" style="margin-bottom:1rem">
+    <div class="field" style="flex:1 1 260px">
+      <label class="label" for="invite-email">{{ _("Invite a member") }}</label>
+      <input class="input" id="invite-email" name="email" type="email" required aria-label="{{ _('Member email to invite') }}" placeholder="{{ _('their email') }}">
+    </div>
+    <button class="btn btn--primary" type="submit">{{ _("Create invite") }}</button>
+  </form>
+  {% if invites %}
+  <p class="helper">{{ _("Pending invites — share the link; it accepts on their sign-in.") }}</p>
+  <div class="table-scroll">
+  <table class="dtable">
+    <thead><tr><th>{{ _("Email") }}</th><th>{{ _("Invite link") }}</th></tr></thead>
+    <tbody>
+    {% for iv in invites %}
+      <tr>
+        <td><strong>{{ iv.invited_email }}</strong></td>
+        <td>{{ cred(invite_base ~ '/invite/' ~ iv.token) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  {{ empty("inbox", _("No pending invitations"), _("Invite someone by email above to generate a shareable join link.")) }}
+  {% endif %}
 </div>
-{% endif %}
 
-{% if is_owner %}
-<div class="panel" style="margin-top:1rem;border-color:var(--chert-crit)">
-  <h3 class="panel__title">{{ _("Danger zone") }}</h3>
-  <p class="helper">{{ _("Deleting a project permanently removes its devices, data, flows, notebooks and dashboards.") }}</p>
-  <form method="post" action="/projects/{{ project.id }}/delete" style="display:inline" onsubmit="return confirm('{{ _("Delete this project and all its data? This cannot be undone.") }}')"><button class="btn btn--danger btn--sm" type="submit">{{ _("Delete project") }}</button></form>
+<h2 class="section-h">{{ _("Settings") }}</h2>
+<div class="panel">
+  <div class="panel__head">
+    <div>
+      <h3 class="panel__title" style="margin:0 0 .25rem">{{ _("Reset starter dashboard") }}</h3>
+      <p class="helper" style="margin:0">{{ _("Edited your dashboard into a corner? Restore the starter layout. Your devices and data stay.") }}</p>
+    </div>
+    <form method="post" action="/projects/{{ project.id }}/dashboard/reset"><button class="btn btn--secondary" type="submit">{{ _("Reset starter dashboard") }}</button></form>
+  </div>
+</div>
+
+<div class="panel panel--danger">
+  <div class="panel__head">
+    <div>
+      <h3 class="panel__title" style="margin:0 0 .25rem">{{ _("Danger zone") }}</h3>
+      <p class="helper" style="margin:0">{{ _("Deleting a project permanently removes its devices, data, flows, notebooks and dashboards.") }}</p>
+    </div>
+    <form method="post" action="/projects/{{ project.id }}/delete" onsubmit="return confirm('{{ _("Delete this project and all its data? This cannot be undone.") }}')"><button class="btn btn--danger" type="submit">{{ _("Delete project") }}</button></form>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

@@ -1,17 +1,36 @@
 {% extends "base.html" %}
-{% block title %}{{ _("Flows") }} — CHERT IoT{% endblock %}
+{% block title %}{{ _("Flows") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
 <h2 class="section-h">{{ _("Flows") }}</h2>
 {% if not enabled %}
   <div class="callout callout--info"><p>{{ _("Node-RED flows are not enabled on this environment yet.") }}</p></div>
 {% else %}
-  <p>{{ _("Your own Node-RED editor: wire your device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard credentials are pre-injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN.") }}</p>
-  {% if state == "ready" %}
-    <p><a class="btn btn--primary" href="{{ editor_url }}" target="_blank" rel="noopener">{{ _("Open the editor") }}</a></p>
-    <form method="post" action="/projects/{{ project.id }}/flows/stop"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Stop my instance") }}</button></form>
+<p class="page-intro">{{ _("Your own Node-RED editor for this project: wire device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard connection is pre-injected securely.") }}</p>
+
+<div class="panel">
+  <div class="capability">
+    <div class="capability__top">
+      <h2 class="panel__title" style="margin:0">Node-RED</h2>
+      {% if state == "ready" %}<span class="health health--up"><span class="health__dot"></span>{{ _("Running") }}</span>
+      {% elif state == "starting" %}<span class="health health--idle"><span class="health__dot"></span>{{ _("Building…") }}</span>
+      {% else %}<span class="health health--idle"><span class="health__dot"></span>{{ _("Stopped") }}</span>{% endif %}
+    </div>
+
+    <dl class="capability__meta">
+      <div><dt>{{ _("Engine") }}</dt><dd>Node-RED</dd></div>
+      <div><dt>{{ _("Project") }}</dt><dd>{{ project.name }}</dd></div>
+      <div><dt>{{ _("Resources") }}</dt><dd>0.5 CPU · 256 MB</dd></div>
+      <div><dt>{{ _("Idle stop") }}</dt><dd>{{ _("30 minutes") }}</dd></div>
+    </dl>
+
+    {% if state == "ready" %}
+    <div class="capability__actions">
+      <a class="btn btn--primary" href="{{ editor_url }}" target="_blank" rel="noopener">{{ _("Open the editor") }} ↗</a>
+      <form method="post" action="/projects/{{ project.id }}/flows/stop"><button class="btn btn--secondary" type="submit">{{ _("Stop my instance") }}</button></form>
+    </div>
     <p class="helper">{{ _("Instances stop automatically after 30 minutes without use; your flows are kept.") }}</p>
-  {% elif state == "starting" %}
+    {% elif state == "starting" %}
     <div class="building">
       <span class="spinner" aria-hidden="true"></span>
       <div>
@@ -19,7 +38,9 @@
         <p class="helper" style="margin:.25rem 0 0">{{ _("This takes a few seconds. The editor opens automatically when it's ready — please don't open it yet.") }}</p>
       </div>
     </div>
-    <form method="post" action="/projects/{{ project.id }}/flows/stop" style="margin-top:1rem"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Cancel") }}</button></form>
+    <div class="capability__actions">
+      <form method="post" action="/projects/{{ project.id }}/flows/stop"><button class="btn btn--secondary btn--sm" type="submit">{{ _("Cancel") }}</button></form>
+    </div>
     <script>
       (function () {
         function check() {
@@ -31,9 +52,13 @@
         setTimeout(check, 2500);
       })();
     </script>
-  {% else %}
-    <form method="post" action="/projects/{{ project.id }}/flows/start"><button class="btn btn--primary" type="submit">{{ _("Start my Node-RED") }}</button></form>
+    {% else %}
+    <div class="capability__actions">
+      <form method="post" action="/projects/{{ project.id }}/flows/start"><button class="btn btn--primary" type="submit">{{ _("Start my Node-RED") }}</button></form>
+    </div>
     <p class="helper">{{ _("Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you. You'll see a “building” indicator until it's ready.") }}</p>
-  {% endif %}
+    {% endif %}
+  </div>
+</div>
 {% endif %}
 {% endblock %}

@@ -1,50 +1,54 @@
 {% extends "base.html" %}
-{% block title %}My projects — CHERT IoT{% endblock %}
+{% from "_components.html" import empty with context %}
+{% block title %}{{ _("My projects") }} — CHERT IoT{% endblock %}
 {% block content %}
 <div class="dash-head">
   <div>
-    <p class="overline">{{ user.cohort }}</p>
+    {% if user.cohort %}<p class="overline">{{ user.cohort }}</p>{% endif %}
     <h1>{{ _("My projects") }}</h1>
+    <p class="page-intro">{{ _("Each project is your own isolated IoT workspace — devices, telemetry, flows, notebooks, alerts and dashboards.") }}</p>
   </div>
-  <a class="btn btn--primary btn--sm" href="/projects/new">+ {{ _("New project") }}</a>
+  <a class="btn btn--primary" href="/projects/new">+ {{ _("New project") }}</a>
 </div>
 
 {% if projects %}
-<div class="kpi-row">
+<div class="kpi-row kpi-row--3">
   <div class="kpi"><div class="kpi__value">{{ summary.total }}</div><div class="kpi__label">{{ _("Projects") }}</div></div>
   <div class="kpi"><div class="kpi__value">{{ summary.owned }}</div><div class="kpi__label">{{ _("Owned") }}</div></div>
   <div class="kpi"><div class="kpi__value">{{ summary.member }}</div><div class="kpi__label">{{ _("Shared with me") }}</div></div>
 </div>
+
 <div class="grid-cards">
   {% for p in projects %}
-  <a class="card" href="/projects/{{ p.project.id }}">
-    <div class="card__title">{{ p.project.name }}
-      {% if p.role == 'owner' %}<span class="tag">{{ _("owner") }}</span>{% else %}<span class="tag">{{ _("member") }}</span>{% endif %}
+  <a class="card pcard" href="/projects/{{ p.project.id }}">
+    <div class="pcard__head">
+      <h3 class="pcard__name">{{ p.project.name }}</h3>
+      <span class="badge {{ 'badge--accent' if p.role == 'owner' else 'badge--muted' }}">{{ _("Owner") if p.role == 'owner' else _("Member") }}</span>
     </div>
-    <div class="card__desc">{{ p.project.description or _("No description yet.") }}</div>
-    <div class="helper" style="margin-top:.5rem">
-      {% if p.project.provisioning_state == 'provisioned' %}<span class="dot dot--on"></span>{{ _("Ready") }}
-      {% elif p.project.provisioning_state == 'failed' %}<span class="dot dot--off"></span>{{ _("Setup failed") }}
-      {% else %}<span class="dot"></span>{{ _("Setting up…") }}{% endif %}
+    <p class="pcard__desc">{{ p.project.description or _("No description yet.") }}</p>
+    <div class="pcard__foot">
+      {% if p.project.provisioning_state == 'provisioned' %}<span class="badge badge--ok"><span class="badge__dot"></span>{{ _("Ready") }}</span>
+      {% elif p.project.provisioning_state == 'failed' %}<span class="badge badge--crit"><span class="badge__dot"></span>{{ _("Setup failed") }}</span>
+      {% else %}<span class="badge badge--warn"><span class="badge__dot"></span>{{ _("Setting up…") }}</span>{% endif %}
+      <span class="pcard__open">{{ _("Open") }} →</span>
     </div>
   </a>
   {% endfor %}
 </div>
 {% else %}
 <div class="panel">
-  <h2 class="panel__title">{{ _("Start your first project") }}</h2>
-  <p class="helper">{{ _("A project is your own isolated space — its own devices, flows, notebooks, alerts and dashboards. Create one to begin.") }}</p>
-  <p style="margin-top:1rem"><a class="btn btn--primary" href="/projects/new">+ {{ _("New project") }}</a></p>
+  {{ empty("plus", _("Start your first project"), _("A project is your own isolated space — its own devices, flows, notebooks, alerts and dashboards.")) }}
+  <div style="text-align:center"><a class="btn btn--primary" href="/projects/new">+ {{ _("New project") }}</a></div>
 </div>
 {% endif %}
 
-<h2 class="section-h" style="margin-top:2rem">{{ _("Learn") }}</h2>
+<h2 class="section-h" style="margin-top:2.5rem">{{ _("Learn") }}</h2>
 <div class="grid-cards">
-  <a class="card" href="/docs/"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div></a>
-  <a class="card" href="/explore"><div class="card__title">{{ _("Explore the stack") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div></a>
+  <a class="card card--tool" href="/docs/"><div class="card__title">{{ _("Getting started") }}</div><div class="card__desc">{{ _("Flash an ESP32, a Raspberry Pi, or send data from your browser in under ten minutes.") }}</div><div class="card__go">{{ _("Read the guide") }} →</div></a>
+  <a class="card card--tool" href="/explore"><div class="card__title">{{ _("Explore the stack") }}</div><div class="card__desc">{{ _("Every open-source engine that powers CHERT IoT — open it or learn what it does.") }}</div><div class="card__go">{{ _("Explore") }} →</div></a>
   {% if is_staff %}
-  <a class="card" href="/grafana" target="_blank" rel="noopener"><div class="card__title">{{ _("Platform Grafana") }}</div><div class="card__desc">{{ _("Platform-wide infrastructure metrics over Prometheus (instructors & admins). For your project's data, use Monitoring inside a project.") }}</div></a>
+  <a class="card card--tool card--ext" href="/grafana" target="_blank" rel="noopener"><div class="card__title">{{ _("Platform Grafana") }}</div><div class="card__desc">{{ _("Platform-wide infrastructure metrics over Prometheus (instructors & admins). For your project's data, use Monitoring inside a project.") }}</div><div class="card__go">{{ _("Open") }} ↗</div></a>
   {% endif %}
-  <a class="card" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div></a>
+  <a class="card card--tool card--ext" href="https://status.{{ request.url.hostname }}/status/chert-iot" target="_blank" rel="noopener"><div class="card__title">{{ _("System status") }}</div><div class="card__desc">{{ _("Live up/down status of every public service.") }}</div><div class="card__go">{{ _("View status") }} ↗</div></a>
 </div>
 {% endblock %}

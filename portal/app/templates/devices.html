@@ -1,29 +1,55 @@
 {% extends "base.html" %}
-{% block title %}{{ _("My devices") }} — CHERT IoT{% endblock %}
+{% from "_components.html" import empty with context %}
+{% block title %}{{ _("Devices") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
-<h2 class="section-h">{{ _("My devices") }}</h2>
-<p class="helper">{{ used }} / {{ limit if limit else "∞" }} {{ _("devices used.") }}</p>
+<h2 class="section-h">{{ _("Devices") }}</h2>
+<p class="page-intro">{{ _("Devices registered in this project. Add a device to get its access token and starter firmware.") }}</p>
+
 {% if error %}<div class="callout callout--error"><p>{{ error }}</p></div>{% endif %}
-<div class="table-scroll">
-<table class="table">
-  <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
-  <tbody>
-  {% for d in devices %}
-    <tr>
-      <td><a href="/projects/{{ project.id }}/devices/{{ d.id }}">{{ d.name }}</a>{% if d.label %} <span class="helper">{{ d.label }}</span>{% endif %}</td>
-      <td>{% if d.active %}<span class="callout--success">{{ _("Online") }}</span>{% else %}<span class="helper">{{ _("Offline") }}</span>{% endif %}</td>
-      <td>{% if d.last_seen %}<time datetime="{{ d.last_seen.isoformat() }}">{{ d.last_seen.strftime('%Y-%m-%d %H:%M') }} UTC</time>{% else %}<span class="helper">{{ _("Never") }}</span>{% endif %}</td>
-    </tr>
+
+<div class="panel">
+  <div class="panel__head">
+    <h2 class="panel__title">{{ _("Registered devices") }}</h2>
+    <span class="badge badge--muted">{{ used }} / {{ limit if limit else "∞" }} {{ _("used") }}</span>
+  </div>
+  {% if devices %}
+  <div class="table-scroll">
+  <table class="dtable">
+    <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
+    <tbody>
+    {% for d in devices %}
+      <tr>
+        <td><a href="/projects/{{ project.id }}/devices/{{ d.id }}"><strong>{{ d.name }}</strong></a>{% if d.label %}<div class="muted">{{ d.label }}</div>{% endif %}</td>
+        <td>
+          {% if d.active %}<span class="status status--on"><span class="badge__dot"></span>{{ _("Online") }}</span>
+          {% else %}<span class="status status--off"><span class="badge__dot"></span>{{ _("Offline") }}</span>{% endif %}
+        </td>
+        <td class="muted">{% if d.last_seen %}<time datetime="{{ d.last_seen.isoformat() }}">{{ d.last_seen.strftime('%Y-%m-%d %H:%M') }} UTC</time>{% else %}{{ _("Never") }}{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
   {% else %}
-    <tr><td colspan="3">{{ _("No devices yet.") }}</td></tr>
-  {% endfor %}
-  </tbody>
-</table>
+  {{ empty("cpu", _("No devices yet"), _("Add your first device below to get an access token and connection details.")) }}
+  {% endif %}
 </div>
-<h2>{{ _("Add device") }}</h2>
-<form class="form" method="post" action="/projects/{{ project.id }}/devices">
-  <div class="field"><label class="label" for="name">{{ _("Device name") }}</label><input class="input" id="name" name="name" required minlength="2" maxlength="48" placeholder="kitchen-sensor"></div>
-  <div><button class="btn btn--primary" type="submit"{% if limit and used >= limit %} disabled{% endif %}>{{ _("Add device") }}</button></div>
-</form>
+
+<div class="panel panel--form">
+  <h2 class="panel__title">{{ _("Add device") }}</h2>
+  <form method="post" action="/projects/{{ project.id }}/devices">
+    <div class="form-grid">
+      <div class="field">
+        <label class="label" for="name">{{ _("Device name") }}</label>
+        <input class="input" id="name" name="name" required minlength="2" maxlength="48" placeholder="kitchen-sensor">
+        <p class="helper">{{ _("Lowercase letters, numbers and dashes work best.") }}</p>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--primary" type="submit"{% if limit and used >= limit %} disabled{% endif %}>{{ _("Add device") }}</button>
+      {% if limit and used >= limit %}<span class="helper">{{ _("Device limit reached.") }}</span>{% endif %}
+    </div>
+  </form>
+</div>
 {% endblock %}

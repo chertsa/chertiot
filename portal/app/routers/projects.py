@@ -1,6 +1,7 @@
 """Project routes (D13/M5.1): create a project (→ a TB tenant), the project workspace, its live
 dashboard fragment, and delete. Tools (devices, flows, alerts, lora) live under /projects/{id}/…."""
 
+from datetime import UTC, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
@@ -151,7 +152,19 @@ def notebooks(request: Request, project_id: str, db: Session = Depends(get_db)) 
             },
             status_code=503,
         )
-    return RedirectResponse(lab.spawn_url(user.email, project.id), status_code=303)
+    # Present a capability landing (Open Notebook) rather than an opaque redirect; the launch URL
+    # is the same per-project named-server spawn path, so the working flow is unchanged.
+    return templates.TemplateResponse(
+        request,
+        "notebooks.html",
+        {
+            "user": user,
+            "project": project,
+            "member": member,
+            "is_owner": member.role == "owner",
+            "launch_url": lab.spawn_url(user.email, project.id),
+        },
+    )
 
 
 @router.post("/projects/{project_id}/provision")
@@ -190,6 +203,7 @@ def report(request: Request, project_id: str, db: Session = Depends(get_db)) -> 
         "unavailable": False,
         "members": members(db, project_id),
         "alarm_history": [],
+        "now": datetime.now(UTC),
     }
     try:
         with as_project(member) as (sysadmin, session):

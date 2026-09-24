@@ -29,6 +29,7 @@ PROJECT_PAGE_TEMPLATES = [
     "alerts.html",
     "flows.html",
     "lora.html",
+    "notebooks.html",  # Notebooks capability landing
     "notebooks_unavailable.html",  # controlled degraded Notebooks page
     "project_report.html",  # Reports
     "project_settings.html",  # Members & Settings

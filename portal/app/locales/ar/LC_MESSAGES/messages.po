@@ -1031,3 +1031,318 @@ msgstr "تخطَّ إلى المحتوى"
 
 msgid "Member email to invite"
 msgstr "بريد العضو المراد دعوته"
+
+msgid "30 minutes"
+msgstr "٣٠ دقيقة"
+
+msgid "A project is your own isolated space — its own devices, flows, notebooks, alerts and dashboards."
+msgstr "المشروع مساحتك المعزولة الخاصة — أجهزته وتدفقاته ودفاتره وتنبيهاته ولوحاته."
+
+msgid "Active members"
+msgstr "الأعضاء النشطون"
+
+msgid "Active projects"
+msgstr "المشاريع النشطة"
+
+msgid "Add your first device below to get an access token and connection details."
+msgstr "أضِف أول جهاز أدناه للحصول على رمز الوصول وتفاصيل الاتصال."
+
+msgid "Advanced console for this project — dashboards, rule chains and alarms, powered by ThingsBoard."
+msgstr "وحدة تحكم متقدمة لهذا المشروع — لوحات وسلاسل قواعد وتنبيهات، مدعومة بـ ThingsBoard."
+
+msgid "Alert rules"
+msgstr "قواعد التنبيه"
+
+msgid "Analyse this project's telemetry in a Python notebook — pandas & matplotlib, scoped to this project."
+msgstr "حلِّل قياسات هذا المشروع في دفتر Python — pandas وmatplotlib، ضمن نطاق هذا المشروع."
+
+msgid "Analyse this project's telemetry in a Python notebook — pandas and matplotlib, scoped to this project's data."
+msgstr "حلِّل قياسات هذا المشروع في دفتر Python — pandas وmatplotlib، ضمن نطاق بيانات هذا المشروع."
+
+msgid "Approve"
+msgstr "قبول"
+
+msgid "Back"
+msgstr "رجوع"
+
+msgid "Building…"
+msgstr "جارٍ التجهيز…"
+
+msgid "Capabilities"
+msgstr "الإمكانات"
+
+msgid "Configure your gateway as a Semtech UDP packet forwarder pointed at:"
+msgstr "اضبط بوابتك كموجِّه حزم Semtech UDP موجَّهًا إلى:"
+
+msgid "Copied"
+msgstr "تم النسخ"
+
+msgid "Copy to clipboard"
+msgstr "نسخ إلى الحافظة"
+
+msgid "Create a rule below to be notified when telemetry crosses a threshold."
+msgstr "أنشئ قاعدة أدناه ليتم تنبيهك عندما تتجاوز القياسات حدًّا معيّنًا."
+
+msgid "Create invite"
+msgstr "إنشاء دعوة"
+
+msgid "Create project"
+msgstr "إنشاء مشروع"
+
+msgid "Delete project"
+msgstr "حذف المشروع"
+
+msgid "Delete this alert rule?"
+msgstr "حذف قاعدة التنبيه هذه؟"
+
+msgid "Delete this project and all its data? This cannot be undone."
+msgstr "حذف هذا المشروع وكل بياناته؟ لا يمكن التراجع عن ذلك."
+
+msgid "Deny"
+msgstr "رفض"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Device limit reached."
+msgstr "تم بلوغ حدّ الأجهزة."
+
+msgid "Devices registered in this project. Add a device to get its access token and starter firmware."
+msgstr "الأجهزة المسجّلة في هذا المشروع. أضِف جهازًا للحصول على رمز الوصول والبرنامج الثابت الأولي."
+
+msgid "Disable"
+msgstr "تعطيل"
+
+msgid "Each project is your own isolated IoT workspace — devices, telemetry, flows, notebooks, alerts and dashboards."
+msgstr "كل مشروع هو مساحة عملك المعزولة لإنترنت الأشياء — الأجهزة والقياسات والتدفقات والدفاتر والتنبيهات واللوحات."
+
+msgid "Enable"
+msgstr "تفعيل"
+
+msgid "Engine"
+msgstr "المحرّك"
+
+msgid "Explore"
+msgstr "استكشاف"
+
+msgid "Explore the stack"
+msgstr "استكشف الحزمة"
+
+msgid "Full steps in the"
+msgstr "الخطوات الكاملة في"
+
+msgid "Generated"
+msgstr "أُنشئ في"
+
+msgid "Hide value"
+msgstr "إخفاء القيمة"
+
+msgid "Idle stop"
+msgstr "الإيقاف عند الخمول"
+
+msgid "Invitations"
+msgstr "الدعوات"
+
+msgid "Invite a member"
+msgstr "دعوة عضو"
+
+msgid "Invite link"
+msgstr "رابط الدعوة"
+
+msgid "Invite someone by email above to generate a shareable join link."
+msgstr "ادعُ شخصًا عبر البريد أعلاه لإنشاء رابط انضمام قابل للمشاركة."
+
+msgid "Join requests"
+msgstr "طلبات الانضمام"
+
+msgid "Keep the AppKey secret — it authenticates this device. Reveal it only to copy into your device firmware."
+msgstr "احتفظ بمفتاح AppKey سرًّا — فهو يوثّق هذا الجهاز. أظهِره فقط لنسخه إلى برنامج جهازك الثابت."
+
+msgid "Learn"
+msgstr "تعلَّم"
+
+msgid "Lifecycle report: devices, fleet health, alarm history and 24h trends."
+msgstr "تقرير دورة الحياة: الأجهزة وسلامة الأسطول وسجل التنبيهات واتجاهات ٢٤ ساعة."
+
+msgid "Lowercase letters, numbers and dashes work best."
+msgstr "الأحرف الصغيرة والأرقام والشرطات هي الأنسب."
+
+msgid "Manage who can access this project and control project-wide actions."
+msgstr "تحكّم بمن يمكنه الوصول إلى هذا المشروع وبالإجراءات على مستوى المشروع."
+
+msgid "Member"
+msgstr "عضو"
+
+msgid "New project"
+msgstr "مشروع جديد"
+
+msgid "No LoRa devices yet"
+msgstr "لا توجد أجهزة LoRa بعد"
+
+msgid "No alert rules yet"
+msgstr "لا توجد قواعد تنبيه بعد"
+
+msgid "No description yet."
+msgstr "لا يوجد وصف بعد."
+
+msgid "No devices yet"
+msgstr "لا توجد أجهزة بعد"
+
+msgid "No pending invitations"
+msgstr "لا توجد دعوات معلّقة"
+
+msgid "No pending requests"
+msgstr "لا توجد طلبات معلّقة"
+
+msgid "No projects yet."
+msgstr "لا توجد مشاريع بعد."
+
+msgid "Notebook server"
+msgstr "خادم الدفاتر"
+
+msgid "Only used for the email or webhook action."
+msgstr "يُستخدم فقط لإجراء البريد أو الـ webhook."
+
+msgid "Open Notebook"
+msgstr "فتح الدفتر"
+
+msgid "Open console"
+msgstr "فتح وحدة التحكم"
+
+msgid "Owned"
+msgstr "مملوكة"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Pending invites — share the link; it accepts on their sign-in."
+msgstr "الدعوات المعلّقة — شارِك الرابط؛ يُقبل عند تسجيل دخولهم."
+
+msgid "Persistent"
+msgstr "دائم"
+
+msgid "Platform overview"
+msgstr "نظرة عامة على المنصّة"
+
+msgid "Power on a registered device — uplinks appear on this project's dashboard alongside your Wi-Fi devices."
+msgstr "شغِّل جهازًا مسجّلًا — تظهر الوصلات الصاعدة على لوحة هذا المشروع بجانب أجهزة Wi-Fi."
+
+msgid "Project"
+msgstr "المشروع"
+
+msgid "Project name"
+msgstr "اسم المشروع"
+
+msgid "Read the guide"
+msgstr "اقرأ الدليل"
+
+msgid "Ready to launch"
+msgstr "جاهز للتشغيل"
+
+msgid "Register a LoRa device and see gateway uplinks on this project's dashboard."
+msgstr "سجِّل جهاز LoRa وشاهد وصلات البوابة الصاعدة على لوحة هذا المشروع."
+
+msgid "Register a device to generate its DevEUI and AppKey for over-the-air activation."
+msgstr "سجِّل جهازًا لإنشاء DevEUI وAppKey الخاصين به للتفعيل عبر الأثير."
+
+msgid "Registered devices"
+msgstr "الأجهزة المسجّلة"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Remove this member?"
+msgstr "إزالة هذا العضو؟"
+
+msgid "Request to join"
+msgstr "طلب الانضمام"
+
+msgid "Resources"
+msgstr "الموارد"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Running"
+msgstr "قيد التشغيل"
+
+msgid "Select the EU868 region and save."
+msgstr "اختر منطقة EU868 واحفظ."
+
+msgid "Setting up this project…"
+msgstr "جارٍ إعداد هذا المشروع…"
+
+msgid "Shared with me"
+msgstr "مشارَكة معي"
+
+msgid "Show value"
+msgstr "إظهار القيمة"
+
+msgid "Start your first project"
+msgstr "ابدأ مشروعك الأول"
+
+msgid "Stopped"
+msgstr "متوقّف"
+
+msgid "Storage"
+msgstr "التخزين"
+
+msgid "This creates an isolated environment — its own devices, flows, notebooks, alerts and dashboards."
+msgstr "يُنشئ هذا بيئة معزولة — أجهزتها وتدفقاتها ودفاترها وتنبيهاتها ولوحاتها الخاصة."
+
+msgid "This project"
+msgstr "هذا المشروع"
+
+msgid "This project's Node-RED: wire devices to logic and actions, no code required."
+msgstr "Node-RED الخاص بهذا المشروع: اربط الأجهزة بالمنطق والإجراءات، دون الحاجة إلى برمجة."
+
+msgid "View status"
+msgstr "عرض الحالة"
+
+msgid "We could not set up this project:"
+msgstr "تعذّر علينا إعداد هذا المشروع:"
+
+msgid "What will this project do?"
+msgstr "ماذا سيفعل هذا المشروع؟"
+
+msgid "When someone asks to join this project, their request appears here."
+msgstr "عندما يطلب شخص الانضمام إلى هذا المشروع، يظهر طلبه هنا."
+
+msgid "You are not a member of this project."
+msgstr "أنت لست عضوًا في هذا المشروع."
+
+msgid "Your access to this project has been disabled by the owner."
+msgstr "تم تعطيل وصولك إلى هذا المشروع من قبل المالك."
+
+msgid "Your notebook and its files persist between sessions. The first launch takes a few seconds to start your server."
+msgstr "يُحفظ دفترك وملفاته بين الجلسات. يستغرق التشغيل الأول بضع ثوانٍ لبدء خادمك."
+
+msgid "Your own Node-RED editor for this project: wire device data to logic, dashboards and outgoing calls — no code required. Your ThingsBoard connection is pre-injected securely."
+msgstr "محرّر Node-RED الخاص بك لهذا المشروع: اربط بيانات الأجهزة بالمنطق واللوحات والاستدعاءات الصادرة — دون الحاجة إلى برمجة. اتصال ThingsBoard الخاص بك مُدرج مسبقًا بأمان."
+
+msgid "Your request to join is pending the owner's approval."
+msgstr "طلب انضمامك بانتظار موافقة المالك."
+
+msgid "active"
+msgstr "نشط"
+
+msgid "disabled"
+msgstr "معطّل"
+
+msgid "e.g. Greenhouse monitor"
+msgstr "مثال: مراقب الدفيئة"
+
+msgid "member"
+msgstr "عضو"
+
+msgid "optional"
+msgstr "اختياري"
+
+msgid "owner"
+msgstr "المالك"
+
+msgid "their email"
+msgstr "بريدهم الإلكتروني"
+
+msgid "used"
+msgstr "مُستخدَم"

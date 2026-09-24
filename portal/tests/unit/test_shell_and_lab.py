@@ -81,7 +81,7 @@ def test_notebooks_lab_disabled_is_controlled_page(
     assert "400" not in r.text and "Named servers" not in r.text
 
 
-def test_notebooks_launch_redirects_to_named_server(
+def test_notebooks_landing_offers_named_server_launch(
     client: TestClient, db: Session, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     u = _user(db, email="owner@x.io")
@@ -90,11 +90,12 @@ def test_notebooks_launch_redirects_to_named_server(
     monkeypatch.setattr("app.project.load_user", lambda request, db: u)
     monkeypatch.setattr("app.lab.enabled", lambda: True)
     monkeypatch.setattr("app.lab.healthy", lambda timeout=3.0: True)
-    r = client.get("/projects/p1/notebooks", follow_redirects=False)
-    assert r.status_code == 303
-    loc = r.headers["location"]
-    # server name is the immutable project id; user is url-encoded
-    assert loc.endswith("/hub/spawn/owner%40x.io/p1") and "lab." in loc
+    # The capability landing renders (200) inside the shared shell with an "Open Notebook"
+    # action pointing at the immutable per-project named-server spawn URL (user url-encoded).
+    r = client.get("/projects/p1/notebooks")
+    assert r.status_code == 200
+    assert 'class="subnav"' in r.text  # shared shell
+    assert "/hub/spawn/owner%40x.io/p1" in r.text and "lab." in r.text
 
 
 # ---- Members/Settings holds the moved controls; Overview no longer does ----

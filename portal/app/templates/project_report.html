@@ -2,9 +2,13 @@
 {% block title %}{{ _("Report") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
+{% from "_icons.html" import icon %}
 <div class="dash-head section-h">
-  <h2 class="section-h" style="margin:0">{{ _("Report") }}</h2>
-  <button type="button" class="btn btn--secondary btn--sm" id="report-print">{{ _("Print") }}</button>
+  <div>
+    <h2 class="section-h" style="margin:0">{{ _("Report") }}</h2>
+    <p class="helper" style="margin:.25rem 0 0">{{ _("Generated") }} {{ now.strftime('%Y-%m-%d %H:%M') if now else '' }} UTC</p>
+  </div>
+  <button type="button" class="btn btn--secondary btn--sm report-noprint" id="report-print">{{ icon('printer') }} {{ _("Print") }}</button>
 </div>
 
 <div class="panel">
@@ -86,10 +90,4 @@
   })();
 </script>
 {% endif %}
-<script>
-  (function () {
-    var btn = document.getElementById('report-print');
-    if (btn) btn.addEventListener('click', function () { window.print(); });
-  })();
-</script>
 {% endblock %}

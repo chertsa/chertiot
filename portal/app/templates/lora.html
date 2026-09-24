@@ -1,24 +1,51 @@
 {% extends "base.html" %}
-{% block title %}{{ _("LoRaWAN") }} — CHERT IoT{% endblock %}
+{% from "_components.html" import cred, empty with context %}
+{% block title %}{{ _("LoRaWAN") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
 <h2 class="section-h">{{ _("LoRaWAN") }}</h2>
 {% if not enabled %}
   <div class="callout callout--info"><p>{{ _("The LoRaWAN track is not enabled on this environment yet.") }}</p></div>
 {% else %}
-  <p>{{ _("Register a LoRaWAN device to get its OTAA credentials, point a gateway at the platform, and see uplinks arrive on your dashboard alongside your Wi-Fi devices.") }}</p>
-  <table class="table">
-    <thead><tr><th>{{ _("Device") }}</th><th>DevEUI</th><th>AppKey</th></tr></thead>
-    <tbody>
-    {% for d in devices %}
-      <tr><td>{{ d.tb_device_name }}</td><td><code class="token">{{ d.dev_eui }}</code></td><td><code class="token">{{ d.app_key }}</code></td></tr>
+  <p class="page-intro">{{ _("Register a LoRaWAN device to get its OTAA credentials, point a gateway at the platform, and see uplinks arrive on your dashboard alongside your Wi-Fi devices.") }}</p>
+
+  <div class="panel">
+    <div class="panel__head">
+      <h2 class="panel__title">{{ _("Registered devices") }}</h2>
+      <form method="post" action="/lora"><button class="btn btn--primary btn--sm" type="submit">+ {{ _("Register a LoRa device") }}</button></form>
+    </div>
+    {% if devices %}
+    <div class="table-scroll">
+    <table class="dtable">
+      <thead><tr><th>{{ _("Device") }}</th><th>DevEUI</th><th>AppKey</th></tr></thead>
+      <tbody>
+      {% for d in devices %}
+        <tr>
+          <td><strong>{{ d.tb_device_name }}</strong></td>
+          <td>{{ cred(d.dev_eui) }}</td>
+          <td>{{ cred(d.app_key, secret=True) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <p class="helper">{{ _("Keep the AppKey secret — it authenticates this device. Reveal it only to copy into your device firmware.") }}</p>
     {% else %}
-      <tr><td colspan="3">{{ _("No LoRa devices yet.") }}</td></tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  <form method="post" action="/lora"><button class="btn btn--primary" type="submit">{{ _("Register a LoRa device") }}</button></form>
-  <h2>{{ _("Gateway") }}</h2>
-  <p class="helper">{{ _("Point your LoRaWAN gateway (Semtech UDP packet forwarder) at") }} <code class="token">{{ domain }}:1700/udp</code>, {{ _("EU868. Full steps in the") }} <a href="/docs/guides/lorawan/">{{ _("gateway guide") }}</a>.</p>
+    {{ empty("radio", _("No LoRa devices yet"), _("Register a device to generate its DevEUI and AppKey for over-the-air activation.")) }}
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <div class="panel__head">
+      <h2 class="panel__title">{{ _("Gateway") }}</h2>
+      <span class="badge badge--muted">EU868</span>
+    </div>
+    <ol class="steps">
+      <li>{{ _("Configure your gateway as a Semtech UDP packet forwarder pointed at:") }} {{ cred(domain ~ ':1700/udp') }}</li>
+      <li>{{ _("Select the EU868 region and save.") }}</li>
+      <li>{{ _("Power on a registered device — uplinks appear on this project's dashboard alongside your Wi-Fi devices.") }}</li>
+    </ol>
+    <p class="helper" style="margin-top:1rem">{{ _("Full steps in the") }} <a href="/docs/guides/lorawan/">{{ _("gateway guide") }}</a>.</p>
+  </div>
 {% endif %}
 {% endblock %}

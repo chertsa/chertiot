@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Notebooks") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block content %}
+{% include "_project_nav.html" %}
+<h2 class="section-h">{{ _("Notebooks") }}</h2>
+<p class="page-intro">{{ _("Analyse this project's telemetry in a Python notebook — pandas and matplotlib, scoped to this project's data.") }}</p>
+
+<div class="panel">
+  <div class="capability">
+    <div class="capability__top">
+      <h2 class="panel__title" style="margin:0">JupyterLab</h2>
+      <span class="health health--up"><span class="health__dot"></span>{{ _("Ready to launch") }}</span>
+    </div>
+
+    <dl class="capability__meta">
+      <div><dt>{{ _("Engine") }}</dt><dd>JupyterLab</dd></div>
+      <div><dt>{{ _("Project") }}</dt><dd>{{ project.name }}</dd></div>
+      <div><dt>{{ _("Notebook server") }}</dt><dd>{{ _("This project") }}</dd></div>
+      <div><dt>{{ _("Storage") }}</dt><dd>{{ _("Persistent") }}</dd></div>
+    </dl>
+
+    <div class="capability__actions">
+      <a class="btn btn--primary" href="{{ launch_url }}">{{ _("Open Notebook") }} ↗</a>
+    </div>
+    <p class="helper">{{ _("Your notebook and its files persist between sessions. The first launch takes a few seconds to start your server.") }}</p>
+  </div>
+</div>
+{% endblock %}
