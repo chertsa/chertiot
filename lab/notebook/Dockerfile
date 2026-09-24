@@ -5,8 +5,11 @@ RUN SP=$(python -c "import site; print(site.getsitepackages()[0])") && cp /tmp/c
 COPY notebooks/ /home/jovyan/work/examples/
 # chertIoTlab language pack: relabels the residual Jupyter-branded Help links (registered as the
 # `en_GB` languagepack; overrides.json selects that locale — untranslated strings stay English).
+# Installed as root so setuptools can build egg-info in the (root-owned) copied source tree.
 COPY langpack /tmp/langpack
+USER root
 RUN pip install --no-cache-dir /tmp/langpack && rm -rf /tmp/langpack
+USER jovyan
 # CHERT-brand the JupyterLab browser-tab favicon (jupyter_server serves the lab page's favicons).
 COPY chert-favicon.ico /usr/local/share/chert-favicon.ico
 # Ship a settings override that disables the "official Jupyter news" prompt (Ask → Never).
