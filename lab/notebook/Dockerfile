@@ -3,6 +3,10 @@ RUN pip install --no-cache-dir pandas matplotlib requests
 COPY chertiot.py /tmp/chertiot.py
 RUN SP=$(python -c "import site; print(site.getsitepackages()[0])") && cp /tmp/chertiot.py "$SP/chertiot.py" && python -c "import chertiot" 
 COPY notebooks/ /home/jovyan/work/examples/
+# chertIoTlab language pack: relabels the residual Jupyter-branded Help links (registered as the
+# `en_GB` languagepack; overrides.json selects that locale — untranslated strings stay English).
+COPY langpack /tmp/langpack
+RUN pip install --no-cache-dir /tmp/langpack && rm -rf /tmp/langpack
 # CHERT-brand the JupyterLab browser-tab favicon (jupyter_server serves the lab page's favicons).
 COPY chert-favicon.ico /usr/local/share/chert-favicon.ico
 # Ship a settings override that disables the "official Jupyter news" prompt (Ask → Never).

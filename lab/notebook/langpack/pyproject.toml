@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chertlab-langpack"
+version = "1.0.0"
+description = "chertIoTlab display-string overrides for JupyterLab (rebrand residual Jupyter labels)."
+
+[project.entry-points."jupyterlab.languagepack"]
+en_GB = "chertlab_langpack"
+
+[tool.setuptools]
+packages = ["chertlab_langpack"]
+
+[tool.setuptools.package-data]
+chertlab_langpack = ["en_GB/LC_MESSAGES/*.json"]

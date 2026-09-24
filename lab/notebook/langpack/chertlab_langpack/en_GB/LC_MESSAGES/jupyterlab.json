@@ -1,0 +1,12 @@
+{
+  "": {
+    "domain": "jupyterlab",
+    "version": "1.0.0",
+    "language": "en_GB",
+    "plural_forms": "nplurals=2; plural=(n != 1);"
+  },
+  "Jupyter Forum": ["chertIoTlab Community"],
+  "Jupyter Reference": ["chertIoTlab Reference"],
+  "JupyterLab FAQ": ["chertIoTlab FAQ"],
+  "JupyterLab Reference": ["chertIoTlab User Guide"]
+}
