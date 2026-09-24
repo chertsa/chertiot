@@ -5,6 +5,8 @@ RUN SP=$(python -c "import site; print(site.getsitepackages()[0])") && cp /tmp/c
 COPY notebooks/ /home/jovyan/work/examples/
 # CHERT-brand the JupyterLab browser-tab favicon (jupyter_server serves the lab page's favicons).
 COPY chert-favicon.ico /usr/local/share/chert-favicon.ico
+# Ship a settings override that disables the "official Jupyter news" prompt (Ask → Never).
+COPY overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
 USER root
 RUN chown -R jovyan:users /home/jovyan/work && \
     SP=$(python -c "import jupyter_server, os; print(os.path.dirname(jupyter_server.__file__))") && \

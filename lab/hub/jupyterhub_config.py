@@ -61,6 +61,8 @@ c.DockerSpawner.volumes = {"jupyter-{username}-{servername}": "/home/jovyan/work
 c.JupyterHub.default_url = "/hub/home"
 c.JupyterHub.hub_ip = "0.0.0.0"
 c.JupyterHub.hub_connect_ip = "jupyterhub"
+# CHERT branding: replace the JupyterHub navbar logo on Hub pages (shipped in the image).
+c.JupyterHub.logo_file = "/srv/jupyterhub/chert-logo.png"
 
 PORTAL_INTERNAL = os.environ.get("PORTAL_INTERNAL_URL", "http://portal:8000")
 LAB_SECRET = os.environ["LAB_INTERNAL_SECRET"]
