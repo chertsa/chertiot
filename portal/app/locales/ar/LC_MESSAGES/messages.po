@@ -1004,3 +1004,27 @@ msgstr "لا يوجد نشاط قياس لعرضه لهذا الجهاز في ا
 #: app/templates/telemetry.html
 msgid "Telemetry activity counts telemetry values received (stored data points) — one per key per submission, so a device sending more keys reads higher. It is an activity indicator, not message/transport throughput, delivery success, packets, uplinks or bytes."
 msgstr "يحسب نشاط القياس قيم القياس المستلمة (نقاط البيانات المخزَّنة) — قيمة لكل مفتاح في كل إرسال، لذا يظهر الجهاز الذي يرسل مفاتيح أكثر برقم أعلى. وهو مؤشر نشاط وليس معدل نقل الرسائل أو نجاح التسليم أو الحزم أو الوصلات أو البايتات."
+
+msgid "Created"
+msgstr "تاريخ الإنشاء"
+
+msgid "Live data is unavailable right now."
+msgstr "البيانات المباشرة غير متاحة حالياً."
+
+msgid "My projects"
+msgstr "مشاريعي"
+
+msgid "Primary"
+msgstr "التنقل الرئيسي"
+
+msgid "Print"
+msgstr "طباعة"
+
+msgid "Provisioning"
+msgstr "التجهيز"
+
+msgid "Report"
+msgstr "التقرير"
+
+msgid "Skip to content"
+msgstr "تخطَّ إلى المحتوى"

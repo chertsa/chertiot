@@ -11,22 +11,30 @@
   <link rel="stylesheet" href="/static/portal.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">{{ _("Skip to content") }}</a>
   <header class="header">
     <div class="container header__inner">
       <a class="header__brand" href="/"><img src="/static/logo.svg" alt="" class="header__logo"><span class="header__wordmark">CHERT <span class="header__product">IoT</span></span></a>
-      <nav class="header__nav">
-        {% if request.session.get('user') %}
-          <a href="/home">{{ _("My projects") }}</a>{% if request.session.get("role") in ("instructor", "admin") %} <a href="/teach">{{ _("Teaching") }}</a>{% endif %}
-          <a class="btn btn--secondary btn--sm" href="/logout">{{ _("Sign out") }}</a>
-        {% else %}
-          <a href="/login">{{ _("Sign in") }}</a>
-          <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
-        {% endif %}
-        <a class="header__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+      {% if request.session.get('user') %}
+      <nav class="header__nav" aria-label="{{ _('Primary') }}">
+        <a class="header__navlink" href="/home">{{ _("My projects") }}</a>
+        {% if request.session.get("role") in ("instructor", "admin") %}<a class="header__navlink" href="/teach">{{ _("Teaching") }}</a>{% endif %}
       </nav>
+      <div class="header__account">
+        <a class="header__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+        <span class="header__user" title="{{ request.session['user'].get('email') }}">{{ request.session['user'].get('name') or request.session['user'].get('email') }}</span>
+        <a class="btn btn--secondary btn--sm" href="/logout">{{ _("Sign out") }}</a>
+      </div>
+      {% else %}
+      <div class="header__account">
+        <a class="header__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+        <a class="header__navlink" href="/login">{{ _("Sign in") }}</a>
+        <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
+      </div>
+      {% endif %}
     </div>
   </header>
-  <main class="container main">{% block content %}{% endblock %}</main>
+  <main id="main" class="container main">{% block content %}{% endblock %}</main>
   <footer class="footer"><div class="container">CHERT IoT</div></footer>
 </body>
 </html>

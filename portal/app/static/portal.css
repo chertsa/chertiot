@@ -1,11 +1,19 @@
 /* Portal layout on top of chert-tokens.css / chert-components.css. Tokens only — no raw values. */
 body { margin: 0; background: var(--chert-cream); color: var(--chert-ink); font-family: var(--font-ui); font-size: var(--fs-base); line-height: var(--lh-base); }
-.header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: var(--header-h); }
-.header__brand { display: flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--chert-ink); font-weight: 700; letter-spacing: 0.02em; }
+/* Contained, sticky global header (not floating links): persistent hairline + soft shadow. */
+.header { border-block-end: 1px solid var(--chert-border); box-shadow: 0 1px 0 rgba(26,26,24,.03); background: var(--chert-cream); }
+.header__inner { display: flex; align-items: center; gap: var(--space-4); min-height: var(--header-h); }
+.header__brand { display: flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--chert-ink); font-weight: 700; letter-spacing: 0.02em; margin-inline-end: var(--space-5); }
 .header__logo { height: 32px; width: auto; }
 .header__product { font-weight: 400; }
-.header__nav { display: flex; align-items: center; gap: var(--space-4); }
-.header__nav a { color: var(--chert-ink); text-decoration: none; font-weight: 600; }
+.header__nav { display: flex; align-items: center; gap: var(--space-2); }
+.header__account { display: flex; align-items: center; gap: var(--space-3); margin-inline-start: auto; }
+.header__navlink { color: var(--chert-ink); text-decoration: none; font-weight: 600; padding: 6px 10px; border-radius: var(--radius-sm); }
+.header__navlink:hover { background: var(--chert-surface-alt); }
+.header__user { font-size: var(--fs-sm); color: var(--chert-muted); max-width: 20ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--chert-ink); color: var(--chert-cream); padding: 10px 16px; border-radius: 0 0 var(--radius-sm) 0; z-index: var(--z-toast); }
+.skip-link:focus { left: 0; }
+@media (max-width: 639px) { .header__user { display: none; } .header__brand { margin-inline-end: var(--space-3); } }
 .main { padding: var(--space-4) 0 calc(var(--space-4) * 2); }
 .footer { border-top: 1px solid var(--chert-border); color: var(--chert-muted); font-size: var(--fs-sm); padding: var(--space-3) 0; }
 .footer a { color: var(--chert-ink); }
@@ -93,10 +101,15 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .chip--warn { background:var(--chert-warning-tint); color:var(--chert-warn); }
 .chip--crit { background:var(--chert-error-tint);   color:var(--chert-crit); }
 .proj-ref { color:var(--chert-muted); font-size:.78rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-.subnav { display:flex; gap:2px; flex-wrap:wrap; border-bottom:1px solid var(--chert-border); margin-top:.85rem; overflow-x:auto; }
-.subnav__tab { padding:.5rem .9rem; color:var(--chert-muted); text-decoration:none; border-bottom:2px solid transparent; font-weight:500; white-space:nowrap; }
-.subnav__tab:hover { color:var(--chert-ink); }
-.subnav__tab.is-active { color:var(--chert-orange-deep); border-bottom-color:var(--chert-orange); }
+/* Project capability sub-nav: identical order on every page, horizontally scrollable on narrow
+   viewports (no clipped tabs), clear active state, keyboard focus ring. */
+.subnav { display:flex; gap:2px; border-bottom:1px solid var(--chert-border); margin-top:.85rem;
+          overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+.subnav__tab { padding:.5rem .9rem; color:var(--chert-muted); text-decoration:none;
+               border-bottom:2px solid transparent; font-weight:500; white-space:nowrap; border-radius:6px 6px 0 0; }
+.subnav__tab:hover { color:var(--chert-ink); background:var(--chert-surface-alt); }
+.subnav__tab.is-active { color:var(--chert-orange-deep); border-bottom-color:var(--chert-orange); font-weight:700; }
+.subnav__tab:focus-visible { outline:2px solid var(--chert-ink); outline-offset:-2px; }
 
 /* --- v2 Monitoring --- */
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
@@ -110,3 +123,17 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .sev--major    { background:var(--chert-warning-tint); color:var(--chert-warn); }
 .sev--minor, .sev--warning { background:var(--chert-info-tint); color:var(--chert-info); }
 .sev--indeterminate { background:var(--chert-surface-alt); color:var(--chert-muted); }
+
+/* Wide tables scroll inside their own box on narrow viewports (no page-level horizontal scroll). */
+.table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+
+/* --- Print-friendly reports (§4 Reports): drop chrome, keep the content on paper. */
+@media print {
+  .header, .footer, .subnav, .header__account, #report-print { display:none !important; }
+  .proj-head { margin-bottom:.5rem; }
+  .main { padding:0; }
+  .panel, .kpi { box-shadow:none; border-color:var(--chert-border); break-inside:avoid; }
+  .kpi-row { break-inside:avoid; }
+  a[href] { color:var(--chert-ink); text-decoration:none; }
+  body { background:#fff; }
+}

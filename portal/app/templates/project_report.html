@@ -1,12 +1,10 @@
 {% extends "base.html" %}
-{% block title %}{{ project.name }} — report — CHERT IoT{% endblock %}
+{% block title %}{{ _("Report") }} — {{ project.name }} — CHERT IoT{% endblock %}
 {% block content %}
-<div class="dash-head">
-  <div>
-    <p class="overline"><a href="/home">{{ _("Projects") }}</a> / <a href="/projects/{{ project.id }}">{{ project.slug }}</a> / {{ _("Report") }}</p>
-    <h1>{{ project.name }} — {{ _("Report") }}</h1>
-  </div>
-  <a class="btn btn--secondary btn--sm" href="/projects/{{ project.id }}">← {{ _("Workspace") }}</a>
+{% include "_project_nav.html" %}
+<div class="dash-head section-h">
+  <h1 class="section-h" style="margin:0">{{ _("Report") }}</h1>
+  <button type="button" class="btn btn--secondary btn--sm" id="report-print">{{ _("Print") }}</button>
 </div>
 
 <div class="panel">
@@ -42,6 +40,7 @@
   <div class="panel">
     <h2 class="panel__title">{{ _("Devices") }}</h2>
     {% if devices %}
+    <div class="table-scroll">
     <table class="dtable">
       <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Latest") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
       <tbody>
@@ -52,6 +51,7 @@
       {% endfor %}
       </tbody>
     </table>
+    </div>
     {% else %}<p class="helper">{{ _("No devices yet.") }}</p>{% endif %}
   </div>
 
@@ -86,4 +86,10 @@
   })();
 </script>
 {% endif %}
+<script>
+  (function () {
+    var btn = document.getElementById('report-print');
+    if (btn) btn.addEventListener('click', function () { window.print(); });
+  })();
+</script>
 {% endblock %}
