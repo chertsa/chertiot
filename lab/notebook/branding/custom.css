@@ -1,0 +1,9 @@
+/* CHERT IoT Lab branding — replace the top-left JupyterLab logo with the CHERT mark. */
+#jp-MainLogo > svg { display: none !important; }
+#jp-MainLogo {
+  width: 30px;
+  background-image: url('chert-logo.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

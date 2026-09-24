@@ -7,9 +7,15 @@ COPY notebooks/ /home/jovyan/work/examples/
 COPY chert-favicon.ico /usr/local/share/chert-favicon.ico
 # Ship a settings override that disables the "official Jupyter news" prompt (Ask → Never).
 COPY overrides.json /opt/conda/share/jupyter/lab/settings/overrides.json
+# chertIoTlab rebrand: app name (About dialog/menu), custom logo CSS, and browser-tab title.
+COPY branding/page_config.json /opt/conda/etc/jupyter/labconfig/page_config.json
+COPY branding/jupyter_server_config.py /opt/conda/etc/jupyter/jupyter_server_config.py
+COPY branding/custom.css /opt/conda/etc/jupyter/custom/custom.css
+COPY branding/chert-logo.png /opt/conda/etc/jupyter/custom/chert-logo.png
 USER root
 RUN chown -R jovyan:users /home/jovyan/work && \
     SP=$(python -c "import jupyter_server, os; print(os.path.dirname(jupyter_server.__file__))") && \
     install -m 0644 /usr/local/share/chert-favicon.ico "$SP/static/favicon.ico" && \
-    for f in "$SP"/static/favicons/*.ico; do install -m 0644 /usr/local/share/chert-favicon.ico "$f"; done
+    for f in "$SP"/static/favicons/*.ico; do install -m 0644 /usr/local/share/chert-favicon.ico "$f"; done && \
+    sed -i 's#<title>JupyterLab</title>#<title>chertIoTlab</title>#' /opt/conda/share/jupyter/lab/static/index.html
 USER jovyan
