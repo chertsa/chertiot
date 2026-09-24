@@ -1028,3 +1028,6 @@ msgstr "التقرير"
 
 msgid "Skip to content"
 msgstr "تخطَّ إلى المحتوى"
+
+msgid "Member email to invite"
+msgstr "بريد العضو المراد دعوته"

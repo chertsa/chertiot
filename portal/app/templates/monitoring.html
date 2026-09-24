@@ -3,7 +3,7 @@
 {% block content %}
 {% include "_project_nav.html" %}
 {% set s = snapshot %}
-<h1 class="section-h">{{ _("Monitoring") }}</h1>
+<h2 class="section-h">{{ _("Monitoring") }}</h2>
 
 {% if project.provisioning_state != 'provisioned' %}
   <div class="callout callout--info"><p>{{ _("Setting up this project…") }}</p></div>

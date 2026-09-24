@@ -2,7 +2,8 @@
 body { margin: 0; background: var(--chert-cream); color: var(--chert-ink); font-family: var(--font-ui); font-size: var(--fs-base); line-height: var(--lh-base); }
 /* Contained, sticky global header (not floating links): persistent hairline + soft shadow. */
 .header { border-block-end: 1px solid var(--chert-border); box-shadow: 0 1px 0 rgba(26,26,24,.03); background: var(--chert-cream); }
-.header__inner { display: flex; align-items: center; gap: var(--space-4); min-height: var(--header-h); }
+/* Wrap the header row when cramped (mobile) so it never forces page-level horizontal scroll. */
+.header__inner { display: flex; align-items: center; gap: var(--space-4); min-height: var(--header-h); flex-wrap: wrap; row-gap: var(--space-2); }
 .header__brand { display: flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--chert-ink); font-weight: 700; letter-spacing: 0.02em; margin-inline-end: var(--space-5); }
 .header__logo { height: 32px; width: auto; }
 .header__product { font-weight: 400; }
@@ -79,7 +80,10 @@ html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", var(--font-ar, sans-
 .alarm--indeterminate .alarm__sev { background:var(--chert-surface-alt); color:var(--chert-muted); }
 .alarm__type { font-weight:600; }
 .alarm__meta { margin-inline-start:auto; color:var(--chert-muted); font-size:12px; }
-.section-h { margin-top:26px; }
+/* Two-level heading scale (tokens): project name is the single page h1, section titles are h2. */
+.proj-head__row h1 { font-size:var(--fs-h1); line-height:var(--lh-tight); }
+.section-h { margin-top:26px; font-size:var(--fs-h2); line-height:var(--lh-tight); }
+.alarm__meta, .alarm__type { overflow-wrap:anywhere; }
 .kpi--skeleton { opacity:.55; }
 .kpi--skeleton .kpi__value { color:var(--chert-muted); }
 #dash-live { min-height:120px; }

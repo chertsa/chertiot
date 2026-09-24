@@ -95,6 +95,17 @@ def test_shared_nav_has_accessible_landmarks() -> None:
     assert "is-active" in nav  # active-state hook present for keyboard/visual orientation
 
 
+def test_project_pages_have_single_h1() -> None:
+    """The shared nav renders the project name as the page's one <h1>; each tab's section title
+    is an <h2>. A second <h1> in a tab body breaks the heading hierarchy (a11y §7)."""
+    offenders: list[str] = []
+    for name in PROJECT_PAGE_TEMPLATES:
+        body = (TEMPLATES / name).read_text("utf-8")
+        if "<h1" in body:  # the only h1 must come from the included _project_nav.html
+            offenders.append(name)
+    assert not offenders, f"project pages with a second <h1> in the body: {offenders}"
+
+
 def test_reports_page_renders_inside_shared_shell(
     client: TestClient, db: Session, monkeypatch: pytest.MonkeyPatch
 ) -> None:

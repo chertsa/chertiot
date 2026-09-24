@@ -2,9 +2,10 @@
 {% block title %}{{ _("My devices") }} — CHERT IoT{% endblock %}
 {% block content %}
 {% include "_project_nav.html" %}
-<h1 class="section-h">{{ _("My devices") }}</h1>
+<h2 class="section-h">{{ _("My devices") }}</h2>
 <p class="helper">{{ used }} / {{ limit if limit else "∞" }} {{ _("devices used.") }}</p>
 {% if error %}<div class="callout callout--error"><p>{{ error }}</p></div>{% endif %}
+<div class="table-scroll">
 <table class="table">
   <thead><tr><th>{{ _("Device") }}</th><th>{{ _("Status") }}</th><th>{{ _("Last seen") }}</th></tr></thead>
   <tbody>
@@ -19,6 +20,7 @@
   {% endfor %}
   </tbody>
 </table>
+</div>
 <h2>{{ _("Add device") }}</h2>
 <form class="form" method="post" action="/projects/{{ project.id }}/devices">
   <div class="field"><label class="label" for="name">{{ _("Device name") }}</label><input class="input" id="name" name="name" required minlength="2" maxlength="48" placeholder="kitchen-sensor"></div>
