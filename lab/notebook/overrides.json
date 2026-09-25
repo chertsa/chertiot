@@ -2,8 +2,5 @@
   "@jupyterlab/apputils-extension:notification": {
     "fetchNews": "false",
     "checkForUpdates": false
-  },
-  "@jupyterlab/translation-extension:plugin": {
-    "locale": "en_GB"
   }
 }
