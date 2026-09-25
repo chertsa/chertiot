@@ -6,7 +6,7 @@
 # into an immutable artifact — no runtime copy/mount/init, no RTL. See docs/ar-AR/ for the plan +
 # the master prompt, and docs/audit/ for the evidence report.
 ARG NODERED_VERSION=5.0.6
-FROM nodered/node-red:${NODERED_VERSION}
+FROM ghcr.io/chertsa/chertiot-base-node-red:${NODERED_VERSION}
 
 USER root
 ARG EC=/usr/src/node-red/node_modules/@node-red/editor-client

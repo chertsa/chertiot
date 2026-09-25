@@ -1,6 +1,6 @@
 # Build context is the repo root (docker-compose.yml: build.context=.), so the image carries
 # templates-tb/ alongside the app and provisioning resolves it as /templates-tb.
-FROM python:3.12-slim-bookworm
+FROM ghcr.io/chertsa/chertiot-base-python:3.12-slim-bookworm
 RUN pip install --no-cache-dir uv==0.12.7
 WORKDIR /app
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON=/usr/local/bin/python3.12 UV_PYTHON_DOWNLOADS=never
