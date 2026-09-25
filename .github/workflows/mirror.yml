@@ -1,0 +1,40 @@
+name: mirror
+# Mirror all third-party runtime images into the CHERT GitHub Container Registry (ghcr.io/chertsa)
+# so deploys never pull from Docker Hub / quay.io / gcr.io — the only external source is CHERT's
+# own GitHub. Server-side manifest copy (multi-arch), authenticated with the built-in GITHUB_TOKEN.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Mirror third-party runtime images -> ghcr.io/chertsa
+        run: |
+          set -euo pipefail
+          mirror() { echo "==> $1  =>  $2"; docker buildx imagetools create -t "$2" "$1"; }
+          mirror docker.io/library/postgres:16.15                             ghcr.io/chertsa/chertiot-postgres:16.15
+          mirror quay.io/keycloak/keycloak:26.7.2                             ghcr.io/chertsa/chertiot-keycloak:26.7.2
+          mirror docker.io/library/redis:7.4.11                               ghcr.io/chertsa/chertiot-redis:7.4.11
+          mirror docker.io/library/eclipse-mosquitto:2.0.22                   ghcr.io/chertsa/chertiot-mosquitto:2.0.22
+          mirror docker.io/prom/prometheus:v3.14.0                            ghcr.io/chertsa/chertiot-prometheus:v3.14.0
+          mirror docker.io/prom/alertmanager:v0.34.0                          ghcr.io/chertsa/chertiot-alertmanager:v0.34.0
+          mirror docker.io/prom/node-exporter:v1.12.1                         ghcr.io/chertsa/chertiot-node-exporter:v1.12.1
+          mirror docker.io/prometheuscommunity/postgres-exporter:v0.20.1      ghcr.io/chertsa/chertiot-postgres-exporter:v0.20.1
+          mirror gcr.io/cadvisor/cadvisor:v0.55.1                             ghcr.io/chertsa/chertiot-cadvisor:v0.55.1
+          mirror docker.io/louislam/uptime-kuma:1.23.17                       ghcr.io/chertsa/chertiot-uptime-kuma:1.23.17
+          mirror docker.io/chirpstack/chirpstack:4.19.1                       ghcr.io/chertsa/chertiot-chirpstack:4.19.1
+          mirror docker.io/chirpstack/chirpstack-gateway-bridge:4.1.2         ghcr.io/chertsa/chertiot-chirpstack-gw-bridge:4.1.2
+          mirror docker.io/chirpstack/chirpstack-rest-api:4.19.0             ghcr.io/chertsa/chertiot-chirpstack-rest:4.19.0
+          mirror docker.io/tecnativa/docker-socket-proxy:v0.5.0              ghcr.io/chertsa/chertiot-socket-proxy:v0.5.0
+          echo "All runtime images mirrored."
