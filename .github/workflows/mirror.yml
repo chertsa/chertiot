@@ -38,3 +38,16 @@ jobs:
           mirror docker.io/chirpstack/chirpstack-rest-api:4.19.0             ghcr.io/chertsa/chertiot-chirpstack-rest:4.19.0
           mirror docker.io/tecnativa/docker-socket-proxy:v0.5.0              ghcr.io/chertsa/chertiot-socket-proxy:v0.5.0
           echo "All runtime images mirrored."
+      - name: Mirror Dockerfile base images -> ghcr.io/chertsa (build-time standalone)
+        run: |
+          set -euo pipefail
+          mirror() { echo "==> $1  =>  $2"; docker buildx imagetools create -t "$2" "$1"; }
+          mirror docker.io/library/python:3.12-slim-bookworm                 ghcr.io/chertsa/chertiot-base-python:3.12-slim-bookworm
+          mirror docker.io/squidfunk/mkdocs-material:9.7.7                    ghcr.io/chertsa/chertiot-base-mkdocs-material:9.7.7
+          mirror docker.io/library/nginx:1.31.4-alpine                       ghcr.io/chertsa/chertiot-base-nginx:1.31.4-alpine
+          mirror quay.io/jupyter/minimal-notebook:notebook-7.6.2             ghcr.io/chertsa/chertiot-base-minimal-notebook:notebook-7.6.2
+          mirror docker.io/jupyterhub/jupyterhub:5.5.1                       ghcr.io/chertsa/chertiot-base-jupyterhub:5.5.1
+          mirror docker.io/nodered/node-red:5.0.6                            ghcr.io/chertsa/chertiot-base-node-red:5.0.6
+          mirror docker.io/library/caddy:2.11.4-builder                      ghcr.io/chertsa/chertiot-base-caddy:2.11.4-builder
+          mirror docker.io/library/caddy:2.11.4                              ghcr.io/chertsa/chertiot-base-caddy:2.11.4
+          echo "All base images mirrored."
