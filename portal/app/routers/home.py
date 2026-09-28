@@ -46,7 +46,10 @@ def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
             },
             status_code=403,
         )
-    return RedirectResponse(f"https://grafana.{get_settings().domain}", status_code=303)
+    # Land directly on the platform overview dashboard (by UID; Grafana resolves the slug), not the
+    # Grafana home page. UID is stable across title/slug changes.
+    dash = "/d/chert-device-traffic?orgId=1&from=now-6h&to=now&timezone=browser&refresh=30s"
+    return RedirectResponse(f"https://grafana.{get_settings().domain}{dash}", status_code=303)
 
 
 @router.get("/")
@@ -146,7 +149,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "ver": "13.1.4",
                 "lic": "AGPL-3.0",
                 "access": "open",
-                "url": "https://grafana.{d}",
+                "url": "https://grafana.{d}/d/chert-device-traffic?orgId=1&refresh=30s",
                 "desc": "Monitoring dashboards over Prometheus. Opens with your "
                 "CHERT sign-in — no separate password.",
             },
