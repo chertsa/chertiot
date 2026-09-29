@@ -11,5 +11,7 @@ RUN set -eux; GD=/usr/share/grafana/public; \
     cp "$GD/img/fav32.png"           "$GD/build/img/fav32.png"; \
     cp "$GD/img/apple-touch-icon.png" "$GD/build/img/apple-touch-icon.png"; \
     JS="$(grep -rl 'this.AppTitle="Grafana"' "$GD"/build/*.js | head -1)"; \
-    sed -i 's/this.AppTitle="Grafana"/this.AppTitle="CHERT IoT"/; s/this.LoginTitle="Welcome to Grafana"/this.LoginTitle="Welcome to CHERT IoT"/' "$JS"
+    sed -i 's/this.AppTitle="Grafana"/this.AppTitle="CHERT IoT"/; s/this.LoginTitle="Welcome to Grafana"/this.LoginTitle="Welcome to CHERT IoT"/' "$JS"; \
+    # Hide the "Powered by Grafana" kiosk footer (targets the stable grafana.com link, not hashed classes).
+    sed -i 's#</head>#<style>a[href*="grafana.com"],*:has(> a[href*="grafana.com"]){display:none!important}</style></head>#' "$GD/views/index.html"
 USER 472
