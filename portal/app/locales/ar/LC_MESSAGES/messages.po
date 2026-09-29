@@ -1349,3 +1349,6 @@ msgstr "مُستخدَم"
 
 msgid "devices used"
 msgstr "أجهزة مُستخدَمة"
+
+msgid "Platform Monitor"
+msgstr "مراقبة المنصّة"
