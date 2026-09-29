@@ -235,7 +235,13 @@ services:
 
   grafana:
     <<: [*restart, *logging]
-    image: ${GRAFANA_IMAGE:-ghcr.io/chertsa/chertiot-grafana:13.1.4-b1}
+    # Thin CHERT branding overlay on the ghcr Grafana base (logo/favicon/app-title). Local build so
+    # the branding is durable across deploys; base stays ghcr.io/chertsa (no external registry).
+    build:
+      context: ./grafana-brand/overlay
+      args:
+        GRAFANA_BASE: ${GRAFANA_IMAGE:-ghcr.io/chertsa/chertiot-grafana:13.1.4-b1}
+    image: chertiot/grafana-branded:dev
     profiles: [core]
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
