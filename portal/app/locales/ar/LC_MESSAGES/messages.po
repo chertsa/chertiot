@@ -1352,3 +1352,195 @@ msgstr "أجهزة مُستخدَمة"
 
 msgid "Platform Monitor"
 msgstr "مراقبة المنصّة"
+
+msgid "A print-friendly lifecycle report: fleet health, device roster, alarm history and 24-hour trends."
+msgstr "تقرير دورة حياة مناسب للطباعة: سلامة الأسطول وقائمة الأجهزة وسجل التنبيهات واتجاهات ٢٤ ساعة."
+
+msgid "A starter dashboard is provisioned with every project, with the full ThingsBoard console a click away."
+msgstr "تُجهَّز لوحة بداية مع كل مشروع، مع وحدة تحكم ThingsBoard الكاملة على بُعد نقرة."
+
+msgid "Add a device, flash the starter code, and your readings appear on the dashboard within minutes."
+msgstr "أضِف جهازًا، وارفع الكود الأولي، وستظهر قراءاتك على اللوحة خلال دقائق."
+
+msgid "Arabic & English"
+msgstr "العربية والإنجليزية"
+
+msgid "Best-in-class engines, integrated into one platform"
+msgstr "أفضل المحرّكات في فئتها، مدمجة في منصّة واحدة"
+
+msgid "Build & analyse"
+msgstr "ابنِ وحلِّل"
+
+msgid "Built for Arabic and English"
+msgstr "مبنيّة للعربية والإنجليزية"
+
+msgid "CHERT IoT brings together trusted open-source engines and runs them on your own infrastructure — your data never leaves your platform."
+msgstr "تجمع CHERT IoT محرّكات مفتوحة المصدر موثوقة وتشغّلها على بنيتك التحتية — بياناتك لا تغادر منصّتك أبدًا."
+
+msgid "Connect a device"
+msgstr "وصِّل جهازًا"
+
+msgid "Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. Devices, dashboards, automations, notebooks and LoRaWAN — one isolated workspace per project. No servers to run, no cloud accounts to manage."
+msgstr "أنشئ حسابًا، وارفع الكود الأولي إلى ESP32، وشاهد بيانات مستشعرك تصل إلى لوحة خاصة بك وحدك. أجهزة ولوحات وأتمتة ودفاتر وLoRaWAN — مساحة عمل معزولة لكل مشروع. لا خوادم تُدار، ولا حسابات سحابية تُراقَب."
+
+msgid "Create your account"
+msgstr "أنشئ حسابك"
+
+msgid "Dashboards"
+msgstr "اللوحات"
+
+msgid "Dashboards & reports"
+msgstr "اللوحات والتقارير"
+
+msgid "Device management, telemetry, dashboards & alarms"
+msgstr "إدارة الأجهزة والقياسات واللوحات والتنبيهات"
+
+msgid "Devices & firmware"
+msgstr "الأجهزة والبرامج الثابتة"
+
+msgid "Durable data store"
+msgstr "مخزن بيانات دائم"
+
+msgid "Each project becomes your own isolated workspace, provisioned with a starter dashboard."
+msgstr "يصبح كل مشروع مساحة عملك المعزولة الخاصة، مُجهَّزة بلوحة بداية."
+
+msgid "Each project is its own tenant: its own devices, data, dashboards, automations and team. Nothing leaks between projects."
+msgstr "كل مشروع مستأجر مستقل: أجهزته وبياناته ولوحاته وأتمتته وفريقه. لا شيء يتسرّب بين المشاريع."
+
+msgid "English & Arabic"
+msgstr "الإنجليزية والعربية"
+
+msgid "Every screen is available in both languages with correct Arabic typography and a left-to-right layout — switch any time from the top bar."
+msgstr "كل شاشة متاحة باللغتين مع طباعة عربية صحيحة وتخطيط من اليسار إلى اليمين — بدّل في أي وقت من الشريط العلوي."
+
+msgid "Everything an IoT project needs — isolated per workspace"
+msgstr "كل ما يحتاجه مشروع إنترنت الأشياء — معزول لكل مساحة عمل"
+
+msgid "Free to create an account. Your first project is a few clicks away."
+msgstr "إنشاء الحساب مجّاني. مشروعك الأول على بُعد نقرات."
+
+msgid "From sign-up to live data in three steps"
+msgstr "من التسجيل إلى بيانات حيّة في ثلاث خطوات"
+
+msgid "How it works"
+msgstr "كيف تعمل"
+
+msgid "Identity & single sign-on"
+msgstr "الهوية وتسجيل الدخول الموحّد"
+
+msgid "Infrastructure monitoring"
+msgstr "مراقبة البنية التحتية"
+
+msgid "Invite members, approve join requests, and keep destructive actions owner-only."
+msgstr "ادعُ الأعضاء، ووافِق على طلبات الانضمام، واحصر الإجراءات المدمِّرة بالمالك."
+
+msgid "Launch a per-project JupyterLab with pandas and matplotlib, scoped to your own telemetry."
+msgstr "شغّل JupyterLab لكل مشروع مع pandas وmatplotlib، ضمن نطاق قياساتك وحدها."
+
+msgid "Live telemetry"
+msgstr "قياسات حيّة"
+
+msgid "LoRaWAN network server"
+msgstr "خادم شبكة LoRaWAN"
+
+msgid "LoRaWAN · HTTP · MQTT"
+msgstr "LoRaWAN · HTTP · MQTT"
+
+msgid "Metrics & alerting"
+msgstr "المقاييس والتنبيه"
+
+msgid "Multi-tenant IoT platform"
+msgstr "منصّة إنترنت أشياء متعدّدة المستأجرين"
+
+msgid "No-code flow automation"
+msgstr "أتمتة التدفقات دون برمجة"
+
+msgid "No-code flows"
+msgstr "تدفّقات دون برمجة"
+
+msgid "Node-RED flows"
+msgstr "تدفّقات Node-RED"
+
+msgid "One CHERT login opens every tool — portal, console, flows and notebooks — no separate passwords."
+msgstr "تسجيل دخول CHERT واحد يفتح كل أداة — البوابة ووحدة التحكم والتدفقات والدفاتر — دون كلمات مرور منفصلة."
+
+msgid "One platform, many capabilities"
+msgstr "منصّة واحدة، إمكانات كثيرة"
+
+msgid "Portal-native monitoring of your devices, alarms and 24-hour history — no setup required."
+msgstr "مراقبة أصيلة في البوابة لأجهزتك وتنبيهاتك وسجل ٢٤ ساعة — دون أي إعداد."
+
+msgid "Powered by proven open source"
+msgstr "مدعومة بمصادر مفتوحة مُجرَّبة"
+
+msgid "Python analysis notebooks"
+msgstr "دفاتر تحليل Python"
+
+msgid "Python notebooks"
+msgstr "دفاتر Python"
+
+msgid "Real device-to-dashboard in minutes"
+msgstr "من الجهاز إلى اللوحة فعليًّا خلال دقائق"
+
+msgid "Register LoRa devices, point a gateway at the platform and see uplinks land alongside your Wi-Fi devices."
+msgstr "سجّل أجهزة LoRa، ووجِّه بوابة إلى المنصّة، وشاهد الوصلات الصاعدة تصل بجانب أجهزة Wi-Fi."
+
+msgid "Register devices, get access tokens and ready-to-flash starter code for ESP32, Raspberry Pi or your browser."
+msgstr "سجّل الأجهزة، واحصل على رموز الوصول وكود أولي جاهز للرفع إلى ESP32 أو Raspberry Pi أو متصفّحك."
+
+msgid "Secure edge, TLS & MQTTS"
+msgstr "حافة آمنة، TLS وMQTTS"
+
+msgid "See the full stack"
+msgstr "اطّلع على الحزمة الكاملة"
+
+msgid "Self-hosted — you own your data"
+msgstr "مستضافة ذاتيًّا — بياناتك ملكك"
+
+msgid "Send readings over MQTT or HTTP and watch latest values, trends and per-device activity update in real time."
+msgstr "أرسل القراءات عبر MQTT أو HTTP وشاهد أحدث القيم والاتجاهات ونشاط كل جهاز يتحدّث لحظيًّا."
+
+msgid "Set thresholds and get an on-dashboard alarm, email or webhook when a reading crosses the line."
+msgstr "حدّد عتبات واحصل على تنبيه على اللوحة أو بريد أو webhook عندما تتجاوز قراءة الحدّ."
+
+msgid "Sign up with email; a single CHERT identity signs you in to every tool."
+msgstr "سجّل بالبريد؛ هوية CHERT واحدة تُدخلك إلى كل أداة."
+
+msgid "Single sign-on"
+msgstr "تسجيل الدخول الموحّد"
+
+msgid "Start a project"
+msgstr "ابدأ مشروعًا"
+
+msgid "Start building on your own IoT platform"
+msgstr "ابدأ البناء على منصّة إنترنت الأشياء الخاصة بك"
+
+msgid "Team"
+msgstr "الفريق"
+
+msgid "Team & roles"
+msgstr "الفريق والأدوار"
+
+msgid "The whole platform in both languages, with correct Arabic typography — switch any time."
+msgstr "المنصّة كاملة باللغتين، مع طباعة عربية صحيحة — بدّل في أي وقت."
+
+msgid "Your devices"
+msgstr "أجهزتك"
+
+msgid "Your own IoT lab, in minutes"
+msgstr "مختبر إنترنت الأشياء الخاص بك، خلال دقائق"
+
+msgid "Your own Node-RED editor, with the ThingsBoard connection pre-injected — wire devices to logic and actions."
+msgstr "محرّر Node-RED الخاص بك، مع اتصال ThingsBoard مُدرَج مسبقًا — اربط الأجهزة بالمنطق والإجراءات."
+
+msgid "Your project"
+msgstr "مشروعك"
+
+msgid "an isolated workspace"
+msgstr "مساحة عمل معزولة"
+
+msgid "secure MQTTS :8883"
+msgstr "MQTTS آمن :8883"
+
+msgid "single sign-on · your data only"
+msgstr "دخول موحّد · بياناتك فقط"

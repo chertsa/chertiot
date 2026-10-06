@@ -46,8 +46,9 @@ def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
             },
             status_code=403,
         )
-    # Land directly on the platform overview dashboard (by UID; Grafana resolves the slug), not the
-    # Grafana home page. `kiosk` shows only the dashboard body (panels + time controls), no nav/menu.
+    # Land directly on the platform overview dashboard (by UID; Grafana resolves the slug),
+    # not the Grafana home page. `kiosk` shows only the dashboard body (panels + time
+    # controls), with no nav/menu chrome.
     dash = "/d/chert-device-traffic?orgId=1&from=now-6h&to=now&timezone=browser&refresh=30s&kiosk"
     return RedirectResponse(f"https://grafana.{get_settings().domain}{dash}", status_code=303)
 

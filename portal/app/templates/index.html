@@ -1,9 +1,132 @@
 {% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}CHERT IoT — {{ _("Your own IoT lab, in minutes") }}{% endblock %}
 {% block content %}
-<section class="hero">
-  <p class="overline">{{ _("Multi-tenant IoT lab") }}</p>
-  <h1>{{ _("Your own IoT lab, live in ten minutes.") }}</h1>
-  <p>{{ _("Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. No servers to run, no cloud accounts to manage.") }}</p>
-  <p><a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a> <a class="btn btn--secondary btn--lg" href="/docs/">{{ _("Read the getting-started guide") }}</a></p>
+
+{# ============================ HERO ============================ #}
+<section class="lp-hero">
+  <div class="lp-hero__text">
+    <p class="overline">{{ _("Multi-tenant IoT platform") }}</p>
+    <h1>{{ _("Your own IoT lab, live in ten minutes.") }}</h1>
+    <p class="lp-lead">{{ _("Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. Devices, dashboards, automations, notebooks and LoRaWAN — one isolated workspace per project. No servers to run, no cloud accounts to manage.") }}</p>
+    <p class="lp-cta">
+      <a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a>
+      <a class="btn btn--secondary btn--lg" href="/explore">{{ _("Explore the stack") }}</a>
+    </p>
+    <ul class="lp-trust">
+      <li>{{ icon("server", 18) }} {{ _("Self-hosted — you own your data") }}</li>
+      <li>{{ icon("bolt", 18) }} {{ _("Real device-to-dashboard in minutes") }}</li>
+      <li>{{ icon("globe", 18) }} {{ _("English & Arabic") }}</li>
+    </ul>
+  </div>
+  <div class="lp-hero__art" aria-hidden="true">
+    {% include "_landing_diagram.html" %}
+  </div>
+</section>
+
+{# ======================= WHAT YOU GET ========================= #}
+<section class="lp-section">
+  <div class="lp-section__head">
+    <p class="overline">{{ _("One platform, many capabilities") }}</p>
+    <h2>{{ _("Everything an IoT project needs — isolated per workspace") }}</h2>
+    <p class="lp-section__lead">{{ _("Each project is its own tenant: its own devices, data, dashboards, automations and team. Nothing leaks between projects.") }}</p>
+  </div>
+  <div class="lp-grid">
+    {% set caps = [
+      ("cpu", _("Devices & firmware"), _("Register devices, get access tokens and ready-to-flash starter code for ESP32, Raspberry Pi or your browser.")),
+      ("activity", _("Live telemetry"), _("Send readings over MQTT or HTTP and watch latest values, trends and per-device activity update in real time.")),
+      ("layers", _("Dashboards"), _("A starter dashboard is provisioned with every project, with the full ThingsBoard console a click away.")),
+      ("gauge", _("Monitoring"), _("Portal-native monitoring of your devices, alarms and 24-hour history — no setup required.")),
+      ("bell", _("Alerts"), _("Set thresholds and get an on-dashboard alarm, email or webhook when a reading crosses the line.")),
+      ("sitemap", _("No-code flows"), _("Your own Node-RED editor, with the ThingsBoard connection pre-injected — wire devices to logic and actions.")),
+      ("flask", _("Python notebooks"), _("Launch a per-project JupyterLab with pandas and matplotlib, scoped to your own telemetry.")),
+      ("radio", _("LoRaWAN"), _("Register LoRa devices, point a gateway at the platform and see uplinks land alongside your Wi-Fi devices.")),
+      ("printer", _("Reports"), _("A print-friendly lifecycle report: fleet health, device roster, alarm history and 24-hour trends.")),
+      ("users", _("Team & roles"), _("Invite members, approve join requests, and keep destructive actions owner-only.")),
+      ("lock", _("Single sign-on"), _("One CHERT login opens every tool — portal, console, flows and notebooks — no separate passwords.")),
+      ("globe", _("Arabic & English"), _("The whole platform in both languages, with correct Arabic typography — switch any time.")),
+    ] %}
+    {% for ic, title, desc in caps %}
+    <div class="lp-card">
+      <div class="card__icon">{{ icon(ic, 22) }}</div>
+      <h3 class="lp-card__title">{{ title }}</h3>
+      <p class="lp-card__desc">{{ desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{# ========================= HOW IT WORKS ======================= #}
+<section class="lp-section lp-section--alt">
+  <div class="lp-section__head">
+    <p class="overline">{{ _("How it works") }}</p>
+    <h2>{{ _("From sign-up to live data in three steps") }}</h2>
+  </div>
+  <div class="lp-steps">
+    <div class="lp-step">
+      <span class="lp-step__n">1</span>
+      <h3>{{ _("Create your account") }}</h3>
+      <p>{{ _("Sign up with email; a single CHERT identity signs you in to every tool.") }}</p>
+    </div>
+    <div class="lp-step">
+      <span class="lp-step__n">2</span>
+      <h3>{{ _("Start a project") }}</h3>
+      <p>{{ _("Each project becomes your own isolated workspace, provisioned with a starter dashboard.") }}</p>
+    </div>
+    <div class="lp-step">
+      <span class="lp-step__n">3</span>
+      <h3>{{ _("Connect a device") }}</h3>
+      <p>{{ _("Add a device, flash the starter code, and your readings appear on the dashboard within minutes.") }}</p>
+    </div>
+  </div>
+  <p class="lp-center"><a class="btn btn--primary" href="/signup">{{ _("Create account") }}</a>
+     <a class="btn btn--ghost" href="/docs/">{{ _("Read the getting-started guide") }} →</a></p>
+</section>
+
+{# ===================== POWERED BY OPEN SOURCE ================= #}
+<section class="lp-section">
+  <div class="lp-section__head">
+    <p class="overline">{{ _("Powered by proven open source") }}</p>
+    <h2>{{ _("Best-in-class engines, integrated into one platform") }}</h2>
+    <p class="lp-section__lead">{{ _("CHERT IoT brings together trusted open-source engines and runs them on your own infrastructure — your data never leaves your platform.") }}</p>
+  </div>
+  <div class="lp-engines">
+    {% set engines = [
+      ("layers", "ThingsBoard", _("Device management, telemetry, dashboards & alarms")),
+      ("lock", "Keycloak", _("Identity & single sign-on")),
+      ("sitemap", "Node-RED", _("No-code flow automation")),
+      ("flask", "JupyterLab", _("Python analysis notebooks")),
+      ("gauge", "Grafana", _("Infrastructure monitoring")),
+      ("radio", "ChirpStack", _("LoRaWAN network server")),
+      ("activity", "Prometheus", _("Metrics & alerting")),
+      ("server", "PostgreSQL", _("Durable data store")),
+      ("shield", "Caddy", _("Secure edge, TLS & MQTTS")),
+    ] %}
+    {% for ic, name, desc in engines %}
+    <div class="lp-engine">
+      <span class="lp-engine__icon">{{ icon(ic, 20) }}</span>
+      <div><strong>{{ name }}</strong><span>{{ desc }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="lp-center"><a class="btn btn--secondary" href="/explore">{{ _("See the full stack") }} →</a></p>
+</section>
+
+{# ======================= BILINGUAL BAND ======================= #}
+<section class="lp-band">
+  <div class="lp-band__icon" aria-hidden="true">{{ icon("globe", 30) }}</div>
+  <div>
+    <h2>{{ _("Built for Arabic and English") }}</h2>
+    <p>{{ _("Every screen is available in both languages with correct Arabic typography and a left-to-right layout — switch any time from the top bar.") }}</p>
+  </div>
+  <a class="btn btn--secondary" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+</section>
+
+{# ========================= FINAL CTA ========================== #}
+<section class="lp-final">
+  <h2>{{ _("Start building on your own IoT platform") }}</h2>
+  <p>{{ _("Free to create an account. Your first project is a few clicks away.") }}</p>
+  <p><a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a>
+     <a class="btn btn--secondary btn--lg" href="/login">{{ _("Sign in") }}</a></p>
 </section>
 {% endblock %}
