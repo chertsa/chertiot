@@ -42,7 +42,6 @@
     <#-- CHERT favicon (same files as the portal). Content-versioned (?v=sha256[:10]) because Keycloak
          serves theme resources with max-age=30d under a path that doesn't change with the theme. -->
     <link rel="icon" href="${url.resourcesPath}/img/favicon.ico?v=e1cc96f184" sizes="any" />
-    <link rel="icon" href="${url.resourcesPath}/img/logo.svg?v=934a88da79" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="${url.resourcesPath}/img/apple-touch-icon.png?v=2a145d7949" />
     <#if themeResources?? && themeResources.stylesCommon?has_content>
         <@themeResourceTags.renderStyles themeResources.stylesCommon url.resourcesCommonPath />
