@@ -1,48 +1,57 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Teaching") }} — CHERT IoT{% endblock %}
 {% from "_page_hero.html" import page_hero with context %}
-{% block hero %}{{ page_hero(_("Teaching"), crumbs=[(_("My projects"), "/home")], mark="users") }}{% endblock %}
+{% from "_components.html" import empty with context %}
+{% from "_icons.html" import icon %}
+{% block hero %}
+{% call page_hero(_("Teaching"), crumbs=[(_("My projects"), "/home")], mark="users",
+                  intro=_("Create class codes for your cohorts and keep an eye on every project on the platform.")) %}
+  <a class="btn btn--primary" href="/teach/projects">{{ icon("grid", 16) }} {{ _("All projects") }}</a>
+{% endcall %}
+{% endblock %}
 {% block content %}
 
 <h2 class="section-h">{{ _("Platform overview") }}</h2>
-<div class="grid-cards">
-  <a class="card" href="/teach/projects">
-    <div class="card__title">{{ overview.projects }}</div>
-    <div class="card__desc">{{ _("Projects") }}</div>
-  </a>
-  <div class="card">
-    <div class="card__title">{{ overview.active_projects }}</div>
-    <div class="card__desc">{{ _("Active projects") }}</div>
-  </div>
-  <div class="card">
-    <div class="card__title">{{ overview.members }}</div>
-    <div class="card__desc">{{ _("Active members") }}</div>
-  </div>
+<div class="kpi-row kpi-row--3">
+  <a class="kpi kpi--link" href="/teach/projects"><div class="kpi__value">{{ overview.projects }}</div><div class="kpi__label">{{ _("Projects") }} →</div></a>
+  <div class="kpi"><div class="kpi__value">{{ overview.active_projects }}</div><div class="kpi__label">{{ _("Active projects") }}</div></div>
+  <div class="kpi"><div class="kpi__value">{{ overview.members }}</div><div class="kpi__label">{{ _("Active members") }}</div></div>
 </div>
 
-<h2 class="section-h" style="margin-top:2rem">{{ _("Class codes") }}</h2>
-<table class="table">
-  <thead><tr><th>{{ _("Code") }}</th><th>{{ _("Cohort") }}</th><th>{{ _("Used") }}</th><th>{{ _("Expires") }}</th><th>{{ _("Students") }}</th><th></th></tr></thead>
-  <tbody>
-  {% for c in codes %}
-    <tr {% if not c.active %}style="opacity:.5"{% endif %}>
-      <td><code class="token">{{ c.code }}</code></td>
-      <td>{{ c.cohort }}</td>
-      <td>{{ c.uses }}/{{ c.max_uses }}</td>
-      <td>{% if c.expires_at %}{{ c.expires_at.strftime('%Y-%m-%d') }}{% endif %}</td>
-      <td>{{ counts.get(c.cohort, 0) }}</td>
-      <td>{% if c.active %}<form method="post" action="/teach/codes/{{ c.code }}/deactivate"><button class="btn btn--secondary btn--sm">{{ _("Deactivate") }}</button></form>{% else %}{{ _("inactive") }}{% endif %}</td>
-    </tr>
-  {% else %}
-    <tr><td colspan="6">{{ _("No class codes yet.") }}</td></tr>
-  {% endfor %}
-  </tbody>
-</table>
-<h2>{{ _("New class code") }}</h2>
-<form class="form" method="post" action="/teach/codes">
-  <div class="field"><label class="label" for="cohort">{{ _("Cohort name") }}</label><input class="input" id="cohort" name="cohort" required placeholder="cs101-fall26"></div>
-  <div class="field"><label class="label" for="max_uses">{{ _("Maximum students") }}</label><input class="input" id="max_uses" name="max_uses" type="number" value="100" min="1" max="500"></div>
-  <div class="field"><label class="label" for="days">{{ _("Valid for (days)") }}</label><input class="input" id="days" name="days" type="number" value="180" min="1" max="365"></div>
-  <div><button class="btn btn--primary" type="submit">{{ _("Create code") }}</button></div>
-</form>
+<div class="dash-grid">
+  <section class="panel">
+    <div class="panel__head"><h2 class="panel__title">{{ _("Class codes") }}</h2><span class="badge badge--muted">{{ codes|length }}</span></div>
+    {% if codes %}
+    <div class="table-scroll">
+    <table class="dtable">
+      <thead><tr><th>{{ _("Code") }}</th><th>{{ _("Cohort") }}</th><th>{{ _("Used") }}</th><th>{{ _("Expires") }}</th><th>{{ _("Students") }}</th><th></th></tr></thead>
+      <tbody>
+      {% for c in codes %}
+        <tr {% if not c.active %}class="is-muted"{% endif %}>
+          <td><code class="token">{{ c.code }}</code></td>
+          <td>{{ c.cohort }}</td>
+          <td>{{ c.uses }}/{{ c.max_uses }}</td>
+          <td>{% if c.expires_at %}{{ c.expires_at.strftime('%Y-%m-%d') }}{% endif %}</td>
+          <td>{{ counts.get(c.cohort, 0) }}</td>
+          <td class="dtable__actions">{% if c.active %}<form method="post" action="/teach/codes/{{ c.code }}/deactivate"><button class="btn btn--secondary btn--sm">{{ _("Deactivate") }}</button></form>{% else %}<span class="badge badge--muted">{{ _("inactive") }}</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% else %}
+    {{ empty("users", _("No class codes yet."), _("Create a code for a cohort; students who sign up with it join that cohort.")) }}
+    {% endif %}
+  </section>
+
+  <section class="panel panel--form">
+    <div class="panel__head"><h2 class="panel__title">{{ _("New class code") }}</h2></div>
+    <form class="form-grid" method="post" action="/teach/codes">
+      <div class="field field--wide"><label class="label" for="cohort">{{ _("Cohort name") }}</label><input class="input" id="cohort" name="cohort" required placeholder="cs101-fall26"></div>
+      <div class="field"><label class="label" for="max_uses">{{ _("Maximum students") }}</label><input class="input" id="max_uses" name="max_uses" type="number" value="100" min="1" max="500"></div>
+      <div class="field"><label class="label" for="days">{{ _("Valid for (days)") }}</label><input class="input" id="days" name="days" type="number" value="180" min="1" max="365"></div>
+      <div class="form-actions field--wide"><button class="btn btn--primary" type="submit">{{ icon("plus", 16) }} {{ _("Create code") }}</button></div>
+    </form>
+  </section>
+</div>
 {% endblock %}

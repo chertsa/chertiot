@@ -8,11 +8,18 @@ theme:
   custom_dir: overrides
   language: en
   font: false
+  # Arabic is translation-only across CHERT: LTR layout in every language (Material would emit
+  # dir="rtl" for `ar`).
+  direction: ltr
   logo: assets/logo.svg
-  favicon: assets/logo.svg
-  features: [navigation.sections, navigation.top, content.code.copy, search.suggest]
+  favicon: assets/favicon.ico
+  features: [navigation.sections, navigation.top, navigation.footer, content.code.copy, search.suggest]
+  # `custom` lets assets/chert.css define the colours (the CHERT tokens); a named palette such as the
+  # default indigo would override them via [data-md-color-primary].
   palette:
     scheme: default
+    primary: custom
+    accent: custom
 extra_css: [assets/chert.css]
 nav:
   - Start here: index.md
@@ -42,6 +49,20 @@ plugins:
           name: العربية
           build: true
           site_name: "وثائق CHERT IoT"
+          site_description: "ابدأ مع مختبر إنترنت الأشياء الخاص بك في CHERT IoT."
+          nav_translations:
+            Start here: ابدأ هنا
+            Getting started: البدء
+            Browser (no hardware): المتصفّح (بلا عتاد)
+            Guides: الأدلة
+            MQTT, topics and your token: MQTT والمواضيع ورمزك
+            Your dashboard: لوحتك
+            LoRaWAN gateways: بوابات LoRaWAN
+            Limits and what you can't do (yet): الحدود وما لا يمكنك فعله (بعد)
+            Policies: السياسات
+            Fair use: الاستخدام العادل
+            Privacy: الخصوصية
+            Service expectations: توقّعات الخدمة
 
 markdown_extensions: [admonition, attr_list, tables, pymdownx.superfences, pymdownx.tabbed, toc]
 extra:

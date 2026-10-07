@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-07 03:44+0300\n"
+"POT-Creation-Date: 2026-10-07 04:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,7 +152,7 @@ msgid "Python notebooks"
 msgstr ""
 
 #: app/site_content.py:76 app/templates/base.html:30 app/templates/base.html:42
-#: app/templates/base.html:58 app/templates/explore.html:36
+#: app/templates/base.html:58 app/templates/explore.html:49
 #: app/templates/index.html:30 app/templates/index.html:257
 msgid "Docs"
 msgstr ""
@@ -603,6 +603,119 @@ msgstr ""
 msgid "The public status page shows everyone what is up."
 msgstr ""
 
+#: app/routers/home.py:101
+msgid "Core platform"
+msgstr ""
+
+#: app/routers/home.py:110
+msgid ""
+"The IoT core — devices, telemetry, dashboards, rule chains, alarms. One "
+"tenant per project."
+msgstr ""
+
+#: app/routers/home.py:120
+msgid "Identity & single sign-on for every app."
+msgstr ""
+
+#: app/routers/home.py:128
+msgid "This site: devices, flows, lab, alerts, teach."
+msgstr ""
+
+#: app/routers/home.py:136
+msgid "Getting-started guides (English & Arabic)."
+msgstr ""
+
+#: app/routers/home.py:144
+msgid "Edge reverse proxy: TLS, routing, MQTTS on :8883."
+msgstr ""
+
+#: app/routers/home.py:149
+msgid "Observability & monitoring"
+msgstr ""
+
+#: app/routers/home.py:157
+msgid "Collects metrics and evaluates alert rules."
+msgstr ""
+
+#: app/routers/home.py:166
+msgid ""
+"Monitoring dashboards over Prometheus. Opens with your CHERT sign-in — no"
+" separate password."
+msgstr ""
+
+#: app/routers/home.py:176
+msgid "Routes platform alerts to email."
+msgstr ""
+
+#: app/routers/home.py:184
+msgid "Public status & uptime page."
+msgstr ""
+
+#: app/routers/home.py:192
+msgid "Host CPU/RAM/disk metrics."
+msgstr ""
+
+#: app/routers/home.py:200
+msgid "Per-container metrics."
+msgstr ""
+
+#: app/routers/home.py:208
+msgid "Database metrics."
+msgstr ""
+
+#: app/routers/home.py:213
+msgid "IoT & LoRaWAN stack"
+msgstr ""
+
+#: app/routers/home.py:222
+msgid "LoRaWAN network server. Register devices from a project's LoRaWAN tab."
+msgstr ""
+
+#: app/routers/home.py:231
+#, python-brace-format
+msgid "Gateways send here: {d}:1700/udp (Semtech UDP, EU868)."
+msgstr ""
+
+#: app/routers/home.py:239
+msgid "MQTT broker between ChirpStack and the bridge."
+msgstr ""
+
+#: app/routers/home.py:247
+msgid "ChirpStack device-session & metrics store."
+msgstr ""
+
+#: app/routers/home.py:255
+msgid "Forwards LoRa uplinks to your ThingsBoard device by DevEUI."
+msgstr ""
+
+#: app/routers/home.py:260
+msgid "Student tools — flows & lab"
+msgstr ""
+
+#: app/routers/home.py:268
+msgid "Your private low-code flow editor."
+msgstr ""
+
+#: app/routers/home.py:276
+msgid "Your Python notebooks — plot your own telemetry."
+msgstr ""
+
+#: app/routers/home.py:284
+msgid "Least-privilege Docker API used to spawn your flows/notebooks."
+msgstr ""
+
+#: app/routers/home.py:289
+msgid "Backup & dev"
+msgstr ""
+
+#: app/routers/home.py:297
+msgid "Nightly encrypted off-box backups."
+msgstr ""
+
+#: app/routers/home.py:305
+msgid "Local email capture for development only."
+msgstr ""
+
 #: app/routers/signup.py:57
 msgid "Enter a valid email address."
 msgstr ""
@@ -671,7 +784,7 @@ msgstr ""
 
 #: app/templates/_project_nav.html:15 app/templates/device.html:4
 #: app/templates/home.html:19 app/templates/project_join.html:4
-#: app/templates/project_new.html:4 app/templates/teach/console.html:11
+#: app/templates/project_new.html:4 app/templates/teach/console.html:16
 #: app/templates/teach/roster.html:2 app/templates/teach/roster.html:4
 msgid "Projects"
 msgstr ""
@@ -846,12 +959,12 @@ msgid "Primary"
 msgstr ""
 
 #: app/templates/base.html:27 app/templates/home.html:4
-#: app/templates/home.html:12 app/templates/teach/console.html:4
+#: app/templates/home.html:12 app/templates/teach/console.html:7
 msgid "My projects"
 msgstr ""
 
 #: app/templates/base.html:28 app/templates/teach/console.html:2
-#: app/templates/teach/console.html:4 app/templates/teach/roster.html:4
+#: app/templates/teach/console.html:7 app/templates/teach/roster.html:4
 msgid "Teaching"
 msgstr ""
 
@@ -1080,15 +1193,15 @@ msgstr ""
 msgid "Back to start"
 msgstr ""
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:2 app/templates/explore.html:5
 msgid "Explore the lab"
 msgstr ""
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:5
 msgid "Open-source systems"
 msgstr ""
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:5
 msgid ""
 "CHERT IoT is built from proven open-source engines, integrated into one "
 "lab. Here is every system that powers it — open it, or learn what it "
@@ -1096,8 +1209,8 @@ msgid ""
 "you understand the full stack."
 msgstr ""
 
-#: app/templates/explore.html:8 app/templates/explore.html:21
-#: app/templates/explore.html:27 app/templates/home.html:42
+#: app/templates/explore.html:7 app/templates/explore.html:17
+#: app/templates/explore.html:43 app/templates/home.html:42
 #: app/templates/home.html:59 app/templates/project.html:23
 #: app/templates/project.html:24 app/templates/project.html:25
 #: app/templates/project.html:26 app/templates/project.html:27
@@ -1105,35 +1218,35 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: app/templates/explore.html:8
-msgid "live student access"
-msgstr ""
-
-#: app/templates/explore.html:9 app/templates/explore.html:21
-#: app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:18
 msgid "SSO/Admin"
 msgstr ""
 
-#: app/templates/explore.html:10 app/templates/explore.html:21
-#: app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:19
 msgid "via /lora"
 msgstr ""
 
-#: app/templates/explore.html:11 app/templates/explore.html:21
-#: app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:20
 msgid "Internal"
 msgstr ""
 
-#: app/templates/explore.html:11
-msgid "private network"
-msgstr ""
-
-#: app/templates/explore.html:12 app/templates/explore.html:21
-#: app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:21
 msgid "Dev only"
 msgstr ""
 
-#: app/templates/explore.html:36
+#: app/templates/explore.html:16
+msgid "Access legend"
+msgstr ""
+
+#: app/templates/explore.html:17
+msgid "live student access"
+msgstr ""
+
+#: app/templates/explore.html:20
+msgid "private network"
+msgstr ""
+
+#: app/templates/explore.html:49
 msgid "systems · see the full map in the docs."
 msgstr ""
 
@@ -2128,15 +2241,25 @@ msgstr ""
 msgid "Your account is active. Sign in to open your lab."
 msgstr ""
 
-#: app/templates/teach/console.html:7
+#: app/templates/teach/console.html:8
+msgid ""
+"Create class codes for your cohorts and keep an eye on every project on "
+"the platform."
+msgstr ""
+
+#: app/templates/teach/console.html:9
+msgid "All projects"
+msgstr ""
+
+#: app/templates/teach/console.html:14
 msgid "Platform overview"
 msgstr ""
 
-#: app/templates/teach/console.html:15
+#: app/templates/teach/console.html:17
 msgid "Active projects"
 msgstr ""
 
-#: app/templates/teach/console.html:19
+#: app/templates/teach/console.html:18
 msgid "Active members"
 msgstr ""
 
@@ -2144,55 +2267,59 @@ msgstr ""
 msgid "Class codes"
 msgstr ""
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Code"
 msgstr ""
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Cohort"
 msgstr ""
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Used"
 msgstr ""
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Expires"
 msgstr ""
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Students"
 msgstr ""
 
-#: app/templates/teach/console.html:34
+#: app/templates/teach/console.html:36
 msgid "Deactivate"
 msgstr ""
 
-#: app/templates/teach/console.html:34
+#: app/templates/teach/console.html:36
 msgid "inactive"
 msgstr ""
 
-#: app/templates/teach/console.html:37
+#: app/templates/teach/console.html:43
 msgid "No class codes yet."
 msgstr ""
 
-#: app/templates/teach/console.html:41
+#: app/templates/teach/console.html:43
+msgid "Create a code for a cohort; students who sign up with it join that cohort."
+msgstr ""
+
+#: app/templates/teach/console.html:48
 msgid "New class code"
 msgstr ""
 
-#: app/templates/teach/console.html:43
+#: app/templates/teach/console.html:50
 msgid "Cohort name"
 msgstr ""
 
-#: app/templates/teach/console.html:44
+#: app/templates/teach/console.html:51
 msgid "Maximum students"
 msgstr ""
 
-#: app/templates/teach/console.html:45
+#: app/templates/teach/console.html:52
 msgid "Valid for (days)"
 msgstr ""
 
-#: app/templates/teach/console.html:46
+#: app/templates/teach/console.html:53
 msgid "Create code"
 msgstr ""
 

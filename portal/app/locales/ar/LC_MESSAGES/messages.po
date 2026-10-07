@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-07 03:44+0300\n"
+"POT-Creation-Date: 2026-10-07 04:57+0300\n"
 "PO-Revision-Date: 2026-09-02 01:52+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -152,7 +152,7 @@ msgid "Python notebooks"
 msgstr "دفاتر Python"
 
 #: app/site_content.py:76 app/templates/base.html:30 app/templates/base.html:42
-#: app/templates/base.html:58 app/templates/explore.html:36 app/templates/index.html:30
+#: app/templates/base.html:58 app/templates/explore.html:49 app/templates/index.html:30
 #: app/templates/index.html:257
 msgid "Docs"
 msgstr "الوثائق"
@@ -627,6 +627,115 @@ msgstr "إذا تجاوزت قيمةٌ الحدّ، يُبلغ Alertmanager ال
 msgid "The public status page shows everyone what is up."
 msgstr "تُظهر صفحة الحالة العامة للجميع ما يعمل."
 
+#: app/routers/home.py:101
+msgid "Core platform"
+msgstr "المنصّة الأساسية"
+
+#: app/routers/home.py:110
+msgid "The IoT core — devices, telemetry, dashboards, rule chains, alarms. One tenant per project."
+msgstr "قلب إنترنت الأشياء — الأجهزة والقياسات واللوحات وسلاسل القواعد والتنبيهات. مستأجر لكل مشروع."
+
+#: app/routers/home.py:120
+msgid "Identity & single sign-on for every app."
+msgstr "الهوية وتسجيل الدخول الموحّد لكل تطبيق."
+
+#: app/routers/home.py:128
+msgid "This site: devices, flows, lab, alerts, teach."
+msgstr "هذا الموقع: الأجهزة والتدفّقات والمختبر والتنبيهات والتدريس."
+
+#: app/routers/home.py:136
+msgid "Getting-started guides (English & Arabic)."
+msgstr "أدلة البدء (بالعربية والإنجليزية)."
+
+#: app/routers/home.py:144
+msgid "Edge reverse proxy: TLS, routing, MQTTS on :8883."
+msgstr "وكيل الحافة العكسي: TLS والتوجيه وMQTTS على :8883."
+
+#: app/routers/home.py:149
+msgid "Observability & monitoring"
+msgstr "المراقبة والرصد"
+
+#: app/routers/home.py:157
+msgid "Collects metrics and evaluates alert rules."
+msgstr "يجمع المقاييس ويقيّم قواعد التنبيه."
+
+#: app/routers/home.py:166
+msgid "Monitoring dashboards over Prometheus. Opens with your CHERT sign-in — no separate password."
+msgstr "لوحات مراقبة فوق Prometheus. تُفتح بتسجيل دخول CHERT — دون كلمة مرور منفصلة."
+
+#: app/routers/home.py:176
+msgid "Routes platform alerts to email."
+msgstr "يوجّه تنبيهات المنصّة إلى البريد."
+
+#: app/routers/home.py:184
+msgid "Public status & uptime page."
+msgstr "صفحة الحالة والتشغيل العامة."
+
+#: app/routers/home.py:192
+msgid "Host CPU/RAM/disk metrics."
+msgstr "مقاييس المعالج والذاكرة والقرص للخادم."
+
+#: app/routers/home.py:200
+msgid "Per-container metrics."
+msgstr "مقاييس لكل حاوية."
+
+#: app/routers/home.py:208
+msgid "Database metrics."
+msgstr "مقاييس قاعدة البيانات."
+
+#: app/routers/home.py:213
+msgid "IoT & LoRaWAN stack"
+msgstr "حزمة إنترنت الأشياء وLoRaWAN"
+
+#: app/routers/home.py:222
+msgid "LoRaWAN network server. Register devices from a project's LoRaWAN tab."
+msgstr "خادم شبكة LoRaWAN. سجّل الأجهزة من تبويب LoRaWAN في المشروع."
+
+#: app/routers/home.py:231
+#, python-brace-format
+msgid "Gateways send here: {d}:1700/udp (Semtech UDP, EU868)."
+msgstr "ترسل البوابات إلى: {d}:1700/udp (Semtech UDP، EU868)."
+
+#: app/routers/home.py:239
+msgid "MQTT broker between ChirpStack and the bridge."
+msgstr "وسيط MQTT بين ChirpStack والجسر."
+
+#: app/routers/home.py:247
+msgid "ChirpStack device-session & metrics store."
+msgstr "مخزن جلسات الأجهزة والمقاييس لـ ChirpStack."
+
+#: app/routers/home.py:255
+msgid "Forwards LoRa uplinks to your ThingsBoard device by DevEUI."
+msgstr "يمرّر إرسالات LoRa إلى جهازك على ThingsBoard حسب DevEUI."
+
+#: app/routers/home.py:260
+msgid "Student tools — flows & lab"
+msgstr "أدوات الطلاب — التدفّقات والمختبر"
+
+#: app/routers/home.py:268
+msgid "Your private low-code flow editor."
+msgstr "محرّر التدفّقات منخفض الكود الخاص بك."
+
+#: app/routers/home.py:276
+msgid "Your Python notebooks — plot your own telemetry."
+msgstr "دفاتر Python الخاصة بك — ارسم قياساتك."
+
+#: app/routers/home.py:284
+msgid "Least-privilege Docker API used to spawn your flows/notebooks."
+msgstr "واجهة Docker بأقل الصلاحيات لتشغيل تدفّقاتك ودفاترك."
+
+#: app/routers/home.py:289
+msgid "Backup & dev"
+msgstr "النسخ الاحتياطي والتطوير"
+
+#: app/routers/home.py:297
+msgid "Nightly encrypted off-box backups."
+msgstr "نسخ احتياطية ليلية مشفّرة خارج الخادم."
+
+#: app/routers/home.py:305
+msgid "Local email capture for development only."
+msgstr "التقاط البريد محليًّا للتطوير فقط."
+
 #: app/routers/signup.py:57
 msgid "Enter a valid email address."
 msgstr "أدخل بريدًا إلكترونيًا صحيحًا."
@@ -693,7 +802,7 @@ msgstr "مسار التنقّل"
 
 #: app/templates/_project_nav.html:15 app/templates/device.html:4 app/templates/home.html:19
 #: app/templates/project_join.html:4 app/templates/project_new.html:4
-#: app/templates/teach/console.html:11 app/templates/teach/roster.html:2
+#: app/templates/teach/console.html:16 app/templates/teach/roster.html:2
 #: app/templates/teach/roster.html:4
 msgid "Projects"
 msgstr "المشاريع"
@@ -858,11 +967,11 @@ msgid "Primary"
 msgstr "التنقل الرئيسي"
 
 #: app/templates/base.html:27 app/templates/home.html:4 app/templates/home.html:12
-#: app/templates/teach/console.html:4
+#: app/templates/teach/console.html:7
 msgid "My projects"
 msgstr "مشاريعي"
 
-#: app/templates/base.html:28 app/templates/teach/console.html:2 app/templates/teach/console.html:4
+#: app/templates/base.html:28 app/templates/teach/console.html:2 app/templates/teach/console.html:7
 #: app/templates/teach/roster.html:4
 msgid "Teaching"
 msgstr "التدريس"
@@ -1081,15 +1190,15 @@ msgstr "تم بلوغ حدّ الأجهزة."
 msgid "Back to start"
 msgstr "العودة إلى البداية"
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:2 app/templates/explore.html:5
 msgid "Explore the lab"
 msgstr "استكشف المختبر"
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:5
 msgid "Open-source systems"
 msgstr "أنظمة مفتوحة المصدر"
 
-#: app/templates/explore.html:4
+#: app/templates/explore.html:5
 msgid ""
 "CHERT IoT is built from proven open-source engines, integrated into one lab. Here is every system"
 " that powers it — open it, or learn what it does. Internal services run only on the private "
@@ -1099,38 +1208,42 @@ msgstr ""
 " افتحها أو تعرّف على وظيفتها. الخدمات الداخلية تعمل على الشبكة الخاصة فقط، ونعرضها لتفهم المنظومة"
 " كاملة."
 
-#: app/templates/explore.html:8 app/templates/explore.html:21 app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:17 app/templates/explore.html:43
 #: app/templates/home.html:42 app/templates/home.html:59 app/templates/project.html:23
 #: app/templates/project.html:24 app/templates/project.html:25 app/templates/project.html:26
 #: app/templates/project.html:27 app/templates/project.html:28
 msgid "Open"
 msgstr "مفتوح"
 
-#: app/templates/explore.html:8
-msgid "live student access"
-msgstr "وصول مباشر للطالب"
-
-#: app/templates/explore.html:9 app/templates/explore.html:21 app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:18
 msgid "SSO/Admin"
 msgstr "دخول موحّد/إدارة"
 
-#: app/templates/explore.html:10 app/templates/explore.html:21 app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:19
 msgid "via /lora"
 msgstr "عبر ‎/lora"
 
-#: app/templates/explore.html:11 app/templates/explore.html:21 app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:20
 msgid "Internal"
 msgstr "داخلي"
 
-#: app/templates/explore.html:11
-msgid "private network"
-msgstr "شبكة خاصة"
-
-#: app/templates/explore.html:12 app/templates/explore.html:21 app/templates/explore.html:27
+#: app/templates/explore.html:7 app/templates/explore.html:21
 msgid "Dev only"
 msgstr "تطوير فقط"
 
-#: app/templates/explore.html:36
+#: app/templates/explore.html:16
+msgid "Access legend"
+msgstr "دليل الوصول"
+
+#: app/templates/explore.html:17
+msgid "live student access"
+msgstr "وصول مباشر للطالب"
+
+#: app/templates/explore.html:20
+msgid "private network"
+msgstr "شبكة خاصة"
+
+#: app/templates/explore.html:49
 msgid "systems · see the full map in the docs."
 msgstr "نظامًا · راجع الخريطة الكاملة في الوثائق."
 
@@ -2105,15 +2218,23 @@ msgstr "تم تفعيل البريد"
 msgid "Your account is active. Sign in to open your lab."
 msgstr "حسابك مفعّل. سجّل الدخول لفتح مختبرك."
 
-#: app/templates/teach/console.html:7
+#: app/templates/teach/console.html:8
+msgid "Create class codes for your cohorts and keep an eye on every project on the platform."
+msgstr "أنشئ رموز الصفوف لمجموعاتك وتابع كل مشروع على المنصّة."
+
+#: app/templates/teach/console.html:9
+msgid "All projects"
+msgstr "كل المشاريع"
+
+#: app/templates/teach/console.html:14
 msgid "Platform overview"
 msgstr "نظرة عامة على المنصّة"
 
-#: app/templates/teach/console.html:15
+#: app/templates/teach/console.html:17
 msgid "Active projects"
 msgstr "المشاريع النشطة"
 
-#: app/templates/teach/console.html:19
+#: app/templates/teach/console.html:18
 msgid "Active members"
 msgstr "الأعضاء النشطون"
 
@@ -2121,55 +2242,59 @@ msgstr "الأعضاء النشطون"
 msgid "Class codes"
 msgstr "رموز الصفوف"
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Code"
 msgstr "الرمز"
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Cohort"
 msgstr "الدفعة"
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Used"
 msgstr "المستخدم"
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Expires"
 msgstr "ينتهي"
 
-#: app/templates/teach/console.html:25
+#: app/templates/teach/console.html:27
 msgid "Students"
 msgstr "الطلاب"
 
-#: app/templates/teach/console.html:34
+#: app/templates/teach/console.html:36
 msgid "Deactivate"
 msgstr "تعطيل"
 
-#: app/templates/teach/console.html:34
+#: app/templates/teach/console.html:36
 msgid "inactive"
 msgstr "معطّل"
 
-#: app/templates/teach/console.html:37
+#: app/templates/teach/console.html:43
 msgid "No class codes yet."
 msgstr "لا توجد رموز صفوف بعد."
 
-#: app/templates/teach/console.html:41
+#: app/templates/teach/console.html:43
+msgid "Create a code for a cohort; students who sign up with it join that cohort."
+msgstr "أنشئ رمزًا لمجموعة؛ ينضمّ إليها الطلاب الذين يسجّلون به."
+
+#: app/templates/teach/console.html:48
 msgid "New class code"
 msgstr "رمز صف جديد"
 
-#: app/templates/teach/console.html:43
+#: app/templates/teach/console.html:50
 msgid "Cohort name"
 msgstr "اسم المجموعة"
 
-#: app/templates/teach/console.html:44
+#: app/templates/teach/console.html:51
 msgid "Maximum students"
 msgstr "الحد الأقصى للطلاب"
 
-#: app/templates/teach/console.html:45
+#: app/templates/teach/console.html:52
 msgid "Valid for (days)"
 msgstr "صالح لمدة (أيام)"
 
-#: app/templates/teach/console.html:46
+#: app/templates/teach/console.html:53
 msgid "Create code"
 msgstr "إنشاء رمز"
 
@@ -2544,4 +2669,10 @@ msgstr "لا توجد مشاريع بعد."
 
 #~ msgid "My devices"
 #~ msgstr "أجهزتي"
+
+#~ msgid "desc"
+#~ msgstr ""
+
+#~ msgid "group"
+#~ msgstr ""
 

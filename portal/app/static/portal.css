@@ -258,3 +258,26 @@ div.card:hover { transform: none; box-shadow: var(--shadow-card); }
 .kpi, .panel { border-radius: 20px; }
 .kpi__value { font-size: 34px; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .app-band__spacer { height: 38px; }
+
+/* --- Teaching console --- */
+a.kpi--link { color: var(--chert-ink); text-decoration: none; transition: border-color var(--dur-base), translate var(--dur-base); }
+a.kpi--link:hover { translate: 0 -2px; border-color: color-mix(in srgb, var(--chert-orange) 50%, var(--chert-border)); }
+a.kpi--link .kpi__label { color: var(--chert-orange-deep); font-weight: 700; }
+.dtable tr.is-muted td { opacity: .55; }
+.panel__head .badge { margin-inline-start: auto; }
+
+/* --- Explore the lab --- */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin: 0 0 8px; padding: 14px 18px; border-radius: 16px;
+  border: 1px solid var(--chert-border); background: var(--chert-surface); font-size: var(--fs-sm); color: var(--chert-muted); }
+.legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.group-head { display: flex; align-items: center; gap: 12px; margin: 34px 0 16px; }
+.group-head .section-h { margin: 0; }
+.group-head__icon { width: 36px; height: 36px; display: grid; place-items: center; flex: none; border-radius: 11px;
+  background: var(--chert-orange-tint); color: var(--chert-orange-deep); }
+.sys { display: flex; flex-direction: column; }
+.sys__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.sys__head .card__icon { margin: 0; }
+.sys .card__title { font-size: 20px; }
+.sys .card__desc { flex: 1; }
+.sys .card__go { margin-top: 12px; font-size: var(--fs-sm); font-weight: 700; color: var(--chert-orange-deep); }
+.explore-total { margin-top: 28px; }

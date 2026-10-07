@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{#-
+  CHERT IoT docs — Material 9.7.7 overrides (same visual language as the portal / chertiot.com).
+
+  site_meta: identical to Material's block EXCEPT the per-page <link rel="alternate" hreflang>
+  loop. mkdocs-static-i18n points those links at each page's translation, and Material fetches
+  `sitemap.xml` relative to every alternate link → 404s on every page. The language switcher in
+  the header (partials/alternate.html) is unaffected — it renders from config.extra.alternate.
+
+  hero: dark CHERT band on the docs home page. The band carries the page's <h1>; chert.css hides the
+  duplicate markdown <h1> that follows it (`.chert-hero ~ .md-main … > h1:first-child`).
+-#}
+{% block site_meta %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% if page.meta and page.meta.description %}
+    <meta name="description" content="{{ page.meta.description }}">
+  {% elif config.site_description %}
+    <meta name="description" content="{{ config.site_description }}">
+  {% endif %}
+  {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">
+  {% endif %}
+  {% if page.previous_page %}
+    <link rel="prev" href="{{ page.previous_page.url | url }}">
+  {% endif %}
+  {% if page.next_page %}
+    <link rel="next" href="{{ page.next_page.url | url }}">
+  {% endif %}
+  <link rel="icon" href="{{ config.theme.favicon | url }}">
+{% endblock %}
+
+{% block hero %}
+  {#- `is_homepage` is false for the Arabic build's index (/ar/), so match both roots by URL -#}
+  {% if page and page.url in ["", "ar/"] %}
+    {% set ar = config.theme.language == "ar" %}
+    <section class="chert-hero">
+      <div class="chert-hero__pulse" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="md-grid chert-hero__inner">
+        <p class="chert-eyebrow">{{ "الوثائق" if ar else "Documentation" }}</p>
+        {#- the markdown <h1> (first toc entry), not the nav label ("Start here") -#}
+        <h1 class="chert-hero__title">{{ page.toc.items[0].title if page.toc and page.toc.items else page.title }}</h1>
+        <p class="chert-hero__lead">{{ config.site_description }}</p>
+        <div class="chert-hero__cta">
+          <a class="md-button md-button--primary" href="{{ 'getting-started/esp32-arduino/' | url }}">{{ "ابدأ مع ESP32" if ar else "Start with ESP32" }}</a>
+          <a class="md-button chert-hero__ghost" href="{{ 'getting-started/browser/' | url }}">{{ "بلا عتاد — من المتصفّح" if ar else "No hardware? Use your browser" }}</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}
