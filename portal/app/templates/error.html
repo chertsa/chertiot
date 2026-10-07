@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ title }} — CHERT IoT{% endblock %}
+{% from "_page_hero.html" import page_hero with context %}
+{% block hero %}{{ page_hero(title, mark="shield") }}{% endblock %}
 {% block content %}
-<h1>{{ title }}</h1>
 <div class="callout callout--error"><p>{{ message }}</p></div>
 <p><a class="btn btn--secondary" href="/">{{ _("Back to start") }}</a></p>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ device.name }} — CHERT IoT{% endblock %}
+{% from "_page_hero.html" import page_hero with context %}
+{% block hero %}{{ page_hero(device.name, crumbs=[(_("Projects"), "/home"), (project.name, "/projects/" ~ project.id), (_("Devices"), "/projects/" ~ project.id ~ "/devices")], mark="cpu") }}{% endblock %}
 {% block content %}
-<p class="overline"><a href="/home">{{ _("My lab") }}</a> › <a href="/projects/{{ project.id }}/devices">{{ _("My devices") }}</a></p>
-<h1>{{ device.name }}</h1>
 <p>{% if active %}<span class="callout--success">{{ _("Online") }}</span>{% else %}<span class="helper">{{ _("Offline") }}</span>{% endif %}{% if last_seen %} · {{ _("last seen") }} {{ last_seen.strftime('%Y-%m-%d %H:%M') }} UTC{% endif %}</p>
 
 <h2>{{ _("Connection details") }}</h2>

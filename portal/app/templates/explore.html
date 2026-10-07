@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Explore the lab — CHERT IoT{% endblock %}
+{% from "_page_hero.html" import page_hero with context %}
+{% block hero %}{{ page_hero(_("Explore the lab"), eyebrow=_("Open-source systems"), intro=_("CHERT IoT is built from proven open-source engines, integrated into one lab. Here is every system that powers it — open it, or learn what it does. Internal services run only on the private network and are shown so you understand the full stack.")) }}{% endblock %}
 {% block content %}
-<p class="overline">{{ _("Open-source systems") }}</p>
-<h1>{{ _("Explore the lab") }}</h1>
-<p class="helper">{{ _("CHERT IoT is built from proven open-source engines, integrated into one lab. Here is every system that powers it — open it, or learn what it does. Internal services run only on the private network and are shown so you understand the full stack.") }}</p>
 
 <p class="helper" style="margin-top:.5rem">
   <span class="tag tag--open">{{ _("Open") }}</span> {{ _("live student access") }} &nbsp;

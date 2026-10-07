@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Flows") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block hero %}{% include "_project_nav.html" %}{% endblock %}
 {% block content %}
-{% include "_project_nav.html" %}
 <h2 class="section-h">{{ _("Flows") }}</h2>
 {% if not enabled %}
   <div class="callout callout--info"><p>{{ _("Node-RED flows are not enabled on this environment yet.") }}</p></div>

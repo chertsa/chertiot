@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Projects") }} — CHERT IoT{% endblock %}
+{% from "_page_hero.html" import page_hero with context %}
+{% block hero %}{{ page_hero(_("Projects"), crumbs=[(_("Teaching"), "/teach")], mark="grid") }}{% endblock %}
 {% block content %}
-<p class="overline"><a href="/teach">{{ _("Teaching") }}</a></p>
-<h1>{{ _("Projects") }}</h1>
 <div class="panel">
 <table class="dtable">
   <thead><tr><th>{{ _("Project") }}</th><th>{{ _("Owner") }}</th><th>{{ _("Members") }}</th><th>{{ _("Devices") }}</th><th>{{ _("Status") }}</th><th>{{ _("Created") }}</th></tr></thead>

@@ -1,28 +1,144 @@
-/* CHERT IoT login theme — values mirror docs/branding/tokens/colors.json (never hardcode elsewhere). */
+/* CHERT IoT login theme — the same split-screen design as the portal's auth pages
+   (portal/app/static/shell.css → .auth*). Served from auth.<domain>, so it carries its own copy of
+   the CHERT tokens; values mirror docs/branding/tokens/colors.json (never hardcode elsewhere).
+   Markup: template.ftl (brand panel) + keycloak.v2 / PatternFly 5 form markup (restyled here). */
 @font-face { font-family: "Inter"; src: url("../fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Bold.woff2") format("woff2"); font-weight: 700 800; font-display: swap; }
+
 :root {
   --chert-orange: #FF8651; --chert-orange-deep: #F26B33; --chert-tan: #D2B082; --chert-cream: #FFFAE4;
-  --chert-ink: #1A1A18; --chert-surface: #FFFFFF; --chert-border: #ECE0C2; --chert-muted: #6B6B66;
-  --chert-error: #EF4444; --chert-error-tint: #FDECEC;
+  --chert-ink: #1A1A18; --chert-surface: #FFFFFF; --chert-surface-alt: #FBF7EC; --chert-border: #ECE0C2;
+  --chert-border-strong: #D9C9A4; --chert-muted: #6B6B66; --chert-orange-tint: #FDEEE4;
+  --chert-error: #EF4444; --chert-error-tint: #FDECEC; --chert-success: #10B981; --chert-success-tint: #E7F8F2;
+  --chert-warning: #F59E0B; --chert-warning-tint: #FEF4E3; --chert-info: #3B82F6; --chert-info-tint: #EAF1FE;
+  --chert-dark: #151311; --chert-dark-surface: #1B1815; --chert-dark-border: #26221D; --chert-dark-text: #F3EDE0; --chert-dark-muted: #A89E8D;
+  --font: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
   --pf-v5-global--primary-color--100: var(--chert-orange-deep);
   --pf-v5-global--primary-color--200: var(--chert-orange-deep);
-  --pf-v5-global--link--Color: var(--chert-ink);
-  --pf-v5-global--FontFamily--sans-serif: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --pf-v5-global--link--Color: var(--chert-orange-deep);
+  --pf-v5-global--link--Color--hover: var(--chert-ink);
+  --pf-v5-global--FontFamily--text: var(--font);
+  --pf-v5-global--FontFamily--heading: var(--font);
+  --pf-v5-global--FontFamily--sans-serif: var(--font);
 }
-body, .login-pf body { background: var(--chert-cream); color: var(--chert-ink); font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif; }
+
 /* Arabic is translation-only (CHERT rule): the login stays LTR for every locale — never RTL —
    while Arabic gets its proper font. Keycloak marks `ar` as RTL and emits <html dir="rtl">, so we
-   force the direction back to LTR and keep text left-aligned. */
+   force the direction back to LTR (js/ltr.js also resets the attribute) and keep text left-aligned.
+   Each text block takes its bidi paragraph direction from its own content so mixed Arabic + Latin
+   ("…عبر MQTT أو HTTP") reads in the right order without mirroring the layout. */
 html[dir="rtl"], html[lang="ar"] { direction: ltr !important; }
 html[dir="rtl"] body, html[lang="ar"] body { direction: ltr; text-align: left; font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif; }
-.login-pf-page .card-pf { background: var(--chert-surface); border: 1px solid var(--chert-border); border-radius: 12px; box-shadow: none; }
-#kc-header-wrapper { text-indent: -9999px; background: url("../img/logo.svg") no-repeat center; background-size: contain; height: 64px; margin-bottom: 8px; }
-#kc-page-title, h1 { color: var(--chert-ink); font-weight: 600; }
-.pf-v5-c-button.pf-m-primary { background: var(--chert-orange); color: var(--chert-ink); border-radius: 8px; font-weight: 600; }
-.pf-v5-c-button.pf-m-primary:hover { background: var(--chert-orange-deep); }
-.pf-v5-c-form-control, input.pf-v5-c-form-control { border-color: var(--chert-border); border-radius: 8px; }
-.pf-v5-c-form-control:focus-within, input:focus { outline: 2px solid var(--chert-ink); outline-offset: 1px; }
-a { color: var(--chert-ink); text-decoration: underline; }
-.pf-v5-c-alert.pf-m-danger { background: var(--chert-error-tint); border-color: var(--chert-error); }
-#kc-info, .login-pf-page .login-pf-signup { color: var(--chert-muted); }
+html[lang="ar"] :is(p, h1, h2, li, label, .pf-v5-c-alert__title, .kc-feedback-text, #kc-page-title, a) { unicode-bidi: plaintext; }
+html[lang="ar"] .chert-auth__title, html[lang="ar"] #kc-page-title { letter-spacing: normal; line-height: 1.3; }
+
+body.chert-auth { margin: 0; background: var(--chert-cream); color: var(--chert-ink); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+.chert-auth :focus-visible { outline: 2px solid var(--chert-ink); outline-offset: 2px; }
+.chert-auth__brand :focus-visible { outline-color: var(--chert-orange); }
+
+/* ---------------------------------------------------------- layout --- */
+.chert-auth__shell { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100vh; }
+@media (min-width: 960px) { .chert-auth__shell { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } }
+
+/* ----------------------------------------------------- brand panel --- */
+.chert-auth__brand { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: 30px;
+  padding: clamp(28px, 5vw, 64px); color: var(--chert-dark-text);
+  background:
+    radial-gradient(ellipse at 80% 10%, color-mix(in srgb, var(--chert-orange-deep) 26%, transparent), transparent 55%),
+    radial-gradient(ellipse at 5% 95%, color-mix(in srgb, var(--chert-tan) 14%, transparent), transparent 50%),
+    var(--chert-dark); }
+.chert-auth__logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: .02em; }
+.chert-auth__logo b { color: var(--chert-orange); }
+.chert-auth__pitch { display: grid; gap: 22px; margin-block: auto; }
+.chert-auth__eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--chert-orange); }
+.chert-auth__eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: currentColor; }
+.chert-auth__title { margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.06; letter-spacing: -.035em; font-weight: 800; }
+.chert-auth__title span { color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(100deg, var(--chert-orange) 0%, var(--chert-tan) 50%, var(--chert-orange-deep) 95%); }
+.chert-auth__lead { max-width: 46ch; margin: 0; font-size: 18px; line-height: 1.6; color: var(--chert-dark-muted); }
+.chert-auth__points { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.chert-auth__points li { display: flex; align-items: center; gap: 12px; font-weight: 600; }
+.chert-auth__points i { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 11px; font-style: normal;
+  background: color-mix(in srgb, var(--chert-orange) 14%, transparent); color: var(--chert-orange); }
+
+/* isometric layer stack (same geometry as the portal's .sx-stack, scaled by --u) */
+.chert-auth__art { --u: .6px; position: relative; height: calc(400 * var(--u)); }
+.chert-stack { position: relative; width: calc(340 * var(--u)); height: calc(400 * var(--u)); }
+.chert-plate { position: absolute; left: calc(55 * var(--u)); top: calc((70 + var(--i) * 92 - 115) * var(--u)); width: calc(230 * var(--u)); height: calc(230 * var(--u));
+  border-radius: calc(24 * var(--u)); border: 1px solid color-mix(in srgb, var(--chert-orange) 42%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chert-dark-surface) 92%, transparent), color-mix(in srgb, var(--chert-dark) 78%, transparent));
+  transform: rotateX(58deg) rotateZ(45deg); animation: chert-float 6s ease-in-out infinite; animation-delay: calc(var(--i) * -1.4s); }
+.chert-plate--top { border-color: var(--chert-orange);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chert-orange) 34%, var(--chert-dark-surface)), color-mix(in srgb, var(--chert-orange-deep) 18%, var(--chert-dark))); }
+.chert-stack__beam { position: absolute; left: calc(170 * var(--u) - 1px); top: calc(70 * var(--u)); width: 2px; height: calc(276 * var(--u));
+  background: linear-gradient(to top, transparent, var(--chert-orange), transparent); opacity: .55; }
+.chert-stack__packet { position: absolute; left: calc(170 * var(--u) - 4px); top: calc(346 * var(--u)); width: 8px; height: 8px; border-radius: 50%; opacity: 0;
+  background: var(--chert-orange); box-shadow: 0 0 12px 2px var(--chert-orange); animation: chert-rise 4s linear infinite; animation-delay: var(--d); }
+@keyframes chert-float { 0%, 100% { transform: translateY(0) rotateX(58deg) rotateZ(45deg); } 50% { transform: translateY(-7px) rotateX(58deg) rotateZ(45deg); } }
+@keyframes chert-rise { 0% { transform: translateY(0); opacity: 0; } 12%, 85% { opacity: 1; } 100% { transform: translateY(calc(-276 * var(--u))); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .chert-plate, .chert-stack__packet { animation: none; } }
+@media (max-width: 959px) {
+  .chert-auth__brand { gap: 16px; padding-block: 24px; }
+  .chert-auth__pitch { margin: 0; gap: 10px; }
+  .chert-auth__lead, .chert-auth__points, .chert-auth__art { display: none; }
+  .chert-auth__title { font-size: 26px; }
+}
+
+/* ------------------------------------------------ form side (PF5) --- */
+.chert-auth .pf-v5-c-login { min-height: 0; display: grid; place-items: center; padding: clamp(28px, 5vw, 72px) 20px;
+  background: radial-gradient(color-mix(in srgb, var(--chert-tan) 38%, transparent) 1px, transparent 1px) 0 0 / 22px 22px, var(--chert-cream); }
+.chert-auth .pf-v5-c-login__container { display: block; width: min(100%, 500px); max-width: none; margin: 0; padding: 0; grid-template-columns: none; }
+.chert-auth .pf-v5-c-login__main { margin: 0; padding: clamp(24px, 4vw, 40px); border-radius: 24px; border: 1px solid var(--chert-border);
+  background: var(--chert-surface); box-shadow: 0 40px 80px -48px color-mix(in srgb, var(--chert-ink) 55%, transparent); }
+.chert-auth .pf-v5-c-login__main-header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px;
+  padding: 0; margin: 0 0 22px; }
+.chert-auth .pf-v5-c-login__main-body, .chert-auth .pf-v5-c-login__main-footer { padding: 0; }
+#kc-page-title { margin: 0; font-size: clamp(26px, 3vw, 32px); line-height: 1.15; letter-spacing: -.02em; font-weight: 800; color: var(--chert-ink); }
+
+/* language picker → pill */
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control { border: 1px solid var(--chert-border-strong); border-radius: 999px; background: var(--chert-surface); min-width: 0; }
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control::before,
+.pf-v5-c-login__main-header-utilities .pf-v5-c-form-control::after { border: 0 !important; }
+.pf-v5-c-login__main-header-utilities select { padding: 6px 30px 6px 14px; font: 600 14px var(--font); color: var(--chert-ink); background: transparent; }
+
+/* fields */
+.chert-auth .pf-v5-c-form__label-text { font-size: 14px; font-weight: 600; color: var(--chert-ink); }
+.chert-auth .pf-v5-c-form-control { border: 1px solid var(--chert-border); border-radius: 8px; background: var(--chert-surface);
+  transition: border-color 120ms, box-shadow 120ms; }
+.chert-auth .pf-v5-c-form-control::before, .chert-auth .pf-v5-c-form-control::after { border: 0 !important; }
+.chert-auth .pf-v5-c-form-control > input { min-height: 42px; padding-inline: 14px; font: 400 16px var(--font); color: var(--chert-ink); }
+.chert-auth .pf-v5-c-form-control:focus-within { border-color: var(--chert-orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--chert-orange) 25%, transparent); outline: none; }
+.chert-auth .pf-v5-c-form-control.pf-m-error { border-color: var(--chert-error); }
+.chert-auth .pf-v5-c-input-group { gap: 0; }
+.chert-auth .pf-v5-c-input-group .pf-v5-c-form-control { border-start-end-radius: 0; border-end-end-radius: 0; }
+.chert-auth .pf-v5-c-input-group .pf-v5-c-button.pf-m-control { border: 1px solid var(--chert-border); border-inline-start: 0; border-radius: 0 8px 8px 0;
+  background: var(--chert-surface-alt); color: var(--chert-muted); }
+.chert-auth .pf-v5-c-button.pf-m-control::after { border: 0; }
+.chert-auth input[type="checkbox"] { accent-color: var(--chert-orange-deep); width: 16px; height: 16px; }
+.chert-auth .pf-v5-c-check__label { font-size: 14px; color: var(--chert-ink); }
+.chert-auth .pf-v5-c-helper-text__item-text { font-size: 13px; }
+
+/* buttons */
+.chert-auth .pf-v5-c-button.pf-m-primary { min-height: 46px; border-radius: 8px; background: var(--chert-orange); color: var(--chert-ink); font: 700 15px var(--font);
+  box-shadow: none; transition: background-color 150ms, transform 150ms; }
+.chert-auth .pf-v5-c-button.pf-m-primary::after { border: 0; }
+.chert-auth .pf-v5-c-button.pf-m-primary:hover { background: var(--chert-orange-deep); transform: translateY(-1px); }
+.chert-auth .pf-v5-c-button.pf-m-secondary { border-radius: 8px; color: var(--chert-ink); font-weight: 700; }
+.chert-auth .pf-v5-c-button.pf-m-secondary::after { border: 1.5px solid var(--chert-ink); border-radius: 8px; }
+.chert-auth .pf-v5-c-button.pf-m-link { color: var(--chert-orange-deep); font-weight: 600; }
+
+/* links & footer band */
+.chert-auth a { color: var(--chert-orange-deep); font-weight: 600; text-decoration: none; }
+.chert-auth a:hover { text-decoration: underline; text-underline-offset: 3px; }
+#kc-info, .chert-auth .pf-v5-c-login__main-footer-band { margin-top: 20px; padding: 18px 0 0; border-top: 1px solid var(--chert-border); background: none;
+  color: var(--chert-muted); font-size: 14px; text-align: center; }
+
+/* alerts */
+.chert-auth .pf-v5-c-alert { margin-bottom: 18px; border-radius: 10px; box-shadow: none; border: 1px solid var(--chert-border); border-inline-start-width: 4px; }
+.chert-auth .pf-v5-c-alert.pf-m-danger { background: var(--chert-error-tint); border-color: var(--chert-error); }
+.chert-auth .pf-v5-c-alert.pf-m-success { background: var(--chert-success-tint); border-color: var(--chert-success); }
+.chert-auth .pf-v5-c-alert.pf-m-warning { background: var(--chert-warning-tint); border-color: var(--chert-warning); }
+.chert-auth .pf-v5-c-alert.pf-m-info { background: var(--chert-info-tint); border-color: var(--chert-info); }

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% from "_components.html" import cred, empty with context %}
 {% block title %}{{ _("LoRaWAN") }} — {{ project.name }} — CHERT IoT{% endblock %}
+{% block hero %}{% include "_project_nav.html" %}{% endblock %}
 {% block content %}
-{% include "_project_nav.html" %}
 <h2 class="section-h">{{ _("LoRaWAN") }}</h2>
 {% if not enabled %}
   <div class="callout callout--info"><p>{{ _("The LoRaWAN track is not enabled on this environment yet.") }}</p></div>

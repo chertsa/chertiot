@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% from "_icons.html" import icon %}
 {% block title %}{{ project.name }} — CHERT IoT{% endblock %}
+{% block hero %}{% include "_project_nav.html" %}{% endblock %}
 {% block content %}
-{% include "_project_nav.html" %}
 
 {% if project.provisioning_state == 'failed' %}
   <div class="callout callout--error"><p>{{ _("We could not set up this project:") }} {{ project.provisioning_error }}</p></div>
@@ -19,13 +20,13 @@
 
   <h2 class="section-h">{{ _("Capabilities") }}</h2>
   <div class="grid-cards">
-    <a class="card card--tool" href="/projects/{{ project.id }}/devices"><div class="card__title">{{ _("Devices") }}</div><div class="card__desc">{{ _("Add devices, get tokens and starter code.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool" href="/projects/{{ project.id }}/flows"><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("This project's Node-RED: wire devices to logic and actions, no code required.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool" href="/projects/{{ project.id }}/lora"><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on this project's dashboard.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool" href="/projects/{{ project.id }}/alerts"><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool" href="/projects/{{ project.id }}/notebooks"><div class="card__title">{{ _("Notebooks") }}</div><div class="card__desc">{{ _("Analyse this project's telemetry in a Python notebook — pandas & matplotlib, scoped to this project.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool" href="/projects/{{ project.id }}/report"><div class="card__title">{{ _("Reports") }}</div><div class="card__desc">{{ _("Lifecycle report: devices, fleet health, alarm history and 24h trends.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
-    <a class="card card--tool card--ext" href="/projects/{{ project.id }}/thingsboard" target="_blank" rel="noopener"><div class="card__title">{{ _("ThingsBoard") }}</div><div class="card__desc">{{ _("Advanced console for this project — dashboards, rule chains and alarms, powered by ThingsBoard.") }}</div><div class="card__go">{{ _("Open console") }} ↗</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/devices"><span class="card__icon">{{ icon("cpu", 20) }}</span><div class="card__title">{{ _("Devices") }}</div><div class="card__desc">{{ _("Add devices, get tokens and starter code.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/flows"><span class="card__icon">{{ icon("sitemap", 20) }}</span><div class="card__title">{{ _("Flows") }}</div><div class="card__desc">{{ _("This project's Node-RED: wire devices to logic and actions, no code required.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/lora"><span class="card__icon">{{ icon("radio", 20) }}</span><div class="card__title">{{ _("LoRaWAN") }}</div><div class="card__desc">{{ _("Register a LoRa device and see gateway uplinks on this project's dashboard.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/alerts"><span class="card__icon">{{ icon("bell", 20) }}</span><div class="card__title">{{ _("Alerts") }}</div><div class="card__desc">{{ _("Email, webhook or dashboard alarm when a reading crosses your threshold.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/notebooks"><span class="card__icon">{{ icon("flask", 20) }}</span><div class="card__title">{{ _("Notebooks") }}</div><div class="card__desc">{{ _("Analyse this project's telemetry in a Python notebook — pandas & matplotlib, scoped to this project.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool" href="/projects/{{ project.id }}/report"><span class="card__icon">{{ icon("printer", 20) }}</span><div class="card__title">{{ _("Reports") }}</div><div class="card__desc">{{ _("Lifecycle report: devices, fleet health, alarm history and 24h trends.") }}</div><div class="card__go">{{ _("Open") }} →</div></a>
+    <a class="card card--tool card--ext" href="/projects/{{ project.id }}/thingsboard" target="_blank" rel="noopener"><span class="card__icon">{{ icon("layers", 20) }}</span><div class="card__title">{{ _("ThingsBoard") }}</div><div class="card__desc">{{ _("Advanced console for this project — dashboards, rule chains and alarms, powered by ThingsBoard.") }}</div><div class="card__go">{{ _("Open console") }} ↗</div></a>
   </div>
 
   <p class="helper" style="margin-top:1.5rem">{{ _("Manage members, reset the starter dashboard or delete this project in") }} <a href="/projects/{{ project.id }}/settings">{{ _("Members & Settings") }}</a>.</p>

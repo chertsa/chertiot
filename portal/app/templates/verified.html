@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Email verified") }} — CHERT IoT{% endblock %}
+{% block main_class %}auth-main{% endblock %}
 {% block content %}
+<div class="auth">
+{% include "_auth_brand.html" %}
+<div class="auth__panel"><div class="auth__card">
 <h1>{{ _("Email verified") }}</h1>
 <div class="callout callout--success"><p>{{ _("Your account is active. Sign in to open your lab.") }}</p></div>
-<p><a class="btn btn--primary" href="/login">{{ _("Sign in") }}</a></p>
+<a class="btn btn--primary auth__cta" href="/login">{{ _("Sign in") }}</a>
+</div></div>
+</div>
 {% endblock %}

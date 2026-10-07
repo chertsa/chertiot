@@ -92,7 +92,7 @@ def test_thingsboard_tab_marked_external() -> None:
 def test_shared_nav_has_accessible_landmarks() -> None:
     """The project sub-nav is a labelled navigation landmark and shows a single active tab class."""
     nav = _nav_source()
-    assert "aria-label=" in nav and 'class="subnav"' in nav
+    assert "aria-label=" in nav and 'class="app-tabs"' in nav
     assert "is-active" in nav  # active-state hook present for keyboard/visual orientation
 
 
@@ -123,7 +123,7 @@ def test_reports_page_renders_inside_shared_shell(
     monkeypatch.setattr("app.project.load_user", lambda request, db: u)
     r = client.get("/projects/p1/report")
     assert r.status_code == 200
-    assert 'class="subnav"' in r.text  # shared capability sub-nav present
+    assert 'class="app-tabs"' in r.text  # shared capability tabs present
     assert 'id="report-print"' in r.text  # print-friendly control
     # the old standalone "← Workspace" back-button is gone (the nav replaces it)
     assert "← " not in r.text or "Workspace" not in r.text

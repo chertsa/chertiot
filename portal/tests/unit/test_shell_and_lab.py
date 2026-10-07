@@ -94,7 +94,7 @@ def test_notebooks_landing_offers_named_server_launch(
     # action pointing at the immutable per-project named-server spawn URL (user url-encoded).
     r = client.get("/projects/p1/notebooks")
     assert r.status_code == 200
-    assert 'class="subnav"' in r.text  # shared shell
+    assert 'class="app-tabs"' in r.text  # shared shell
     assert "/hub/spawn/owner%40x.io/p1" in r.text and "lab." in r.text
 
 
