@@ -27,4 +27,5 @@ def test_theme_assets_are_versioned_by_content_hash() -> None:
         for ref in line.split():
             path, _, version = ref.partition("?v=")
             digest = hashlib.sha256((THEME / "resources" / path).read_bytes()).hexdigest()[:10]
-            assert version == digest, f"{path}: set ?v={digest} in theme.properties (has {version!r})"
+            hint = f"{path}: set ?v={digest} in theme.properties (has {version!r})"
+            assert version == digest, hint
