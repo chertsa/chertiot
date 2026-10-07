@@ -29,3 +29,15 @@ def test_theme_assets_are_versioned_by_content_hash() -> None:
             digest = hashlib.sha256((THEME / "resources" / path).read_bytes()).hexdigest()[:10]
             hint = f"{path}: set ?v={digest} in theme.properties (has {version!r})"
             assert version == digest, hint
+
+
+def test_template_resource_links_are_versioned_by_content_hash() -> None:
+    """Favicons etc. linked from template.ftl follow the same rule (browsers cache icons hard)."""
+    ftl = (THEME / "template.ftl").read_text("utf-8")
+    refs = re.findall(r"\$\{url\.resourcesPath\}/([^\"'?]+)\?v=([0-9a-f]+)", ftl)
+    assert refs, "template.ftl links no versioned theme resources (favicon)"
+    for path, version in refs:
+        digest = hashlib.sha256((THEME / "resources" / path).read_bytes()).hexdigest()[:10]
+        assert version == digest, f"template.ftl {path}: set ?v={digest} (has {version!r})"
+    unversioned = re.findall(r"\$\{url\.resourcesPath\}/(img/[^\"'?]+)[\"']", ftl)
+    assert not unversioned, f"unversioned theme images in template.ftl: {unversioned}"

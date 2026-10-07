@@ -39,11 +39,11 @@
         </#list>
     </#if>
     <title>${title!}</title>
-    <#if themeResources?? && themeResources.favicons?has_content>
-        <@themeResourceTags.renderFavicons themeResources.favicons url.resourcesPath />
-    <#else>
-        <link rel="icon" href="${url.resourcesPath}/img/favicon.ico" />
-    </#if>
+    <#-- CHERT favicon (same files as the portal). Content-versioned (?v=sha256[:10]) because Keycloak
+         serves theme resources with max-age=30d under a path that doesn't change with the theme. -->
+    <link rel="icon" href="${url.resourcesPath}/img/favicon.ico?v=e1cc96f184" sizes="any" />
+    <link rel="icon" href="${url.resourcesPath}/img/logo.svg?v=934a88da79" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="${url.resourcesPath}/img/apple-touch-icon.png?v=2a145d7949" />
     <#if themeResources?? && themeResources.stylesCommon?has_content>
         <@themeResourceTags.renderStyles themeResources.stylesCommon url.resourcesCommonPath />
     <#elseif properties.stylesCommon?has_content>
@@ -153,7 +153,7 @@
      Only this body markup differs from keycloak.v2's template.ftl (26.7.2); the form area is upstream. -->
 <div class="chert-auth__shell">
   <aside class="chert-auth__brand">
-    <div class="chert-auth__logo"><img src="${url.resourcesPath}/img/logo.svg" alt="" width="30" height="30"><span>CHERT <b>IoT</b></span></div>
+    <div class="chert-auth__logo"><img src="${url.resourcesPath}/img/logo.svg?v=934a88da79" alt="" width="30" height="30"><span>CHERT <b>IoT</b></span></div>
     <div class="chert-auth__pitch">
       <p class="chert-auth__eyebrow">${msg("chertAuthEyebrow")}</p>
       <h2 class="chert-auth__title">${msg("chertAuthTitle")} <span>${msg("chertAuthTitleAccent")}</span></h2>
