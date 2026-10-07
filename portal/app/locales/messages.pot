@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-17 22:51+0300\n"
+"POT-Creation-Date: 2026-10-07 03:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,589 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/main.py:90
+#: app/main.py:154
 msgid "The lab is busy right now"
 msgstr ""
 
-#: app/main.py:92
+#: app/main.py:156
 msgid ""
 "A backend service did not answer in time. Nothing was lost — wait a "
 "minute and try again."
+msgstr ""
+
+#: app/site_content.py:28
+msgid "Devices & sensing"
+msgstr ""
+
+#: app/site_content.py:29
+msgid "Sensors and microcontrollers that measure the physical world."
+msgstr ""
+
+#: app/site_content.py:31
+msgid "Wi-Fi microcontroller"
+msgstr ""
+
+#: app/site_content.py:32
+msgid "Linux single-board computer"
+msgstr ""
+
+#: app/site_content.py:33
+msgid "Browser device"
+msgstr ""
+
+#: app/site_content.py:33
+msgid "No hardware needed"
+msgstr ""
+
+#: app/site_content.py:34
+msgid "LoRa sensors"
+msgstr ""
+
+#: app/site_content.py:34
+msgid "Long-range, low-power"
+msgstr ""
+
+#: app/site_content.py:41
+msgid "Connectivity & edge"
+msgstr ""
+
+#: app/site_content.py:42
+msgid "Secure transport from the field into the platform."
+msgstr ""
+
+#: app/site_content.py:44
+msgid "TLS edge · MQTTS :8883"
+msgstr ""
+
+#: app/site_content.py:45
+msgid "LoRa gateway"
+msgstr ""
+
+#: app/site_content.py:45
+msgid "Your radio gateway"
+msgstr ""
+
+#: app/site_content.py:46
+msgid "Gateway Bridge"
+msgstr ""
+
+#: app/site_content.py:46
+msgid "ChirpStack UDP → MQTT"
+msgstr ""
+
+#: app/site_content.py:47
+msgid "Internal LoRa broker"
+msgstr ""
+
+#: app/site_content.py:48
+msgid "LoRaWAN network server"
+msgstr ""
+
+#: app/site_content.py:49
+msgid "LoRa uplinks → ThingsBoard"
+msgstr ""
+
+#: app/site_content.py:56
+msgid "Platform & data"
+msgstr ""
+
+#: app/site_content.py:57
+msgid "Device registry, rule engine, alarms and durable storage."
+msgstr ""
+
+#: app/site_content.py:59
+msgid "Devices · rules · alarms"
+msgstr ""
+
+#: app/site_content.py:60
+msgid "Telemetry & state"
+msgstr ""
+
+#: app/site_content.py:61
+msgid "LoRaWAN session cache"
+msgstr ""
+
+#: app/site_content.py:68
+msgid "Applications & insight"
+msgstr ""
+
+#: app/site_content.py:69
+msgid "Where people see, automate and analyse their data."
+msgstr ""
+
+#: app/site_content.py:71
+msgid "CHERT portal"
+msgstr ""
+
+#: app/site_content.py:71
+msgid "Projects · devices · monitoring"
+msgstr ""
+
+#: app/site_content.py:72
+msgid "Dashboards"
+msgstr ""
+
+#: app/site_content.py:72
+msgid "Live widgets & reports"
+msgstr ""
+
+#: app/site_content.py:73
+msgid "No-code automation"
+msgstr ""
+
+#: app/site_content.py:74
+msgid "Python notebooks"
+msgstr ""
+
+#: app/site_content.py:75 app/templates/explore.html:37
+#: app/templates/index.html:29 app/templates/index.html:256
+msgid "Docs"
+msgstr ""
+
+#: app/site_content.py:75
+msgid "Guides & firmware"
+msgstr ""
+
+#: app/site_content.py:82
+msgid "Security & identity"
+msgstr ""
+
+#: app/site_content.py:83
+msgid "One identity, isolated projects."
+msgstr ""
+
+#: app/site_content.py:85 app/site_content.py:382
+msgid "Single sign-on"
+msgstr ""
+
+#: app/site_content.py:86
+msgid "Project isolation"
+msgstr ""
+
+#: app/site_content.py:86
+msgid "One tenant per project"
+msgstr ""
+
+#: app/site_content.py:87
+msgid "Per-user sandbox"
+msgstr ""
+
+#: app/site_content.py:87
+msgid "Capped containers"
+msgstr ""
+
+#: app/site_content.py:94
+msgid "Operations & observability"
+msgstr ""
+
+#: app/site_content.py:95
+msgid "Keeping the platform healthy."
+msgstr ""
+
+#: app/site_content.py:97
+msgid "Metrics collection"
+msgstr ""
+
+#: app/site_content.py:98
+msgid "Platform monitor"
+msgstr ""
+
+#: app/site_content.py:99
+msgid "Operator alerts"
+msgstr ""
+
+#: app/site_content.py:100
+msgid "Public status page"
+msgstr ""
+
+#: app/site_content.py:110
+msgid ""
+"The classic IoT board. CHERT generates ready-to-flash starter firmware "
+"with your device's access token and the broker address already filled in."
+msgstr ""
+
+#: app/site_content.py:114
+msgid ""
+"A full Linux computer at the edge. Starter Python code publishes readings"
+" over MQTT or HTTP — ideal for gateways, cameras and heavier sensors."
+msgstr ""
+
+#: app/site_content.py:118
+msgid ""
+"No hardware yet? A browser page acts as a virtual device and sends real "
+"telemetry, so you can build dashboards and rules on day one."
+msgstr ""
+
+#: app/site_content.py:122
+msgid ""
+"Battery-powered sensors that reach kilometres over LoRaWAN, for "
+"agriculture, metering and environmental monitoring."
+msgstr ""
+
+#: app/site_content.py:126
+msgid ""
+"The single front door. It serves every site over HTTPS with automatic "
+"certificates and terminates MQTTS on port 8883 before handing messages to"
+" ThingsBoard."
+msgstr ""
+
+#: app/site_content.py:130
+msgid ""
+"A LoRaWAN gateway receives radio uplinks from nearby sensors and forwards"
+" them over the internet to the platform."
+msgstr ""
+
+#: app/site_content.py:134
+msgid ""
+"ChirpStack Gateway Bridge converts the gateway's packet-forwarder "
+"protocol into MQTT messages the network server understands."
+msgstr ""
+
+#: app/site_content.py:138
+msgid ""
+"An internal MQTT broker that carries LoRaWAN traffic between the gateway "
+"bridge, ChirpStack and lora-bridge. It is never exposed to the internet."
+msgstr ""
+
+#: app/site_content.py:142
+msgid ""
+"The LoRaWAN network server: device activation, de-duplication, decryption"
+" and decoding of uplink payloads."
+msgstr ""
+
+#: app/site_content.py:146
+msgid ""
+"A small CHERT service that subscribes to ChirpStack's decoded uplinks and"
+" delivers them to the right device in the right project on ThingsBoard."
+msgstr ""
+
+#: app/site_content.py:150
+msgid ""
+"The IoT core. Each CHERT project is its own ThingsBoard tenant with its "
+"own devices, rule chains, alarms and dashboards — nothing is shared "
+"between projects."
+msgstr ""
+
+#: app/site_content.py:154
+msgid ""
+"Every reading, attribute, alarm and project record is stored durably in "
+"PostgreSQL on your own server."
+msgstr ""
+
+#: app/site_content.py:157
+msgid "Fast in-memory state that ChirpStack uses for LoRaWAN device sessions."
+msgstr ""
+
+#: app/site_content.py:159
+msgid ""
+"Your home base: create projects, invite your team, register devices, copy"
+" starter code, watch live monitoring and print lifecycle reports."
+msgstr ""
+
+#: app/site_content.py:163
+msgid ""
+"Every project starts with a ready dashboard. Add charts, gauges, maps and"
+" tables that update in real time as readings arrive."
+msgstr ""
+
+#: app/site_content.py:167
+msgid ""
+"A personal Node-RED editor per project, already connected to ThingsBoard."
+" Wire devices to logic, notifications and webhooks without writing code."
+msgstr ""
+
+#: app/site_content.py:171
+msgid ""
+"A JupyterLab server per project with pandas and matplotlib, scoped to "
+"your own telemetry — for cleaning, analysing and modelling your data."
+msgstr ""
+
+#: app/site_content.py:175
+msgid ""
+"Step-by-step guides in English and Arabic, from flashing your first board"
+" to building rule chains and notebooks."
+msgstr ""
+
+#: app/site_content.py:179
+msgid ""
+"One CHERT account signs you in to the portal, ThingsBoard, Node-RED and "
+"JupyterLab. Email verification and sessions are handled centrally."
+msgstr ""
+
+#: app/site_content.py:183
+msgid ""
+"A project is an isolated tenant. Members see only the projects they "
+"belong to, and destructive actions stay with the owner."
+msgstr ""
+
+#: app/site_content.py:187
+msgid ""
+"Node-RED and notebook servers run as separate containers per user, with "
+"capped CPU and memory so one experiment can't affect anyone else."
+msgstr ""
+
+#: app/site_content.py:191
+msgid ""
+"Scrapes health metrics from every server, container and database on the "
+"platform."
+msgstr ""
+
+#: app/site_content.py:194
+msgid ""
+"The platform monitor for instructors and administrators: device traffic, "
+"resource use and service health at a glance."
+msgstr ""
+
+#: app/site_content.py:198
+msgid ""
+"Routes operator alerts when something on the platform needs attention — "
+"before users notice."
+msgstr ""
+
+#: app/site_content.py:201
+msgid "A public status page with live up/down checks for every public service."
+msgstr ""
+
+#: app/site_content.py:210
+msgid "Plan"
+msgstr ""
+
+#: app/site_content.py:211
+msgid "Define the goal and the team"
+msgstr ""
+
+#: app/site_content.py:213
+msgid ""
+"Decide what to measure and why. Create a project in CHERT, invite members"
+" and agree who owns it."
+msgstr ""
+
+#: app/site_content.py:220
+msgid "Provision"
+msgstr ""
+
+#: app/site_content.py:221
+msgid "Get an isolated workspace"
+msgstr ""
+
+#: app/site_content.py:223
+msgid ""
+"Creating a project provisions its own ThingsBoard tenant, a starter "
+"dashboard and a secure place for its data — in seconds."
+msgstr ""
+
+#: app/site_content.py:230
+msgid "Build devices"
+msgstr ""
+
+#: app/site_content.py:231
+msgid "Wire sensors and flash firmware"
+msgstr ""
+
+#: app/site_content.py:233
+msgid ""
+"Register each device to get its access token, then flash ready-made "
+"starter code onto an ESP32, a Raspberry Pi or a browser device."
+msgstr ""
+
+#: app/site_content.py:240
+msgid "Connect"
+msgstr ""
+
+#: app/site_content.py:241
+msgid "Transmit securely"
+msgstr ""
+
+#: app/site_content.py:243
+msgid ""
+"Devices publish over MQTTS, HTTPS or LoRaWAN. Traffic is encrypted end to"
+" end and authenticated per device."
+msgstr ""
+
+#: app/site_content.py:250
+msgid "Ingest & store"
+msgstr ""
+
+#: app/site_content.py:251
+msgid "Process every reading"
+msgstr ""
+
+#: app/site_content.py:253
+msgid ""
+"The rule engine validates, enriches and routes each message, then stores "
+"it as time-series data you can query later."
+msgstr ""
+
+#: app/site_content.py:260
+msgid "Visualise"
+msgstr ""
+
+#: app/site_content.py:261
+msgid "See what is happening"
+msgstr ""
+
+#: app/site_content.py:263
+msgid ""
+"Live dashboards, per-device monitoring with last-seen status, and 24-hour"
+" trends in the portal."
+msgstr ""
+
+#: app/site_content.py:270
+msgid "Automate & alert"
+msgstr ""
+
+#: app/site_content.py:271
+msgid "React automatically"
+msgstr ""
+
+#: app/site_content.py:273
+msgid ""
+"Set thresholds that raise alarms, then send emails, call webhooks or "
+"trigger actions with Node-RED flows."
+msgstr ""
+
+#: app/site_content.py:280
+msgid "Analyse"
+msgstr ""
+
+#: app/site_content.py:281
+msgid "Turn data into insight"
+msgstr ""
+
+#: app/site_content.py:283
+msgid ""
+"Pull your history into a JupyterLab notebook, clean it with pandas, chart"
+" it with matplotlib and share findings."
+msgstr ""
+
+#: app/site_content.py:290
+msgid "Operate & evolve"
+msgstr ""
+
+#: app/site_content.py:291
+msgid "Keep it running, then improve"
+msgstr ""
+
+#: app/site_content.py:293
+msgid ""
+"Watch platform health, rotate device tokens, print lifecycle reports and "
+"feed what you learned into the next iteration."
+msgstr ""
+
+#: app/site_content.py:351
+msgid "Follow a reading"
+msgstr ""
+
+#: app/site_content.py:353
+msgid "An ESP32 reads its temperature sensor and publishes JSON over MQTT."
+msgstr ""
+
+#: app/site_content.py:354
+msgid "Caddy accepts the encrypted MQTTS connection on port 8883."
+msgstr ""
+
+#: app/site_content.py:357
+msgid "ThingsBoard checks the device token and runs your project's rule chain."
+msgstr ""
+
+#: app/site_content.py:359
+msgid "The reading is stored as time-series in PostgreSQL."
+msgstr ""
+
+#: app/site_content.py:360
+msgid "Your dashboard widgets update within a second."
+msgstr ""
+
+#: app/site_content.py:361
+msgid "The portal's Monitoring view shows last-seen and 24-hour trends."
+msgstr ""
+
+#: app/site_content.py:362
+msgid "A Node-RED flow reacts — for example, sending a notification."
+msgstr ""
+
+#: app/site_content.py:363
+msgid "Later, a notebook loads the history into pandas for analysis."
+msgstr ""
+
+#: app/site_content.py:368
+msgid "LoRaWAN uplink"
+msgstr ""
+
+#: app/site_content.py:370
+msgid "A battery sensor wakes up and transmits a LoRa radio packet."
+msgstr ""
+
+#: app/site_content.py:371
+msgid "Your gateway receives it, kilometres away, and forwards it."
+msgstr ""
+
+#: app/site_content.py:372
+msgid "The Gateway Bridge turns the packet into an MQTT message."
+msgstr ""
+
+#: app/site_content.py:373
+msgid "The internal Mosquitto broker carries it inside the platform."
+msgstr ""
+
+#: app/site_content.py:374
+msgid "ChirpStack de-duplicates, decrypts and decodes the payload."
+msgstr ""
+
+#: app/site_content.py:375
+msgid "lora-bridge delivers it to the matching device in your project."
+msgstr ""
+
+#: app/site_content.py:376
+msgid "ThingsBoard treats it like any other reading."
+msgstr ""
+
+#: app/site_content.py:377
+msgid "It appears on the same dashboard as your Wi-Fi devices."
+msgstr ""
+
+#: app/site_content.py:384
+msgid "You open CHERT and choose Sign in."
+msgstr ""
+
+#: app/site_content.py:385
+msgid "Keycloak verifies your identity once, for every tool."
+msgstr ""
+
+#: app/site_content.py:386
+msgid "The portal checks which projects you belong to and your role."
+msgstr ""
+
+#: app/site_content.py:387
+msgid "ThingsBoard opens with a session limited to that project."
+msgstr ""
+
+#: app/site_content.py:388
+msgid "Your own Node-RED and notebook containers start on demand."
+msgstr ""
+
+#: app/site_content.py:389
+msgid "JupyterLab opens through the same identity — no extra password."
+msgstr ""
+
+#: app/site_content.py:394
+msgid "Platform health"
+msgstr ""
+
+#: app/site_content.py:396
+msgid "Prometheus scrapes metrics from every service every few seconds."
+msgstr ""
+
+#: app/site_content.py:397
+msgid "Grafana turns them into the live platform monitor."
+msgstr ""
+
+#: app/site_content.py:398
+msgid "If a threshold is crossed, Alertmanager notifies operators."
+msgstr ""
+
+#: app/site_content.py:399
+msgid "The public status page shows everyone what is up."
 msgstr ""
 
 #: app/routers/signup.py:57
@@ -43,98 +618,218 @@ msgstr ""
 msgid "An account with this email exists. Sign in instead."
 msgstr ""
 
-#: app/templates/alerts.html:2 app/templates/alerts.html:5
-#: app/templates/home.html:26 app/templates/home_panel.html:55
+#: app/templates/_components.html:13 app/templates/_components.html:14
+msgid "Show value"
+msgstr ""
+
+#: app/templates/_components.html:14
+msgid "Hide value"
+msgstr ""
+
+#: app/templates/_components.html:17
+msgid "Copy to clipboard"
+msgstr ""
+
+#: app/templates/_components.html:18
+msgid "Copied"
+msgstr ""
+
+#: app/templates/_project_nav.html:11 app/templates/home.html:16
+#: app/templates/project_join.html:5 app/templates/teach/console.html:11
+#: app/templates/teach/roster.html:2 app/templates/teach/roster.html:5
+msgid "Projects"
+msgstr ""
+
+#: app/templates/_project_nav.html:14 app/templates/home.html:30
+#: app/templates/teach/roster.html:17
+msgid "Ready"
+msgstr ""
+
+#: app/templates/_project_nav.html:14 app/templates/home.html:31
+#: app/templates/teach/roster.html:18
+msgid "Setup failed"
+msgstr ""
+
+#: app/templates/_project_nav.html:14 app/templates/home.html:32
+#: app/templates/teach/roster.html:19
+msgid "Setting up…"
+msgstr ""
+
+#: app/templates/_project_nav.html:15
+msgid "Project reference"
+msgstr ""
+
+#: app/templates/_project_nav.html:17
+msgid "Project sections"
+msgstr ""
+
+#: app/templates/_project_nav.html:18
+msgid "Overview"
+msgstr ""
+
+#: app/templates/_project_nav.html:19 app/templates/devices.html:3
+#: app/templates/devices.html:6 app/templates/home_panel.html:8
+#: app/templates/home_panel.html:34 app/templates/monitoring.html:13
+#: app/templates/monitoring.html:55 app/templates/project.html:22
+#: app/templates/project_report.html:29 app/templates/project_report.html:45
+#: app/templates/teach/roster.html:8
+msgid "Devices"
+msgstr ""
+
+#: app/templates/_project_nav.html:20 app/templates/telemetry.html:2
+#: app/templates/telemetry.html:6
+msgid "Telemetry"
+msgstr ""
+
+#: app/templates/_project_nav.html:21 app/templates/monitoring.html:2
+#: app/templates/monitoring.html:6
+msgid "Monitoring"
+msgstr ""
+
+#: app/templates/_project_nav.html:22 app/templates/alerts.html:3
+#: app/templates/alerts.html:6 app/templates/home_panel.html:55
+#: app/templates/project.html:25
 msgid "Alerts"
 msgstr ""
 
-#: app/templates/alerts.html:4 app/templates/base.html:19
-#: app/templates/device.html:4 app/templates/flows.html:4
-#: app/templates/home.html:7 app/templates/lora.html:4
-#: app/templates/teach/console.html:4
-msgid "My lab"
+#: app/templates/_project_nav.html:23 app/templates/flows.html:2
+#: app/templates/flows.html:5 app/templates/project.html:23
+msgid "Flows"
 msgstr ""
 
-#: app/templates/alerts.html:6
+#: app/templates/_project_nav.html:24 app/templates/lora.html:3
+#: app/templates/lora.html:6 app/templates/project.html:24
+msgid "LoRaWAN"
+msgstr ""
+
+#: app/templates/_project_nav.html:25 app/templates/notebooks.html:2
+#: app/templates/notebooks.html:5 app/templates/notebooks_unavailable.html:2
+#: app/templates/notebooks_unavailable.html:5 app/templates/project.html:26
+msgid "Notebooks"
+msgstr ""
+
+#: app/templates/_project_nav.html:26 app/templates/project.html:27
+msgid "Reports"
+msgstr ""
+
+#: app/templates/_project_nav.html:27 app/templates/project.html:28
+msgid "ThingsBoard"
+msgstr ""
+
+#: app/templates/_project_nav.html:28 app/templates/project.html:31
+#: app/templates/project_settings.html:3 app/templates/project_settings.html:6
+msgid "Members & Settings"
+msgstr ""
+
+#: app/templates/alerts.html:7
 msgid ""
 "When a reading crosses your threshold, an alarm appears on your dashboard"
 " — and optionally an email or webhook fires."
 msgstr ""
 
-#: app/templates/alerts.html:8 app/templates/alerts.html:24
-#: app/templates/devices.html:9 app/templates/home_panel.html:37
-#: app/templates/lora.html:11
+#: app/templates/alerts.html:10
+msgid "Alert rules"
+msgstr ""
+
+#: app/templates/alerts.html:14 app/templates/alerts.html:40
+#: app/templates/devices.html:19 app/templates/home_panel.html:37
+#: app/templates/lora.html:20 app/templates/monitoring.html:26
+#: app/templates/monitoring.html:57 app/templates/monitoring.html:65
+#: app/templates/monitoring.html:80 app/templates/project_report.html:49
+#: app/templates/telemetry.html:16 app/templates/telemetry.html:61
 msgid "Device"
 msgstr ""
 
-#: app/templates/alerts.html:8 app/templates/alerts.html:27
+#: app/templates/alerts.html:14 app/templates/alerts.html:48
 msgid "Condition"
 msgstr ""
 
-#: app/templates/alerts.html:8 app/templates/alerts.html:30
+#: app/templates/alerts.html:14 app/templates/alerts.html:56
 msgid "Action"
 msgstr ""
 
-#: app/templates/alerts.html:15
+#: app/templates/alerts.html:24
+msgid "Delete this alert rule?"
+msgstr ""
+
+#: app/templates/alerts.html:24
 msgid "Delete"
 msgstr ""
 
-#: app/templates/alerts.html:18
-msgid "No alert rules yet."
+#: app/templates/alerts.html:31
+msgid "No alert rules yet"
 msgstr ""
 
-#: app/templates/alerts.html:22
+#: app/templates/alerts.html:31
+msgid "Create a rule below to be notified when telemetry crosses a threshold."
+msgstr ""
+
+#: app/templates/alerts.html:36
 msgid "New alert"
 msgstr ""
 
-#: app/templates/alerts.html:26
+#: app/templates/alerts.html:44
 msgid "Telemetry key"
 msgstr ""
 
-#: app/templates/alerts.html:29
+#: app/templates/alerts.html:52
 msgid "Threshold"
 msgstr ""
 
-#: app/templates/alerts.html:31
+#: app/templates/alerts.html:57
 msgid "alarm"
 msgstr ""
 
-#: app/templates/alerts.html:31
+#: app/templates/alerts.html:57
 msgid "email"
 msgstr ""
 
-#: app/templates/alerts.html:31
+#: app/templates/alerts.html:57
 msgid "webhook"
 msgstr ""
 
-#: app/templates/alerts.html:32
+#: app/templates/alerts.html:60
 msgid "Email address or webhook URL"
 msgstr ""
 
-#: app/templates/alerts.html:32
-msgid "(for email/webhook)"
+#: app/templates/alerts.html:62
+msgid "Only used for the email or webhook action."
 msgstr ""
 
-#: app/templates/alerts.html:33
+#: app/templates/alerts.html:66
 msgid "Create alert"
 msgstr ""
 
-#: app/templates/base.html:19 app/templates/teach/console.html:2
+#: app/templates/base.html:14 app/templates/index.html:19
+msgid "Skip to content"
+msgstr ""
+
+#: app/templates/base.html:19 app/templates/index.html:25
+msgid "Primary"
+msgstr ""
+
+#: app/templates/base.html:20 app/templates/home.html:3
+#: app/templates/home.html:8
+msgid "My projects"
+msgstr ""
+
+#: app/templates/base.html:21 app/templates/teach/console.html:2
 #: app/templates/teach/console.html:5 app/templates/teach/roster.html:4
 msgid "Teaching"
 msgstr ""
 
-#: app/templates/base.html:20
+#: app/templates/base.html:26
 msgid "Sign out"
 msgstr ""
 
-#: app/templates/base.html:22 app/templates/verified.html:6
+#: app/templates/base.html:31 app/templates/index.html:33
+#: app/templates/verified.html:6
 msgid "Sign in"
 msgstr ""
 
-#: app/templates/base.html:23 app/templates/index.html:7
-#: app/templates/signup.html:2 app/templates/signup.html:4
-#: app/templates/signup.html:38
+#: app/templates/base.html:32 app/templates/index.html:34
+#: app/templates/index.html:244 app/templates/signup.html:2
+#: app/templates/signup.html:4 app/templates/signup.html:38
 msgid "Create account"
 msgstr ""
 
@@ -154,22 +849,29 @@ msgstr ""
 msgid "No email after a few minutes? Check your spam folder, then try again."
 msgstr ""
 
-#: app/templates/check_email.html:6 app/templates/home.html:65
+#: app/templates/check_email.html:6 app/templates/notebooks_unavailable.html:9
+#: app/templates/project.html:8
 msgid "Try again"
 msgstr ""
 
-#: app/templates/device.html:4 app/templates/devices.html:2
-#: app/templates/devices.html:5 app/templates/home.html:23
+#: app/templates/device.html:4 app/templates/teach/console.html:4
+msgid "My lab"
+msgstr ""
+
+#: app/templates/device.html:4
 msgid "My devices"
 msgstr ""
 
-#: app/templates/device.html:6 app/templates/devices.html:14
-#: app/templates/home_panel.html:42
+#: app/templates/device.html:6 app/templates/devices.html:25
+#: app/templates/home_panel.html:42 app/templates/monitoring.html:14
+#: app/templates/monitoring.html:58 app/templates/project_report.html:53
+#: app/templates/telemetry.html:64
 msgid "Online"
 msgstr ""
 
-#: app/templates/device.html:6 app/templates/devices.html:14
-#: app/templates/home_panel.html:42
+#: app/templates/device.html:6 app/templates/devices.html:26
+#: app/templates/home_panel.html:42 app/templates/monitoring.html:58
+#: app/templates/project_report.html:53 app/templates/telemetry.html:64
 msgid "Offline"
 msgstr ""
 
@@ -265,34 +967,62 @@ msgstr ""
 msgid "Removes the device and its telemetry. This cannot be undone."
 msgstr ""
 
-#: app/templates/devices.html:6
-msgid "devices used."
+#: app/templates/devices.html:7
+msgid ""
+"Devices registered in this project. Add a device to get its access token "
+"and starter firmware."
 msgstr ""
 
-#: app/templates/devices.html:9 app/templates/home_panel.html:37
-#: app/templates/teach/roster.html:7
+#: app/templates/devices.html:13 app/templates/lora.html:14
+msgid "Registered devices"
+msgstr ""
+
+#: app/templates/devices.html:14
+msgid "devices used"
+msgstr ""
+
+#: app/templates/devices.html:19 app/templates/home_panel.html:37
+#: app/templates/monitoring.html:57 app/templates/monitoring.html:80
+#: app/templates/project_report.html:17 app/templates/project_report.html:49
+#: app/templates/project_settings.html:13 app/templates/teach/roster.html:8
+#: app/templates/telemetry.html:61
 msgid "Status"
 msgstr ""
 
-#: app/templates/devices.html:9 app/templates/home_panel.html:37
+#: app/templates/devices.html:19 app/templates/home_panel.html:37
+#: app/templates/monitoring.html:57 app/templates/project_report.html:49
+#: app/templates/telemetry.html:40 app/templates/telemetry.html:61
 msgid "Last seen"
 msgstr ""
 
-#: app/templates/devices.html:15 app/templates/home_panel.html:44
+#: app/templates/devices.html:28 app/templates/home_panel.html:44
+#: app/templates/project_report.html:54
 msgid "Never"
 msgstr ""
 
-#: app/templates/devices.html:18 app/templates/home_panel.html:50
-msgid "No devices yet."
+#: app/templates/devices.html:35
+msgid "No devices yet"
 msgstr ""
 
-#: app/templates/devices.html:22 app/templates/devices.html:25
+#: app/templates/devices.html:35
+msgid "Add your first device below to get an access token and connection details."
+msgstr ""
+
+#: app/templates/devices.html:40 app/templates/devices.html:50
 #: app/templates/home_panel.html:50
 msgid "Add device"
 msgstr ""
 
-#: app/templates/devices.html:24
+#: app/templates/devices.html:44
 msgid "Device name"
+msgstr ""
+
+#: app/templates/devices.html:46
+msgid "Lowercase letters, numbers and dashes work best."
+msgstr ""
+
+#: app/templates/devices.html:51
+msgid "Device limit reached."
 msgstr ""
 
 #: app/templates/error.html:6
@@ -303,7 +1033,7 @@ msgstr ""
 msgid "Open-source systems"
 msgstr ""
 
-#: app/templates/explore.html:5 app/templates/home.html:29
+#: app/templates/explore.html:5
 msgid "Explore the lab"
 msgstr ""
 
@@ -316,7 +1046,11 @@ msgid ""
 msgstr ""
 
 #: app/templates/explore.html:9 app/templates/explore.html:22
-#: app/templates/explore.html:28
+#: app/templates/explore.html:28 app/templates/home.html:33
+#: app/templates/home.html:50 app/templates/project.html:22
+#: app/templates/project.html:23 app/templates/project.html:24
+#: app/templates/project.html:25 app/templates/project.html:26
+#: app/templates/project.html:27
 msgid "Open"
 msgstr ""
 
@@ -352,246 +1086,908 @@ msgstr ""
 msgid "systems · see the full map in the docs."
 msgstr ""
 
-#: app/templates/explore.html:37
-msgid "Docs"
-msgstr ""
-
-#: app/templates/flows.html:2 app/templates/flows.html:5
-#: app/templates/home.html:24
-msgid "Flows"
-msgstr ""
-
 #: app/templates/flows.html:7
 msgid "Node-RED flows are not enabled on this environment yet."
 msgstr ""
 
 #: app/templates/flows.html:9
 msgid ""
-"Your own Node-RED editor: wire your device data to logic, dashboards and "
-"outgoing calls — no code required. Your ThingsBoard credentials are pre-"
-"injected as TB_MQTT_HOST, TB_MQTT_PORT and TB_ACCESS_TOKEN."
+"Your own Node-RED editor for this project: wire device data to logic, "
+"dashboards and outgoing calls — no code required. Your ThingsBoard "
+"connection is pre-injected securely."
 msgstr ""
 
-#: app/templates/flows.html:11
+#: app/templates/flows.html:15
+msgid "Running"
+msgstr ""
+
+#: app/templates/flows.html:16
+msgid "Building…"
+msgstr ""
+
+#: app/templates/flows.html:17
+msgid "Stopped"
+msgstr ""
+
+#: app/templates/flows.html:21 app/templates/notebooks.html:16
+msgid "Engine"
+msgstr ""
+
+#: app/templates/flows.html:22 app/templates/notebooks.html:17
+#: app/templates/teach/roster.html:8
+msgid "Project"
+msgstr ""
+
+#: app/templates/flows.html:23
+msgid "Resources"
+msgstr ""
+
+#: app/templates/flows.html:24
+msgid "Idle stop"
+msgstr ""
+
+#: app/templates/flows.html:24
+msgid "30 minutes"
+msgstr ""
+
+#: app/templates/flows.html:29
 msgid "Open the editor"
 msgstr ""
 
-#: app/templates/flows.html:12
+#: app/templates/flows.html:30
 msgid "Stop my instance"
 msgstr ""
 
-#: app/templates/flows.html:13
+#: app/templates/flows.html:32
 msgid ""
 "Instances stop automatically after 30 minutes without use; your flows are"
 " kept."
 msgstr ""
 
-#: app/templates/flows.html:18
+#: app/templates/flows.html:37
 msgid "Building your instance…"
 msgstr ""
 
-#: app/templates/flows.html:19
+#: app/templates/flows.html:38
 msgid ""
 "This takes a few seconds. The editor opens automatically when it's ready "
 "— please don't open it yet."
 msgstr ""
 
-#: app/templates/flows.html:22
+#: app/templates/flows.html:42 app/templates/project_new.html:23
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/flows.html:35
+#: app/templates/flows.html:57
 msgid "Start my Node-RED"
 msgstr ""
 
-#: app/templates/flows.html:36
+#: app/templates/flows.html:59
 msgid ""
 "Starts in a few seconds with 0.5 CPU and 256 MB reserved just for you. "
 "You'll see a “building” indicator until it's ready."
 msgstr ""
 
-#: app/templates/home.html:10
-msgid "Open full dashboard"
+#: app/templates/home.html:9
+msgid ""
+"Each project is your own isolated IoT workspace — devices, telemetry, "
+"flows, notebooks, alerts and dashboards."
+msgstr ""
+
+#: app/templates/home.html:11 app/templates/home.html:41
+#: app/templates/project_new.html:4
+msgid "New project"
 msgstr ""
 
 #: app/templates/home.html:17
-msgid "Loading…"
+msgid "Owned"
 msgstr ""
 
-#: app/templates/home.html:21
-msgid "Tools"
+#: app/templates/home.html:18
+msgid "Shared with me"
 msgstr ""
 
-#: app/templates/home.html:23
-msgid "Add devices, get tokens and starter code."
+#: app/templates/home.html:26 app/templates/teach/roster.html:8
+msgid "Owner"
 msgstr ""
 
-#: app/templates/home.html:24
-msgid "Your own Node-RED: wire devices to logic and actions, no code required."
-msgstr ""
-
-#: app/templates/home.html:25 app/templates/lora.html:2
-#: app/templates/lora.html:5
-msgid "LoRaWAN"
-msgstr ""
-
-#: app/templates/home.html:25
-msgid "Register a LoRa device and see gateway uplinks on your dashboard."
-msgstr ""
-
-#: app/templates/home.html:26
-msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
-msgstr ""
-
-#: app/templates/home.html:27
-msgid "Lab (notebooks)"
-msgstr ""
-
-#: app/templates/home.html:27
-msgid ""
-"Analyse your telemetry in a Python notebook — pandas &amp; matplotlib, "
-"pre-wired to your data."
+#: app/templates/home.html:26 app/templates/project_settings.html:13
+msgid "Member"
 msgstr ""
 
 #: app/templates/home.html:28
+msgid "No description yet."
+msgstr ""
+
+#: app/templates/home.html:40 app/templates/index.html:50
+msgid "Start your first project"
+msgstr ""
+
+#: app/templates/home.html:40
+msgid ""
+"A project is your own isolated space — its own devices, flows, notebooks,"
+" alerts and dashboards."
+msgstr ""
+
+#: app/templates/home.html:45
+msgid "Learn"
+msgstr ""
+
+#: app/templates/home.html:47
 msgid "Getting started"
 msgstr ""
 
-#: app/templates/home.html:28
+#: app/templates/home.html:47
 msgid ""
 "Flash an ESP32, a Raspberry Pi, or send data from your browser in under "
 "ten minutes."
 msgstr ""
 
-#: app/templates/home.html:29
+#: app/templates/home.html:47
+msgid "Read the guide"
+msgstr ""
+
+#: app/templates/home.html:48 app/templates/index.html:257
+msgid "Explore the stack"
+msgstr ""
+
+#: app/templates/home.html:48
 msgid ""
 "Every open-source engine that powers CHERT IoT — open it or learn what it"
 " does."
 msgstr ""
 
-#: app/templates/home.html:30
+#: app/templates/home.html:48
+msgid "Explore"
+msgstr ""
+
+#: app/templates/home.html:50
+msgid "Platform Monitor"
+msgstr ""
+
+#: app/templates/home.html:50
+msgid ""
+"Platform-wide infrastructure metrics over Prometheus (instructors & "
+"admins). For your project's data, use Monitoring inside a project."
+msgstr ""
+
+#: app/templates/home.html:52 app/templates/index.html:258
 msgid "System status"
 msgstr ""
 
-#: app/templates/home.html:30
+#: app/templates/home.html:52
 msgid "Live up/down status of every public service."
 msgstr ""
 
-#: app/templates/home.html:32
-msgid ""
-"Edited your dashboard into a corner? Restore the starter layout. Your "
-"devices and data stay."
+#: app/templates/home.html:52
+msgid "View status"
 msgstr ""
 
-#: app/templates/home.html:33
-msgid "Reset starter dashboard"
-msgstr ""
-
-#: app/templates/home.html:56 app/templates/home_panel.html:2
+#: app/templates/home_panel.html:2 app/templates/project.html:53
 msgid "Live data is taking a moment."
 msgstr ""
 
-#: app/templates/home.html:56 app/templates/home_panel.html:3
+#: app/templates/home_panel.html:3 app/templates/project.html:53
+#: app/templates/project_report.html:26
 msgid "Retry"
 msgstr ""
 
-#: app/templates/home.html:64
-msgid "We could not set up your lab:"
-msgstr ""
-
-#: app/templates/home.html:67
-msgid "Setting up your lab…"
-msgstr ""
-
-#: app/templates/home.html:68
-msgid "Set up now"
-msgstr ""
-
-#: app/templates/home_panel.html:8 app/templates/home_panel.html:34
-#: app/templates/teach/roster.html:7
-msgid "Devices"
-msgstr ""
-
-#: app/templates/home_panel.html:12
+#: app/templates/home_panel.html:12 app/templates/project_report.html:30
 msgid "Online now"
 msgstr ""
 
 #: app/templates/home_panel.html:16 app/templates/home_panel.html:55
+#: app/templates/monitoring.html:15 app/templates/monitoring.html:63
+#: app/templates/project_report.html:31
 msgid "Active alarms"
 msgstr ""
 
-#: app/templates/home_panel.html:20
+#: app/templates/home_panel.html:20 app/templates/project_report.html:32
 msgid "Fleet online"
 msgstr ""
 
-#: app/templates/home_panel.html:26
+#: app/templates/home_panel.html:26 app/templates/project_report.html:37
 msgid "Last 24 hours"
 msgstr ""
 
-#: app/templates/home_panel.html:37
+#: app/templates/home_panel.html:37 app/templates/monitoring.html:57
+#: app/templates/project_report.html:49
 msgid "Latest"
 msgstr ""
 
-#: app/templates/home_panel.html:67
+#: app/templates/home_panel.html:50 app/templates/monitoring.html:45
+#: app/templates/monitoring.html:60 app/templates/project_report.html:59
+#: app/templates/telemetry.html:38
+msgid "No devices yet."
+msgstr ""
+
+#: app/templates/home_panel.html:67 app/templates/monitoring.html:73
 msgid "No active alarms. All readings within range."
 msgstr ""
 
-#: app/templates/index.html:4
-msgid "Multi-tenant IoT lab"
+#: app/templates/index.html:10
+msgid "From sensor to insight"
 msgstr ""
 
-#: app/templates/index.html:5
-msgid "Your own IoT lab, live in ten minutes."
-msgstr ""
-
-#: app/templates/index.html:6
+#: app/templates/index.html:11
 msgid ""
-"Create an account, flash the starter code onto an ESP32, and watch your "
-"sensor data arrive on a dashboard that is yours alone. No servers to run,"
-" no cloud accounts to manage."
+"A self-hosted IoT platform covering every layer and every stage of an IoT"
+" project: devices, secure connectivity, data, dashboards, automation and "
+"analysis — in English and Arabic."
 msgstr ""
 
-#: app/templates/index.html:7
+#: app/templates/index.html:26
+msgid "Lifecycle"
+msgstr ""
+
+#: app/templates/index.html:27
+msgid "Architecture"
+msgstr ""
+
+#: app/templates/index.html:28
+msgid "Why CHERT"
+msgstr ""
+
+#: app/templates/index.html:46
+msgid "Self-hosted IoT platform"
+msgstr ""
+
+#: app/templates/index.html:47
+msgid "From sensor to insight."
+msgstr ""
+
+#: app/templates/index.html:47
+msgid "Every layer of IoT, in one platform."
+msgstr ""
+
+#: app/templates/index.html:48
+msgid ""
+"CHERT IoT gives every project its own secure workspace: connect devices "
+"over MQTT, HTTP or LoRaWAN, watch live dashboards, automate with Node-RED"
+" and analyse in Python — on your own servers, in English and Arabic."
+msgstr ""
+
+#: app/templates/index.html:51
+msgid "Watch data flow"
+msgstr ""
+
+#: app/templates/index.html:54 app/templates/index.html:108
+msgid "Lifecycle stages"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "IoT layers"
+msgstr ""
+
+#: app/templates/index.html:56
+msgid "Integrated components"
+msgstr ""
+
+#: app/templates/index.html:57
+msgid "Languages"
+msgstr ""
+
+#: app/templates/index.html:74
+msgid "Sample data"
+msgstr ""
+
+#: app/templates/index.html:76
+msgid "Temperature"
+msgstr ""
+
+#: app/templates/index.html:84
+msgid "Scroll to the lifecycle"
+msgstr ""
+
+#: app/templates/index.html:91
+msgid "The IoT project lifecycle"
+msgstr ""
+
+#: app/templates/index.html:92
+msgid "Every IoT project follows the same journey. CHERT covers all of it."
+msgstr ""
+
+#: app/templates/index.html:93
+msgid ""
+"Nine stages, from the first idea to a system that runs and improves. "
+"Select a stage to see what happens — and which parts of CHERT make it "
+"work."
+msgstr ""
+
+#: app/templates/index.html:106
+msgid "continuous cycle"
+msgstr ""
+
+#: app/templates/index.html:123
+msgid "Stage"
+msgstr ""
+
+#: app/templates/index.html:127
+msgid "Powered by"
+msgstr ""
+
+#: app/templates/index.html:134
+msgid "Previous stage"
+msgstr ""
+
+#: app/templates/index.html:136
+msgid "Play the lifecycle"
+msgstr ""
+
+#: app/templates/index.html:136
+msgid "Pause"
+msgstr ""
+
+#: app/templates/index.html:139
+msgid "Next stage"
+msgstr ""
+
+#: app/templates/index.html:151
+msgid "Interactive architecture"
+msgstr ""
+
+#: app/templates/index.html:152
+msgid "Every layer of an IoT system — and the CHERT component that runs it"
+msgstr ""
+
+#: app/templates/index.html:153
+msgid ""
+"Select any component to learn what it does, or play a journey and watch "
+"data move through the platform."
+msgstr ""
+
+#: app/templates/index.html:158
+msgid "Journeys"
+msgstr ""
+
+#: app/templates/index.html:163
+msgid "Show data flows"
+msgstr ""
+
+#: app/templates/index.html:167
+msgid "Step"
+msgstr ""
+
+#: app/templates/index.html:167
+msgid "In the lifecycle:"
+msgstr ""
+
+#: app/templates/index.html:169
+msgid "Select a component or play a journey."
+msgstr ""
+
+#: app/templates/index.html:180
+msgid "Previous step"
+msgstr ""
+
+#: app/templates/index.html:181
+msgid "Next step"
+msgstr ""
+
+#: app/templates/index.html:205
+msgid "Details appear in the panel above the diagram."
+msgstr ""
+
+#: app/templates/index.html:214
+msgid "Why CHERT IoT"
+msgstr ""
+
+#: app/templates/index.html:215
+msgid "Built for real projects, real teams and real data"
+msgstr ""
+
+#: app/templates/index.html:219
+msgid "Isolated by design"
+msgstr ""
+
+#: app/templates/index.html:219
+msgid ""
+"Each project is its own tenant with its own devices, data, dashboards, "
+"flows and notebooks. Members see only what they belong to."
+msgstr ""
+
+#: app/templates/index.html:220
+msgid "Self-hosted and sovereign"
+msgstr ""
+
+#: app/templates/index.html:220
+msgid ""
+"The whole platform runs on your own servers, with pinned versions and no "
+"third-party cloud. Your data never leaves your infrastructure."
+msgstr ""
+
+#: app/templates/index.html:221
+msgid "English and Arabic"
+msgstr ""
+
+#: app/templates/index.html:221
+msgid ""
+"Every screen, guide and tool speaks both languages, with proper Arabic "
+"typography — switch at any time."
+msgstr ""
+
+#: app/templates/index.html:222
+msgid "Made for learning and teams"
+msgstr ""
+
+#: app/templates/index.html:222
+msgid ""
+"Owners, members, instructors and administrators each get the right tools,"
+" from a first ESP32 to a fleet of LoRaWAN sensors."
+msgstr ""
+
+#: app/templates/index.html:223
+msgid "Open protocols"
+msgstr ""
+
+#: app/templates/index.html:223
+msgid ""
+"Standard MQTT, HTTP and LoRaWAN — use the hardware you already have, with"
+" no proprietary lock-in."
+msgstr ""
+
+#: app/templates/index.html:224
+msgid "Ready in minutes"
+msgstr ""
+
+#: app/templates/index.html:224
+msgid ""
+"Sign up, create a project and see your first reading on a dashboard in "
+"about ten minutes."
+msgstr ""
+
+#: app/templates/index.html:241
+msgid "Your first reading is ten minutes away."
+msgstr ""
+
+#: app/templates/index.html:242
+msgid ""
+"Create a free account, start a project and connect a device — or use your"
+" browser as one."
+msgstr ""
+
+#: app/templates/index.html:245
 msgid "Read the getting-started guide"
 msgstr ""
 
-#: app/templates/lora.html:7
+#: app/templates/index.html:255
+msgid "Footer"
+msgstr ""
+
+#: app/templates/lora.html:8
 msgid "The LoRaWAN track is not enabled on this environment yet."
 msgstr ""
 
-#: app/templates/lora.html:9
+#: app/templates/lora.html:10
 msgid ""
 "Register a LoRaWAN device to get its OTAA credentials, point a gateway at"
 " the platform, and see uplinks arrive on your dashboard alongside your "
 "Wi-Fi devices."
 msgstr ""
 
-#: app/templates/lora.html:16
-msgid "No LoRa devices yet."
-msgstr ""
-
-#: app/templates/lora.html:20
+#: app/templates/lora.html:15
 msgid "Register a LoRa device"
 msgstr ""
 
-#: app/templates/lora.html:21
+#: app/templates/lora.html:32
+msgid ""
+"Keep the AppKey secret — it authenticates this device. Reveal it only to "
+"copy into your device firmware."
+msgstr ""
+
+#: app/templates/lora.html:34
+msgid "No LoRa devices yet"
+msgstr ""
+
+#: app/templates/lora.html:34
+msgid ""
+"Register a device to generate its DevEUI and AppKey for over-the-air "
+"activation."
+msgstr ""
+
+#: app/templates/lora.html:40
 msgid "Gateway"
 msgstr ""
 
-#: app/templates/lora.html:22
-msgid "Point your LoRaWAN gateway (Semtech UDP packet forwarder) at"
+#: app/templates/lora.html:44
+msgid "Configure your gateway as a Semtech UDP packet forwarder pointed at:"
 msgstr ""
 
-#: app/templates/lora.html:22
-msgid "EU868. Full steps in the"
+#: app/templates/lora.html:45
+msgid "Select the EU868 region and save."
 msgstr ""
 
-#: app/templates/lora.html:22
+#: app/templates/lora.html:46
+msgid ""
+"Power on a registered device — uplinks appear on this project's dashboard"
+" alongside your Wi-Fi devices."
+msgstr ""
+
+#: app/templates/lora.html:48
+msgid "Full steps in the"
+msgstr ""
+
+#: app/templates/lora.html:48
 msgid "gateway guide"
 msgstr ""
 
-#: app/templates/signup.html:7
+#: app/templates/monitoring.html:9 app/templates/project.html:10
+#: app/templates/telemetry.html:9
+msgid "Setting up this project…"
+msgstr ""
+
+#: app/templates/monitoring.html:19
+msgid "Services"
+msgstr ""
+
+#: app/templates/monitoring.html:22 app/templates/telemetry.html:12
+msgid "Some sections could not load and are shown degraded."
+msgstr ""
+
+#: app/templates/monitoring.html:31 app/templates/telemetry.html:21
+msgid "Metric"
+msgstr ""
+
+#: app/templates/monitoring.html:36 app/templates/telemetry.html:26
+msgid "Range"
+msgstr ""
+
+#: app/templates/monitoring.html:45 app/templates/telemetry.html:38
+msgid "Add a device"
+msgstr ""
+
+#: app/templates/monitoring.html:47 app/templates/telemetry.html:50
+msgid "This device has no numeric telemetry to chart yet."
+msgstr ""
+
+#: app/templates/monitoring.html:49 app/templates/telemetry.html:52
+msgid "No data for this metric in the selected range."
+msgstr ""
+
+#: app/templates/monitoring.html:65 app/templates/monitoring.html:80
+msgid "Severity"
+msgstr ""
+
+#: app/templates/monitoring.html:65 app/templates/monitoring.html:80
+msgid "Type"
+msgstr ""
+
+#: app/templates/monitoring.html:69
+msgid "Acknowledge"
+msgstr ""
+
+#: app/templates/monitoring.html:78 app/templates/project_report.html:63
+msgid "Alarm history"
+msgstr ""
+
+#: app/templates/monitoring.html:80
+msgid "Time"
+msgstr ""
+
+#: app/templates/monitoring.html:83 app/templates/project_report.html:74
+msgid "No alarms recorded."
+msgstr ""
+
+#: app/templates/monitoring.html:86 app/templates/telemetry.html:82
+msgid "Updated"
+msgstr ""
+
+#: app/templates/notebooks.html:6
+msgid ""
+"Analyse this project's telemetry in a Python notebook — pandas and "
+"matplotlib, scoped to this project's data."
+msgstr ""
+
+#: app/templates/notebooks.html:12
+msgid "Ready to launch"
+msgstr ""
+
+#: app/templates/notebooks.html:18
+msgid "Notebook server"
+msgstr ""
+
+#: app/templates/notebooks.html:18
+msgid "This project"
+msgstr ""
+
+#: app/templates/notebooks.html:19
+msgid "Storage"
+msgstr ""
+
+#: app/templates/notebooks.html:19
+msgid "Persistent"
+msgstr ""
+
+#: app/templates/notebooks.html:23
+msgid "Open Notebook"
+msgstr ""
+
+#: app/templates/notebooks.html:25
+msgid ""
+"Your notebook and its files persist between sessions. The first launch "
+"takes a few seconds to start your server."
+msgstr ""
+
+#: app/templates/notebooks_unavailable.html:7
+msgid ""
+"The notebook service is temporarily unavailable. Your notebook and its "
+"data are safe — please try again in a few minutes."
+msgstr ""
+
+#: app/templates/notebooks_unavailable.html:10
+msgid "Back to project"
+msgstr ""
+
+#: app/templates/project.html:7
+msgid "We could not set up this project:"
+msgstr ""
+
+#: app/templates/project.html:11
+msgid "Set up now"
+msgstr ""
+
+#: app/templates/project.html:16
+msgid "Loading…"
+msgstr ""
+
+#: app/templates/project.html:20
+msgid "Capabilities"
+msgstr ""
+
+#: app/templates/project.html:22
+msgid "Add devices, get tokens and starter code."
+msgstr ""
+
+#: app/templates/project.html:23
+msgid ""
+"This project's Node-RED: wire devices to logic and actions, no code "
+"required."
+msgstr ""
+
+#: app/templates/project.html:24
+msgid ""
+"Register a LoRa device and see gateway uplinks on this project's "
+"dashboard."
+msgstr ""
+
+#: app/templates/project.html:25
+msgid "Email, webhook or dashboard alarm when a reading crosses your threshold."
+msgstr ""
+
+#: app/templates/project.html:26
+msgid ""
+"Analyse this project's telemetry in a Python notebook — pandas & "
+"matplotlib, scoped to this project."
+msgstr ""
+
+#: app/templates/project.html:27
+msgid "Lifecycle report: devices, fleet health, alarm history and 24h trends."
+msgstr ""
+
+#: app/templates/project.html:28
+msgid ""
+"Advanced console for this project — dashboards, rule chains and alarms, "
+"powered by ThingsBoard."
+msgstr ""
+
+#: app/templates/project.html:28
+msgid "Open console"
+msgstr ""
+
+#: app/templates/project.html:31
+msgid "Manage members, reset the starter dashboard or delete this project in"
+msgstr ""
+
+#: app/templates/project_join.html:12
+msgid "Your access to this project has been disabled by the owner."
+msgstr ""
+
+#: app/templates/project_join.html:14
+msgid "Your request to join is pending the owner's approval."
+msgstr ""
+
+#: app/templates/project_join.html:16
+msgid "You are not a member of this project."
+msgstr ""
+
+#: app/templates/project_join.html:18
+msgid "Request to join"
+msgstr ""
+
+#: app/templates/project_join.html:19
+msgid "Back"
+msgstr ""
+
+#: app/templates/project_new.html:11
+msgid "Project name"
+msgstr ""
+
+#: app/templates/project_new.html:13
+msgid "e.g. Greenhouse monitor"
+msgstr ""
+
+#: app/templates/project_new.html:16
+msgid "Description"
+msgstr ""
+
+#: app/templates/project_new.html:16
+msgid "optional"
+msgstr ""
+
+#: app/templates/project_new.html:18
+msgid "What will this project do?"
+msgstr ""
+
+#: app/templates/project_new.html:20
+msgid ""
+"This creates an isolated environment — its own devices, flows, notebooks,"
+" alerts and dashboards."
+msgstr ""
+
+#: app/templates/project_new.html:22
+msgid "Create project"
+msgstr ""
+
+#: app/templates/project_report.html:2 app/templates/project_report.html:8
+msgid "Report"
+msgstr ""
+
+#: app/templates/project_report.html:9
+msgid "Generated"
+msgstr ""
+
+#: app/templates/project_report.html:11
+msgid "Print"
+msgstr ""
+
+#: app/templates/project_report.html:18 app/templates/teach/roster.html:8
+msgid "Created"
+msgstr ""
+
+#: app/templates/project_report.html:19 app/templates/project_settings.html:9
+#: app/templates/teach/roster.html:8
+msgid "Members"
+msgstr ""
+
+#: app/templates/project_report.html:20
+msgid "Provisioning"
+msgstr ""
+
+#: app/templates/project_report.html:26
+msgid "Live data is unavailable right now."
+msgstr ""
+
+#: app/templates/project_settings.html:7
+msgid "Manage who can access this project and control project-wide actions."
+msgstr ""
+
+#: app/templates/project_settings.html:13
+msgid "Role"
+msgstr ""
+
+#: app/templates/project_settings.html:18
+msgid "owner"
+msgstr ""
+
+#: app/templates/project_settings.html:18
+msgid "member"
+msgstr ""
+
+#: app/templates/project_settings.html:20
+msgid "active"
+msgstr ""
+
+#: app/templates/project_settings.html:21
+msgid "disabled"
+msgstr ""
+
+#: app/templates/project_settings.html:26
+msgid "Disable"
+msgstr ""
+
+#: app/templates/project_settings.html:28
+msgid "Enable"
+msgstr ""
+
+#: app/templates/project_settings.html:30
+msgid "Remove this member?"
+msgstr ""
+
+#: app/templates/project_settings.html:30
+msgid "Remove"
+msgstr ""
+
+#: app/templates/project_settings.html:41
+msgid "Join requests"
+msgstr ""
+
+#: app/templates/project_settings.html:49
+msgid "Approve"
+msgstr ""
+
+#: app/templates/project_settings.html:50
+msgid "Deny"
+msgstr ""
+
+#: app/templates/project_settings.html:56
+msgid "No pending requests"
+msgstr ""
+
+#: app/templates/project_settings.html:56
+msgid "When someone asks to join this project, their request appears here."
+msgstr ""
+
+#: app/templates/project_settings.html:60
+msgid "Invitations"
+msgstr ""
+
+#: app/templates/project_settings.html:64
+msgid "Invite a member"
+msgstr ""
+
+#: app/templates/project_settings.html:65
+msgid "Member email to invite"
+msgstr ""
+
+#: app/templates/project_settings.html:65
+msgid "their email"
+msgstr ""
+
+#: app/templates/project_settings.html:67
+msgid "Create invite"
+msgstr ""
+
+#: app/templates/project_settings.html:70
+msgid "Pending invites — share the link; it accepts on their sign-in."
+msgstr ""
+
+#: app/templates/project_settings.html:73 app/templates/signup.html:7
 msgid "Email"
+msgstr ""
+
+#: app/templates/project_settings.html:73
+msgid "Invite link"
+msgstr ""
+
+#: app/templates/project_settings.html:85
+msgid "No pending invitations"
+msgstr ""
+
+#: app/templates/project_settings.html:85
+msgid "Invite someone by email above to generate a shareable join link."
+msgstr ""
+
+#: app/templates/project_settings.html:89
+msgid "Settings"
+msgstr ""
+
+#: app/templates/project_settings.html:93
+#: app/templates/project_settings.html:96
+msgid "Reset starter dashboard"
+msgstr ""
+
+#: app/templates/project_settings.html:94
+msgid ""
+"Edited your dashboard into a corner? Restore the starter layout. Your "
+"devices and data stay."
+msgstr ""
+
+#: app/templates/project_settings.html:103
+msgid "Danger zone"
+msgstr ""
+
+#: app/templates/project_settings.html:104
+msgid ""
+"Deleting a project permanently removes its devices, data, flows, "
+"notebooks and dashboards."
+msgstr ""
+
+#: app/templates/project_settings.html:106
+msgid "Delete this project and all its data? This cannot be undone."
+msgstr ""
+
+#: app/templates/project_settings.html:106
+msgid "Delete project"
 msgstr ""
 
 #: app/templates/signup.html:12
@@ -645,6 +2041,54 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
+#: app/templates/telemetry.html:36
+msgid "Latest values"
+msgstr ""
+
+#: app/templates/telemetry.html:40
+msgid "Key"
+msgstr ""
+
+#: app/templates/telemetry.html:40
+msgid "Value"
+msgstr ""
+
+#: app/templates/telemetry.html:43
+msgid "This device has no numeric telemetry yet."
+msgstr ""
+
+#: app/templates/telemetry.html:46
+msgid "Trend"
+msgstr ""
+
+#: app/templates/telemetry.html:59
+msgid "Telemetry activity"
+msgstr ""
+
+#: app/templates/telemetry.html:61
+msgid "Telemetry values received"
+msgstr ""
+
+#: app/templates/telemetry.html:69
+msgid "No telemetry activity in the selected range."
+msgstr ""
+
+#: app/templates/telemetry.html:72
+msgid "Data-point rate"
+msgstr ""
+
+#: app/templates/telemetry.html:76
+msgid "No telemetry activity to chart for this device in the selected range."
+msgstr ""
+
+#: app/templates/telemetry.html:81
+msgid ""
+"Telemetry activity counts telemetry values received (stored data points) "
+"— one per key per submission, so a device sending more keys reads higher."
+" It is an activity indicator, not message/transport throughput, delivery "
+"success, packets, uplinks or bytes."
+msgstr ""
+
 #: app/templates/verified.html:2 app/templates/verified.html:4
 msgid "Email verified"
 msgstr ""
@@ -653,87 +2097,75 @@ msgstr ""
 msgid "Your account is active. Sign in to open your lab."
 msgstr ""
 
-#: app/templates/teach/console.html:6
+#: app/templates/teach/console.html:7
+msgid "Platform overview"
+msgstr ""
+
+#: app/templates/teach/console.html:15
+msgid "Active projects"
+msgstr ""
+
+#: app/templates/teach/console.html:19
+msgid "Active members"
+msgstr ""
+
+#: app/templates/teach/console.html:23
 msgid "Class codes"
 msgstr ""
 
-#: app/templates/teach/console.html:8
+#: app/templates/teach/console.html:25
 msgid "Code"
 msgstr ""
 
-#: app/templates/teach/console.html:8
+#: app/templates/teach/console.html:25
 msgid "Cohort"
 msgstr ""
 
-#: app/templates/teach/console.html:8
+#: app/templates/teach/console.html:25
 msgid "Used"
 msgstr ""
 
-#: app/templates/teach/console.html:8
+#: app/templates/teach/console.html:25
 msgid "Expires"
 msgstr ""
 
-#: app/templates/teach/console.html:8
+#: app/templates/teach/console.html:25
 msgid "Students"
 msgstr ""
 
-#: app/templates/teach/console.html:17
+#: app/templates/teach/console.html:34
 msgid "Deactivate"
 msgstr ""
 
-#: app/templates/teach/console.html:17
+#: app/templates/teach/console.html:34
 msgid "inactive"
 msgstr ""
 
-#: app/templates/teach/console.html:20
+#: app/templates/teach/console.html:37
 msgid "No class codes yet."
 msgstr ""
 
-#: app/templates/teach/console.html:24
+#: app/templates/teach/console.html:41
 msgid "New class code"
 msgstr ""
 
-#: app/templates/teach/console.html:26
+#: app/templates/teach/console.html:43
 msgid "Cohort name"
 msgstr ""
 
-#: app/templates/teach/console.html:27
+#: app/templates/teach/console.html:44
 msgid "Maximum students"
 msgstr ""
 
-#: app/templates/teach/console.html:28
+#: app/templates/teach/console.html:45
 msgid "Valid for (days)"
 msgstr ""
 
-#: app/templates/teach/console.html:29
+#: app/templates/teach/console.html:46
 msgid "Create code"
 msgstr ""
 
-#: app/templates/teach/roster.html:7
-msgid "Student"
-msgstr ""
-
-#: app/templates/teach/roster.html:7
-msgid "Device last seen"
-msgstr ""
-
-#: app/templates/teach/roster.html:7
-msgid "Last sign-in"
-msgstr ""
-
-#: app/templates/teach/roster.html:12
-msgid "suspended"
-msgstr ""
-
-#: app/templates/teach/roster.html:20
-msgid "Reactivate"
-msgstr ""
-
-#: app/templates/teach/roster.html:22
-msgid "Suspend"
-msgstr ""
-
-#: app/templates/teach/roster.html:28
-msgid "No students in this cohort yet."
+#: app/templates/teach/roster.html:24
+msgid "No projects yet."
 msgstr ""
 

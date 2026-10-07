@@ -1,132 +1,267 @@
-{% extends "base.html" %}
+{#- Marketing site (chertiot.com). Standalone page: full-bleed animated sections, its own nav.
+    Content comes from app/site_content.py; static/site.js adds the motion and interactivity
+    (everything below is readable without JS). Local assets only — CSP default-src 'self'. -#}
 {% from "_icons.html" import icon %}
-{% block title %}CHERT IoT — {{ _("Your own IoT lab, in minutes") }}{% endblock %}
-{% block content %}
+<!doctype html>
+<html lang="{{ locale }}" dir="{{ text_dir }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CHERT IoT — {{ _("From sensor to insight") }}</title>
+  <meta name="description" content="{{ _('A self-hosted IoT platform covering every layer and every stage of an IoT project: devices, secure connectivity, data, dashboards, automation and analysis — in English and Arabic.') }}">
+  <link rel="icon" href="/static/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/chert-fonts.css">
+  <link rel="stylesheet" href="/static/chert-tokens.css">
+  <link rel="stylesheet" href="/static/chert-components.css">
+  <link rel="stylesheet" href="/static/site.css">
+</head>
+<body class="sx">
+<a class="skip-link" href="#main">{{ _("Skip to content") }}</a>
 
-{# ============================ HERO ============================ #}
-<section class="lp-hero">
-  <div class="lp-hero__text">
-    <p class="overline">{{ _("Multi-tenant IoT platform") }}</p>
-    <h1>{{ _("Your own IoT lab, live in ten minutes.") }}</h1>
-    <p class="lp-lead">{{ _("Create an account, flash the starter code onto an ESP32, and watch your sensor data arrive on a dashboard that is yours alone. Devices, dashboards, automations, notebooks and LoRaWAN — one isolated workspace per project. No servers to run, no cloud accounts to manage.") }}</p>
-    <p class="lp-cta">
+{# ================================ NAV ================================ #}
+<header class="sx-nav" data-sx-nav>
+  <div class="sx-wrap sx-nav__inner">
+    <a class="sx-nav__brand" href="/"><img src="/static/logo.svg" alt="" width="30" height="30"><span>CHERT <b>IoT</b></span></a>
+    <nav class="sx-nav__links" aria-label="{{ _('Primary') }}">
+      <a href="#lifecycle">{{ _("Lifecycle") }}</a>
+      <a href="#architecture">{{ _("Architecture") }}</a>
+      <a href="#why">{{ _("Why CHERT") }}</a>
+      <a href="/docs/">{{ _("Docs") }}</a>
+    </nav>
+    <div class="sx-nav__actions">
+      <a class="sx-nav__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+      <a class="sx-nav__signin" href="/login">{{ _("Sign in") }}</a>
+      <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+{# ================================ HERO =============================== #}
+<section class="sx-hero">
+  <canvas class="sx-hero__field" data-sx-field aria-hidden="true"></canvas>
+  <div class="sx-wrap sx-hero__grid">
+    <div class="sx-hero__text">
+      <p class="sx-eyebrow sx-reveal">{{ _("Self-hosted IoT platform") }}</p>
+      <h1 class="sx-hero__title sx-reveal">{{ _("From sensor to insight.") }} <span class="sx-grad">{{ _("Every layer of IoT, in one platform.") }}</span></h1>
+      <p class="sx-hero__lead sx-reveal">{{ _("CHERT IoT gives every project its own secure workspace: connect devices over MQTT, HTTP or LoRaWAN, watch live dashboards, automate with Node-RED and analyse in Python — on your own servers, in English and Arabic.") }}</p>
+      <div class="sx-hero__cta sx-reveal">
+        <a class="btn btn--primary btn--lg" href="/signup">{{ _("Start your first project") }}</a>
+        <a class="sx-btn-ghost" href="#architecture" data-sx-autoplay="reading">{{ icon("play", 16) }} {{ _("Watch data flow") }}</a>
+      </div>
+      <dl class="sx-stats sx-reveal">
+        <div><dt>{{ _("Lifecycle stages") }}</dt><dd data-sx-count="{{ site.lifecycle|length }}">{{ site.lifecycle|length }}</dd></div>
+        <div><dt>{{ _("IoT layers") }}</dt><dd data-sx-count="4">4</dd></div>
+        <div><dt>{{ _("Integrated components") }}</dt><dd data-sx-count="{{ site.component_count }}">{{ site.component_count }}</dd></div>
+        <div><dt>{{ _("Languages") }}</dt><dd data-sx-count="2">2</dd></div>
+      </dl>
+    </div>
+
+    {# Isometric layer stack: data rises from devices to insight. Decorative. #}
+    <div class="sx-hero__art" aria-hidden="true">
+      <div class="sx-stack">
+        {% for band in site.layers if band.kind == "band" %}{% set rev = 3 - loop.index0 %}
+        <div class="sx-plate" style="--i:{{ rev }}">
+          <span class="sx-plate__face"><span class="sx-plate__icons">{% for nid, ic, name, role in band.nodes[:4] %}<i>{{ icon(ic, 20) }}</i>{% endfor %}</span></span>
+          <span class="sx-plate__tag"><b>{{ band.n }}</b>{{ band.title }}</span>
+        </div>
+        {% endfor %}
+        <span class="sx-stack__beam"></span>
+        {% for d in range(5) %}<span class="sx-stack__packet" style="--d:{{ d * 0.8 }}s"></span>{% endfor %}
+      </div>
+      <div class="sx-tele" data-sx-tele>
+        <div class="sx-tele__head"><span class="sx-tele__dot"></span>esp32-lab-01 <span class="sx-tele__tag">{{ _("Sample data") }}</span></div>
+        <div class="sx-tele__row">
+          <span class="sx-tele__label">{{ _("Temperature") }}</span>
+          <span class="sx-tele__value"><b data-sx-tele-value>23.4</b> °C</span>
+        </div>
+        <svg class="sx-tele__spark" viewBox="0 0 200 48" preserveAspectRatio="none"><path data-sx-tele-line d="M0 30 L200 30"/></svg>
+        <div class="sx-tele__foot">MQTTS · 8883 · TLS 1.3</div>
+      </div>
+    </div>
+  </div>
+  <a class="sx-hero__scroll" href="#lifecycle" aria-label="{{ _('Scroll to the lifecycle') }}"><span></span></a>
+</section>
+
+{# ============================= LIFECYCLE ============================= #}
+<section class="sx-section sx-life" id="lifecycle">
+  <div class="sx-wrap">
+    <header class="sx-head sx-reveal">
+      <p class="sx-eyebrow">{{ _("The IoT project lifecycle") }}</p>
+      <h2>{{ _("Every IoT project follows the same journey. CHERT covers all of it.") }}</h2>
+      <p>{{ _("Nine stages, from the first idea to a system that runs and improves. Select a stage to see what happens — and which parts of CHERT make it work.") }}</p>
+    </header>
+
+    <div class="sx-life__grid" data-sx-life>
+      <div class="sx-wheel sx-reveal">
+        <svg class="sx-wheel__ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="sx-wheel__track" cx="50" cy="50" r="42"/>
+          <circle class="sx-wheel__progress" cx="50" cy="50" r="42" pathLength="100" data-sx-progress/>
+        </svg>
+        <div class="sx-wheel__orbit" aria-hidden="true"><span></span></div>
+        <div class="sx-wheel__center" aria-hidden="true">
+          <span class="sx-wheel__n" data-sx-center-n>01</span>
+          <span class="sx-wheel__t" data-sx-center-t>{{ site.lifecycle[0].title }}</span>
+          <span class="sx-wheel__loop">{{ icon("refresh", 14) }} {{ _("continuous cycle") }}</span>
+        </div>
+        <div class="sx-wheel__stops" role="tablist" aria-label="{{ _('Lifecycle stages') }}">
+          {% for st in site.lifecycle %}
+          <button class="sx-stop{% if loop.first %} is-active{% endif %}" type="button" role="tab"
+                  id="sx-tab-{{ st.n }}" aria-controls="sx-stage-{{ st.n }}" aria-selected="{{ 'true' if loop.first else 'false' }}"
+                  data-stage="{{ st.n }}" style="--x:{{ st.x }}%;--y:{{ st.y }}%">
+            {{ icon(st.icon, 20) }}<span class="sx-stop__label">{{ st.title }}</span>
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="sx-life__panels sx-reveal">
+        {% for st in site.lifecycle %}
+        <article class="sx-stage{% if loop.first %} is-active{% endif %}" id="sx-stage-{{ st.n }}" role="tabpanel"
+                 aria-labelledby="sx-tab-{{ st.n }}" data-stage="{{ st.n }}">
+          <p class="sx-stage__count">{{ _("Stage") }} {{ "%02d"|format(st.n) }} <span>/ {{ "%02d"|format(site.lifecycle|length) }}</span></p>
+          <h3 class="sx-stage__title"><span class="sx-stage__icon">{{ icon(st.icon, 22) }}</span>{{ st.title }}</h3>
+          <p class="sx-stage__tagline">{{ st.tagline }}</p>
+          <p class="sx-stage__desc">{{ st.desc }}</p>
+          <p class="sx-stage__powered">{{ _("Powered by") }}</p>
+          <ul class="sx-chips">
+            {% for nid in st.components %}<li><a class="sx-chip" href="#architecture" data-node-link="{{ nid }}">{{ site.payload.nodes[nid].name }}</a></li>{% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+        <div class="sx-life__controls">
+          <button class="sx-iconbtn" type="button" data-sx-life-prev aria-label="{{ _('Previous stage') }}">{{ icon("chevron-left", 18) }}</button>
+          <button class="sx-iconbtn sx-iconbtn--play" type="button" data-sx-life-play aria-pressed="false"
+                  data-label-play="{{ _('Play the lifecycle') }}" data-label-pause="{{ _('Pause') }}" aria-label="{{ _('Play the lifecycle') }}">
+            <span class="sx-i-play">{{ icon("play", 16) }}</span><span class="sx-i-pause">{{ icon("pause", 16) }}</span>
+          </button>
+          <button class="sx-iconbtn" type="button" data-sx-life-next aria-label="{{ _('Next stage') }}">{{ icon("chevron-right", 18) }}</button>
+          <span class="sx-life__bar"><span data-sx-life-bar></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# =========================== ARCHITECTURE ============================ #}
+<section class="sx-section sx-arch" id="architecture">
+  <div class="sx-wrap sx-wrap--wide">
+    <header class="sx-head sx-head--dark sx-reveal">
+      <p class="sx-eyebrow">{{ _("Interactive architecture") }}</p>
+      <h2>{{ _("Every layer of an IoT system — and the CHERT component that runs it") }}</h2>
+      <p>{{ _("Select any component to learn what it does, or play a journey and watch data move through the platform.") }}</p>
+    </header>
+
+    <div class="sx-console" data-sx-arch>
+      <div class="sx-console__bar">
+        <div class="sx-journeys" role="group" aria-label="{{ _('Journeys') }}">
+          {% for j in site.journeys %}
+          <button class="sx-jbtn" type="button" data-journey="{{ j.id }}" aria-pressed="false">{{ icon("play", 13) }}{{ j.label }}</button>
+          {% endfor %}
+        </div>
+        <label class="sx-toggle"><input type="checkbox" data-sx-wires checked> <span>{{ _("Show data flows") }}</span></label>
+      </div>
+
+      <div class="sx-inspector" data-sx-inspector aria-live="polite"
+           data-label-step="{{ _('Step') }}" data-label-stages="{{ _('In the lifecycle:') }}">
+        <div class="sx-inspector__idle" data-sx-idle>
+          {{ icon("arrow", 18) }} <span>{{ _("Select a component or play a journey.") }}</span>
+        </div>
+        <div class="sx-inspector__body" data-sx-body hidden>
+          <p class="sx-inspector__layer" data-sx-layer></p>
+          <h3 class="sx-inspector__name"><span data-sx-name></span> <small data-sx-role></small></h3>
+          <p class="sx-inspector__text" data-sx-text></p>
+          <div class="sx-inspector__meta">
+            <span class="sx-inspector__step" data-sx-step hidden></span>
+            <span class="sx-inspector__stages" data-sx-stages></span>
+          </div>
+          <div class="sx-inspector__nav" data-sx-jnav hidden>
+            <button class="sx-iconbtn" type="button" data-sx-jprev aria-label="{{ _('Previous step') }}">{{ icon("chevron-left", 16) }}</button>
+            <button class="sx-iconbtn" type="button" data-sx-jnext aria-label="{{ _('Next step') }}">{{ icon("chevron-right", 16) }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sx-diagram" data-sx-diagram>
+        <svg class="sx-wires" data-sx-svg aria-hidden="true"></svg>
+        {% for band in site.layers %}
+        <div class="sx-layer sx-layer--{{ band.kind }} sx-layer--{{ band.id }}">
+          <div class="sx-layer__head">
+            <span class="sx-layer__n">{{ band.n }}</span>
+            <div><h3>{{ band.title }}</h3><p>{{ band.desc }}</p></div>
+          </div>
+          <ul class="sx-layer__nodes">
+            {% for nid, ic, name, role in band.nodes %}
+            <li><button class="sx-node" type="button" data-node="{{ nid }}" aria-describedby="sx-inspector-hint">
+              <span class="sx-node__icon">{{ icon(ic, 18) }}</span>
+              <span class="sx-node__txt"><b>{{ name }}</b><small>{{ role }}</small></span>
+            </button></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+      <p id="sx-inspector-hint" class="sx-sr">{{ _("Details appear in the panel above the diagram.") }}</p>
+    </div>
+  </div>
+</section>
+
+{# =============================== WHY ================================= #}
+<section class="sx-section sx-why" id="why">
+  <div class="sx-wrap">
+    <header class="sx-head sx-reveal">
+      <p class="sx-eyebrow">{{ _("Why CHERT IoT") }}</p>
+      <h2>{{ _("Built for real projects, real teams and real data") }}</h2>
+    </header>
+    <div class="sx-pillars">
+      {% set pillars = [
+        ("lock", _("Isolated by design"), _("Each project is its own tenant with its own devices, data, dashboards, flows and notebooks. Members see only what they belong to.")),
+        ("server", _("Self-hosted and sovereign"), _("The whole platform runs on your own servers, with pinned versions and no third-party cloud. Your data never leaves your infrastructure.")),
+        ("globe", _("English and Arabic"), _("Every screen, guide and tool speaks both languages, with proper Arabic typography — switch at any time.")),
+        ("users", _("Made for learning and teams"), _("Owners, members, instructors and administrators each get the right tools, from a first ESP32 to a fleet of LoRaWAN sensors.")),
+        ("wifi", _("Open protocols"), _("Standard MQTT, HTTP and LoRaWAN — use the hardware you already have, with no proprietary lock-in.")),
+        ("refresh", _("Ready in minutes"), _("Sign up, create a project and see your first reading on a dashboard in about ten minutes.")),
+      ] %}
+      {% for ic, title, desc in pillars %}
+      <div class="sx-pillar sx-reveal" style="--k:{{ loop.index0 }}">
+        <span class="sx-pillar__icon">{{ icon(ic, 22) }}</span>
+        <h3>{{ title }}</h3>
+        <p>{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============================ FINAL CTA ============================== #}
+<section class="sx-final">
+  <div class="sx-final__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="sx-wrap sx-final__inner sx-reveal">
+    <h2>{{ _("Your first reading is ten minutes away.") }}</h2>
+    <p>{{ _("Create a free account, start a project and connect a device — or use your browser as one.") }}</p>
+    <div class="sx-final__cta">
       <a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a>
-      <a class="btn btn--secondary btn--lg" href="/explore">{{ _("Explore the stack") }}</a>
-    </p>
-    <ul class="lp-trust">
-      <li>{{ icon("server", 18) }} {{ _("Self-hosted — you own your data") }}</li>
-      <li>{{ icon("bolt", 18) }} {{ _("Real device-to-dashboard in minutes") }}</li>
-      <li>{{ icon("globe", 18) }} {{ _("English & Arabic") }}</li>
-    </ul>
-  </div>
-  <div class="lp-hero__art" aria-hidden="true">
-    {% include "_landing_diagram.html" %}
+      <a class="sx-btn-ghost" href="/docs/">{{ icon("book", 16) }} {{ _("Read the getting-started guide") }}</a>
+    </div>
   </div>
 </section>
 
-{# ======================= WHAT YOU GET ========================= #}
-<section class="lp-section">
-  <div class="lp-section__head">
-    <p class="overline">{{ _("One platform, many capabilities") }}</p>
-    <h2>{{ _("Everything an IoT project needs — isolated per workspace") }}</h2>
-    <p class="lp-section__lead">{{ _("Each project is its own tenant: its own devices, data, dashboards, automations and team. Nothing leaks between projects.") }}</p>
-  </div>
-  <div class="lp-grid">
-    {% set caps = [
-      ("cpu", _("Devices & firmware"), _("Register devices, get access tokens and ready-to-flash starter code for ESP32, Raspberry Pi or your browser.")),
-      ("activity", _("Live telemetry"), _("Send readings over MQTT or HTTP and watch latest values, trends and per-device activity update in real time.")),
-      ("layers", _("Dashboards"), _("A starter dashboard is provisioned with every project, with the full ThingsBoard console a click away.")),
-      ("gauge", _("Monitoring"), _("Portal-native monitoring of your devices, alarms and 24-hour history — no setup required.")),
-      ("bell", _("Alerts"), _("Set thresholds and get an on-dashboard alarm, email or webhook when a reading crosses the line.")),
-      ("sitemap", _("No-code flows"), _("Your own Node-RED editor, with the ThingsBoard connection pre-injected — wire devices to logic and actions.")),
-      ("flask", _("Python notebooks"), _("Launch a per-project JupyterLab with pandas and matplotlib, scoped to your own telemetry.")),
-      ("radio", _("LoRaWAN"), _("Register LoRa devices, point a gateway at the platform and see uplinks land alongside your Wi-Fi devices.")),
-      ("printer", _("Reports"), _("A print-friendly lifecycle report: fleet health, device roster, alarm history and 24-hour trends.")),
-      ("users", _("Team & roles"), _("Invite members, approve join requests, and keep destructive actions owner-only.")),
-      ("lock", _("Single sign-on"), _("One CHERT login opens every tool — portal, console, flows and notebooks — no separate passwords.")),
-      ("globe", _("Arabic & English"), _("The whole platform in both languages, with correct Arabic typography — switch any time.")),
-    ] %}
-    {% for ic, title, desc in caps %}
-    <div class="lp-card">
-      <div class="card__icon">{{ icon(ic, 22) }}</div>
-      <h3 class="lp-card__title">{{ title }}</h3>
-      <p class="lp-card__desc">{{ desc }}</p>
-    </div>
-    {% endfor %}
-  </div>
-</section>
+</main>
 
-{# ========================= HOW IT WORKS ======================= #}
-<section class="lp-section lp-section--alt">
-  <div class="lp-section__head">
-    <p class="overline">{{ _("How it works") }}</p>
-    <h2>{{ _("From sign-up to live data in three steps") }}</h2>
+<footer class="sx-foot">
+  <div class="sx-wrap sx-foot__inner">
+    <span class="sx-nav__brand"><img src="/static/logo.svg" alt="" width="24" height="24"><span>CHERT <b>IoT</b></span></span>
+    <nav class="sx-foot__links" aria-label="{{ _('Footer') }}">
+      <a href="/docs/">{{ _("Docs") }}</a>
+      <a href="/explore">{{ _("Explore the stack") }}</a>
+      <a href="https://status.{{ request.url.hostname }}/status/chert-iot" rel="noopener">{{ _("System status") }}</a>
+      <a href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+    </nav>
   </div>
-  <div class="lp-steps">
-    <div class="lp-step">
-      <span class="lp-step__n">1</span>
-      <h3>{{ _("Create your account") }}</h3>
-      <p>{{ _("Sign up with email; a single CHERT identity signs you in to every tool.") }}</p>
-    </div>
-    <div class="lp-step">
-      <span class="lp-step__n">2</span>
-      <h3>{{ _("Start a project") }}</h3>
-      <p>{{ _("Each project becomes your own isolated workspace, provisioned with a starter dashboard.") }}</p>
-    </div>
-    <div class="lp-step">
-      <span class="lp-step__n">3</span>
-      <h3>{{ _("Connect a device") }}</h3>
-      <p>{{ _("Add a device, flash the starter code, and your readings appear on the dashboard within minutes.") }}</p>
-    </div>
-  </div>
-  <p class="lp-center"><a class="btn btn--primary" href="/signup">{{ _("Create account") }}</a>
-     <a class="btn btn--ghost" href="/docs/">{{ _("Read the getting-started guide") }} →</a></p>
-</section>
+</footer>
 
-{# ===================== POWERED BY OPEN SOURCE ================= #}
-<section class="lp-section">
-  <div class="lp-section__head">
-    <p class="overline">{{ _("Powered by proven open source") }}</p>
-    <h2>{{ _("Best-in-class engines, integrated into one platform") }}</h2>
-    <p class="lp-section__lead">{{ _("CHERT IoT brings together trusted open-source engines and runs them on your own infrastructure — your data never leaves your platform.") }}</p>
-  </div>
-  <div class="lp-engines">
-    {% set engines = [
-      ("layers", "ThingsBoard", _("Device management, telemetry, dashboards & alarms")),
-      ("lock", "Keycloak", _("Identity & single sign-on")),
-      ("sitemap", "Node-RED", _("No-code flow automation")),
-      ("flask", "JupyterLab", _("Python analysis notebooks")),
-      ("gauge", "Grafana", _("Infrastructure monitoring")),
-      ("radio", "ChirpStack", _("LoRaWAN network server")),
-      ("activity", "Prometheus", _("Metrics & alerting")),
-      ("server", "PostgreSQL", _("Durable data store")),
-      ("shield", "Caddy", _("Secure edge, TLS & MQTTS")),
-    ] %}
-    {% for ic, name, desc in engines %}
-    <div class="lp-engine">
-      <span class="lp-engine__icon">{{ icon(ic, 20) }}</span>
-      <div><strong>{{ name }}</strong><span>{{ desc }}</span></div>
-    </div>
-    {% endfor %}
-  </div>
-  <p class="lp-center"><a class="btn btn--secondary" href="/explore">{{ _("See the full stack") }} →</a></p>
-</section>
-
-{# ======================= BILINGUAL BAND ======================= #}
-<section class="lp-band">
-  <div class="lp-band__icon" aria-hidden="true">{{ icon("globe", 30) }}</div>
-  <div>
-    <h2>{{ _("Built for Arabic and English") }}</h2>
-    <p>{{ _("Every screen is available in both languages with correct Arabic typography and a left-to-right layout — switch any time from the top bar.") }}</p>
-  </div>
-  <a class="btn btn--secondary" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
-</section>
-
-{# ========================= FINAL CTA ========================== #}
-<section class="lp-final">
-  <h2>{{ _("Start building on your own IoT platform") }}</h2>
-  <p>{{ _("Free to create an account. Your first project is a few clicks away.") }}</p>
-  <p><a class="btn btn--primary btn--lg" href="/signup">{{ _("Create account") }}</a>
-     <a class="btn btn--secondary btn--lg" href="/login">{{ _("Sign in") }}</a></p>
-</section>
-{% endblock %}
+<script type="application/json" id="sx-data">{{ site.payload|tojson }}</script>
+<script src="/static/site.js" defer></script>
+</body>
+</html>

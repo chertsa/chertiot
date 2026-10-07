@@ -8,7 +8,9 @@ from app import permissions
 from app.auth import optional_user
 from app.config import get_settings
 from app.db import get_db
+from app.i18n import translator
 from app.project import projects_for
+from app.site_content import site_content
 from app.student import load_user
 from app.templating import templates
 
@@ -57,7 +59,9 @@ def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
 def index(request: Request) -> Any:
     if optional_user(request):
         return RedirectResponse("/home", status_code=303)
-    return templates.TemplateResponse(request, "index.html")
+    return templates.TemplateResponse(
+        request, "index.html", {"site": site_content(translator(request))}
+    )
 
 
 @router.get("/home")

@@ -12,9 +12,9 @@ def test_arabic_is_translation_only_ltr() -> None:
     # Arabic language, but LTR layout — never dir="rtl"
     assert 'lang="ar"' in r.text and 'dir="ltr"' in r.text
     assert 'dir="rtl"' not in r.text
-    assert "مختبرك الخاص لإنترنت الأشياء" in r.text  # hero headline in Arabic (translated)
+    assert "من المستشعر إلى الرؤية" in r.text  # hero headline in Arabic (translated)
     assert ">English<" in r.text  # toggle offers the other language
     # English unchanged: lang=en, dir=ltr
     r = c.get("/", cookies={"lang": "en"})
     assert 'lang="en"' in r.text and 'dir="ltr"' in r.text
-    assert "Your own IoT lab" in r.text and ">العربية<" in r.text
+    assert "From sensor to insight" in r.text and ">العربية<" in r.text
