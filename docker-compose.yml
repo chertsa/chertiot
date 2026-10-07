@@ -11,7 +11,7 @@ services:
   # ---------------------------------------------------------------- core
   postgres:
     <<: [*restart, *logging]
-    image: postgres:${POSTGRES_VERSION}
+    image: ghcr.io/chertsa/chertiot-postgres:${POSTGRES_VERSION}
     profiles: [core, lora]
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -74,7 +74,7 @@ services:
 
   keycloak:
     <<: [*restart, *logging]
-    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
+    image: ghcr.io/chertsa/chertiot-keycloak:${KEYCLOAK_VERSION}
     profiles: [core]
     command: ["start"]   # pre-built --optimized image: BACKLOG
     environment:
@@ -132,7 +132,13 @@ services:
       MQTT_PORT: ${MQTT_PORT}
       FLOWS_ENABLED: ${FLOWS_ENABLED}
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
+      LAB_ENABLED: ${LAB_ENABLED:-false}
+      LAB_PUBLIC_URL: ${LAB_PUBLIC_URL:-}
+      LAB_INTERNAL_URL: http://jupyterhub:8000
       LORA_ENABLED: ${LORA_ENABLED}
+      MONITORING_ENABLED: ${MONITORING_ENABLED:-false}
+      MONITORING_CACHE_TTL: ${MONITORING_CACHE_TTL:-15}
+      TELEMETRY_ENABLED: ${TELEMETRY_ENABLED:-false}
       CHIRPSTACK_GRPC: chirpstack:8080
       CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
       LORA_MQTT_HOST: mosquitto
@@ -199,7 +205,7 @@ services:
   # ---------------------------------------------------------------- monitoring (admin-only)
   alertmanager:
     <<: [*restart, *logging]
-    image: prom/alertmanager:v0.34.0
+    image: ghcr.io/chertsa/chertiot-alertmanager:v0.34.0
     profiles: [core]
     command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
     volumes:
@@ -214,7 +220,7 @@ services:
 
   prometheus:
     <<: [*restart, *logging]
-    image: prom/prometheus:${PROMETHEUS_VERSION}
+    image: ghcr.io/chertsa/chertiot-prometheus:${PROMETHEUS_VERSION}
     profiles: [core]
     command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=30d"]
     volumes:
@@ -229,12 +235,21 @@ services:
 
   grafana:
     <<: [*restart, *logging]
-    image: ${GRAFANA_IMAGE:-grafana/grafana:${GRAFANA_VERSION}}
+    # Thin CHERT branding overlay on the ghcr Grafana base (logo/favicon/app-title). Local build so
+    # the branding is durable across deploys; base stays ghcr.io/chertsa (no external registry).
+    build:
+      context: ./grafana-brand/overlay
+      args:
+        GRAFANA_BASE: ${GRAFANA_IMAGE:-ghcr.io/chertsa/chertiot-grafana:13.1.4-b1}
+    image: chertiot/grafana-branded:dev
     profiles: [core]
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
       GF_USERS_ALLOW_SIGN_UP: "false"
-      # Single sign-on via the existing Keycloak `grafana` client (students → read-only Viewer).
+      # SSO via the Keycloak `grafana` client. Platform monitoring is STAFF-ONLY: the OAuth login is
+      # gated by the user's Keycloak realm role (emitted as the `roles` claim), NOT just the portal
+      # link. role_attribute_strict denies any user whose role resolves to an invalid value (i.e. a
+      # student with no platform role) — they cannot obtain a Grafana session even direct.
       GF_SERVER_ROOT_URL: https://grafana.${DOMAIN}
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: CHERT IoT
@@ -246,7 +261,11 @@ services:
       GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.${DOMAIN}/realms/chertiot/protocol/openid-connect/userinfo
       GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: "true"
       GF_AUTH_GENERIC_OAUTH_USE_PKCE: "true"
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "'Viewer'"
+      # platform-admin -> Admin, platform-instructor -> Viewer, anyone else -> empty role.
+      # With role_attribute_strict, an EMPTY role denies login outright (note: 'None' would NOT deny
+      # — Grafana treats it as a valid no-access RBAC role and still creates a session).
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(roles[*], 'platform-admin') && 'Admin' || contains(roles[*], 'platform-instructor') && 'Viewer' || ''"
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: "true"
       # Single identity: land straight in Keycloak SSO instead of Grafana's local login form.
       # Users signed into the portal are already authenticated to Keycloak, so this is seamless.
       # Break-glass local admin login stays reachable at /login?disableAutoLogin.
@@ -264,7 +283,7 @@ services:
 
   uptime-kuma:
     <<: [*restart, *logging]
-    image: louislam/uptime-kuma:${UPTIME_KUMA_VERSION}
+    image: ghcr.io/chertsa/chertiot-uptime-kuma:${UPTIME_KUMA_VERSION}
     profiles: [core]
     volumes:
       - uptime-kuma-data:/app/data
@@ -276,7 +295,7 @@ services:
 
   node-exporter:
     <<: [*restart, *logging]
-    image: prom/node-exporter:${NODE_EXPORTER_VERSION}
+    image: ghcr.io/chertsa/chertiot-node-exporter:${NODE_EXPORTER_VERSION}
     profiles: [core]
     command: ["--path.rootfs=/host", "--collector.textfile.directory=/host/var/lib/node_exporter/textfile"]
     pid: host
@@ -285,7 +304,7 @@ services:
 
   cadvisor:
     <<: [*restart, *logging]
-    image: gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION}
+    image: ghcr.io/chertsa/chertiot-cadvisor:${CADVISOR_VERSION}
     profiles: [core]
     privileged: true
     # Default 1s housekeeping burns a full core on a busy host; 30s is plenty for capacity graphs.
@@ -304,7 +323,7 @@ services:
 
   postgres-exporter:
     <<: [*restart, *logging]
-    image: prometheuscommunity/postgres-exporter:${POSTGRES_EXPORTER_VERSION}
+    image: ghcr.io/chertsa/chertiot-postgres-exporter:${POSTGRES_EXPORTER_VERSION}
     profiles: [core]
     environment:
       DATA_SOURCE_URI: postgres:5432/thingsboard?sslmode=disable
@@ -316,7 +335,7 @@ services:
   # ---------------------------------------------------------------- flows (Phase 3, M3.1)
   socket-proxy:
     <<: [*restart, *logging]
-    image: tecnativa/docker-socket-proxy:${SOCKET_PROXY_VERSION}
+    image: ghcr.io/chertsa/chertiot-socket-proxy:${SOCKET_PROXY_VERSION}
     profiles: [flows, lab]
     environment:
       # Least privilege: the spawner may manage containers/images/volumes/networks — nothing else.
@@ -355,6 +374,7 @@ services:
       LAB_NOTEBOOK_IMAGE: chertiot/notebook:dev
       LAB_NETWORK: chertiot_default
       LAB_INTERNAL_SECRET: ${LAB_INTERNAL_SECRET}
+      LAB_NAMED_SERVER_LIMIT: ${LAB_NAMED_SERVER_LIMIT:-10}
       LORA_ENABLED: ${LORA_ENABLED}
       CHIRPSTACK_GRPC: chirpstack:8080
       CHIRPSTACK_API_SECRET: ${CHIRPSTACK_API_SECRET}
@@ -380,7 +400,7 @@ services:
   # ---------------------------------------------------------------- lora (Phase 4, M4.1)
   redis:
     <<: [*restart, *logging]
-    image: redis:${REDIS_VERSION}
+    image: ghcr.io/chertsa/chertiot-redis:${REDIS_VERSION}
     profiles: [lora]
     command: ["redis-server", "--save", "300", "1"]
     volumes: [redis-data:/data]
@@ -392,7 +412,7 @@ services:
 
   mosquitto:
     <<: [*restart, *logging]
-    image: eclipse-mosquitto:${MOSQUITTO_VERSION}
+    image: ghcr.io/chertsa/chertiot-mosquitto:${MOSQUITTO_VERSION}
     profiles: [lora]
     volumes:
       - ./deploy/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
@@ -400,7 +420,7 @@ services:
 
   chirpstack:
     <<: [*restart, *logging]
-    image: chirpstack/chirpstack:${CHIRPSTACK_VERSION}
+    image: ghcr.io/chertsa/chertiot-chirpstack:${CHIRPSTACK_VERSION}
     profiles: [lora]
     command: ["-c", "/etc/chirpstack"]
     environment:
@@ -421,7 +441,7 @@ services:
 
   chirpstack-gateway-bridge:
     <<: [*restart, *logging]
-    image: chirpstack/chirpstack-gateway-bridge:${CHIRPSTACK_GW_BRIDGE_VERSION}
+    image: ghcr.io/chertsa/chertiot-chirpstack-gw-bridge:${CHIRPSTACK_GW_BRIDGE_VERSION}
     profiles: [lora]
     ports:
       - "1700:1700/udp"   # Semtech UDP — real LoRa gateways point here

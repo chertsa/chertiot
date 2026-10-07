@@ -93,6 +93,9 @@ $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" =
 step "chirpstack bootstrap (if lora enabled)"
 $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LORA_ENABLED\" = true ] && docker compose -f docker-compose.yml exec -T -e CHIRPSTACK_GRPC=chirpstack:8080 -e PORTAL_DATABASE_URL portal /app/.venv/bin/python -m scripts.setup_chirpstack || echo 'lora disabled — skipping'"
 
+step "lab profile (JupyterHub notebooks) — build + up when LAB_ENABLED (jupyterhub-data volume is preserved)"
+$RUN "cd /srv/chertiot && set -a && . ./.env && set +a && [ \"\$LAB_ENABLED\" = true ] || { echo 'lab disabled — skipping'; exit 0; }; docker compose -f docker-compose.yml --profile lab up -d --build && for i in \$(seq 1 30); do docker compose -f docker-compose.yml ps --format '{{.Service}} {{.Status}}' jupyterhub | grep -q healthy && break; sleep 5; done; docker compose -f docker-compose.yml ps --format '{{.Service}} {{.Status}}' jupyterhub"
+
 step "status page (Uptime Kuma)"
 $RUN "cd /srv/chertiot && set -a && . ./.env && set +a && docker compose -f docker-compose.yml exec -T -e KUMA_URL=http://uptime-kuma:3001 -e KUMA_ADMIN -e KUMA_PASSWORD -e DOMAIN portal /app/.venv/bin/python -m scripts.setup_status_page || echo 'status-page setup skipped'"
 

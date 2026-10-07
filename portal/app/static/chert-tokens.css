@@ -30,6 +30,11 @@
   --chert-info:         #3B82F6;
   --chert-info-tint:    #EAF1FE;
 
+  /* ---- Status aliases (v2: operational green / warning amber / critical red) ---- */
+  --chert-ok:           var(--chert-success);
+  --chert-warn:         var(--chert-warning);
+  --chert-crit:         var(--chert-error);
+
   /* ---- Dark surfaces ---- */
   --chert-dark:         #151311;
   --chert-dark-surface: #1B1815;

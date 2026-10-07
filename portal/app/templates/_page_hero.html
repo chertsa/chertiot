@@ -1,0 +1,29 @@
+{#
+  Dark page band for standalone app pages (explore, new project, teaching, errors…) — the same band
+  the project pages use. Import WITH CONTEXT (the macro uses the request-scoped `_`), then call it
+  from {% block hero %}:
+    {% from "_page_hero.html" import page_hero with context %}
+    {{ page_hero(_("Explore the lab"), intro=_("…"), crumbs=[(_("Projects"), "/home")], mark="layers") }}
+  Right-hand actions go in a call block:
+    {% call page_hero(_("New project")) %}<a class="btn btn--primary" href="…">…</a>{% endcall %}
+#}
+{% from "_icons.html" import icon %}
+{% macro page_hero(title, intro=None, eyebrow=None, crumbs=None, mark=None) -%}
+<section class="app-band app-band--plain">
+  <div class="app-band__pulse" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="sx-wrap">
+    {% if crumbs %}<nav class="app-crumbs" aria-label="{{ _('Breadcrumb') }}">{% for label, href in crumbs %}<a href="{{ href }}">{{ label }}</a><span aria-hidden="true">/</span>{% endfor %}<span aria-current="page">{{ title }}</span></nav>
+    {% elif eyebrow %}<p class="sx-eyebrow">{{ eyebrow }}</p>{% endif %}
+    <div class="app-band__row">
+      <div class="app-band__id">
+        {% if mark %}<span class="app-band__mark" aria-hidden="true">{{ icon(mark, 24) }}</span>{% endif %}
+        <div>
+          <h1 class="app-band__title">{{ title }}</h1>
+          {% if intro %}<p class="app-band__lead">{{ intro }}</p>{% endif %}
+        </div>
+      </div>
+      {% if caller is defined %}<div class="app-band__actions">{{ caller() }}</div>{% endif %}
+    </div>
+  </div>
+</section>
+{%- endmacro %}

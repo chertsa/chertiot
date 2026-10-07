@@ -1,0 +1,25 @@
+{#
+  Brand panel of the split-screen auth layout (sign-up, check-email, verified). The Keycloak login
+  theme (keycloak/theme/chertiot/login/template.ftl) renders the same panel so signing in looks
+  like one product. Decorative stack is aria-hidden; the text is real content.
+#}
+{% from "_icons.html" import icon %}
+<aside class="auth__brand">
+  <p class="sx-eyebrow">{{ _("Self-hosted IoT platform") }}</p>
+  <h2 class="auth__title">{{ _("From sensor to insight.") }} <span>{{ _("Every layer of IoT, in one platform.") }}</span></h2>
+  <p class="auth__lead">{{ _("One CHERT account opens your projects, live dashboards, Node-RED flows and Python notebooks.") }}</p>
+  <ul class="auth__points">
+    <li><i>{{ icon("lock", 18) }}</i>{{ _("An isolated workspace for every project") }}</li>
+    <li><i>{{ icon("wifi", 18) }}</i>{{ _("Connect devices over MQTT, HTTP or LoRaWAN") }}</li>
+    <li><i>{{ icon("globe", 18) }}</i>{{ _("Works in English and Arabic") }}</li>
+  </ul>
+  <div class="auth__art" aria-hidden="true">
+    <div class="sx-stack">
+      {% for ic in ["radio", "wifi", "database", "chart"] %}{% set i = 3 - loop.index0 %}
+      <div class="sx-plate" style="--i:{{ i }}"><span class="sx-plate__face"><span class="sx-plate__icons"><i>{{ icon(ic, 20) }}</i></span></span></div>
+      {% endfor %}
+      <span class="sx-stack__beam"></span>
+      {% for d in range(4) %}<span class="sx-stack__packet" style="--d:{{ d * 1 }}s"></span>{% endfor %}
+    </div>
+  </div>
+</aside>

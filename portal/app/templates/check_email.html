@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Check your email") }} — CHERT IoT{% endblock %}
+{% block main_class %}auth-main{% endblock %}
 {% block content %}
+<div class="auth">
+{% include "_auth_brand.html" %}
+<div class="auth__panel"><div class="auth__card">
 <h1>{{ _("Check your email") }}</h1>
 <div class="callout callout--info"><p>{{ _("We sent a verification link to") }} <strong>{{ email }}</strong>. {{ _("Open it to activate your account, then sign in.") }}</p></div>
 <p class="helper">{{ _("No email after a few minutes? Check your spam folder, then try again.") }} <a href="/signup">{{ _("Try again") }}</a></p>
+</div></div>
+</div>
 {% endblock %}

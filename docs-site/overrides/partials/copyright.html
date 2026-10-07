@@ -1,0 +1,12 @@
+{#- CHERT footer bar (replaces Material's copyright / "Made with" line): brand + links back to the
+    portal, matching the app footer. Same-origin paths — the docs are served at <domain>/docs/. -#}
+{% set ar = config.theme.language == "ar" %}
+<div class="md-copyright chert-foot">
+  <a class="chert-foot__brand" href="/"><img src="{{ 'assets/logo.svg' | url }}" alt="" width="24" height="24"><span>CHERT <b>IoT</b></span></a>
+  <nav class="chert-foot__links" aria-label="{{ 'روابط' if ar else 'Footer' }}">
+    <a href="/">{{ "الرئيسية" if ar else "Home" }}</a>
+    <a href="/home">{{ "مشاريعي" if ar else "My projects" }}</a>
+    <a href="/explore">{{ "استكشف الحزمة" if ar else "Explore the stack" }}</a>
+    <a href="{{ 'policies/privacy/' | url }}">{{ "الخصوصية" if ar else "Privacy" }}</a>
+  </nav>
+</div>

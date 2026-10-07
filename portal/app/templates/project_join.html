@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ project.name }} — CHERT IoT{% endblock %}
+{% from "_page_hero.html" import page_hero with context %}
+{% block hero %}{{ page_hero(project.name, crumbs=[(_("Projects"), "/home")], mark="users") }}{% endblock %}
 {% block content %}
-<div class="dash-head"><div>
-  <p class="overline"><a href="/home">{{ _("Projects") }}</a></p>
-  <h1>{{ project.name }}</h1>
-</div></div>
 
 <div class="panel" style="max-width:560px">
   {% if project.description %}<p class="helper">{{ project.description }}</p>{% endif %}

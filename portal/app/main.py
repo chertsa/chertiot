@@ -1,8 +1,9 @@
 import logging
+from collections.abc import Awaitable, Callable
 from pathlib import Path
 
 import httpx
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -10,6 +11,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.auth import configure_oauth
 from app.config import get_settings
+from app.csrf import check_csrf, is_cookie_authenticated
 from app.i18n import translator
 from app.keycloak_admin import KeycloakError
 from app.routers import (
@@ -20,6 +22,7 @@ from app.routers import (
     instructor,
     internal,
     lora,
+    monitoring,
     projects,
     signup,
 )
@@ -75,6 +78,55 @@ app.add_middleware(
     max_age=8 * 3600,
     domain=_session_domain,
 )
+# --- v2 Phase 0: security headers / Content-Security-Policy ------------------------------------
+# Zero external runtime assets: `default-src 'self'` blocks every cross-origin subresource. Inline
+# script/style are permitted for now (existing templates use them); a later phase externalises them
+# and drops 'unsafe-inline' from script-src. CSP does not gate top-level navigation, so links to the
+# CHERT subdomains (grafana./lab./status.) still work; /docs is served by Caddy, not the portal.
+_CSP = (
+    "default-src 'self'; "
+    "script-src 'self' 'unsafe-inline'; "
+    "style-src 'self' 'unsafe-inline'; "
+    "img-src 'self' data:; "
+    "font-src 'self'; "
+    "connect-src 'self'; "
+    "object-src 'none'; "
+    "base-uri 'self'; "
+    "frame-ancestors 'self'"
+)
+
+
+@app.middleware("http")
+async def _security_headers(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
+    response = await call_next(request)
+    response.headers.setdefault("Content-Security-Policy", _CSP)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "same-origin")
+    response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    return response
+
+
+# --- CSRF: every cookie-authenticated browser mutation must originate from the portal itself.
+# Enforced centrally here (before any route runs), exact-origin only — SameSite=Lax + the parent-
+# domain cookie are NOT sufficient (a sibling subdomain could otherwise forge a mutation). Requests
+# without the session cookie (server-to-server / shared-secret APIs like /internal/*) are skipped.
+_CSRF_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+@app.middleware("http")
+async def _csrf_guard(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
+    if request.method in _CSRF_METHODS and is_cookie_authenticated(request):
+        try:
+            check_csrf(request)
+        except HTTPException as exc:
+            return Response(status_code=exc.status_code)
+    return await call_next(request)
+
+
 app.mount(
     "/static", StaticFiles(directory=str(Path(__file__).resolve().parent / "static")), name="static"
 )
@@ -88,6 +140,7 @@ app.include_router(internal.router)
 app.include_router(instructor.router)
 app.include_router(alerts.router)
 app.include_router(lora.router)
+app.include_router(monitoring.router)
 
 
 @app.exception_handler(httpx.TransportError)

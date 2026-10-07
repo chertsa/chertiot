@@ -15,6 +15,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
+from app import permissions
 from app.audit import audit
 from app.db import get_db
 from app.models import ClassCode, PortalUser, Project, ProjectMember
@@ -31,7 +32,7 @@ def require_instructor(request: Request, db: Session) -> PortalUser:
     user = load_user(request, db)
     if user is None:
         raise HTTPException(status_code=303, headers={"Location": "/login"})
-    if user.role not in ("instructor", "admin"):
+    if not permissions.platform_can(user, permissions.Cap.INSTRUCTOR_CONSOLE):
         raise HTTPException(status_code=403, detail="instructor role required")
     return user
 

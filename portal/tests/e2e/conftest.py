@@ -10,6 +10,12 @@ import httpx
 import pytest
 
 CONNECT_HOST = os.environ.get("DEV_CONNECT_HOST", "127.0.0.1")
+# The portal enforces exact-origin CSRF on cookie-authenticated mutations. A real browser sends
+# Origin on same-origin POSTs; httpx does not, so mimic it for portal mutations (matches the
+# configured portal origin). Scoped to the portal host only — never sent to Keycloak/ThingsBoard.
+_PORTAL_ORIGIN = os.environ.get("PORTAL_PUBLIC_URL", "http://localhost")
+_PORTAL_HOST = urlparse(_PORTAL_ORIGIN).hostname
+_MUTATIONS = {"POST", "PUT", "PATCH", "DELETE"}
 
 
 class HostRewriteTransport(httpx.HTTPTransport):
@@ -25,6 +31,12 @@ class HostRewriteTransport(httpx.HTTPTransport):
         request.read()
         headers = request.headers.copy()
         headers["Host"] = original.netloc.decode()
+        if (
+            original.host == _PORTAL_HOST
+            and request.method in _MUTATIONS
+            and "origin" not in headers
+        ):
+            headers["Origin"] = _PORTAL_ORIGIN  # browser-like same-origin CSRF evidence
         wire = httpx.Request(
             request.method,
             original.copy_with(host=CONNECT_HOST, port=80),

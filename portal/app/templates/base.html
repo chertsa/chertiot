@@ -1,3 +1,4 @@
+{% from "_icons.html" import icon %}
 <!doctype html>
 <html lang="{{ locale }}" dir="{{ text_dir }}">
 <head>
@@ -8,25 +9,59 @@
   <link rel="stylesheet" href="/static/chert-fonts.css">
   <link rel="stylesheet" href="/static/chert-tokens.css">
   <link rel="stylesheet" href="/static/chert-components.css">
+  <link rel="stylesheet" href="/static/shell.css">
   <link rel="stylesheet" href="/static/portal.css">
 </head>
-<body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="header__brand" href="/"><img src="/static/logo.svg" alt="" class="header__logo"><span class="header__wordmark">CHERT <span class="header__product">IoT</span></span></a>
-      <nav class="header__nav">
-        {% if request.session.get('user') %}
-          <a href="/home">{{ _("My projects") }}</a>{% if request.session.get("role") in ("instructor", "admin") %} <a href="/teach">{{ _("Teaching") }}</a>{% endif %}
-          <a class="btn btn--secondary btn--sm" href="/logout">{{ _("Sign out") }}</a>
-        {% else %}
-          <a href="/login">{{ _("Sign in") }}</a>
-          <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
-        {% endif %}
-        <a class="header__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+{#- App shell, same visual language as the marketing site (shell.css): dark header, an optional
+    full-width dark band ({% block hero %}) for the page title / project tabs, cream content,
+    dark footer. Auth pages (sign-up, verify) use {% block main_class %} for the split layout. #}
+{% set _user = request.session.get('user') %}
+{% set _path = request.url.path %}
+<body class="sx app {% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#main">{{ _("Skip to content") }}</a>
+  <header class="sx-nav sx-nav--app">
+    <div class="sx-wrap sx-nav__inner">
+      <a class="sx-nav__brand" href="/"><img src="/static/logo.svg" alt="" width="30" height="30"><span>CHERT <b>IoT</b></span></a>
+      {% if _user %}
+      <nav class="sx-nav__links" aria-label="{{ _('Primary') }}">
+        <a href="/home" class="{{ 'is-active' if _path == '/home' or _path.startswith('/projects') else '' }}">{{ _("My projects") }}</a>
+        {% if request.session.get("role") in ("instructor", "admin") %}<a href="/teach" class="{{ 'is-active' if _path.startswith('/teach') else '' }}">{{ _("Teaching") }}</a>{% endif %}
+        <a href="/explore" class="{{ 'is-active' if _path.startswith('/explore') else '' }}">{{ _("Explore the stack") }}</a>
+        <a href="/docs/">{{ _("Docs") }}</a>
       </nav>
+      <div class="sx-nav__actions">
+        <a class="sx-nav__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+        {% set _name = _user.get('name') or _user.get('email') or '' %}
+        <span class="sx-user" title="{{ _user.get('email') }}"><span class="sx-user__avatar" aria-hidden="true">{{ _name[:1] }}</span><span class="sx-user__name">{{ _name }}</span></span>
+        <a class="sx-btn-ghost sx-btn-ghost--sm" href="/logout">{{ _("Sign out") }}</a>
+      </div>
+      {% else %}
+      <nav class="sx-nav__links" aria-label="{{ _('Primary') }}">
+        <a href="/#lifecycle">{{ _("Lifecycle") }}</a>
+        <a href="/#architecture">{{ _("Architecture") }}</a>
+        <a href="/docs/">{{ _("Docs") }}</a>
+      </nav>
+      <div class="sx-nav__actions">
+        <a class="sx-nav__lang" href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+        <a class="sx-nav__signin" href="/login">{{ _("Sign in") }}</a>
+        <a class="btn btn--primary btn--sm" href="/signup">{{ _("Create account") }}</a>
+      </div>
+      {% endif %}
     </div>
   </header>
-  <main class="container main">{% block content %}{% endblock %}</main>
-  <footer class="footer"><div class="container">CHERT IoT</div></footer>
+  {% block hero %}{% endblock %}
+  <main id="main" class="{% block main_class %}sx-wrap main{% endblock %}">{% block content %}{% endblock %}</main>
+  <footer class="sx-foot">
+    <div class="sx-wrap sx-foot__inner">
+      <span class="sx-nav__brand"><img src="/static/logo.svg" alt="" width="24" height="24"><span>CHERT <b>IoT</b></span></span>
+      <nav class="sx-foot__links" aria-label="{{ _('Footer') }}">
+        <a href="/docs/">{{ _("Docs") }}</a>
+        <a href="/explore">{{ _("Explore the stack") }}</a>
+        <a href="https://status.{{ request.url.hostname }}/status/chert-iot" rel="noopener">{{ _("System status") }}</a>
+        <a href="/lang/{{ other_locale }}" rel="nofollow">{{ other_locale_label }}</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/static/portal.js" defer></script>
 </body>
 </html>

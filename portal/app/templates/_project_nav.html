@@ -1,0 +1,49 @@
+{#
+  Shared project band + capability tabs (v2). One normalized shell across every project page,
+  rendered full-width in base.html's {% block hero %} (dark band, same language as the site).
+  Requires in context: project, request, features, user. Active tab inferred from request.url.path.
+  User-facing reference is the project slug only — never tb_tenant_id. Telemetry/Monitoring are
+  flag-gated (ship dark). Notebooks & Reports & ThingsBoard & Members/Settings are portal routes.
+#}
+{% from "_icons.html" import icon %}
+{% set _p = '/projects/' ~ project.id %}
+{% set _path = request.url.path %}
+{% set _st = project.provisioning_state %}
+<section class="app-band proj-head">
+  <div class="app-band__pulse" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="sx-wrap">
+    <nav class="app-crumbs" aria-label="{{ _('Breadcrumb') }}"><a href="/home">{{ _("Projects") }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ project.name }}</span></nav>
+    <div class="app-band__row proj-head__row">
+      <div class="app-band__id">
+        <span class="app-band__mark" aria-hidden="true">{{ icon("layers", 24) }}</span>
+        <div>
+          <h1 class="app-band__title">{{ project.name }}</h1>
+          <div class="app-band__meta">
+            <span class="chip chip--{{ 'ok' if _st == 'provisioned' else ('crit' if _st == 'failed' else 'warn') }}">{{ _("Ready") if _st == 'provisioned' else (_("Setup failed") if _st == 'failed' else _("Setting up…")) }}</span>
+            <span class="app-band__ref proj-ref" title="{{ _('Project reference') }}">{{ project.slug }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="app-tabs" aria-label="{{ _('Project sections') }}">
+      {% set tabs = [
+        (_p, "grid", _("Overview"), _path == _p),
+        (_p ~ "/devices", "cpu", _("Devices"), "/devices" in _path),
+      ] %}
+      {% if features.telemetry %}{% set tabs = tabs + [(_p ~ "/telemetry", "activity", _("Telemetry"), "/telemetry" in _path)] %}{% endif %}
+      {% if features.monitoring %}{% set tabs = tabs + [(_p ~ "/monitoring", "gauge", _("Monitoring"), "/monitoring" in _path)] %}{% endif %}
+      {% set tabs = tabs + [
+        (_p ~ "/alerts", "bell", _("Alerts"), "/alerts" in _path),
+        (_p ~ "/flows", "sitemap", _("Flows"), "/flows" in _path),
+        (_p ~ "/lora", "radio", _("LoRaWAN"), "/lora" in _path),
+        (_p ~ "/notebooks", "flask", _("Notebooks"), "/notebooks" in _path),
+        (_p ~ "/report", "printer", _("Reports"), "/report" in _path),
+      ] %}
+      {% for href, ic, label, active in tabs %}
+      <a href="{{ href }}" class="app-tab{{ ' is-active' if active else '' }}"{% if active %} aria-current="page"{% endif %}>{{ icon(ic, 16) }}<span>{{ label }}</span></a>
+      {% endfor %}
+      <a href="{{ _p }}/thingsboard" class="app-tab" target="_blank" rel="noopener">{{ icon("layers", 16) }}<span>{{ _("ThingsBoard") }} ↗</span></a>
+      <a href="{{ _p }}/settings" class="app-tab{{ ' is-active' if '/settings' in _path else '' }}"{% if '/settings' in _path %} aria-current="page"{% endif %}>{{ icon("users", 16) }}<span>{{ _("Members & Settings") }}</span></a>
+    </nav>
+  </div>
+</section>

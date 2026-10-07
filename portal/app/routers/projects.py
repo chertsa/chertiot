@@ -1,6 +1,7 @@
 """Project routes (D13/M5.1): create a project (→ a TB tenant), the project workspace, its live
 dashboard fragment, and delete. Tools (devices, flows, alerts, lora) live under /projects/{id}/…."""
 
+from datetime import UTC, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
@@ -8,6 +9,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app import permissions
 from app.config import get_settings
 from app.dashboard import alarm_history, dashboard_data
 from app.db import get_db
@@ -40,7 +42,7 @@ _TB_LOCALE = {"ar": "ar_AR", "en": "en_US"}
 
 def _require_owner(request: Request, db: Session, project_id: str) -> tuple[Project, ProjectMember]:
     user, project, member = require_membership(request, db, project_id)
-    if member.role != "owner":
+    if not permissions.project_can(member, permissions.Cap.MEMBER_MANAGE):  # owner-only
         raise HTTPException(status_code=403, detail="owner only")
     return project, member
 
@@ -106,12 +108,63 @@ def workspace(request: Request, project_id: str, db: Session = Depends(get_db)) 
         "project": project,
         "member": member,
         "is_owner": is_owner,
-        "members": members(db, project_id) if is_owner else [],
+    }
+    return templates.TemplateResponse(request, "project.html", ctx)
+
+
+@router.get("/projects/{project_id}/settings")
+def settings(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    """Members & settings: the protected home for member management, starter-dashboard reset and
+    permanent deletion — kept off the operational Overview. Any active member sees it; destructive
+    controls are owner-only (enforced again server-side on each action route)."""
+    user, project, member = require_membership(request, db, project_id)
+    is_owner = member.role == "owner"
+    ctx = {
+        "user": user,
+        "project": project,
+        "member": member,
+        "is_owner": is_owner,
+        "members": members(db, project_id),
         "invites": pending_invites(db, project_id) if is_owner else [],
         "requests": join_requests(db, project_id) if is_owner else [],
         "invite_base": str(request.base_url).rstrip("/"),
     }
-    return templates.TemplateResponse(request, "project.html", ctx)
+    return templates.TemplateResponse(request, "project_settings.html", ctx)
+
+
+@router.get("/projects/{project_id}/notebooks")
+def notebooks(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
+    """Launch this project's notebook (per-project named server). Membership is enforced here (303
+    for non-members) and again by the hub's pre_spawn_hook; if the lab is disabled or the hub is
+    unreachable the user gets a controlled portal page, never a raw JupyterHub error."""
+    from app import lab
+
+    user, project, member = require_membership(request, db, project_id)
+    if not lab.enabled() or not lab.healthy():
+        return templates.TemplateResponse(
+            request,
+            "notebooks_unavailable.html",
+            {
+                "user": user,
+                "project": project,
+                "member": member,
+                "is_owner": member.role == "owner",
+            },
+            status_code=503,
+        )
+    # Present a capability landing (Open Notebook) rather than an opaque redirect; the launch URL
+    # is the same per-project named-server spawn path, so the working flow is unchanged.
+    return templates.TemplateResponse(
+        request,
+        "notebooks.html",
+        {
+            "user": user,
+            "project": project,
+            "member": member,
+            "is_owner": member.role == "owner",
+            "launch_url": lab.spawn_url(user.email, project.id),
+        },
+    )
 
 
 @router.post("/projects/{project_id}/provision")
@@ -150,6 +203,7 @@ def report(request: Request, project_id: str, db: Session = Depends(get_db)) -> 
         "unavailable": False,
         "members": members(db, project_id),
         "alarm_history": [],
+        "now": datetime.now(UTC),
     }
     try:
         with as_project(member) as (sysadmin, session):
@@ -191,7 +245,7 @@ def open_thingsboard(request: Request, project_id: str, db: Session = Depends(ge
 @router.post("/projects/{project_id}/delete")
 def delete(request: Request, project_id: str, db: Session = Depends(get_db)) -> Any:
     user, project, member = require_membership(request, db, project_id)
-    if member.role != "owner":
+    if not permissions.project_can(member, permissions.Cap.PROJECT_DELETE):
         raise HTTPException(status_code=403, detail="only the owner can delete a project")
     delete_project(db, project, user.email)
     return RedirectResponse("/home", status_code=303)

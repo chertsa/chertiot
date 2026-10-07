@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block title %}{{ _("Create account") }} — CHERT IoT{% endblock %}
+{% block main_class %}auth-main{% endblock %}
 {% block content %}
+<div class="auth">
+{% include "_auth_brand.html" %}
+<div class="auth__panel"><div class="auth__card">
 <h1>{{ _("Create account") }}</h1>
+<p class="auth__sub">{{ _("Start your first IoT project in about ten minutes.") }}</p>
 <form class="form" method="post" action="/signup" novalidate>
   <div class="field">
     <label class="label" for="email">{{ _("Email") }}</label>
@@ -37,4 +42,7 @@
   <p class="helper">{{ _("By creating an account you agree to the fair-use policy. We store your email, your devices' telemetry (90 days) and an audit log (30 days) — nothing else.") }} <a href="/docs/policies/fair-use/">{{ _("Fair use") }}</a> · <a href="/docs/policies/privacy/">{{ _("Privacy") }}</a></p>
   <div><button class="btn btn--primary" type="submit">{{ _("Create account") }}</button></div>
 </form>
+<p class="auth__alt">{{ _("Already have an account?") }} <a href="/login">{{ _("Sign in") }}</a></p>
+</div></div>
+</div>
 {% endblock %}

@@ -4,10 +4,13 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
+from app import permissions
 from app.auth import optional_user
 from app.config import get_settings
 from app.db import get_db
+from app.i18n import translator
 from app.project import projects_for
+from app.site_content import site_content
 from app.student import load_user
 from app.templating import templates
 
@@ -24,11 +27,41 @@ def set_language(code: str, request: Request) -> Any:
     return resp
 
 
+@router.get("/grafana")
+def grafana_launch(request: Request, db: Session = Depends(get_db)) -> Any:
+    """Server-side authorisation for platform Grafana: only instructors/admins may launch it (the
+    home card is also hidden for students, but this route is the enforced boundary). Grafana itself
+    is reached via CHERT SSO at grafana.<domain>."""
+    user = load_user(request, db)
+    if user is None:
+        return RedirectResponse("/login", status_code=303)
+    if not permissions.platform_can(user, permissions.Cap.PLATFORM_MONITORING):
+        return templates.TemplateResponse(
+            request,
+            "error.html",
+            {
+                "user": user,
+                "title": "Platform monitoring is staff-only",
+                "message": "Grafana shows platform-wide infrastructure metrics and is available to "
+                "instructors and administrators. For your project's devices, telemetry and alarms, "
+                "open Monitoring inside your project.",
+            },
+            status_code=403,
+        )
+    # Land directly on the platform overview dashboard (by UID; Grafana resolves the slug),
+    # not the Grafana home page. `kiosk` shows only the dashboard body (panels + time
+    # controls), with no nav/menu chrome.
+    dash = "/d/chert-device-traffic?orgId=1&from=now-6h&to=now&timezone=browser&refresh=30s&kiosk"
+    return RedirectResponse(f"https://grafana.{get_settings().domain}{dash}", status_code=303)
+
+
 @router.get("/")
 def index(request: Request) -> Any:
     if optional_user(request):
         return RedirectResponse("/home", status_code=303)
-    return templates.TemplateResponse(request, "index.html")
+    return templates.TemplateResponse(
+        request, "index.html", {"site": site_content(translator(request))}
+    )
 
 
 @router.get("/home")
@@ -44,8 +77,20 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
         "member": sum(1 for p in projects if p["role"] != "owner"),
     }
     return templates.TemplateResponse(
-        request, "home.html", {"user": user, "projects": projects, "summary": summary}
+        request,
+        "home.html",
+        {
+            "user": user,
+            "projects": projects,
+            "summary": summary,
+            "is_staff": permissions.is_staff(user),  # platform Grafana card is staff-only
+        },
     )
+
+
+def N_(message: str) -> str:  # noqa: N802 — gettext's conventional marker; Babel extracts N_()
+    """Mark a string for catalog extraction without translating it here (translated per request)."""
+    return message
 
 
 # --- Explore the lab: every engine that powers CHERT IoT, grouped like the systems poster. ---
@@ -53,7 +98,7 @@ def home(request: Request, db: Session = Depends(get_db)) -> Any:
 #         internal=runs only on the private Docker network (shown for learning) · dev=not in prod.
 _SYSTEMS: list[dict[str, Any]] = [
     {
-        "group": "Core platform",
+        "group": N_("Core platform"),
         "items": [
             {
                 "name": "ThingsBoard CE",
@@ -61,8 +106,10 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "open",
                 "url": "https://app.{d}",
-                "desc": "The IoT core — devices, telemetry, dashboards, "
-                "rule chains, alarms. Your own tenant.",
+                "desc": N_(
+                    "The IoT core — devices, telemetry, dashboards, "
+                    "rule chains, alarms. One tenant per project."
+                ),
             },
             {
                 "name": "Keycloak",
@@ -70,7 +117,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "admin",
                 "url": "https://auth.{d}",
-                "desc": "Identity & single sign-on for every app.",
+                "desc": N_("Identity & single sign-on for every app."),
             },
             {
                 "name": "Portal (FastAPI)",
@@ -78,7 +125,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "—",
                 "access": "open",
                 "url": "https://{d}",
-                "desc": "This site: devices, flows, lab, alerts, teach.",
+                "desc": N_("This site: devices, flows, lab, alerts, teach."),
             },
             {
                 "name": "Docs (MkDocs)",
@@ -86,7 +133,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "—",
                 "access": "open",
                 "url": "https://{d}/docs/",
-                "desc": "Getting-started guides (English & Arabic).",
+                "desc": N_("Getting-started guides (English & Arabic)."),
             },
             {
                 "name": "Caddy + layer4",
@@ -94,12 +141,12 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Edge reverse proxy: TLS, routing, MQTTS on :8883.",
+                "desc": N_("Edge reverse proxy: TLS, routing, MQTTS on :8883."),
             },
         ],
     },
     {
-        "group": "Observability & monitoring",
+        "group": N_("Observability & monitoring"),
         "items": [
             {
                 "name": "Prometheus",
@@ -107,16 +154,18 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Collects metrics and evaluates alert rules.",
+                "desc": N_("Collects metrics and evaluates alert rules."),
             },
             {
                 "name": "Grafana",
                 "ver": "13.1.4",
                 "lic": "AGPL-3.0",
                 "access": "open",
-                "url": "https://grafana.{d}",
-                "desc": "Monitoring dashboards over Prometheus. Opens with your "
-                "CHERT sign-in — no separate password.",
+                "url": "https://grafana.{d}/d/chert-device-traffic?orgId=1&refresh=30s&kiosk",
+                "desc": N_(
+                    "Monitoring dashboards over Prometheus. Opens with your "
+                    "CHERT sign-in — no separate password."
+                ),
             },
             {
                 "name": "Alertmanager",
@@ -124,7 +173,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Routes platform alerts to email.",
+                "desc": N_("Routes platform alerts to email."),
             },
             {
                 "name": "Uptime Kuma",
@@ -132,7 +181,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "MIT",
                 "access": "open",
                 "url": "https://status.{d}/status/chert-iot",
-                "desc": "Public status & uptime page.",
+                "desc": N_("Public status & uptime page."),
             },
             {
                 "name": "node-exporter",
@@ -140,7 +189,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Host CPU/RAM/disk metrics.",
+                "desc": N_("Host CPU/RAM/disk metrics."),
             },
             {
                 "name": "cAdvisor",
@@ -148,7 +197,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Per-container metrics.",
+                "desc": N_("Per-container metrics."),
             },
             {
                 "name": "postgres-exporter",
@@ -156,12 +205,12 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Database metrics.",
+                "desc": N_("Database metrics."),
             },
         ],
     },
     {
-        "group": "IoT & LoRaWAN stack",
+        "group": N_("IoT & LoRaWAN stack"),
         "items": [
             {
                 "name": "ChirpStack",
@@ -169,7 +218,9 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "MIT",
                 "access": "lora",
                 "url": "https://{d}/lora",
-                "desc": "LoRaWAN network server. Register at /lora.",
+                "desc": N_(
+                    "LoRaWAN network server. Register devices from a project's LoRaWAN tab."
+                ),
             },
             {
                 "name": "ChirpStack Gateway Bridge",
@@ -177,7 +228,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "MIT",
                 "access": "internal",
                 "url": "",
-                "desc": "Gateways send here: {d}:1700/udp (Semtech UDP, EU868).",
+                "desc": N_("Gateways send here: {d}:1700/udp (Semtech UDP, EU868)."),
             },
             {
                 "name": "Eclipse Mosquitto",
@@ -185,7 +236,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "EPL-2.0",
                 "access": "internal",
                 "url": "",
-                "desc": "MQTT broker between ChirpStack and the bridge.",
+                "desc": N_("MQTT broker between ChirpStack and the bridge."),
             },
             {
                 "name": "Redis",
@@ -193,7 +244,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "BSD-3",
                 "access": "internal",
                 "url": "",
-                "desc": "ChirpStack device-session & metrics store.",
+                "desc": N_("ChirpStack device-session & metrics store."),
             },
             {
                 "name": "lora-bridge",
@@ -201,12 +252,12 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "—",
                 "access": "internal",
                 "url": "",
-                "desc": "Forwards LoRa uplinks to your ThingsBoard device by DevEUI.",
+                "desc": N_("Forwards LoRa uplinks to your ThingsBoard device by DevEUI."),
             },
         ],
     },
     {
-        "group": "Student tools — flows & lab",
+        "group": N_("Student tools — flows & lab"),
         "items": [
             {
                 "name": "Node-RED",
@@ -214,7 +265,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "Apache-2.0",
                 "access": "open",
                 "url": "https://{d}/flows",
-                "desc": "Your private low-code flow editor.",
+                "desc": N_("Your private low-code flow editor."),
             },
             {
                 "name": "JupyterHub",
@@ -222,7 +273,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "BSD-3",
                 "access": "open",
                 "url": "https://lab.{d}",
-                "desc": "Your Python notebooks — plot your own telemetry.",
+                "desc": N_("Your Python notebooks — plot your own telemetry."),
             },
             {
                 "name": "docker-socket-proxy",
@@ -230,12 +281,12 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "GPL-3.0",
                 "access": "internal",
                 "url": "",
-                "desc": "Least-privilege Docker API used to spawn your flows/notebooks.",
+                "desc": N_("Least-privilege Docker API used to spawn your flows/notebooks."),
             },
         ],
     },
     {
-        "group": "Backup & dev",
+        "group": N_("Backup & dev"),
         "items": [
             {
                 "name": "restic",
@@ -243,7 +294,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "BSD-2",
                 "access": "internal",
                 "url": "",
-                "desc": "Nightly encrypted off-box backups.",
+                "desc": N_("Nightly encrypted off-box backups."),
             },
             {
                 "name": "Mailpit",
@@ -251,7 +302,7 @@ _SYSTEMS: list[dict[str, Any]] = [
                 "lic": "MIT",
                 "access": "dev",
                 "url": "",
-                "desc": "Local email capture for development only.",
+                "desc": N_("Local email capture for development only."),
             },
         ],
     },
@@ -265,17 +316,23 @@ def explore(request: Request, db: Session = Depends(get_db)) -> Any:
     if user is None:
         return RedirectResponse("/login", status_code=303)
     d = get_settings().domain
+    staff = permissions.is_staff(user)
+    tr = translator(request)  # not `_`: Babel would extract the dict keys below as msgids
     groups = []
     for g in _SYSTEMS:
-        items = [
-            {
-                **it,
-                "href": it["url"].format(d=d) if it["url"] else "",
-                "hint": it["desc"].format(d=d),
-            }
-            for it in g["items"]
-        ]
-        groups.append({"group": g["group"], "items": items})
+        items = []
+        for it in g["items"]:
+            # Platform Grafana is staff-only: students see the card (for learning) but not a link.
+            staff_only = it["name"] == "Grafana" and not staff
+            items.append(
+                {
+                    **it,
+                    "href": "" if staff_only else (it["url"].format(d=d) if it["url"] else ""),
+                    "hint": tr(it["desc"]).format(d=d),
+                    "access": "admin" if staff_only else it["access"],
+                }
+            )
+        groups.append({"group": tr(g["group"]), "items": items})
     total = sum(len(g["items"]) for g in _SYSTEMS)
     return templates.TemplateResponse(
         request, "explore.html", {"user": user, "groups": groups, "total": total}
