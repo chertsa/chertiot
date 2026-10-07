@@ -110,6 +110,8 @@ body.chert-auth { margin: 0; background: var(--chert-cream); color: var(--chert-
   transition: border-color 120ms, box-shadow 120ms; }
 .chert-auth .pf-v5-c-form-control::before, .chert-auth .pf-v5-c-form-control::after { border: 0 !important; }
 .chert-auth .pf-v5-c-form-control > input { min-height: 42px; padding-inline: 14px; font: 400 16px var(--font); color: var(--chert-ink); }
+/* the wrapper draws the focus ring; no second outline on the inner input */
+.chert-auth .pf-v5-c-form-control > input:focus, .chert-auth .pf-v5-c-form-control > input:focus-visible { outline: none; }
 .chert-auth .pf-v5-c-form-control:focus-within { border-color: var(--chert-orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--chert-orange) 25%, transparent); outline: none; }
 .chert-auth .pf-v5-c-form-control.pf-m-error { border-color: var(--chert-error); }
 .chert-auth .pf-v5-c-input-group { gap: 0; }
