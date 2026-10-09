@@ -11,6 +11,7 @@ from app.audit import audit
 from app.auth import oauth
 from app.config import get_settings
 from app.db import get_db
+from app.i18n import locale_of
 from app.models import PortalUser
 from app.project import accept_pending_invites_for
 from app.ratelimit import rate_limited
@@ -22,7 +23,13 @@ router = APIRouter()
 @router.get("/login", dependencies=[Depends(rate_limited("login", 30, 60))])
 async def login(request: Request) -> Any:
     s = get_settings()
-    return await oauth.keycloak.authorize_redirect(request, f"{s.portal_public_url}/auth/callback")
+    # OIDC `ui_locales`: Keycloak renders sign-in / reset in the language chosen on the portal. On
+    # Keycloak 26 it outranks the KEYCLOAK_LOCALE cookie (verified), so an earlier choice made on
+    # the Keycloak page can't override the portal. The Keycloak page's language pill routes back
+    # through /lang (template.ftl), keeping the portal the single source of truth.
+    return await oauth.keycloak.authorize_redirect(
+        request, f"{s.portal_public_url}/auth/callback", ui_locales=locale_of(request)
+    )
 
 
 @router.get("/auth/callback", dependencies=[Depends(rate_limited("callback", 30, 60))])

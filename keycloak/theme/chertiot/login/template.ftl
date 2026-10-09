@@ -179,41 +179,20 @@
       <div class="${properties.kcLoginMainHeader!}">
         <h1 class="${properties.kcLoginMainTitle!}" id="kc-page-title"><#nested "header"></h1>
         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
-        <div class="${properties.kcLoginMainHeaderUtilities!}">
-          <div class="${properties.kcInputClass!}">
-            <select
-              aria-label="${msg("languages")}"
-              id="login-select-toggle"
-              onchange="if (this.value) window.location.href=this.value"
-            >
-              <#list locale.supported?sort_by("label") as l>
-                <option
-                  value="${l.url}"
-                  ${(l.languageTag == locale.currentLanguageTag)?then('selected','')}
-                >
-                  ${l.label}
-                </option>
-              </#list>
-            </select>
-            <span class="${properties.kcFormControlUtilClass}">
-              <span class="${properties.kcFormControlToggleIcon!}">
-                <svg
-                  class="pf-v5-svg"
-                  viewBox="0 0 320 512"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  role="img"
-                  width="1em"
-                  height="1em"
-                >
-                  <path
-                    d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                  >
-                  </path>
-                </svg>
-              </span>
-            </span>
-          </div>
+        <#-- CHERT: one pill naming the OTHER language (same as the site header) instead of a select.
+             On the sign-in / forgot-password pages of the portal client it switches through the
+             portal's /lang toggle, so chertiot.com and Keycloak stay in the same language and the
+             user returns to /login in the new one. Elsewhere (e.g. email action links) Keycloak's own
+             switch is kept so one-time action URLs survive. -->
+        <#assign chertPortal = (client?? && client.clientId == "portal" && (client.baseUrl!"")?has_content
+                               && (pageId == "login" || pageId == "login-reset-password"))>
+        <div class="${properties.kcLoginMainHeaderUtilities!} chert-lang">
+          <#list locale.supported as l>
+            <#if l.languageTag != locale.currentLanguageTag>
+              <a class="chert-lang__pill" lang="${l.languageTag}" hreflang="${l.languageTag}"
+                 href="<#if chertPortal>${client.baseUrl?remove_ending("/")}/lang/${l.languageTag}?next=/login<#else>${l.url}</#if>"><#if l.languageTag == "ar">العربية<#elseif l.languageTag == "en">English<#else>${l.label}</#if></a>
+            </#if>
+          </#list>
         </div>
         </#if>
       </div>

@@ -17,10 +17,19 @@ from app.templating import templates
 router = APIRouter()
 
 
+def _safe_next(value: str | None) -> str | None:
+    """Only same-site relative paths ("/login"), never "//host" or absolute URLs (open redirect)."""
+    if value and value.startswith("/") and not value.startswith("//") and "\\" not in value:
+        return value
+    return None
+
+
 @router.get("/lang/{code}")
-def set_language(code: str, request: Request) -> Any:
-    """Language toggle (Design System §7). Cookie-based; falls back to Accept-Language."""
-    target = request.headers.get("referer") or "/"
+def set_language(code: str, request: Request, next: str | None = None) -> Any:
+    """Language toggle (Design System §7). Cookie-based; falls back to Accept-Language.
+    `next` (relative path) lets the Keycloak sign-in page switch language through the portal and
+    come straight back to /login in the new language."""
+    target = _safe_next(next) or request.headers.get("referer") or "/"
     resp = RedirectResponse(target, status_code=303)
     if code in ("en", "ar"):
         resp.set_cookie("lang", code, max_age=365 * 24 * 3600, samesite="lax")
