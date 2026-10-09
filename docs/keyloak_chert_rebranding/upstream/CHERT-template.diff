@@ -1,0 +1,152 @@
+--- keycloak.v2/login/template.ftl (Keycloak 26.7.2)
++++ chert/login/template.ftl (CHERT)
+@@ -23,6 +23,29 @@
+   </@field.group>
+ </#macro>
+ 
++<#-- CHERT brand-panel icon set (24×24, stroke = currentColor). Pick per bullet in theme.properties:
++     chertPoint1Icon / chertPoint2Icon / chertPoint3Icon. Unknown names fall back to "check". -->
++<#macro chertIcon name>
++<#assign paths = {
++  "lock":    '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
++  "wifi":    '<path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><path d="M12 20h.01"/>',
++  "globe":   '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/>',
++  "users":   '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
++  "shield":  '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>',
++  "chart":   '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
++  "book":    '<path d="M4 4a2 2 0 0 1 2-2h13v18H6a2 2 0 0 0-2 2V4Z"/><path d="M19 2v18"/>',
++  "bolt":    '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
++  "layers":  '<path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/>',
++  "grid":    '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
++  "cpu":     '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>',
++  "database":'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
++  "calendar":'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
++  "heart":   '<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/>',
++  "check":   '<path d="M20 6 9 17l-5-5"/>'
++}>
++<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${(paths[name]!paths["check"])?no_esc}</svg>
++</#macro>
++
+ <#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false>
+ <!DOCTYPE html>
+ <html class="${properties.kcHtmlClass!}" lang="${lang}"<#if realm.internationalizationEnabled> dir="${(locale.rtl)?then('rtl','ltr')}"</#if>>
+@@ -39,11 +62,10 @@
+         </#list>
+     </#if>
+     <title>${title!}</title>
+-    <#if themeResources?? && themeResources.favicons?has_content>
+-        <@themeResourceTags.renderFavicons themeResources.favicons url.resourcesPath />
+-    <#else>
+-        <link rel="icon" href="${url.resourcesPath}/img/favicon.ico" />
+-    </#if>
++    <#-- CHERT favicon (same files as the portal). Content-versioned (?v=sha256[:10]) because Keycloak
++         serves theme resources with max-age=30d under a path that doesn't change with the theme. -->
++    <link rel="icon" href="${url.resourcesPath}/img/favicon.ico?v=e1cc96f184" sizes="any" />
++    <link rel="apple-touch-icon" href="${url.resourcesPath}/img/apple-touch-icon.png?v=2a145d7949" />
+     <#if themeResources?? && themeResources.stylesCommon?has_content>
+         <@themeResourceTags.renderStyles themeResources.stylesCommon url.resourcesCommonPath />
+     <#elseif properties.stylesCommon?has_content>
+@@ -148,52 +170,55 @@
+     </script>
+ </head>
+ 
+-<body id="keycloak-bg" class="${properties.kcBodyClass!}" data-page-id="login-${pageId}">
++<body id="keycloak-bg" class="${properties.kcBodyClass!} chert-auth" data-page-id="login-${pageId}">
++<#-- CHERT: split-screen layout (dark brand panel + form card) — CHERT universal Keycloak design.
++     Only this body markup differs from keycloak.v2's template.ftl (26.7.2); the form area is upstream. -->
++<div class="chert-auth__shell">
++  <aside class="chert-auth__brand">
++    <div class="chert-auth__logo"><img src="${url.resourcesPath}/img/logo.svg?v=934a88da79" alt="" width="30" height="30"><span>CHERT <b>${msg("chertProduct")}</b></span></div>
++    <div class="chert-auth__pitch">
++      <p class="chert-auth__eyebrow">${msg("chertAuthEyebrow")}</p>
++      <h2 class="chert-auth__title">${msg("chertAuthTitle")} <span>${msg("chertAuthTitleAccent")}</span></h2>
++      <p class="chert-auth__lead">${msg("chertAuthLead")}</p>
++      <ul class="chert-auth__points">
++        <li><i><@chertIcon name=(properties.chertPoint1Icon!"check") /></i>${msg("chertAuthPoint1")}</li>
++        <li><i><@chertIcon name=(properties.chertPoint2Icon!"check") /></i>${msg("chertAuthPoint2")}</li>
++        <li><i><@chertIcon name=(properties.chertPoint3Icon!"check") /></i>${msg("chertAuthPoint3")}</li>
++      </ul>
++    </div>
++    <div class="chert-auth__art" aria-hidden="true">
++      <div class="chert-stack">
++        <span class="chert-plate" style="--i:3"></span><span class="chert-plate" style="--i:2"></span>
++        <span class="chert-plate" style="--i:1"></span><span class="chert-plate chert-plate--top" style="--i:0"></span>
++        <span class="chert-stack__beam"></span>
++        <span class="chert-stack__packet" style="--d:0s"></span><span class="chert-stack__packet" style="--d:1s"></span>
++        <span class="chert-stack__packet" style="--d:2s"></span><span class="chert-stack__packet" style="--d:3s"></span>
++      </div>
++    </div>
++  </aside>
+ <div class="${properties.kcLogin!}">
+   <div class="${properties.kcLoginContainer!}">
+-    <header id="kc-header" class="pf-v5-c-login__header">
+-      <div id="kc-header-wrapper"
+-              class="pf-v5-c-brand">${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}</div>
+-    </header>
+     <main class="${properties.kcLoginMain!}">
+       <div class="${properties.kcLoginMainHeader!}">
+         <h1 class="${properties.kcLoginMainTitle!}" id="kc-page-title"><#nested "header"></h1>
+         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+-        <div class="${properties.kcLoginMainHeaderUtilities!}">
+-          <div class="${properties.kcInputClass!}">
+-            <select
+-              aria-label="${msg("languages")}"
+-              id="login-select-toggle"
+-              onchange="if (this.value) window.location.href=this.value"
+-            >
+-              <#list locale.supported?sort_by("label") as l>
+-                <option
+-                  value="${l.url}"
+-                  ${(l.languageTag == locale.currentLanguageTag)?then('selected','')}
+-                >
+-                  ${l.label}
+-                </option>
+-              </#list>
+-            </select>
+-            <span class="${properties.kcFormControlUtilClass}">
+-              <span class="${properties.kcFormControlToggleIcon!}">
+-                <svg
+-                  class="pf-v5-svg"
+-                  viewBox="0 0 320 512"
+-                  fill="currentColor"
+-                  aria-hidden="true"
+-                  role="img"
+-                  width="1em"
+-                  height="1em"
+-                >
+-                  <path
+-                    d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+-                  >
+-                  </path>
+-                </svg>
+-              </span>
+-            </span>
+-          </div>
++        <#-- CHERT: one pill naming the OTHER language (same as the app header) instead of a select.
++             If theme.properties sets chertAppClientId + chertLangSwitchPath and the client has a
++             Base URL, the pill on the sign-in / forgot-password pages switches THROUGH THE APP
++             (e.g. https://app/lang/ar?next=/login), so the app and Keycloak stay in one language and
++             the user returns to sign-in in the new one. Otherwise (other clients, email action links)
++             Keycloak's own switch is used so one-time action URLs survive. -->
++        <#assign chertSwitch = (properties.chertLangSwitchPath!"")>
++        <#assign chertViaApp = (chertSwitch?has_content && client?? && client.clientId == (properties.chertAppClientId!"")
++                               && (client.baseUrl!"")?has_content
++                               && (pageId == "login" || pageId == "login-reset-password"))>
++        <div class="${properties.kcLoginMainHeaderUtilities!} chert-lang">
++          <#list locale.supported as l>
++            <#if l.languageTag != locale.currentLanguageTag>
++              <a class="chert-lang__pill" lang="${l.languageTag}" hreflang="${l.languageTag}"
++                 href="<#if chertViaApp>${client.baseUrl?remove_ending("/")}${chertSwitch?replace("{code}", l.languageTag)}<#else>${l.url}</#if>"><#if l.languageTag == "ar">العربية<#elseif l.languageTag == "en">English<#else>${l.label}</#if></a>
++            </#if>
++          </#list>
+         </div>
+         </#if>
+       </div>
+@@ -284,6 +309,7 @@
+     </main>
+   </div>
+ </div>
++</div>
+ </body>
+ </html>
+ </#macro>

@@ -1,0 +1,31 @@
+{
+  "_comment": "The ONLY per-project input. Copy to project.json, change the text, run tools/apply_project.py. Values below are chertiot.com's (the reference build).",
+  "productName": "IoT",
+  "appClientId": "portal",
+  "langSwitchPath": "/lang/{code}?next=/login",
+  "icons": ["lock", "wifi", "globe"],
+  "en": {
+    "loginTitle": "Sign in to CHERT IoT",
+    "eyebrow": "Self-hosted IoT platform",
+    "title": "From sensor to insight.",
+    "titleAccent": "Every layer of IoT, in one platform.",
+    "lead": "One CHERT account opens your projects, live dashboards, Node-RED flows and Python notebooks.",
+    "points": [
+      "An isolated workspace for every project",
+      "Connect devices over MQTT, HTTP or LoRaWAN",
+      "Works in English and Arabic"
+    ]
+  },
+  "ar": {
+    "loginTitle": "تسجيل الدخول إلى CHERT IoT",
+    "eyebrow": "منصّة إنترنت أشياء مستضافة ذاتيًّا",
+    "title": "من المستشعر إلى الرؤية.",
+    "titleAccent": "كل طبقات إنترنت الأشياء، في منصّة واحدة.",
+    "lead": "حساب CHERT واحد يفتح مشاريعك ولوحاتك الحيّة وتدفّقات Node-RED ودفاتر Python.",
+    "points": [
+      "مساحة عمل معزولة لكل مشروع",
+      "وصِّل الأجهزة عبر MQTT أو HTTP أو LoRaWAN",
+      "تعمل بالعربية والإنجليزية"
+    ]
+  }
+}
