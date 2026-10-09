@@ -132,6 +132,9 @@ def ensure_client(c: httpx.Client, client_id: str, spec: dict[str, Any]) -> None
         # "+" allows the client's redirect URIs; also allow its root so a post-logout landing on
         # the app home (portal → https://chertiot.com/) is accepted, not "Invalid redirect uri".
         "attributes": {"post.logout.redirect.uris": "+##" + spec["webOrigins"][0] + "/"},
+        # The app's home; the login theme uses it to route the language pill back through the
+        # portal's /lang toggle (template.ftl) and for Keycloak's "back to application" links.
+        "baseUrl": spec["webOrigins"][0] + "/",
     }
     existing = c.get(f"/{REALM}/clients", params={"clientId": client_id}).json()
     if existing:
