@@ -766,7 +766,7 @@ msgstr "كل طبقات إنترنت الأشياء، في منصّة واحدة
 
 #: app/templates/_auth_brand.html:10
 msgid "One CHERT account opens your projects, live dashboards, Node-RED flows and Python notebooks."
-msgstr "حساب CHERT واحد يفتح مشاريعك ولوحاتك الحيّة وتدفّقات Node-RED ودفاتر Python."
+msgstr "حساب CHERT واحد يفتح مشاريعك ولوحاتك الحيّة وتدفّقات Node-⁠RED ودفاتر Python."
 
 #: app/templates/_auth_brand.html:12
 msgid "An isolated workspace for every project"
