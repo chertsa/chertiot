@@ -1,6 +1,6 @@
 # CHERT IoT — project memory
 ## Hard rules
-- **v2.0.0 is FROZEN in production (2026-10-07)** — tag `v2.0.0` = `f595d49`, record: docs/releases/chertiot-v2.0.0-freeze.md. No change reaches chertiot.com without explicit owner approval; changes go branch → staging → owner UAT → PR → new tag (v2.0.x / v2.1.0).
+- **v2.0.1 is FROZEN in production (2026-10-09; v2.0.0 launched 2026-10-07)** — tag `v2.0.1` = `51cf645`, record: docs/releases/chertiot-v2.0.0-freeze.md (§9). No change reaches chertiot.com without explicit owner approval; changes go branch → staging → owner UAT → PR → new tag (v2.0.x / v2.1.0).
 - Decisions D1–D13 in PLAN.md are final. **D13 (v1.1, ADR-001): Project = a TB Tenant** (owner+members are Tenant Admins; portal brokers per-project TB sessions via sysadmin impersonation); **supersedes D4** (was tenant-per-student). See docs/adr/ADR-001-project-centric-platform.md.
 - Brand: "CHERT IoT" display / `chertiot` code+domain.
 - Portal→TB: REST only via tb_client.py. Idempotent provisioning, always.

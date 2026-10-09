@@ -1,4 +1,4 @@
-# CHERT IoT v2.0.0 — freeze record
+# CHERT IoT v2.0.0 — freeze record (current: v2.0.1, see §9)
 
 **Deployed code tag:** `v2.0.0` → `f595d498c6422b0357e53e2023607c34bd138b25` (the exact code running in production).
 **Evidence tag:** `v2.0.0-record` → the commit that contains this freeze record.
@@ -100,3 +100,22 @@ Mirrored images keep the upstream manifest digest (the mirror is a byte-identica
 - Any future change: new branch → staging (`stage.chertiot.com`) → owner UAT → PR to `main` → new tag
   (`v2.0.x` for fixes, `v2.1.0` for features) → production.
 - Engine versions remain frozen (owner ruling 2026-09-04): no upgrades.
+
+## 9. v2.0.1 — bilingual sign-in (2026-10-09)
+
+**Code tag:** `v2.0.1` → `51cf645` (merge of PR #2). **Evidence tag:** `v2.0.1-record`. **Owner approval:** "go" (this session).
+**Pre-deploy snapshot:** `chertiotserver2-pre-v2.0.1-20261009T1529Z` (live, production at v2.0.0).
+
+- Sign-in and forgot-password (Keycloak) open in the language chosen on chertiot.com: `/login` passes it as
+  OIDC `ui_locales`, which outranks a stale `KEYCLOAK_LOCALE` cookie on Keycloak 26.7.2 (verified).
+- The Keycloak language `<select>` is replaced by one CHERT pill naming the other language; on sign-in and
+  forgot-password it switches through the portal (`/lang/<code>?next=/login`), so chertiot.com follows;
+  other Keycloak pages (email action links) keep Keycloak's native switch.
+- `/lang` accepts only a same-site relative `next` (absolute and `//host` rejected, unit-tested).
+- Keycloak `portal` client `baseUrl` set by `setup_keycloak`; Arabic "Node-RED" kept unbreakable.
+- Deploy: `deploy.sh` + Keycloak restart (login template). No database migration; no image changes
+  other than the rebuilt portal.
+- Verified on production: site → العربية → sign-in (ar) → forgot-password (ar) → pill → English (portal
+  cookie follows) → back to Arabic → sign-in → home (ar); stale English Keycloak cookie ignored; all 15
+  signed-in pages and the marketing site regression-clean (no errors, no external requests).
+- Rollback: `chertiotserver2-pre-v2.0.1-20261009T1529Z`, or `git checkout v2.0.0` + `deploy.sh` + Keycloak restart.
